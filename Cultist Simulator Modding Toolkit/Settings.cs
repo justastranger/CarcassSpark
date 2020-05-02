@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
-    public partial class Form1 : Form
+    public partial class Settings : Form
     {
-        public Form1()
+        public Settings()
         {
             InitializeComponent();
         }
