@@ -14,7 +14,10 @@ namespace Cultist_Simulator_Modding_Toolkit
     class Aspect : Element
     {
         public static Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
-        
+        public bool isAspect, isHidden, noartneeded;
+        public Induces[] induces;
+
+
         [JsonConstructor]
         public Aspect(string id = null, string label = null, string description = null,
                       bool isAspect = true, string icon = null, JArray induces = null,
@@ -25,21 +28,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.label = label;
             this.description = description;
             this.isAspect = isAspect;
-            if (icon != null) {
-                this.icon = icon;
-            } else {
-                this.icon = id;
-            }
+            if (icon != null) this.icon = icon;
+            else this.icon = id;
             // isHidden is only true iff isAspect is true
-            if (isHidden == true) {
-                this.isHidden = true;
-            }
-            if (induces != null) {
-                this.induces = induces[0].ToObject<Induces[]>();
-            }
-            if (noartneeded == true) {
-                this.noartneeded = true;
-            }
+            if (isHidden == true) this.isHidden = true;
+            if (induces != null) this.induces = induces[0].ToObject<Induces[]>();
+            if (noartneeded == true) this.noartneeded = true;
             this.comments = comments;
         }
 
@@ -102,6 +96,19 @@ namespace Cultist_Simulator_Modding_Toolkit
                 aspectsList[deserializedAspect.id] = deserializedAspect;
             }
             
+        }
+
+        public class Induces
+        {
+            public string id;
+            public int chance;
+
+            [JsonConstructor]
+            public Induces(string id, int chance)
+            {
+                this.id = id;
+                this.chance = chance;
+            }
         }
     }
 }

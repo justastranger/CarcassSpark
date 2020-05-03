@@ -26,12 +26,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private Aspect generateAspect()
         {
-
+            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text, true, idTextBox.Text, (Induces[])null, false, false, null);
+            return temp;
         }
 
         private Element generateElement()
         {
-
+            Element temp;
         }
 
         private void iconSelectButton_Click(object sender, EventArgs e)
