@@ -12,6 +12,9 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class AddAspectForm : Form
     {
+        public string aspectID;
+        public int amount;
+
         public AddAspectForm()
         {
             InitializeComponent();
@@ -25,14 +28,18 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void addAspectAcceptButton_Click(object sender, EventArgs e)
         {
             // this should be a string anyways, but just in case, I guess.
-            string aspectID = aspectListBox.SelectedItem.ToString();
-            int amount = Convert.ToInt32(aspectAmountUpDown.Value);
+            this.aspectID = aspectListBox.SelectedItem.ToString();
+            this.amount = Convert.ToInt32(aspectAmountUpDown.Value);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void addAspectCancelButton_Click(object sender, EventArgs e)
         {
+            this.aspectID = null;
+            this.amount = null;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
-            this.Dispose();
         }
     }
 }

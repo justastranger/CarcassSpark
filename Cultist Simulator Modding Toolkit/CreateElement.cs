@@ -26,7 +26,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private Aspect generateAspect()
         {
-            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text, true, idTextBox.Text, (Induces[])null, false, false, null);
+            /*
+                     (string id, string label, string description,
+                      string icon = null, Induces[] induces = null,
+                      bool isHidden = false, bool noartneeded = false,
+                      bool isAspect = true, string comments = null)
+             */
+            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text, idTextBox.Text, (Aspect.Induces[]) null, isHiddenCheckBox.Checked, noartneededCheckBox.Checked, true, commentsTextBox.Text);
             return temp;
         }
 
@@ -53,6 +59,63 @@ namespace Cultist_Simulator_Modding_Toolkit
             } else {
                 generateElement();
             }
+        }
+        
+        private void addAspectContextMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var frm = new AddAspectForm())
+            {
+                var result = frm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string aspectID = frm.aspectID;
+                    int amount = frm.amount;
+
+                }
+            }
+        }
+
+        private void removeAspectContextMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeQuantityContextMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var frm = new ChangeAspectQuantityForm(elementAspects[selectedAspect]))
+            {
+                var result = frm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    int amount = frm.amount;
+                }
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        // aspectsListBox section
+
+        string selectedAspect;
+        AspectDictionary elementAspects = new AspectDictionary();
+        
+        private void actuallyAddAspect(string aspectID, int amount)
+        {
+
+        }
+
+        private void aspectsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedAspect = aspectsListBox.SelectedValue.ToString();
+        }
+
+        private void aspectsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            changeQuantityContextMenuItem_Click(sender, e);
         }
     }
 }

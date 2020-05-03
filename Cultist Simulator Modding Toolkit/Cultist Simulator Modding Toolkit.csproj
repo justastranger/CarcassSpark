@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeAspectQuantityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeAspectQuantityForm.Designer.cs">
+      <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddAspectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <EmbeddedResource Include="AddAspectForm.resx">
       <DependentUpon>AddAspectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeAspectQuantityForm.resx">
+      <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateElement.resx">
       <DependentUpon>CreateElement.cs</DependentUpon>

@@ -26,6 +26,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void loadContentButton_Click(object sender, EventArgs e)
         {
             aspectListBox.Items.Clear();
+            
             using (FileStream aspectsFile = new FileStream(directoryToContent + coreContent + "elements/_aspects.json", FileMode.Open))
             {
                 Aspect.reloadAspects(aspectsFile);

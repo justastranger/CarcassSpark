@@ -15,26 +15,44 @@ namespace Cultist_Simulator_Modding_Toolkit
         // false means the recipe is linked to by another recipe somehow
         public bool craftable;
         public int maxececutions, warmup;
-        public Effects effects;
-        public Requirements requirements;
+        public EffectsDictionary effects;
+        public RequirementsDictionary requirements;
 
-        public class Effects
+        public class EffectsDictionary
         {
             Dictionary<string, int> effectsDictionary;
 
-            public Effects(JToken effects)
+            public EffectsDictionary(JToken effects)
             {
                 this.effectsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(effects));
             }
         }
 
-        public class Requirements
+        public class RequirementsDictionary : Dictionary<string,int>
         {
-            Dictionary<string, int> requirementsDictionary;
+            Dictionary<string, int> internalDictionary;
 
-            public Requirements(JToken requirements)
+            new public int this[string key]
             {
-                this.requirementsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(requirements));
+                get
+                {
+                    return internalDictionary[key];
+                }
+                set
+                {
+                    internalDictionary[key] = value;
+                }
+            }
+
+            public RequirementsDictionary(string id, int amount)
+            {
+                this.internalDictionary = new Dictionary<string, int>();
+                this.internalDictionary[id] = amount;
+            }
+
+            public RequirementsDictionary(JToken requirements)
+            {
+                this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(requirements));
             }
         }
     }

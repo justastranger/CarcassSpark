@@ -139,6 +139,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
+        public AspectDictionary()
+        {
+            this.internalDictionary = new Dictionary<string, int>();
+        }
+
+        [JsonConstructor]
         public AspectDictionary(JToken aspects)
         {
             this.internalDictionary = JsonConvert.DeserializeObject<ElementDictionary>(JsonConvert.SerializeObject(aspects));
