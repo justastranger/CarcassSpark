@@ -30,6 +30,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             } else {
                 this.icon = id;
             }
+            // isHidden is only true iff isAspect is true
             if (isHidden == true) {
                 this.isHidden = true;
             }

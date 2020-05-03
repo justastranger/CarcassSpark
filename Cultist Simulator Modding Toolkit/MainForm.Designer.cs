@@ -39,6 +39,11 @@
             this.aspectListBox = new System.Windows.Forms.ListBox();
             this.aspectImageList = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.aspectsLabel = new System.Windows.Forms.Label();
+            this.elementsLabel = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.recipesLabel = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +68,8 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(51, 22);
-            this.toolStripDropDownButton1.Text = "Menu";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 22);
+            this.toolStripDropDownButton1.Text = "File";
             // 
             // newModToolStripMenuItem
             // 
@@ -93,8 +98,8 @@
             this.loadContentButton.Image = ((System.Drawing.Image)(resources.GetObject("loadContentButton.Image")));
             this.loadContentButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.loadContentButton.Name = "loadContentButton";
-            this.loadContentButton.Size = new System.Drawing.Size(91, 22);
-            this.loadContentButton.Text = "Reload Aspects";
+            this.loadContentButton.Size = new System.Drawing.Size(93, 22);
+            this.loadContentButton.Text = "Reload Content";
             this.loadContentButton.Click += new System.EventHandler(this.loadContentButton_Click);
             // 
             // aspectListBox
@@ -104,10 +109,10 @@
             "exampleAspect1",
             "exampleAspect2",
             "exampleAspect3"});
-            this.aspectListBox.Location = new System.Drawing.Point(12, 28);
+            this.aspectListBox.Location = new System.Drawing.Point(12, 41);
             this.aspectListBox.Name = "aspectListBox";
             this.aspectListBox.ScrollAlwaysVisible = true;
-            this.aspectListBox.Size = new System.Drawing.Size(196, 199);
+            this.aspectListBox.Size = new System.Drawing.Size(150, 186);
             this.aspectListBox.Sorted = true;
             this.aspectListBox.TabIndex = 1;
             // 
@@ -121,11 +126,62 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // aspectsLabel
+            // 
+            this.aspectsLabel.AutoSize = true;
+            this.aspectsLabel.Location = new System.Drawing.Point(40, 25);
+            this.aspectsLabel.Name = "aspectsLabel";
+            this.aspectsLabel.Size = new System.Drawing.Size(79, 13);
+            this.aspectsLabel.TabIndex = 2;
+            this.aspectsLabel.Text = "Vanilla Aspects";
+            // 
+            // elementsLabel
+            // 
+            this.elementsLabel.AutoSize = true;
+            this.elementsLabel.Location = new System.Drawing.Point(199, 25);
+            this.elementsLabel.Name = "elementsLabel";
+            this.elementsLabel.Size = new System.Drawing.Size(84, 13);
+            this.elementsLabel.TabIndex = 3;
+            this.elementsLabel.Text = "Vanilla Elements";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(168, 41);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(150, 186);
+            this.listBox1.Sorted = true;
+            this.listBox1.TabIndex = 4;
+            // 
+            // recipesLabel
+            // 
+            this.recipesLabel.AutoSize = true;
+            this.recipesLabel.Location = new System.Drawing.Point(357, 25);
+            this.recipesLabel.Name = "recipesLabel";
+            this.recipesLabel.Size = new System.Drawing.Size(80, 13);
+            this.recipesLabel.TabIndex = 5;
+            this.recipesLabel.Text = "Vanilla Recipes";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(324, 41);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(150, 186);
+            this.listBox2.Sorted = true;
+            this.listBox2.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 369);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.recipesLabel);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.elementsLabel);
+            this.Controls.Add(this.aspectsLabel);
             this.Controls.Add(this.aspectListBox);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
@@ -148,6 +204,11 @@
         private System.Windows.Forms.ToolStripMenuItem selectModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label aspectsLabel;
+        private System.Windows.Forms.Label elementsLabel;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label recipesLabel;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.isAspectCheckbox = new System.Windows.Forms.CheckBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -37,6 +38,9 @@
             this.iconSelectButton = new System.Windows.Forms.Button();
             this.openIconDialog = new System.Windows.Forms.OpenFileDialog();
             this.iconPictureBox = new System.Windows.Forms.PictureBox();
+            this.isHiddenCheckBox = new System.Windows.Forms.CheckBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +123,38 @@
             this.iconPictureBox.TabIndex = 7;
             this.iconPictureBox.TabStop = false;
             // 
+            // isHiddenCheckBox
+            // 
+            this.isHiddenCheckBox.AutoSize = true;
+            this.isHiddenCheckBox.Location = new System.Drawing.Point(12, 227);
+            this.isHiddenCheckBox.Name = "isHiddenCheckBox";
+            this.isHiddenCheckBox.Size = new System.Drawing.Size(102, 17);
+            this.isHiddenCheckBox.TabIndex = 8;
+            this.isHiddenCheckBox.Text = "Hidden Aspect?";
+            this.isHiddenCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(12, 305);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 9;
+            this.okButton.Text = "Create";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 26);
+            // 
             // CreateElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 309);
+            this.ClientSize = new System.Drawing.Size(274, 340);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.isHiddenCheckBox);
             this.Controls.Add(this.iconPictureBox);
             this.Controls.Add(this.iconSelectButton);
             this.Controls.Add(this.aspectsListView);
@@ -153,5 +184,8 @@
         private System.Windows.Forms.Button iconSelectButton;
         private System.Windows.Forms.OpenFileDialog openIconDialog;
         private System.Windows.Forms.PictureBox iconPictureBox;
+        private System.Windows.Forms.CheckBox isHiddenCheckBox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
