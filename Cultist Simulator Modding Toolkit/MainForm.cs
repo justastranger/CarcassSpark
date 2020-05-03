@@ -100,12 +100,18 @@ namespace Cultist_Simulator_Modding_Toolkit
                         if (element["isAspect"] != null)
                         {
                             Aspect deserializedAspect = element.ToObject<Aspect>();
-                            aspectsList.Add(deserializedAspect.id, deserializedAspect);
-                            aspectListBox.Items.Add(deserializedAspect.id);
+                            if(!aspectsList.ContainsKey(deserializedAspect.id))
+                            {
+                                aspectsList.Add(deserializedAspect.id, deserializedAspect);
+                                aspectListBox.Items.Add(deserializedAspect.id);
+                            }
                         } else {
                             Element deserializedElement = element.ToObject<Element>();
-                            elementsList.Add(deserializedElement.id, deserializedElement);
-                            elementsListBox.Items.Add(deserializedElement.id);
+                            if (!elementsList.ContainsKey(deserializedElement.id))
+                            {
+                                elementsList.Add(deserializedElement.id, deserializedElement);
+                                elementsListBox.Items.Add(deserializedElement.id);
+                            }
                         }
                     }
                     return;
@@ -113,8 +119,11 @@ namespace Cultist_Simulator_Modding_Toolkit
                     foreach (JToken recipe in parsedJToken.First.ToArray())
                     {
                         Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                        recipesList.Add(deserializedRecipe.id, deserializedRecipe);
-                        recipesListBox.Items.Add(deserializedRecipe.id);
+                        if (!recipesList.ContainsKey(deserializedRecipe.id))
+                        {
+                            recipesList.Add(deserializedRecipe.id, deserializedRecipe);
+                            recipesListBox.Items.Add(deserializedRecipe.id);
+                        }
                     }
                     return;
                 case "decks":
