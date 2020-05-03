@@ -41,9 +41,17 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.aspectsLabel = new System.Windows.Forms.Label();
             this.elementsLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.elementsListBox = new System.Windows.Forms.ListBox();
             this.recipesLabel = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.recipesListBox = new System.Windows.Forms.ListBox();
+            this.decksLabel = new System.Windows.Forms.Label();
+            this.decksListBox = new System.Windows.Forms.ListBox();
+            this.legaciesLabel = new System.Windows.Forms.Label();
+            this.legaciesListBox = new System.Windows.Forms.ListBox();
+            this.endingsListBox = new System.Windows.Forms.ListBox();
+            this.endingsLabel = new System.Windows.Forms.Label();
+            this.verbsListBox = new System.Windows.Forms.ListBox();
+            this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +62,7 @@
             this.loadContentButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(677, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(930, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -112,7 +120,7 @@
             this.aspectListBox.Location = new System.Drawing.Point(12, 41);
             this.aspectListBox.Name = "aspectListBox";
             this.aspectListBox.ScrollAlwaysVisible = true;
-            this.aspectListBox.Size = new System.Drawing.Size(150, 186);
+            this.aspectListBox.Size = new System.Drawing.Size(125, 186);
             this.aspectListBox.Sorted = true;
             this.aspectListBox.TabIndex = 1;
             // 
@@ -129,7 +137,7 @@
             // aspectsLabel
             // 
             this.aspectsLabel.AutoSize = true;
-            this.aspectsLabel.Location = new System.Drawing.Point(40, 25);
+            this.aspectsLabel.Location = new System.Drawing.Point(31, 25);
             this.aspectsLabel.Name = "aspectsLabel";
             this.aspectsLabel.Size = new System.Drawing.Size(79, 13);
             this.aspectsLabel.TabIndex = 2;
@@ -138,48 +146,124 @@
             // elementsLabel
             // 
             this.elementsLabel.AutoSize = true;
-            this.elementsLabel.Location = new System.Drawing.Point(199, 25);
+            this.elementsLabel.Location = new System.Drawing.Point(162, 25);
             this.elementsLabel.Name = "elementsLabel";
             this.elementsLabel.Size = new System.Drawing.Size(84, 13);
             this.elementsLabel.TabIndex = 3;
             this.elementsLabel.Text = "Vanilla Elements";
             // 
-            // listBox1
+            // elementsListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(168, 41);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(150, 186);
-            this.listBox1.Sorted = true;
-            this.listBox1.TabIndex = 4;
+            this.elementsListBox.FormattingEnabled = true;
+            this.elementsListBox.Location = new System.Drawing.Point(143, 41);
+            this.elementsListBox.Name = "elementsListBox";
+            this.elementsListBox.ScrollAlwaysVisible = true;
+            this.elementsListBox.Size = new System.Drawing.Size(125, 186);
+            this.elementsListBox.Sorted = true;
+            this.elementsListBox.TabIndex = 4;
             // 
             // recipesLabel
             // 
             this.recipesLabel.AutoSize = true;
-            this.recipesLabel.Location = new System.Drawing.Point(357, 25);
+            this.recipesLabel.Location = new System.Drawing.Point(297, 25);
             this.recipesLabel.Name = "recipesLabel";
             this.recipesLabel.Size = new System.Drawing.Size(80, 13);
             this.recipesLabel.TabIndex = 5;
             this.recipesLabel.Text = "Vanilla Recipes";
             // 
-            // listBox2
+            // recipesListBox
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(324, 41);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(150, 186);
-            this.listBox2.Sorted = true;
-            this.listBox2.TabIndex = 6;
+            this.recipesListBox.FormattingEnabled = true;
+            this.recipesListBox.Location = new System.Drawing.Point(274, 41);
+            this.recipesListBox.Name = "recipesListBox";
+            this.recipesListBox.Size = new System.Drawing.Size(125, 186);
+            this.recipesListBox.Sorted = true;
+            this.recipesListBox.TabIndex = 6;
+            // 
+            // decksLabel
+            // 
+            this.decksLabel.AutoSize = true;
+            this.decksLabel.Location = new System.Drawing.Point(427, 25);
+            this.decksLabel.Name = "decksLabel";
+            this.decksLabel.Size = new System.Drawing.Size(72, 13);
+            this.decksLabel.TabIndex = 7;
+            this.decksLabel.Text = "Vanilla Decks";
+            // 
+            // decksListBox
+            // 
+            this.decksListBox.FormattingEnabled = true;
+            this.decksListBox.Location = new System.Drawing.Point(405, 41);
+            this.decksListBox.Name = "decksListBox";
+            this.decksListBox.Size = new System.Drawing.Size(125, 186);
+            this.decksListBox.TabIndex = 8;
+            // 
+            // legaciesLabel
+            // 
+            this.legaciesLabel.AutoSize = true;
+            this.legaciesLabel.Location = new System.Drawing.Point(554, 25);
+            this.legaciesLabel.Name = "legaciesLabel";
+            this.legaciesLabel.Size = new System.Drawing.Size(84, 13);
+            this.legaciesLabel.TabIndex = 9;
+            this.legaciesLabel.Text = "Vanilla Legacies";
+            // 
+            // legaciesListBox
+            // 
+            this.legaciesListBox.FormattingEnabled = true;
+            this.legaciesListBox.Location = new System.Drawing.Point(536, 41);
+            this.legaciesListBox.Name = "legaciesListBox";
+            this.legaciesListBox.Size = new System.Drawing.Size(125, 186);
+            this.legaciesListBox.TabIndex = 10;
+            // 
+            // endingsListBox
+            // 
+            this.endingsListBox.FormattingEnabled = true;
+            this.endingsListBox.Location = new System.Drawing.Point(667, 41);
+            this.endingsListBox.Name = "endingsListBox";
+            this.endingsListBox.Size = new System.Drawing.Size(125, 186);
+            this.endingsListBox.TabIndex = 11;
+            // 
+            // endingsLabel
+            // 
+            this.endingsLabel.AutoSize = true;
+            this.endingsLabel.Location = new System.Drawing.Point(686, 25);
+            this.endingsLabel.Name = "endingsLabel";
+            this.endingsLabel.Size = new System.Drawing.Size(79, 13);
+            this.endingsLabel.TabIndex = 12;
+            this.endingsLabel.Text = "Vanilla Endings";
+            // 
+            // verbsListBox
+            // 
+            this.verbsListBox.FormattingEnabled = true;
+            this.verbsListBox.Location = new System.Drawing.Point(798, 41);
+            this.verbsListBox.Name = "verbsListBox";
+            this.verbsListBox.Size = new System.Drawing.Size(120, 186);
+            this.verbsListBox.TabIndex = 13;
+            // 
+            // verbsLabel
+            // 
+            this.verbsLabel.AutoSize = true;
+            this.verbsLabel.Location = new System.Drawing.Point(825, 25);
+            this.verbsLabel.Name = "verbsLabel";
+            this.verbsLabel.Size = new System.Drawing.Size(68, 13);
+            this.verbsLabel.TabIndex = 14;
+            this.verbsLabel.Text = "Vanilla Verbs";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 369);
-            this.Controls.Add(this.listBox2);
+            this.ClientSize = new System.Drawing.Size(930, 369);
+            this.Controls.Add(this.verbsLabel);
+            this.Controls.Add(this.verbsListBox);
+            this.Controls.Add(this.endingsLabel);
+            this.Controls.Add(this.endingsListBox);
+            this.Controls.Add(this.legaciesListBox);
+            this.Controls.Add(this.legaciesLabel);
+            this.Controls.Add(this.decksListBox);
+            this.Controls.Add(this.decksLabel);
+            this.Controls.Add(this.recipesListBox);
             this.Controls.Add(this.recipesLabel);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.elementsListBox);
             this.Controls.Add(this.elementsLabel);
             this.Controls.Add(this.aspectsLabel);
             this.Controls.Add(this.aspectListBox);
@@ -206,9 +290,17 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label aspectsLabel;
         private System.Windows.Forms.Label elementsLabel;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox elementsListBox;
         private System.Windows.Forms.Label recipesLabel;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox recipesListBox;
+        private System.Windows.Forms.Label decksLabel;
+        private System.Windows.Forms.ListBox decksListBox;
+        private System.Windows.Forms.Label legaciesLabel;
+        private System.Windows.Forms.ListBox legaciesListBox;
+        private System.Windows.Forms.ListBox endingsListBox;
+        private System.Windows.Forms.Label endingsLabel;
+        private System.Windows.Forms.ListBox verbsListBox;
+        private System.Windows.Forms.Label verbsLabel;
     }
 }
 

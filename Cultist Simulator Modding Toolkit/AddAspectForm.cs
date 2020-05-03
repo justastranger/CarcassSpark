@@ -19,7 +19,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             InitializeComponent();
             aspectListBox.Items.Clear();
-            foreach (string key in Aspect.aspectsList.Keys.ToArray())
+            foreach (string key in MainForm.aspectsList.Keys.ToArray())
             {
                 aspectListBox.Items.Add(key);
             }
@@ -36,8 +36,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void addAspectCancelButton_Click(object sender, EventArgs e)
         {
-            this.aspectID = null;
-            this.amount = null;
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }

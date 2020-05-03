@@ -19,7 +19,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void isAspectCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            aspectsListView.Visible = !isAspectCheckbox.Checked;
             isHiddenCheckBox.Visible = isAspectCheckbox.Checked;
             this.Text = isAspectCheckbox.Checked ? "Create Aspect" : "Create Element";
         }
@@ -32,13 +31,22 @@ namespace Cultist_Simulator_Modding_Toolkit
                       bool isHidden = false, bool noartneeded = false,
                       bool isAspect = true, string comments = null)
              */
-            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text, idTextBox.Text, (Aspect.Induces[]) null, isHiddenCheckBox.Checked, noartneededCheckBox.Checked, true, commentsTextBox.Text);
+            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text,
+                                    idTextBox.Text, (Aspect.Induces[]) null, isHiddenCheckBox.Checked,
+                                    noartneededCheckBox.Checked, true, commentsTextBox.Text);
             return temp;
         }
 
         private Element generateElement()
         {
-            Element temp;
+            /*
+                  (string id = null, string label = null, string description = null,
+                   string icon = null, string comments = null, AspectDictionary aspects = null,
+                   Slot[] slots = null, XTriggers xtriggers = null)
+             */
+            Element temp = new Element(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text,
+                                       idTextBox.Text, commentsTextBox.Text, elementAspects, null, null);
+            return temp;
         }
 
         private void iconSelectButton_Click(object sender, EventArgs e)
@@ -105,17 +113,32 @@ namespace Cultist_Simulator_Modding_Toolkit
         
         private void actuallyAddAspect(string aspectID, int amount)
         {
-
+            elementAspects[aspectID] = amount;
+            dataGridView1.Rows.Add(aspectID, amount);
         }
-
-        private void aspectsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedAspect = aspectsListBox.SelectedValue.ToString();
-        }
-
-        private void aspectsListBox_DoubleClick(object sender, EventArgs e)
+        
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             changeQuantityContextMenuItem_Click(sender, e);
+        }
+
+        private void addAspectButton_Click(object sender, EventArgs e)
+        {
+            using (var frm = new AddAspectForm())
+            {
+                var value = frm.ShowDialog();
+                if (value == DialogResult.OK)
+                {
+                    string aspectId = frm.aspectID;
+                    int amount = frm.amount;
+                    actuallyAddAspect(aspectId, amount);
+                }
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            selectedAspect = dataGridView1.SelectedCells[0].Value.ToString();
         }
     }
 }

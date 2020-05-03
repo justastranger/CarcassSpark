@@ -5,54 +5,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Cultist_Simulator_Modding_Toolkit.Element;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
-    class Recipe
+    public class Recipe
     {
-        public string id, label, actionId, startdescription, description;
+        public string id, label, actionId, startdescription, description, ending, burnimage;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         public bool craftable;
-        public int maxececutions, warmup;
-        public EffectsDictionary effects;
-        public RequirementsDictionary requirements;
+        public int maxexecutions, warmup;
+        public ElementDictionary effects, requirements, extantreqs;
+        public AspectDictionary aspects;
+        public RecipeLink[] linked, alternativerecipes;
+        public Slot[] slots;
+        public Mutation[] mutations;
+        public object internalDeck;
 
-        public class EffectsDictionary
+        [JsonConstructor]
+        public Recipe(string id, string label, string actionId, string startdescription, string description,
+                      bool craftable, JToken requirements = null, int warmup = 0, int maxexecutions = 0, JToken effects = null,
+                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, 
+                      JArray mutations = null, JToken aspects = null, JToken extantreqs = null, string ending = null, string burnimage = null)
         {
-            Dictionary<string, int> effectsDictionary;
-
-            public EffectsDictionary(JToken effects)
+            this.id = id;
+            this.label = label;
+            this.actionId = actionId;
+            this.startdescription = startdescription;
+            this.description = description;
+            this.craftable = craftable;
+            this.ending = ending;
+            this.burnimage = burnimage;
+            if (warmup > 0) this.warmup = warmup;
+            if (requirements != null) this.requirements = requirements.ToObject<ElementDictionary>();
+            if (extantreqs != null) this.extantreqs = extantreqs.ToObject<ElementDictionary>();
+            if (maxexecutions > 0) this.maxexecutions = maxexecutions;
+            if (effects != null)
             {
-                this.effectsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(effects));
+                this.effects = effects.ToObject<ElementDictionary>();
+            }
+            if (linked != null)
+            {
+                this.linked = linked.ToObject<RecipeLink[]>();
+            }
+            if (slots != null)
+            {
+                this.slots = slots.ToObject<Slot[]>();
+            }
+            if (alternativerecipes != null)
+            {
+                this.alternativerecipes = alternativerecipes.ToObject<RecipeLink[]>();
+            }
+            if (mutations != null)
+            {
+                this.mutations = mutations.ToObject<Mutation[]>();
+            }
+            if (aspects != null)
+            {
+                this.aspects = aspects.ToObject<AspectDictionary>();
             }
         }
 
-        public class RequirementsDictionary : Dictionary<string,int>
+
+        public class RecipeLink
         {
-            Dictionary<string, int> internalDictionary;
+            public string id;
+            public int chance;
+            public bool additional;
+            public Dictionary<string, string> challenges;
 
-            new public int this[string key]
+            public RecipeLink(string id, int chance = 100, bool additional = false)
             {
-                get
-                {
-                    return internalDictionary[key];
-                }
-                set
-                {
-                    internalDictionary[key] = value;
-                }
+                this.id = id;
+                this.chance = chance;
+                if (additional) this.additional = additional;
             }
+        }
 
-            public RequirementsDictionary(string id, int amount)
-            {
-                this.internalDictionary = new Dictionary<string, int>();
-                this.internalDictionary[id] = amount;
-            }
+        public class Mutation
+        {
+            public string filter; // element ID to use to select a card, can filter based on aspect or card itself
+            public string mutateAspectId; // Aspect on filtered card to modify
+            public int level; // how much to modify the aspect by
 
-            public RequirementsDictionary(JToken requirements)
+            public Mutation(string filter, string mutateAspectId, int level)
             {
-                this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(requirements));
+                this.filter = filter;
+                this.mutateAspectId = mutateAspectId;
+                this.level = level;
             }
         }
     }

@@ -11,9 +11,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
-    class Aspect : Element
+    public class Aspect : Element
     {
-        public static Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
         public bool isAspect, isHidden, noartneeded;
         public Induces[] induces;
 
@@ -22,7 +21,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Aspect(string id, string label, string description,
                       string icon = null, JArray induces = null,
                       bool isHidden = false, bool noartneeded = false,
-                      bool isAspect = true, string comments = null)
+                      bool isAspect = true, string comments = null, JToken aspects = null)
         {
             // necessary
             this.id = id;
@@ -39,11 +38,13 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             if (isHidden == true) this.isHidden = true;
             // optional
-            if (induces != null) this.induces = induces[0].ToObject<Induces[]>();
+            if (induces != null) this.induces = induces.ToObject<Induces[]>();
             // optional
             this.noartneeded = noartneeded;
             // optional
             this.comments = comments;
+            // optional, didn't even know it was possible tbqh
+            if (aspects != null) this.aspects = aspects.ToObject<AspectDictionary>();
         }
 
         public Aspect(string id, string label, string description,
@@ -92,20 +93,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             return JsonConvert.SerializeObject(this);
         }
 
-        public static void reloadAspects(FileStream aspectsFile)
-        {
-            // reload
-            aspectsList.Clear();
-
-            string fileText = new StreamReader(aspectsFile).ReadToEnd();
-            JToken[] aspects = JsonConvert.DeserializeObject<JObject>(fileText)["elements"].ToArray();
-            foreach (JToken aspect in aspects)
-            {
-                Aspect deserializedAspect = aspect.ToObject<Aspect>();
-                aspectsList[deserializedAspect.id] = deserializedAspect;
-            }
-            
-        }
+        
 
         public class Induces
         {
@@ -123,11 +111,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 
     // Just like ElementDictionary, except aspect IDs only
     // example: {lantern: 4, tool: 1, auctionable: 2} to require 4 lantern AND 1 tool AND 2 auctionable
-    public class AspectDictionary : Dictionary<string, int>
+    public class AspectDictionary
     {
         Dictionary<string, int> internalDictionary;
 
-        new public int this[string key]
+        public int this[string key]
         {
             get
             {
@@ -147,7 +135,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonConstructor]
         public AspectDictionary(JToken aspects)
         {
-            this.internalDictionary = JsonConvert.DeserializeObject<ElementDictionary>(JsonConvert.SerializeObject(aspects));
+            this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(aspects));
         }
 
         public AspectDictionary(string id, int amount)

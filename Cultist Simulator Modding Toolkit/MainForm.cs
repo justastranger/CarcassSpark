@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +20,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private string moddedNewContent = "more/";
         public static string currentModDirectory;
 
+        public static Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
+        public static Dictionary<string, Recipe> recipesList = new Dictionary<string, Recipe>();
+        public static Dictionary<string, Aspect> decksList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Aspect> legaciesList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Aspect> endingsList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Aspect> verbsList = new Dictionary<string, Aspect>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,15 +35,37 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void loadContentButton_Click(object sender, EventArgs e)
         {
+            // clear everything so everything can be reloaded
             aspectListBox.Items.Clear();
-            
+            aspectsList.Clear();
+            elementsListBox.Items.Clear();
+            elementsList.Clear();
+            recipesListBox.Items.Clear();
+            recipesList.Clear();
+            decksListBox.Items.Clear();
+            decksList.Clear();
+            legaciesListBox.Items.Clear();
+            legaciesList.Clear();
+            endingsListBox.Items.Clear();
+            endingsList.Clear();
+            verbsListBox.Items.Clear();
+            verbsList.Clear();
+
+            foreach (string folder in Directory.EnumerateDirectories(directoryToContent + coreContent))
+            {
+                foreach ( string file in Directory.EnumerateFiles(folder))
+                {
+                    //MessageBox.Show(file);
+                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    {
+                        reloadFile(fs);
+                    }
+                }
+            }
+
             using (FileStream aspectsFile = new FileStream(directoryToContent + coreContent + "elements/_aspects.json", FileMode.Open))
             {
-                Aspect.reloadAspects(aspectsFile);
-            }
-            foreach ( string key in Aspect.aspectsList.Keys.ToArray())
-            {
-                aspectListBox.Items.Add(key);
+                reloadFile(aspectsFile);
             }
         }
 
@@ -50,6 +82,58 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        public void reloadFile(FileStream file)
+        {
+
+            string fileText = new StreamReader(file).ReadToEnd();
+            JToken parsedJToken = JsonConvert.DeserializeObject<JToken>(fileText).First;
+            string fileType = parsedJToken.Path;
+            switch (fileType)
+            {
+                case "elements":
+                    foreach (JToken element in parsedJToken.First.ToArray())
+                    {
+                        //if (element["isAspect"].ToObject<bool>())
+                        if (element["isAspect"] != null)
+                        {
+                            Aspect deserializedAspect = element.ToObject<Aspect>();
+                            aspectsList.Add(deserializedAspect.id, deserializedAspect);
+                            aspectListBox.Items.Add(deserializedAspect.id);
+                        } else {
+                            Element deserializedElement = element.ToObject<Element>();
+                            elementsList.Add(deserializedElement.id, deserializedElement);
+                            elementsListBox.Items.Add(deserializedElement.id);
+                        }
+                    }
+                    return;
+                case "recipes":
+                    foreach (JToken recipe in parsedJToken.First.ToArray())
+                    {
+                        Recipe deserializedRecipe = recipe.ToObject<Recipe>();
+                        recipesList.Add(deserializedRecipe.id, deserializedRecipe);
+                        recipesListBox.Items.Add(deserializedRecipe.id);
+                    }
+                    return;
+                case "decks":
+                    return;
+                case "legacies":
+                    return;
+                case "endings":
+                    return;
+                case "verbs":
+                    return;
+                default:
+                    break;
+            }
+            // JToken[] aspects = JsonConvert.DeserializeObject<JObject>(fileText)["elements"].ToArray();
+            foreach (JToken aspect in parsedJToken)
+            {
+                //Aspect deserializedAspect = aspect.ToObject<Aspect>();
+                //aspectsList[deserializedAspect.id] = deserializedAspect;
+            }
 
         }
     }
