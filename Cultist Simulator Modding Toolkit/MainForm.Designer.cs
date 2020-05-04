@@ -82,21 +82,21 @@
             // newModToolStripMenuItem
             // 
             this.newModToolStripMenuItem.Name = "newModToolStripMenuItem";
-            this.newModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.newModToolStripMenuItem.Text = "New Mod";
             this.newModToolStripMenuItem.Click += new System.EventHandler(this.newModToolStripMenuItem_Click);
             // 
             // selectModToolStripMenuItem
             // 
             this.selectModToolStripMenuItem.Name = "selectModToolStripMenuItem";
-            this.selectModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.selectModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.selectModToolStripMenuItem.Text = "Select Mod";
             this.selectModToolStripMenuItem.Click += new System.EventHandler(this.selectModToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -268,6 +268,7 @@
             this.Controls.Add(this.aspectsLabel);
             this.Controls.Add(this.aspectListBox);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Cultist Simulator Modding Toolkit";
             this.toolStrip1.ResumeLayout(false);

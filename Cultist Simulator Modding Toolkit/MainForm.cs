@@ -24,7 +24,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public static Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
         public static Dictionary<string, Recipe> recipesList = new Dictionary<string, Recipe>();
         public static Dictionary<string, Deck> decksList = new Dictionary<string, Deck>();
-        public static Dictionary<string, Aspect> legaciesList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Legacy> legaciesList = new Dictionary<string, Legacy>();
         public static Dictionary<string, Aspect> endingsList = new Dictionary<string, Aspect>();
         public static Dictionary<string, Aspect> verbsList = new Dictionary<string, Aspect>();
 
@@ -138,6 +138,15 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                     return;
                 case "legacies":
+                    foreach (JToken legacy in parsedJToken.First.ToArray())
+                    {
+                        Legacy deserializedLegacy = legacy.ToObject<Legacy>();
+                        if (!legaciesList.ContainsKey(deserializedLegacy.id))
+                        {
+                            legaciesList.Add(deserializedLegacy.id, deserializedLegacy);
+                            legaciesListBox.Items.Add(deserializedLegacy.id);
+                        }
+                    }
                     return;
                 case "endings":
                     return;
