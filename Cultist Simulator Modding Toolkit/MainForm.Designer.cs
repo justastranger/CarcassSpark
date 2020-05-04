@@ -36,7 +36,7 @@
             this.selectModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadContentButton = new System.Windows.Forms.ToolStripButton();
-            this.aspectListBox = new System.Windows.Forms.ListBox();
+            this.aspectsListBox = new System.Windows.Forms.ListBox();
             this.aspectImageList = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.aspectsLabel = new System.Windows.Forms.Label();
@@ -110,19 +110,16 @@
             this.loadContentButton.Text = "Reload Content";
             this.loadContentButton.Click += new System.EventHandler(this.loadContentButton_Click);
             // 
-            // aspectListBox
+            // aspectsListBox
             // 
-            this.aspectListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.aspectListBox.Items.AddRange(new object[] {
-            "exampleAspect1",
-            "exampleAspect2",
-            "exampleAspect3"});
-            this.aspectListBox.Location = new System.Drawing.Point(12, 41);
-            this.aspectListBox.Name = "aspectListBox";
-            this.aspectListBox.ScrollAlwaysVisible = true;
-            this.aspectListBox.Size = new System.Drawing.Size(125, 303);
-            this.aspectListBox.Sorted = true;
-            this.aspectListBox.TabIndex = 1;
+            this.aspectsListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.aspectsListBox.Location = new System.Drawing.Point(12, 41);
+            this.aspectsListBox.Name = "aspectsListBox";
+            this.aspectsListBox.ScrollAlwaysVisible = true;
+            this.aspectsListBox.Size = new System.Drawing.Size(125, 303);
+            this.aspectsListBox.Sorted = true;
+            this.aspectsListBox.TabIndex = 1;
+            this.aspectsListBox.DoubleClick += new System.EventHandler(this.aspectListBox_DoubleClick);
             // 
             // aspectImageList
             // 
@@ -267,7 +264,7 @@
             this.Controls.Add(this.elementsListBox);
             this.Controls.Add(this.elementsLabel);
             this.Controls.Add(this.aspectsLabel);
-            this.Controls.Add(this.aspectListBox);
+            this.Controls.Add(this.aspectsListBox);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
@@ -283,7 +280,7 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton loadContentButton;
-        private System.Windows.Forms.ListBox aspectListBox;
+        private System.Windows.Forms.ListBox aspectsListBox;
         private System.Windows.Forms.ImageList aspectImageList;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem newModToolStripMenuItem;

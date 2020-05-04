@@ -14,7 +14,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public string id, label, actionId, startdescription, description, ending, burnimage;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
-        public bool craftable;
+        public bool craftable, hintonly;
         public int maxexecutions, warmup;
         public ElementDictionary effects, requirements, extantreqs;
         public AspectDictionary aspects;
@@ -22,12 +22,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Slot[] slots;
         public Mutation[] mutations;
         public object internalDeck;
+        public Dictionary<string, int> deckeffect;
 
         [JsonConstructor]
         public Recipe(string id, string label, string actionId, string startdescription, string description,
-                      bool craftable, JToken requirements = null, int warmup = 0, int maxexecutions = 0, JToken effects = null,
-                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, 
-                      JArray mutations = null, JToken aspects = null, JToken extantreqs = null, string ending = null, string burnimage = null)
+                      bool craftable, bool hintonly = false, JObject requirements = null, int warmup = 0, int maxexecutions = 0, JObject effects = null,
+                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, JObject deckeffect = null,
+                      JArray mutations = null, JObject aspects = null, JObject extantreqs = null, string ending = null, string burnimage = null)
         {
             this.id = id;
             this.label = label;
@@ -65,6 +66,15 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 this.aspects = aspects.ToObject<AspectDictionary>();
             }
+            if (deckeffect != null)
+            {
+                this.deckeffect = deckeffect.ToObject<Dictionary<string, int>>();
+            }
+            if (hintonly)
+            {
+                this.hintonly = hintonly;
+            }
+
         }
 
 

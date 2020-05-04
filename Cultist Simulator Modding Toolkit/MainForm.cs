@@ -36,7 +36,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void loadContentButton_Click(object sender, EventArgs e)
         {
             // clear everything so everything can be reloaded
-            aspectListBox.Items.Clear();
+            aspectsListBox.Items.Clear();
             aspectsList.Clear();
             elementsListBox.Items.Clear();
             elementsList.Clear();
@@ -103,7 +103,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                             if(!aspectsList.ContainsKey(deserializedAspect.id))
                             {
                                 aspectsList.Add(deserializedAspect.id, deserializedAspect);
-                                aspectListBox.Items.Add(deserializedAspect.id);
+                                aspectsListBox.Items.Add(deserializedAspect.id);
                             }
                         } else {
                             Element deserializedElement = element.ToObject<Element>();
@@ -177,11 +177,14 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
-            string selectedElementID = elementsListBox.SelectedItem.ToString();
-            Element selectedElement = elementsList[selectedElementID];
-
-            ElementViewer ev = new ElementViewer(selectedElement);
+            ElementViewer ev = new ElementViewer(elementsList[elementsListBox.SelectedItem.ToString()]);
             ev.ShowDialog();
+        }
+
+        private void aspectListBox_DoubleClick(object sender, EventArgs e)
+        {
+            AspectViewer av = new AspectViewer(aspectsList[aspectsListBox.SelectedItem.ToString()]);
+            av.ShowDialog();
         }
     }
 }

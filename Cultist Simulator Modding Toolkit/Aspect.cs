@@ -93,7 +93,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             return JsonConvert.SerializeObject(this);
         }
 
-        
+        // helper function to fetch vanilla aspect by ID from where they're stored in MainForm
+        public static Aspect getAspect(string id)
+        {
+            return MainForm.aspectsList[id];
+        }
 
         public class Induces
         {

@@ -14,10 +14,12 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
 
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
+        Element displayedElement;
 
         public ElementViewer(Element element)
         {
             InitializeComponent();
+            displayedElement = element;
             idTextBox.Text = element.id;
             labelTextBox.Text = element.label;
             iconTextBox.Text = element.icon;
@@ -56,6 +58,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()]);
             sv.ShowDialog();
+        }
+
+        private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            AspectViewer av = new AspectViewer(Aspect.getAspect(aspectID));
+            av.ShowDialog();
         }
     }
 }

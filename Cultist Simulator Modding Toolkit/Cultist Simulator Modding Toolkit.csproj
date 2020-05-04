@@ -55,6 +55,12 @@
     <Compile Include="AddSlotForm.Designer.cs">
       <DependentUpon>AddSlotForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AspectViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AspectViewer.Designer.cs">
+      <DependentUpon>AspectViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangeAspectQuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddSlotForm.resx">
       <DependentUpon>AddSlotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AspectViewer.resx">
+      <DependentUpon>AspectViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>

@@ -203,6 +203,7 @@
             this.aspectsDataGridView.ReadOnly = true;
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 134);
             this.aspectsDataGridView.TabIndex = 13;
+            this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
             // 
             // aspectId
             // 
@@ -238,7 +239,7 @@
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ElementViewer";
-            this.Text = "ElementViewer";
+            this.Text = "Element Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
