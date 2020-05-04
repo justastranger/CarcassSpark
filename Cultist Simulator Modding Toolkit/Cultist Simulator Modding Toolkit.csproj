@@ -93,6 +93,8 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Slot.cs" />
+    <Compile Include="Verb.cs" />
     <EmbeddedResource Include="AddAspectForm.resx">
       <DependentUpon>AddAspectForm.cs</DependentUpon>
     </EmbeddedResource>
