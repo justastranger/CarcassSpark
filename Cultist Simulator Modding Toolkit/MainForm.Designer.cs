@@ -194,6 +194,7 @@
             this.decksListBox.Name = "decksListBox";
             this.decksListBox.Size = new System.Drawing.Size(125, 303);
             this.decksListBox.TabIndex = 8;
+            this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
             // 
             // legaciesLabel
             // 

@@ -13,11 +13,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         public string id, label, description, comments, defaultcard;
         public string[] spec; // the actual internal deck
         public bool resetonexhaustion;
+        public int draws, defaultdraws;
         public DrawMessages drawmessages, defaultdrawmessages;
 
-        public Deck(string id, string label, string description, JArray spec, string comments = null,
-                    string defaultcard = null, bool resetonexhaustion = false, JToken drawmessages = null,
-                    JToken defaultdrawmessages = null)
+        [JsonConstructor]
+        public Deck(JArray spec, string id = null, string label = null, string description = null, string comments = null,
+                    string defaultcard = null, bool resetonexhaustion = false, JObject drawmessages = null,
+                    JObject defaultdrawmessages = null, int defaultdraws = 1, int draws = 1)
         {
             this.id = id;
             this.label = label;
@@ -26,8 +28,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.comments = comments;
             this.defaultcard = defaultcard;
             this.resetonexhaustion = resetonexhaustion;
-            if (drawmessages != null) this.drawmessages = drawmessages.ToObject<DrawMessages>();
-            if (defaultdrawmessages != null) this.defaultdrawmessages = defaultdrawmessages.ToObject<DrawMessages>();
+            this.defaultdraws = defaultdraws;
+            this.draws = draws;
+            if (drawmessages != null) this.drawmessages = new DrawMessages(drawmessages);
+            if (defaultdrawmessages != null) this.defaultdrawmessages = new DrawMessages(defaultdrawmessages);
         }
 
 
@@ -53,6 +57,16 @@ namespace Cultist_Simulator_Modding_Toolkit
             public DrawMessages(JToken drawmessages)
             {
                 this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(drawmessages));
+            }
+
+            public Dictionary<string, string> toDictionary()
+            {
+                return internalDictionary;
+            }
+
+            public bool isNull()
+            {
+                return internalDictionary == null;
             }
         }
     }

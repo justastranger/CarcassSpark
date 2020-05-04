@@ -186,5 +186,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             AspectViewer av = new AspectViewer(aspectsList[aspectsListBox.SelectedItem.ToString()]);
             av.ShowDialog();
         }
+
+        private void decksListBox_DoubleClick(object sender, EventArgs e)
+        {
+            DeckViewer dv = new DeckViewer(decksList[decksListBox.SelectedItem.ToString()]);
+            dv.ShowDialog();
+        }
     }
 }

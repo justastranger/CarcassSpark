@@ -21,13 +21,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         public RecipeLink[] linked, alternativerecipes;
         public Slot[] slots;
         public Mutation[] mutations;
-        public object internalDeck;
+        public Deck internalDeck;
         public Dictionary<string, int> deckeffect;
 
         [JsonConstructor]
         public Recipe(string id, string label, string actionId, string startdescription, string description,
                       bool craftable, bool hintonly = false, JObject requirements = null, int warmup = 0, int maxexecutions = 0, JObject effects = null,
-                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, JObject deckeffect = null,
+                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, JObject deckeffect = null, JObject internaldeck = null,
                       JArray mutations = null, JObject aspects = null, JObject extantreqs = null, string ending = null, string burnimage = null)
         {
             this.id = id;
@@ -44,7 +44,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (maxexecutions > 0) this.maxexecutions = maxexecutions;
             if (effects != null)
             {
-                this.effects = effects.ToObject<ElementDictionary>();
+                this.effects = new ElementDictionary(effects);
             }
             if (linked != null)
             {
@@ -64,7 +64,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (aspects != null)
             {
-                this.aspects = aspects.ToObject<AspectDictionary>();
+                this.aspects = new AspectDictionary(aspects);
             }
             if (deckeffect != null)
             {
@@ -73,6 +73,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (hintonly)
             {
                 this.hintonly = hintonly;
+            }
+            if (internaldeck != null)
+            {
+                this.internalDeck = internaldeck.ToObject<Deck>();
             }
 
         }
