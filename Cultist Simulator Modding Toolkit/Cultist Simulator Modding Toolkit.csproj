@@ -74,7 +74,9 @@
     <Compile Include="CreateElement.Designer.cs">
       <DependentUpon>CreateElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Deck.cs" />
     <Compile Include="Element.cs" />
+    <Compile Include="Legacy.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
