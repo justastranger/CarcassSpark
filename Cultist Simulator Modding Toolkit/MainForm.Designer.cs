@@ -161,6 +161,7 @@
             this.elementsListBox.Size = new System.Drawing.Size(125, 303);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
+            this.elementsListBox.DoubleClick += new System.EventHandler(this.elementsListBox_DoubleClick);
             // 
             // recipesLabel
             // 

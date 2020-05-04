@@ -15,7 +15,7 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         
         // both of these start as null
-        ElementDictionary required, forbidden;
+        Required required, forbidden;
 
 
         public AddSlotForm()

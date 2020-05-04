@@ -26,7 +26,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public static Dictionary<string, Deck> decksList = new Dictionary<string, Deck>();
         public static Dictionary<string, Legacy> legaciesList = new Dictionary<string, Legacy>();
         public static Dictionary<string, Ending> endingsList = new Dictionary<string, Ending>();
-        public static Dictionary<string, Aspect> verbsList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Verb> verbsList = new Dictionary<string, Verb>();
 
         public MainForm()
         {
@@ -160,10 +160,28 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                     return;
                 case "verbs":
+                    foreach(JToken verb in parsedJToken.First.ToArray())
+                    {
+                        Verb deserializedVerb = verb.ToObject<Verb>();
+                        if (!verbsList.ContainsKey(deserializedVerb.id))
+                        {
+                            verbsList.Add(deserializedVerb.id, deserializedVerb);
+                            verbsListBox.Items.Add(deserializedVerb.id);
+                        }
+                    }
                     return;
                 default:
                     break;
             }
+        }
+
+        private void elementsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            string selectedElementID = elementsListBox.SelectedItem.ToString();
+            Element selectedElement = elementsList[selectedElementID];
+
+            ElementViewer ev = new ElementViewer(selectedElement);
+            ev.ShowDialog();
         }
     }
 }

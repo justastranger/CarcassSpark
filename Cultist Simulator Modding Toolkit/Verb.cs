@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
-    class Verb
+    public class Verb
     {
         public string id, label, description;
         public bool atStart;

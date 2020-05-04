@@ -143,6 +143,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.internalDictionary = new Dictionary<string, int>();
             this.internalDictionary[id] = amount;
         }
+
+        public Dictionary<string,int> toDictionary()
+        {
+            return internalDictionary;
+        }
     }
 
 }

@@ -12,7 +12,7 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public string icon, id, label, description, comments, decayTo, uniquenessgroup;
         public AspectDictionary aspects;
-        public Slot[] slots;
+        public List<Slot> slots;
         public XTriggers xtriggers;
         public int animFrames, lifeTime;
         public bool unique;
@@ -38,7 +38,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             // not necessary (stay of execution)
             this.aspects = new AspectDictionary(aspects);
             // not necessary
-            if (slots != null) this.slots = slots.ToObject<Slot[]>(); //JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
+            if (slots != null) this.slots = slots.ToObject<List<Slot>>(); //JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
             // not necessary
             if (xtriggers != null) this.xtriggers = new XTriggers(xtriggers);
             // not necessary
@@ -52,7 +52,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             // not necessary, always null when lifeTime is
             if (decayTo != null) this.decayTo = decayTo;
         }
-
+        
         public Element(string id, string label, string description,
                        string icon = null, string comments = null, AspectDictionary aspects = null,
                        JArray slots = null, JToken xtriggers = null)
@@ -64,7 +64,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             else this.icon = id;
             this.comments = comments;
             this.aspects = aspects;
-            if (slots != null) this.slots = JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
+            if (slots != null) this.slots = this.slots = slots.ToObject<List<Slot>>(); // JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
             if (xtriggers != null) this.xtriggers = new XTriggers(xtriggers);
         }
         
@@ -99,6 +99,11 @@ namespace Cultist_Simulator_Modding_Toolkit
                 this.internalDictionary = new Dictionary<string, string>();
                 this.internalDictionary[aspectID] = newElement;
             }
+
+            public Dictionary<string,string> toDictionary()
+            {
+                return internalDictionary;
+            }
         }
     }
 
@@ -122,19 +127,35 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public ElementDictionary(string id, int amount)
         {
-            this.internalDictionary = new Dictionary<string, int>();
-            this.internalDictionary[id] = amount;
+            internalDictionary = new Dictionary<string, int>();
+            internalDictionary[id] = amount;
         }
 
         [JsonConstructor]
-        public ElementDictionary(JToken elementObject)
+        public ElementDictionary(JObject elementObject)
         {
-            this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(elementObject));
+            //internalDictionary = elementObject.ToObject<Dictionary<string, int>>();
+            internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(elementObject));
         }
 
         public ElementDictionary()
         {
-            this.internalDictionary = new Dictionary<string, int>();
+            internalDictionary = new Dictionary<string, int>();
+        }
+
+        public Dictionary<string, int> toDictionary()
+        {
+            return internalDictionary;
+        }
+
+        public string[] getKeys()
+        {
+            return internalDictionary.Keys.ToArray();
+        }
+
+        public int[] getValues()
+        {
+            return internalDictionary.Values.ToArray();
         }
     }
 }

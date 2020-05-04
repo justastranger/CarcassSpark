@@ -76,6 +76,12 @@
     </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="Element.cs" />
+    <Compile Include="ElementViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElementViewer.Designer.cs">
+      <DependentUpon>ElementViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ending.cs" />
     <Compile Include="Legacy.cs" />
     <Compile Include="MainForm.cs">
@@ -94,6 +100,12 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Slot.cs" />
+    <Compile Include="SlotViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlotViewer.Designer.cs">
+      <DependentUpon>SlotViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Verb.cs" />
     <EmbeddedResource Include="AddAspectForm.resx">
       <DependentUpon>AddAspectForm.cs</DependentUpon>
@@ -107,6 +119,9 @@
     <EmbeddedResource Include="CreateElement.resx">
       <DependentUpon>CreateElement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ElementViewer.resx">
+      <DependentUpon>ElementViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +134,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SlotViewer.resx">
+      <DependentUpon>SlotViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
