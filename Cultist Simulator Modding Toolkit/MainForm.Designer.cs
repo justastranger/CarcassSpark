@@ -120,7 +120,7 @@
             this.aspectListBox.Location = new System.Drawing.Point(12, 41);
             this.aspectListBox.Name = "aspectListBox";
             this.aspectListBox.ScrollAlwaysVisible = true;
-            this.aspectListBox.Size = new System.Drawing.Size(125, 186);
+            this.aspectListBox.Size = new System.Drawing.Size(125, 303);
             this.aspectListBox.Sorted = true;
             this.aspectListBox.TabIndex = 1;
             // 
@@ -158,7 +158,7 @@
             this.elementsListBox.Location = new System.Drawing.Point(143, 41);
             this.elementsListBox.Name = "elementsListBox";
             this.elementsListBox.ScrollAlwaysVisible = true;
-            this.elementsListBox.Size = new System.Drawing.Size(125, 186);
+            this.elementsListBox.Size = new System.Drawing.Size(125, 303);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             // 
@@ -176,7 +176,7 @@
             this.recipesListBox.FormattingEnabled = true;
             this.recipesListBox.Location = new System.Drawing.Point(274, 41);
             this.recipesListBox.Name = "recipesListBox";
-            this.recipesListBox.Size = new System.Drawing.Size(125, 186);
+            this.recipesListBox.Size = new System.Drawing.Size(125, 303);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             // 
@@ -194,7 +194,7 @@
             this.decksListBox.FormattingEnabled = true;
             this.decksListBox.Location = new System.Drawing.Point(405, 41);
             this.decksListBox.Name = "decksListBox";
-            this.decksListBox.Size = new System.Drawing.Size(125, 186);
+            this.decksListBox.Size = new System.Drawing.Size(125, 303);
             this.decksListBox.TabIndex = 8;
             // 
             // legaciesLabel
@@ -211,7 +211,7 @@
             this.legaciesListBox.FormattingEnabled = true;
             this.legaciesListBox.Location = new System.Drawing.Point(536, 41);
             this.legaciesListBox.Name = "legaciesListBox";
-            this.legaciesListBox.Size = new System.Drawing.Size(125, 186);
+            this.legaciesListBox.Size = new System.Drawing.Size(125, 303);
             this.legaciesListBox.TabIndex = 10;
             // 
             // endingsListBox
@@ -219,7 +219,7 @@
             this.endingsListBox.FormattingEnabled = true;
             this.endingsListBox.Location = new System.Drawing.Point(667, 41);
             this.endingsListBox.Name = "endingsListBox";
-            this.endingsListBox.Size = new System.Drawing.Size(125, 186);
+            this.endingsListBox.Size = new System.Drawing.Size(125, 303);
             this.endingsListBox.TabIndex = 11;
             // 
             // endingsLabel
@@ -236,7 +236,7 @@
             this.verbsListBox.FormattingEnabled = true;
             this.verbsListBox.Location = new System.Drawing.Point(798, 41);
             this.verbsListBox.Name = "verbsListBox";
-            this.verbsListBox.Size = new System.Drawing.Size(120, 186);
+            this.verbsListBox.Size = new System.Drawing.Size(120, 303);
             this.verbsListBox.TabIndex = 13;
             // 
             // verbsLabel

@@ -23,7 +23,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public static Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
         public static Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
         public static Dictionary<string, Recipe> recipesList = new Dictionary<string, Recipe>();
-        public static Dictionary<string, Aspect> decksList = new Dictionary<string, Aspect>();
+        public static Dictionary<string, Deck> decksList = new Dictionary<string, Deck>();
         public static Dictionary<string, Aspect> legaciesList = new Dictionary<string, Aspect>();
         public static Dictionary<string, Aspect> endingsList = new Dictionary<string, Aspect>();
         public static Dictionary<string, Aspect> verbsList = new Dictionary<string, Aspect>();
@@ -127,6 +127,15 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                     return;
                 case "decks":
+                    foreach (JToken deck in parsedJToken.First.ToArray())
+                    {
+                        Deck deserializedDeck = deck.ToObject<Deck>();
+                        if (!decksList.ContainsKey(deserializedDeck.id))
+                        {
+                            decksList.Add(deserializedDeck.id, deserializedDeck);
+                            decksListBox.Items.Add(deserializedDeck.id);
+                        }
+                    }
                     return;
                 case "legacies":
                     return;
@@ -137,13 +146,6 @@ namespace Cultist_Simulator_Modding_Toolkit
                 default:
                     break;
             }
-            // JToken[] aspects = JsonConvert.DeserializeObject<JObject>(fileText)["elements"].ToArray();
-            foreach (JToken aspect in parsedJToken)
-            {
-                //Aspect deserializedAspect = aspect.ToObject<Aspect>();
-                //aspectsList[deserializedAspect.id] = deserializedAspect;
-            }
-
         }
     }
 }
