@@ -17,7 +17,7 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public string currentModDirectory;
         public Manifest currentModManifest;
-        public bool isVanilla;
+        public bool isVanilla, foundManifest;
         
         public Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
         public Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
@@ -32,7 +32,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             InitializeComponent();
             this.currentModDirectory = location;
             this.isVanilla = isVanilla;
-
             toolStrip1.Visible = !this.isVanilla;
 
             aspectsListBox.Items.Clear();
@@ -49,7 +48,8 @@ namespace Cultist_Simulator_Modding_Toolkit
             endingsList.Clear();
             verbsListBox.Items.Clear();
             verbsList.Clear();
-
+            
+            this.foundManifest = false;
             foreach (string file in Directory.EnumerateFiles(currentModDirectory, "*.json", SearchOption.AllDirectories))
             {
                 //MessageBox.Show(file);
@@ -58,9 +58,21 @@ namespace Cultist_Simulator_Modding_Toolkit
                     if(file.Contains("manifest.json"))
                     {
                         loadManifest(fs);
+                        foundManifest = true;
                     } else {
                         loadFile(fs);
                     }
+                }
+            }
+            if (!foundManifest)
+            {
+                DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(dr == DialogResult.Yes)
+                {
+                    ManifestViewer mv = new ManifestViewer(new Manifest("", "", "", "", ""));
+                    mv.ShowDialog();
+                    currentModManifest = mv.displayedManifest;
+                    foundManifest = true;
                 }
             }
         }
@@ -296,8 +308,19 @@ namespace Cultist_Simulator_Modding_Toolkit
         
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            JObject aspects = new JObject();
+            aspects["elements"] = JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(aspectsList.Values));
+            string aspectsJson = JsonConvert.SerializeObject(aspects);
+            JObject elements = new JObject();
+            elements["elements"] = JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(elementsList.Values));
+            string elementsJson = JsonConvert.SerializeObject(elements);
         }
-        
+
+        private void ModViewer_Shown(object sender, EventArgs e)
+        {
+            if (isVanilla) return;
+            else if (this.foundManifest) return;
+            else this.Close();
+        }
     }
 }
