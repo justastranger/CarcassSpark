@@ -13,11 +13,13 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class LegacyViewer : Form
     {
         Legacy displayedLegacy;
+        ModViewer currentMod;
 
-        public LegacyViewer(Legacy legacy)
+        public LegacyViewer(Legacy legacy, ModViewer currentMod)
         {
             InitializeComponent();
             displayedLegacy = legacy;
+            this.currentMod = currentMod;
             idTextBox.Text = legacy.id;
             labelTextBox.Text = legacy.label;
             descriptionTextBox.Text = legacy.description;
@@ -45,14 +47,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            ElementViewer ev = new ElementViewer(Element.getElement(id));
+            ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
             ev.ShowDialog();
         }
 
         private void excludesOnEndingListBox_DoubleClick(object sender, EventArgs e)
         {
             string id = excludesOnEndingListBox.SelectedItem.ToString();
-            LegacyViewer lv = new LegacyViewer(Legacy.getLegacy(id));
+            LegacyViewer lv = new LegacyViewer(currentMod.getLegacy(id), currentMod);
             lv.ShowDialog();
         }
     }

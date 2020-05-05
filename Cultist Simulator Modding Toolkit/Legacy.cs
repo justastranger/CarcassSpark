@@ -31,15 +31,5 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.startingVerbId = startingVerbId;
             if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding.ToObject<string[]>();
         }
-
-        public static Legacy getLegacy(string id)
-        {
-            return MainForm.legaciesList[id];
-        }
-
-        public static bool legacyExists(string id)
-        {
-            return MainForm.legaciesList.ContainsKey(id);
-        }
     }
 }

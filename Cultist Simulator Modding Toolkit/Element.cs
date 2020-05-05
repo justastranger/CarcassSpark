@@ -72,17 +72,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
 
         }
-
-        public static Element getElement(string id)
-        {
-            return MainForm.elementsList[id];
-        }
-
-        public static bool elementExists(string id)
-        {
-            return MainForm.elementsList.ContainsKey(id);
-        }
-
+        
         public class XTriggers
         {
             Dictionary<string, string> internalDictionary;

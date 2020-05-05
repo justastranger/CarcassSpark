@@ -13,12 +13,14 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class VerbViewer : Form
     {
         Verb displayedVerb;
+        ModViewer currentMod;
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
-        public VerbViewer(Verb verb)
+        public VerbViewer(Verb verb, ModViewer currentMod)
         {
             InitializeComponent();
             displayedVerb = verb;
+            this.currentMod = currentMod;
             idTextBox.Text = verb.id;
             labelTextBox.Text = verb.label;
             atStartCheckBox.Checked = verb.atStart;
@@ -36,7 +38,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void slotsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListBox.SelectedItem == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()]);
+            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], currentMod);
             sv.ShowDialog();
         }
     }

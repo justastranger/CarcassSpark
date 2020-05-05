@@ -13,11 +13,13 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class MutationViewer : Form
     {
         Recipe.Mutation displayedMutation;
+        ModViewer currentMod;
 
-        public MutationViewer(Recipe.Mutation mutation)
+        public MutationViewer(Recipe.Mutation mutation, ModViewer currentMod)
         {
             InitializeComponent();
             displayedMutation = mutation;
+            this.currentMod = currentMod;
             filterTextBox.Text = mutation.filter;
             mutateAspectIdTextBox.Text = mutation.mutateAspectId;
             levelNumericUpDown.Value = mutation.level;

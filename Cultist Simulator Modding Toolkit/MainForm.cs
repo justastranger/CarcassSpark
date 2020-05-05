@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,210 +12,28 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class MainForm : Form
     {
-        private string directoryToContent = "./cultistsimulator_Data/StreamingAssets/content/";
-        private string coreContent = "core/";
-        private string moddedNewContent = "more/";
-        public static string currentModDirectory;
+        string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-        public static Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
-        public static Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
-        public static Dictionary<string, Recipe> recipesList = new Dictionary<string, Recipe>();
-        public static Dictionary<string, Deck> decksList = new Dictionary<string, Deck>();
-        public static Dictionary<string, Legacy> legaciesList = new Dictionary<string, Legacy>();
-        public static Dictionary<string, Ending> endingsList = new Dictionary<string, Ending>();
-        public static Dictionary<string, Verb> verbsList = new Dictionary<string, Verb>();
+        private string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void loadContentButton_Click(object sender, EventArgs e)
+        private void loadVanillaButton_Click(object sender, EventArgs e)
         {
-            // clear everything so everything can be reloaded
-            aspectsListBox.Items.Clear();
-            aspectsList.Clear();
-            elementsListBox.Items.Clear();
-            elementsList.Clear();
-            recipesListBox.Items.Clear();
-            recipesList.Clear();
-            decksListBox.Items.Clear();
-            decksList.Clear();
-            legaciesListBox.Items.Clear();
-            legaciesList.Clear();
-            endingsListBox.Items.Clear();
-            endingsList.Clear();
-            verbsListBox.Items.Clear();
-            verbsList.Clear();
-
-            foreach (string folder in Directory.EnumerateDirectories(directoryToContent + coreContent))
-            {
-                foreach ( string file in Directory.EnumerateFiles(folder))
-                {
-                    //MessageBox.Show(file);
-                    using (FileStream fs = new FileStream(file, FileMode.Open))
-                    {
-                        reloadFile(fs);
-                    }
-                }
-            }
-
-            using (FileStream aspectsFile = new FileStream(directoryToContent + coreContent + "elements/_aspects.json", FileMode.Open))
-            {
-                reloadFile(aspectsFile);
-            }
+            ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+            mv.Show();
         }
 
-        private void newModToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openModButton_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-            folderBrowserDialog1.ShowDialog();
-        }
-
-        private void selectModToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void reloadFile(FileStream file)
-        {
-
-            string fileText = new StreamReader(file).ReadToEnd();
-            JToken parsedJToken = JsonConvert.DeserializeObject<JToken>(fileText).First;
-            string fileType = parsedJToken.Path;
-            switch (fileType)
-            {
-                case "elements":
-                    foreach (JToken element in parsedJToken.First.ToArray())
-                    {
-                        //if (element["isAspect"].ToObject<bool>())
-                        if (element["isAspect"] != null)
-                        {
-                            Aspect deserializedAspect = element.ToObject<Aspect>();
-                            if(!aspectsList.ContainsKey(deserializedAspect.id))
-                            {
-                                aspectsList.Add(deserializedAspect.id, deserializedAspect);
-                                aspectsListBox.Items.Add(deserializedAspect.id);
-                            }
-                        } else {
-                            Element deserializedElement = element.ToObject<Element>();
-                            if (!elementsList.ContainsKey(deserializedElement.id))
-                            {
-                                elementsList.Add(deserializedElement.id, deserializedElement);
-                                elementsListBox.Items.Add(deserializedElement.id);
-                            }
-                        }
-                    }
-                    return;
-                case "recipes":
-                    foreach (JToken recipe in parsedJToken.First.ToArray())
-                    {
-                        Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                        if (!recipesList.ContainsKey(deserializedRecipe.id))
-                        {
-                            recipesList.Add(deserializedRecipe.id, deserializedRecipe);
-                            recipesListBox.Items.Add(deserializedRecipe.id);
-                        }
-                    }
-                    return;
-                case "decks":
-                    foreach (JToken deck in parsedJToken.First.ToArray())
-                    {
-                        Deck deserializedDeck = deck.ToObject<Deck>();
-                        if (!decksList.ContainsKey(deserializedDeck.id))
-                        {
-                            decksList.Add(deserializedDeck.id, deserializedDeck);
-                            decksListBox.Items.Add(deserializedDeck.id);
-                        }
-                    }
-                    return;
-                case "legacies":
-                    foreach (JToken legacy in parsedJToken.First.ToArray())
-                    {
-                        Legacy deserializedLegacy = legacy.ToObject<Legacy>();
-                        if (!legaciesList.ContainsKey(deserializedLegacy.id))
-                        {
-                            legaciesList.Add(deserializedLegacy.id, deserializedLegacy);
-                            legaciesListBox.Items.Add(deserializedLegacy.id);
-                        }
-                    }
-                    return;
-                case "endings":
-                    foreach(JToken ending in parsedJToken.First.ToArray())
-                    {
-                        Ending deserializedEnding = ending.ToObject<Ending>();
-                        if (!endingsList.ContainsKey(deserializedEnding.id))
-                        {
-                            endingsList.Add(deserializedEnding.id, deserializedEnding);
-                            endingsListBox.Items.Add(deserializedEnding.id);
-                        }
-                    }
-                    return;
-                case "verbs":
-                    foreach(JToken verb in parsedJToken.First.ToArray())
-                    {
-                        Verb deserializedVerb = verb.ToObject<Verb>();
-                        if (!verbsList.ContainsKey(deserializedVerb.id))
-                        {
-                            verbsList.Add(deserializedVerb.id, deserializedVerb);
-                            verbsListBox.Items.Add(deserializedVerb.id);
-                        }
-                    }
-                    return;
-                default:
-                    break;
-            }
-        }
-
-        private void elementsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(elementsList[elementsListBox.SelectedItem.ToString()]);
-            ev.ShowDialog();
-        }
-
-        private void aspectListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(aspectsList[aspectsListBox.SelectedItem.ToString()]);
-            av.ShowDialog();
-        }
-
-        private void decksListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(decksList[decksListBox.SelectedItem.ToString()]);
-            dv.ShowDialog();
-        }
-
-        private void recipesListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(recipesList[recipesListBox.SelectedItem.ToString()]);
-            rv.ShowDialog();
-        }
-
-        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
-        {
-            LegacyViewer lv = new LegacyViewer(legaciesList[legaciesListBox.SelectedItem.ToString()]);
-            lv.ShowDialog();
-        }
-
-        private void endingsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            EndingViewer ev = new EndingViewer(endingsList[endingsListBox.SelectedItem.ToString()]);
-            ev.ShowDialog();
-        }
-
-        private void verbsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            VerbViewer vv = new VerbViewer(verbsList[verbsListBox.SelectedItem.ToString()]);
-            vv.ShowDialog();
+            folderBrowserDialog1.SelectedPath = currentDirectory;
+            DialogResult dr = folderBrowserDialog1.ShowDialog();
+            string location = folderBrowserDialog1.SelectedPath;
+            ModViewer mv = new ModViewer(location, false);
+            mv.Show();
         }
     }
 }

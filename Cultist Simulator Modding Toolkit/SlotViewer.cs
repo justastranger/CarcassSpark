@@ -12,10 +12,14 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class SlotViewer : Form
     {
-        public SlotViewer(Slot slot)
+        Slot displayedSlot;
+        ModViewer currentMod;
+
+        public SlotViewer(Slot slot, ModViewer currentMod)
         {
             InitializeComponent();
-
+            this.displayedSlot = slot;
+            this.currentMod = currentMod;
             idTextBox.Text = slot.id;
             labelTextBox.Text = slot.label;
             descriptionTextBox.Text = slot.description;
@@ -41,14 +45,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Element.elementExists(id))
+            if (currentMod.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if(Aspect.aspectExists(id))
+            else if(currentMod.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Aspect.getAspect(id));
+                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }
@@ -56,14 +60,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Element.elementExists(id))
+            if (currentMod.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if (Aspect.aspectExists(id))
+            else if (currentMod.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Aspect.getAspect(id));
+                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }

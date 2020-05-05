@@ -12,31 +12,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class CreateElement : Form
     {
-        public CreateElement()
+        ModViewer currentMod;
+
+        public CreateElement(ModViewer currentMod)
         {
             InitializeComponent();
+            this.currentMod = currentMod;
         }
-
-        private void isAspectCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            isHiddenCheckBox.Visible = isAspectCheckbox.Checked;
-            this.Text = isAspectCheckbox.Checked ? "Create Aspect" : "Create Element";
-        }
-
-        private Aspect generateAspect()
-        {
-            /*
-                     (string id, string label, string description,
-                      string icon = null, Induces[] induces = null,
-                      bool isHidden = false, bool noartneeded = false,
-                      bool isAspect = true, string comments = null)
-             */
-            Aspect temp = new Aspect(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text,
-                                    idTextBox.Text, (Aspect.Induces[]) null, isHiddenCheckBox.Checked,
-                                    noartneededCheckBox.Checked, true, commentsTextBox.Text);
-            return temp;
-        }
-
         private Element generateElement()
         {
             /*
@@ -51,7 +33,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void iconSelectButton_Click(object sender, EventArgs e)
         {
-            openIconDialog.InitialDirectory = MainForm.currentModDirectory;
+            //openIconDialog.InitialDirectory = ModViewer.currentModDirectory;
             openIconDialog.ShowDialog();
         }
 
@@ -62,16 +44,12 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (isAspectCheckbox.Checked) {
-                generateAspect();
-            } else {
-                generateElement();
-            }
+            Element newElement = generateElement();
         }
         
         private void addAspectContextMenuItem_Click(object sender, EventArgs e)
         {
-            using (var frm = new AddAspectForm())
+            using (var frm = new AddAspectForm(currentMod))
             {
                 var result = frm.ShowDialog();
                 if (result == DialogResult.OK)
@@ -124,7 +102,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void addAspectButton_Click(object sender, EventArgs e)
         {
-            using (var frm = new AddAspectForm())
+            using (var frm = new AddAspectForm(currentMod))
             {
                 var value = frm.ShowDialog();
                 if (value == DialogResult.OK)

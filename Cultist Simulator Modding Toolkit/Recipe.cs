@@ -82,16 +82,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         }
 
-        public static Recipe getRecipe(string id)
-        {
-            return MainForm.recipesList[id];
-        }
-
-        public static bool recipeExists(string id)
-        {
-            return MainForm.recipesList.ContainsKey(id);
-        }
-
         public class RecipeLink
         {
             public string id;

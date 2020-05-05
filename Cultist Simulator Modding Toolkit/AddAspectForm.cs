@@ -14,12 +14,13 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public string aspectID;
         public int amount;
+        ModViewer currentMod;
 
-        public AddAspectForm()
+        public AddAspectForm(ModViewer currentMod)
         {
             InitializeComponent();
             aspectListBox.Items.Clear();
-            foreach (string key in MainForm.aspectsList.Keys.ToArray())
+            foreach (string key in currentMod.aspectsList.Keys.ToArray())
             {
                 aspectListBox.Items.Add(key);
             }

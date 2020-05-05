@@ -13,11 +13,13 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class EndingViewer : Form
     {
         Ending displayedEnding;
+        ModViewer currentMod;
 
-        public EndingViewer(Ending ending)
+        public EndingViewer(Ending ending, ModViewer currentMod)
         {
             InitializeComponent();
             displayedEnding = ending;
+            this.currentMod = currentMod;
             idTextBox.Text = ending.id;
             labelTextBox.Text = ending.label;
             imageTextBox.Text = ending.image;

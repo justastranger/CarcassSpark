@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.isAspectCheckbox = new System.Windows.Forms.CheckBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,11 +40,9 @@
             this.iconSelectButton = new System.Windows.Forms.Button();
             this.openIconDialog = new System.Windows.Forms.OpenFileDialog();
             this.iconPictureBox = new System.Windows.Forms.PictureBox();
-            this.isHiddenCheckBox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
-            this.noartneededCheckBox = new System.Windows.Forms.CheckBox();
             this.aspectListBoxLabel = new System.Windows.Forms.Label();
             this.slotsTreeViewLabel = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -56,17 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // isAspectCheckbox
-            // 
-            this.isAspectCheckbox.AutoSize = true;
-            this.isAspectCheckbox.Location = new System.Drawing.Point(12, 123);
-            this.isAspectCheckbox.Name = "isAspectCheckbox";
-            this.isAspectCheckbox.Size = new System.Drawing.Size(59, 17);
-            this.isAspectCheckbox.TabIndex = 0;
-            this.isAspectCheckbox.Text = "Aspect";
-            this.isAspectCheckbox.UseVisualStyleBackColor = true;
-            this.isAspectCheckbox.CheckedChanged += new System.EventHandler(this.isAspectCheckbox_CheckedChanged);
             // 
             // idTextBox
             // 
@@ -159,16 +145,6 @@
             this.iconPictureBox.TabIndex = 7;
             this.iconPictureBox.TabStop = false;
             // 
-            // isHiddenCheckBox
-            // 
-            this.isHiddenCheckBox.AutoSize = true;
-            this.isHiddenCheckBox.Location = new System.Drawing.Point(13, 146);
-            this.isHiddenCheckBox.Name = "isHiddenCheckBox";
-            this.isHiddenCheckBox.Size = new System.Drawing.Size(102, 17);
-            this.isHiddenCheckBox.TabIndex = 8;
-            this.isHiddenCheckBox.Text = "Hidden Aspect?";
-            this.isHiddenCheckBox.UseVisualStyleBackColor = true;
-            // 
             // okButton
             // 
             this.okButton.Location = new System.Drawing.Point(12, 392);
@@ -197,16 +173,6 @@
             this.commentsTextBox.Size = new System.Drawing.Size(310, 50);
             this.commentsTextBox.TabIndex = 12;
             this.commentsTextBox.Text = "Comments";
-            // 
-            // noartneededCheckBox
-            // 
-            this.noartneededCheckBox.AutoSize = true;
-            this.noartneededCheckBox.Location = new System.Drawing.Point(121, 146);
-            this.noartneededCheckBox.Name = "noartneededCheckBox";
-            this.noartneededCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.noartneededCheckBox.TabIndex = 13;
-            this.noartneededCheckBox.Text = "noartneeded";
-            this.noartneededCheckBox.UseVisualStyleBackColor = true;
             // 
             // aspectListBoxLabel
             // 
@@ -279,18 +245,15 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.slotsTreeViewLabel);
             this.Controls.Add(this.aspectListBoxLabel);
-            this.Controls.Add(this.noartneededCheckBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.isHiddenCheckBox);
             this.Controls.Add(this.iconPictureBox);
             this.Controls.Add(this.iconSelectButton);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.Controls.Add(this.isAspectCheckbox);
             this.MaximizeBox = false;
             this.Name = "CreateElement";
             this.Text = "Create Element";
@@ -305,8 +268,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox isAspectCheckbox;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox labelTextBox;
         private System.Windows.Forms.TextBox textBox1;
@@ -314,7 +275,6 @@
         private System.Windows.Forms.Button iconSelectButton;
         private System.Windows.Forms.OpenFileDialog openIconDialog;
         private System.Windows.Forms.PictureBox iconPictureBox;
-        private System.Windows.Forms.CheckBox isHiddenCheckBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripTextBox addAspectContextMenuItem;
@@ -322,7 +282,6 @@
         private System.Windows.Forms.ToolStripTextBox changeQuantityContextMenuItem;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox commentsTextBox;
-        private System.Windows.Forms.CheckBox noartneededCheckBox;
         private System.Windows.Forms.Label aspectListBoxLabel;
         private System.Windows.Forms.Label slotsTreeViewLabel;
         private System.Windows.Forms.DataGridView dataGridView1;

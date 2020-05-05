@@ -33,18 +33,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (drawmessages != null) this.drawmessages = new DrawMessages(drawmessages);
             if (defaultdrawmessages != null) this.defaultdrawmessages = new DrawMessages(defaultdrawmessages);
         }
-
-        public static Deck getDeck(string id)
-        {
-            return MainForm.decksList[id];
-        }
-
-        public static bool deckExists(string id)
-        {
-            return MainForm.decksList.ContainsKey(id);
-        }
-
-
+        
         public class DrawMessages
         {
             Dictionary<string, string> internalDictionary;

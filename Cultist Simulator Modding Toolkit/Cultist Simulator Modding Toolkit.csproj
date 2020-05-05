@@ -114,6 +114,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manifest.cs" />
+    <Compile Include="ManifestViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManifestViewer.Designer.cs">
+      <DependentUpon>ManifestViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModViewer.Designer.cs">
+      <DependentUpon>ModViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MutationViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +197,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManifestViewer.resx">
+      <DependentUpon>ManifestViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModViewer.resx">
+      <DependentUpon>ModViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MutationViewer.resx">
       <DependentUpon>MutationViewer.cs</DependentUpon>

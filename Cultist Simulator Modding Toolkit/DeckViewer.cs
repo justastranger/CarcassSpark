@@ -13,11 +13,13 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class DeckViewer : Form
     {
         Deck displayedDeck;
+        ModViewer currentMod;
 
-        public DeckViewer(Deck deck)
+        public DeckViewer(Deck deck, ModViewer currentMod)
         {
             InitializeComponent();
-            displayedDeck = deck;
+            this.displayedDeck = deck;
+            this.currentMod = currentMod;
             idTextBox.Text = deck.id;
             labelTextBox.Text = deck.label;
             commentsTextBox.Text = deck.comments;
@@ -42,14 +44,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (specListBox.SelectedItem == null) return;
             string id = specListBox.SelectedItem.ToString();
-            if (id.Contains("deck:") && Deck.deckExists(id.Substring(id.IndexOf(":"))))
+            if (id.Contains("deck:") && currentMod.deckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Deck.getDeck(id.Substring(id.IndexOf(":"))));
+                DeckViewer dv = new DeckViewer(currentMod.getDeck(id.Substring(id.IndexOf(":"))), currentMod);
                 dv.ShowDialog();
             }
-            else if (Element.elementExists(id))
+            else if (currentMod.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
                 ev.ShowDialog();
             }
         }
