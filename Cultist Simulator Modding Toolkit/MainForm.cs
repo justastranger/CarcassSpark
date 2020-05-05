@@ -177,20 +177,48 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (elementsListBox.SelectedItem == null) return;
             ElementViewer ev = new ElementViewer(elementsList[elementsListBox.SelectedItem.ToString()]);
             ev.ShowDialog();
         }
 
         private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (aspectsListBox.SelectedItem == null) return;
             AspectViewer av = new AspectViewer(aspectsList[aspectsListBox.SelectedItem.ToString()]);
             av.ShowDialog();
         }
 
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (decksListBox.SelectedItem == null) return;
             DeckViewer dv = new DeckViewer(decksList[decksListBox.SelectedItem.ToString()]);
             dv.ShowDialog();
+        }
+
+        private void recipesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (recipesListBox.SelectedItem == null) return;
+            RecipeViewer rv = new RecipeViewer(recipesList[recipesListBox.SelectedItem.ToString()]);
+            rv.ShowDialog();
+        }
+
+        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            LegacyViewer lv = new LegacyViewer(legaciesList[legaciesListBox.SelectedItem.ToString()]);
+            lv.ShowDialog();
+        }
+
+        private void endingsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            EndingViewer ev = new EndingViewer(endingsList[endingsListBox.SelectedItem.ToString()]);
+            ev.ShowDialog();
+        }
+
+        private void verbsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            VerbViewer vv = new VerbViewer(verbsList[verbsListBox.SelectedItem.ToString()]);
+            vv.ShowDialog();
         }
     }
 }

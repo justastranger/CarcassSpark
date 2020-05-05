@@ -56,6 +56,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            if (slotsListBox.SelectedItem == null) return;
             SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()]);
             sv.ShowDialog();
         }
@@ -65,6 +66,25 @@ namespace Cultist_Simulator_Modding_Toolkit
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             AspectViewer av = new AspectViewer(Aspect.getAspect(aspectID));
             av.ShowDialog();
+        }
+
+        private void xtriggersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = xtriggersDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            if (Element.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ev.Show();
+            }
+            else if (Aspect.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Aspect.getAspect(id));
+                av.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("XTrigger catalyst and result must both be either aspects or elements.", "What the hell is this?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

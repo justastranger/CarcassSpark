@@ -17,19 +17,29 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription,
-                      JToken effects, string image, string fromEnding, bool availableWithoutEndingMatch,
+                      JObject effects, string image, string fromEnding, bool availableWithoutEndingMatch,
                       string startingVerbId = null, JArray excludesOnEnding = null)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.startdescription = startdescription;
-            this.effects = effects.ToObject<ElementDictionary>();
+            this.effects = new ElementDictionary(effects);
             this.image = image;
             this.fromEnding = fromEnding;
             this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             this.startingVerbId = startingVerbId;
             if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding.ToObject<string[]>();
+        }
+
+        public static Legacy getLegacy(string id)
+        {
+            return MainForm.legaciesList[id];
+        }
+
+        public static bool legacyExists(string id)
+        {
+            return MainForm.legaciesList.ContainsKey(id);
         }
     }
 }

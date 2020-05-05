@@ -8,15 +8,15 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Ending
     {
-        public string id, label, description, image, flavor, anim, achievement;
+        public string id, label, description, image, flavour, anim, achievement;
 
-        public Ending(string id, string label, string description, string image, string flavor, string anim, string achievement)
+        public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.image = image;
-            this.flavor = flavor;
+            this.flavour = flavour;
             this.anim = anim;
             this.achievement = achievement;
         }

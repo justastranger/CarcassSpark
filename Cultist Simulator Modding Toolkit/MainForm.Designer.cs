@@ -174,9 +174,11 @@
             this.recipesListBox.FormattingEnabled = true;
             this.recipesListBox.Location = new System.Drawing.Point(274, 41);
             this.recipesListBox.Name = "recipesListBox";
+            this.recipesListBox.ScrollAlwaysVisible = true;
             this.recipesListBox.Size = new System.Drawing.Size(125, 303);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
+            this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
             // 
             // decksLabel
             // 
@@ -192,7 +194,9 @@
             this.decksListBox.FormattingEnabled = true;
             this.decksListBox.Location = new System.Drawing.Point(405, 41);
             this.decksListBox.Name = "decksListBox";
+            this.decksListBox.ScrollAlwaysVisible = true;
             this.decksListBox.Size = new System.Drawing.Size(125, 303);
+            this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
             // 
@@ -210,16 +214,22 @@
             this.legaciesListBox.FormattingEnabled = true;
             this.legaciesListBox.Location = new System.Drawing.Point(536, 41);
             this.legaciesListBox.Name = "legaciesListBox";
+            this.legaciesListBox.ScrollAlwaysVisible = true;
             this.legaciesListBox.Size = new System.Drawing.Size(125, 303);
+            this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
+            this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
             // 
             // endingsListBox
             // 
             this.endingsListBox.FormattingEnabled = true;
             this.endingsListBox.Location = new System.Drawing.Point(667, 41);
             this.endingsListBox.Name = "endingsListBox";
+            this.endingsListBox.ScrollAlwaysVisible = true;
             this.endingsListBox.Size = new System.Drawing.Size(125, 303);
+            this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
+            this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
             // 
             // endingsLabel
             // 
@@ -235,8 +245,11 @@
             this.verbsListBox.FormattingEnabled = true;
             this.verbsListBox.Location = new System.Drawing.Point(798, 41);
             this.verbsListBox.Name = "verbsListBox";
+            this.verbsListBox.ScrollAlwaysVisible = true;
             this.verbsListBox.Size = new System.Drawing.Size(120, 303);
+            this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
+            this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
             // 
             // verbsLabel
             // 

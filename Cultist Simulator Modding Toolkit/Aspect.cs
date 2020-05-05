@@ -99,6 +99,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             return MainForm.aspectsList[id];
         }
 
+        public static bool aspectExists(string id)
+        {
+            return MainForm.aspectsList.ContainsKey(id);
+        }
+
         public class Induces
         {
             public string id;
@@ -151,6 +156,11 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Dictionary<string,int> toDictionary()
         {
             return internalDictionary;
+        }
+
+        public bool isNull()
+        {
+            return internalDictionary == null;
         }
     }
 

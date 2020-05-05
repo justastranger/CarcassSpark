@@ -95,16 +95,40 @@
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Ending.cs" />
+    <Compile Include="EndingViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EndingViewer.Designer.cs">
+      <DependentUpon>EndingViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Legacy.cs" />
+    <Compile Include="LegacyViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LegacyViewer.Designer.cs">
+      <DependentUpon>LegacyViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MutationViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MutationViewer.Designer.cs">
+      <DependentUpon>MutationViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
+    <Compile Include="RecipeLinkViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecipeLinkViewer.Designer.cs">
+      <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecipeViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +149,12 @@
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Verb.cs" />
+    <Compile Include="VerbViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerbViewer.Designer.cs">
+      <DependentUpon>VerbViewer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddAspectForm.resx">
       <DependentUpon>AddAspectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,8 +176,17 @@
     <EmbeddedResource Include="ElementViewer.resx">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EndingViewer.resx">
+      <DependentUpon>EndingViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegacyViewer.resx">
+      <DependentUpon>LegacyViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MutationViewer.resx">
+      <DependentUpon>MutationViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,8 +197,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RecipeLinkViewer.resx">
+      <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecipeViewer.resx">
+      <DependentUpon>RecipeViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerbViewer.resx">
+      <DependentUpon>VerbViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">

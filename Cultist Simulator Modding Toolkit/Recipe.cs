@@ -16,7 +16,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         // false means the recipe is linked to by another recipe somehow
         public bool craftable, hintonly;
         public int maxexecutions, warmup;
-        public ElementDictionary effects, requirements, extantreqs;
+        public ElementDictionary effects, requirements, extantreqs, tablereqs;
         public AspectDictionary aspects;
         public RecipeLink[] linked, alternativerecipes;
         public Slot[] slots;
@@ -28,7 +28,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Recipe(string id, string label, string actionId, string startdescription, string description,
                       bool craftable, bool hintonly = false, JObject requirements = null, int warmup = 0, int maxexecutions = 0, JObject effects = null,
                       JArray linked = null, JArray slots = null, JArray alternativerecipes = null, JObject deckeffect = null, JObject internaldeck = null,
-                      JArray mutations = null, JObject aspects = null, JObject extantreqs = null, string ending = null, string burnimage = null)
+                      JArray mutations = null, JObject aspects = null, JObject tablereqs = null, JObject extantreqs = null, string ending = null, string burnimage = null)
         {
             this.id = id;
             this.label = label;
@@ -41,6 +41,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (warmup > 0) this.warmup = warmup;
             if (requirements != null) this.requirements = requirements.ToObject<ElementDictionary>();
             if (extantreqs != null) this.extantreqs = extantreqs.ToObject<ElementDictionary>();
+            if (tablereqs != null) this.tablereqs = tablereqs.ToObject<ElementDictionary>();
             if (maxexecutions > 0) this.maxexecutions = maxexecutions;
             if (effects != null)
             {
@@ -81,6 +82,15 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         }
 
+        public static Recipe getRecipe(string id)
+        {
+            return MainForm.recipesList[id];
+        }
+
+        public static bool recipeExists(string id)
+        {
+            return MainForm.recipesList.ContainsKey(id);
+        }
 
         public class RecipeLink
         {
@@ -89,11 +99,16 @@ namespace Cultist_Simulator_Modding_Toolkit
             public bool additional;
             public Dictionary<string, string> challenges;
 
-            public RecipeLink(string id, int chance = 100, bool additional = false)
+            [JsonConstructor]
+            public RecipeLink(string id, int chance = 100, bool additional = false, JObject challenges = null)
             {
                 this.id = id;
                 this.chance = chance;
                 if (additional) this.additional = additional;
+                if (challenges != null)
+                {
+                    this.challenges = challenges.ToObject<Dictionary<string, string>>();
+                }
             }
         }
 
@@ -103,10 +118,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             public string mutateAspectId; // Aspect on filtered card to modify
             public int level; // how much to modify the aspect by
 
-            public Mutation(string filter, string mutateAspectId, int level)
+            public Mutation(string filter, int level, string mutateAspectId = null, string mutate = null)
             {
                 this.filter = filter;
-                this.mutateAspectId = mutateAspectId;
+                this.mutateAspectId = mutateAspectId != null ? mutateAspectId : mutate;
                 this.level = level;
             }
         }

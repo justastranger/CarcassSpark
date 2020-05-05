@@ -147,6 +147,7 @@
             this.xtriggersDataGridView.ReadOnly = true;
             this.xtriggersDataGridView.Size = new System.Drawing.Size(248, 126);
             this.xtriggersDataGridView.TabIndex = 9;
+            this.xtriggersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.xtriggersDataGridView_CellDoubleClick);
             // 
             // xtriggerID
             // 
@@ -185,6 +186,7 @@
             this.slotsListBox.FormattingEnabled = true;
             this.slotsListBox.Location = new System.Drawing.Point(12, 183);
             this.slotsListBox.Name = "slotsListBox";
+            this.slotsListBox.ScrollAlwaysVisible = true;
             this.slotsListBox.Size = new System.Drawing.Size(206, 121);
             this.slotsListBox.TabIndex = 12;
             this.slotsListBox.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);

@@ -34,10 +34,10 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.specListBox = new System.Windows.Forms.ListBox();
             this.drawmessagesDataGridView = new System.Windows.Forms.DataGridView();
-            this.resetOnExhaustionCheckBox = new System.Windows.Forms.CheckBox();
-            this.defaultCardTextBox = new System.Windows.Forms.TextBox();
             this.elementId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.message = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resetOnExhaustionCheckBox = new System.Windows.Forms.CheckBox();
+            this.defaultCardTextBox = new System.Windows.Forms.TextBox();
             this.drawsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +73,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 38);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(268, 82);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.Text = "Description";
@@ -82,8 +83,10 @@
             this.specListBox.FormattingEnabled = true;
             this.specListBox.Location = new System.Drawing.Point(286, 38);
             this.specListBox.Name = "specListBox";
+            this.specListBox.ScrollAlwaysVisible = true;
             this.specListBox.Size = new System.Drawing.Size(260, 238);
             this.specListBox.TabIndex = 4;
+            this.specListBox.DoubleClick += new System.EventHandler(this.specListBox_DoubleClick);
             // 
             // drawmessagesDataGridView
             // 
@@ -98,6 +101,18 @@
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
             this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 153);
             this.drawmessagesDataGridView.TabIndex = 5;
+            // 
+            // elementId
+            // 
+            this.elementId.HeaderText = "Element ID";
+            this.elementId.Name = "elementId";
+            this.elementId.Width = 113;
+            // 
+            // message
+            // 
+            this.message.HeaderText = "Message";
+            this.message.Name = "message";
+            this.message.Width = 112;
             // 
             // resetOnExhaustionCheckBox
             // 
@@ -117,18 +132,6 @@
             this.defaultCardTextBox.TabIndex = 7;
             this.defaultCardTextBox.Text = "Default Card";
             this.defaultCardTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // elementId
-            // 
-            this.elementId.HeaderText = "Element ID";
-            this.elementId.Name = "elementId";
-            this.elementId.Width = 109;
-            // 
-            // message
-            // 
-            this.message.HeaderText = "Message";
-            this.message.Name = "message";
-            this.message.Width = 108;
             // 
             // drawsTextBox
             // 

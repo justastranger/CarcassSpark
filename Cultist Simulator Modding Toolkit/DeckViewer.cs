@@ -37,5 +37,21 @@ namespace Cultist_Simulator_Modding_Toolkit
                 }
             }
         }
+
+        private void specListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (specListBox.SelectedItem == null) return;
+            string id = specListBox.SelectedItem.ToString();
+            if (id.Contains("deck:") && Deck.deckExists(id.Substring(id.IndexOf(":"))))
+            {
+                DeckViewer dv = new DeckViewer(Deck.getDeck(id.Substring(id.IndexOf(":"))));
+                dv.ShowDialog();
+            }
+            else if (Element.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ev.ShowDialog();
+            }
+        }
     }
 }

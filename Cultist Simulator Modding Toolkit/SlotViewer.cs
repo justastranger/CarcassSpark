@@ -37,5 +37,35 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
 
         }
+
+        private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (Element.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ev.ShowDialog();
+            }
+            else if(Aspect.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Aspect.getAspect(id));
+                av.ShowDialog();
+            }
+        }
+
+        private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (Element.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Element.getElement(id));
+                ev.ShowDialog();
+            }
+            else if (Aspect.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Aspect.getAspect(id));
+                av.ShowDialog();
+            }
+        }
     }
 }

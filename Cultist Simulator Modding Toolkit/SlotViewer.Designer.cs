@@ -96,6 +96,7 @@
             this.requiredDataGridView.ReadOnly = true;
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 4;
+            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requiredDataGridView_CellDoubleClick);
             // 
             // requiredId
             // 
@@ -125,6 +126,7 @@
             this.forbiddenDataGridView.ReadOnly = true;
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 100);
             this.forbiddenDataGridView.TabIndex = 5;
+            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.forbiddenDataGridView_CellDoubleClick);
             // 
             // forbiddenId
             // 

@@ -81,6 +81,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 118);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(260, 131);
             this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.Text = "Description";
@@ -108,6 +109,7 @@
             this.inducesDataGridView.ReadOnly = true;
             this.inducesDataGridView.Size = new System.Drawing.Size(217, 218);
             this.inducesDataGridView.TabIndex = 6;
+            this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
             // 
             // recipeId
             // 
