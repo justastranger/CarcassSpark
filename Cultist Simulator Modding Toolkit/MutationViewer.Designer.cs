@@ -31,6 +31,7 @@
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.mutateAspectIdTextBox = new System.Windows.Forms.TextBox();
             this.levelNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.additiveCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +66,22 @@
             this.levelNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.levelNumericUpDown.TabIndex = 2;
             // 
+            // additiveCheckBox
+            // 
+            this.additiveCheckBox.AutoSize = true;
+            this.additiveCheckBox.Location = new System.Drawing.Point(73, 104);
+            this.additiveCheckBox.Name = "additiveCheckBox";
+            this.additiveCheckBox.Size = new System.Drawing.Size(64, 17);
+            this.additiveCheckBox.TabIndex = 3;
+            this.additiveCheckBox.Text = "Additive";
+            this.additiveCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MutationViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 125);
+            this.ClientSize = new System.Drawing.Size(218, 138);
+            this.Controls.Add(this.additiveCheckBox);
             this.Controls.Add(this.levelNumericUpDown);
             this.Controls.Add(this.mutateAspectIdTextBox);
             this.Controls.Add(this.filterTextBox);
@@ -86,5 +98,6 @@
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.TextBox mutateAspectIdTextBox;
         private System.Windows.Forms.NumericUpDown levelNumericUpDown;
+        private System.Windows.Forms.CheckBox additiveCheckBox;
     }
 }

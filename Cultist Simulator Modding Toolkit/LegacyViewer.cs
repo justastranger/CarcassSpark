@@ -13,13 +13,11 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class LegacyViewer : Form
     {
         Legacy displayedLegacy;
-        ModViewer currentMod;
 
-        public LegacyViewer(Legacy legacy, ModViewer currentMod)
+        public LegacyViewer(Legacy legacy, bool? editing)
         {
             InitializeComponent();
             displayedLegacy = legacy;
-            this.currentMod = currentMod;
             idTextBox.Text = legacy.id;
             labelTextBox.Text = legacy.label;
             descriptionTextBox.Text = legacy.description;
@@ -42,19 +40,34 @@ namespace Cultist_Simulator_Modding_Toolkit
                     excludesOnEndingListBox.Items.Add(ending);
                 }
             }
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
+
+        void setEditingMode(bool editing)
+        {
+            idTextBox.Enabled = editing;
+            labelTextBox.Enabled = editing;
+            descriptionTextBox.Enabled = editing;
+            startdescriptionTextBox.Enabled = editing;
+            imageTextBox.Enabled = editing;
+            fromEndingTextBox.Enabled = editing;
+            checkBox1.Enabled = editing;
+            startingVerbIdTextBox.Enabled = editing;
+            effectsDataGridView.ReadOnly = !editing;
         }
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
+            ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
             ev.ShowDialog();
         }
 
         private void excludesOnEndingListBox_DoubleClick(object sender, EventArgs e)
         {
             string id = excludesOnEndingListBox.SelectedItem.ToString();
-            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), currentMod);
+            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), false);
             lv.ShowDialog();
         }
     }

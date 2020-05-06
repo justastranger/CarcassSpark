@@ -37,6 +37,7 @@
             this.inducesDataGridView = new System.Windows.Forms.DataGridView();
             this.recipeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -125,11 +126,21 @@
             this.chance.ReadOnly = true;
             this.chance.Width = 87;
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(118, 90);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(154, 20);
+            this.extendsTextBox.TabIndex = 7;
+            this.extendsTextBox.Text = "Extends";
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // AspectViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 261);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.inducesDataGridView);
             this.Controls.Add(this.inducesLabel);
             this.Controls.Add(this.descriptionTextBox);
@@ -157,5 +168,6 @@
         private System.Windows.Forms.DataGridView inducesDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn recipeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn chance;
+        private System.Windows.Forms.TextBox extendsTextBox;
     }
 }

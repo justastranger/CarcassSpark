@@ -15,13 +15,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         Element displayedElement;
-        ModViewer currentMod;
 
-        public ElementViewer(Element element, ModViewer currentMod)
+        public ElementViewer(Element element, bool? editing)
         {
             InitializeComponent();
             displayedElement = element;
-            this.currentMod = currentMod;
             if (element.extends != null)
             {
                 extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
@@ -29,6 +27,23 @@ namespace Cultist_Simulator_Modding_Toolkit
                 fillValues(extendedElement);
             }
             fillValues(element);
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
+
+        void setEditingMode(bool editing)
+        {
+            idTextBox.Enabled = editing;
+            labelTextBox.Enabled = editing;
+            iconTextBox.Enabled = editing;
+            animFramesTextBox.Enabled = editing;
+            lifetimeTextBox.Enabled = editing;
+            decayToTextBox.Enabled = editing;
+            uniqueCheckBox.Enabled = editing;
+            uniquenessgroupTextBox.Enabled = editing;
+            descriptionTextBox.Enabled = editing;
+            xtriggersDataGridView.ReadOnly = !editing;
+            aspectsDataGridView.ReadOnly = !editing;
         }
 
         private void fillValues(Element element)
@@ -41,6 +56,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
             if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
             if (element.uniquenessgroup != null) uniquenessgroupTextBox.Text = element.uniquenessgroup;
+            if (element.description != null) descriptionTextBox.Text = element.description;
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
@@ -70,14 +86,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListBox.SelectedItem == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], currentMod);
+            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], false);
             sv.ShowDialog();
         }
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), currentMod);
+            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), false);
             av.ShowDialog();
         }
 
@@ -86,12 +102,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             string id = xtriggersDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
                 ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
                 av.ShowDialog();
             }
             else

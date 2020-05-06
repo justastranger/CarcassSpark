@@ -128,12 +128,14 @@ namespace Cultist_Simulator_Modding_Toolkit
             public string filter; // element ID to use to select a card, can filter based on aspect or card itself
             public string mutateAspectId; // Aspect on filtered card to modify
             public int level; // how much to modify the aspect by
+            public bool? additive;
 
-            public Mutation(string filter, int level, string mutateAspectId = null, string mutate = null)
+            public Mutation(string filter, int level, bool? additive, string mutateAspectId = null, string mutate = null)
             {
                 this.filter = filter;
                 this.mutateAspectId = mutateAspectId != null ? mutateAspectId : mutate;
                 this.level = level;
+                if (additive.HasValue) this.additive = additive;
             }
         }
     }

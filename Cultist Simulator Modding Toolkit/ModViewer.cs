@@ -253,46 +253,46 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), this);
+            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), false);
             ev.ShowDialog();
         }
 
         private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), this);
+            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), false);
             av.ShowDialog();
         }
 
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), this);
+            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), false);
             dv.ShowDialog();
         }
 
         private void recipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), this);
+            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), false);
             rv.ShowDialog();
         }
 
         private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
-            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), this);
+            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), false);
             lv.ShowDialog();
         }
 
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
-            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), this);
+            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), false);
             ev.ShowDialog();
         }
 
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
-            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), this);
+            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), false);
             vv.ShowDialog();
         }
 

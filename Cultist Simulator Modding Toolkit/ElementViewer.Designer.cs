@@ -47,6 +47,7 @@
             this.aspectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
@@ -231,11 +232,21 @@
             this.extendsTextBox.Text = "Extends";
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 310);
+            this.descriptionTextBox.Multiline = true;
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(460, 111);
+            this.descriptionTextBox.TabIndex = 15;
+            this.descriptionTextBox.Text = "Description";
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 316);
+            this.ClientSize = new System.Drawing.Size(484, 433);
+            this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.aspectsDataGridView);
             this.Controls.Add(this.slotsListBox);
@@ -282,5 +293,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
         private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.TextBox descriptionTextBox;
     }
 }

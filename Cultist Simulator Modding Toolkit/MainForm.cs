@@ -36,10 +36,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             folderBrowserDialog1.SelectedPath = currentDirectory;
             DialogResult dr = folderBrowserDialog1.ShowDialog();
-            string location = folderBrowserDialog1.SelectedPath;
-            ModViewer mv = new ModViewer(location, false);
-            Utilities.currentMods.Add(mv);
-            mv.Show();
+            if(dr == DialogResult.OK)
+            {
+                string location = folderBrowserDialog1.SelectedPath;
+                ModViewer mv = new ModViewer(location, false);
+                Utilities.currentMods.Add(mv);
+                mv.Show();
+            }
         }
 
         private void openSettingsButton_Click(object sender, EventArgs e)

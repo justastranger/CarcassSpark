@@ -14,7 +14,6 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public string aspectID;
         public int amount;
-        ModViewer currentMod;
 
         public AddAspectForm(ModViewer currentMod)
         {
