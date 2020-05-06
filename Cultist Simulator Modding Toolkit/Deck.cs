@@ -10,10 +10,15 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Deck
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, comments, defaultcard;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string[] spec; // the actual internal deck
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool resetonexhaustion;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int draws, defaultdraws;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public DrawMessages drawmessages, defaultdrawmessages;
 
         [JsonConstructor]

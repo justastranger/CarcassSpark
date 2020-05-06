@@ -11,38 +11,55 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Recipe
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, actionId, startdescription, description, ending, burnimage;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
-        public bool craftable, hintonly;
-        public int maxexecutions, warmup;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool? craftable, hintonly;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? maxexecutions, warmup;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ElementDictionary effects, requirements, extantreqs, tablereqs;
-        public AspectDictionary aspects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> aspects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public RecipeLink[] linked, alternativerecipes;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Slot[] slots;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Mutation[] mutations;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Deck internalDeck;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deckeffect;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string[] extends;
 
         [JsonConstructor]
-        public Recipe(string id, string label, string actionId, string startdescription, string description,
-                      bool craftable, bool hintonly = false, JObject requirements = null, int warmup = 0, int maxexecutions = 0, JObject effects = null,
-                      JArray linked = null, JArray slots = null, JArray alternativerecipes = null, JObject deckeffect = null, JObject internaldeck = null,
-                      JArray mutations = null, JObject aspects = null, JObject tablereqs = null, JObject extantreqs = null, string ending = null, string burnimage = null)
+        public Recipe(bool? craftable, bool? hintonly, int? warmup, int? maxexecutions,
+                      string id, string label = null, string actionId = null, string startdescription = null,
+                      string description = null, JArray extends = null, JObject requirements = null,
+                      JObject effects = null, JArray linked = null, JArray slots = null, JArray alternativerecipes = null,
+                      JObject deckeffect = null, JObject internaldeck = null, JArray mutations = null,
+                      JObject aspects = null, JObject tablereqs = null, JObject extantreqs = null, string ending = null,
+                      string burnimage = null)
         {
             this.id = id;
             this.label = label;
             this.actionId = actionId;
             this.startdescription = startdescription;
             this.description = description;
-            this.craftable = craftable;
-            this.ending = ending;
-            this.burnimage = burnimage;
-            if (warmup > 0) this.warmup = warmup;
+            if (craftable.HasValue) this.craftable = craftable;
+            if (hintonly.HasValue) this.hintonly = hintonly;
+            if (ending != null) this.ending = ending;
+            if (burnimage != null) this.burnimage = burnimage;
+            if (extends != null) this.extends = extends.ToObject<string[]>();
+            if (warmup.HasValue) this.warmup = warmup;
             if (requirements != null) this.requirements = requirements.ToObject<ElementDictionary>();
             if (extantreqs != null) this.extantreqs = extantreqs.ToObject<ElementDictionary>();
             if (tablereqs != null) this.tablereqs = tablereqs.ToObject<ElementDictionary>();
-            if (maxexecutions > 0) this.maxexecutions = maxexecutions;
+            if (maxexecutions.HasValue) this.maxexecutions = maxexecutions;
             if (effects != null)
             {
                 this.effects = new ElementDictionary(effects);
@@ -65,15 +82,15 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (aspects != null)
             {
-                this.aspects = new AspectDictionary(aspects);
+                this.aspects = aspects.ToObject<Dictionary<string, int>>();
             }
             if (deckeffect != null)
             {
                 this.deckeffect = deckeffect.ToObject<Dictionary<string, int>>();
             }
-            if (hintonly)
+            if (hintonly.HasValue)
             {
-                this.hintonly = hintonly;
+                this.hintonly = hintonly.Value;
             }
             if (internaldeck != null)
             {
@@ -84,9 +101,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public class RecipeLink
         {
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public string id;
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public int chance;
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public bool additional;
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public Dictionary<string, string> challenges;
 
             [JsonConstructor]

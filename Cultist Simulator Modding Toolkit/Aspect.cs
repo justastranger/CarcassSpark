@@ -13,7 +13,9 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Aspect : Element
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool isAspect, isHidden, noartneeded;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Induces[] induces;
 
 
@@ -44,7 +46,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             this.comments = comments;
             // optional, didn't even know it was possible tbqh
-            if (aspects != null) this.aspects = aspects.ToObject<AspectDictionary>();
+            if (aspects != null) this.aspects = aspects.ToObject<Dictionary<string, int>>();
         }
 
         public Aspect(string id, string label, string description,
@@ -106,51 +108,4 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
     }
-
-    // Just like ElementDictionary, except aspect IDs only
-    // example: {lantern: 4, tool: 1, auctionable: 2} to require 4 lantern AND 1 tool AND 2 auctionable
-    public class AspectDictionary
-    {
-        Dictionary<string, int> internalDictionary;
-
-        public int this[string key]
-        {
-            get
-            {
-                return internalDictionary[key];
-            }
-            set
-            {
-                internalDictionary[key] = value;
-            }
-        }
-
-        public AspectDictionary()
-        {
-            this.internalDictionary = new Dictionary<string, int>();
-        }
-
-        [JsonConstructor]
-        public AspectDictionary(JToken aspects)
-        {
-            this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(JsonConvert.SerializeObject(aspects));
-        }
-
-        public AspectDictionary(string id, int amount)
-        {
-            this.internalDictionary = new Dictionary<string, int>();
-            this.internalDictionary[id] = amount;
-        }
-
-        public Dictionary<string,int> toDictionary()
-        {
-            return internalDictionary;
-        }
-
-        public bool isNull()
-        {
-            return internalDictionary == null;
-        }
-    }
-
 }

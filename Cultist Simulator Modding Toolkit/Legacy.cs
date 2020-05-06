@@ -10,9 +10,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Legacy
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string[] excludesOnEnding;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ElementDictionary effects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool availableWithoutEndingMatch;
 
         [JsonConstructor]

@@ -46,6 +46,7 @@
             this.aspectsDataGridView = new System.Windows.Forms.DataGridView();
             this.aspectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
@@ -221,11 +222,21 @@
             this.amount.ReadOnly = true;
             this.amount.Width = 102;
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(224, 12);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.TabIndex = 14;
+            this.extendsTextBox.Text = "Extends";
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 316);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.aspectsDataGridView);
             this.Controls.Add(this.slotsListBox);
             this.Controls.Add(this.slotsLabel);
@@ -270,5 +281,6 @@
         private System.Windows.Forms.DataGridView aspectsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.TextBox extendsTextBox;
     }
 }

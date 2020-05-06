@@ -161,6 +161,7 @@
     <Compile Include="SlotViewer.Designer.cs">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities.cs" />
     <Compile Include="Verb.cs" />
     <Compile Include="VerbViewer.cs">
       <SubType>Form</SubType>

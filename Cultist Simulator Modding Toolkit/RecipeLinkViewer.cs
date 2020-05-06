@@ -27,7 +27,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(currentMod.recipesList[idTextBox.Text], currentMod);
+            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(idTextBox.Text), currentMod);
             rv.ShowDialog();
         }
     }

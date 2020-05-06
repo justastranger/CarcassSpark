@@ -44,14 +44,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (specListBox.SelectedItem == null) return;
             string id = specListBox.SelectedItem.ToString();
-            if (id.Contains("deck:") && currentMod.deckExists(id.Substring(id.IndexOf(":"))))
+            if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(currentMod.getDeck(id.Substring(id.IndexOf(":"))), currentMod);
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), currentMod);
                 dv.ShowDialog();
             }
-            else if (currentMod.elementExists(id))
+            else if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
         }

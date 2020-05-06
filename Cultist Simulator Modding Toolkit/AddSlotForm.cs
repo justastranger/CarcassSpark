@@ -13,20 +13,14 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class AddSlotForm : Form
     {
-        
+
         // both of these start as null
-        Required required, forbidden;
+        Dictionary<string, int> required, forbidden;
 
 
         public AddSlotForm()
         {
             InitializeComponent();
-        }
-
-        Slot generateSlot()
-        {
-            // Slot(string id, string label, ElementDictionary required, string description, string actionId, ElementDictionary forbidden = null)
-            return new Slot(idTextBox.Text, labelTextBox.Text, required, descriptionTextBox.Text, actionIdTextBox.Text, forbidden);
         }
 
     }

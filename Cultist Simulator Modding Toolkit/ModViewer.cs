@@ -15,8 +15,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class ModViewer : Form
     {
-        public string currentModDirectory;
-        public Manifest currentModManifest;
+        public string currentDirectory;
+        public Manifest manifest;
         public bool isVanilla, foundManifest;
         
         public Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
@@ -30,7 +30,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public ModViewer(string location, bool isVanilla)
         {
             InitializeComponent();
-            this.currentModDirectory = location;
+            this.currentDirectory = location;
             this.isVanilla = isVanilla;
             toolStrip1.Visible = !this.isVanilla;
 
@@ -50,7 +50,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             verbsList.Clear();
             
             this.foundManifest = false;
-            foreach (string file in Directory.EnumerateFiles(currentModDirectory, "*.json", SearchOption.AllDirectories))
+            foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
             {
                 //MessageBox.Show(file);
                 using (FileStream fs = new FileStream(file, FileMode.Open))
@@ -64,14 +64,14 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                 }
             }
-            if (!foundManifest)
+            if (!foundManifest && !isVanilla)
             {
                 DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if(dr == DialogResult.Yes)
                 {
                     ManifestViewer mv = new ManifestViewer(new Manifest("", "", "", "", ""));
                     mv.ShowDialog();
-                    currentModManifest = mv.displayedManifest;
+                    manifest = mv.displayedManifest;
                     foundManifest = true;
                 }
             }
@@ -80,7 +80,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public void loadManifest(FileStream file)
         {
             string fileText = new StreamReader(file).ReadToEnd();
-            currentModManifest = JsonConvert.DeserializeObject<Manifest>(fileText);
+            manifest = JsonConvert.DeserializeObject<Manifest>(fileText);
         }
 
         public void loadFile(FileStream file)
@@ -176,7 +176,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public Element getElement(string id)
         {
-            return elementsList[id];
+            if (elementExists(id)) return elementsList[id];
+            else return null;
         }
 
         public bool elementExists(string id)
@@ -186,7 +187,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public Deck getDeck(string id)
         {
-            return decksList[id];
+            if (deckExists(id)) return decksList[id];
+            else return null;
         }
 
         public bool deckExists(string id)
@@ -195,7 +197,8 @@ namespace Cultist_Simulator_Modding_Toolkit
         }
         public Aspect getAspect(string id)
         {
-            return aspectsList[id];
+            if (aspectExists(id)) return aspectsList[id];
+            else return null;
         }
 
         public bool aspectExists(string id)
@@ -205,7 +208,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public Legacy getLegacy(string id)
         {
-            return legaciesList[id];
+            if (legacyExists(id)) return legaciesList[id];
+            else return null;
         }
 
         public bool legacyExists(string id)
@@ -215,7 +219,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public Recipe getRecipe(string id)
         {
-            return recipesList[id];
+            if (recipeExists(id)) return recipesList[id];
+            else return null;
         }
 
         public bool recipeExists(string id)
@@ -225,7 +230,8 @@ namespace Cultist_Simulator_Modding_Toolkit
         
         public Ending getEnding(string id)
         {
-            return endingsList[id];
+            if (endingExists(id)) return endingsList[id];
+            else return null;
         }
 
         public bool endingExists(string id)
@@ -235,7 +241,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         public Verb getVerb(string id)
         {
-            return verbsList[id];
+            if (verbExists(id)) return verbsList[id];
+            else return null;
         }
 
         public bool verbExists(string id)
@@ -246,46 +253,46 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(elementsList[elementsListBox.SelectedItem.ToString()], this);
+            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), this);
             ev.ShowDialog();
         }
 
         private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(aspectsList[aspectsListBox.SelectedItem.ToString()], this);
+            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), this);
             av.ShowDialog();
         }
 
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(decksList[decksListBox.SelectedItem.ToString()], this);
+            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), this);
             dv.ShowDialog();
         }
 
         private void recipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(recipesList[recipesListBox.SelectedItem.ToString()], this);
+            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), this);
             rv.ShowDialog();
         }
 
         private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
-            LegacyViewer lv = new LegacyViewer(legaciesList[legaciesListBox.SelectedItem.ToString()], this);
+            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), this);
             lv.ShowDialog();
         }
 
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
-            EndingViewer ev = new EndingViewer(endingsList[endingsListBox.SelectedItem.ToString()], this);
+            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), this);
             ev.ShowDialog();
         }
 
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
-            VerbViewer vv = new VerbViewer(verbsList[verbsListBox.SelectedItem.ToString()], this);
+            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), this);
             vv.ShowDialog();
         }
 
@@ -301,19 +308,89 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManifestViewer mv = new ManifestViewer(currentModManifest);
+            ManifestViewer mv = new ManifestViewer(manifest);
             mv.ShowDialog();
-            currentModManifest = mv.displayedManifest;
+            manifest = mv.displayedManifest;
         }
         
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
             JObject aspects = new JObject();
-            aspects["elements"] = JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(aspectsList.Values));
-            string aspectsJson = JsonConvert.SerializeObject(aspects);
+            aspects["elements"] = JArray.FromObject(aspectsList.Values);
+            string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_aspects.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                jtw.WriteRaw(aspectsJson);
+                jtw.Close();
+                //aspects.WriteTo(jtw);
+                
+            }
             JObject elements = new JObject();
-            elements["elements"] = JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(elementsList.Values));
-            string elementsJson = JsonConvert.SerializeObject(elements);
+            elements["elements"] = JArray.FromObject(elementsList.Values);
+            string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_elements.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //elements.WriteTo(jtw);
+                jtw.WriteRaw(elementsJson);
+                jtw.Close();
+            }
+            JObject recipes = new JObject();
+            recipes["recipes"] = JArray.FromObject(recipesList.Values);
+            string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_recipes.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //recipes.WriteTo(jtw);
+                jtw.WriteRaw(recipesJson);
+                jtw.Close();
+            }
+            JObject decks = new JObject();
+            decks["decks"] = JArray.FromObject(decksList.Values);
+            string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_decks.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //decks.WriteTo(jtw);
+                jtw.WriteRaw(decksJson);
+                jtw.Close();
+            }
+            JObject legacies = new JObject();
+            legacies["legacies"] = JArray.FromObject(legaciesList.Values);
+            string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_legacies.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //legacies.WriteTo(jtw);
+                jtw.WriteRaw(legaciesJson);
+                jtw.Close();
+            }
+            JObject endings = new JObject();
+            endings["endings"] = JArray.FromObject(endingsList.Values);
+            string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_endings.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //endings.WriteTo(jtw);
+                jtw.WriteRaw(endingsJson);
+                jtw.Close();
+            }
+            JObject verbs = new JObject();
+            verbs["verbs"] = JArray.FromObject(verbsList.Values);
+            string verbsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_verbs.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                //verbs.WriteTo(jtw);
+                jtw.WriteRaw(verbsJson);
+                jtw.Close();
+            }
+        }
+
+        private void ModViewer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utilities.currentMods.Remove(this);
         }
 
         private void ModViewer_Shown(object sender, EventArgs e)

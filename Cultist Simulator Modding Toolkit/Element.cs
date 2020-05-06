@@ -10,18 +10,26 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Element
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string icon, id, label, description, comments, decayTo, uniquenessgroup;
-        public AspectDictionary aspects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> aspects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Slot> slots;
-        public XTriggers xtriggers;
-        public int animFrames, lifeTime;
-        public bool unique;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, string> xtriggers;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? animFrames, lifeTime;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool? unique, resaturate;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string[] extends;
 
         [JsonConstructor]
-        public Element(string id, string label, string description, bool unique = false,
-                       string icon = null, string comments = null, JToken aspects = null,
-                       JArray slots = null, JToken xtriggers = null, int animFrames = 0,
-                       int lifeTime = 0, string decayTo = null, string uniquenessgroup = null)
+        public Element(string id, string label, string description, bool? unique,
+                       string icon, string comments, JToken aspects,
+                       JArray slots, JToken xtriggers, int? animFrames,
+                       int? lifeTime, string decayTo, string uniquenessgroup, JArray extends, bool? resaturate)
         {
             // necessary
             this.id = id;
@@ -31,31 +39,36 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.description = description;
             // not necessary
             if (icon != null) this.icon = icon;
-            // but still included just in case
             else this.icon = id;
             // not necessary
             this.comments = comments;
             // not necessary (stay of execution)
-            this.aspects = new AspectDictionary(aspects);
+            if (aspects != null) this.aspects = aspects.ToObject<Dictionary<string, int>>();
             // not necessary
             if (slots != null) this.slots = slots.ToObject<List<Slot>>(); //JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
             // not necessary
-            if (xtriggers != null) this.xtriggers = new XTriggers(xtriggers);
+            if (xtriggers != null) this.xtriggers = xtriggers.ToObject<Dictionary<string, string>>();
             // not necessary
-            if (animFrames > 0) this.animFrames = animFrames;
+            if (animFrames.HasValue) this.animFrames = animFrames;
             // not necessary
-            if (unique) this.unique = unique;
+            if (unique.HasValue) this.unique = unique;
             // not necessary
             if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup;
             // not necessary
-            if (lifeTime > 0) this.lifeTime = lifeTime;
+            if (lifeTime.HasValue) this.lifeTime = lifeTime;
+            // not necessary
+            if (resaturate.HasValue) this.resaturate = resaturate;
             // not necessary, always null when lifeTime is
             if (decayTo != null) this.decayTo = decayTo;
+            // This is only present in modded elements
+            if (extends != null) this.extends = extends.ToObject<string[]>();
         }
         
         public Element(string id, string label, string description,
-                       string icon = null, string comments = null, AspectDictionary aspects = null,
-                       JArray slots = null, JToken xtriggers = null)
+                       string icon, string comments, Dictionary<string, int> aspects,
+                       List<Slot> slots, Dictionary<string, string> xtriggers, string[] extends,
+                       string decayTo, int? lifeTime, bool? unique, int? animFrames,
+                       string uniquenessgroup)
         {
             this.id = id;
             this.label = label;
@@ -63,48 +76,24 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (icon != null) this.icon = icon;
             else this.icon = id;
             this.comments = comments;
-            this.aspects = aspects;
-            if (slots != null) this.slots = this.slots = slots.ToObject<List<Slot>>(); // JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
-            if (xtriggers != null) this.xtriggers = new XTriggers(xtriggers);
+            if (aspects != null) this.aspects = aspects;
+            if (slots != null) this.slots = slots;
+            if (xtriggers != null) this.xtriggers = xtriggers;
+            if (extends != null) this.extends = extends;
+            if (decayTo != null) this.decayTo = decayTo;
+            if (lifeTime.HasValue) this.lifeTime = lifeTime;
+            if (unique.HasValue) this.unique = unique;
+            if (animFrames.HasValue) this.animFrames = animFrames;
+            if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup; ;
         }
         
         public Element()
         {
-
+            this.id = "";
+            this.label = "";
+            this.description = "";
         }
         
-        public class XTriggers
-        {
-            Dictionary<string, string> internalDictionary;
-
-            public string this[string key]
-            {
-                get
-                {
-                    return internalDictionary[key];
-                }
-                set
-                {
-                    internalDictionary[key] = value;
-                }
-            }
-
-            public XTriggers(JToken xtriggers)
-            {
-                this.internalDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(xtriggers));
-            }
-
-            public XTriggers(string aspectID, string newElement)
-            {
-                this.internalDictionary = new Dictionary<string, string>();
-                this.internalDictionary[aspectID] = newElement;
-            }
-
-            public Dictionary<string,string> toDictionary()
-            {
-                return internalDictionary;
-            }
-        }
     }
 
     // can be either elements or aspects, only one option is required to fulfill a slot

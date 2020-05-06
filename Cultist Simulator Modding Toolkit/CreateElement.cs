@@ -19,17 +19,17 @@ namespace Cultist_Simulator_Modding_Toolkit
             InitializeComponent();
             this.currentMod = currentMod;
         }
-        private Element generateElement()
-        {
+       // private Element generateElement()
+       // {
             /*
                   (string id = null, string label = null, string description = null,
                    string icon = null, string comments = null, AspectDictionary aspects = null,
                    Slot[] slots = null, XTriggers xtriggers = null)
              */
-            Element temp = new Element(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text,
-                                       idTextBox.Text, commentsTextBox.Text, elementAspects, null, null);
-            return temp;
-        }
+            //Element temp = new Element(idTextBox.Text, labelTextBox.Text, descriptionTextBox.Text,
+            //                           idTextBox.Text, commentsTextBox.Text, elementAspects, null, null);
+            //return temp;
+        //}
 
         private void iconSelectButton_Click(object sender, EventArgs e)
         {
@@ -44,7 +44,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            Element newElement = generateElement();
+            //Element newElement = generateElement();
         }
         
         private void addAspectContextMenuItem_Click(object sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         // aspectsListBox section
 
         string selectedAspect;
-        AspectDictionary elementAspects = new AspectDictionary();
+        Dictionary<string, int> elementAspects = new Dictionary<string, int>();
         
         private void actuallyAddAspect(string aspectID, int amount)
         {

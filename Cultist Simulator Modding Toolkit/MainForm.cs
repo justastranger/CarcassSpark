@@ -19,11 +19,16 @@ namespace Cultist_Simulator_Modding_Toolkit
         public MainForm()
         {
             InitializeComponent();
+
+            ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+            Utilities.currentMods.Add(mv);
+            mv.Show();
         }
 
         private void loadVanillaButton_Click(object sender, EventArgs e)
         {
             ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+            Utilities.currentMods.Add(mv);
             mv.Show();
         }
 
@@ -33,7 +38,19 @@ namespace Cultist_Simulator_Modding_Toolkit
             DialogResult dr = folderBrowserDialog1.ShowDialog();
             string location = folderBrowserDialog1.SelectedPath;
             ModViewer mv = new ModViewer(location, false);
+            Utilities.currentMods.Add(mv);
             mv.Show();
+        }
+
+        private void openSettingsButton_Click(object sender, EventArgs e)
+        {
+            Settings settingsForm = new Settings();
+            settingsForm.ShowDialog();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

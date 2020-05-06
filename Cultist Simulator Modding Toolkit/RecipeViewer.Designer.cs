@@ -71,6 +71,9 @@
             this.mutationsLabel = new System.Windows.Forms.Label();
             this.alternativerecipesListBox = new System.Windows.Forms.ListBox();
             this.linkedListBox = new System.Windows.Forms.ListBox();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.maxExecutionsTextBox = new System.Windows.Forms.TextBox();
+            this.warmupTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablereqsDataGridView)).BeginInit();
@@ -177,6 +180,7 @@
             // 
             // showInternalDeckButton
             // 
+            this.showInternalDeckButton.Enabled = false;
             this.showInternalDeckButton.Location = new System.Drawing.Point(373, 36);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
             this.showInternalDeckButton.Size = new System.Drawing.Size(75, 23);
@@ -313,6 +317,7 @@
             // 
             // showSlotButton
             // 
+            this.showSlotButton.Enabled = false;
             this.showSlotButton.Location = new System.Drawing.Point(454, 36);
             this.showSlotButton.Name = "showSlotButton";
             this.showSlotButton.Size = new System.Drawing.Size(75, 23);
@@ -495,11 +500,41 @@
             this.linkedListBox.TabIndex = 32;
             this.linkedListBox.DoubleClick += new System.EventHandler(this.linkedListBox_DoubleClick);
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(644, 12);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.TabIndex = 33;
+            this.extendsTextBox.Text = "Extends";
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // maxExecutionsTextBox
+            // 
+            this.maxExecutionsTextBox.Location = new System.Drawing.Point(535, 38);
+            this.maxExecutionsTextBox.Name = "maxExecutionsTextBox";
+            this.maxExecutionsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.maxExecutionsTextBox.TabIndex = 34;
+            this.maxExecutionsTextBox.Text = "Max Executions";
+            this.maxExecutionsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // warmupTextBox
+            // 
+            this.warmupTextBox.Location = new System.Drawing.Point(644, 38);
+            this.warmupTextBox.Name = "warmupTextBox";
+            this.warmupTextBox.Size = new System.Drawing.Size(100, 20);
+            this.warmupTextBox.TabIndex = 35;
+            this.warmupTextBox.Text = "Warmup";
+            this.warmupTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // RecipeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 684);
+            this.Controls.Add(this.warmupTextBox);
+            this.Controls.Add(this.maxExecutionsTextBox);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.linkedListBox);
             this.Controls.Add(this.alternativerecipesListBox);
             this.Controls.Add(this.mutationsLabel);
@@ -589,5 +624,8 @@
         private System.Windows.Forms.Label mutationsLabel;
         private System.Windows.Forms.ListBox alternativerecipesListBox;
         private System.Windows.Forms.ListBox linkedListBox;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.TextBox maxExecutionsTextBox;
+        private System.Windows.Forms.TextBox warmupTextBox;
     }
 }

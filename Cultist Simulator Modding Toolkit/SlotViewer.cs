@@ -24,19 +24,19 @@ namespace Cultist_Simulator_Modding_Toolkit
             labelTextBox.Text = slot.label;
             descriptionTextBox.Text = slot.description;
             actionIdTextBox.Text = slot.actionId;
-            greedyCheckBox.Checked = slot.greedy;
+            if (slot.greedy.HasValue) greedyCheckBox.Checked = slot.greedy.Value;
             if (slot.required != null)
             {
-                foreach (Required.Requirement req in slot.required.requirements)
+                foreach (KeyValuePair<string, int> req in slot.required)
                 {
-                    requiredDataGridView.Rows.Add(req.id, req.amount);
+                    requiredDataGridView.Rows.Add(req.Key, req.Value);
                 } 
             }
             if (slot.forbidden != null)
             {
-                foreach (Required.Requirement req in slot.forbidden.requirements)
+                foreach (KeyValuePair<string, int> req in slot.forbidden)
                 {
-                    forbiddenDataGridView.Rows.Add(req.id, req.amount);
+                    forbiddenDataGridView.Rows.Add(req.Key, req.Value);
                 } 
             }
 
@@ -45,14 +45,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if(currentMod.aspectExists(id))
+            else if(Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }
@@ -60,14 +60,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if (currentMod.aspectExists(id))
+            else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }

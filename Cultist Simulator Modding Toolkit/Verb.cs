@@ -10,8 +10,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public class Verb
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool atStart;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Slot[] slots;
 
         [JsonConstructor]

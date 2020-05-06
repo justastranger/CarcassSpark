@@ -23,15 +23,28 @@ namespace Cultist_Simulator_Modding_Toolkit
             InitializeComponent();
             this.displayedRecipe = recipe;
             this.currentMod = currentMod;
-            idTextBox.Text = recipe.id;
-            labelTextBox.Text = recipe.label;
-            actionIdTextBox.Text = recipe.actionId;
-            endingTextBox.Text = recipe.ending;
-            burnimageTextBox.Text = recipe.burnimage;
-            craftableCheckBox.Checked = recipe.craftable;
-            hintonlyCheckBox.Checked = recipe.hintonly;
-            startdescriptionTextBox.Text = recipe.startdescription;
-            descriptionTextBox.Text = recipe.description;
+            if (recipe.extends != null)
+            {
+                extendsTextBox.Text = recipe.extends[0];
+                Recipe extendedRecipe = Utilities.getRecipe(recipe.extends[0]);
+                fillValues(extendedRecipe);
+            }
+            fillValues(recipe);
+        }
+
+        private void fillValues(Recipe recipe)
+        {
+            if (recipe.id != null) idTextBox.Text = recipe.id;
+            if (recipe.label != null) labelTextBox.Text = recipe.label;
+            if (recipe.actionId != null) actionIdTextBox.Text = recipe.actionId;
+            if (recipe.ending != null) endingTextBox.Text = recipe.ending;
+            if (recipe.burnimage != null) burnimageTextBox.Text = recipe.burnimage;
+            if (recipe.craftable.HasValue) craftableCheckBox.Checked = recipe.craftable.Value;
+            if (recipe.hintonly.HasValue) hintonlyCheckBox.Checked = recipe.hintonly.Value;
+            if (recipe.startdescription != null) startdescriptionTextBox.Text = recipe.startdescription;
+            if (recipe.description != null) descriptionTextBox.Text = recipe.description;
+            if (recipe.maxexecutions.HasValue) maxExecutionsTextBox.Text = Convert.ToString(recipe.maxexecutions.Value);
+            if (recipe.warmup.HasValue) warmupTextBox.Text = Convert.ToString(recipe.warmup.Value);
             showInternalDeckButton.Enabled = recipe.internalDeck != null ? true : false;
             showSlotButton.Enabled = recipe.slots != null ? true : false;
             if (recipe.requirements != null && !recipe.requirements.isNull())
@@ -62,9 +75,9 @@ namespace Cultist_Simulator_Modding_Toolkit
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.aspects != null && !recipe.aspects.isNull())
+            if (recipe.aspects != null)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.aspects.toDictionary())
+                foreach (KeyValuePair<string, int> kvp in recipe.aspects)
                 {
                     aspectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
@@ -138,14 +151,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects OR elements
             string id = requirementsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if (currentMod.aspectExists(id))
+            else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }
@@ -153,14 +166,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can also be aspects or elements
             string id = extantreqsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
-            else if (currentMod.aspectExists(id))
+            else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }
@@ -168,9 +181,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be card elements
             string id = tablereqsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
         }
@@ -178,9 +191,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be card elements
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.elementExists(id))
+            if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(currentMod.getElement(id), currentMod);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), currentMod);
                 ev.ShowDialog();
             }
         }
@@ -188,9 +201,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be aspect elements
             string id = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.aspectExists(id))
+            if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(currentMod.getAspect(id), currentMod);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), currentMod);
                 av.ShowDialog();
             }
         }
@@ -198,9 +211,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be decks
             string id = deckeffectDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (currentMod.deckExists(id))
+            if (Utilities.deckExists(id))
             {
-                DeckViewer dv = new DeckViewer(currentMod.getDeck(id), currentMod);
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id), currentMod);
                 dv.ShowDialog();
             }
         }
