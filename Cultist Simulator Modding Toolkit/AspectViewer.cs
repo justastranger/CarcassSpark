@@ -46,6 +46,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             descriptionTextBox.ReadOnly = !editing;
             extendsTextBox.ReadOnly = !editing;
             isHiddenCheckBox.Enabled = editing;
+            noartworkneededCheckBox.Enabled = editing;
             inducesDataGridView.AllowUserToAddRows = editing;
             inducesDataGridView.AllowUserToDeleteRows = editing;
             inducesDataGridView.ReadOnly = !editing;
@@ -124,6 +125,11 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void isHiddenCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedAspect.isHidden = isHiddenCheckBox.Checked;
+        }
+
+        private void noartworkneededCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedAspect.noartneeded = noartworkneededCheckBox.Checked;
         }
     }
 }

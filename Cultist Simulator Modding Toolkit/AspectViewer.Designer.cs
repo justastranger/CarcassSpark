@@ -41,37 +41,40 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.isHiddenCheckBox = new System.Windows.Forms.CheckBox();
+            this.noartworkneededCheckBox = new System.Windows.Forms.CheckBox();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.labelLabel = new System.Windows.Forms.Label();
+            this.iconLabel = new System.Windows.Forms.Label();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(118, 12);
+            this.idTextBox.Location = new System.Drawing.Point(118, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(154, 20);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "ID";
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 38);
+            this.labelTextBox.Location = new System.Drawing.Point(118, 64);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(154, 20);
             this.labelTextBox.TabIndex = 1;
-            this.labelTextBox.Text = "Label";
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // iconTextBox
             // 
-            this.iconTextBox.Location = new System.Drawing.Point(118, 64);
+            this.iconTextBox.Location = new System.Drawing.Point(118, 103);
             this.iconTextBox.Name = "iconTextBox";
             this.iconTextBox.Size = new System.Drawing.Size(154, 20);
             this.iconTextBox.TabIndex = 2;
-            this.iconTextBox.Text = "Icon";
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.iconTextBox.TextChanged += new System.EventHandler(this.iconTextBox_TextChanged);
             // 
@@ -85,13 +88,12 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 118);
+            this.descriptionTextBox.Location = new System.Drawing.Point(138, 180);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(260, 131);
+            this.descriptionTextBox.Size = new System.Drawing.Size(357, 69);
             this.descriptionTextBox.TabIndex = 4;
-            this.descriptionTextBox.Text = "Description";
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // inducesLabel
@@ -113,7 +115,7 @@
             this.chance});
             this.inducesDataGridView.Location = new System.Drawing.Point(278, 31);
             this.inducesDataGridView.Name = "inducesDataGridView";
-            this.inducesDataGridView.Size = new System.Drawing.Size(217, 218);
+            this.inducesDataGridView.Size = new System.Drawing.Size(217, 143);
             this.inducesDataGridView.TabIndex = 6;
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
             // 
@@ -131,11 +133,10 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(118, 90);
+            this.extendsTextBox.Location = new System.Drawing.Point(118, 142);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(154, 20);
             this.extendsTextBox.TabIndex = 7;
-            this.extendsTextBox.Text = "Extends";
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
@@ -162,7 +163,7 @@
             // isHiddenCheckBox
             // 
             this.isHiddenCheckBox.AutoSize = true;
-            this.isHiddenCheckBox.Location = new System.Drawing.Point(206, 255);
+            this.isHiddenCheckBox.Location = new System.Drawing.Point(12, 165);
             this.isHiddenCheckBox.Name = "isHiddenCheckBox";
             this.isHiddenCheckBox.Size = new System.Drawing.Size(66, 17);
             this.isHiddenCheckBox.TabIndex = 10;
@@ -170,11 +171,73 @@
             this.isHiddenCheckBox.UseVisualStyleBackColor = true;
             this.isHiddenCheckBox.CheckedChanged += new System.EventHandler(this.isHiddenCheckBox_CheckedChanged);
             // 
+            // noartworkneededCheckBox
+            // 
+            this.noartworkneededCheckBox.AutoSize = true;
+            this.noartworkneededCheckBox.Location = new System.Drawing.Point(12, 188);
+            this.noartworkneededCheckBox.Name = "noartworkneededCheckBox";
+            this.noartworkneededCheckBox.Size = new System.Drawing.Size(120, 17);
+            this.noartworkneededCheckBox.TabIndex = 12;
+            this.noartworkneededCheckBox.Text = "No Artwork Needed";
+            this.noartworkneededCheckBox.UseVisualStyleBackColor = true;
+            this.noartworkneededCheckBox.CheckedChanged += new System.EventHandler(this.noartworkneededCheckBox_CheckedChanged);
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(118, 9);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(54, 13);
+            this.idLabel.TabIndex = 13;
+            this.idLabel.Text = "Aspect ID";
+            // 
+            // labelLabel
+            // 
+            this.labelLabel.AutoSize = true;
+            this.labelLabel.Location = new System.Drawing.Point(118, 48);
+            this.labelLabel.Name = "labelLabel";
+            this.labelLabel.Size = new System.Drawing.Size(33, 13);
+            this.labelLabel.TabIndex = 14;
+            this.labelLabel.Text = "Label";
+            // 
+            // iconLabel
+            // 
+            this.iconLabel.AutoSize = true;
+            this.iconLabel.Location = new System.Drawing.Point(118, 87);
+            this.iconLabel.Name = "iconLabel";
+            this.iconLabel.Size = new System.Drawing.Size(28, 13);
+            this.iconLabel.TabIndex = 15;
+            this.iconLabel.Text = "Icon";
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(118, 126);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 16;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(137, 165);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.TabIndex = 17;
+            this.descriptionLabel.Text = "Description";
+            // 
             // AspectViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 305);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.iconLabel);
+            this.Controls.Add(this.labelLabel);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.noartworkneededCheckBox);
             this.Controls.Add(this.isHiddenCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -210,5 +273,11 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox isHiddenCheckBox;
+        private System.Windows.Forms.CheckBox noartworkneededCheckBox;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label labelLabel;
+        private System.Windows.Forms.Label iconLabel;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.Label descriptionLabel;
     }
 }
