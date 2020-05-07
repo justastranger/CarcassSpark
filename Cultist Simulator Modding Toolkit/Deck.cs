@@ -15,16 +15,16 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> spec; // the actual internal deck
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool resetonexhaustion;
+        public bool? resetonexhaustion;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int draws, defaultdraws;
+        public int? draws, defaultdraws;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> drawmessages, defaultdrawmessages;
 
         [JsonConstructor]
-        public Deck(JArray spec, string id = null, string label = null, string description = null, string comments = null,
-                    string defaultcard = null, bool resetonexhaustion = false, JObject drawmessages = null,
-                    JObject defaultdrawmessages = null, int defaultdraws = 1, int draws = 1)
+        public Deck(JArray spec, int? defaultdraws, int? draws, bool? resetonexhaustion, string id = null, string label = null, string description = null, string comments = null,
+                    string defaultcard = null, JObject drawmessages = null,
+                    JObject defaultdrawmessages = null)
         {
             this.id = id;
             this.label = label;

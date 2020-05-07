@@ -30,9 +30,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             labelTextBox.Text = deck.label;
             commentsTextBox.Text = deck.comments;
             descriptionTextBox.Text = deck.description;
-            resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion;
+            if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
             defaultCardTextBox.Text = deck.defaultcard;
-            drawsNumericUpDown.Value = deck.draws;
+            if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
             foreach (string id in deck.spec)
             {
                 specListBox.Items.Add(id);
