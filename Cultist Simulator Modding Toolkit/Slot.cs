@@ -60,5 +60,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             if (greedy.HasValue) this.greedy = greedy;
         }
+
+        public Slot()
+        {
+
+        }
     }
 }

@@ -12,7 +12,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class SlotViewer : Form
     {
-        Slot displayedSlot;
+        public Slot displayedSlot;
+        public bool editing;
 
         public SlotViewer(Slot slot, bool? editing)
         {
@@ -43,17 +44,25 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         void setEditingMode(bool editing)
         {
-            idTextBox.Enabled = editing;
-            labelTextBox.Enabled = editing;
-            descriptionTextBox.Enabled = editing;
-            actionIdTextBox.Enabled = editing;
+            this.editing = editing;
+            idTextBox.ReadOnly = !editing;
+            labelTextBox.ReadOnly = !editing;
+            descriptionTextBox.ReadOnly = !editing;
+            actionIdTextBox.ReadOnly = !editing;
             greedyCheckBox.Enabled = editing;
+            requiredDataGridView.AllowUserToAddRows = editing;
+            requiredDataGridView.AllowUserToDeleteRows = editing;
             requiredDataGridView.ReadOnly = !editing;
+            forbiddenDataGridView.AllowUserToAddRows = editing;
+            forbiddenDataGridView.AllowUserToDeleteRows = editing;
             forbiddenDataGridView.ReadOnly = !editing;
+            okButton.Visible = editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (editing) return;
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -69,6 +78,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (editing) return;
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -80,6 +90,53 @@ namespace Cultist_Simulator_Modding_Toolkit
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
                 av.ShowDialog();
             }
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            displayedSlot.required = new Dictionary<string, int>();
+            foreach (DataGridViewRow row in requiredDataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+            }
+            displayedSlot.forbidden = new Dictionary<string, int>();
+            foreach (DataGridViewRow row in forbiddenDataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+            }
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedSlot.id = idTextBox.Text;
+        }
+
+        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedSlot.label = labelTextBox.Text;
+        }
+
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedSlot.description = descriptionTextBox.Text;
+        }
+
+        private void actionIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedSlot.actionId = actionIdTextBox.Text;
+        }
+
+        private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedSlot.greedy = greedyCheckBox.Checked;
         }
     }
 }

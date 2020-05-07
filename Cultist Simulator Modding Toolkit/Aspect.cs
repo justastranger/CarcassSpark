@@ -14,16 +14,15 @@ namespace Cultist_Simulator_Modding_Toolkit
     public class Aspect : Element
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool isAspect, isHidden, noartneeded;
+        public bool? isAspect, isHidden, noartneeded;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Induces[] induces;
+        public List<Induces> induces;
 
 
         [JsonConstructor]
         public Aspect(string id, string label, string description,
-                      string icon = null, JArray induces = null,
-                      bool isHidden = false, bool noartneeded = false,
-                      bool isAspect = true, string comments = null, JToken aspects = null)
+                      bool? isHidden, bool? noartneeded, string icon = null, JArray induces = null,
+                      bool? isAspect = true, string comments = null, JToken aspects = null)
         {
             // necessary
             this.id = id;
@@ -36,11 +35,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             if (icon != null) this.icon = icon;
             else this.icon = id;
-            // isHidden is only true iff isAspect is true
+            // isHidden is true iff isAspect is true
             // optional
             if (isHidden == true) this.isHidden = true;
             // optional
-            if (induces != null) this.induces = induces.ToObject<Induces[]>();
+            if (induces != null) this.induces = induces.ToObject<List<Induces>>();
             // optional
             this.noartneeded = noartneeded;
             // optional
@@ -50,7 +49,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         }
 
         public Aspect(string id, string label, string description,
-                      string icon = null, Induces[] induces = null,
+                      string icon = null, List<Induces> induces = null,
                       bool isHidden = false, bool noartneeded = false,
                       bool isAspect = true, string comments = null)
         {
@@ -88,6 +87,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             // comments are just comments, they're stored and can be edited, but are never displayed ingame
             this.comments = comments;
+        }
+
+        public Aspect()
+        {
+            isAspect = true;
         }
 
         public string toString()

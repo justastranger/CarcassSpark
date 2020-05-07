@@ -49,12 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddSlotForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddSlotForm.Designer.cs">
-      <DependentUpon>AddSlotForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AspectViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,19 +61,7 @@
     <Compile Include="ChangeAspectQuantityForm.Designer.cs">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddAspectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddAspectForm.Designer.cs">
-      <DependentUpon>AddAspectForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Aspect.cs" />
-    <Compile Include="CreateElement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateElement.Designer.cs">
-      <DependentUpon>CreateElement.cs</DependentUpon>
-    </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="DeckViewer.cs">
       <SubType>Form</SubType>
@@ -169,20 +151,11 @@
     <Compile Include="VerbViewer.Designer.cs">
       <DependentUpon>VerbViewer.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddAspectForm.resx">
-      <DependentUpon>AddAspectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddSlotForm.resx">
-      <DependentUpon>AddSlotForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AspectViewer.resx">
       <DependentUpon>AspectViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateElement.resx">
-      <DependentUpon>CreateElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeckViewer.resx">
       <DependentUpon>DeckViewer.cs</DependentUpon>

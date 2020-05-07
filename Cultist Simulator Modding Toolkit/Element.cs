@@ -89,9 +89,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         
         public Element()
         {
-            this.id = "";
-            this.label = "";
-            this.description = "";
+
         }
         
     }

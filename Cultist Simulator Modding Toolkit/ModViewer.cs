@@ -298,12 +298,28 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void aspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (AspectViewer av = new AspectViewer(new Aspect(), true))
+            {
+                av.ShowDialog();
+                if (av.DialogResult == DialogResult.OK)
+                {
+                    aspectsList.Add(av.displayedAspect.id, av.displayedAspect);
+                    aspectsListBox.Items.Add(av.displayedAspect.id);
+                }
+            }
         }
 
         private void elementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (ElementViewer ev = new ElementViewer(new Element(), true))
+            {
+                ev.ShowDialog();
+                if (ev.DialogResult == DialogResult.OK)
+                {
+                    elementsList.Add(ev.displayedElement.id, ev.displayedElement);
+                    elementsListBox.Items.Add(ev.displayedElement.id);
+                }
+            }
         }
 
         private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -315,6 +331,11 @@ namespace Cultist_Simulator_Modding_Toolkit
         
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Directory.Exists(currentDirectory + "/content/"))
+            {
+                Directory.CreateDirectory(currentDirectory + "/content/");
+            }
+
             JObject aspects = new JObject();
             aspects["elements"] = JArray.FromObject(aspectsList.Values);
             string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
@@ -323,7 +344,6 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                 jtw.WriteRaw(aspectsJson);
                 jtw.Close();
-                //aspects.WriteTo(jtw);
                 
             }
             JObject elements = new JObject();
@@ -332,7 +352,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_elements.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //elements.WriteTo(jtw);
                 jtw.WriteRaw(elementsJson);
                 jtw.Close();
             }
@@ -342,7 +361,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_recipes.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //recipes.WriteTo(jtw);
                 jtw.WriteRaw(recipesJson);
                 jtw.Close();
             }
@@ -352,7 +370,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_decks.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //decks.WriteTo(jtw);
                 jtw.WriteRaw(decksJson);
                 jtw.Close();
             }
@@ -362,7 +379,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_legacies.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //legacies.WriteTo(jtw);
                 jtw.WriteRaw(legaciesJson);
                 jtw.Close();
             }
@@ -372,18 +388,24 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_endings.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //endings.WriteTo(jtw);
                 jtw.WriteRaw(endingsJson);
                 jtw.Close();
             }
             JObject verbs = new JObject();
             verbs["verbs"] = JArray.FromObject(verbsList.Values);
-            string verbsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_verbs.json", FileMode.OpenOrCreate))
             {
                 JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                //verbs.WriteTo(jtw);
                 jtw.WriteRaw(verbsJson);
+                jtw.Close();
+            }
+            // TODO uncomment this when it's safe to do so
+            string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
+            using (FileStream fs = File.Open(currentDirectory + "/manifest.json", FileMode.OpenOrCreate))
+            {
+                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                jtw.WriteRaw(manifestJson);
                 jtw.Close();
             }
         }
