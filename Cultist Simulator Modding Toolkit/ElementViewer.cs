@@ -66,7 +66,15 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (element.id != null) idTextBox.Text = element.id;
             if (element.label != null) labelTextBox.Text = element.label;
-            if (element.icon != null) iconTextBox.Text = element.icon;
+            if (element.icon != null)
+            {
+                iconTextBox.Text = element.icon;
+                pictureBox1.Image = Utilities.getElementImage(element.icon);
+            }
+            else
+            {
+                pictureBox1.Image = Utilities.getElementImage(element.id);
+            }
             if (element.animFrames.HasValue) animFramesNumericUpDown.Value = element.animFrames.Value;
             if (element.lifeTime.HasValue) lifetimeNumericUpDown.Value = element.lifeTime.Value;
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
@@ -178,6 +186,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void iconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.icon = iconTextBox.Text;
+            if (Utilities.getElementImage(iconTextBox.Text) != null)
+            {
+                pictureBox1.Image = Utilities.getElementImage(iconTextBox.Text);
+            }
         }
 
         private void uniquenessgroupTextBox_TextChanged(object sender, EventArgs e)

@@ -72,13 +72,13 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(118, 28);
+            this.idTextBox.Location = new System.Drawing.Point(149, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
@@ -87,7 +87,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 67);
+            this.labelTextBox.Location = new System.Drawing.Point(149, 64);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             // iconTextBox
             // 
-            this.iconTextBox.Location = new System.Drawing.Point(118, 106);
+            this.iconTextBox.Location = new System.Drawing.Point(149, 103);
             this.iconTextBox.Name = "iconTextBox";
             this.iconTextBox.Size = new System.Drawing.Size(100, 20);
             this.iconTextBox.TabIndex = 3;
@@ -105,7 +105,7 @@
             // 
             // decayToTextBox
             // 
-            this.decayToTextBox.Location = new System.Drawing.Point(118, 184);
+            this.decayToTextBox.Location = new System.Drawing.Point(149, 181);
             this.decayToTextBox.Name = "decayToTextBox";
             this.decayToTextBox.Size = new System.Drawing.Size(100, 20);
             this.decayToTextBox.TabIndex = 6;
@@ -116,7 +116,7 @@
             // 
             this.uniqueCheckBox.AutoSize = true;
             this.uniqueCheckBox.Enabled = false;
-            this.uniqueCheckBox.Location = new System.Drawing.Point(52, 145);
+            this.uniqueCheckBox.Location = new System.Drawing.Point(80, 150);
             this.uniqueCheckBox.Name = "uniqueCheckBox";
             this.uniqueCheckBox.Size = new System.Drawing.Size(60, 17);
             this.uniqueCheckBox.TabIndex = 7;
@@ -125,7 +125,7 @@
             // 
             // uniquenessgroupTextBox
             // 
-            this.uniquenessgroupTextBox.Location = new System.Drawing.Point(118, 145);
+            this.uniquenessgroupTextBox.Location = new System.Drawing.Point(149, 142);
             this.uniquenessgroupTextBox.Name = "uniquenessgroupTextBox";
             this.uniquenessgroupTextBox.Size = new System.Drawing.Size(100, 20);
             this.uniquenessgroupTextBox.TabIndex = 8;
@@ -140,7 +140,7 @@
             this.xtriggersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.xtriggerID,
             this.resultID});
-            this.xtriggersDataGridView.Location = new System.Drawing.Point(224, 38);
+            this.xtriggersDataGridView.Location = new System.Drawing.Point(255, 25);
             this.xtriggersDataGridView.MultiSelect = false;
             this.xtriggersDataGridView.Name = "xtriggersDataGridView";
             this.xtriggersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -163,7 +163,7 @@
             // xtriggersLabel
             // 
             this.xtriggersLabel.AutoSize = true;
-            this.xtriggersLabel.Location = new System.Drawing.Point(330, 19);
+            this.xtriggersLabel.Location = new System.Drawing.Point(330, 9);
             this.xtriggersLabel.Name = "xtriggersLabel";
             this.xtriggersLabel.Size = new System.Drawing.Size(52, 13);
             this.xtriggersLabel.TabIndex = 10;
@@ -172,7 +172,7 @@
             // slotsLabel
             // 
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(582, 167);
+            this.slotsLabel.Location = new System.Drawing.Point(612, 154);
             this.slotsLabel.Name = "slotsLabel";
             this.slotsLabel.Size = new System.Drawing.Size(30, 13);
             this.slotsLabel.TabIndex = 11;
@@ -181,7 +181,7 @@
             // slotsListBox
             // 
             this.slotsListBox.FormattingEnabled = true;
-            this.slotsListBox.Location = new System.Drawing.Point(478, 183);
+            this.slotsListBox.Location = new System.Drawing.Point(509, 170);
             this.slotsListBox.Name = "slotsListBox";
             this.slotsListBox.ScrollAlwaysVisible = true;
             this.slotsListBox.Size = new System.Drawing.Size(248, 134);
@@ -195,7 +195,7 @@
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.amount});
-            this.aspectsDataGridView.Location = new System.Drawing.Point(478, 38);
+            this.aspectsDataGridView.Location = new System.Drawing.Point(509, 25);
             this.aspectsDataGridView.MultiSelect = false;
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -217,7 +217,7 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(333, 183);
+            this.extendsTextBox.Location = new System.Drawing.Point(403, 170);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 14;
@@ -226,16 +226,16 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 242);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 220);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(460, 75);
+            this.descriptionTextBox.Size = new System.Drawing.Size(491, 84);
             this.descriptionTextBox.TabIndex = 15;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 323);
+            this.okButton.Location = new System.Drawing.Point(12, 310);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 16;
@@ -245,7 +245,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(651, 323);
+            this.cancelButton.Location = new System.Drawing.Point(682, 310);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 17;
@@ -256,7 +256,7 @@
             // aspectsLabel
             // 
             this.aspectsLabel.AutoSize = true;
-            this.aspectsLabel.Location = new System.Drawing.Point(582, 15);
+            this.aspectsLabel.Location = new System.Drawing.Point(612, 9);
             this.aspectsLabel.Name = "aspectsLabel";
             this.aspectsLabel.Size = new System.Drawing.Size(45, 13);
             this.aspectsLabel.TabIndex = 18;
@@ -264,7 +264,7 @@
             // 
             // lifetimeNumericUpDown
             // 
-            this.lifetimeNumericUpDown.Location = new System.Drawing.Point(12, 185);
+            this.lifetimeNumericUpDown.Location = new System.Drawing.Point(40, 182);
             this.lifetimeNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -278,7 +278,7 @@
             // lifetimeLabel
             // 
             this.lifetimeLabel.AutoSize = true;
-            this.lifetimeLabel.Location = new System.Drawing.Point(44, 165);
+            this.lifetimeLabel.Location = new System.Drawing.Point(37, 165);
             this.lifetimeLabel.Name = "lifetimeLabel";
             this.lifetimeLabel.Size = new System.Drawing.Size(43, 13);
             this.lifetimeLabel.TabIndex = 20;
@@ -286,7 +286,7 @@
             // 
             // animFramesNumericUpDown
             // 
-            this.animFramesNumericUpDown.Location = new System.Drawing.Point(224, 184);
+            this.animFramesNumericUpDown.Location = new System.Drawing.Point(297, 170);
             this.animFramesNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -300,7 +300,7 @@
             // animFramesLabel
             // 
             this.animFramesLabel.AutoSize = true;
-            this.animFramesLabel.Location = new System.Drawing.Point(224, 168);
+            this.animFramesLabel.Location = new System.Drawing.Point(294, 154);
             this.animFramesLabel.Name = "animFramesLabel";
             this.animFramesLabel.Size = new System.Drawing.Size(90, 13);
             this.animFramesLabel.TabIndex = 22;
@@ -309,7 +309,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(138, 12);
+            this.idLabel.Location = new System.Drawing.Point(146, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(59, 13);
             this.idLabel.TabIndex = 23;
@@ -318,7 +318,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(152, 51);
+            this.labelLabel.Location = new System.Drawing.Point(146, 48);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 24;
@@ -327,7 +327,7 @@
             // iconLabel
             // 
             this.iconLabel.AutoSize = true;
-            this.iconLabel.Location = new System.Drawing.Point(152, 90);
+            this.iconLabel.Location = new System.Drawing.Point(146, 87);
             this.iconLabel.Name = "iconLabel";
             this.iconLabel.Size = new System.Drawing.Size(28, 13);
             this.iconLabel.TabIndex = 25;
@@ -336,7 +336,7 @@
             // uniquenessgroupLabel
             // 
             this.uniquenessgroupLabel.AutoSize = true;
-            this.uniquenessgroupLabel.Location = new System.Drawing.Point(123, 129);
+            this.uniquenessgroupLabel.Location = new System.Drawing.Point(146, 126);
             this.uniquenessgroupLabel.Name = "uniquenessgroupLabel";
             this.uniquenessgroupLabel.Size = new System.Drawing.Size(95, 13);
             this.uniquenessgroupLabel.TabIndex = 26;
@@ -345,7 +345,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(188, 226);
+            this.descriptionLabel.Location = new System.Drawing.Point(146, 204);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 27;
@@ -354,7 +354,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(361, 168);
+            this.extendsLabel.Location = new System.Drawing.Point(400, 154);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 28;
@@ -363,7 +363,7 @@
             // decayToLabel
             // 
             this.decayToLabel.AutoSize = true;
-            this.decayToLabel.Location = new System.Drawing.Point(145, 167);
+            this.decayToLabel.Location = new System.Drawing.Point(146, 165);
             this.decayToLabel.Name = "decayToLabel";
             this.decayToLabel.Size = new System.Drawing.Size(54, 13);
             this.decayToLabel.TabIndex = 29;
@@ -371,7 +371,7 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(478, 323);
+            this.addSlotButton.Location = new System.Drawing.Point(509, 310);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(75, 23);
             this.addSlotButton.TabIndex = 30;
@@ -383,7 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 356);
+            this.ClientSize = new System.Drawing.Size(769, 345);
             this.Controls.Add(this.addSlotButton);
             this.Controls.Add(this.decayToLabel);
             this.Controls.Add(this.extendsLabel);

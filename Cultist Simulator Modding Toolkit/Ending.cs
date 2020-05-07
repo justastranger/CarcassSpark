@@ -12,6 +12,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, image, flavour, anim, achievement;
 
+        [JsonConstructor]
         public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement)
         {
             this.id = id;
@@ -21,6 +22,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.flavour = flavour;
             this.anim = anim;
             this.achievement = achievement;
+        }
+
+        public Ending()
+        {
+
         }
     }
 }

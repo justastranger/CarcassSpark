@@ -53,27 +53,27 @@
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(118, 25);
+            this.idTextBox.Location = new System.Drawing.Point(146, 25);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(154, 20);
+            this.idTextBox.Size = new System.Drawing.Size(134, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 64);
+            this.labelTextBox.Location = new System.Drawing.Point(146, 64);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(154, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(134, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // iconTextBox
             // 
-            this.iconTextBox.Location = new System.Drawing.Point(118, 103);
+            this.iconTextBox.Location = new System.Drawing.Point(146, 103);
             this.iconTextBox.Name = "iconTextBox";
-            this.iconTextBox.Size = new System.Drawing.Size(154, 20);
+            this.iconTextBox.Size = new System.Drawing.Size(134, 20);
             this.iconTextBox.TabIndex = 2;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.iconTextBox.TextChanged += new System.EventHandler(this.iconTextBox_TextChanged);
@@ -82,17 +82,17 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(138, 180);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 180);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(357, 69);
+            this.descriptionTextBox.Size = new System.Drawing.Size(492, 69);
             this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -113,7 +113,7 @@
             this.inducesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.recipeId,
             this.chance});
-            this.inducesDataGridView.Location = new System.Drawing.Point(278, 31);
+            this.inducesDataGridView.Location = new System.Drawing.Point(287, 31);
             this.inducesDataGridView.Name = "inducesDataGridView";
             this.inducesDataGridView.Size = new System.Drawing.Size(217, 143);
             this.inducesDataGridView.TabIndex = 6;
@@ -133,9 +133,9 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(118, 142);
+            this.extendsTextBox.Location = new System.Drawing.Point(146, 141);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(154, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(134, 20);
             this.extendsTextBox.TabIndex = 7;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
@@ -163,7 +163,7 @@
             // isHiddenCheckBox
             // 
             this.isHiddenCheckBox.AutoSize = true;
-            this.isHiddenCheckBox.Location = new System.Drawing.Point(12, 165);
+            this.isHiddenCheckBox.Location = new System.Drawing.Point(12, 145);
             this.isHiddenCheckBox.Name = "isHiddenCheckBox";
             this.isHiddenCheckBox.Size = new System.Drawing.Size(66, 17);
             this.isHiddenCheckBox.TabIndex = 10;
@@ -174,7 +174,7 @@
             // noartworkneededCheckBox
             // 
             this.noartworkneededCheckBox.AutoSize = true;
-            this.noartworkneededCheckBox.Location = new System.Drawing.Point(12, 188);
+            this.noartworkneededCheckBox.Location = new System.Drawing.Point(12, 160);
             this.noartworkneededCheckBox.Name = "noartworkneededCheckBox";
             this.noartworkneededCheckBox.Size = new System.Drawing.Size(120, 17);
             this.noartworkneededCheckBox.TabIndex = 12;
@@ -185,7 +185,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(118, 9);
+            this.idLabel.Location = new System.Drawing.Point(143, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(54, 13);
             this.idLabel.TabIndex = 13;
@@ -194,7 +194,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(118, 48);
+            this.labelLabel.Location = new System.Drawing.Point(143, 48);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 14;
@@ -203,7 +203,7 @@
             // iconLabel
             // 
             this.iconLabel.AutoSize = true;
-            this.iconLabel.Location = new System.Drawing.Point(118, 87);
+            this.iconLabel.Location = new System.Drawing.Point(143, 87);
             this.iconLabel.Name = "iconLabel";
             this.iconLabel.Size = new System.Drawing.Size(28, 13);
             this.iconLabel.TabIndex = 15;
@@ -212,7 +212,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(118, 126);
+            this.extendsLabel.Location = new System.Drawing.Point(143, 126);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 16;
@@ -221,7 +221,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(137, 165);
+            this.descriptionLabel.Location = new System.Drawing.Point(143, 164);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 17;
@@ -231,7 +231,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 305);
+            this.ClientSize = new System.Drawing.Size(516, 310);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.iconLabel);

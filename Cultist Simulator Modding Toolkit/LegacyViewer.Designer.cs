@@ -37,6 +37,8 @@
             this.startdescriptionTextBox = new System.Windows.Forms.TextBox();
             this.availableWithoutEndingMatchCheckBox = new System.Windows.Forms.CheckBox();
             this.effectsDataGridView = new System.Windows.Forms.DataGridView();
+            this.effectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.effectsAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.excludesOnEndingListBox = new System.Windows.Forms.ListBox();
             this.startingVerbIdTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
@@ -47,14 +49,12 @@
             this.imageLabel = new System.Windows.Forms.Label();
             this.fromEndingLabel = new System.Windows.Forms.Label();
             this.effectsLabel = new System.Windows.Forms.Label();
-            this.effectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effectsAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.excludesOnEndingLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.startingVerbLabel = new System.Windows.Forms.Label();
             this.addExcludesTextBox = new System.Windows.Forms.TextBox();
             this.addExcludesButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.excludeAddLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -63,13 +63,13 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(130, 130);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(118, 25);
+            this.idTextBox.Location = new System.Drawing.Point(148, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(224, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(254, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
@@ -87,7 +87,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(118, 64);
+            this.descriptionTextBox.Location = new System.Drawing.Point(148, 64);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -97,25 +97,25 @@
             // 
             // imageTextBox
             // 
-            this.imageTextBox.Location = new System.Drawing.Point(12, 131);
+            this.imageTextBox.Location = new System.Drawing.Point(12, 161);
             this.imageTextBox.Name = "imageTextBox";
-            this.imageTextBox.Size = new System.Drawing.Size(100, 20);
+            this.imageTextBox.Size = new System.Drawing.Size(130, 20);
             this.imageTextBox.TabIndex = 4;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
             // 
             // fromEndingTextBox
             // 
-            this.fromEndingTextBox.Location = new System.Drawing.Point(12, 173);
+            this.fromEndingTextBox.Location = new System.Drawing.Point(12, 200);
             this.fromEndingTextBox.Name = "fromEndingTextBox";
-            this.fromEndingTextBox.Size = new System.Drawing.Size(100, 20);
+            this.fromEndingTextBox.Size = new System.Drawing.Size(130, 20);
             this.fromEndingTextBox.TabIndex = 5;
             this.fromEndingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.fromEndingTextBox.TextChanged += new System.EventHandler(this.fromEndingTextBox_TextChanged);
             // 
             // startdescriptionTextBox
             // 
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(118, 157);
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(148, 157);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -124,9 +124,9 @@
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.startdescriptionTextBox_TextChanged);
             // 
             // availableWithoutEndingMatchCheckBox
-            //
+            // 
             this.availableWithoutEndingMatchCheckBox.AutoSize = true;
-            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(12, 209);
+            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(12, 226);
             this.availableWithoutEndingMatchCheckBox.Name = "availableWithoutEndingMatchCheckBox";
             this.availableWithoutEndingMatchCheckBox.Size = new System.Drawing.Size(178, 17);
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
@@ -143,35 +143,49 @@
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectId,
             this.effectsAmount});
-            this.effectsDataGridView.Location = new System.Drawing.Point(12, 245);
+            this.effectsDataGridView.Location = new System.Drawing.Point(12, 262);
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.ReadOnly = true;
-            this.effectsDataGridView.Size = new System.Drawing.Size(312, 103);
+            this.effectsDataGridView.Size = new System.Drawing.Size(342, 103);
             this.effectsDataGridView.TabIndex = 8;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
+            // 
+            // effectId
+            // 
+            this.effectId.HeaderText = "Element ID";
+            this.effectId.Name = "effectId";
+            this.effectId.ReadOnly = true;
+            this.effectId.Width = 150;
+            // 
+            // effectsAmount
+            // 
+            this.effectsAmount.HeaderText = "Amount";
+            this.effectsAmount.Name = "effectsAmount";
+            this.effectsAmount.ReadOnly = true;
+            this.effectsAmount.Width = 149;
             // 
             // excludesOnEndingListBox
             // 
             this.excludesOnEndingListBox.FormattingEnabled = true;
-            this.excludesOnEndingListBox.Location = new System.Drawing.Point(116, 367);
+            this.excludesOnEndingListBox.Location = new System.Drawing.Point(130, 390);
             this.excludesOnEndingListBox.Name = "excludesOnEndingListBox";
             this.excludesOnEndingListBox.ScrollAlwaysVisible = true;
-            this.excludesOnEndingListBox.Size = new System.Drawing.Size(206, 56);
+            this.excludesOnEndingListBox.Size = new System.Drawing.Size(225, 56);
             this.excludesOnEndingListBox.TabIndex = 9;
             this.excludesOnEndingListBox.DoubleClick += new System.EventHandler(this.excludesOnEndingListBox_DoubleClick);
             // 
             // startingVerbIdTextBox
             // 
-            this.startingVerbIdTextBox.Location = new System.Drawing.Point(10, 367);
+            this.startingVerbIdTextBox.Location = new System.Drawing.Point(226, 226);
             this.startingVerbIdTextBox.Name = "startingVerbIdTextBox";
-            this.startingVerbIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.startingVerbIdTextBox.Size = new System.Drawing.Size(128, 20);
             this.startingVerbIdTextBox.TabIndex = 10;
             this.startingVerbIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.startingVerbIdTextBox.TextChanged += new System.EventHandler(this.startingVerbIdTextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(10, 420);
+            this.okButton.Location = new System.Drawing.Point(12, 433);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 25);
             this.okButton.TabIndex = 11;
@@ -182,7 +196,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(118, 9);
+            this.idLabel.Location = new System.Drawing.Point(145, 12);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(56, 13);
             this.idLabel.TabIndex = 12;
@@ -191,7 +205,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(221, 9);
+            this.labelLabel.Location = new System.Drawing.Point(254, 9);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(71, 13);
             this.labelLabel.TabIndex = 13;
@@ -200,7 +214,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(118, 48);
+            this.descriptionLabel.Location = new System.Drawing.Point(145, 48);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 14;
@@ -209,7 +223,7 @@
             // startDescriptionLabel
             // 
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(118, 141);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(145, 141);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
             this.startDescriptionLabel.Size = new System.Drawing.Size(85, 13);
             this.startDescriptionLabel.TabIndex = 15;
@@ -218,7 +232,7 @@
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
-            this.imageLabel.Location = new System.Drawing.Point(12, 115);
+            this.imageLabel.Location = new System.Drawing.Point(12, 145);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(36, 13);
             this.imageLabel.TabIndex = 16;
@@ -227,7 +241,7 @@
             // fromEndingLabel
             // 
             this.fromEndingLabel.AutoSize = true;
-            this.fromEndingLabel.Location = new System.Drawing.Point(12, 157);
+            this.fromEndingLabel.Location = new System.Drawing.Point(9, 184);
             this.fromEndingLabel.Name = "fromEndingLabel";
             this.fromEndingLabel.Size = new System.Drawing.Size(66, 13);
             this.fromEndingLabel.TabIndex = 17;
@@ -236,38 +250,24 @@
             // effectsLabel
             // 
             this.effectsLabel.AutoSize = true;
-            this.effectsLabel.Location = new System.Drawing.Point(12, 229);
+            this.effectsLabel.Location = new System.Drawing.Point(9, 246);
             this.effectsLabel.Name = "effectsLabel";
             this.effectsLabel.Size = new System.Drawing.Size(73, 13);
             this.effectsLabel.TabIndex = 18;
             this.effectsLabel.Text = "Starting Cards";
             // 
-            // effectId
-            // 
-            this.effectId.HeaderText = "Element ID";
-            this.effectId.Name = "effectId";
-            this.effectId.ReadOnly = true;
-            this.effectId.Width = 135;
-            // 
-            // effectsAmount
-            // 
-            this.effectsAmount.HeaderText = "Amount";
-            this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.ReadOnly = true;
-            this.effectsAmount.Width = 134;
-            // 
             // excludesOnEndingLabel
             // 
             this.excludesOnEndingLabel.AutoSize = true;
-            this.excludesOnEndingLabel.Location = new System.Drawing.Point(115, 351);
+            this.excludesOnEndingLabel.Location = new System.Drawing.Point(53, 368);
             this.excludesOnEndingLabel.Name = "excludesOnEndingLabel";
-            this.excludesOnEndingLabel.Size = new System.Drawing.Size(35, 13);
+            this.excludesOnEndingLabel.Size = new System.Drawing.Size(302, 13);
             this.excludesOnEndingLabel.TabIndex = 19;
-            this.excludesOnEndingLabel.Text = "label1";
+            this.excludesOnEndingLabel.Text = "Exclude This Legacy After Completing One Of These Legacies";
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(10, 454);
+            this.cancelButton.Location = new System.Drawing.Point(12, 464);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 23);
             this.cancelButton.TabIndex = 20;
@@ -278,7 +278,7 @@
             // startingVerbLabel
             // 
             this.startingVerbLabel.AutoSize = true;
-            this.startingVerbLabel.Location = new System.Drawing.Point(12, 351);
+            this.startingVerbLabel.Location = new System.Drawing.Point(223, 207);
             this.startingVerbLabel.Name = "startingVerbLabel";
             this.startingVerbLabel.Size = new System.Drawing.Size(68, 13);
             this.startingVerbLabel.TabIndex = 21;
@@ -286,7 +286,7 @@
             // 
             // addExcludesTextBox
             // 
-            this.addExcludesTextBox.Location = new System.Drawing.Point(118, 442);
+            this.addExcludesTextBox.Location = new System.Drawing.Point(130, 468);
             this.addExcludesTextBox.Name = "addExcludesTextBox";
             this.addExcludesTextBox.Size = new System.Drawing.Size(87, 20);
             this.addExcludesTextBox.TabIndex = 22;
@@ -294,7 +294,7 @@
             // 
             // addExcludesButton
             // 
-            this.addExcludesButton.Location = new System.Drawing.Point(211, 442);
+            this.addExcludesButton.Location = new System.Drawing.Point(241, 452);
             this.addExcludesButton.Name = "addExcludesButton";
             this.addExcludesButton.Size = new System.Drawing.Size(113, 35);
             this.addExcludesButton.TabIndex = 23;
@@ -302,21 +302,21 @@
             this.addExcludesButton.UseVisualStyleBackColor = true;
             this.addExcludesButton.Click += new System.EventHandler(this.addExcludesButton_Click);
             // 
-            // label1
+            // excludeAddLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(118, 426);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Legacy ID to Exclude";
+            this.excludeAddLabel.AutoSize = true;
+            this.excludeAddLabel.Location = new System.Drawing.Point(127, 452);
+            this.excludeAddLabel.Name = "excludeAddLabel";
+            this.excludeAddLabel.Size = new System.Drawing.Size(109, 13);
+            this.excludeAddLabel.TabIndex = 24;
+            this.excludeAddLabel.Text = "Legacy ID to Exclude";
             // 
             // LegacyViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 485);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(367, 499);
+            this.Controls.Add(this.excludeAddLabel);
             this.Controls.Add(this.addExcludesButton);
             this.Controls.Add(this.addExcludesTextBox);
             this.Controls.Add(this.startingVerbLabel);
@@ -378,6 +378,6 @@
         private System.Windows.Forms.Label startingVerbLabel;
         private System.Windows.Forms.TextBox addExcludesTextBox;
         private System.Windows.Forms.Button addExcludesButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label excludeAddLabel;
     }
 }

@@ -58,7 +58,18 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (aspect.id != null) idTextBox.Text = aspect.id;
             if (aspect.label != null) labelTextBox.Text = aspect.label;
-            if (aspect.icon != null) iconTextBox.Text = aspect.icon;
+            if (aspect.noartneeded.HasValue && aspect.noartneeded.Value == false)
+            {
+                if (aspect.icon != null)
+                {
+                    iconTextBox.Text = aspect.icon;
+                    pictureBox1.Image = Utilities.getAspectImage(aspect.icon);
+                }
+                else
+                {
+                    pictureBox1.Image = Utilities.getAspectImage(aspect.id);
+                }
+            }
             if (aspect.description != null) descriptionTextBox.Text = aspect.description;
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
             if (aspect.induces != null)
@@ -110,6 +121,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void iconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.icon = iconTextBox.Text;
+            if(Utilities.getAspectImage(iconTextBox.Text) != null)
+            {
+                pictureBox1.Image = Utilities.getAspectImage(iconTextBox.Text);
+            }
         }
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,89 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
 
+        public static Image getAspectImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory+"/images/icons40/aspects/"+id+".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/icons40/aspects/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getElementImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/elementArt/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/elementArt/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getEndingImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/endingArt/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/endingArt/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getLegacyImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/icons100/legacies/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/icons100/legacies/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getVerbImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/icons100/verbs/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/icons100/verbs/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getCardBackImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/cardBacks/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/cardBacks/" + id + ".png");
+                }
+            }
+            return null;
+        }
+
+        public static Image getBurnImage(string id)
+        {
+            foreach (ModViewer mv in currentMods)
+            {
+                if (File.Exists(mv.currentDirectory + "/images/burnImages/" + id + ".png"))
+                {
+                    return Image.FromFile(mv.currentDirectory + "/images/burnImages/" + id + ".png");
+                }
+            }
+            return null;
+        }
 
         public static bool aspectExists(string id)
         {

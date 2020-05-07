@@ -53,14 +53,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         void setEditingMode(bool editing)
         {
             this.editing = editing;
-            idTextBox.Enabled = editing;
-            labelTextBox.Enabled = editing;
-            descriptionTextBox.Enabled = editing;
-            startdescriptionTextBox.Enabled = editing;
-            imageTextBox.Enabled = editing;
-            fromEndingTextBox.Enabled = editing;
+            idTextBox.ReadOnly = editing;
+            labelTextBox.ReadOnly = editing;
+            descriptionTextBox.ReadOnly = editing;
+            startdescriptionTextBox.ReadOnly = editing;
+            imageTextBox.ReadOnly = editing;
+            fromEndingTextBox.ReadOnly = editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
-            startingVerbIdTextBox.Enabled = editing;
+            startingVerbIdTextBox.ReadOnly = editing;
             effectsDataGridView.ReadOnly = !editing;
             effectsDataGridView.AllowUserToAddRows = editing;
             effectsDataGridView.AllowUserToDeleteRows = editing;
@@ -68,10 +68,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             cancelButton.Text = editing ? "Cancel" : "Close";
             addExcludesButton.Visible = editing;
             addExcludesTextBox.Visible = editing;
+            excludeAddLabel.Visible = editing;
         }
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (editing) return;
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
             ev.ShowDialog();
@@ -79,6 +81,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void excludesOnEndingListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (editing) return;
             string id = excludesOnEndingListBox.SelectedItem.ToString();
             LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), false);
             lv.ShowDialog();

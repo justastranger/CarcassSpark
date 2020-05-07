@@ -32,9 +32,15 @@
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.imageTextBox = new System.Windows.Forms.TextBox();
-            this.flavorTextBox = new System.Windows.Forms.TextBox();
-            this.animTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.labelLabel = new System.Windows.Forms.Label();
+            this.imageLabel = new System.Windows.Forms.Label();
+            this.flavourLabel = new System.Windows.Forms.Label();
+            this.flavourDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.animDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.animLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,73 +48,139 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 126);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 290);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(118, 12);
+            this.idTextBox.Location = new System.Drawing.Point(218, 25);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(154, 20);
+            this.idTextBox.Size = new System.Drawing.Size(166, 20);
             this.idTextBox.TabIndex = 1;
-            this.idTextBox.Text = "ID";
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 38);
+            this.labelTextBox.Location = new System.Drawing.Point(218, 64);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(154, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(166, 20);
             this.labelTextBox.TabIndex = 2;
-            this.labelTextBox.Text = "Label";
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // imageTextBox
             // 
-            this.imageTextBox.Location = new System.Drawing.Point(118, 64);
+            this.imageTextBox.Location = new System.Drawing.Point(218, 103);
             this.imageTextBox.Name = "imageTextBox";
-            this.imageTextBox.Size = new System.Drawing.Size(154, 20);
+            this.imageTextBox.Size = new System.Drawing.Size(166, 20);
             this.imageTextBox.TabIndex = 3;
-            this.imageTextBox.Text = "Image";
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // flavorTextBox
-            // 
-            this.flavorTextBox.Location = new System.Drawing.Point(118, 92);
-            this.flavorTextBox.Name = "flavorTextBox";
-            this.flavorTextBox.Size = new System.Drawing.Size(154, 20);
-            this.flavorTextBox.TabIndex = 4;
-            this.flavorTextBox.Text = "Flavor";
-            this.flavorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // animTextBox
-            // 
-            this.animTextBox.Location = new System.Drawing.Point(118, 118);
-            this.animTextBox.Name = "animTextBox";
-            this.animTextBox.Size = new System.Drawing.Size(154, 20);
-            this.animTextBox.TabIndex = 5;
-            this.animTextBox.Text = "Animation";
-            this.animTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 144);
+            this.descriptionTextBox.Location = new System.Drawing.Point(218, 220);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(260, 105);
+            this.descriptionTextBox.Size = new System.Drawing.Size(166, 82);
             this.descriptionTextBox.TabIndex = 6;
-            this.descriptionTextBox.Text = "Description";
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(328, 9);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(56, 13);
+            this.idLabel.TabIndex = 7;
+            this.idLabel.Text = "Legacy ID";
+            // 
+            // labelLabel
+            // 
+            this.labelLabel.AutoSize = true;
+            this.labelLabel.Location = new System.Drawing.Point(313, 48);
+            this.labelLabel.Name = "labelLabel";
+            this.labelLabel.Size = new System.Drawing.Size(71, 13);
+            this.labelLabel.TabIndex = 8;
+            this.labelLabel.Text = "Legacy Label";
+            // 
+            // imageLabel
+            // 
+            this.imageLabel.AutoSize = true;
+            this.imageLabel.Location = new System.Drawing.Point(310, 87);
+            this.imageLabel.Name = "imageLabel";
+            this.imageLabel.Size = new System.Drawing.Size(74, 13);
+            this.imageLabel.TabIndex = 9;
+            this.imageLabel.Text = "Legacy Image";
+            // 
+            // flavourLabel
+            // 
+            this.flavourLabel.AutoSize = true;
+            this.flavourLabel.Location = new System.Drawing.Point(304, 126);
+            this.flavourLabel.Name = "flavourLabel";
+            this.flavourLabel.Size = new System.Drawing.Size(80, 13);
+            this.flavourLabel.TabIndex = 10;
+            this.flavourLabel.Text = "Legacy Flavour";
+            // 
+            // flavourDomainUpDown
+            // 
+            this.flavourDomainUpDown.Items.Add("None");
+            this.flavourDomainUpDown.Items.Add("Grand");
+            this.flavourDomainUpDown.Items.Add("Melancholy");
+            this.flavourDomainUpDown.Items.Add("Pale");
+            this.flavourDomainUpDown.Items.Add("Vile");
+            this.flavourDomainUpDown.Location = new System.Drawing.Point(218, 142);
+            this.flavourDomainUpDown.Name = "flavourDomainUpDown";
+            this.flavourDomainUpDown.Size = new System.Drawing.Size(166, 20);
+            this.flavourDomainUpDown.TabIndex = 11;
+            this.flavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.flavourDomainUpDown_SelectedItemChanged);
+            // 
+            // animDomainUpDown
+            // 
+            this.animDomainUpDown.Items.Add("DramaticLight");
+            this.animDomainUpDown.Items.Add("DramaticLightCool");
+            this.animDomainUpDown.Items.Add("DramaticLightEvil");
+            this.animDomainUpDown.Location = new System.Drawing.Point(218, 181);
+            this.animDomainUpDown.Name = "animDomainUpDown";
+            this.animDomainUpDown.Size = new System.Drawing.Size(166, 20);
+            this.animDomainUpDown.TabIndex = 12;
+            this.animDomainUpDown.SelectedItemChanged += new System.EventHandler(this.animDomainUpDown_SelectedItemChanged);
+            // 
+            // animLabel
+            // 
+            this.animLabel.AutoSize = true;
+            this.animLabel.Location = new System.Drawing.Point(331, 165);
+            this.animLabel.Name = "animLabel";
+            this.animLabel.Size = new System.Drawing.Size(53, 13);
+            this.animLabel.TabIndex = 13;
+            this.animLabel.Text = "Animation";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(324, 204);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.TabIndex = 14;
+            this.descriptionLabel.Text = "Description";
             // 
             // EndingViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(396, 316);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.animLabel);
+            this.Controls.Add(this.animDomainUpDown);
+            this.Controls.Add(this.flavourDomainUpDown);
+            this.Controls.Add(this.flavourLabel);
+            this.Controls.Add(this.imageLabel);
+            this.Controls.Add(this.labelLabel);
+            this.Controls.Add(this.idLabel);
             this.Controls.Add(this.descriptionTextBox);
-            this.Controls.Add(this.animTextBox);
-            this.Controls.Add(this.flavorTextBox);
             this.Controls.Add(this.imageTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
@@ -127,8 +199,14 @@
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox labelTextBox;
         private System.Windows.Forms.TextBox imageTextBox;
-        private System.Windows.Forms.TextBox flavorTextBox;
-        private System.Windows.Forms.TextBox animTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label labelLabel;
+        private System.Windows.Forms.Label imageLabel;
+        private System.Windows.Forms.Label flavourLabel;
+        private System.Windows.Forms.DomainUpDown flavourDomainUpDown;
+        private System.Windows.Forms.DomainUpDown animDomainUpDown;
+        private System.Windows.Forms.Label animLabel;
+        private System.Windows.Forms.Label descriptionLabel;
     }
 }
