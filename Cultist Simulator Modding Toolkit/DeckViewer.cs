@@ -12,49 +12,62 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class DeckViewer : Form
     {
-        Deck displayedDeck;
+        public Deck displayedDeck;
+        bool editing;
 
         public DeckViewer(Deck deck, bool? editing)
         {
             InitializeComponent();
             this.displayedDeck = deck;
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
+
+        void fillValues(Deck deck)
+        {
+
             idTextBox.Text = deck.id;
             labelTextBox.Text = deck.label;
             commentsTextBox.Text = deck.comments;
             descriptionTextBox.Text = deck.description;
             resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion;
             defaultCardTextBox.Text = deck.defaultcard;
-            drawsTextBox.Text = Convert.ToString(deck.draws);
+            drawsNumericUpDown.Value = deck.draws;
             foreach (string id in deck.spec)
             {
                 specListBox.Items.Add(id);
             }
-            if (deck.drawmessages != null && !deck.drawmessages.isNull())
+            if (deck.drawmessages != null)
             {
-                foreach (KeyValuePair<string, string> kvp in deck.drawmessages.toDictionary())
+                foreach (KeyValuePair<string, string> kvp in deck.drawmessages)
                 {
                     drawmessagesDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
         }
 
         void setEditingMode(bool editing)
         {
-            idTextBox.Enabled = editing;
-            labelTextBox.Enabled = editing;
-            commentsTextBox.Enabled = editing;
-            descriptionTextBox.Enabled = editing;
+            this.editing = editing;
+            idTextBox.ReadOnly = !editing;
+            labelTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
+            descriptionTextBox.ReadOnly = !editing;
             resetOnExhaustionCheckBox.Enabled = editing;
-            defaultCardTextBox.Enabled = editing;
-            drawsTextBox.Enabled = editing;
+            defaultCardTextBox.ReadOnly = !editing;
+            drawsNumericUpDown.Enabled = editing;
             drawmessagesDataGridView.ReadOnly = !editing;
+            drawmessagesDataGridView.AllowUserToAddRows = editing;
+            drawmessagesDataGridView.AllowUserToDeleteRows = editing;
+            newCardTextBox.Visible = editing;
+            newCardButton.Visible = editing;
+            okButton.Visible = editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void specListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (specListBox.SelectedItem == null) return;
+            if (specListBox.SelectedItem == null || editing) return;
             string id = specListBox.SelectedItem.ToString();
             if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
@@ -65,6 +78,70 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
                 ev.ShowDialog();
+            }
+        }
+
+        private void newCardButton_Click(object sender, EventArgs e)
+        {
+            if(newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            {
+                specListBox.Items.Add(newCardTextBox.Text);
+                if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
+                displayedDeck.spec.Add(newCardTextBox.Text);
+                newCardTextBox.Text = "";
+                newCardTextBox.Focus();
+            }
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            displayedDeck.drawmessages = new Dictionary<string, string>();
+            foreach(DataGridViewRow row in drawmessagesDataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+            }
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.id = idTextBox.Text;
+        }
+
+        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.label = labelTextBox.Text;
+        }
+
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.description = descriptionTextBox.Text;
+        }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.comments = commentsTextBox.Text;
+        }
+
+        private void newCardTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+                {
+                    specListBox.Items.Add(newCardTextBox.Text);
+                    if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
+                    displayedDeck.spec.Add(newCardTextBox.Text);
+                    newCardTextBox.Text = "";
+                    newCardTextBox.Focus();
+                }
             }
         }
     }

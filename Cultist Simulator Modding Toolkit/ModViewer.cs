@@ -250,20 +250,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             return verbsList.ContainsKey(id);
         }
 
-        private void elementsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), false);
-            ev.ShowDialog();
-        }
-
-        private void aspectListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), false);
-            av.ShowDialog();
-        }
-
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
@@ -296,30 +282,19 @@ namespace Cultist_Simulator_Modding_Toolkit
             vv.ShowDialog();
         }
 
-        private void aspectToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
-            using (AspectViewer av = new AspectViewer(new Aspect(), true))
-            {
-                av.ShowDialog();
-                if (av.DialogResult == DialogResult.OK)
-                {
-                    aspectsList.Add(av.displayedAspect.id, av.displayedAspect);
-                    aspectsListBox.Items.Add(av.displayedAspect.id);
-                }
-            }
+            if (elementsListBox.SelectedItem == null) return;
+            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), false);
+            ev.ShowDialog();
         }
 
-        private void elementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
-            using (ElementViewer ev = new ElementViewer(new Element(), true))
-            {
-                ev.ShowDialog();
-                if (ev.DialogResult == DialogResult.OK)
-                {
-                    elementsList.Add(ev.displayedElement.id, ev.displayedElement);
-                    elementsListBox.Items.Add(ev.displayedElement.id);
-                }
-            }
+            if (aspectsListBox.SelectedItem == null) return;
+            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), false);
+            av.ShowDialog();
         }
 
         private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -415,6 +390,45 @@ namespace Cultist_Simulator_Modding_Toolkit
             Utilities.currentMods.Remove(this);
         }
 
+        private void aspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (AspectViewer av = new AspectViewer(new Aspect(), true))
+            {
+                av.ShowDialog();
+                if (av.DialogResult == DialogResult.OK)
+                {
+                    aspectsList.Add(av.displayedAspect.id, av.displayedAspect);
+                    aspectsListBox.Items.Add(av.displayedAspect.id);
+                }
+            }
+        }
+
+        private void elementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ElementViewer ev = new ElementViewer(new Element(), true))
+            {
+                ev.ShowDialog();
+                if (ev.DialogResult == DialogResult.OK)
+                {
+                    elementsList.Add(ev.displayedElement.id, ev.displayedElement);
+                    elementsListBox.Items.Add(ev.displayedElement.id);
+                }
+            }
+        }
+
+        private void deckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DeckViewer dv = new DeckViewer(new Deck(), true))
+            {
+                dv.ShowDialog();
+                if(dv.DialogResult == DialogResult.OK)
+                {
+                    decksList.Add(dv.displayedDeck.id, dv.displayedDeck);
+                    decksListBox.Items.Add(dv.displayedDeck.id);
+                }
+            }
+        }
+        
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;

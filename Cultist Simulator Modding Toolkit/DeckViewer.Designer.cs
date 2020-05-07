@@ -38,53 +38,64 @@
             this.message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resetOnExhaustionCheckBox = new System.Windows.Forms.CheckBox();
             this.defaultCardTextBox = new System.Windows.Forms.TextBox();
-            this.drawsTextBox = new System.Windows.Forms.TextBox();
+            this.drawsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.drawsLabel = new System.Windows.Forms.Label();
+            this.newCardTextBox = new System.Windows.Forms.TextBox();
+            this.newCardButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.deckLabelLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
+            this.commentsLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(12, 12);
+            this.idTextBox.Location = new System.Drawing.Point(12, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(125, 20);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "ID";
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(155, 12);
+            this.labelTextBox.Location = new System.Drawing.Point(155, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(125, 20);
             this.labelTextBox.TabIndex = 1;
-            this.labelTextBox.Text = "Label";
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(286, 12);
+            this.commentsTextBox.Location = new System.Drawing.Point(286, 25);
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
             this.commentsTextBox.TabIndex = 2;
-            this.commentsTextBox.Text = "Comments";
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 38);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 64);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(268, 82);
+            this.descriptionTextBox.Size = new System.Drawing.Size(268, 56);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.Text = "Description";
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // specListBox
             // 
             this.specListBox.FormattingEnabled = true;
-            this.specListBox.Location = new System.Drawing.Point(286, 38);
+            this.specListBox.Location = new System.Drawing.Point(286, 64);
             this.specListBox.Name = "specListBox";
             this.specListBox.ScrollAlwaysVisible = true;
-            this.specListBox.Size = new System.Drawing.Size(260, 238);
+            this.specListBox.Size = new System.Drawing.Size(260, 186);
             this.specListBox.TabIndex = 4;
             this.specListBox.DoubleClick += new System.EventHandler(this.specListBox_DoubleClick);
             // 
@@ -126,28 +137,127 @@
             // 
             // defaultCardTextBox
             // 
-            this.defaultCardTextBox.Location = new System.Drawing.Point(286, 282);
+            this.defaultCardTextBox.Location = new System.Drawing.Point(358, 282);
             this.defaultCardTextBox.Name = "defaultCardTextBox";
-            this.defaultCardTextBox.Size = new System.Drawing.Size(260, 20);
+            this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
-            this.defaultCardTextBox.Text = "Default Card";
             this.defaultCardTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // drawsTextBox
+            // drawsNumericUpDown
             // 
-            this.drawsTextBox.Location = new System.Drawing.Point(12, 124);
-            this.drawsTextBox.Name = "drawsTextBox";
-            this.drawsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.drawsTextBox.TabIndex = 8;
-            this.drawsTextBox.Text = "Draws";
-            this.drawsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.drawsNumericUpDown.Location = new System.Drawing.Point(55, 125);
+            this.drawsNumericUpDown.Name = "drawsNumericUpDown";
+            this.drawsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.drawsNumericUpDown.TabIndex = 8;
+            // 
+            // drawsLabel
+            // 
+            this.drawsLabel.AutoSize = true;
+            this.drawsLabel.Location = new System.Drawing.Point(12, 127);
+            this.drawsLabel.Name = "drawsLabel";
+            this.drawsLabel.Size = new System.Drawing.Size(37, 13);
+            this.drawsLabel.TabIndex = 9;
+            this.drawsLabel.Text = "Draws";
+            // 
+            // newCardTextBox
+            // 
+            this.newCardTextBox.Location = new System.Drawing.Point(286, 256);
+            this.newCardTextBox.Name = "newCardTextBox";
+            this.newCardTextBox.Size = new System.Drawing.Size(162, 20);
+            this.newCardTextBox.TabIndex = 10;
+            this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.newCardTextBox_KeyDown);
+            // 
+            // newCardButton
+            // 
+            this.newCardButton.Location = new System.Drawing.Point(454, 254);
+            this.newCardButton.Name = "newCardButton";
+            this.newCardButton.Size = new System.Drawing.Size(92, 23);
+            this.newCardButton.TabIndex = 11;
+            this.newCardButton.Text = "Insert Card";
+            this.newCardButton.UseVisualStyleBackColor = true;
+            this.newCardButton.Click += new System.EventHandler(this.newCardButton_Click);
+            // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(12, 307);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 12;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(471, 307);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 13;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(12, 9);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(47, 13);
+            this.idLabel.TabIndex = 14;
+            this.idLabel.Text = "Deck ID";
+            // 
+            // deckLabelLabel
+            // 
+            this.deckLabelLabel.AutoSize = true;
+            this.deckLabelLabel.Location = new System.Drawing.Point(152, 9);
+            this.deckLabelLabel.Name = "deckLabelLabel";
+            this.deckLabelLabel.Size = new System.Drawing.Size(62, 13);
+            this.deckLabelLabel.TabIndex = 15;
+            this.deckLabelLabel.Text = "Deck Label";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(12, 48);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.TabIndex = 16;
+            this.descriptionLabel.Text = "Description";
+            // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(283, 9);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 17;
+            this.commentsLabel.Text = "Comments";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(286, 285);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Default Card";
             // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 314);
-            this.Controls.Add(this.drawsTextBox);
+            this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.commentsLabel);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.deckLabelLabel);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.newCardButton);
+            this.Controls.Add(this.newCardTextBox);
+            this.Controls.Add(this.drawsLabel);
+            this.Controls.Add(this.drawsNumericUpDown);
             this.Controls.Add(this.defaultCardTextBox);
             this.Controls.Add(this.resetOnExhaustionCheckBox);
             this.Controls.Add(this.drawmessagesDataGridView);
@@ -159,6 +269,7 @@
             this.Name = "DeckViewer";
             this.Text = "DeckViewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +287,16 @@
         private System.Windows.Forms.TextBox defaultCardTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn elementId;
         private System.Windows.Forms.DataGridViewTextBoxColumn message;
-        private System.Windows.Forms.TextBox drawsTextBox;
+        private System.Windows.Forms.NumericUpDown drawsNumericUpDown;
+        private System.Windows.Forms.Label drawsLabel;
+        private System.Windows.Forms.TextBox newCardTextBox;
+        private System.Windows.Forms.Button newCardButton;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label deckLabelLabel;
+        private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
