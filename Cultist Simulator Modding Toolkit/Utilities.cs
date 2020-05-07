@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
@@ -16,9 +17,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory+"/images/icons40/aspects/"+id+".png"))
+                string pathToImage = mv.currentDirectory + "/images/icons40/aspects/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/icons40/aspects/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -28,9 +30,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/elementArt/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/elementArt/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/elementArt/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -40,9 +43,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/endingArt/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/endingArt/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/endingArt/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -52,9 +56,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/icons100/legacies/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/icons100/legacies/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/icons100/legacies/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -64,9 +69,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/icons100/verbs/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/icons100/verbs/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/icons100/verbs/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -76,9 +82,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/cardBacks/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/cardBacks/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/cardBacks/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;
@@ -88,9 +95,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             foreach (ModViewer mv in currentMods)
             {
-                if (File.Exists(mv.currentDirectory + "/images/burnImages/" + id + ".png"))
+                string pathToImage = mv.currentDirectory + "/images/burnImages/" + id + ".png";
+                if (File.Exists(pathToImage))
                 {
-                    return Image.FromFile(mv.currentDirectory + "/images/burnImages/" + id + ".png");
+                    return Image.FromFile(pathToImage);
                 }
             }
             return null;

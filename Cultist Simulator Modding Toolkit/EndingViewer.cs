@@ -47,6 +47,8 @@ namespace Cultist_Simulator_Modding_Toolkit
             flavourDomainUpDown.Enabled = editing;
             animDomainUpDown.ReadOnly = !editing;
             animDomainUpDown.Enabled = editing;
+            okButton.Visible = editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
@@ -81,6 +83,18 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

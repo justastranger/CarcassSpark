@@ -64,16 +64,16 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void fillValues(Element element)
         {
-            if (element.id != null) idTextBox.Text = element.id;
+            if (element.id != null)
+            {
+                idTextBox.Text = element.id;
+                pictureBox1.Image = Utilities.getElementImage(element.id);
+            }
             if (element.label != null) labelTextBox.Text = element.label;
             if (element.icon != null)
             {
                 iconTextBox.Text = element.icon;
                 pictureBox1.Image = Utilities.getElementImage(element.icon);
-            }
-            else
-            {
-                pictureBox1.Image = Utilities.getElementImage(element.id);
             }
             if (element.animFrames.HasValue) animFramesNumericUpDown.Value = element.animFrames.Value;
             if (element.lifeTime.HasValue) lifetimeNumericUpDown.Value = element.lifeTime.Value;

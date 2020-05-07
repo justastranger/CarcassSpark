@@ -98,12 +98,23 @@ namespace Cultist_Simulator_Modding_Toolkit
                         if (element["isAspect"] != null)
                         {
                             Aspect deserializedAspect = element.ToObject<Aspect>();
-                            if(!aspectsList.ContainsKey(deserializedAspect.id))
+                            if (!aspectsList.ContainsKey(deserializedAspect.id))
                             {
                                 aspectsList.Add(deserializedAspect.id, deserializedAspect);
                                 aspectsListBox.Items.Add(deserializedAspect.id);
                             }
-                        } else {
+                        }
+                        else if (element["extends"] != null && Utilities.aspectExists(element["id"].ToString()))
+                        {
+                            Aspect deserializedAspect = element.ToObject<Aspect>();
+                            if (!aspectsList.ContainsKey(deserializedAspect.id))
+                            {
+                                aspectsList.Add(deserializedAspect.id, deserializedAspect);
+                                aspectsListBox.Items.Add(deserializedAspect.id);
+                            }
+                        }
+                        else
+                        {
                             Element deserializedElement = element.ToObject<Element>();
                             if (!elementsList.ContainsKey(deserializedElement.id))
                             {
@@ -444,7 +455,15 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void endingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (EndingViewer ev = new EndingViewer(new Ending(), true))
+            {
+                ev.ShowDialog();
+                if (ev.DialogResult == DialogResult.OK)
+                {
+                    endingsList.Add(ev.displayedEnding.id, ev.displayedEnding);
+                    endingsListBox.Items.Add(ev.displayedEnding.id);
+                }
+            }
         }
 
         private void ModViewer_Shown(object sender, EventArgs e)

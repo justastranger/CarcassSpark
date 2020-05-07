@@ -58,7 +58,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (aspect.id != null) idTextBox.Text = aspect.id;
             if (aspect.label != null) labelTextBox.Text = aspect.label;
-            if (aspect.noartneeded.HasValue && aspect.noartneeded.Value == false)
+            if (!aspect.noartneeded.HasValue || aspect.noartneeded.Value == false)
             {
                 if (aspect.icon != null)
                 {
