@@ -95,10 +95,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            displayedDeck.drawmessages = new Dictionary<string, string>();
-            foreach(DataGridViewRow row in drawmessagesDataGridView.Rows)
+            if (drawmessagesDataGridView.Rows.Count > 1)
             {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                displayedDeck.drawmessages = new Dictionary<string, string>();
+                foreach (DataGridViewRow row in drawmessagesDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                }
             }
             DialogResult = DialogResult.OK;
             Close();
