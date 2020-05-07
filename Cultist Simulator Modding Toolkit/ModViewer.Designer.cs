@@ -254,6 +254,7 @@
             this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
             this.recipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.recipeToolStripMenuItem.Text = "Recipe";
+            this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
             // 
             // deckToolStripMenuItem
             // 
@@ -281,6 +282,7 @@
             this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
             this.verbToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verbToolStripMenuItem.Text = "Verb";
+            this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
             // 
             // editManifestToolStripMenuItem
             // 

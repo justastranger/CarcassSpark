@@ -72,107 +72,124 @@
             this.alternativerecipesListBox = new System.Windows.Forms.ListBox();
             this.linkedListBox = new System.Windows.Forms.ListBox();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
-            this.maxExecutionsTextBox = new System.Windows.Forms.TextBox();
-            this.warmupTextBox = new System.Windows.Forms.TextBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.addAlternativeRecipeButton = new System.Windows.Forms.Button();
+            this.addLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.addMutationButton = new System.Windows.Forms.Button();
+            this.maxExecutionsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.maxExecutionsLabel = new System.Windows.Forms.Label();
+            this.warmupNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.warmupLabel = new System.Windows.Forms.Label();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.labelLabel = new System.Windows.Forms.Label();
+            this.actionIdLabel = new System.Windows.Forms.Label();
+            this.endingLabel = new System.Windows.Forms.Label();
+            this.burnImageLabel = new System.Windows.Forms.Label();
+            this.startDescriptionLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablereqsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(12, 12);
+            this.idTextBox.Location = new System.Drawing.Point(12, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "ID";
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 12);
+            this.labelTextBox.Location = new System.Drawing.Point(118, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 1;
-            this.labelTextBox.Text = "Label";
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // actionIdTextBox
             // 
-            this.actionIdTextBox.Location = new System.Drawing.Point(224, 12);
+            this.actionIdTextBox.Location = new System.Drawing.Point(224, 25);
             this.actionIdTextBox.Name = "actionIdTextBox";
             this.actionIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.actionIdTextBox.TabIndex = 2;
-            this.actionIdTextBox.Text = "actionId";
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.actionIdTextBox.TextChanged += new System.EventHandler(this.actionIdTextBox_TextChanged);
             // 
             // endingTextBox
             // 
-            this.endingTextBox.Location = new System.Drawing.Point(12, 38);
+            this.endingTextBox.Location = new System.Drawing.Point(12, 64);
             this.endingTextBox.Name = "endingTextBox";
             this.endingTextBox.Size = new System.Drawing.Size(100, 20);
             this.endingTextBox.TabIndex = 3;
-            this.endingTextBox.Text = "Ending";
             this.endingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.endingTextBox.TextChanged += new System.EventHandler(this.endingTextBox_TextChanged);
             // 
             // burnimageTextBox
             // 
-            this.burnimageTextBox.Location = new System.Drawing.Point(118, 38);
+            this.burnimageTextBox.Location = new System.Drawing.Point(118, 64);
             this.burnimageTextBox.Name = "burnimageTextBox";
             this.burnimageTextBox.Size = new System.Drawing.Size(100, 20);
             this.burnimageTextBox.TabIndex = 4;
-            this.burnimageTextBox.Text = "Burn Image";
             this.burnimageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.burnimageTextBox.TextChanged += new System.EventHandler(this.burnimageTextBox_TextChanged);
             // 
             // startdescriptionTextBox
             // 
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(12, 64);
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(258, 90);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.startdescriptionTextBox.Size = new System.Drawing.Size(732, 50);
+            this.startdescriptionTextBox.Size = new System.Drawing.Size(240, 80);
             this.startdescriptionTextBox.TabIndex = 5;
-            this.startdescriptionTextBox.Text = "Start Description";
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 120);
+            this.descriptionTextBox.Location = new System.Drawing.Point(504, 90);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(732, 50);
+            this.descriptionTextBox.Size = new System.Drawing.Size(240, 80);
             this.descriptionTextBox.TabIndex = 6;
-            this.descriptionTextBox.Text = "Description";
             // 
             // craftableCheckBox
             // 
             this.craftableCheckBox.AutoSize = true;
             this.craftableCheckBox.Enabled = false;
-            this.craftableCheckBox.Location = new System.Drawing.Point(224, 40);
+            this.craftableCheckBox.Location = new System.Drawing.Point(12, 92);
             this.craftableCheckBox.Name = "craftableCheckBox";
             this.craftableCheckBox.Size = new System.Drawing.Size(68, 17);
             this.craftableCheckBox.TabIndex = 7;
             this.craftableCheckBox.Text = "Craftable";
             this.craftableCheckBox.UseVisualStyleBackColor = true;
+            this.craftableCheckBox.CheckedChanged += new System.EventHandler(this.craftableCheckBox_CheckedChanged);
             // 
             // hintonlyCheckBox
             // 
             this.hintonlyCheckBox.AutoSize = true;
             this.hintonlyCheckBox.Enabled = false;
-            this.hintonlyCheckBox.Location = new System.Drawing.Point(298, 40);
+            this.hintonlyCheckBox.Location = new System.Drawing.Point(12, 115);
             this.hintonlyCheckBox.Name = "hintonlyCheckBox";
             this.hintonlyCheckBox.Size = new System.Drawing.Size(69, 17);
             this.hintonlyCheckBox.TabIndex = 8;
             this.hintonlyCheckBox.Text = "Hint Only";
             this.hintonlyCheckBox.UseVisualStyleBackColor = true;
+            this.hintonlyCheckBox.CheckedChanged += new System.EventHandler(this.hintonlyCheckBox_CheckedChanged);
             // 
             // internaldeckLabel
             // 
             this.internaldeckLabel.AutoSize = true;
-            this.internaldeckLabel.Location = new System.Drawing.Point(377, 15);
+            this.internaldeckLabel.Location = new System.Drawing.Point(174, 87);
             this.internaldeckLabel.Name = "internaldeckLabel";
             this.internaldeckLabel.Size = new System.Drawing.Size(71, 13);
             this.internaldeckLabel.TabIndex = 9;
@@ -181,7 +198,7 @@
             // showInternalDeckButton
             // 
             this.showInternalDeckButton.Enabled = false;
-            this.showInternalDeckButton.Location = new System.Drawing.Point(373, 36);
+            this.showInternalDeckButton.Location = new System.Drawing.Point(174, 103);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
             this.showInternalDeckButton.Size = new System.Drawing.Size(75, 23);
             this.showInternalDeckButton.TabIndex = 10;
@@ -210,7 +227,7 @@
             this.requirementsDataGridView.Location = new System.Drawing.Point(12, 189);
             this.requirementsDataGridView.Name = "requirementsDataGridView";
             this.requirementsDataGridView.ReadOnly = true;
-            this.requirementsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.requirementsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.requirementsDataGridView.TabIndex = 12;
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requirementsDataGridView_CellDoubleClick);
             // 
@@ -240,7 +257,7 @@
             this.extantreqsDataGridView.Location = new System.Drawing.Point(258, 189);
             this.extantreqsDataGridView.Name = "extantreqsDataGridView";
             this.extantreqsDataGridView.ReadOnly = true;
-            this.extantreqsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.extantreqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.extantreqsDataGridView.TabIndex = 13;
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.extantreqsDataGridView_CellDoubleClick);
             // 
@@ -279,7 +296,7 @@
             this.tablereqsDataGridView.Location = new System.Drawing.Point(504, 189);
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
             this.tablereqsDataGridView.ReadOnly = true;
-            this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.tablereqsDataGridView.TabIndex = 15;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablereqsDataGridView_CellDoubleClick);
             // 
@@ -309,7 +326,7 @@
             // slotLabel
             // 
             this.slotLabel.AutoSize = true;
-            this.slotLabel.Location = new System.Drawing.Point(473, 15);
+            this.slotLabel.Location = new System.Drawing.Point(174, 129);
             this.slotLabel.Name = "slotLabel";
             this.slotLabel.Size = new System.Drawing.Size(25, 13);
             this.slotLabel.TabIndex = 17;
@@ -318,7 +335,7 @@
             // showSlotButton
             // 
             this.showSlotButton.Enabled = false;
-            this.showSlotButton.Location = new System.Drawing.Point(454, 36);
+            this.showSlotButton.Location = new System.Drawing.Point(174, 145);
             this.showSlotButton.Name = "showSlotButton";
             this.showSlotButton.Size = new System.Drawing.Size(75, 23);
             this.showSlotButton.TabIndex = 18;
@@ -335,10 +352,10 @@
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectsElementId,
             this.effectsAmount});
-            this.effectsDataGridView.Location = new System.Drawing.Point(12, 358);
+            this.effectsDataGridView.Location = new System.Drawing.Point(12, 333);
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.ReadOnly = true;
-            this.effectsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.effectsDataGridView.TabIndex = 19;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
             // 
@@ -359,7 +376,7 @@
             // effectsLabel
             // 
             this.effectsLabel.AutoSize = true;
-            this.effectsLabel.Location = new System.Drawing.Point(99, 342);
+            this.effectsLabel.Location = new System.Drawing.Point(99, 317);
             this.effectsLabel.Name = "effectsLabel";
             this.effectsLabel.Size = new System.Drawing.Size(40, 13);
             this.effectsLabel.TabIndex = 20;
@@ -374,10 +391,10 @@
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.aspectAmount});
-            this.aspectsDataGridView.Location = new System.Drawing.Point(258, 358);
+            this.aspectsDataGridView.Location = new System.Drawing.Point(258, 333);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.ReadOnly = true;
-            this.aspectsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.aspectsDataGridView.TabIndex = 21;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
             // 
@@ -404,10 +421,10 @@
             this.deckeffectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deckId,
             this.deckDraws});
-            this.deckeffectDataGridView.Location = new System.Drawing.Point(504, 358);
+            this.deckeffectDataGridView.Location = new System.Drawing.Point(504, 333);
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
             this.deckeffectDataGridView.ReadOnly = true;
-            this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
             this.deckeffectDataGridView.TabIndex = 22;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deckeffectDataGridView_CellDoubleClick);
             // 
@@ -428,7 +445,7 @@
             // deckeffectLabel
             // 
             this.deckeffectLabel.AutoSize = true;
-            this.deckeffectLabel.Location = new System.Drawing.Point(595, 342);
+            this.deckeffectLabel.Location = new System.Drawing.Point(595, 317);
             this.deckeffectLabel.Name = "deckeffectLabel";
             this.deckeffectLabel.Size = new System.Drawing.Size(64, 13);
             this.deckeffectLabel.TabIndex = 23;
@@ -437,7 +454,7 @@
             // aspectsLabel
             // 
             this.aspectsLabel.AutoSize = true;
-            this.aspectsLabel.Location = new System.Drawing.Point(346, 342);
+            this.aspectsLabel.Location = new System.Drawing.Point(344, 317);
             this.aspectsLabel.Name = "aspectsLabel";
             this.aspectsLabel.Size = new System.Drawing.Size(45, 13);
             this.aspectsLabel.TabIndex = 24;
@@ -446,7 +463,7 @@
             // alternativerecipesLabel
             // 
             this.alternativerecipesLabel.AutoSize = true;
-            this.alternativerecipesLabel.Location = new System.Drawing.Point(72, 511);
+            this.alternativerecipesLabel.Location = new System.Drawing.Point(72, 461);
             this.alternativerecipesLabel.Name = "alternativerecipesLabel";
             this.alternativerecipesLabel.Size = new System.Drawing.Size(99, 13);
             this.alternativerecipesLabel.TabIndex = 26;
@@ -455,7 +472,7 @@
             // linkedLabel
             // 
             this.linkedLabel.AutoSize = true;
-            this.linkedLabel.Location = new System.Drawing.Point(326, 511);
+            this.linkedLabel.Location = new System.Drawing.Point(326, 461);
             this.linkedLabel.Name = "linkedLabel";
             this.linkedLabel.Size = new System.Drawing.Size(81, 13);
             this.linkedLabel.TabIndex = 27;
@@ -464,17 +481,17 @@
             // mutationsListBox
             // 
             this.mutationsListBox.FormattingEnabled = true;
-            this.mutationsListBox.Location = new System.Drawing.Point(504, 527);
+            this.mutationsListBox.Location = new System.Drawing.Point(504, 477);
             this.mutationsListBox.Name = "mutationsListBox";
             this.mutationsListBox.ScrollAlwaysVisible = true;
-            this.mutationsListBox.Size = new System.Drawing.Size(240, 147);
+            this.mutationsListBox.Size = new System.Drawing.Size(240, 121);
             this.mutationsListBox.TabIndex = 29;
             this.mutationsListBox.DoubleClick += new System.EventHandler(this.mutationsListBox_DoubleClick);
             // 
             // mutationsLabel
             // 
             this.mutationsLabel.AutoSize = true;
-            this.mutationsLabel.Location = new System.Drawing.Point(595, 511);
+            this.mutationsLabel.Location = new System.Drawing.Point(595, 461);
             this.mutationsLabel.Name = "mutationsLabel";
             this.mutationsLabel.Size = new System.Drawing.Size(53, 13);
             this.mutationsLabel.TabIndex = 30;
@@ -483,57 +500,210 @@
             // alternativerecipesListBox
             // 
             this.alternativerecipesListBox.FormattingEnabled = true;
-            this.alternativerecipesListBox.Location = new System.Drawing.Point(12, 527);
+            this.alternativerecipesListBox.Location = new System.Drawing.Point(12, 477);
             this.alternativerecipesListBox.Name = "alternativerecipesListBox";
             this.alternativerecipesListBox.ScrollAlwaysVisible = true;
-            this.alternativerecipesListBox.Size = new System.Drawing.Size(240, 147);
+            this.alternativerecipesListBox.Size = new System.Drawing.Size(240, 121);
             this.alternativerecipesListBox.TabIndex = 31;
             this.alternativerecipesListBox.DoubleClick += new System.EventHandler(this.alternativerecipesListBox_DoubleClick);
             // 
             // linkedListBox
             // 
             this.linkedListBox.FormattingEnabled = true;
-            this.linkedListBox.Location = new System.Drawing.Point(258, 527);
+            this.linkedListBox.Location = new System.Drawing.Point(258, 477);
             this.linkedListBox.Name = "linkedListBox";
             this.linkedListBox.ScrollAlwaysVisible = true;
-            this.linkedListBox.Size = new System.Drawing.Size(240, 147);
+            this.linkedListBox.Size = new System.Drawing.Size(240, 121);
             this.linkedListBox.TabIndex = 32;
             this.linkedListBox.DoubleClick += new System.EventHandler(this.linkedListBox_DoubleClick);
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(644, 12);
+            this.extendsTextBox.Location = new System.Drawing.Point(224, 64);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 33;
-            this.extendsTextBox.Text = "Extends";
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
-            // maxExecutionsTextBox
+            // okButton
             // 
-            this.maxExecutionsTextBox.Location = new System.Drawing.Point(535, 38);
-            this.maxExecutionsTextBox.Name = "maxExecutionsTextBox";
-            this.maxExecutionsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.maxExecutionsTextBox.TabIndex = 34;
-            this.maxExecutionsTextBox.Text = "Max Executions";
-            this.maxExecutionsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.okButton.Location = new System.Drawing.Point(12, 633);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 36;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // warmupTextBox
+            // cancelButton
             // 
-            this.warmupTextBox.Location = new System.Drawing.Point(644, 38);
-            this.warmupTextBox.Name = "warmupTextBox";
-            this.warmupTextBox.Size = new System.Drawing.Size(100, 20);
-            this.warmupTextBox.TabIndex = 35;
-            this.warmupTextBox.Text = "Warmup";
-            this.warmupTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cancelButton.Location = new System.Drawing.Point(669, 633);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 37;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // addAlternativeRecipeButton
+            // 
+            this.addAlternativeRecipeButton.Location = new System.Drawing.Point(12, 604);
+            this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
+            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(240, 23);
+            this.addAlternativeRecipeButton.TabIndex = 38;
+            this.addAlternativeRecipeButton.Text = "Add Alternative Recipe";
+            this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
+            this.addAlternativeRecipeButton.Click += new System.EventHandler(this.addAlternativeRecipeButton_Click);
+            // 
+            // addLinkedRecipeButton
+            // 
+            this.addLinkedRecipeButton.Location = new System.Drawing.Point(258, 604);
+            this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
+            this.addLinkedRecipeButton.Size = new System.Drawing.Size(240, 23);
+            this.addLinkedRecipeButton.TabIndex = 39;
+            this.addLinkedRecipeButton.Text = "Add Linked Recipe";
+            this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.addLinkedRecipeButton.Click += new System.EventHandler(this.addLinkedRecipeButton_Click);
+            // 
+            // addMutationButton
+            // 
+            this.addMutationButton.Location = new System.Drawing.Point(504, 604);
+            this.addMutationButton.Name = "addMutationButton";
+            this.addMutationButton.Size = new System.Drawing.Size(240, 23);
+            this.addMutationButton.TabIndex = 40;
+            this.addMutationButton.Text = "Add Mutation";
+            this.addMutationButton.UseVisualStyleBackColor = true;
+            this.addMutationButton.Click += new System.EventHandler(this.addMutationButton_Click);
+            // 
+            // maxExecutionsNumericUpDown
+            // 
+            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(89, 103);
+            this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
+            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.maxExecutionsNumericUpDown.TabIndex = 41;
+            this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.maxExecutionsNumericUpDown_ValueChanged);
+            // 
+            // maxExecutionsLabel
+            // 
+            this.maxExecutionsLabel.AutoSize = true;
+            this.maxExecutionsLabel.Location = new System.Drawing.Point(86, 87);
+            this.maxExecutionsLabel.Name = "maxExecutionsLabel";
+            this.maxExecutionsLabel.Size = new System.Drawing.Size(82, 13);
+            this.maxExecutionsLabel.TabIndex = 42;
+            this.maxExecutionsLabel.Text = "Max Executions";
+            // 
+            // warmupNumericUpDown
+            // 
+            this.warmupNumericUpDown.Location = new System.Drawing.Point(89, 142);
+            this.warmupNumericUpDown.Name = "warmupNumericUpDown";
+            this.warmupNumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.warmupNumericUpDown.TabIndex = 43;
+            this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.warmupNumericUpDown_ValueChanged);
+            // 
+            // warmupLabel
+            // 
+            this.warmupLabel.AutoSize = true;
+            this.warmupLabel.Location = new System.Drawing.Point(87, 126);
+            this.warmupLabel.Name = "warmupLabel";
+            this.warmupLabel.Size = new System.Drawing.Size(47, 13);
+            this.warmupLabel.TabIndex = 44;
+            this.warmupLabel.Text = "Warmup";
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(221, 48);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 45;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(12, 9);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(55, 13);
+            this.idLabel.TabIndex = 46;
+            this.idLabel.Text = "Recipe ID";
+            // 
+            // labelLabel
+            // 
+            this.labelLabel.AutoSize = true;
+            this.labelLabel.Location = new System.Drawing.Point(115, 9);
+            this.labelLabel.Name = "labelLabel";
+            this.labelLabel.Size = new System.Drawing.Size(33, 13);
+            this.labelLabel.TabIndex = 47;
+            this.labelLabel.Text = "Label";
+            // 
+            // actionIdLabel
+            // 
+            this.actionIdLabel.AutoSize = true;
+            this.actionIdLabel.Location = new System.Drawing.Point(221, 9);
+            this.actionIdLabel.Name = "actionIdLabel";
+            this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
+            this.actionIdLabel.TabIndex = 48;
+            this.actionIdLabel.Text = "Verb ID";
+            // 
+            // endingLabel
+            // 
+            this.endingLabel.AutoSize = true;
+            this.endingLabel.Location = new System.Drawing.Point(12, 48);
+            this.endingLabel.Name = "endingLabel";
+            this.endingLabel.Size = new System.Drawing.Size(78, 13);
+            this.endingLabel.TabIndex = 49;
+            this.endingLabel.Text = "Causes Ending";
+            // 
+            // burnImageLabel
+            // 
+            this.burnImageLabel.AutoSize = true;
+            this.burnImageLabel.Location = new System.Drawing.Point(115, 48);
+            this.burnImageLabel.Name = "burnImageLabel";
+            this.burnImageLabel.Size = new System.Drawing.Size(61, 13);
+            this.burnImageLabel.TabIndex = 50;
+            this.burnImageLabel.Text = "Burn Image";
+            // 
+            // startDescriptionLabel
+            // 
+            this.startDescriptionLabel.AutoSize = true;
+            this.startDescriptionLabel.Location = new System.Drawing.Point(344, 74);
+            this.startDescriptionLabel.Name = "startDescriptionLabel";
+            this.startDescriptionLabel.Size = new System.Drawing.Size(82, 13);
+            this.startDescriptionLabel.TabIndex = 51;
+            this.startDescriptionLabel.Text = "StartDescription";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(604, 74);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.TabIndex = 52;
+            this.descriptionLabel.Text = "Description";
             // 
             // RecipeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 684);
-            this.Controls.Add(this.warmupTextBox);
-            this.Controls.Add(this.maxExecutionsTextBox);
+            this.ClientSize = new System.Drawing.Size(756, 668);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.startDescriptionLabel);
+            this.Controls.Add(this.burnImageLabel);
+            this.Controls.Add(this.endingLabel);
+            this.Controls.Add(this.actionIdLabel);
+            this.Controls.Add(this.labelLabel);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.warmupLabel);
+            this.Controls.Add(this.warmupNumericUpDown);
+            this.Controls.Add(this.maxExecutionsLabel);
+            this.Controls.Add(this.maxExecutionsNumericUpDown);
+            this.Controls.Add(this.addMutationButton);
+            this.Controls.Add(this.addLinkedRecipeButton);
+            this.Controls.Add(this.addAlternativeRecipeButton);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.linkedListBox);
             this.Controls.Add(this.alternativerecipesListBox);
@@ -574,6 +744,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -625,7 +797,22 @@
         private System.Windows.Forms.ListBox alternativerecipesListBox;
         private System.Windows.Forms.ListBox linkedListBox;
         private System.Windows.Forms.TextBox extendsTextBox;
-        private System.Windows.Forms.TextBox maxExecutionsTextBox;
-        private System.Windows.Forms.TextBox warmupTextBox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button addAlternativeRecipeButton;
+        private System.Windows.Forms.Button addLinkedRecipeButton;
+        private System.Windows.Forms.Button addMutationButton;
+        private System.Windows.Forms.NumericUpDown maxExecutionsNumericUpDown;
+        private System.Windows.Forms.Label maxExecutionsLabel;
+        private System.Windows.Forms.NumericUpDown warmupNumericUpDown;
+        private System.Windows.Forms.Label warmupLabel;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label labelLabel;
+        private System.Windows.Forms.Label actionIdLabel;
+        private System.Windows.Forms.Label endingLabel;
+        private System.Windows.Forms.Label burnImageLabel;
+        private System.Windows.Forms.Label startDescriptionLabel;
+        private System.Windows.Forms.Label descriptionLabel;
     }
 }

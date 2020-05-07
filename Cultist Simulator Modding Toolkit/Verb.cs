@@ -15,7 +15,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool atStart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Slot[] slots;
+        public List<Slot> slots;
 
         [JsonConstructor]
         public Verb(string id, string label, string description, bool atStart, JArray slots = null)
@@ -24,7 +24,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.label = label;
             this.description = description;
             this.atStart = atStart;
-            if (slots != null) this.slots = slots.ToObject<Slot[]>();
+            if (slots != null) this.slots = slots.ToObject<List<Slot>>();
+        }
+
+        public Verb()
+        {
+
         }
     }
 }

@@ -12,26 +12,47 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class MutationViewer : Form
     {
-        Recipe.Mutation displayedMutation;
+        public Recipe.Mutation displayedMutation;
+        bool editing;
 
         public MutationViewer(Recipe.Mutation mutation, bool? editing)
         {
             InitializeComponent();
             displayedMutation = mutation;
-            filterTextBox.Text = mutation.filter;
-            mutateAspectIdTextBox.Text = mutation.mutateAspectId;
-            levelNumericUpDown.Value = mutation.level;
-            if (mutation.additive.HasValue) additiveCheckBox.Checked = mutation.additive.Value;
+            fillValues(mutation);
             if (editing.HasValue) setEditingMode(editing.Value);
             else setEditingMode(false);
         }
 
+        void fillValues(Recipe.Mutation mutation)
+        {
+            if (mutation.filterOnAspectId != null) filterTextBox.Text = mutation.filterOnAspectId;
+            if (mutation.mutateAspectId != null) mutateAspectIdTextBox.Text = mutation.mutateAspectId;
+            if (mutation.mutationLevel.HasValue) levelNumericUpDown.Value = mutation.mutationLevel.Value;
+            if (mutation.additive.HasValue) additiveCheckBox.Checked = mutation.additive.Value;
+        }
+
         void setEditingMode(bool editing)
         {
-            filterTextBox.Enabled = editing;
-            mutateAspectIdTextBox.Enabled = editing;
+            this.editing = editing;
+            filterTextBox.ReadOnly = !editing;
+            mutateAspectIdTextBox.ReadOnly = !editing;
             levelNumericUpDown.Enabled = editing;
             additiveCheckBox.Enabled = editing;
+            okButton.Visible = editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

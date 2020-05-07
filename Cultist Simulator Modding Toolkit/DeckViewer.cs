@@ -15,6 +15,15 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Deck displayedDeck;
         bool editing;
 
+        public DeckViewer(Deck deck)
+        {
+            InitializeComponent();
+            this.displayedDeck = deck;
+            fillValues(deck);
+            setEditingMode(false);
+            setInternal(false);
+        }
+
         public DeckViewer(Deck deck, bool? editing)
         {
             InitializeComponent();
@@ -22,6 +31,28 @@ namespace Cultist_Simulator_Modding_Toolkit
             fillValues(deck);
             if (editing.HasValue) setEditingMode(editing.Value);
             else setEditingMode(false);
+            setInternal(false);
+        }
+
+        public DeckViewer(Deck deck, bool? editing, bool? internalDeck)
+        {
+            InitializeComponent();
+            this.displayedDeck = deck;
+            fillValues(deck);
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+            if (internalDeck.HasValue) setInternal(internalDeck.Value);
+            else setInternal(false);
+        }
+
+        void setInternal(bool internalDeck)
+        {
+            idTextBox.Visible = !internalDeck;
+            idLabel.Visible = !internalDeck;
+            drawsNumericUpDown.Visible = internalDeck;
+            drawsLabel.Visible = internalDeck;
+            drawmessagesDataGridView.Visible = !internalDeck;
+            drawmessagesLlabel.Visible = !internalDeck;
         }
 
         void fillValues(Deck deck)

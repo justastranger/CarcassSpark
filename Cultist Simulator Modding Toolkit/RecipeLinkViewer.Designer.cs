@@ -31,58 +31,61 @@
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.chanceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.additionalCheckBox = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.challengesDataGridView = new System.Windows.Forms.DataGridView();
             this.aspectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isBaseOrNull = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.openRecipeButton = new System.Windows.Forms.Button();
             this.challengesLabel = new System.Windows.Forms.Label();
+            this.linkedLabel = new System.Windows.Forms.Label();
+            this.chanceLabel = new System.Windows.Forms.Label();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Enabled = false;
-            this.idTextBox.Location = new System.Drawing.Point(12, 12);
+            this.idTextBox.Location = new System.Drawing.Point(12, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(175, 20);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "Linked Recipe ID";
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // chanceNumericUpDown
             // 
-            this.chanceNumericUpDown.Enabled = false;
-            this.chanceNumericUpDown.Location = new System.Drawing.Point(193, 12);
+            this.chanceNumericUpDown.Location = new System.Drawing.Point(193, 26);
             this.chanceNumericUpDown.Name = "chanceNumericUpDown";
             this.chanceNumericUpDown.Size = new System.Drawing.Size(175, 20);
             this.chanceNumericUpDown.TabIndex = 1;
+            this.chanceNumericUpDown.ValueChanged += new System.EventHandler(this.chanceNumericUpDown_ValueChanged);
             // 
             // additionalCheckBox
             // 
             this.additionalCheckBox.AutoSize = true;
-            this.additionalCheckBox.Enabled = false;
-            this.additionalCheckBox.Location = new System.Drawing.Point(249, 42);
+            this.additionalCheckBox.Location = new System.Drawing.Point(235, 56);
             this.additionalCheckBox.Name = "additionalCheckBox";
             this.additionalCheckBox.Size = new System.Drawing.Size(72, 17);
             this.additionalCheckBox.TabIndex = 2;
             this.additionalCheckBox.Text = "Additional";
             this.additionalCheckBox.UseVisualStyleBackColor = true;
+            this.additionalCheckBox.CheckedChanged += new System.EventHandler(this.additionalCheckBox_CheckedChanged);
             // 
-            // dataGridView1
+            // challengesDataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.challengesDataGridView.AllowUserToAddRows = false;
+            this.challengesDataGridView.AllowUserToDeleteRows = false;
+            this.challengesDataGridView.AllowUserToResizeColumns = false;
+            this.challengesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.challengesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.isBaseOrNull});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 67);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(356, 182);
-            this.dataGridView1.TabIndex = 3;
+            this.challengesDataGridView.Location = new System.Drawing.Point(12, 75);
+            this.challengesDataGridView.Name = "challengesDataGridView";
+            this.challengesDataGridView.ReadOnly = true;
+            this.challengesDataGridView.Size = new System.Drawing.Size(356, 143);
+            this.challengesDataGridView.TabIndex = 3;
             // 
             // aspectId
             // 
@@ -98,40 +101,82 @@
             this.isBaseOrNull.ReadOnly = true;
             this.isBaseOrNull.Width = 156;
             // 
-            // button1
+            // openRecipeButton
             // 
-            this.button1.Location = new System.Drawing.Point(46, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Follow Recipe";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.openRecipeButton.Location = new System.Drawing.Point(44, 51);
+            this.openRecipeButton.Name = "openRecipeButton";
+            this.openRecipeButton.Size = new System.Drawing.Size(104, 23);
+            this.openRecipeButton.TabIndex = 4;
+            this.openRecipeButton.Text = "Follow Recipe";
+            this.openRecipeButton.UseVisualStyleBackColor = true;
+            this.openRecipeButton.Click += new System.EventHandler(this.openRecipeButton_Click);
             // 
             // challengesLabel
             // 
             this.challengesLabel.AutoSize = true;
-            this.challengesLabel.Location = new System.Drawing.Point(167, 43);
+            this.challengesLabel.Location = new System.Drawing.Point(154, 56);
             this.challengesLabel.Name = "challengesLabel";
             this.challengesLabel.Size = new System.Drawing.Size(59, 13);
             this.challengesLabel.TabIndex = 5;
             this.challengesLabel.Text = "Challenges";
+            // 
+            // linkedLabel
+            // 
+            this.linkedLabel.AutoSize = true;
+            this.linkedLabel.Location = new System.Drawing.Point(9, 9);
+            this.linkedLabel.Name = "linkedLabel";
+            this.linkedLabel.Size = new System.Drawing.Size(90, 13);
+            this.linkedLabel.TabIndex = 6;
+            this.linkedLabel.Text = "Linked Recipe ID";
+            // 
+            // chanceLabel
+            // 
+            this.chanceLabel.AutoSize = true;
+            this.chanceLabel.Location = new System.Drawing.Point(190, 9);
+            this.chanceLabel.Name = "chanceLabel";
+            this.chanceLabel.Size = new System.Drawing.Size(88, 13);
+            this.chanceLabel.TabIndex = 7;
+            this.chanceLabel.Text = "Chance (0-100%)";
+            // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(12, 226);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 8;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(293, 226);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 9;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // RecipeLinkViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 261);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.chanceLabel);
+            this.Controls.Add(this.linkedLabel);
             this.Controls.Add(this.challengesLabel);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.openRecipeButton);
+            this.Controls.Add(this.challengesDataGridView);
             this.Controls.Add(this.additionalCheckBox);
             this.Controls.Add(this.chanceNumericUpDown);
             this.Controls.Add(this.idTextBox);
             this.Name = "RecipeLinkViewer";
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,10 +187,14 @@
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.NumericUpDown chanceNumericUpDown;
         private System.Windows.Forms.CheckBox additionalCheckBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView challengesDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn isBaseOrNull;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button openRecipeButton;
         private System.Windows.Forms.Label challengesLabel;
+        private System.Windows.Forms.Label linkedLabel;
+        private System.Windows.Forms.Label chanceLabel;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

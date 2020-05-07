@@ -24,17 +24,17 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public RecipeLink[] linked, alternativerecipes;
+        public List<RecipeLink> linked, alternativerecipes;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Slot[] slots;
+        public List<Slot> slots;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Mutation[] mutations;
+        public List<Mutation> mutations;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Deck internalDeck;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deckeffect;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string[] extends;
+        public List<string> extends;
 
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, int? warmup, int? maxexecutions,
@@ -54,7 +54,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (hintonly.HasValue) this.hintonly = hintonly;
             if (ending != null) this.ending = ending;
             if (burnimage != null) this.burnimage = burnimage;
-            if (extends != null) this.extends = extends.ToObject<string[]>();
+            if (extends != null) this.extends = extends.ToObject<List<string>>();
             if (warmup.HasValue) this.warmup = warmup;
             if (requirements != null) this.requirements = requirements.ToObject<Dictionary<string, int>>();
             if (extantreqs != null) this.extantreqs = extantreqs.ToObject<Dictionary<string, int>>();
@@ -66,19 +66,19 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (linked != null)
             {
-                this.linked = linked.ToObject<RecipeLink[]>();
+                this.linked = linked.ToObject<List<RecipeLink>>();
             }
             if (slots != null)
             {
-                this.slots = slots.ToObject<Slot[]>();
+                this.slots = slots.ToObject<List<Slot>>();
             }
             if (alternativerecipes != null)
             {
-                this.alternativerecipes = alternativerecipes.ToObject<RecipeLink[]>();
+                this.alternativerecipes = alternativerecipes.ToObject<List<RecipeLink>>();
             }
             if (mutations != null)
             {
-                this.mutations = mutations.ToObject<Mutation[]>();
+                this.mutations = mutations.ToObject<List<Mutation>>();
             }
             if (aspects != null)
             {
@@ -99,43 +99,64 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         }
 
+        public Recipe()
+        {
+
+        }
+
         public class RecipeLink
         {
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public string id;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public int chance;
+            public int? chance;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public bool additional;
+            public bool? additional;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public Dictionary<string, string> challenges;
 
             [JsonConstructor]
-            public RecipeLink(string id, int chance = 100, bool additional = false, JObject challenges = null)
+            public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null)
             {
                 this.id = id;
                 this.chance = chance;
-                if (additional) this.additional = additional;
+                this.additional = additional;
                 if (challenges != null)
                 {
                     this.challenges = challenges.ToObject<Dictionary<string, string>>();
                 }
             }
+
+            public RecipeLink()
+            {
+
+            }
         }
 
         public class Mutation
         {
-            public string filter; // element ID to use to select a card, can filter based on aspect or card itself
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public string filterOnAspectId; // element ID to use to select a card, can filter based on aspect or card itself
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public string mutateAspectId; // Aspect on filtered card to modify
-            public int level; // how much to modify the aspect by
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public int? mutationLevel; // how much to modify the aspect by
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public bool? additive;
 
-            public Mutation(string filter, int level, bool? additive, string mutateAspectId = null, string mutate = null)
+            [JsonConstructor]
+            public Mutation(string filterOnAspectId, string filter, string mutateAspectId, string mutate, int? mutationLevel, int? level, bool? additive)
             {
-                this.filter = filter;
+                this.filterOnAspectId = filterOnAspectId != null ? filterOnAspectId : filter;
                 this.mutateAspectId = mutateAspectId != null ? mutateAspectId : mutate;
-                this.level = level;
+                if (mutationLevel.HasValue) this.mutationLevel = mutationLevel;
+                else if (level.HasValue) this.mutationLevel = level;
                 if (additive.HasValue) this.additive = additive;
+            }
+
+            public Mutation()
+            {
+
             }
         }
     }

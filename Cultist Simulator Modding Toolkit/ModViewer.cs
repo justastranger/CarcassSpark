@@ -277,18 +277,21 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (legaciesListBox.SelectedItem == null) return;
             LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), false);
             lv.ShowDialog();
         }
 
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (endingsListBox.SelectedItem == null) return;
             EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), false);
             ev.ShowDialog();
         }
 
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (verbsListBox.SelectedItem == null) return;
             VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), false);
             vv.ShowDialog();
         }
@@ -462,6 +465,32 @@ namespace Cultist_Simulator_Modding_Toolkit
                 {
                     endingsList.Add(ev.displayedEnding.id, ev.displayedEnding);
                     endingsListBox.Items.Add(ev.displayedEnding.id);
+                }
+            }
+        }
+
+        private void verbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (VerbViewer vv = new VerbViewer(new Verb(), true))
+            {
+                vv.ShowDialog();
+                if(vv.DialogResult == DialogResult.OK)
+                {
+                    verbsList.Add(vv.displayedVerb.id, vv.displayedVerb);
+                    verbsListBox.Items.Add(vv.displayedVerb.id);
+                }
+            }
+        }
+
+        private void recipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (RecipeViewer rv = new RecipeViewer(new Recipe(), true))
+            {
+                rv.ShowDialog();
+                if(rv.DialogResult == DialogResult.OK)
+                {
+                    recipesList.Add(rv.displayedRecipe.id, rv.displayedRecipe);
+                    recipesListBox.Items.Add(rv.displayedRecipe.id);
                 }
             }
         }

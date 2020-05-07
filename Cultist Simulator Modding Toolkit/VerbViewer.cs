@@ -12,14 +12,21 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class VerbViewer : Form
     {
-        Verb displayedVerb;
-
+        public Verb displayedVerb;
+        bool editing;
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
         public VerbViewer(Verb verb, bool? editing)
         {
             InitializeComponent();
             displayedVerb = verb;
+            fillValues(verb);
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
+        
+        void fillValues(Verb verb)
+        {
             idTextBox.Text = verb.id;
             labelTextBox.Text = verb.label;
             atStartCheckBox.Checked = verb.atStart;
@@ -32,23 +39,73 @@ namespace Cultist_Simulator_Modding_Toolkit
                     slots.Add(slot.id, slot);
                 }
             }
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
         }
 
         void setEditingMode(bool editing)
         {
-            idTextBox.Enabled = editing;
-            labelTextBox.Enabled = editing;
+            this.editing = editing;
+            idTextBox.ReadOnly = !editing;
+            labelTextBox.ReadOnly = !editing;
             atStartCheckBox.Enabled = editing;
-            descriptionTextBox.Enabled = editing;
+            descriptionTextBox.ReadOnly = !editing;
+            okButton.Visible = editing;
+            addSlotButton.Visible = editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void slotsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListBox.SelectedItem == null) return;
+            if (slotsListBox.SelectedItem == null || editing) return;
             SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], false);
             sv.ShowDialog();
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void addSlotButton_Click(object sender, EventArgs e)
+        {
+            SlotViewer sv = new SlotViewer(new Slot(), true);
+            sv.ShowDialog();
+            if(sv.DialogResult == DialogResult.OK)
+            {
+                if (displayedVerb.slots == null)
+                {
+                    displayedVerb.slots = new List<Slot>();
+                }
+                displayedVerb.slots.Add(sv.displayedSlot);
+                slots.Add(sv.displayedSlot.id, sv.displayedSlot);
+                slotsListBox.Items.Add(sv.displayedSlot.id);
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedVerb.id = idTextBox.Text;
+        }
+
+        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedVerb.label = labelTextBox.Text;
+        }
+
+        private void atStartCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedVerb.atStart = atStartCheckBox.Checked;
+        }
+
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedVerb.description = descriptionTextBox.Text;
         }
     }
 }

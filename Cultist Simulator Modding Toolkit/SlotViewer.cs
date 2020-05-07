@@ -94,15 +94,21 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            displayedSlot.required = new Dictionary<string, int>();
-            foreach (DataGridViewRow row in requiredDataGridView.Rows)
+            if (requiredDataGridView.RowCount > 1)
             {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                displayedSlot.required = new Dictionary<string, int>();
+                foreach (DataGridViewRow row in requiredDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                }
             }
-            displayedSlot.forbidden = new Dictionary<string, int>();
-            foreach (DataGridViewRow row in forbiddenDataGridView.Rows)
+            if (forbiddenDataGridView.RowCount > 1)
             {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                displayedSlot.forbidden = new Dictionary<string, int>();
+                foreach (DataGridViewRow row in forbiddenDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                }
             }
             DialogResult = DialogResult.OK;
             Close();
