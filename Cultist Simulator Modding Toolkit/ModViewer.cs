@@ -421,14 +421,32 @@ namespace Cultist_Simulator_Modding_Toolkit
             using (DeckViewer dv = new DeckViewer(new Deck(), true))
             {
                 dv.ShowDialog();
-                if(dv.DialogResult == DialogResult.OK)
+                if (dv.DialogResult == DialogResult.OK)
                 {
                     decksList.Add(dv.displayedDeck.id, dv.displayedDeck);
                     decksListBox.Items.Add(dv.displayedDeck.id);
                 }
             }
         }
-        
+
+        private void legacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (LegacyViewer lv = new LegacyViewer(new Legacy(), true))
+            {
+                lv.ShowDialog();
+                if (lv.DialogResult == DialogResult.OK)
+                {
+                    legaciesList.Add(lv.displayedLegacy.id, lv.displayedLegacy);
+                    legaciesListBox.Items.Add(lv.displayedLegacy.id);
+                }
+            }
+        }
+
+        private void endingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;

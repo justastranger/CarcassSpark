@@ -20,7 +20,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? maxexecutions, warmup;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public ElementDictionary effects, requirements, extantreqs, tablereqs;
+        public Dictionary<string, int> effects, requirements, extantreqs, tablereqs;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -56,13 +56,13 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (burnimage != null) this.burnimage = burnimage;
             if (extends != null) this.extends = extends.ToObject<string[]>();
             if (warmup.HasValue) this.warmup = warmup;
-            if (requirements != null) this.requirements = requirements.ToObject<ElementDictionary>();
-            if (extantreqs != null) this.extantreqs = extantreqs.ToObject<ElementDictionary>();
-            if (tablereqs != null) this.tablereqs = tablereqs.ToObject<ElementDictionary>();
+            if (requirements != null) this.requirements = requirements.ToObject<Dictionary<string, int>>();
+            if (extantreqs != null) this.extantreqs = extantreqs.ToObject<Dictionary<string, int>>();
+            if (tablereqs != null) this.tablereqs = tablereqs.ToObject<Dictionary<string, int>>();
             if (maxexecutions.HasValue) this.maxexecutions = maxexecutions;
             if (effects != null)
             {
-                this.effects = new ElementDictionary(effects);
+                this.effects = effects.ToObject<Dictionary<string, int>>();
             }
             if (linked != null)
             {

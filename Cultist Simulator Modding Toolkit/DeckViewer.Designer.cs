@@ -48,7 +48,8 @@
             this.deckLabelLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.commentsLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.defaultCardLabel = new System.Windows.Forms.Label();
+            this.drawmessagesLlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -108,9 +109,9 @@
             this.drawmessagesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
             this.message});
-            this.drawmessagesDataGridView.Location = new System.Drawing.Point(12, 149);
+            this.drawmessagesDataGridView.Location = new System.Drawing.Point(12, 168);
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
-            this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 153);
+            this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 134);
             this.drawmessagesDataGridView.TabIndex = 5;
             // 
             // elementId
@@ -235,21 +236,31 @@
             this.commentsLabel.TabIndex = 17;
             this.commentsLabel.Text = "Comments";
             // 
-            // label1
+            // defaultCardLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(286, 285);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Default Card";
+            this.defaultCardLabel.AutoSize = true;
+            this.defaultCardLabel.Location = new System.Drawing.Point(286, 285);
+            this.defaultCardLabel.Name = "defaultCardLabel";
+            this.defaultCardLabel.Size = new System.Drawing.Size(66, 13);
+            this.defaultCardLabel.TabIndex = 18;
+            this.defaultCardLabel.Text = "Default Card";
+            // 
+            // drawmessagesLlabel
+            // 
+            this.drawmessagesLlabel.AutoSize = true;
+            this.drawmessagesLlabel.Location = new System.Drawing.Point(104, 152);
+            this.drawmessagesLlabel.Name = "drawmessagesLlabel";
+            this.drawmessagesLlabel.Size = new System.Drawing.Size(83, 13);
+            this.drawmessagesLlabel.TabIndex = 19;
+            this.drawmessagesLlabel.Text = "Draw Messages";
             // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.drawmessagesLlabel);
+            this.Controls.Add(this.defaultCardLabel);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.deckLabelLabel);
@@ -299,6 +310,7 @@
         private System.Windows.Forms.Label deckLabelLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label commentsLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label defaultCardLabel;
+        private System.Windows.Forms.Label drawmessagesLlabel;
     }
 }

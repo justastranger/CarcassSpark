@@ -267,12 +267,14 @@
             this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
             this.legacyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.legacyToolStripMenuItem.Text = "Legacy";
+            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
             // 
             // endingToolStripMenuItem
             // 
             this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
             this.endingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.endingToolStripMenuItem.Text = "Ending";
+            this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
             // 
             // verbToolStripMenuItem
             // 

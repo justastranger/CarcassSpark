@@ -13,9 +13,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string[] excludesOnEnding;
+        public List<string> excludesOnEnding;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public ElementDictionary effects;
+        public Dictionary<string, int> effects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool availableWithoutEndingMatch;
 
@@ -28,12 +28,17 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.label = label;
             this.description = description;
             this.startdescription = startdescription;
-            this.effects = new ElementDictionary(effects);
+            this.effects = effects.ToObject<Dictionary<string, int>>();
             this.image = image;
             this.fromEnding = fromEnding;
             this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             this.startingVerbId = startingVerbId;
-            if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding.ToObject<string[]>();
+            if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding.ToObject<List<string>>();
+        }
+
+        public Legacy()
+        {
+
         }
     }
 }

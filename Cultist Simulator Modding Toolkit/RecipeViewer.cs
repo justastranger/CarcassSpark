@@ -69,30 +69,30 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (recipe.warmup.HasValue) warmupTextBox.Text = Convert.ToString(recipe.warmup.Value);
             showInternalDeckButton.Enabled = recipe.internalDeck != null ? true : false;
             showSlotButton.Enabled = recipe.slots != null ? true : false;
-            if (recipe.requirements != null && !recipe.requirements.isNull())
+            if (recipe.requirements != null)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.requirements.toDictionary())
+                foreach (KeyValuePair<string, int> kvp in recipe.requirements)
                 {
                     requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.extantreqs != null && !recipe.extantreqs.isNull())
+            if (recipe.extantreqs != null)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.extantreqs.toDictionary())
+                foreach (KeyValuePair<string, int> kvp in recipe.extantreqs)
                 {
                     extantreqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.tablereqs != null && !recipe.tablereqs.isNull())
+            if (recipe.tablereqs != null)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.tablereqs.toDictionary())
+                foreach (KeyValuePair<string, int> kvp in recipe.tablereqs)
                 {
                     tablereqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.effects != null && !recipe.effects.isNull())
+            if (recipe.effects != null)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.effects.toDictionary())
+                foreach (KeyValuePair<string, int> kvp in recipe.effects)
                 {
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
