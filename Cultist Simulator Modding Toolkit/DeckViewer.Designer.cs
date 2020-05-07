@@ -134,6 +134,7 @@
             this.resetOnExhaustionCheckBox.TabIndex = 6;
             this.resetOnExhaustionCheckBox.Text = "resetOnExhaustion";
             this.resetOnExhaustionCheckBox.UseVisualStyleBackColor = true;
+            this.resetOnExhaustionCheckBox.CheckedChanged += new System.EventHandler(this.resetOnExhaustionCheckBox_CheckedChanged);
             // 
             // defaultCardTextBox
             // 
@@ -142,6 +143,7 @@
             this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
             this.defaultCardTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.defaultCardTextBox.TextChanged += new System.EventHandler(this.defaultCardTextBox_TextChanged);
             // 
             // drawsNumericUpDown
             // 

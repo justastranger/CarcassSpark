@@ -19,13 +19,13 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             InitializeComponent();
             this.displayedDeck = deck;
+            fillValues(deck);
             if (editing.HasValue) setEditingMode(editing.Value);
             else setEditingMode(false);
         }
 
         void fillValues(Deck deck)
         {
-
             idTextBox.Text = deck.id;
             labelTextBox.Text = deck.label;
             commentsTextBox.Text = deck.comments;
@@ -146,6 +146,16 @@ namespace Cultist_Simulator_Modding_Toolkit
                     newCardTextBox.Focus();
                 }
             }
+        }
+
+        private void defaultCardTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.defaultcard = defaultCardTextBox.Text;
+        }
+
+        private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
         }
     }
 }

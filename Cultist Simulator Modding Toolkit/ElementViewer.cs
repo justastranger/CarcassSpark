@@ -136,15 +136,19 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            displayedElement.xtriggers = new Dictionary<string, string>();
-            foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.xtriggers.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+            if (xtriggersDataGridView.Rows.Count > 1) {
+                displayedElement.xtriggers = new Dictionary<string, string>();
+                foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.xtriggers.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                }
             }
-            displayedElement.aspects = new Dictionary<string, int>();
-            foreach (DataGridViewRow row in aspectsDataGridView.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+            if (aspectsDataGridView.Rows.Count > 1) {
+                displayedElement.aspects = new Dictionary<string, int>();
+                foreach (DataGridViewRow row in aspectsDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                }
             }
             DialogResult = DialogResult.OK;
 

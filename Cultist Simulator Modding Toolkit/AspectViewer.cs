@@ -79,10 +79,12 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            displayedAspect.induces = new List<Aspect.Induces>();
-            foreach(DataGridViewRow row in inducesDataGridView.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Aspect.Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value)));
+            if (inducesDataGridView.Rows.Count > 1) {
+                displayedAspect.induces = new List<Aspect.Induces>();
+                foreach (DataGridViewRow row in inducesDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Aspect.Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value)));
+                }
             }
             DialogResult = DialogResult.OK;
             Close();
