@@ -31,7 +31,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
             } else {
-                MessageBox.Show("Please install me to ./CSMT/ inside your Cultist Simulator installation folder.", "I'm lost :(", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please install me your Cultist Simulator installation folder.", "I'm lost :(", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }

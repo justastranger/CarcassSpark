@@ -74,16 +74,14 @@
             // 
             // challengesDataGridView
             // 
-            this.challengesDataGridView.AllowUserToAddRows = false;
-            this.challengesDataGridView.AllowUserToDeleteRows = false;
             this.challengesDataGridView.AllowUserToResizeColumns = false;
+            this.challengesDataGridView.AllowUserToResizeRows = false;
             this.challengesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.challengesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.isBaseOrNull});
             this.challengesDataGridView.Location = new System.Drawing.Point(12, 75);
             this.challengesDataGridView.Name = "challengesDataGridView";
-            this.challengesDataGridView.ReadOnly = true;
             this.challengesDataGridView.Size = new System.Drawing.Size(356, 143);
             this.challengesDataGridView.TabIndex = 3;
             // 
@@ -91,14 +89,12 @@
             // 
             this.aspectId.HeaderText = "Aspect ID";
             this.aspectId.Name = "aspectId";
-            this.aspectId.ReadOnly = true;
             this.aspectId.Width = 157;
             // 
             // isBaseOrNull
             // 
             this.isBaseOrNull.HeaderText = "Base";
             this.isBaseOrNull.Name = "isBaseOrNull";
-            this.isBaseOrNull.ReadOnly = true;
             this.isBaseOrNull.Width = 156;
             // 
             // openRecipeButton

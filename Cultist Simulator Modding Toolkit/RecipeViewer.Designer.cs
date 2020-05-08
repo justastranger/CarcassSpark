@@ -152,6 +152,7 @@
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.startdescriptionTextBox.Size = new System.Drawing.Size(240, 80);
             this.startdescriptionTextBox.TabIndex = 5;
+            this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.startdescriptionTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -161,6 +162,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(240, 80);
             this.descriptionTextBox.TabIndex = 6;
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // craftableCheckBox
             // 
@@ -217,9 +219,8 @@
             // 
             // requirementsDataGridView
             // 
-            this.requirementsDataGridView.AllowUserToAddRows = false;
-            this.requirementsDataGridView.AllowUserToDeleteRows = false;
             this.requirementsDataGridView.AllowUserToResizeColumns = false;
+            this.requirementsDataGridView.AllowUserToResizeRows = false;
             this.requirementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requirementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
@@ -247,9 +248,8 @@
             // 
             // extantreqsDataGridView
             // 
-            this.extantreqsDataGridView.AllowUserToAddRows = false;
-            this.extantreqsDataGridView.AllowUserToDeleteRows = false;
             this.extantreqsDataGridView.AllowUserToResizeColumns = false;
+            this.extantreqsDataGridView.AllowUserToResizeRows = false;
             this.extantreqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.extantreqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.extantElementId,
@@ -286,16 +286,14 @@
             // 
             // tablereqsDataGridView
             // 
-            this.tablereqsDataGridView.AllowUserToAddRows = false;
-            this.tablereqsDataGridView.AllowUserToDeleteRows = false;
             this.tablereqsDataGridView.AllowUserToResizeColumns = false;
+            this.tablereqsDataGridView.AllowUserToResizeRows = false;
             this.tablereqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablereqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tableElementId,
             this.tableAmount});
             this.tablereqsDataGridView.Location = new System.Drawing.Point(504, 189);
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
-            this.tablereqsDataGridView.ReadOnly = true;
             this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.tablereqsDataGridView.TabIndex = 15;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablereqsDataGridView_CellDoubleClick);
@@ -304,14 +302,12 @@
             // 
             this.tableElementId.HeaderText = "Element ID";
             this.tableElementId.Name = "tableElementId";
-            this.tableElementId.ReadOnly = true;
             this.tableElementId.Width = 99;
             // 
             // tableAmount
             // 
             this.tableAmount.HeaderText = "Amount";
             this.tableAmount.Name = "tableAmount";
-            this.tableAmount.ReadOnly = true;
             this.tableAmount.Width = 98;
             // 
             // tablerequirementsLabel
@@ -345,16 +341,14 @@
             // 
             // effectsDataGridView
             // 
-            this.effectsDataGridView.AllowUserToAddRows = false;
-            this.effectsDataGridView.AllowUserToDeleteRows = false;
             this.effectsDataGridView.AllowUserToResizeColumns = false;
+            this.effectsDataGridView.AllowUserToResizeRows = false;
             this.effectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectsElementId,
             this.effectsAmount});
             this.effectsDataGridView.Location = new System.Drawing.Point(12, 333);
             this.effectsDataGridView.Name = "effectsDataGridView";
-            this.effectsDataGridView.ReadOnly = true;
             this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.effectsDataGridView.TabIndex = 19;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
@@ -363,14 +357,12 @@
             // 
             this.effectsElementId.HeaderText = "Element ID";
             this.effectsElementId.Name = "effectsElementId";
-            this.effectsElementId.ReadOnly = true;
             this.effectsElementId.Width = 99;
             // 
             // effectsAmount
             // 
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.ReadOnly = true;
             this.effectsAmount.Width = 98;
             // 
             // effectsLabel
@@ -384,16 +376,14 @@
             // 
             // aspectsDataGridView
             // 
-            this.aspectsDataGridView.AllowUserToAddRows = false;
-            this.aspectsDataGridView.AllowUserToDeleteRows = false;
             this.aspectsDataGridView.AllowUserToResizeColumns = false;
+            this.aspectsDataGridView.AllowUserToResizeRows = false;
             this.aspectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.aspectAmount});
             this.aspectsDataGridView.Location = new System.Drawing.Point(258, 333);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
-            this.aspectsDataGridView.ReadOnly = true;
             this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.aspectsDataGridView.TabIndex = 21;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
@@ -402,28 +392,24 @@
             // 
             this.aspectId.HeaderText = "Aspect ID";
             this.aspectId.Name = "aspectId";
-            this.aspectId.ReadOnly = true;
             this.aspectId.Width = 99;
             // 
             // aspectAmount
             // 
             this.aspectAmount.HeaderText = "Amount";
             this.aspectAmount.Name = "aspectAmount";
-            this.aspectAmount.ReadOnly = true;
             this.aspectAmount.Width = 98;
             // 
             // deckeffectDataGridView
             // 
-            this.deckeffectDataGridView.AllowUserToAddRows = false;
-            this.deckeffectDataGridView.AllowUserToDeleteRows = false;
             this.deckeffectDataGridView.AllowUserToResizeColumns = false;
+            this.deckeffectDataGridView.AllowUserToResizeRows = false;
             this.deckeffectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.deckeffectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deckId,
             this.deckDraws});
             this.deckeffectDataGridView.Location = new System.Drawing.Point(504, 333);
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
-            this.deckeffectDataGridView.ReadOnly = true;
             this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
             this.deckeffectDataGridView.TabIndex = 22;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deckeffectDataGridView_CellDoubleClick);
@@ -432,14 +418,12 @@
             // 
             this.deckId.HeaderText = "Deck ID";
             this.deckId.Name = "deckId";
-            this.deckId.ReadOnly = true;
             this.deckId.Width = 99;
             // 
             // deckDraws
             // 
             this.deckDraws.HeaderText = "Amount";
             this.deckDraws.Name = "deckDraws";
-            this.deckDraws.ReadOnly = true;
             this.deckDraws.Width = 98;
             // 
             // deckeffectLabel

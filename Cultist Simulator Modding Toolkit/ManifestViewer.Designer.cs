@@ -33,6 +33,8 @@
             this.modVersionTextBox = new System.Windows.Forms.TextBox();
             this.modDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.longDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // modNameTextBox
@@ -85,11 +87,33 @@
             this.longDescriptionTextBox.Text = "Mod Description";
             this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.longDescriptionTextBox_TextChanged);
             // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(12, 264);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 5;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(197, 264);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 6;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // ManifestViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 299);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.longDescriptionTextBox);
             this.Controls.Add(this.modDescriptionTextBox);
             this.Controls.Add(this.modVersionTextBox);
@@ -109,5 +133,7 @@
         private System.Windows.Forms.TextBox modVersionTextBox;
         private System.Windows.Forms.TextBox modDescriptionTextBox;
         private System.Windows.Forms.TextBox longDescriptionTextBox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

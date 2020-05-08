@@ -42,9 +42,9 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.requiredDataGridView = new System.Windows.Forms.DataGridView();
-            this.forbiddenDataGridView = new System.Windows.Forms.DataGridView();
             this.requiredId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requiredAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.forbiddenDataGridView = new System.Windows.Forms.DataGridView();
             this.forbiddenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forbiddenAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).BeginInit();
@@ -175,6 +175,8 @@
             // 
             // requiredDataGridView
             // 
+            this.requiredDataGridView.AllowUserToResizeColumns = false;
+            this.requiredDataGridView.AllowUserToResizeRows = false;
             this.requiredDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requiredDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.requiredId,
@@ -183,17 +185,6 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
-            // 
-            // forbiddenDataGridView
-            // 
-            this.forbiddenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.forbiddenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.forbiddenId,
-            this.forbiddenAmount});
-            this.forbiddenDataGridView.Location = new System.Drawing.Point(12, 316);
-            this.forbiddenDataGridView.Name = "forbiddenDataGridView";
-            this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
-            this.forbiddenDataGridView.TabIndex = 16;
             // 
             // requiredId
             // 
@@ -206,6 +197,19 @@
             this.requiredAmount.HeaderText = "Amount";
             this.requiredAmount.Name = "requiredAmount";
             this.requiredAmount.Width = 108;
+            // 
+            // forbiddenDataGridView
+            // 
+            this.forbiddenDataGridView.AllowUserToResizeColumns = false;
+            this.forbiddenDataGridView.AllowUserToResizeRows = false;
+            this.forbiddenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.forbiddenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.forbiddenId,
+            this.forbiddenAmount});
+            this.forbiddenDataGridView.Location = new System.Drawing.Point(12, 316);
+            this.forbiddenDataGridView.Name = "forbiddenDataGridView";
+            this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
+            this.forbiddenDataGridView.TabIndex = 16;
             // 
             // forbiddenId
             // 

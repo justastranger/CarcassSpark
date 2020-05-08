@@ -461,5 +461,15 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             displayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
         }
+
+        private void startdescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.startdescription = startdescriptionTextBox.Text;
+        }
+
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.description = descriptionTextBox.Text;
+        }
     }
 }

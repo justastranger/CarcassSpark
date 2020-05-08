@@ -136,16 +136,14 @@
             // 
             // effectsDataGridView
             // 
-            this.effectsDataGridView.AllowUserToAddRows = false;
-            this.effectsDataGridView.AllowUserToDeleteRows = false;
             this.effectsDataGridView.AllowUserToResizeColumns = false;
+            this.effectsDataGridView.AllowUserToResizeRows = false;
             this.effectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectId,
             this.effectsAmount});
             this.effectsDataGridView.Location = new System.Drawing.Point(12, 262);
             this.effectsDataGridView.Name = "effectsDataGridView";
-            this.effectsDataGridView.ReadOnly = true;
             this.effectsDataGridView.Size = new System.Drawing.Size(342, 103);
             this.effectsDataGridView.TabIndex = 8;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
@@ -154,14 +152,12 @@
             // 
             this.effectId.HeaderText = "Element ID";
             this.effectId.Name = "effectId";
-            this.effectId.ReadOnly = true;
             this.effectId.Width = 150;
             // 
             // effectsAmount
             // 
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.ReadOnly = true;
             this.effectsAmount.Width = 149;
             // 
             // excludesOnEndingListBox

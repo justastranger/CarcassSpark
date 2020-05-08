@@ -102,9 +102,8 @@
             // 
             // drawmessagesDataGridView
             // 
-            this.drawmessagesDataGridView.AllowUserToAddRows = false;
-            this.drawmessagesDataGridView.AllowUserToDeleteRows = false;
             this.drawmessagesDataGridView.AllowUserToResizeColumns = false;
+            this.drawmessagesDataGridView.AllowUserToResizeRows = false;
             this.drawmessagesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.drawmessagesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,

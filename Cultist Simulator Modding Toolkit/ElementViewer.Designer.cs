@@ -141,7 +141,6 @@
             this.xtriggerID,
             this.resultID});
             this.xtriggersDataGridView.Location = new System.Drawing.Point(255, 25);
-            this.xtriggersDataGridView.MultiSelect = false;
             this.xtriggersDataGridView.Name = "xtriggersDataGridView";
             this.xtriggersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.xtriggersDataGridView.Size = new System.Drawing.Size(248, 126);
@@ -196,7 +195,6 @@
             this.aspectId,
             this.amount});
             this.aspectsDataGridView.Location = new System.Drawing.Point(509, 25);
-            this.aspectsDataGridView.MultiSelect = false;
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);

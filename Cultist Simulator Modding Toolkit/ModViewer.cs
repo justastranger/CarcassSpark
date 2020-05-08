@@ -19,7 +19,7 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public string currentDirectory;
         public Manifest manifest;
-        public bool isVanilla, foundManifest;
+        public bool isVanilla, foundManifest, editMode = false;
         
         public Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
         public Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
@@ -35,6 +35,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.currentDirectory = location;
             this.isVanilla = isVanilla;
             toolStrip1.Visible = !this.isVanilla;
+            editModeCheckBox.Visible = !this.isVanilla;
 
             aspectsListBox.Items.Clear();
             aspectsList.Clear();
@@ -51,7 +52,6 @@ namespace Cultist_Simulator_Modding_Toolkit
             verbsListBox.Items.Clear();
             verbsList.Clear();
             
-            this.foundManifest = false;
             foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
             {
                 //MessageBox.Show(file);
@@ -71,10 +71,13 @@ namespace Cultist_Simulator_Modding_Toolkit
                 DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if(dr == DialogResult.Yes)
                 {
-                    ManifestViewer mv = new ManifestViewer(new Manifest("", "", "", "", ""));
-                    mv.ShowDialog();
-                    manifest = mv.displayedManifest;
-                    foundManifest = true;
+                    ManifestViewer mv = new ManifestViewer(new Manifest());
+                    DialogResult mvdr = mv.ShowDialog();
+                    if(mvdr == DialogResult.OK)
+                    {
+                        manifest = mv.displayedManifest;
+                        foundManifest = true;
+                    }
                 }
             }
         }
@@ -91,15 +94,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = SimpleJsonImporter.Import(fileText);
-            //MessageBox.Show(ht.Keys.Count.ToString());
             string newFileText = JsonConvert.SerializeObject(ht);
-            //JObject parsedJToken = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(ht)); ;
-            //string regexCleaner = r'(?<![ "])(\b[\w\.] +):[ ]?([a-zA-Z\.\-\d_]+)';
-            //MessageBox.Show(regexCleaner);
-            //string regexReplacer = r"\"$1\":\"$2\"";
-            //MessageBox.Show(fileText);
-            //fileText = Regex.Replace(fileText, regexCleaner, regexReplacer, RegexOptions.IgnoreCase&RegexOptions.Singleline&RegexOptions.CultureInvariant, Regex.InfiniteMatchTimeout);
-            //MessageBox.Show(fileText);
             JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(newFileText).First;
             string fileType = parsedJToken.Path;
             switch (fileType)
@@ -277,35 +272,35 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), false);
+            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), editMode);
             dv.ShowDialog();
         }
 
         private void recipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), false);
+            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), editMode);
             rv.ShowDialog();
         }
 
         private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (legaciesListBox.SelectedItem == null) return;
-            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), false);
+            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), editMode);
             lv.ShowDialog();
         }
 
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (endingsListBox.SelectedItem == null) return;
-            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), false);
+            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), editMode);
             ev.ShowDialog();
         }
 
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (verbsListBox.SelectedItem == null) return;
-            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), false);
+            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), editMode);
             vv.ShowDialog();
         }
 
@@ -313,22 +308,22 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), false);
+            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), editMode);
             ev.ShowDialog();
         }
 
         private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), false);
+            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), editMode);
             av.ShowDialog();
         }
 
         private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManifestViewer mv = new ManifestViewer(manifest);
-            mv.ShowDialog();
-            manifest = mv.displayedManifest;
+            DialogResult dr = mv.ShowDialog();
+            if(dr == DialogResult.OK) manifest = mv.displayedManifest;
         }
         
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
@@ -506,6 +501,11 @@ namespace Cultist_Simulator_Modding_Toolkit
                     recipesListBox.Items.Add(rv.displayedRecipe.id);
                 }
             }
+        }
+
+        private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            editMode = editModeCheckBox.Checked;
         }
 
         private void ModViewer_Shown(object sender, EventArgs e)

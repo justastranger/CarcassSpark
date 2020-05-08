@@ -28,5 +28,14 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.description = description;
             this.description_long = description_long;
         }
+
+        public Manifest()
+        {
+            name = "";
+            author = "";
+            version = "";
+            description = "";
+            description_long = "";
+        }
     }
 }

@@ -55,6 +55,7 @@
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editModeCheckBox = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -298,11 +299,23 @@
             this.saveModToolStripMenuItem.Text = "Save Mod";
             this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
             // 
+            // editModeCheckBox
+            // 
+            this.editModeCheckBox.AutoSize = true;
+            this.editModeCheckBox.Location = new System.Drawing.Point(844, 8);
+            this.editModeCheckBox.Name = "editModeCheckBox";
+            this.editModeCheckBox.Size = new System.Drawing.Size(74, 17);
+            this.editModeCheckBox.TabIndex = 16;
+            this.editModeCheckBox.Text = "Edit Mode";
+            this.editModeCheckBox.UseVisualStyleBackColor = true;
+            this.editModeCheckBox.CheckedChanged += new System.EventHandler(this.editModeCheckBox_CheckedChanged);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 369);
+            this.Controls.Add(this.editModeCheckBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.verbsLabel);
             this.Controls.Add(this.verbsListBox);
@@ -357,6 +370,7 @@
         private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
+        private System.Windows.Forms.CheckBox editModeCheckBox;
     }
 }
 
