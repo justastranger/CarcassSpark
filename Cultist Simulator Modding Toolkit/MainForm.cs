@@ -19,14 +19,23 @@ namespace Cultist_Simulator_Modding_Toolkit
         public MainForm()
         {
             InitializeComponent();
-
-            ModViewer mv = new ModViewer(directoryToVanillaContent, true);
-            Utilities.currentMods.Add(mv);
-            mv.Show();
+            //ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+            //Utilities.currentMods.Add(mv);
+            //mv.Show();
         }
 
         private void loadVanillaButton_Click(object sender, EventArgs e)
         {
+            
+            //folderBrowserDialog1.SelectedPath = currentDirectory;
+            //DialogResult dr = folderBrowserDialog1.ShowDialog();
+            //if (dr == DialogResult.OK)
+            //{
+            //    string location = folderBrowserDialog1.SelectedPath;
+            //    ModViewer mv = new ModViewer(location, true);
+            //    Utilities.currentMods.Add(mv);
+            //    mv.Show();
+            //}
             ModViewer mv = new ModViewer(directoryToVanillaContent, true);
             Utilities.currentMods.Add(mv);
             mv.Show();

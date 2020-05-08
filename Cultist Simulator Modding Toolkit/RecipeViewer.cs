@@ -319,6 +319,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (tablereqsDataGridView.RowCount > 1)
             {
+                displayedRecipe.tablereqs = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in tablereqsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.tablereqs.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
@@ -326,6 +327,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (effectsDataGridView.RowCount > 1)
             {
+                displayedRecipe.effects = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
@@ -333,6 +335,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (aspectsDataGridView.RowCount > 1)
             {
+                displayedRecipe.aspects = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
@@ -340,6 +343,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             if (deckeffectDataGridView.RowCount > 1)
             {
+                displayedRecipe.deckeffect = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in deckeffectDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.deckeffect.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));

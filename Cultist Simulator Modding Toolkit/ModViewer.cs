@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -80,14 +82,25 @@ namespace Cultist_Simulator_Modding_Toolkit
         public void loadManifest(FileStream file)
         {
             string fileText = new StreamReader(file).ReadToEnd();
-            manifest = JsonConvert.DeserializeObject<Manifest>(fileText);
+            Hashtable ht = SimpleJsonImporter.Import(fileText);
+            manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));;
         }
 
         public void loadFile(FileStream file)
         {
 
             string fileText = new StreamReader(file).ReadToEnd();
-            JToken parsedJToken = JsonConvert.DeserializeObject<JToken>(fileText).First;
+            Hashtable ht = SimpleJsonImporter.Import(fileText);
+            //MessageBox.Show(ht.Keys.Count.ToString());
+            string newFileText = JsonConvert.SerializeObject(ht);
+            //JObject parsedJToken = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(ht)); ;
+            //string regexCleaner = r'(?<![ "])(\b[\w\.] +):[ ]?([a-zA-Z\.\-\d_]+)';
+            //MessageBox.Show(regexCleaner);
+            //string regexReplacer = r"\"$1\":\"$2\"";
+            //MessageBox.Show(fileText);
+            //fileText = Regex.Replace(fileText, regexCleaner, regexReplacer, RegexOptions.IgnoreCase&RegexOptions.Singleline&RegexOptions.CultureInvariant, Regex.InfiniteMatchTimeout);
+            //MessageBox.Show(fileText);
+            JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(newFileText).First;
             string fileType = parsedJToken.Path;
             switch (fileType)
             {
