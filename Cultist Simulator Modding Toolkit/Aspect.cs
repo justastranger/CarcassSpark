@@ -103,12 +103,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             public string id;
             public int chance;
+            public bool? additional;
 
             [JsonConstructor]
-            public Induces(string id, int chance)
+            public Induces(string id, int chance, bool? additional)
             {
                 this.id = id;
                 this.chance = chance;
+                this.additional = additional;
             }
         }
     }

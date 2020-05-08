@@ -47,6 +47,7 @@
             this.iconLabel = new System.Windows.Forms.Label();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
+            this.inducesAdditional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +93,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(492, 69);
+            this.descriptionTextBox.Size = new System.Drawing.Size(630, 69);
             this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -112,10 +113,11 @@
             this.inducesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inducesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.recipeId,
-            this.chance});
+            this.chance,
+            this.inducesAdditional});
             this.inducesDataGridView.Location = new System.Drawing.Point(287, 31);
             this.inducesDataGridView.Name = "inducesDataGridView";
-            this.inducesDataGridView.Size = new System.Drawing.Size(217, 143);
+            this.inducesDataGridView.Size = new System.Drawing.Size(355, 143);
             this.inducesDataGridView.TabIndex = 6;
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
             // 
@@ -123,13 +125,13 @@
             // 
             this.recipeId.HeaderText = "Recipe ID";
             this.recipeId.Name = "recipeId";
-            this.recipeId.Width = 87;
+            this.recipeId.Width = 104;
             // 
             // chance
             // 
             this.chance.HeaderText = "Chance";
             this.chance.Name = "chance";
-            this.chance.Width = 87;
+            this.chance.Width = 104;
             // 
             // extendsTextBox
             // 
@@ -152,7 +154,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(395, 255);
+            this.cancelButton.Location = new System.Drawing.Point(542, 260);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 38);
             this.cancelButton.TabIndex = 9;
@@ -227,11 +229,17 @@
             this.descriptionLabel.TabIndex = 17;
             this.descriptionLabel.Text = "Description";
             // 
+            // inducesAdditional
+            // 
+            this.inducesAdditional.HeaderText = "Additional?";
+            this.inducesAdditional.Name = "inducesAdditional";
+            this.inducesAdditional.Width = 104;
+            // 
             // AspectViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 310);
+            this.ClientSize = new System.Drawing.Size(654, 310);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.iconLabel);
@@ -279,5 +287,6 @@
         private System.Windows.Forms.Label iconLabel;
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn inducesAdditional;
     }
 }

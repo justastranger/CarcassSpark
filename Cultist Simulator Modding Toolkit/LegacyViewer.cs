@@ -68,22 +68,21 @@ namespace Cultist_Simulator_Modding_Toolkit
             cancelButton.Text = editing ? "Cancel" : "Close";
             addExcludesButton.Visible = editing;
             addExcludesTextBox.Visible = editing;
+            removeButton.Visible = editing;
             excludeAddLabel.Visible = editing;
         }
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+            ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
             ev.ShowDialog();
         }
 
         private void excludesOnEndingListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (editing) return;
             string id = excludesOnEndingListBox.SelectedItem.ToString();
-            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), false);
+            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), editing);
             lv.ShowDialog();
         }
 
@@ -170,6 +169,15 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
         {
             displayedLegacy.availableWithoutEndingMatch = availableWithoutEndingMatchCheckBox.Checked;
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListBox.SelectedItem.ToString()))
+            {
+                displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListBox.SelectedItem.ToString());
+                excludesOnEndingListBox.Items.Remove(excludesOnEndingListBox.SelectedItem);
+            }
         }
     }
 }

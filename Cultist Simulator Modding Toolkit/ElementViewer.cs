@@ -59,6 +59,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             aspectsDataGridView.ReadOnly = !editing;
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
+            removeSlotButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
@@ -75,8 +76,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                 iconTextBox.Text = element.icon;
                 pictureBox1.Image = Utilities.getElementImage(element.icon);
             }
-            if (element.animFrames.HasValue) animFramesNumericUpDown.Value = element.animFrames.Value;
-            if (element.lifeTime.HasValue) lifetimeNumericUpDown.Value = element.lifeTime.Value;
+            if (element.animframes.HasValue) animFramesNumericUpDown.Value = element.animframes.Value;
+            if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
             if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
             if (element.uniquenessgroup != null) uniquenessgroupTextBox.Text = element.uniquenessgroup;
@@ -109,31 +110,29 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListBox.SelectedItem == null || editing) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], false);
+            if (slotsListBox.SelectedItem == null) return;
+            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], editing);
             sv.ShowDialog();
         }
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), false);
+            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), editing);
             av.ShowDialog();
         }
 
         private void xtriggersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string id = xtriggersDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
                 ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), editing);
                 av.ShowDialog();
             }
             else
@@ -204,12 +203,12 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void lifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedElement.lifeTime = Convert.ToInt32(lifetimeNumericUpDown.Value);
+            displayedElement.lifetime = Convert.ToInt32(lifetimeNumericUpDown.Value);
         }
 
         private void animFramesNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedElement.animFrames = Convert.ToInt32(animFramesNumericUpDown.Value);
+            displayedElement.animframes = Convert.ToInt32(animFramesNumericUpDown.Value);
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)

@@ -69,8 +69,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             deckeffectDataGridView.AllowUserToAddRows = editing;
             deckeffectDataGridView.AllowUserToDeleteRows = editing;
             addAlternativeRecipeButton.Visible = editing;
+            removeAlternativeRecipeButton.Visible = editing;
             addLinkedRecipeButton.Visible = editing;
+            removeLinkedRecipeButton.Visible = editing;
             addMutationButton.Visible = editing;
+            removeMutationButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
@@ -198,7 +201,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             if (displayedRecipe.slots == null && editing)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true);
+                SlotViewer sv = new SlotViewer(new Slot(), true, true);
                 sv.ShowDialog();
                 if (sv.DialogResult == DialogResult.OK)
                 {
@@ -207,7 +210,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
             else if (displayedRecipe.slots != null)
             {
-                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0], editing);
+                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0], editing, true);
                 sv.ShowDialog();
                 if (sv.DialogResult == DialogResult.OK)
                 {
@@ -218,22 +221,22 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void alternativerecipesListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (alternativerecipesListBox.SelectedItem == null || editing) return;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativerecipesListBox.SelectedItem.ToString()], false);
+            if (alternativerecipesListBox.SelectedItem == null) return;
+            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativerecipesListBox.SelectedItem.ToString()], editing);
             rlv.ShowDialog();
         }
 
         private void linkedListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (linkedListBox.SelectedItem == null || editing) return;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedListBox.SelectedItem.ToString()], false);
+            if (linkedListBox.SelectedItem == null) return;
+            RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedListBox.SelectedItem.ToString()], editing);
             rlv.ShowDialog();
         }
 
         private void mutationsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (mutationsListBox.SelectedItem == null || editing) return;
-            MutationViewer mv = new MutationViewer(mutations[mutationsListBox.SelectedItem.ToString()], false);
+            if (mutationsListBox.SelectedItem == null) return;
+            MutationViewer mv = new MutationViewer(mutations[mutationsListBox.SelectedItem.ToString()], editing);
             mv.ShowDialog();
         }
 
@@ -470,6 +473,66 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.description = descriptionTextBox.Text;
+        }
+
+        private void requirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if(displayedRecipe.requirements.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.requirements.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void extantreqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipe.extantreqs.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.extantreqs.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void tablereqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipe.tablereqs.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.tablereqs.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void effectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipe.effects.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.effects.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipe.aspects.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.aspects.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void deckeffectDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipe.deckeffect.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.deckeffect.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void removeAlternativeRecipeButton_Click(object sender, EventArgs e)
+        {
+            if (alternativerecipesListBox.SelectedItem != null)
+            {
+                displayedRecipe.alternativerecipes.Remove(alternativerecipeLinks[alternativerecipesListBox.SelectedItem.ToString()]);
+                alternativerecipeLinks.Remove(alternativerecipesListBox.SelectedItem.ToString());
+                alternativerecipesListBox.Items.Remove(alternativerecipesListBox.SelectedItem);
+            }
+        }
+
+        private void removeLinkedRecipeButton_Click(object sender, EventArgs e)
+        {
+            if (linkedListBox.SelectedItem != null)
+            {
+                displayedRecipe.linked.Remove(recipeLinks[linkedListBox.SelectedItem.ToString()]);
+                recipeLinks.Remove(linkedListBox.SelectedItem.ToString());
+                linkedListBox.Items.Remove(linkedListBox.SelectedItem);
+            }
+        }
+
+        private void removeMutationButton_Click(object sender, EventArgs e)
+        {
+            if (mutationsListBox.SelectedItem != null)
+            {
+                displayedRecipe.mutations.Remove(mutations[mutationsListBox.SelectedItem.ToString()]);
+                mutations.Remove(mutationsListBox.SelectedItem.ToString());
+                mutationsListBox.Items.Remove(mutationsListBox.SelectedItem);
+            }
         }
     }
 }

@@ -92,22 +92,23 @@ namespace Cultist_Simulator_Modding_Toolkit
             drawmessagesDataGridView.AllowUserToDeleteRows = editing;
             newCardTextBox.Visible = editing;
             newCardButton.Visible = editing;
+            removeCardButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void specListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (specListBox.SelectedItem == null || editing) return;
+            if (specListBox.SelectedItem == null) return;
             string id = specListBox.SelectedItem.ToString();
             if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), false);
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), editing);
                 dv.ShowDialog();
             }
             else if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
                 ev.ShowDialog();
             }
         }

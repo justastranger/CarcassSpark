@@ -61,6 +61,7 @@
             this.extendsLabel = new System.Windows.Forms.Label();
             this.decayToLabel = new System.Windows.Forms.Label();
             this.addSlotButton = new System.Windows.Forms.Button();
+            this.removeSlotButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
@@ -377,11 +378,21 @@
             this.addSlotButton.UseVisualStyleBackColor = true;
             this.addSlotButton.Click += new System.EventHandler(this.addSlotButton_Click);
             // 
+            // removeSlotButton
+            // 
+            this.removeSlotButton.Location = new System.Drawing.Point(590, 310);
+            this.removeSlotButton.Name = "removeSlotButton";
+            this.removeSlotButton.Size = new System.Drawing.Size(86, 23);
+            this.removeSlotButton.TabIndex = 31;
+            this.removeSlotButton.Text = "Remove Slot";
+            this.removeSlotButton.UseVisualStyleBackColor = true;
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 345);
+            this.Controls.Add(this.removeSlotButton);
             this.Controls.Add(this.addSlotButton);
             this.Controls.Add(this.decayToLabel);
             this.Controls.Add(this.extendsLabel);
@@ -458,5 +469,6 @@
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label decayToLabel;
         private System.Windows.Forms.Button addSlotButton;
+        private System.Windows.Forms.Button removeSlotButton;
     }
 }

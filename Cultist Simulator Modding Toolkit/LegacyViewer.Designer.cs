@@ -55,6 +55,7 @@
             this.addExcludesTextBox = new System.Windows.Forms.TextBox();
             this.addExcludesButton = new System.Windows.Forms.Button();
             this.excludeAddLabel = new System.Windows.Forms.Label();
+            this.removeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -166,7 +167,7 @@
             this.excludesOnEndingListBox.Location = new System.Drawing.Point(130, 390);
             this.excludesOnEndingListBox.Name = "excludesOnEndingListBox";
             this.excludesOnEndingListBox.ScrollAlwaysVisible = true;
-            this.excludesOnEndingListBox.Size = new System.Drawing.Size(225, 56);
+            this.excludesOnEndingListBox.Size = new System.Drawing.Size(225, 69);
             this.excludesOnEndingListBox.TabIndex = 9;
             this.excludesOnEndingListBox.DoubleClick += new System.EventHandler(this.excludesOnEndingListBox_DoubleClick);
             // 
@@ -181,7 +182,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 433);
+            this.okButton.Location = new System.Drawing.Point(12, 468);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 25);
             this.okButton.TabIndex = 11;
@@ -263,7 +264,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(12, 464);
+            this.cancelButton.Location = new System.Drawing.Point(254, 468);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 23);
             this.cancelButton.TabIndex = 20;
@@ -282,15 +283,15 @@
             // 
             // addExcludesTextBox
             // 
-            this.addExcludesTextBox.Location = new System.Drawing.Point(130, 468);
+            this.addExcludesTextBox.Location = new System.Drawing.Point(12, 401);
             this.addExcludesTextBox.Name = "addExcludesTextBox";
-            this.addExcludesTextBox.Size = new System.Drawing.Size(87, 20);
+            this.addExcludesTextBox.Size = new System.Drawing.Size(112, 20);
             this.addExcludesTextBox.TabIndex = 22;
             this.addExcludesTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addExcludesTextBox_KeyDown);
             // 
             // addExcludesButton
             // 
-            this.addExcludesButton.Location = new System.Drawing.Point(241, 452);
+            this.addExcludesButton.Location = new System.Drawing.Point(11, 427);
             this.addExcludesButton.Name = "addExcludesButton";
             this.addExcludesButton.Size = new System.Drawing.Size(113, 35);
             this.addExcludesButton.TabIndex = 23;
@@ -301,17 +302,28 @@
             // excludeAddLabel
             // 
             this.excludeAddLabel.AutoSize = true;
-            this.excludeAddLabel.Location = new System.Drawing.Point(127, 452);
+            this.excludeAddLabel.Location = new System.Drawing.Point(9, 385);
             this.excludeAddLabel.Name = "excludeAddLabel";
             this.excludeAddLabel.Size = new System.Drawing.Size(109, 13);
             this.excludeAddLabel.TabIndex = 24;
             this.excludeAddLabel.Text = "Legacy ID to Exclude";
+            // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(130, 468);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(75, 23);
+            this.removeButton.TabIndex = 25;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // LegacyViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(367, 499);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.excludeAddLabel);
             this.Controls.Add(this.addExcludesButton);
             this.Controls.Add(this.addExcludesTextBox);
@@ -375,5 +387,6 @@
         private System.Windows.Forms.TextBox addExcludesTextBox;
         private System.Windows.Forms.Button addExcludesButton;
         private System.Windows.Forms.Label excludeAddLabel;
+        private System.Windows.Forms.Button removeButton;
     }
 }

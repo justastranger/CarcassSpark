@@ -16,10 +16,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> required, forbidden;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? greedy;
+        public bool? greedy, consumes;
 
         [JsonConstructor]
-        public Slot(string id, string label, string description, bool? greedy, JObject required = null, string actionId = null, JObject forbidden = null)
+        public Slot(string id, string label, string description, bool? greedy, bool? consumes, JObject required = null, string actionId = null, JObject forbidden = null)
         {
             //necessary
             this.id = id;
@@ -40,10 +40,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             if (forbidden != null) this.forbidden = forbidden.ToObject<Dictionary<string, int>>();
             // optional
-            if (greedy.HasValue) this.greedy = greedy;
+            this.greedy = greedy;
+            this.consumes = consumes;
         }
 
-        public Slot(string id, string label, Dictionary<string, int> required, string description, bool? greedy, string actionId = null, Dictionary<string, int> forbidden = null)
+        public Slot(string id, string label, Dictionary<string, int> required, string description, bool? greedy, bool? consumes, string actionId = null, Dictionary<string, int> forbidden = null)
         {
             //necessary
             this.id = id;
@@ -58,7 +59,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             // optional
             this.forbidden = forbidden;
             // optional
-            if (greedy.HasValue) this.greedy = greedy;
+            this.greedy = greedy;
+            // optional
+            this.consumes = consumes;
         }
 
         public Slot()

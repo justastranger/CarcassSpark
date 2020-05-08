@@ -13,33 +13,50 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class SlotViewer : Form
     {
         public Slot displayedSlot;
-        public bool editing;
+        public bool editing, recipeSlot;
+
+        public SlotViewer(Slot slot, bool? editing, bool? recipeSlot)
+        {
+            InitializeComponent();
+            this.displayedSlot = slot;
+            fillValues(slot);
+            if (recipeSlot.HasValue) this.recipeSlot = recipeSlot.Value;
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
 
         public SlotViewer(Slot slot, bool? editing)
         {
             InitializeComponent();
             this.displayedSlot = slot;
+            fillValues(slot);
+            recipeSlot = false;
+            if (editing.HasValue) setEditingMode(editing.Value);
+            else setEditingMode(false);
+        }
+
+        void fillValues(Slot slot)
+        {
             idTextBox.Text = slot.id;
             labelTextBox.Text = slot.label;
             descriptionTextBox.Text = slot.description;
             actionIdTextBox.Text = slot.actionId;
             if (slot.greedy.HasValue) greedyCheckBox.Checked = slot.greedy.Value;
+            if (slot.consumes.HasValue) consumesCheckBox.Checked = slot.consumes.Value;
             if (slot.required != null)
             {
                 foreach (KeyValuePair<string, int> req in slot.required)
                 {
                     requiredDataGridView.Rows.Add(req.Key, req.Value);
-                } 
+                }
             }
             if (slot.forbidden != null)
             {
                 foreach (KeyValuePair<string, int> req in slot.forbidden)
                 {
                     forbiddenDataGridView.Rows.Add(req.Key, req.Value);
-                } 
+                }
             }
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
         }
 
         void setEditingMode(bool editing)
@@ -48,8 +65,13 @@ namespace Cultist_Simulator_Modding_Toolkit
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
+            actionIdTextBox.Visible = !recipeSlot;
+            actionIdLabel.Visible = !recipeSlot;
             actionIdTextBox.ReadOnly = !editing;
             greedyCheckBox.Enabled = editing;
+            greedyCheckBox.Visible = recipeSlot;
+            consumesCheckBox.Enabled = editing;
+            consumesCheckBox.Visible = !recipeSlot;
             requiredDataGridView.AllowUserToAddRows = editing;
             requiredDataGridView.AllowUserToDeleteRows = editing;
             requiredDataGridView.ReadOnly = !editing;
@@ -62,7 +84,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -78,7 +99,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -143,6 +163,21 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.greedy = greedyCheckBox.Checked;
+        }
+
+        private void requiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
+        }
+
+        private void consumesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedSlot.consumes = consumesCheckBox.Checked;
+        }
+
+        private void forbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
         }
     }
 }

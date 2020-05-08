@@ -89,6 +89,9 @@
             this.burnImageLabel = new System.Windows.Forms.Label();
             this.startDescriptionLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
+            this.removeAlternativeRecipeButton = new System.Windows.Forms.Button();
+            this.removeLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.removeMutationButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablereqsDataGridView)).BeginInit();
@@ -231,6 +234,7 @@
             this.requirementsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.requirementsDataGridView.TabIndex = 12;
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requirementsDataGridView_CellDoubleClick);
+            this.requirementsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requirementsDataGridView_UserDeletedRow);
             // 
             // elementId
             // 
@@ -260,6 +264,7 @@
             this.extantreqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.extantreqsDataGridView.TabIndex = 13;
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.extantreqsDataGridView_CellDoubleClick);
+            this.extantreqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.extantreqsDataGridView_UserDeletedRow);
             // 
             // extantElementId
             // 
@@ -297,6 +302,7 @@
             this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.tablereqsDataGridView.TabIndex = 15;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablereqsDataGridView_CellDoubleClick);
+            this.tablereqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablereqsDataGridView_UserDeletedRow);
             // 
             // tableElementId
             // 
@@ -352,6 +358,7 @@
             this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.effectsDataGridView.TabIndex = 19;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
+            this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserDeletedRow);
             // 
             // effectsElementId
             // 
@@ -387,6 +394,7 @@
             this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.aspectsDataGridView.TabIndex = 21;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
+            this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserDeletedRow);
             // 
             // aspectId
             // 
@@ -413,6 +421,7 @@
             this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
             this.deckeffectDataGridView.TabIndex = 22;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deckeffectDataGridView_CellDoubleClick);
+            this.deckeffectDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deckeffectDataGridView_UserDeletedRow);
             // 
             // deckId
             // 
@@ -534,9 +543,9 @@
             // 
             this.addAlternativeRecipeButton.Location = new System.Drawing.Point(12, 604);
             this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
-            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(240, 23);
+            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(120, 23);
             this.addAlternativeRecipeButton.TabIndex = 38;
-            this.addAlternativeRecipeButton.Text = "Add Alternative Recipe";
+            this.addAlternativeRecipeButton.Text = "Add Alternative";
             this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.addAlternativeRecipeButton.Click += new System.EventHandler(this.addAlternativeRecipeButton_Click);
             // 
@@ -544,7 +553,7 @@
             // 
             this.addLinkedRecipeButton.Location = new System.Drawing.Point(258, 604);
             this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
-            this.addLinkedRecipeButton.Size = new System.Drawing.Size(240, 23);
+            this.addLinkedRecipeButton.Size = new System.Drawing.Size(120, 23);
             this.addLinkedRecipeButton.TabIndex = 39;
             this.addLinkedRecipeButton.Text = "Add Linked Recipe";
             this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -554,7 +563,7 @@
             // 
             this.addMutationButton.Location = new System.Drawing.Point(504, 604);
             this.addMutationButton.Name = "addMutationButton";
-            this.addMutationButton.Size = new System.Drawing.Size(240, 23);
+            this.addMutationButton.Size = new System.Drawing.Size(120, 23);
             this.addMutationButton.TabIndex = 40;
             this.addMutationButton.Text = "Add Mutation";
             this.addMutationButton.UseVisualStyleBackColor = true;
@@ -666,11 +675,44 @@
             this.descriptionLabel.TabIndex = 52;
             this.descriptionLabel.Text = "Description";
             // 
+            // removeAlternativeRecipeButton
+            // 
+            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(132, 604);
+            this.removeAlternativeRecipeButton.Name = "removeAlternativeRecipeButton";
+            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.removeAlternativeRecipeButton.TabIndex = 53;
+            this.removeAlternativeRecipeButton.Text = "Remove";
+            this.removeAlternativeRecipeButton.UseVisualStyleBackColor = true;
+            this.removeAlternativeRecipeButton.Click += new System.EventHandler(this.removeAlternativeRecipeButton_Click);
+            // 
+            // removeLinkedRecipeButton
+            // 
+            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(378, 604);
+            this.removeLinkedRecipeButton.Name = "removeLinkedRecipeButton";
+            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.removeLinkedRecipeButton.TabIndex = 54;
+            this.removeLinkedRecipeButton.Text = "Remove";
+            this.removeLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.removeLinkedRecipeButton.Click += new System.EventHandler(this.removeLinkedRecipeButton_Click);
+            // 
+            // removeMutationButton
+            // 
+            this.removeMutationButton.Location = new System.Drawing.Point(624, 604);
+            this.removeMutationButton.Name = "removeMutationButton";
+            this.removeMutationButton.Size = new System.Drawing.Size(120, 23);
+            this.removeMutationButton.TabIndex = 55;
+            this.removeMutationButton.Text = "Remove";
+            this.removeMutationButton.UseVisualStyleBackColor = true;
+            this.removeMutationButton.Click += new System.EventHandler(this.removeMutationButton_Click);
+            // 
             // RecipeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 668);
+            this.Controls.Add(this.removeMutationButton);
+            this.Controls.Add(this.removeLinkedRecipeButton);
+            this.Controls.Add(this.removeAlternativeRecipeButton);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.startDescriptionLabel);
             this.Controls.Add(this.burnImageLabel);
@@ -798,5 +840,8 @@
         private System.Windows.Forms.Label burnImageLabel;
         private System.Windows.Forms.Label startDescriptionLabel;
         private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.Button removeAlternativeRecipeButton;
+        private System.Windows.Forms.Button removeLinkedRecipeButton;
+        private System.Windows.Forms.Button removeMutationButton;
     }
 }

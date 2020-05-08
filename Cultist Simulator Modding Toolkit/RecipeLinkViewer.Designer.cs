@@ -84,6 +84,7 @@
             this.challengesDataGridView.Name = "challengesDataGridView";
             this.challengesDataGridView.Size = new System.Drawing.Size(356, 143);
             this.challengesDataGridView.TabIndex = 3;
+            this.challengesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserDeletedRow);
             // 
             // aspectId
             // 

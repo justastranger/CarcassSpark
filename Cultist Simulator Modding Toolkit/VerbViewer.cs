@@ -50,13 +50,14 @@ namespace Cultist_Simulator_Modding_Toolkit
             descriptionTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
+            removeButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
         private void slotsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListBox.SelectedItem == null || editing) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], false);
+            if (slotsListBox.SelectedItem == null) return;
+            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], editing);
             sv.ShowDialog();
         }
 
@@ -106,6 +107,16 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.description = descriptionTextBox.Text;
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if (slots.ContainsKey(slotsListBox.SelectedItem.ToString()))
+            {
+                displayedVerb.slots.Remove(slots[slotsListBox.SelectedItem.ToString()]);
+                slots.Remove(slotsListBox.SelectedItem.ToString());
+                slotsListBox.Items.Remove(slotsListBox.SelectedItem);
+            }
         }
     }
 }

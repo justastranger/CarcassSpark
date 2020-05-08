@@ -94,5 +94,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             displayedRecipeLink.additional = additionalCheckBox.Checked;
         }
+
+        private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
+        }
     }
 }

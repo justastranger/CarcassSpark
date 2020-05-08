@@ -50,6 +50,7 @@
             this.commentsLabel = new System.Windows.Forms.Label();
             this.defaultCardLabel = new System.Windows.Forms.Label();
             this.drawmessagesLlabel = new System.Windows.Forms.Label();
+            this.removeCardButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -165,17 +166,17 @@
             // 
             this.newCardTextBox.Location = new System.Drawing.Point(286, 256);
             this.newCardTextBox.Name = "newCardTextBox";
-            this.newCardTextBox.Size = new System.Drawing.Size(162, 20);
+            this.newCardTextBox.Size = new System.Drawing.Size(116, 20);
             this.newCardTextBox.TabIndex = 10;
             this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.newCardTextBox_KeyDown);
             // 
             // newCardButton
             // 
-            this.newCardButton.Location = new System.Drawing.Point(454, 254);
+            this.newCardButton.Location = new System.Drawing.Point(408, 253);
             this.newCardButton.Name = "newCardButton";
-            this.newCardButton.Size = new System.Drawing.Size(92, 23);
+            this.newCardButton.Size = new System.Drawing.Size(66, 23);
             this.newCardButton.TabIndex = 11;
-            this.newCardButton.Text = "Insert Card";
+            this.newCardButton.Text = "Insert";
             this.newCardButton.UseVisualStyleBackColor = true;
             this.newCardButton.Click += new System.EventHandler(this.newCardButton_Click);
             // 
@@ -253,11 +254,21 @@
             this.drawmessagesLlabel.TabIndex = 19;
             this.drawmessagesLlabel.Text = "Draw Messages";
             // 
+            // removeCardButton
+            // 
+            this.removeCardButton.Location = new System.Drawing.Point(480, 253);
+            this.removeCardButton.Name = "removeCardButton";
+            this.removeCardButton.Size = new System.Drawing.Size(66, 23);
+            this.removeCardButton.TabIndex = 20;
+            this.removeCardButton.Text = "Remove";
+            this.removeCardButton.UseVisualStyleBackColor = true;
+            // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.removeCardButton);
             this.Controls.Add(this.drawmessagesLlabel);
             this.Controls.Add(this.defaultCardLabel);
             this.Controls.Add(this.commentsLabel);
@@ -311,5 +322,6 @@
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.Label defaultCardLabel;
         private System.Windows.Forms.Label drawmessagesLlabel;
+        private System.Windows.Forms.Button removeCardButton;
     }
 }

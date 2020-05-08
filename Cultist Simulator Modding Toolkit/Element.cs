@@ -19,7 +19,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> xtriggers;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? animFrames, lifeTime;
+        public int? animframes, lifetime;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? unique, resaturate;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -29,7 +29,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Element(string id, string label, string description, bool? unique,
                        string icon, string comments, JToken aspects,
                        JArray slots, JToken xtriggers, int? animFrames,
-                       int? lifeTime, string decayTo, string uniquenessgroup, JArray extends, bool? resaturate)
+                       int? lifetime, string decayTo, string uniquenessgroup, JArray extends, bool? resaturate)
         {
             // necessary
             this.id = id;
@@ -45,20 +45,20 @@ namespace Cultist_Simulator_Modding_Toolkit
             // not necessary (stay of execution)
             if (aspects != null) this.aspects = aspects.ToObject<Dictionary<string, int>>();
             // not necessary
-            if (slots != null) this.slots = slots.ToObject<List<Slot>>(); //JsonConvert.DeserializeObject<Slot[]>(JsonConvert.SerializeObject(slots));
+            if (slots != null) this.slots = slots.ToObject<List<Slot>>();
             // not necessary
             if (xtriggers != null) this.xtriggers = xtriggers.ToObject<Dictionary<string, string>>();
             // not necessary
-            if (animFrames.HasValue) this.animFrames = animFrames;
+            if (animFrames.HasValue) this.animframes = animFrames;
             // not necessary
             if (unique.HasValue) this.unique = unique;
             // not necessary
             if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup;
             // not necessary
-            if (lifeTime.HasValue) this.lifeTime = lifeTime;
+            if (lifetime.HasValue) this.lifetime = lifetime;
             // not necessary
             if (resaturate.HasValue) this.resaturate = resaturate;
-            // not necessary, always null when lifeTime is
+            // not necessary, always null when lifetime is
             if (decayTo != null) this.decayTo = decayTo;
             // This is only present in modded elements
             if (extends != null) this.extends = extends.ToObject<string[]>();
@@ -67,7 +67,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
                        List<Slot> slots, Dictionary<string, string> xtriggers, string[] extends,
-                       string decayTo, int? lifeTime, bool? unique, int? animFrames,
+                       string decayTo, int? lifetime, bool? unique, int? animframes,
                        string uniquenessgroup)
         {
             this.id = id;
@@ -81,9 +81,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (xtriggers != null) this.xtriggers = xtriggers;
             if (extends != null) this.extends = extends;
             if (decayTo != null) this.decayTo = decayTo;
-            if (lifeTime.HasValue) this.lifeTime = lifeTime;
+            if (lifetime.HasValue) this.lifetime = lifetime;
             if (unique.HasValue) this.unique = unique;
-            if (animFrames.HasValue) this.animFrames = animFrames;
+            if (animframes.HasValue) this.animframes = animframes;
             if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup; ;
         }
         

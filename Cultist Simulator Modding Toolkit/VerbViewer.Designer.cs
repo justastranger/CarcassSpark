@@ -40,6 +40,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.addSlotButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -53,7 +54,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(145, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(215, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(127, 20);
             this.labelTextBox.TabIndex = 1;
@@ -77,7 +78,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 87);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(260, 87);
+            this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.Text = "Description";
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
@@ -87,7 +88,7 @@
             this.slotsListBox.FormattingEnabled = true;
             this.slotsListBox.Location = new System.Drawing.Point(12, 193);
             this.slotsListBox.Name = "slotsListBox";
-            this.slotsListBox.Size = new System.Drawing.Size(260, 95);
+            this.slotsListBox.Size = new System.Drawing.Size(330, 95);
             this.slotsListBox.TabIndex = 4;
             this.slotsListBox.DoubleClick += new System.EventHandler(this.slotsListBox_DoubleClick);
             // 
@@ -103,7 +104,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(142, 9);
+            this.labelLabel.Location = new System.Drawing.Point(212, 9);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 6;
@@ -141,7 +142,7 @@
             // 
             this.addSlotButton.Location = new System.Drawing.Point(93, 294);
             this.addSlotButton.Name = "addSlotButton";
-            this.addSlotButton.Size = new System.Drawing.Size(98, 31);
+            this.addSlotButton.Size = new System.Drawing.Size(81, 31);
             this.addSlotButton.TabIndex = 10;
             this.addSlotButton.Text = "Add Slot";
             this.addSlotButton.UseVisualStyleBackColor = true;
@@ -149,7 +150,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(197, 294);
+            this.cancelButton.Location = new System.Drawing.Point(267, 294);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 31);
             this.cancelButton.TabIndex = 11;
@@ -157,11 +158,22 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(180, 294);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(81, 31);
+            this.removeButton.TabIndex = 12;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            // 
             // VerbViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 337);
+            this.ClientSize = new System.Drawing.Size(354, 337);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addSlotButton);
             this.Controls.Add(this.okButton);
@@ -195,5 +207,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button addSlotButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button removeButton;
     }
 }

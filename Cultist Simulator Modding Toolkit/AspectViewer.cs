@@ -76,16 +76,15 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 foreach (Aspect.Induces induces in aspect.induces)
                 {
-                    inducesDataGridView.Rows.Add(induces.id, induces.chance);
+                    inducesDataGridView.Rows.Add(induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
                 }
             }
         }
 
         private void inducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (editing) return;
             string id = inducesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), false);
+            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), editing);
             rv.ShowDialog();
         }
 
@@ -95,7 +94,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 displayedAspect.induces = new List<Aspect.Induces>();
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Aspect.Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value)));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Aspect.Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
                 }
             }
             DialogResult = DialogResult.OK;

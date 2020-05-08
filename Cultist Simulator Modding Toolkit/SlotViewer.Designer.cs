@@ -47,6 +47,7 @@
             this.forbiddenDataGridView = new System.Windows.Forms.DataGridView();
             this.forbiddenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forbiddenAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consumesCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +92,7 @@
             // greedyCheckBox
             // 
             this.greedyCheckBox.AutoSize = true;
-            this.greedyCheckBox.Location = new System.Drawing.Point(212, 161);
+            this.greedyCheckBox.Location = new System.Drawing.Point(212, 168);
             this.greedyCheckBox.Name = "greedyCheckBox";
             this.greedyCheckBox.Size = new System.Drawing.Size(60, 17);
             this.greedyCheckBox.TabIndex = 6;
@@ -185,6 +186,7 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
+            this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requiredDataGridView_UserDeletedRow);
             // 
             // requiredId
             // 
@@ -210,6 +212,7 @@
             this.forbiddenDataGridView.Name = "forbiddenDataGridView";
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
             this.forbiddenDataGridView.TabIndex = 16;
+            this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.forbiddenDataGridView_UserDeletedRow);
             // 
             // forbiddenId
             // 
@@ -223,11 +226,23 @@
             this.forbiddenAmount.Name = "forbiddenAmount";
             this.forbiddenAmount.Width = 108;
             // 
+            // consumesCheckBox
+            // 
+            this.consumesCheckBox.AutoSize = true;
+            this.consumesCheckBox.Location = new System.Drawing.Point(192, 145);
+            this.consumesCheckBox.Name = "consumesCheckBox";
+            this.consumesCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.consumesCheckBox.TabIndex = 17;
+            this.consumesCheckBox.Text = "Consumes";
+            this.consumesCheckBox.UseVisualStyleBackColor = true;
+            this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.consumesCheckBox_CheckedChanged);
+            // 
             // SlotViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 466);
+            this.Controls.Add(this.consumesCheckBox);
             this.Controls.Add(this.forbiddenDataGridView);
             this.Controls.Add(this.requiredDataGridView);
             this.Controls.Add(this.cancelButton);
@@ -273,5 +288,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn requiredAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenId;
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenAmount;
+        private System.Windows.Forms.CheckBox consumesCheckBox;
     }
 }
