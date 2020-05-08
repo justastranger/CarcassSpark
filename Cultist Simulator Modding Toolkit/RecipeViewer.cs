@@ -73,7 +73,8 @@ namespace Cultist_Simulator_Modding_Toolkit
             addMutationButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
-            showSlotButton.Enabled = showSlotButton.Enabled ? true : editing;
+            if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
+            if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;
         }
 
         private void fillValues(Recipe recipe)
@@ -91,66 +92,79 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (recipe.warmup.HasValue) warmupNumericUpDown.Value = recipe.warmup.Value;
             showInternalDeckButton.Enabled = recipe.internalDeck != null ? true : false;
             showSlotButton.Enabled = recipe.slots != null ? true : false;
-            if (recipe.requirements != null)
+            if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
+                requirementsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.requirements)
                 {
                     requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.extantreqs != null)
+            if (recipe.extantreqs != null && recipe.extantreqs.Count > 0)
             {
+                extantreqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.extantreqs)
                 {
                     extantreqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.tablereqs != null)
+            if (recipe.tablereqs != null && recipe.tablereqs.Count > 0)
             {
+                tablereqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.tablereqs)
                 {
                     tablereqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.effects != null)
+            if (recipe.effects != null && recipe.effects.Count > 0)
             {
+                effectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.effects)
                 {
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.aspects != null)
+            if (recipe.aspects != null && recipe.aspects.Count > 0)
             {
+                aspectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.aspects)
                 {
                     aspectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.deckeffect != null)
+            if (recipe.deckeffect != null && recipe.deckeffect.Count > 0)
             {
+                deckeffectDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.deckeffect)
                 {
                     deckeffectDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
-            if (recipe.alternativerecipes != null)
+            if (recipe.alternativerecipes != null && recipe.alternativerecipes.Count > 0)
             {
+                alternativerecipeLinks.Clear();
+                alternativerecipesListBox.Items.Clear();
                 foreach (Recipe.RecipeLink rl in recipe.alternativerecipes)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
                     alternativerecipesListBox.Items.Add(rl.id);
                 }
             }
-            if (recipe.linked != null)
+            if (recipe.linked != null && recipe.linked.Count > 0)
             {
+                recipeLinks.Clear();
+                linkedListBox.Items.Clear();
                 foreach (Recipe.RecipeLink rl in recipe.linked)
                 {
                     recipeLinks.Add(rl.id, rl);
                     linkedListBox.Items.Add(rl.id);
                 }
             }
-            if (recipe.mutations != null)
+            if (recipe.mutations != null && recipe.mutations.Count > 0)
             {
+
+                mutations.Clear();
+                mutationsListBox.Items.Clear();
                 foreach (Recipe.Mutation mutation in recipe.mutations)
                 {
                     mutations.Add(mutation.mutateAspectId, mutation);
