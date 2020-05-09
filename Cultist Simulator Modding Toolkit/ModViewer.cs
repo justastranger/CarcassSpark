@@ -332,70 +332,90 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 Directory.CreateDirectory(currentDirectory + "/content/");
             }
+            if (aspectsListBox.Items.Count > 0)
+            {
+                JObject aspects = new JObject();
+                aspects["elements"] = JArray.FromObject(aspectsList.Values);
+                string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_aspects.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(aspectsJson);
+                    jtw.Close();
 
-            JObject aspects = new JObject();
-            aspects["elements"] = JArray.FromObject(aspectsList.Values);
-            string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_aspects.json", FileMode.OpenOrCreate))
-            {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(aspectsJson);
-                jtw.Close();
-                
+                }
             }
-            JObject elements = new JObject();
-            elements["elements"] = JArray.FromObject(elementsList.Values);
-            string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_elements.json", FileMode.OpenOrCreate))
+            if (elementsListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(elementsJson);
-                jtw.Close();
+                JObject elements = new JObject();
+                elements["elements"] = JArray.FromObject(elementsList.Values);
+                string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_elements.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(elementsJson);
+                    jtw.Close();
+                }
             }
-            JObject recipes = new JObject();
-            recipes["recipes"] = JArray.FromObject(recipesList.Values);
-            string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_recipes.json", FileMode.OpenOrCreate))
+            if (recipesListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(recipesJson);
-                jtw.Close();
+                JObject recipes = new JObject();
+                recipes["recipes"] = JArray.FromObject(recipesList.Values);
+                string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_recipes.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(recipesJson);
+                    jtw.Close();
+                }
             }
-            JObject decks = new JObject();
-            decks["decks"] = JArray.FromObject(decksList.Values);
-            string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_decks.json", FileMode.OpenOrCreate))
+            if (decksListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(decksJson);
-                jtw.Close();
+                JObject decks = new JObject();
+                decks["decks"] = JArray.FromObject(decksList.Values);
+                string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_decks.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(decksJson);
+                    jtw.Close();
+                }
             }
-            JObject legacies = new JObject();
-            legacies["legacies"] = JArray.FromObject(legaciesList.Values);
-            string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_legacies.json", FileMode.OpenOrCreate))
+            if (legaciesListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(legaciesJson);
-                jtw.Close();
+                JObject legacies = new JObject();
+                legacies["legacies"] = JArray.FromObject(legaciesList.Values);
+                string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_legacies.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(legaciesJson);
+                    jtw.Close();
+                }
             }
-            JObject endings = new JObject();
-            endings["endings"] = JArray.FromObject(endingsList.Values);
-            string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_endings.json", FileMode.OpenOrCreate))
+            if (endingsListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(endingsJson);
-                jtw.Close();
+                JObject endings = new JObject();
+                endings["endings"] = JArray.FromObject(endingsList.Values);
+                string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_endings.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(endingsJson);
+                    jtw.Close();
+                }
             }
-            JObject verbs = new JObject();
-            verbs["verbs"] = JArray.FromObject(verbsList.Values);
-            string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_verbs.json", FileMode.OpenOrCreate))
+            if (verbsListBox.Items.Count > 0)
             {
-                JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
-                jtw.WriteRaw(verbsJson);
-                jtw.Close();
+                JObject verbs = new JObject();
+                verbs["verbs"] = JArray.FromObject(verbsList.Values);
+                string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_verbs.json", FileMode.Create))
+                {
+                    JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
+                    jtw.WriteRaw(verbsJson);
+                    jtw.Close();
+                }
             }
             // TODO uncomment this when it's safe to do so
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);

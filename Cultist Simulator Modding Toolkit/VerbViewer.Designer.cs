@@ -41,11 +41,13 @@
             this.addSlotButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(12, 25);
+            this.idTextBox.Location = new System.Drawing.Point(149, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(127, 20);
             this.idTextBox.TabIndex = 0;
@@ -54,7 +56,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(215, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(149, 64);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(127, 20);
             this.labelTextBox.TabIndex = 1;
@@ -65,7 +67,7 @@
             // 
             this.atStartCheckBox.AutoSize = true;
             this.atStartCheckBox.Enabled = false;
-            this.atStartCheckBox.Location = new System.Drawing.Point(12, 51);
+            this.atStartCheckBox.Location = new System.Drawing.Point(149, 90);
             this.atStartCheckBox.Name = "atStartCheckBox";
             this.atStartCheckBox.Size = new System.Drawing.Size(165, 17);
             this.atStartCheckBox.TabIndex = 2;
@@ -75,7 +77,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 87);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 170);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
@@ -86,7 +88,7 @@
             // slotsListBox
             // 
             this.slotsListBox.FormattingEnabled = true;
-            this.slotsListBox.Location = new System.Drawing.Point(12, 193);
+            this.slotsListBox.Location = new System.Drawing.Point(12, 276);
             this.slotsListBox.Name = "slotsListBox";
             this.slotsListBox.Size = new System.Drawing.Size(330, 95);
             this.slotsListBox.TabIndex = 4;
@@ -95,7 +97,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(9, 9);
+            this.idLabel.Location = new System.Drawing.Point(146, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(43, 13);
             this.idLabel.TabIndex = 5;
@@ -104,7 +106,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(212, 9);
+            this.labelLabel.Location = new System.Drawing.Point(146, 48);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 6;
@@ -113,7 +115,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(9, 71);
+            this.descriptionLabel.Location = new System.Drawing.Point(9, 154);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 7;
@@ -122,7 +124,7 @@
             // slotsLabel
             // 
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(9, 177);
+            this.slotsLabel.Location = new System.Drawing.Point(9, 260);
             this.slotsLabel.Name = "slotsLabel";
             this.slotsLabel.Size = new System.Drawing.Size(30, 13);
             this.slotsLabel.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 294);
+            this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 31);
             this.okButton.TabIndex = 9;
@@ -140,7 +142,7 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(93, 294);
+            this.addSlotButton.Location = new System.Drawing.Point(93, 377);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(81, 31);
             this.addSlotButton.TabIndex = 10;
@@ -150,7 +152,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(267, 294);
+            this.cancelButton.Location = new System.Drawing.Point(267, 377);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 31);
             this.cancelButton.TabIndex = 11;
@@ -160,7 +162,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(180, 294);
+            this.removeButton.Location = new System.Drawing.Point(180, 377);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(81, 31);
             this.removeButton.TabIndex = 12;
@@ -168,11 +170,21 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // VerbViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 337);
+            this.ClientSize = new System.Drawing.Size(354, 420);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addSlotButton);
@@ -188,6 +200,7 @@
             this.Controls.Add(this.idTextBox);
             this.Name = "VerbViewer";
             this.Text = "VerbViewer";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +221,6 @@
         private System.Windows.Forms.Button addSlotButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

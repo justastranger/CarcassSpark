@@ -31,6 +31,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             descriptionTextBox.Text = legacy.description;
             startdescriptionTextBox.Text = legacy.startdescription;
             imageTextBox.Text = legacy.image;
+            if (Utilities.getLegacyImage(legacy.image) != null)
+            {
+                pictureBox1.Image = Utilities.getLegacyImage(legacy.image);
+            }
             fromEndingTextBox.Text = legacy.fromEnding;
             availableWithoutEndingMatchCheckBox.Checked = legacy.availableWithoutEndingMatch;
             startingVerbIdTextBox.Text = legacy.startingVerbId;
@@ -153,7 +157,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void imageTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.image = imageLabel.Text;
+            displayedLegacy.image = imageTextBox.Text;
+            if (Utilities.getLegacyImage(imageTextBox.Text) != null)
+            {
+                pictureBox1.Image = Utilities.getLegacyImage(imageTextBox.Text);
+            }
         }
 
         private void fromEndingTextBox_TextChanged(object sender, EventArgs e)

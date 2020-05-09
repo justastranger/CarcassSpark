@@ -175,6 +175,36 @@ namespace Cultist_Simulator_Modding_Toolkit
             displayedSlot.consumes = consumesCheckBox.Checked;
         }
 
+        private void forbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = forbiddenDataGridView.SelectedCells[0].Value.ToString();
+            if (Utilities.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ev.ShowDialog();
+            }
+            else if (Utilities.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                av.ShowDialog();
+            }
+        }
+
+        private void requiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = requiredDataGridView.SelectedCells[0].Value.ToString();
+            if (Utilities.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ev.ShowDialog();
+            }
+            else if (Utilities.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                av.ShowDialog();
+            }
+        }
+
         private void forbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());

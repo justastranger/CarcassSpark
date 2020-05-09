@@ -28,6 +28,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         void fillValues(Verb verb)
         {
             idTextBox.Text = verb.id;
+            if (Utilities.getVerbImage(verb.id) != null)
+            {
+                pictureBox1.Image = Utilities.getVerbImage(verb.id);
+            }
             labelTextBox.Text = verb.label;
             atStartCheckBox.Checked = verb.atStart;
             descriptionTextBox.Text = verb.description;
@@ -92,6 +96,10 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.id = idTextBox.Text;
+            if (Utilities.getVerbImage(idTextBox.Text) != null)
+            {
+                pictureBox1.Image = Utilities.getVerbImage(idTextBox.Text);
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)

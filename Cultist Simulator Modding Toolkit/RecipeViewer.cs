@@ -477,32 +477,38 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void requirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if(displayedRecipe.requirements.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.requirements.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.requirements.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.requirements.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.requirements.Count == 0) displayedRecipe.requirements = null;
         }
 
         private void extantreqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipe.extantreqs.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.extantreqs.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.extantreqs.Count == 0) displayedRecipe.extantreqs = null;
         }
 
         private void tablereqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipe.tablereqs.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.tablereqs.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.tablereqs.Count == 0) displayedRecipe.tablereqs = null;
         }
 
         private void effectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipe.effects.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.effects.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.effects.Count == 0) displayedRecipe.effects = null;
         }
 
         private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipe.aspects.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.aspects.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.aspects.Count == 0) displayedRecipe.aspects = null;
         }
 
         private void deckeffectDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipe.deckeffect.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipe.deckeffect.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipe.deckeffect.Count == 0) displayedRecipe.deckeffect = null;
         }
 
         private void removeAlternativeRecipeButton_Click(object sender, EventArgs e)
@@ -512,6 +518,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 displayedRecipe.alternativerecipes.Remove(alternativerecipeLinks[alternativerecipesListBox.SelectedItem.ToString()]);
                 alternativerecipeLinks.Remove(alternativerecipesListBox.SelectedItem.ToString());
                 alternativerecipesListBox.Items.Remove(alternativerecipesListBox.SelectedItem);
+                if (displayedRecipe.alternativerecipes.Count == 0) displayedRecipe.alternativerecipes = null;
             }
         }
 
@@ -522,6 +529,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 displayedRecipe.linked.Remove(recipeLinks[linkedListBox.SelectedItem.ToString()]);
                 recipeLinks.Remove(linkedListBox.SelectedItem.ToString());
                 linkedListBox.Items.Remove(linkedListBox.SelectedItem);
+                if (displayedRecipe.linked.Count == 0) displayedRecipe.linked = null;
             }
         }
 
@@ -532,6 +540,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 displayedRecipe.mutations.Remove(mutations[mutationsListBox.SelectedItem.ToString()]);
                 mutations.Remove(mutationsListBox.SelectedItem.ToString());
                 mutationsListBox.Items.Remove(mutationsListBox.SelectedItem);
+                if (displayedRecipe.mutations.Count == 0) displayedRecipe.mutations = null;
             }
         }
     }

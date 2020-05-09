@@ -13,7 +13,8 @@ namespace Cultist_Simulator_Modding_Toolkit
     public partial class AspectViewer : Form
     {
         public Aspect displayedAspect;
-        public bool editing;
+        Dictionary<string, Aspect.Induces> inducesDictionary;
+        bool editing;
 
         public AspectViewer(Aspect aspect, bool? editing)
         {
@@ -74,8 +75,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
             if (aspect.induces != null)
             {
+                inducesDictionary = new Dictionary<string, Aspect.Induces>();
                 foreach (Aspect.Induces induces in aspect.induces)
                 {
+                    inducesDictionary.Add(induces.id, induces);
                     inducesDataGridView.Rows.Add(induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
                 }
             }
@@ -144,6 +147,12 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void noartworkneededCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedAspect.noartneeded = noartworkneededCheckBox.Checked;
+        }
+
+        private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedAspect.induces.Contains(inducesDictionary[e.Row.Cells[0].Value.ToString()])) displayedAspect.induces.Remove(inducesDictionary[e.Row.Cells[0].Value.ToString()]);
+            if (displayedAspect.induces.Count == 0) displayedAspect.induces = null;
         }
     }
 }

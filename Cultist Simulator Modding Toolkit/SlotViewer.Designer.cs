@@ -186,6 +186,7 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
+            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requiredDataGridView_CellDoubleClick_1);
             this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requiredDataGridView_UserDeletedRow);
             // 
             // requiredId
@@ -212,6 +213,7 @@
             this.forbiddenDataGridView.Name = "forbiddenDataGridView";
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
             this.forbiddenDataGridView.TabIndex = 16;
+            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.forbiddenDataGridView_CellDoubleClick_1);
             this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.forbiddenDataGridView_UserDeletedRow);
             // 
             // forbiddenId

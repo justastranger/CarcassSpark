@@ -37,6 +37,7 @@
             this.inducesDataGridView = new System.Windows.Forms.DataGridView();
             this.recipeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inducesAdditional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.iconLabel = new System.Windows.Forms.Label();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
-            this.inducesAdditional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -84,6 +84,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -120,6 +121,7 @@
             this.inducesDataGridView.Size = new System.Drawing.Size(355, 143);
             this.inducesDataGridView.TabIndex = 6;
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
+            this.inducesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.inducesDataGridView_UserDeletedRow);
             // 
             // recipeId
             // 
@@ -132,6 +134,12 @@
             this.chance.HeaderText = "Chance";
             this.chance.Name = "chance";
             this.chance.Width = 104;
+            // 
+            // inducesAdditional
+            // 
+            this.inducesAdditional.HeaderText = "Additional?";
+            this.inducesAdditional.Name = "inducesAdditional";
+            this.inducesAdditional.Width = 104;
             // 
             // extendsTextBox
             // 
@@ -228,12 +236,6 @@
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 17;
             this.descriptionLabel.Text = "Description";
-            // 
-            // inducesAdditional
-            // 
-            this.inducesAdditional.HeaderText = "Additional?";
-            this.inducesAdditional.Name = "inducesAdditional";
-            this.inducesAdditional.Width = 104;
             // 
             // AspectViewer
             // 
