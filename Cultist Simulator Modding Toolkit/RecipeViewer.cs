@@ -25,9 +25,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             this.displayedRecipe = recipe;
             if (recipe.extends != null)
             {
-                extendsTextBox.Text = recipe.extends[0];
-                Recipe extendedRecipe = Utilities.getRecipe(recipe.extends[0]);
-                fillValues(extendedRecipe);
+                //extendsTextBox.Text = recipe.extends[0];
+                //Recipe extendedRecipe = Utilities.getRecipe(recipe.extends[0]);
+                //fillValues(extendedRecipe);
             }
             fillValues(recipe);
 
@@ -318,54 +318,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (requirementsDataGridView.RowCount > 1)
-            {
-                displayedRecipe.requirements = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in requirementsDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.requirements.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
-            if (extantreqsDataGridView.RowCount > 1)
-            {
-                displayedRecipe.extantreqs = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in extantreqsDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.extantreqs.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
-            if (tablereqsDataGridView.RowCount > 1)
-            {
-                displayedRecipe.tablereqs = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in tablereqsDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.tablereqs.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
-            if (effectsDataGridView.RowCount > 1)
-            {
-                displayedRecipe.effects = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in effectsDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
-            if (aspectsDataGridView.RowCount > 1)
-            {
-                displayedRecipe.aspects = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in aspectsDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
-            if (deckeffectDataGridView.RowCount > 1)
-            {
-                displayedRecipe.deckeffect = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in deckeffectDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedRecipe.deckeffect.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                }
-            }
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -541,6 +493,84 @@ namespace Cultist_Simulator_Modding_Toolkit
                 mutations.Remove(mutationsListBox.SelectedItem.ToString());
                 mutationsListBox.Items.Remove(mutationsListBox.SelectedItem);
                 if (displayedRecipe.mutations.Count == 0) displayedRecipe.mutations = null;
+            }
+        }
+
+        private void requirementsDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.requirements.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void extantreqsDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.extantreqs.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void tablereqsDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.tablereqs.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void effectsDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.effects.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void aspectsDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.aspects.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void deckeffectDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value == null || e.Row.Cells[1].Value == null)
+            {
+                MessageBox.Show("Please finish filling out the row.");
+                return;
+            }
+            else
+            {
+                displayedRecipe.deckeffect.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
             }
         }
     }

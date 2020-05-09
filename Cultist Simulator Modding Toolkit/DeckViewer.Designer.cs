@@ -262,6 +262,7 @@
             this.removeCardButton.TabIndex = 20;
             this.removeCardButton.Text = "Remove";
             this.removeCardButton.UseVisualStyleBackColor = true;
+            this.removeCardButton.Click += new System.EventHandler(this.removeCardButton_Click);
             // 
             // DeckViewer
             // 

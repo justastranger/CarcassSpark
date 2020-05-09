@@ -97,36 +97,36 @@
             this.idLabel.AutoSize = true;
             this.idLabel.Location = new System.Drawing.Point(328, 9);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(56, 13);
+            this.idLabel.Size = new System.Drawing.Size(54, 13);
             this.idLabel.TabIndex = 7;
-            this.idLabel.Text = "Legacy ID";
+            this.idLabel.Text = "Ending ID";
             // 
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
             this.labelLabel.Location = new System.Drawing.Point(313, 48);
             this.labelLabel.Name = "labelLabel";
-            this.labelLabel.Size = new System.Drawing.Size(71, 13);
+            this.labelLabel.Size = new System.Drawing.Size(69, 13);
             this.labelLabel.TabIndex = 8;
-            this.labelLabel.Text = "Legacy Label";
+            this.labelLabel.Text = "Ending Label";
             // 
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
             this.imageLabel.Location = new System.Drawing.Point(310, 87);
             this.imageLabel.Name = "imageLabel";
-            this.imageLabel.Size = new System.Drawing.Size(74, 13);
+            this.imageLabel.Size = new System.Drawing.Size(72, 13);
             this.imageLabel.TabIndex = 9;
-            this.imageLabel.Text = "Legacy Image";
+            this.imageLabel.Text = "Ending Image";
             // 
             // flavourLabel
             // 
             this.flavourLabel.AutoSize = true;
             this.flavourLabel.Location = new System.Drawing.Point(304, 126);
             this.flavourLabel.Name = "flavourLabel";
-            this.flavourLabel.Size = new System.Drawing.Size(80, 13);
+            this.flavourLabel.Size = new System.Drawing.Size(78, 13);
             this.flavourLabel.TabIndex = 10;
-            this.flavourLabel.Text = "Legacy Flavour";
+            this.flavourLabel.Text = "Ending Flavour";
             // 
             // flavourDomainUpDown
             // 

@@ -26,18 +26,18 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         void fillValues(Legacy legacy)
         {
-            idTextBox.Text = legacy.id;
-            labelTextBox.Text = legacy.label;
-            descriptionTextBox.Text = legacy.description;
-            startdescriptionTextBox.Text = legacy.startdescription;
-            imageTextBox.Text = legacy.image;
+            if (legacy.id != null) idTextBox.Text = legacy.id;
+            if (legacy.label != null) labelTextBox.Text = legacy.label;
+            if (legacy.description != null) descriptionTextBox.Text = legacy.description;
+            if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
+            if (legacy.image != null) imageTextBox.Text = legacy.image;
             if (Utilities.getLegacyImage(legacy.image) != null)
             {
                 pictureBox1.Image = Utilities.getLegacyImage(legacy.image);
             }
-            fromEndingTextBox.Text = legacy.fromEnding;
-            availableWithoutEndingMatchCheckBox.Checked = legacy.availableWithoutEndingMatch;
-            startingVerbIdTextBox.Text = legacy.startingVerbId;
+            if (legacy.fromEnding != null) fromEndingTextBox.Text = legacy.fromEnding;
+            if (legacy.availableWithoutEndingMatch.HasValue) availableWithoutEndingMatchCheckBox.Checked = legacy.availableWithoutEndingMatch.Value;
+            if (legacy.startingVerbId != null) startingVerbIdTextBox.Text = legacy.startingVerbId;
             if (legacy.effects != null)
             {
                 foreach (KeyValuePair<string, int> kvp in legacy.effects)

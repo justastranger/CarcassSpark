@@ -26,14 +26,14 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         void fillValues(Ending ending)
         {
-            idTextBox.Text = ending.id;
-            labelTextBox.Text = ending.label;
-            imageTextBox.Text = ending.image;
+            if (ending.id != null) idTextBox.Text = ending.id;
+            if (ending.label != null) labelTextBox.Text = ending.label;
+            if (ending.image != null) imageTextBox.Text = ending.image;
             if (ending.id != null && ending.image == null) pictureBox1.Image = Utilities.getEndingImage(ending.id);
             else if (ending.image != null) pictureBox1.Image = Utilities.getEndingImage(ending.image);
-            flavourDomainUpDown.Text = ending.flavour;
-            animDomainUpDown.Text = ending.anim;
-            descriptionTextBox.Text = ending.description;
+            if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
+            if (ending.anim != null) animDomainUpDown.Text = ending.anim;
+            if (ending.description != null) descriptionTextBox.Text = ending.description;
         }
 
         void setEditingMode(bool editing)

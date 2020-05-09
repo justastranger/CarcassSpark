@@ -57,16 +57,19 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         void fillValues(Deck deck)
         {
-            idTextBox.Text = deck.id;
-            labelTextBox.Text = deck.label;
-            commentsTextBox.Text = deck.comments;
-            descriptionTextBox.Text = deck.description;
+            if (deck.id != null) idTextBox.Text = deck.id;
+            if (deck.label != null) labelTextBox.Text = deck.label;
+            if (deck.comments != null) commentsTextBox.Text = deck.comments;
+            if (deck.description != null) descriptionTextBox.Text = deck.description;
             if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
             defaultCardTextBox.Text = deck.defaultcard;
             if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
-            foreach (string id in deck.spec)
+            if (deck.spec != null)
             {
-                specListBox.Items.Add(id);
+                foreach (string id in deck.spec)
+                {
+                    specListBox.Items.Add(id);
+                }
             }
             if (deck.drawmessages != null)
             {
@@ -188,6 +191,21 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
+        }
+
+        private void removeCardButton_Click(object sender, EventArgs e)
+        {
+            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            {
+                if (displayedDeck.spec.Contains(newCardTextBox.Text))
+                {
+                    displayedDeck.spec.Remove(newCardTextBox.Text);
+                    specListBox.Items.Remove(newCardTextBox.Text);
+                    if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
+                    newCardTextBox.Text = "";
+                    newCardTextBox.Focus();
+                }
+            }
         }
     }
 }

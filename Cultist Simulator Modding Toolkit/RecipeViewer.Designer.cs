@@ -234,6 +234,7 @@
             this.requirementsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.requirementsDataGridView.TabIndex = 12;
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requirementsDataGridView_CellDoubleClick);
+            this.requirementsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requirementsDataGridView_UserAddedRow);
             this.requirementsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requirementsDataGridView_UserDeletedRow);
             // 
             // elementId
@@ -264,6 +265,7 @@
             this.extantreqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.extantreqsDataGridView.TabIndex = 13;
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.extantreqsDataGridView_CellDoubleClick);
+            this.extantreqsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.extantreqsDataGridView_UserAddedRow);
             this.extantreqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.extantreqsDataGridView_UserDeletedRow);
             // 
             // extantElementId
@@ -302,6 +304,7 @@
             this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.tablereqsDataGridView.TabIndex = 15;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablereqsDataGridView_CellDoubleClick);
+            this.tablereqsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablereqsDataGridView_UserAddedRow);
             this.tablereqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablereqsDataGridView_UserDeletedRow);
             // 
             // tableElementId
@@ -358,6 +361,7 @@
             this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.effectsDataGridView.TabIndex = 19;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
+            this.effectsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserAddedRow);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserDeletedRow);
             // 
             // effectsElementId
@@ -394,6 +398,7 @@
             this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
             this.aspectsDataGridView.TabIndex = 21;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
+            this.aspectsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserAddedRow);
             this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserDeletedRow);
             // 
             // aspectId
@@ -421,6 +426,7 @@
             this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
             this.deckeffectDataGridView.TabIndex = 22;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deckeffectDataGridView_CellDoubleClick);
+            this.deckeffectDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deckeffectDataGridView_UserAddedRow);
             this.deckeffectDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deckeffectDataGridView_UserDeletedRow);
             // 
             // deckId

@@ -114,9 +114,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             public bool? additional;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public Dictionary<string, string> challenges;
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public Dictionary<string, int> expulsions;
 
             [JsonConstructor]
-            public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null)
+            public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null, JObject expulsions = null)
             {
                 this.id = id;
                 this.chance = chance;

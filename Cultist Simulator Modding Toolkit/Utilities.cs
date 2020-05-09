@@ -13,6 +13,18 @@ namespace Cultist_Simulator_Modding_Toolkit
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
 
+        public static string getIdType(string id)
+        {
+            if (aspectExists(id)) return "aspect";
+            if (elementExists(id)) return "element";
+            if (recipeExists(id)) return "recipe";
+            if (deckExists(id)) return "deck";
+            if (legacyExists(id)) return "legacy";
+            if (endingExists(id)) return "ending";
+            if (verbExists(id)) return "verb";
+            return "unknown";
+        }
+
         public static Image getAspectImage(string id)
         {
             foreach (ModViewer mv in currentMods)

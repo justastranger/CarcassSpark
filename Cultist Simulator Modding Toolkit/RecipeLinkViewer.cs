@@ -59,17 +59,6 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (challengesDataGridView.RowCount > 1)
-            {
-                displayedRecipeLink.challenges = new Dictionary<string, string>();
-                foreach (DataGridViewRow row in challengesDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1] != null)
-                    {
-                        displayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
-                    }
-                }
-            }
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -98,6 +87,54 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipeLink.challenges.Count == 0) displayedRecipeLink.challenges = null;
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = expulsionsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            switch (Utilities.getIdType(id))
+            {
+                case "aspect":
+                    AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                    av.ShowDialog();
+                    break;
+
+                case "element":
+                    ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                    ev.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (displayedRecipeLink.expulsions.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsions.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipeLink.expulsions.Count == 0) displayedRecipeLink.expulsions = null;
+        }
+
+        private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value != null && e.Row.Cells[1].Value != null)
+            {
+                displayedRecipeLink.expulsions.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
+            }
+        }
+
+        private void challengesDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[0].Value != null && e.Row.Cells[1].Value != null)
+            {
+                displayedRecipeLink.challenges.Add(e.Row.Cells[0].Value.ToString(), e.Row.Cells[1].Value.ToString());
+            }
+        }
+
+        private void challengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), false);
+            av.ShowDialog();
         }
     }
 }

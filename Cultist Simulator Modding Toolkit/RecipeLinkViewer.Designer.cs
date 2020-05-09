@@ -40,8 +40,13 @@
             this.chanceLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.expulsionsLabel = new System.Windows.Forms.Label();
+            this.expulsionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.expulsionFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expulsionLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expulsionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -82,8 +87,10 @@
             this.isBaseOrNull});
             this.challengesDataGridView.Location = new System.Drawing.Point(12, 75);
             this.challengesDataGridView.Name = "challengesDataGridView";
-            this.challengesDataGridView.Size = new System.Drawing.Size(356, 143);
+            this.challengesDataGridView.Size = new System.Drawing.Size(356, 122);
             this.challengesDataGridView.TabIndex = 3;
+            this.challengesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.challengesDataGridView_CellDoubleClick);
+            this.challengesDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserAddedRow);
             this.challengesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserDeletedRow);
             // 
             // aspectId
@@ -137,7 +144,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 226);
+            this.okButton.Location = new System.Drawing.Point(12, 339);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 8;
@@ -147,7 +154,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(293, 226);
+            this.cancelButton.Location = new System.Drawing.Point(293, 339);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 9;
@@ -155,11 +162,50 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // expulsionsLabel
+            // 
+            this.expulsionsLabel.AutoSize = true;
+            this.expulsionsLabel.Location = new System.Drawing.Point(156, 200);
+            this.expulsionsLabel.Name = "expulsionsLabel";
+            this.expulsionsLabel.Size = new System.Drawing.Size(57, 13);
+            this.expulsionsLabel.TabIndex = 10;
+            this.expulsionsLabel.Text = "Expulsions";
+            // 
+            // expulsionsDataGridView
+            // 
+            this.expulsionsDataGridView.AllowUserToResizeColumns = false;
+            this.expulsionsDataGridView.AllowUserToResizeRows = false;
+            this.expulsionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.expulsionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.expulsionFilter,
+            this.expulsionLimit});
+            this.expulsionsDataGridView.Location = new System.Drawing.Point(12, 216);
+            this.expulsionsDataGridView.Name = "expulsionsDataGridView";
+            this.expulsionsDataGridView.Size = new System.Drawing.Size(356, 117);
+            this.expulsionsDataGridView.TabIndex = 11;
+            this.expulsionsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.expulsionsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserAddedRow);
+            this.expulsionsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserDeletedRow);
+            // 
+            // expulsionFilter
+            // 
+            this.expulsionFilter.HeaderText = "Filter";
+            this.expulsionFilter.Name = "expulsionFilter";
+            this.expulsionFilter.Width = 157;
+            // 
+            // expulsionLimit
+            // 
+            this.expulsionLimit.HeaderText = "Limit";
+            this.expulsionLimit.Name = "expulsionLimit";
+            this.expulsionLimit.Width = 156;
+            // 
             // RecipeLinkViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 261);
+            this.ClientSize = new System.Drawing.Size(380, 374);
+            this.Controls.Add(this.expulsionsDataGridView);
+            this.Controls.Add(this.expulsionsLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.chanceLabel);
@@ -174,6 +220,7 @@
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expulsionsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +240,9 @@
         private System.Windows.Forms.Label chanceLabel;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label expulsionsLabel;
+        private System.Windows.Forms.DataGridView expulsionsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expulsionFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expulsionLimit;
     }
 }

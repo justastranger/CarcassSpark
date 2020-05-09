@@ -23,9 +23,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             displayedElement = element;
             if (element.extends != null)
             {
-                extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
-                Element extendedElement = Utilities.getElement(element.extends[0]);
-                fillValues(extendedElement);
+                //extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
+                //Element extendedElement = Utilities.getElement(element.extends[0]);
+                //fillValues(extendedElement);
             }
             fillValues(element);
             if (editing.HasValue)

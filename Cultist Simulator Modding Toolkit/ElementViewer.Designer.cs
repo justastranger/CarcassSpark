@@ -144,7 +144,6 @@
             this.resultID});
             this.xtriggersDataGridView.Location = new System.Drawing.Point(255, 25);
             this.xtriggersDataGridView.Name = "xtriggersDataGridView";
-            this.xtriggersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.xtriggersDataGridView.Size = new System.Drawing.Size(248, 126);
             this.xtriggersDataGridView.TabIndex = 9;
             this.xtriggersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.xtriggersDataGridView_CellDoubleClick);
@@ -192,13 +191,13 @@
             // aspectsDataGridView
             // 
             this.aspectsDataGridView.AllowUserToResizeColumns = false;
+            this.aspectsDataGridView.AllowUserToResizeRows = false;
             this.aspectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.amount});
             this.aspectsDataGridView.Location = new System.Drawing.Point(509, 25);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
-            this.aspectsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
             this.aspectsDataGridView.TabIndex = 13;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);

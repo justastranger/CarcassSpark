@@ -17,7 +17,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> effects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool availableWithoutEndingMatch;
+        public bool? availableWithoutEndingMatch;
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription,
