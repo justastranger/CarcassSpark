@@ -37,7 +37,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            if(File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            return null;
         }
 
         public static Image getElementImage(string id)
@@ -50,7 +51,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            return null;
         }
 
         public static Image getEndingImage(string id)
@@ -63,7 +65,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/endingArt/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/endingArt/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endingArt/despair.png");
+            return null;
         }
 
         public static Image getLegacyImage(string id)
@@ -76,7 +79,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
+            if (File.Exists(directoryToVanillaContent + "/images/icons100/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
+            return null;
         }
 
         public static Image getVerbImage(string id)
@@ -89,7 +93,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/icons100/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
+            return null;
         }
 
         public static Image getCardBackImage(string id)
@@ -102,7 +107,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/ritual.png");
+            if (File.Exists(directoryToVanillaContent + "/images/cardBacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
+            return null;
         }
 
         public static Image getBurnImage(string id)
