@@ -198,7 +198,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void decayToTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedElement.decayTo = decayToLabel.Text;
+            displayedElement.decayTo = decayToTextBox.Text;
         }
 
         private void lifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)

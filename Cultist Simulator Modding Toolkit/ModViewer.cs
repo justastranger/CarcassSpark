@@ -37,6 +37,11 @@ namespace Cultist_Simulator_Modding_Toolkit
             toolStrip1.Visible = !this.isVanilla;
             editModeCheckBox.Visible = !this.isVanilla;
 
+            refreshContent();
+        }
+        
+        void refreshContent()
+        {
             aspectsListBox.Items.Clear();
             aspectsList.Clear();
             elementsListBox.Items.Clear();
@@ -51,14 +56,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             endingsList.Clear();
             verbsListBox.Items.Clear();
             verbsList.Clear();
-            
+
             foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
-            {
-                //MessageBox.Show(file);
+            {   
                 using (FileStream fs = new FileStream(file, FileMode.Open))
                 {
-                    if(file.Contains("manifest.json"))
-                    {
+                    if (file.Contains("manifest.json")){
                         loadManifest(fs);
                         foundManifest = true;
                     } else {
@@ -66,14 +69,14 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                 }
             }
-            if (!foundManifest && !isVanilla)
+            if (!File.Exists(currentDirectory + "/manifest.json") && !isVanilla)
             {
                 DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(dr == DialogResult.Yes)
+                if (dr == DialogResult.Yes)
                 {
                     ManifestViewer mv = new ManifestViewer(new Manifest());
                     DialogResult mvdr = mv.ShowDialog();
-                    if(mvdr == DialogResult.OK)
+                    if (mvdr == DialogResult.OK)
                     {
                         manifest = mv.displayedManifest;
                         foundManifest = true;
@@ -81,7 +84,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 }
             }
         }
-        
+
         public void loadManifest(FileStream file)
         {
             string fileText = new StreamReader(file).ReadToEnd();
@@ -520,6 +523,31 @@ namespace Cultist_Simulator_Modding_Toolkit
                     recipesList.Add(rv.displayedRecipe.id, rv.displayedRecipe);
                     recipesListBox.Items.Add(rv.displayedRecipe.id);
                 }
+            }
+        }
+
+        private void reloadContentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            refreshContent();
+        }
+
+        private void summonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SummonCreator sc = new SummonCreator();
+            sc.ShowDialog();
+            if(sc.DialogResult == DialogResult.OK)
+            {
+                elementsListBox.Items.Add(sc.baseSummon.id);
+                elementsList.Add(sc.baseSummon.id, sc.baseSummon);
+
+                elementsListBox.Items.Add(sc.preSummon.id);
+                elementsList.Add(sc.preSummon.id, sc.preSummon);
+
+                recipesListBox.Items.Add(sc.startSummon.id);
+                recipesList.Add(sc.startSummon.id, sc.startSummon);
+
+                recipesListBox.Items.Add(sc.succeedSummon.id);
+                recipesList.Add(sc.succeedSummon.id, sc.succeedSummon);
             }
         }
 

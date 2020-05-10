@@ -12,6 +12,8 @@ namespace Cultist_Simulator_Modding_Toolkit
     public static class Utilities
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
+        private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
+
 
         public static string getIdType(string id)
         {
@@ -35,7 +37,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
         }
 
         public static Image getElementImage(string id)
@@ -48,7 +50,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
         }
 
         public static Image getEndingImage(string id)
@@ -61,7 +63,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/endingArt/_x.png");
         }
 
         public static Image getLegacyImage(string id)
@@ -74,7 +76,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
         }
 
         public static Image getVerbImage(string id)
@@ -87,7 +89,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
         }
 
         public static Image getCardBackImage(string id)
@@ -100,7 +102,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                     return Image.FromFile(pathToImage);
                 }
             }
-            return null;
+            return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/ritual.png");
         }
 
         public static Image getBurnImage(string id)

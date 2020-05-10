@@ -148,6 +148,12 @@
     <Compile Include="SlotViewer.Designer.cs">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="SummonCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SummonCreator.Designer.cs">
+      <DependentUpon>SummonCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="Verb.cs" />
     <Compile Include="VerbViewer.cs">
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SummonCreator.resx">
+      <DependentUpon>SummonCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VerbViewer.resx">
       <DependentUpon>VerbViewer.cs</DependentUpon>
