@@ -143,6 +143,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if (idTextBox.Text == null || idTextBox.Text == "")
+            {
+                MessageBox.Show("All Elements must have an ID");
+                return;
+            }
             if (xtriggersDataGridView.Rows.Count > 1) {
                 displayedElement.xtriggers = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in xtriggersDataGridView.Rows)

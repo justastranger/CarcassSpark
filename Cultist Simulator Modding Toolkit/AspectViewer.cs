@@ -93,6 +93,11 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if (idTextBox.Text == null || idTextBox.Text == "")
+            {
+                MessageBox.Show("All Aspects must have an ID.");
+                return;
+            }
             if (inducesDataGridView.Rows.Count > 1) {
                 displayedAspect.induces = new List<Aspect.Induces>();
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
