@@ -21,9 +21,9 @@ namespace Cultist_Simulator_Modding_Toolkit
         {
             InitializeComponent();
 
-            if (File.Exists(currentDirectory + "cmst.settings.json"))
+            if (File.Exists(currentDirectory + "csmt.settings.json"))
             {
-                Settings.loadSettings(currentDirectory + "cmst.settings.json");
+                Settings.loadSettings(currentDirectory + "csmt.settings.json");
             }
             if (Settings.settings["openWithVanilla"] != null && Settings.settings["openWithVanilla"].ToObject<bool>() == true)
             {
