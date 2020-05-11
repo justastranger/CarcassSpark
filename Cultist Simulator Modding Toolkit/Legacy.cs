@@ -21,18 +21,18 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription,
-                      JObject effects, string image, string fromEnding, bool availableWithoutEndingMatch,
+                      JObject effects, string image, string fromEnding, bool? availableWithoutEndingMatch,
                       string startingVerbId = null, JArray excludesOnEnding = null)
         {
-            this.id = id;
-            this.label = label;
-            this.description = description;
-            this.startdescription = startdescription;
-            this.effects = effects.ToObject<Dictionary<string, int>>();
-            this.image = image;
-            this.fromEnding = fromEnding;
-            this.availableWithoutEndingMatch = availableWithoutEndingMatch;
-            this.startingVerbId = startingVerbId;
+            if (id != null) this.id = id;
+            if (label != null) this.label = label;
+            if (description != null) this.description = description;
+            if (startdescription != null) this.startdescription = startdescription;
+            if (effects != null) this.effects = effects.ToObject<Dictionary<string, int>>();
+            if (image != null) this.image = image;
+            if (fromEnding != null) this.fromEnding = fromEnding;
+            if (availableWithoutEndingMatch.HasValue) this.availableWithoutEndingMatch = availableWithoutEndingMatch;
+            if (startingVerbId != null) this.startingVerbId = startingVerbId;
             if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding.ToObject<List<string>>();
         }
 
