@@ -340,7 +340,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject aspects = new JObject();
                 aspects["elements"] = JArray.FromObject(aspectsList.Values);
                 string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_aspects.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/aspects.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(aspectsJson);
@@ -353,7 +353,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject elements = new JObject();
                 elements["elements"] = JArray.FromObject(elementsList.Values);
                 string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_elements.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/elements.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(elementsJson);
@@ -365,7 +365,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject recipes = new JObject();
                 recipes["recipes"] = JArray.FromObject(recipesList.Values);
                 string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_recipes.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/recipes.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(recipesJson);
@@ -377,7 +377,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject decks = new JObject();
                 decks["decks"] = JArray.FromObject(decksList.Values);
                 string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_decks.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/decks.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(decksJson);
@@ -389,7 +389,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject legacies = new JObject();
                 legacies["legacies"] = JArray.FromObject(legaciesList.Values);
                 string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_legacies.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/legacies.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(legaciesJson);
@@ -401,7 +401,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject endings = new JObject();
                 endings["endings"] = JArray.FromObject(endingsList.Values);
                 string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_endings.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/endings.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(endingsJson);
@@ -413,7 +413,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 JObject verbs = new JObject();
                 verbs["verbs"] = JArray.FromObject(verbsList.Values);
                 string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (FileStream fs = File.Open(currentDirectory + "/content/" + manifest.name + "_verbs.json", FileMode.Create))
+                using (FileStream fs = File.Open(currentDirectory + "/content/verbs.json", FileMode.Create))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(fs));
                     jtw.WriteRaw(verbsJson);
