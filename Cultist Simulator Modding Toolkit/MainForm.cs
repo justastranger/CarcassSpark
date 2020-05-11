@@ -25,20 +25,17 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 Settings.loadSettings(currentDirectory + "csmt.settings.json");
             }
-            if (Settings.settings["openWithVanilla"] != null)
+            if (Settings.settings["openWithVanilla"] != null && Settings.settings["openWithVanilla"].ToObject<bool>())
             {
-                if (Settings.settings["openWithVanilla"].ToObject<bool>())
-                {
-                    ModViewer mv = new ModViewer(directoryToVanillaContent, true);
-                    Utilities.currentMods.Add(mv);
-                    mv.Show();
-                }
-                if (Settings.settings["rememberPreviousMod"].ToObject<bool>())
-                {
-                    ModViewer mv = new ModViewer(Settings.settings["previousMod"].ToString(), true);
-                    Utilities.currentMods.Add(mv);
-                    mv.Show();
-                }
+                ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+                Utilities.currentMods.Add(mv);
+                mv.Show();
+            }
+            if (Settings.settings["rememberPreviousMod"] != null && Settings.settings["rememberPreviousMod"].ToObject<bool>())
+            {
+                ModViewer mv = new ModViewer(Settings.settings["previousMod"].ToString(), false);
+                Utilities.currentMods.Add(mv);
+                mv.Show();
             }
         }
 
@@ -65,8 +62,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void openSettingsButton_Click(object sender, EventArgs e)
         {
-            Settings settingsForm = new Settings();
-            settingsForm.ShowDialog();
+            new Settings().ShowDialog();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
