@@ -57,14 +57,14 @@ namespace Cultist_Simulator_Modding_Toolkit
         void setEditingMode(bool editing)
         {
             this.editing = editing;
-            idTextBox.ReadOnly = editing;
-            labelTextBox.ReadOnly = editing;
-            descriptionTextBox.ReadOnly = editing;
-            startdescriptionTextBox.ReadOnly = editing;
-            imageTextBox.ReadOnly = editing;
-            fromEndingTextBox.ReadOnly = editing;
+            idTextBox.ReadOnly = !editing;
+            labelTextBox.ReadOnly =!editing;
+            descriptionTextBox.ReadOnly = !editing;
+            startdescriptionTextBox.ReadOnly = !editing;
+            imageTextBox.ReadOnly = !editing;
+            fromEndingTextBox.ReadOnly = !editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
-            startingVerbIdTextBox.ReadOnly = editing;
+            startingVerbIdTextBox.ReadOnly = !editing;
             effectsDataGridView.ReadOnly = !editing;
             effectsDataGridView.AllowUserToAddRows = editing;
             effectsDataGridView.AllowUserToDeleteRows = editing;
