@@ -54,5 +54,25 @@ namespace Cultist_Simulator_Modding_Toolkit
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedMutation.filterOnAspectId = filterTextBox.Text;
+        }
+
+        private void mutateAspectIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedMutation.mutateAspectId = mutateAspectIdTextBox.Text;
+        }
+
+        private void levelNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            displayedMutation.mutationLevel = Convert.ToInt32(levelNumericUpDown.Value);
+        }
+
+        private void additiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedMutation.additive = additiveCheckBox.Checked;
+        }
     }
 }

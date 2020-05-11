@@ -47,6 +47,7 @@
             this.filterTextBox.Size = new System.Drawing.Size(120, 20);
             this.filterTextBox.TabIndex = 0;
             this.filterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // mutateAspectIdTextBox
             // 
@@ -55,6 +56,7 @@
             this.mutateAspectIdTextBox.Size = new System.Drawing.Size(120, 20);
             this.mutateAspectIdTextBox.TabIndex = 1;
             this.mutateAspectIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mutateAspectIdTextBox.TextChanged += new System.EventHandler(this.mutateAspectIdTextBox_TextChanged);
             // 
             // levelNumericUpDown
             // 
@@ -67,6 +69,7 @@
             this.levelNumericUpDown.Name = "levelNumericUpDown";
             this.levelNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.levelNumericUpDown.TabIndex = 2;
+            this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.levelNumericUpDown_ValueChanged);
             // 
             // additiveCheckBox
             // 
@@ -77,6 +80,7 @@
             this.additiveCheckBox.TabIndex = 3;
             this.additiveCheckBox.Text = "Additive";
             this.additiveCheckBox.UseVisualStyleBackColor = true;
+            this.additiveCheckBox.CheckedChanged += new System.EventHandler(this.additiveCheckBox_CheckedChanged);
             // 
             // okButton
             // 
