@@ -207,6 +207,9 @@
     <EmbeddedResource Include="RecipeViewer.resx">
       <DependentUpon>RecipeViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </EmbeddedResource>
