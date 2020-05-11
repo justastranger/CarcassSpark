@@ -21,6 +21,7 @@ namespace Cultist_Simulator_Modding_Toolkit
         public Settings()
         {
             InitializeComponent();
+            populateSettings();
         }
 
         private static void saveSettings()
@@ -40,9 +41,22 @@ namespace Cultist_Simulator_Modding_Toolkit
             settings = JsonConvert.DeserializeObject<JObject>(new StreamReader(settingsFilePath).ReadToEnd());
         }
 
+        void populateSettings()
+        {
+            if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
+            if (settings["rememberPreviousMod"] != null) rememberPreviousModCheckBox.Checked = settings["rememberPreviousMod"].ToObject<bool>();
+            if (settings["previousMod"] != null) previousModTextBox.Text = settings["previousMod"].ToString();
+        }
+
         private void openWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["openWithVanilla"] = openWithVanillaCheckBox.Checked;
+            saveSettings();
+        }
+
+        private void rememberPreviousModCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings["rememberPreviousMod"] = rememberPreviousModCheckBox.Checked;
             saveSettings();
         }
     }

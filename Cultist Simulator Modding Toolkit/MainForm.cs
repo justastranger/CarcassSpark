@@ -25,11 +25,20 @@ namespace Cultist_Simulator_Modding_Toolkit
             {
                 Settings.loadSettings(currentDirectory + "csmt.settings.json");
             }
-            if (Settings.settings["openWithVanilla"] != null && Settings.settings["openWithVanilla"].ToObject<bool>() == true)
+            if (Settings.settings["openWithVanilla"] != null)
             {
-                ModViewer mv = new ModViewer(directoryToVanillaContent, true);
-                Utilities.currentMods.Add(mv);
-                mv.Show();
+                if (Settings.settings["openWithVanilla"].ToObject<bool>())
+                {
+                    ModViewer mv = new ModViewer(directoryToVanillaContent, true);
+                    Utilities.currentMods.Add(mv);
+                    mv.Show();
+                }
+                if (Settings.settings["rememberPreviousMod"].ToObject<bool>())
+                {
+                    ModViewer mv = new ModViewer(Settings.settings["previousMod"].ToString(), true);
+                    Utilities.currentMods.Add(mv);
+                    mv.Show();
+                }
             }
         }
 
@@ -49,6 +58,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 string location = folderBrowserDialog1.SelectedPath;
                 ModViewer mv = new ModViewer(location, false);
                 Utilities.currentMods.Add(mv);
+                Settings.settings["previousMod"] = mv.currentDirectory;
                 mv.Show();
             }
         }
