@@ -553,9 +553,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void aspetsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> aspectIds = aspectsList.Keys.ToList();
             aspectsListBox.Items.Clear();
-            foreach (string id in aspectIds)
+            foreach (string id in aspectsList.Keys.ToList())
             {
                 if (id.Contains(aspetsSearchTextBox.Text))
                 {
@@ -566,9 +565,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void elementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> elementIds = elementsList.Keys.ToList();
             elementsListBox.Items.Clear();
-            foreach (string id in elementIds)
+            foreach (string id in elementsList.Keys.ToList())
             {
                 if (id.Contains(elementsSearchTextBox.Text))
                 {
@@ -579,9 +577,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void recipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> recipeIds = recipesList.Keys.ToList();
             recipesListBox.Items.Clear();
-            foreach (string id in recipeIds)
+            foreach (string id in recipesList.Keys.ToList())
             {
                 if (id.Contains(recipesSearchTextBox.Text))
                 {
@@ -592,9 +589,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void decksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> deckIds = decksList.Keys.ToList();
             decksListBox.Items.Clear();
-            foreach (string id in deckIds)
+            foreach (string id in decksList.Keys.ToList())
             {
                 if (id.Contains(decksSearchTextBox.Text))
                 {
@@ -605,9 +601,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void legaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> legacyIds = legaciesList.Keys.ToList();
             legaciesListBox.Items.Clear();
-            foreach (string id in legacyIds)
+            foreach (string id in legaciesList.Keys.ToList())
             {
                 if (id.Contains(legaciesSearchTextBox.Text))
                 {
@@ -618,9 +613,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void endingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> endingIds = endingsList.Keys.ToList();
             endingsListBox.Items.Clear();
-            foreach (string id in endingIds)
+            foreach (string id in endingsList.Keys.ToList())
             {
                 if (id.Contains(endingsSearchTextBox.Text))
                 {
@@ -631,9 +625,8 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void verbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<string> verbIds = verbsList.Keys.ToList();
             verbsListBox.Items.Clear();
-            foreach (string id in verbIds)
+            foreach (string id in verbsList.Keys.ToList())
             {
                 if (id.Contains(verbsSearchTextBox.Text))
                 {
