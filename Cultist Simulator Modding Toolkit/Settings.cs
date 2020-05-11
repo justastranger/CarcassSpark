@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +15,35 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class Settings : Form
     {
+        public static JObject settings = new JObject();
+        static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
         public Settings()
         {
             InitializeComponent();
+        }
+
+        private static void saveSettings()
+        {
+            using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
+            {
+                string settingsJson = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(settingsFile)))
+                {
+                    jtw.WriteRaw(settingsJson);
+                }
+            }
+        }
+
+        public static void loadSettings(string settingsFilePath)
+        {
+            settings = JsonConvert.DeserializeObject<JObject>(new StreamReader(settingsFilePath).ReadToEnd());
+        }
+
+        private void openWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings["openWithVanilla"] = openWithVanillaCheckBox.Checked;
+            saveSettings();
         }
     }
 }
