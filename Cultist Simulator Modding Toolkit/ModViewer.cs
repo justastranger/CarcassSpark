@@ -551,6 +551,97 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
+        private void aspetsSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> aspectIds = aspectsList.Keys.ToList();
+            aspectsListBox.Items.Clear();
+            foreach (string id in aspectIds)
+            {
+                if (id.Contains(aspetsSearchTextBox.Text))
+                {
+                    aspectsListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void elementsSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> elementIds = elementsList.Keys.ToList();
+            elementsListBox.Items.Clear();
+            foreach (string id in elementIds)
+            {
+                if (id.Contains(elementsSearchTextBox.Text))
+                {
+                    elementsListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void recipesSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> recipeIds = recipesList.Keys.ToList();
+            recipesListBox.Items.Clear();
+            foreach (string id in recipeIds)
+            {
+                if (id.Contains(recipesSearchTextBox.Text))
+                {
+                    recipesListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void decksSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> deckIds = decksList.Keys.ToList();
+            decksListBox.Items.Clear();
+            foreach (string id in deckIds)
+            {
+                if (id.Contains(decksSearchTextBox.Text))
+                {
+                    decksListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void legaciesSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> legacyIds = legaciesList.Keys.ToList();
+            legaciesListBox.Items.Clear();
+            foreach (string id in legacyIds)
+            {
+                if (id.Contains(legaciesSearchTextBox.Text))
+                {
+                    legaciesListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void endingsSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> endingIds = endingsList.Keys.ToList();
+            endingsListBox.Items.Clear();
+            foreach (string id in endingIds)
+            {
+                if (id.Contains(endingsSearchTextBox.Text))
+                {
+                    endingsListBox.Items.Add(id);
+                }
+            }
+        }
+
+        private void verbsSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> verbIds = verbsList.Keys.ToList();
+            verbsListBox.Items.Clear();
+            foreach (string id in verbIds)
+            {
+                if (id.Contains(verbsSearchTextBox.Text))
+                {
+                    verbsListBox.Items.Add(id);
+                }
+            }
+        }
+
         private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             editMode = editModeCheckBox.Checked;

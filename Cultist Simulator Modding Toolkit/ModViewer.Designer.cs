@@ -54,11 +54,18 @@
             this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editModeCheckBox = new System.Windows.Forms.CheckBox();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
+            this.decksSearchTextBox = new System.Windows.Forms.TextBox();
+            this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
+            this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +75,7 @@
             this.aspectsListBox.Location = new System.Drawing.Point(12, 41);
             this.aspectsListBox.Name = "aspectsListBox";
             this.aspectsListBox.ScrollAlwaysVisible = true;
-            this.aspectsListBox.Size = new System.Drawing.Size(125, 303);
+            this.aspectsListBox.Size = new System.Drawing.Size(125, 290);
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
             this.aspectsListBox.DoubleClick += new System.EventHandler(this.aspectListBox_DoubleClick);
@@ -97,7 +104,7 @@
             this.elementsListBox.Location = new System.Drawing.Point(143, 41);
             this.elementsListBox.Name = "elementsListBox";
             this.elementsListBox.ScrollAlwaysVisible = true;
-            this.elementsListBox.Size = new System.Drawing.Size(125, 303);
+            this.elementsListBox.Size = new System.Drawing.Size(125, 290);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             this.elementsListBox.DoubleClick += new System.EventHandler(this.elementsListBox_DoubleClick);
@@ -117,7 +124,7 @@
             this.recipesListBox.Location = new System.Drawing.Point(274, 41);
             this.recipesListBox.Name = "recipesListBox";
             this.recipesListBox.ScrollAlwaysVisible = true;
-            this.recipesListBox.Size = new System.Drawing.Size(125, 303);
+            this.recipesListBox.Size = new System.Drawing.Size(125, 290);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
@@ -137,7 +144,7 @@
             this.decksListBox.Location = new System.Drawing.Point(405, 41);
             this.decksListBox.Name = "decksListBox";
             this.decksListBox.ScrollAlwaysVisible = true;
-            this.decksListBox.Size = new System.Drawing.Size(125, 303);
+            this.decksListBox.Size = new System.Drawing.Size(125, 290);
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
@@ -157,7 +164,7 @@
             this.legaciesListBox.Location = new System.Drawing.Point(536, 41);
             this.legaciesListBox.Name = "legaciesListBox";
             this.legaciesListBox.ScrollAlwaysVisible = true;
-            this.legaciesListBox.Size = new System.Drawing.Size(125, 303);
+            this.legaciesListBox.Size = new System.Drawing.Size(125, 290);
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
@@ -168,7 +175,7 @@
             this.endingsListBox.Location = new System.Drawing.Point(667, 41);
             this.endingsListBox.Name = "endingsListBox";
             this.endingsListBox.ScrollAlwaysVisible = true;
-            this.endingsListBox.Size = new System.Drawing.Size(125, 303);
+            this.endingsListBox.Size = new System.Drawing.Size(125, 290);
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
@@ -188,7 +195,7 @@
             this.verbsListBox.Location = new System.Drawing.Point(798, 41);
             this.verbsListBox.Name = "verbsListBox";
             this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(120, 303);
+            this.verbsListBox.Size = new System.Drawing.Size(120, 290);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
@@ -297,30 +304,19 @@
             this.editManifestToolStripMenuItem.Text = "Edit Manifest";
             this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.editManifestToolStripMenuItem_Click);
             // 
-            // saveModToolStripMenuItem
-            // 
-            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.saveModToolStripMenuItem.Text = "Save Mod";
-            this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
-            // 
-            // editModeCheckBox
-            // 
-            this.editModeCheckBox.AutoSize = true;
-            this.editModeCheckBox.Location = new System.Drawing.Point(844, 8);
-            this.editModeCheckBox.Name = "editModeCheckBox";
-            this.editModeCheckBox.Size = new System.Drawing.Size(74, 17);
-            this.editModeCheckBox.TabIndex = 16;
-            this.editModeCheckBox.Text = "Edit Mode";
-            this.editModeCheckBox.UseVisualStyleBackColor = true;
-            this.editModeCheckBox.CheckedChanged += new System.EventHandler(this.editModeCheckBox_CheckedChanged);
-            // 
             // reloadContentToolStripMenuItem
             // 
             this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
             this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.reloadContentToolStripMenuItem.Text = "Reload Content";
             this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
+            // 
+            // saveModToolStripMenuItem
+            // 
+            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.saveModToolStripMenuItem.Text = "Save Mod";
+            this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -337,11 +333,85 @@
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
             // 
+            // editModeCheckBox
+            // 
+            this.editModeCheckBox.AutoSize = true;
+            this.editModeCheckBox.Location = new System.Drawing.Point(844, 8);
+            this.editModeCheckBox.Name = "editModeCheckBox";
+            this.editModeCheckBox.Size = new System.Drawing.Size(74, 17);
+            this.editModeCheckBox.TabIndex = 16;
+            this.editModeCheckBox.Text = "Edit Mode";
+            this.editModeCheckBox.UseVisualStyleBackColor = true;
+            this.editModeCheckBox.CheckedChanged += new System.EventHandler(this.editModeCheckBox_CheckedChanged);
+            // 
+            // aspetsSearchTextBox
+            // 
+            this.aspetsSearchTextBox.Location = new System.Drawing.Point(12, 337);
+            this.aspetsSearchTextBox.Name = "aspetsSearchTextBox";
+            this.aspetsSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.aspetsSearchTextBox.TabIndex = 17;
+            this.aspetsSearchTextBox.TextChanged += new System.EventHandler(this.aspetsSearchTextBox_TextChanged);
+            // 
+            // searchElementsTextBox
+            // 
+            this.elementsSearchTextBox.Location = new System.Drawing.Point(143, 337);
+            this.elementsSearchTextBox.Name = "searchElementsTextBox";
+            this.elementsSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.elementsSearchTextBox.TabIndex = 18;
+            this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.elementsSearchTextBox_TextChanged);
+            // 
+            // searchRecipesTextBox
+            // 
+            this.recipesSearchTextBox.Location = new System.Drawing.Point(274, 337);
+            this.recipesSearchTextBox.Name = "searchRecipesTextBox";
+            this.recipesSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.recipesSearchTextBox.TabIndex = 19;
+            this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.recipesSearchTextBox_TextChanged);
+            // 
+            // decksSearchTextBox
+            // 
+            this.decksSearchTextBox.Location = new System.Drawing.Point(405, 337);
+            this.decksSearchTextBox.Name = "decksSearchTextBox";
+            this.decksSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.decksSearchTextBox.TabIndex = 20;
+            this.decksSearchTextBox.TextChanged += new System.EventHandler(this.decksSearchTextBox_TextChanged);
+            // 
+            // legaciesSearchTextBox
+            // 
+            this.legaciesSearchTextBox.Location = new System.Drawing.Point(536, 337);
+            this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
+            this.legaciesSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.legaciesSearchTextBox.TabIndex = 21;
+            this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.legaciesSearchTextBox_TextChanged);
+            // 
+            // endingsSearchTextBox
+            // 
+            this.endingsSearchTextBox.Location = new System.Drawing.Point(667, 337);
+            this.endingsSearchTextBox.Name = "endingsSearchTextBox";
+            this.endingsSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.endingsSearchTextBox.TabIndex = 22;
+            this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.endingsSearchTextBox_TextChanged);
+            // 
+            // verbsSearchTextBox
+            // 
+            this.verbsSearchTextBox.Location = new System.Drawing.Point(798, 337);
+            this.verbsSearchTextBox.Name = "verbsSearchTextBox";
+            this.verbsSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.verbsSearchTextBox.TabIndex = 23;
+            this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 369);
+            this.Controls.Add(this.verbsSearchTextBox);
+            this.Controls.Add(this.endingsSearchTextBox);
+            this.Controls.Add(this.legaciesSearchTextBox);
+            this.Controls.Add(this.decksSearchTextBox);
+            this.Controls.Add(this.recipesSearchTextBox);
+            this.Controls.Add(this.elementsSearchTextBox);
+            this.Controls.Add(this.aspetsSearchTextBox);
             this.Controls.Add(this.editModeCheckBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.verbsLabel);
@@ -401,6 +471,13 @@
         private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem summonGeneratorToolStripMenuItem;
+        private System.Windows.Forms.TextBox aspetsSearchTextBox;
+        private System.Windows.Forms.TextBox elementsSearchTextBox;
+        private System.Windows.Forms.TextBox recipesSearchTextBox;
+        private System.Windows.Forms.TextBox decksSearchTextBox;
+        private System.Windows.Forms.TextBox legaciesSearchTextBox;
+        private System.Windows.Forms.TextBox endingsSearchTextBox;
+        private System.Windows.Forms.TextBox verbsSearchTextBox;
     }
 }
 
