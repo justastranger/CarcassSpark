@@ -412,8 +412,8 @@ namespace Cultist_Simulator_Modding_Toolkit
                 mv.ShowDialog();
                 if(mv.DialogResult == DialogResult.OK)
                 {
-                    mutationsListBox.Items.Add(mv.displayedMutation.filterOnAspectId);
-                    mutations.Add(mv.displayedMutation.filterOnAspectId, mv.displayedMutation);
+                    mutationsListBox.Items.Add(mv.displayedMutation.mutateAspectId);
+                    mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
                     if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
                     else displayedRecipe.mutations = new List<Recipe.Mutation> { mv.displayedMutation };
                 }
