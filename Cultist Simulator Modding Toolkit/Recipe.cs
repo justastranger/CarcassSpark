@@ -115,10 +115,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public Dictionary<string, string> challenges;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public Dictionary<string, int> expulsions;
+            public Expulsion expulsion;
 
             [JsonConstructor]
-            public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null, JObject expulsions = null)
+            public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null, JObject expulsion = null)
             {
                 this.id = id;
                 this.chance = chance;
@@ -127,11 +127,36 @@ namespace Cultist_Simulator_Modding_Toolkit
                 {
                     this.challenges = challenges.ToObject<Dictionary<string, string>>();
                 }
+                if (expulsion != null)
+                {
+                    this.expulsion = expulsion.ToObject<Expulsion>();
+                }
             }
 
             public RecipeLink()
             {
 
+            }
+
+            public class Expulsion
+            {
+                [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+                public Dictionary<string, int> filter;
+                [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+                public int limit;
+
+                [JsonConstructor]
+                public Expulsion(Dictionary<string, int> filter, int? limit)
+                {
+                    this.filter = filter;
+                    if (limit.HasValue) this.limit = limit.Value;
+                }
+
+                public Expulsion(int limit)
+                {
+                    filter = new Dictionary<string, int>();
+                    this.limit = limit;
+                }
             }
         }
 

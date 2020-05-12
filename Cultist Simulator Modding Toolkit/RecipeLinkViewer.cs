@@ -36,6 +36,13 @@ namespace Cultist_Simulator_Modding_Toolkit
                     challengesDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
+            if (recipeLink.expulsion != null)
+            {
+                foreach (KeyValuePair<string, int> kvp in recipeLink.expulsion.filter)
+                {
+                    expulsionDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
         }
         
         void setEditingMode(bool editing)
@@ -47,6 +54,9 @@ namespace Cultist_Simulator_Modding_Toolkit
             challengesDataGridView.ReadOnly = !editing;
             challengesDataGridView.AllowUserToAddRows = editing;
             challengesDataGridView.AllowUserToDeleteRows = editing;
+            expulsionDataGridView.ReadOnly = !editing;
+            expulsionDataGridView.AllowUserToAddRows = editing;
+            expulsionDataGridView.AllowUserToDeleteRows = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
@@ -70,14 +80,14 @@ namespace Cultist_Simulator_Modding_Toolkit
                     }
                 }
             }
-            if (expulsionsDataGridView.RowCount > 1)
+            if (expulsionDataGridView.RowCount > 1)
             {
-                displayedRecipeLink.expulsions = new Dictionary<string, int>();
-                foreach (DataGridViewRow row in expulsionsDataGridView.Rows)
+                displayedRecipeLink.expulsion = new Recipe.RecipeLink.Expulsion(1);
+                foreach (DataGridViewRow row in expulsionDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        displayedRecipeLink.expulsions.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                        displayedRecipeLink.expulsion.filter.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                     }
                 }
             }
@@ -115,7 +125,7 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = expulsionsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string id = expulsionDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             switch (Utilities.getIdType(id))
             {
                 case "aspect":
@@ -132,10 +142,10 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
-        private void expulsionsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void expulsionDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedRecipeLink.expulsions.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsions.Remove(e.Row.Cells[0].Value.ToString());
-            if (displayedRecipeLink.expulsions.Count == 0) displayedRecipeLink.expulsions = null;
+            if (displayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedRecipeLink.expulsion.filter.Count == 0) displayedRecipeLink.expulsion = null;
         }
         
         private void challengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

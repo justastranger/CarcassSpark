@@ -40,13 +40,13 @@
             this.chanceLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.expulsionsLabel = new System.Windows.Forms.Label();
-            this.expulsionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.expulsionLabel = new System.Windows.Forms.Label();
+            this.expulsionDataGridView = new System.Windows.Forms.DataGridView();
             this.expulsionFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expulsionLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expulsionsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -161,29 +161,29 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // expulsionsLabel
+            // expulsionLabel
             // 
-            this.expulsionsLabel.AutoSize = true;
-            this.expulsionsLabel.Location = new System.Drawing.Point(156, 200);
-            this.expulsionsLabel.Name = "expulsionsLabel";
-            this.expulsionsLabel.Size = new System.Drawing.Size(57, 13);
-            this.expulsionsLabel.TabIndex = 10;
-            this.expulsionsLabel.Text = "Expulsions";
+            this.expulsionLabel.AutoSize = true;
+            this.expulsionLabel.Location = new System.Drawing.Point(156, 200);
+            this.expulsionLabel.Name = "expulsionLabel";
+            this.expulsionLabel.Size = new System.Drawing.Size(57, 13);
+            this.expulsionLabel.TabIndex = 10;
+            this.expulsionLabel.Text = "Expulsion";
             // 
-            // expulsionsDataGridView
+            // expulsionDataGridView
             // 
-            this.expulsionsDataGridView.AllowUserToResizeColumns = false;
-            this.expulsionsDataGridView.AllowUserToResizeRows = false;
-            this.expulsionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.expulsionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.expulsionDataGridView.AllowUserToResizeColumns = false;
+            this.expulsionDataGridView.AllowUserToResizeRows = false;
+            this.expulsionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.expulsionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.expulsionFilter,
             this.expulsionLimit});
-            this.expulsionsDataGridView.Location = new System.Drawing.Point(12, 216);
-            this.expulsionsDataGridView.Name = "expulsionsDataGridView";
-            this.expulsionsDataGridView.Size = new System.Drawing.Size(356, 117);
-            this.expulsionsDataGridView.TabIndex = 11;
-            this.expulsionsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.expulsionsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionsDataGridView_UserDeletedRow);
+            this.expulsionDataGridView.Location = new System.Drawing.Point(12, 216);
+            this.expulsionDataGridView.Name = "expulsionDataGridView";
+            this.expulsionDataGridView.Size = new System.Drawing.Size(356, 117);
+            this.expulsionDataGridView.TabIndex = 11;
+            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionDataGridView_UserDeletedRow);
             // 
             // expulsionFilter
             // 
@@ -202,8 +202,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 374);
-            this.Controls.Add(this.expulsionsDataGridView);
-            this.Controls.Add(this.expulsionsLabel);
+            this.Controls.Add(this.expulsionDataGridView);
+            this.Controls.Add(this.expulsionLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.chanceLabel);
@@ -218,7 +218,7 @@
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expulsionsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,8 +238,8 @@
         private System.Windows.Forms.Label chanceLabel;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Label expulsionsLabel;
-        private System.Windows.Forms.DataGridView expulsionsDataGridView;
+        private System.Windows.Forms.Label expulsionLabel;
+        private System.Windows.Forms.DataGridView expulsionDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn expulsionFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn expulsionLimit;
     }
