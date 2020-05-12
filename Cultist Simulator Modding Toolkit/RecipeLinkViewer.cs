@@ -59,19 +59,26 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in challengesDataGridView.Rows)
+            if (challengesDataGridView.RowCount > 1)
             {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                displayedRecipeLink.challenges = new Dictionary<string, string>();
+                foreach (DataGridViewRow row in challengesDataGridView.Rows)
                 {
-                    displayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        displayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                    }
                 }
             }
-
-            foreach (DataGridViewRow row in expulsionsDataGridView.Rows)
+            if (expulsionsDataGridView.RowCount > 1)
             {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                displayedRecipeLink.expulsions = new Dictionary<string, int>();
+                foreach (DataGridViewRow row in expulsionsDataGridView.Rows)
                 {
-                    displayedRecipeLink.expulsions.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        displayedRecipeLink.expulsions.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    }
                 }
             }
 
