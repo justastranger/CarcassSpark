@@ -802,6 +802,106 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
+        private void recipesThatLinkToThisRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.linked != null) foreach (Recipe.RecipeLink link in recipe.linked)
+                {
+                    if (link.id == recipesListBox.SelectedItem.ToString())
+                    {
+                        tmp.Add(recipe.id, recipe);
+                    }
+                }
+                if (recipe.alternativerecipes != null) foreach (Recipe.RecipeLink link in recipe.alternativerecipes)
+                {
+                    if (link.id == recipesListBox.SelectedItem.ToString())
+                    {
+                        tmp.Add(recipe.id, recipe);
+                    }
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void recipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (decksListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.deckeffect != null && recipe.deckeffect.ContainsKey(decksListBox.SelectedItem.ToString()) && recipe.deckeffect[decksListBox.SelectedItem.ToString()] > 0)
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void recipesThatCauseThisEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (endingsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.ending != null && recipe.ending == endingsListBox.SelectedItem.ToString())
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void recipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (verbsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.actionId != null && recipe.actionId == verbsListBox.SelectedItem.ToString())
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void elementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (verbsListBox.SelectedItem == null) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (Element element in elementsList.Values)
+            {
+                if (element.slots != null) foreach (Slot slot in element.slots)
+                {
+                    if (slot.actionId == verbsListBox.SelectedItem.ToString() && !tmp.ContainsKey(element.id)) tmp.Add(element.id, element);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.ShowDialog();
+            }
+        }
+
         private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             editMode = editModeCheckBox.Checked;
@@ -810,8 +910,8 @@ namespace Cultist_Simulator_Modding_Toolkit
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;
-            else if (this.foundManifest) return;
-            else this.Close();
+            else if (foundManifest) return;
+            else Close();
         }
     }
 }
