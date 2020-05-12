@@ -59,6 +59,22 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in challengesDataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                {
+                    displayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in expulsionsDataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                {
+                    displayedRecipeLink.expulsions.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                }
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -109,28 +125,12 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
-        private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void expulsionsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipeLink.expulsions.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsions.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedRecipeLink.expulsions.Count == 0) displayedRecipeLink.expulsions = null;
         }
-
-        private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            if (e.Row.Cells[0].Value != null && e.Row.Cells[1].Value != null)
-            {
-                displayedRecipeLink.expulsions.Add(e.Row.Cells[0].Value.ToString(), Convert.ToInt32(e.Row.Cells[1].Value));
-            }
-        }
-
-        private void challengesDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            if (e.Row.Cells[0].Value != null && e.Row.Cells[1].Value != null)
-            {
-                displayedRecipeLink.challenges.Add(e.Row.Cells[0].Value.ToString(), e.Row.Cells[1].Value.ToString());
-            }
-        }
-
+        
         private void challengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), false);

@@ -90,7 +90,6 @@
             this.challengesDataGridView.Size = new System.Drawing.Size(356, 122);
             this.challengesDataGridView.TabIndex = 3;
             this.challengesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.challengesDataGridView_CellDoubleClick);
-            this.challengesDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserAddedRow);
             this.challengesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserDeletedRow);
             // 
             // aspectId
@@ -184,8 +183,7 @@
             this.expulsionsDataGridView.Size = new System.Drawing.Size(356, 117);
             this.expulsionsDataGridView.TabIndex = 11;
             this.expulsionsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.expulsionsDataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserAddedRow);
-            this.expulsionsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserDeletedRow);
+            this.expulsionsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionsDataGridView_UserDeletedRow);
             // 
             // expulsionFilter
             // 
