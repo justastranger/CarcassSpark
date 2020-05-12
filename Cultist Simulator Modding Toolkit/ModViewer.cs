@@ -618,6 +618,190 @@ namespace Cultist_Simulator_Modding_Toolkit
             }
         }
 
+        private void elementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (Element element in elementsList.Values)
+            {
+                if (element.aspects != null && element.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()))
+                {
+                    tmp.Add(element.id, element);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.ShowDialog();
+            }
+        }
+
+        private void elementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (Element element in elementsList.Values)
+            {
+                if (element.xtriggers != null && element.xtriggers.ContainsKey(aspectsListBox.SelectedItem.ToString()))
+                {
+                    tmp.Add(element.id, element);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.ShowDialog();
+            }
+        }
+
+        private void recipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if ((recipe.requirements != null && recipe.requirements.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.requirements[aspectsListBox.SelectedItem.ToString()] > 0) ||
+                    (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.extantreqs[aspectsListBox.SelectedItem.ToString()] > 0) ||
+                    (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.tablereqs[aspectsListBox.SelectedItem.ToString()] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void recipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.aspects != null && recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0)
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void elementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (Element element in elementsList.Values)
+            {
+                if (element.decayTo != null && element.decayTo == elementsListBox.SelectedItem.ToString())
+                {
+                    tmp.Add(element.id, element);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.ShowDialog();
+            }
+        }
+
+        private void elementsThatXtriggerIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (Element element in elementsList.Values)
+            {
+                if (element.xtriggers != null && element.xtriggers.ContainsValue(elementsListBox.SelectedItem.ToString()))
+                {
+                    tmp.Add(element.id, element);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.ShowDialog();
+            }
+        }
+
+        private void recipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if ((recipe.requirements != null && recipe.requirements.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.requirements[elementsListBox.SelectedItem.ToString()] > 0) ||
+                    (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.extantreqs[elementsListBox.SelectedItem.ToString()] > 0) ||
+                    (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.tablereqs[elementsListBox.SelectedItem.ToString()] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void recipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Recipe recipe in recipesList.Values)
+            {
+                if (recipe.effects != null && recipe.effects.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.effects[elementsListBox.SelectedItem.ToString()] > 0)
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.ShowDialog();
+            }
+        }
+
+        private void decksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
+            foreach (Deck deck in decksList.Values)
+            {
+                if (deck.spec != null && deck.spec.Contains(elementsListBox.SelectedItem.ToString()))
+                {
+                    tmp.Add(deck.id, deck);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                DecksDictionaryResults ddr = new DecksDictionaryResults(tmp);
+                ddr.ShowDialog();
+            }
+        }
+
+        private void legaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
+            foreach (Legacy legacy in legaciesList.Values)
+            {
+                if (legacy.effects != null && legacy.effects.ContainsKey(elementsListBox.SelectedItem.ToString()))
+                {
+                    tmp.Add(legacy.id, legacy);
+                }
+            }
+            if (tmp.Count > 0)
+            {
+                LegaciesDictionaryResults ldr = new LegaciesDictionaryResults(tmp);
+                ldr.ShowDialog();
+            }
+        }
+
         private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             editMode = editModeCheckBox.Checked;

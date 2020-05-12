@@ -69,6 +69,12 @@
     </Compile>
     <Compile Include="Aspect.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="DecksDictionaryResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecksDictionaryResults.Designer.cs">
+      <DependentUpon>DecksDictionaryResults.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeckViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,12 @@
       <DependentUpon>DeckViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Element.cs" />
+    <Compile Include="ElementsWithAspectResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElementsWithAspectResults.Designer.cs">
+      <DependentUpon>ElementsWithAspectResults.cs</DependentUpon>
+    </Compile>
     <Compile Include="ElementViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +100,12 @@
     </Compile>
     <Compile Include="EndingViewer.Designer.cs">
       <DependentUpon>EndingViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LegaciesDictionaryResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LegaciesDictionaryResults.Designer.cs">
+      <DependentUpon>LegaciesDictionaryResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Legacy.cs" />
     <Compile Include="LegacyViewer.cs">
@@ -130,6 +148,12 @@
     <Compile Include="RecipeLinkViewer.Designer.cs">
       <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecipesRequiringElementResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecipesRequiringElementResults.Designer.cs">
+      <DependentUpon>RecipesRequiringElementResults.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecipeViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,14 +193,23 @@
     <EmbeddedResource Include="ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DecksDictionaryResults.resx">
+      <DependentUpon>DecksDictionaryResults.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeckViewer.resx">
       <DependentUpon>DeckViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElementsWithAspectResults.resx">
+      <DependentUpon>ElementsWithAspectResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ElementViewer.resx">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EndingViewer.resx">
       <DependentUpon>EndingViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegaciesDictionaryResults.resx">
+      <DependentUpon>LegaciesDictionaryResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LegacyViewer.resx">
       <DependentUpon>LegacyViewer.cs</DependentUpon>
@@ -204,6 +237,9 @@
     </Compile>
     <EmbeddedResource Include="RecipeLinkViewer.resx">
       <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecipesRequiringElementResults.resx">
+      <DependentUpon>RecipesRequiringElementResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecipeViewer.resx">
       <DependentUpon>RecipeViewer.cs</DependentUpon>
