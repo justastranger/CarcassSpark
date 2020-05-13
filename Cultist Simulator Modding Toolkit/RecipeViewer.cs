@@ -257,7 +257,7 @@ namespace Cultist_Simulator_Modding_Toolkit
             mv.ShowDialog();
             if (mv.DialogResult == DialogResult.OK)
             {
-                mutations.Remove(mutation.mutateAspectId);
+                mutations.Remove(mv.displayedMutation.mutateAspectId);
                 mutationsListBox.Items[mutationsListBox.SelectedIndex] = mv.displayedMutation.mutateAspectId;
                 mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
                 displayedRecipe.mutations[mutationsListBox.SelectedIndex] = mv.displayedMutation;
