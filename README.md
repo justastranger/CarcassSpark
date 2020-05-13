@@ -16,3 +16,17 @@ The toolkit will look for these images in `Cultist Simulator/cultistsimulator_Da
  - Verb icons in `images/icons100/verbs`
  - Ending art in `images/endingart`
  - Burn images in `images/burnimages`
+
+# Mod Folder Structure
+ - Your Mod Folder
+   - `content`
+     - json files in folders or not, structured however you want as long as they have the `.json` extension
+   - `images`
+     - `burnimages`
+     - `elementart`
+     - `endingart`
+     - `icons40`
+       - `aspects`
+     - `icons100`
+       - `legacies`
+	   - `verbs`
