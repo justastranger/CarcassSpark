@@ -12,6 +12,13 @@ namespace Cultist_Simulator_Modding_Toolkit
 {
     public partial class ManifestViewer : Form
     {
+        // TODO
+        //    - Manifest files support a List<Dependency> dependencies field
+        //        - Dependency
+        //            - string ModId
+        //            - Version version: Major.Minor.Build.Revision
+        //            - DependencyOperator VersionOperator: ==, >=, >, <=, < 
+
         public Manifest displayedManifest;
 
         public ManifestViewer(Manifest manifest)
@@ -23,6 +30,13 @@ namespace Cultist_Simulator_Modding_Toolkit
             modVersionTextBox.Text = manifest.version;
             modDescriptionTextBox.Text = manifest.description;
             longDescriptionTextBox.Text = manifest.description_long;
+            if (manifest.dependencies != null)
+            {
+                foreach (Manifest.Dependency dep in manifest.dependencies)
+                {
+                    dependeniesDataGridView.Rows.Add(dep.modId, dep.VersionOperator, dep.version);
+                }
+            }
         }
 
         private void modNameTextBox_TextChanged(object sender, EventArgs e)
@@ -52,6 +66,21 @@ namespace Cultist_Simulator_Modding_Toolkit
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if(dependeniesDataGridView.RowCount > 1)
+            {
+                displayedManifest.dependencies = new List<Manifest.Dependency>();
+                foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
+                {
+                    Manifest.Dependency dep = new Manifest.Dependency();
+                    if (row.Cells[0].Value != null) dep.modId = row.Cells[0].Value.ToString();
+                    if (row.Cells[1].Value != null) dep.VersionOperator = row.Cells[1].Value.ToString();
+                    if (row.Cells[2].Value != null) dep.version = row.Cells[2].Value.ToString();
+                    if (dep.modId != null)
+                    {
+                        displayedManifest.dependencies.Add(dep);
+                    }
+                }
+            }
             DialogResult = DialogResult.OK;
             Close();
         }
