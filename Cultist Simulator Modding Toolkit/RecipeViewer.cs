@@ -245,7 +245,7 @@ namespace Cultist_Simulator_Modding_Toolkit
                 recipeLinks.Remove(linkedListBox.SelectedItem.ToString());
                 linkedListBox.Items[linkedListBox.SelectedIndex] = rlv.displayedRecipeLink.id;
                 recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
-                displayedRecipe.linked[alternativerecipesListBox.SelectedIndex] = rlv.displayedRecipeLink;
+                displayedRecipe.linked[linkedListBox.SelectedIndex] = rlv.displayedRecipeLink;
 
             }
         }
