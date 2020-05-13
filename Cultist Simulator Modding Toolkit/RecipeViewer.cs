@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Cultist_Simulator_Modding_Toolkit.Recipe;
 
 namespace Cultist_Simulator_Modding_Toolkit
 {
@@ -224,6 +225,14 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (alternativerecipesListBox.SelectedItem == null) return;
             RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativerecipesListBox.SelectedItem.ToString()], editing);
             rlv.ShowDialog();
+            if (rlv.DialogResult == DialogResult.OK)
+            {
+                alternativerecipeLinks.Remove(alternativerecipesListBox.SelectedItem.ToString());
+                alternativerecipesListBox.Items[alternativerecipesListBox.SelectedIndex] = rlv.displayedRecipeLink.id;
+                alternativerecipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
+                displayedRecipe.alternativerecipes[alternativerecipesListBox.SelectedIndex] = rlv.displayedRecipeLink;
+
+            }
         }
 
         private void linkedListBox_DoubleClick(object sender, EventArgs e)
@@ -231,6 +240,14 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (linkedListBox.SelectedItem == null) return;
             RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedListBox.SelectedItem.ToString()], editing);
             rlv.ShowDialog();
+            if (rlv.DialogResult == DialogResult.OK)
+            {
+                recipeLinks.Remove(linkedListBox.SelectedItem.ToString());
+                linkedListBox.Items[linkedListBox.SelectedIndex] = rlv.displayedRecipeLink.id;
+                recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
+                displayedRecipe.linked[alternativerecipesListBox.SelectedIndex] = rlv.displayedRecipeLink;
+
+            }
         }
 
         private void mutationsListBox_DoubleClick(object sender, EventArgs e)
@@ -238,6 +255,13 @@ namespace Cultist_Simulator_Modding_Toolkit
             if (mutationsListBox.SelectedItem == null) return;
             MutationViewer mv = new MutationViewer(mutations[mutationsListBox.SelectedItem.ToString()], editing);
             mv.ShowDialog();
+            if (mv.DialogResult == DialogResult.OK)
+            {
+                mutations.Remove(mutation.mutateAspectId);
+                mutationsListBox.Items[mutationsListBox.SelectedIndex] = mv.displayedMutation.mutateAspectId;
+                mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
+                displayedRecipe.mutations[mutationsListBox.SelectedIndex] = mv.displayedMutation;
+            }
         }
 
         private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
