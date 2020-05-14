@@ -272,5 +272,110 @@ namespace CultistSimulatorModdingToolkit
             }
             return null;
         }
+
+        public static List<Aspect> getAspects()
+        {
+            Dictionary<string, Aspect> tmp = new Dictionary<string, Aspect>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Aspect> AspectEntry in mv.aspectsList)
+                {
+                    if (!tmp.ContainsKey(AspectEntry.Key)) tmp.Add(AspectEntry.Key, AspectEntry.Value);
+                    else tmp[AspectEntry.Key] = AspectEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Aspect>();
+            else return null;
+        }
+
+        public static List<Element> getElements()
+        {
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Element> ElementEntry in mv.elementsList)
+                {
+                    if (!tmp.ContainsKey(ElementEntry.Key)) tmp.Add(ElementEntry.Key, ElementEntry.Value);
+                    else tmp[ElementEntry.Key] = ElementEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Element>();
+            else return null;
+        }
+
+        public static List<Recipe> getRecipes()
+        {
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Recipe> RecipeEntry in mv.recipesList)
+                {
+                    if (!tmp.ContainsKey(RecipeEntry.Key)) tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
+                    else tmp[RecipeEntry.Key] = RecipeEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Recipe>();
+            else return null;
+        }
+
+        public static List<Deck> getDecks()
+        {
+            Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Deck> DeckEntry in mv.decksList)
+                {
+                    if (!tmp.ContainsKey(DeckEntry.Key)) tmp.Add(DeckEntry.Key, DeckEntry.Value);
+                    else tmp[DeckEntry.Key] = DeckEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Deck>();
+            else return null;
+        }
+
+        public static List<Legacy> getLegacies()
+        {
+            Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Legacy> LegacyEntry in mv.legaciesList)
+                {
+                    if (!tmp.ContainsKey(LegacyEntry.Key)) tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
+                    else tmp[LegacyEntry.Key] = LegacyEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Legacy>();
+            else return null;
+        }
+
+        public static List<Ending> getEndings()
+        {
+            Dictionary<string, Ending> tmp = new Dictionary<string, Ending>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Ending> EndingEntry in mv.endingsList)
+                {
+                    if (!tmp.ContainsKey(EndingEntry.Key)) tmp.Add(EndingEntry.Key, EndingEntry.Value);
+                    else tmp[EndingEntry.Key] = EndingEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Ending>();
+            else return null;
+        }
+
+        public static List<Verb> getVerbs()
+        {
+            Dictionary<string, Verb> tmp = new Dictionary<string, Verb>();
+            foreach (ModViewer mv in currentMods)
+            {
+                foreach (KeyValuePair<string, Verb> VerbEntry in mv.verbsList)
+                {
+                    if (!tmp.ContainsKey(VerbEntry.Key)) tmp.Add(VerbEntry.Key, VerbEntry.Value);
+                    else tmp[VerbEntry.Key] = VerbEntry.Value;
+                }
+            }
+            if (tmp.Count > 0) return tmp.Values.ToList<Verb>();
+            else return null;
+        }
     }
 }
