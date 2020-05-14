@@ -7,7 +7,7 @@
     <ProjectGuid>{10F9A9D0-7717-4105-B4FA-EAD8DCB3D6E3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cultist_Simulator_Modding_Toolkit</RootNamespace>
+    <RootNamespace>CultistSimulatorModdingToolkit</RootNamespace>
     <AssemblyName>Cultist Simulator Modding Toolkit</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,6 +31,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>justastranger.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -229,6 +235,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectTypes\Induces.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
     <Compile Include="ObjectTypes\RecipeLink.cs" />
     <Compile Include="ObjectViewers\AspectViewer.cs">
@@ -416,6 +423,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Flowchart\RecipeFlowchartViewer.resx">
       <DependentUpon>RecipeFlowchartViewer.cs</DependentUpon>
@@ -442,6 +450,7 @@
       <DependentUpon>VerbViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="justastranger.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
