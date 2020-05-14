@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CultistSimulatorModdingToolkit.ObjectTypes;
+using CultistSimulatorModdingToolkit.ObjectTypes;
 
 namespace CultistSimulatorModdingToolkit.ObjectViewers
 {
     public partial class AspectViewer : Form
     {
         public Aspect displayedAspect;
-        Dictionary<string, Aspect.Induces> inducesDictionary;
+        Dictionary<string, Induces> inducesDictionary;
         bool editing;
 
         public AspectViewer(Aspect aspect, bool? editing)

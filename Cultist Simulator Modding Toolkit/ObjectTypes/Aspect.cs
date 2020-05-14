@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
-using Cultist_Simulator_Modding_Toolkit.ObjectTypes;
+using CultistSimulatorModdingToolkit.ObjectTypes;
 
 namespace CultistSimulatorModdingToolkit.ObjectTypes
 {

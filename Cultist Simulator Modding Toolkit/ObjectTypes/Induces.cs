@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cultist_Simulator_Modding_Toolkit.ObjectTypes
+namespace CultistSimulatorModdingToolkit.ObjectTypes
 {
     public class Induces
     {
