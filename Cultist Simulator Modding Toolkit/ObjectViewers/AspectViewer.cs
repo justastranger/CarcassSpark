@@ -77,8 +77,8 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
             if (aspect.induces != null)
             {
-                inducesDictionary = new Dictionary<string, Aspect.Induces>();
-                foreach (Aspect.Induces induces in aspect.induces)
+                inducesDictionary = new Dictionary<string, Induces>();
+                foreach (Induces induces in aspect.induces)
                 {
                     inducesDictionary.Add(induces.id, induces);
                     inducesDataGridView.Rows.Add(induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
@@ -101,10 +101,10 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 return;
             }
             if (inducesDataGridView.Rows.Count > 1) {
-                displayedAspect.induces = new List<Aspect.Induces>();
+                displayedAspect.induces = new List<Induces>();
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Aspect.Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
                 }
             }
             DialogResult = DialogResult.OK;
