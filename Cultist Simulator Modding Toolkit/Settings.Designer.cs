@@ -1,4 +1,4 @@
-﻿namespace Cultist_Simulator_Modding_Toolkit
+﻿namespace CultistSimulatorModdingToolkit
 {
     partial class Settings
     {

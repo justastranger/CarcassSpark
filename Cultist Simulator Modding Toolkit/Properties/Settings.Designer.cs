@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cultist_Simulator_Modding_Toolkit.Properties
+namespace CultistSimulatorModdingToolkit.Properties
 {
 
 

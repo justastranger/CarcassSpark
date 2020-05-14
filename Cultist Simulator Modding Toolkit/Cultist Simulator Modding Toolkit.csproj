@@ -36,11 +36,185 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>E:\Games\Cultist Simulator\cultistsimulator_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
+      <Aliases>CultistSimulator</Aliases>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\Microsoft.Office.Interop.Outlook.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MindFusion.Barcodes">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Barcodes.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Barcodes.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Charting">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Charting.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Charting.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Common">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Common.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Common.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.DataBinding">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.DataBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.EffectsProvider">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.EffectsProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Dxf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Dxf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Excel">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Pdf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Svg">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Swf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Swf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Visio">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Visio.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Export.Wmf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Wmf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Import.Draw">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Draw.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Import.Svg">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.Import.Visio">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Visio.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.WinForms.Controls">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.WinForms.Controls.Design">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.Controls.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Diagramming.WinForms.Design">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Excel">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Gauges">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Gauges.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Gauges.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Graphs">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.HolidayProviders">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.HolidayProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Keyboard.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Keyboard.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Licensing">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Mapping">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Mapping.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Mapping.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Mapping.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Pdf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting.Editor">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting.Excel">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting.Html">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting.Pdf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Reporting.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling.Excel">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling.Outlook">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Outlook.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling.Pdf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling.Reporting">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scheduling.WinForms.StandardForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.WinForms.StandardForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Scripting">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Spreadsheet.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Spreadsheet.WinForms.Design">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Spreadsheet.WinForms.StandardForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.StandardForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Svg">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Swf">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Swf.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Tools.ShapeDesigner">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Tools.ShapeDesigner.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.UI.WinForms">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.UI.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Vsx">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Vsx.dll</HintPath>
+    </Reference>
+    <Reference Include="MindFusion.Zip">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Zip.dll</HintPath>
     </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Office">
+      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\Office.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,63 +229,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspectViewer.cs">
+    <Compile Include="ObjectTypes\Mutation.cs" />
+    <Compile Include="ObjectTypes\RecipeLink.cs" />
+    <Compile Include="ObjectViewers\AspectViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AspectViewer.Designer.cs">
+    <Compile Include="ObjectViewers\AspectViewer.Designer.cs">
       <DependentUpon>AspectViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangeAspectQuantityForm.cs">
+    <Compile Include="Tools\ChangeAspectQuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeAspectQuantityForm.Designer.cs">
+    <Compile Include="Tools\ChangeAspectQuantityForm.Designer.cs">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Aspect.cs" />
-    <Compile Include="Deck.cs" />
-    <Compile Include="DecksDictionaryResults.cs">
+    <Compile Include="ObjectTypes\Aspect.cs" />
+    <Compile Include="ObjectTypes\Deck.cs" />
+    <Compile Include="DictionaryViewers\DecksDictionaryResults.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DecksDictionaryResults.Designer.cs">
+    <Compile Include="DictionaryViewers\DecksDictionaryResults.Designer.cs">
       <DependentUpon>DecksDictionaryResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeckViewer.cs">
+    <Compile Include="ObjectViewers\DeckViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeckViewer.Designer.cs">
+    <Compile Include="ObjectViewers\DeckViewer.Designer.cs">
       <DependentUpon>DeckViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Element.cs" />
-    <Compile Include="ElementsWithAspectResults.cs">
+    <Compile Include="ObjectTypes\Element.cs" />
+    <Compile Include="DictionaryViewers\ElementsDictionaryResults.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElementsWithAspectResults.Designer.cs">
-      <DependentUpon>ElementsWithAspectResults.cs</DependentUpon>
+    <Compile Include="DictionaryViewers\ElementsDictionaryResults.Designer.cs">
+      <DependentUpon>ElementsDictionaryResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="ElementViewer.cs">
+    <Compile Include="ObjectViewers\ElementViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElementViewer.Designer.cs">
+    <Compile Include="ObjectViewers\ElementViewer.Designer.cs">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ending.cs" />
-    <Compile Include="EndingViewer.cs">
+    <Compile Include="ObjectTypes\Ending.cs" />
+    <Compile Include="ObjectViewers\EndingViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EndingViewer.Designer.cs">
+    <Compile Include="ObjectViewers\EndingViewer.Designer.cs">
       <DependentUpon>EndingViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="LegaciesDictionaryResults.cs">
+    <Compile Include="DictionaryViewers\LegaciesDictionaryResults.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LegaciesDictionaryResults.Designer.cs">
+    <Compile Include="DictionaryViewers\LegaciesDictionaryResults.Designer.cs">
       <DependentUpon>LegaciesDictionaryResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="Legacy.cs" />
-    <Compile Include="LegacyViewer.cs">
+    <Compile Include="ObjectTypes\Legacy.cs" />
+    <Compile Include="ObjectViewers\LegacyViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LegacyViewer.Designer.cs">
+    <Compile Include="ObjectViewers\LegacyViewer.Designer.cs">
       <DependentUpon>LegacyViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -120,44 +296,50 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manifest.cs" />
-    <Compile Include="ManifestViewer.cs">
+    <Compile Include="ObjectTypes\Manifest.cs" />
+    <Compile Include="ObjectViewers\ManifestViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManifestViewer.Designer.cs">
+    <Compile Include="ObjectViewers\ManifestViewer.Designer.cs">
       <DependentUpon>ManifestViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModViewer.cs">
+    <Compile Include="ObjectViewers\ModViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModViewer.Designer.cs">
+    <Compile Include="ObjectViewers\ModViewer.Designer.cs">
       <DependentUpon>ModViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MutationViewer.cs">
+    <Compile Include="ObjectViewers\MutationViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MutationViewer.Designer.cs">
+    <Compile Include="ObjectViewers\MutationViewer.Designer.cs">
       <DependentUpon>MutationViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeLinkViewer.cs">
+    <Compile Include="ObjectTypes\Recipe.cs" />
+    <Compile Include="Flowchart\RecipeFlowchartViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecipeLinkViewer.Designer.cs">
+    <Compile Include="Flowchart\RecipeFlowchartViewer.Designer.cs">
+      <DependentUpon>RecipeFlowchartViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectViewers\RecipeLinkViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectViewers\RecipeLinkViewer.Designer.cs">
       <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecipesRequiringElementResults.cs">
+    <Compile Include="DictionaryViewers\RecipesDictionaryResults.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecipesRequiringElementResults.Designer.cs">
-      <DependentUpon>RecipesRequiringElementResults.cs</DependentUpon>
+    <Compile Include="DictionaryViewers\RecipesDictionaryResults.Designer.cs">
+      <DependentUpon>RecipesDictionaryResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecipeViewer.cs">
+    <Compile Include="ObjectViewers\RecipeViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecipeViewer.Designer.cs">
+    <Compile Include="ObjectViewers\RecipeViewer.Designer.cs">
       <DependentUpon>RecipeViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs">
@@ -166,64 +348,64 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Slot.cs" />
-    <Compile Include="SlotViewer.cs">
+    <Compile Include="ObjectTypes\Slot.cs" />
+    <Compile Include="ObjectViewers\SlotViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SlotViewer.Designer.cs">
+    <Compile Include="ObjectViewers\SlotViewer.Designer.cs">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="SummonCreator.cs">
+    <Compile Include="Tools\SummonCreator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SummonCreator.Designer.cs">
+    <Compile Include="Tools\SummonCreator.Designer.cs">
       <DependentUpon>SummonCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
-    <Compile Include="Verb.cs" />
-    <Compile Include="VerbViewer.cs">
+    <Compile Include="ObjectTypes\Verb.cs" />
+    <Compile Include="ObjectViewers\VerbViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VerbViewer.Designer.cs">
+    <Compile Include="ObjectViewers\VerbViewer.Designer.cs">
       <DependentUpon>VerbViewer.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AspectViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\AspectViewer.resx">
       <DependentUpon>AspectViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangeAspectQuantityForm.resx">
+    <EmbeddedResource Include="Tools\ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DecksDictionaryResults.resx">
+    <EmbeddedResource Include="DictionaryViewers\DecksDictionaryResults.resx">
       <DependentUpon>DecksDictionaryResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeckViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\DeckViewer.resx">
       <DependentUpon>DeckViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ElementsWithAspectResults.resx">
-      <DependentUpon>ElementsWithAspectResults.cs</DependentUpon>
+    <EmbeddedResource Include="DictionaryViewers\ElementsDictionaryResults.resx">
+      <DependentUpon>ElementsDictionaryResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ElementViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\ElementViewer.resx">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EndingViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\EndingViewer.resx">
       <DependentUpon>EndingViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegaciesDictionaryResults.resx">
+    <EmbeddedResource Include="DictionaryViewers\LegaciesDictionaryResults.resx">
       <DependentUpon>LegaciesDictionaryResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\LegacyViewer.resx">
       <DependentUpon>LegacyViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManifestViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\ManifestViewer.resx">
       <DependentUpon>ManifestViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\ModViewer.resx">
       <DependentUpon>ModViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MutationViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\MutationViewer.resx">
       <DependentUpon>MutationViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -235,25 +417,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RecipeLinkViewer.resx">
+    <EmbeddedResource Include="Flowchart\RecipeFlowchartViewer.resx">
+      <DependentUpon>RecipeFlowchartViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectViewers\RecipeLinkViewer.resx">
       <DependentUpon>RecipeLinkViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecipesRequiringElementResults.resx">
-      <DependentUpon>RecipesRequiringElementResults.cs</DependentUpon>
+    <EmbeddedResource Include="DictionaryViewers\RecipesDictionaryResults.resx">
+      <DependentUpon>RecipesDictionaryResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecipeViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\RecipeViewer.resx">
       <DependentUpon>RecipeViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SlotViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SummonCreator.resx">
+    <EmbeddedResource Include="Tools\SummonCreator.resx">
       <DependentUpon>SummonCreator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VerbViewer.resx">
+    <EmbeddedResource Include="ObjectViewers\VerbViewer.resx">
       <DependentUpon>VerbViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />

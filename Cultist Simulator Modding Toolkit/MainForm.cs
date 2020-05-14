@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CultistSimulatorModdingToolkit.ObjectTypes;
+using CultistSimulatorModdingToolkit.ObjectViewers;
 
-namespace Cultist_Simulator_Modding_Toolkit
+namespace CultistSimulatorModdingToolkit
 {
     public partial class MainForm : Form
     {

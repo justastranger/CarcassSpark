@@ -1,6 +1,40 @@
 # Cultist-Simulator-Modding-Toolkit
 Tool to aid in the creation of mods for Cultist Simulator by Weather Factory
 
+Currently Supported:
+ - Creation of:
+  - Aspects
+   - Induces
+  - Elements
+   - Aspects
+   - XTriggers (aka Cross Triggers)
+   - Slots
+  - Recipes
+   - Requirements
+   - Table Requirements
+   - Extant Requirements
+   - Effects
+   - Aspect Effects
+   - Deck Effects
+   - Alternative Recipe Links
+   - Linked Recipe Links
+   - Mutations
+   - Slots
+   - Internal Decks
+  - Decks
+   - DrawMessages
+   - Spec (The actual Deck)
+  - Legacies
+   - Effects
+  - Endings
+  - Verbs
+   - Slots
+  - Manifests
+   - Dependencies
+
+Currently Unsupported
+ - Property Operations
+
 
 # Building
 You will need to provide a reference to Assembly-CSharp.dll from your copy of Cultist Simulator in order to build this project.

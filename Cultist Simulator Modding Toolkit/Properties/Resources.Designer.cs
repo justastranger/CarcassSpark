@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cultist_Simulator_Modding_Toolkit.Properties
+namespace CultistSimulatorModdingToolkit.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace Cultist_Simulator_Modding_Toolkit.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cultist_Simulator_Modding_Toolkit.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CultistSimulatorModdingToolkit.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

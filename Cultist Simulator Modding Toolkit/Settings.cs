@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cultist_Simulator_Modding_Toolkit
+namespace CultistSimulatorModdingToolkit
 {
     public partial class Settings : Form
     {

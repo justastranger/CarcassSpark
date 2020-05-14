@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cultist_Simulator_Modding_Toolkit
+namespace CultistSimulatorModdingToolkit
 {
     static class Program
     {

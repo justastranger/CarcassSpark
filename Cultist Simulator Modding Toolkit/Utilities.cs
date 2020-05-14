@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CultistSimulatorModdingToolkit.ObjectViewers;
+using CultistSimulatorModdingToolkit.ObjectTypes;
 
-namespace Cultist_Simulator_Modding_Toolkit
+namespace CultistSimulatorModdingToolkit
 {
-    public static class Utilities
+    public class Utilities
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
         private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
