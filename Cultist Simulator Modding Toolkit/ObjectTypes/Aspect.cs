@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using Cultist_Simulator_Modding_Toolkit.ObjectTypes;
 
 namespace CultistSimulatorModdingToolkit.ObjectTypes
 {
@@ -99,19 +100,5 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             return JsonConvert.SerializeObject(this);
         }
         
-        public class Induces
-        {
-            public string id;
-            public int chance;
-            public bool? additional;
-
-            [JsonConstructor]
-            public Induces(string id, int chance, bool? additional)
-            {
-                this.id = id;
-                this.chance = chance;
-                this.additional = additional;
-            }
-        }
     }
 }
