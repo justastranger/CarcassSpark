@@ -71,5 +71,11 @@ namespace CultistSimulatorModdingToolkit
         {
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Utilities.getRecipe("paintresults"));
+            rfv.Show();
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                         loadManifest(fs);
                         foundManifest = true;
                     } else {
-                        loadFile(fs);
+                        loadFile(fs, file);
                     }
                 }
             }
@@ -95,12 +95,24 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));;
         }
 
-        public void loadFile(FileStream file)
+        public void loadFile(FileStream file, string filePath)
         {
 
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            string newFileText = JsonConvert.SerializeObject(ht);
+            string newFileText = JsonConvert.SerializeObject(ht, Formatting.Indented);
+            if (Settings.settings["saveCleanedVanillaContent"] != null && Settings.settings["saveCleanedVanillaContent"].ToObject<bool>() && isVanilla)
+            {
+                if (!Directory.Exists("Cleaned Files\\" + filePath.Substring(0, filePath.LastIndexOf('\\'))))
+                {
+                    Directory.CreateDirectory("Cleaned Files\\" + filePath.Substring(0, filePath.LastIndexOf('\\')));
+                }
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open("Cleaned Files\\" + filePath, FileMode.Create))))
+                {
+                    jtw.WriteRaw(newFileText);
+                }
+            }
+            //MessageBox.Show(filePath);
             JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(newFileText).First;
             string fileType = parsedJToken.Path;
             switch (fileType)
@@ -903,6 +915,13 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
                 edr.ShowDialog();
             }
+        }
+
+        private void viewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe selectedRecipe = Utilities.getRecipe(recipesListBox.SelectedItem.ToString());
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(selectedRecipe);
+            rfv.Show();
         }
 
         private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)

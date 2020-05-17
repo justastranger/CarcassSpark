@@ -49,15 +49,30 @@
             this.recipesThatProduceThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decksThatContainThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesThatStartWithThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesLabel = new System.Windows.Forms.Label();
             this.recipesListBox = new System.Windows.Forms.ListBox();
+            this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipesThatLinkToThisRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decksLabel = new System.Windows.Forms.Label();
             this.decksListBox = new System.Windows.Forms.ListBox();
+            this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesLabel = new System.Windows.Forms.Label();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
+            this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.endingsListBox = new System.Windows.Forms.ListBox();
+            this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
+            this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementsWithSlotsForThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -82,28 +97,14 @@
             this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
             this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
-            this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesThatLinkToThisRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.elementsWithSlotsForThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAsFlowchartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
             this.deckContextMenuStrip.SuspendLayout();
             this.endingContextMenuStrip.SuspendLayout();
             this.verbContextMenuStrip.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // aspectsListBox
@@ -143,7 +144,7 @@
             // 
             this.elementsWithThisAspectToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.elementsWithThisAspectToolStripMenuItem.Name = "elementsWithThisAspectToolStripMenuItem";
-            this.elementsWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.elementsWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.elementsWithThisAspectToolStripMenuItem.Text = "Elements with this aspect";
             this.elementsWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.elementsWithThisAspectToolStripMenuItem_Click);
             // 
@@ -151,7 +152,7 @@
             // 
             this.elementsThatReactWithThisAspectToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.elementsThatReactWithThisAspectToolStripMenuItem.Name = "elementsThatReactWithThisAspectToolStripMenuItem";
-            this.elementsThatReactWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.elementsThatReactWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.elementsThatReactWithThisAspectToolStripMenuItem.Text = "Elements that react with this aspect";
             this.elementsThatReactWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.elementsThatReactWithThisAspectToolStripMenuItem_Click);
             // 
@@ -159,7 +160,7 @@
             // 
             this.recipesRequiringThisAspectToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.recipesRequiringThisAspectToolStripMenuItem.Name = "recipesRequiringThisAspectToolStripMenuItem";
-            this.recipesRequiringThisAspectToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.recipesRequiringThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.recipesRequiringThisAspectToolStripMenuItem.Text = "Recipes requiring this aspect";
             this.recipesRequiringThisAspectToolStripMenuItem.Click += new System.EventHandler(this.recipesRequiringThisAspectToolStripMenuItem_Click);
             // 
@@ -167,7 +168,7 @@
             // 
             this.recipesThatProduceThisAspectToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.recipesThatProduceThisAspectToolStripMenuItem.Name = "recipesThatProduceThisAspectToolStripMenuItem";
-            this.recipesThatProduceThisAspectToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.recipesThatProduceThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.recipesThatProduceThisAspectToolStripMenuItem.Text = "Recipes that produce this aspect";
             this.recipesThatProduceThisAspectToolStripMenuItem.Click += new System.EventHandler(this.recipesThatProduceThisAspectToolStripMenuItem_Click);
             // 
@@ -233,44 +234,50 @@
             // elementsThatDecayIntoThisToolStripMenuItem
             // 
             this.elementsThatDecayIntoThisToolStripMenuItem.Name = "elementsThatDecayIntoThisToolStripMenuItem";
-            this.elementsThatDecayIntoThisToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.elementsThatDecayIntoThisToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsThatDecayIntoThisToolStripMenuItem.Text = "Elements that decay into this element";
             this.elementsThatDecayIntoThisToolStripMenuItem.Click += new System.EventHandler(this.elementsThatDecayIntoThisToolStripMenuItem_Click);
             // 
             // elementsThatXtriggerIntoThisToolStripMenuItem
             // 
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Name = "elementsThatXtriggerIntoThisToolStripMenuItem";
-            this.elementsThatXtriggerIntoThisToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.elementsThatXtriggerIntoThisToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Text = "Elements that xtrigger into this element";
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Click += new System.EventHandler(this.elementsThatXtriggerIntoThisToolStripMenuItem_Click);
             // 
             // recipesThatRequireThisElementToolStripMenuItem
             // 
             this.recipesThatRequireThisElementToolStripMenuItem.Name = "recipesThatRequireThisElementToolStripMenuItem";
-            this.recipesThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.recipesThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.recipesThatRequireThisElementToolStripMenuItem.Text = "Recipes that require this element";
             this.recipesThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.recipesThatRequireThisElementToolStripMenuItem_Click);
             // 
             // recipesThatProduceThisElementToolStripMenuItem
             // 
             this.recipesThatProduceThisElementToolStripMenuItem.Name = "recipesThatProduceThisElementToolStripMenuItem";
-            this.recipesThatProduceThisElementToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.recipesThatProduceThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.recipesThatProduceThisElementToolStripMenuItem.Text = "Recipes that produce this element";
             this.recipesThatProduceThisElementToolStripMenuItem.Click += new System.EventHandler(this.recipesThatProduceThisElementToolStripMenuItem_Click);
             // 
             // decksThatContainThisElementToolStripMenuItem
             // 
             this.decksThatContainThisElementToolStripMenuItem.Name = "decksThatContainThisElementToolStripMenuItem";
-            this.decksThatContainThisElementToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.decksThatContainThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.decksThatContainThisElementToolStripMenuItem.Text = "Decks that contain this element";
             this.decksThatContainThisElementToolStripMenuItem.Click += new System.EventHandler(this.decksThatContainThisElementToolStripMenuItem_Click);
             // 
             // legaciesThatStartWithThisElementToolStripMenuItem
             // 
             this.legaciesThatStartWithThisElementToolStripMenuItem.Name = "legaciesThatStartWithThisElementToolStripMenuItem";
-            this.legaciesThatStartWithThisElementToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.legaciesThatStartWithThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.legaciesThatStartWithThisElementToolStripMenuItem.Text = "Legacies that start with this element";
             this.legaciesThatStartWithThisElementToolStripMenuItem.Click += new System.EventHandler(this.legaciesThatStartWithThisElementToolStripMenuItem_Click);
+            // 
+            // elementsWithSlotsThatRequireThisElementToolStripMenuItem
+            // 
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Name = "elementsWithSlotsThatRequireThisElementToolStripMenuItem";
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Text = "Elements with Slots that require this element";
             // 
             // recipesLabel
             // 
@@ -293,6 +300,30 @@
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
             // 
+            // recipeContextMenuStrip
+            // 
+            this.recipeContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchForToolStripMenuItem,
+            this.viewAsFlowchartToolStripMenuItem});
+            this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
+            this.recipeContextMenuStrip.ShowImageMargin = false;
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(146, 70);
+            // 
+            // searchForToolStripMenuItem
+            // 
+            this.searchForToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipesThatLinkToThisRecipeToolStripMenuItem});
+            this.searchForToolStripMenuItem.Name = "searchForToolStripMenuItem";
+            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.searchForToolStripMenuItem.Text = "Search for...";
+            // 
+            // recipesThatLinkToThisRecipeToolStripMenuItem
+            // 
+            this.recipesThatLinkToThisRecipeToolStripMenuItem.Name = "recipesThatLinkToThisRecipeToolStripMenuItem";
+            this.recipesThatLinkToThisRecipeToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.recipesThatLinkToThisRecipeToolStripMenuItem.Text = "Recipes that link to this recipe";
+            this.recipesThatLinkToThisRecipeToolStripMenuItem.Click += new System.EventHandler(this.recipesThatLinkToThisRecipeToolStripMenuItem_Click);
+            // 
             // decksLabel
             // 
             this.decksLabel.AutoSize = true;
@@ -313,6 +344,29 @@
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
+            // 
+            // deckContextMenuStrip
+            // 
+            this.deckContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchForToolStripMenuItem1});
+            this.deckContextMenuStrip.Name = "deckContextMenuStrip";
+            this.deckContextMenuStrip.ShowImageMargin = false;
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(112, 26);
+            // 
+            // searchForToolStripMenuItem1
+            // 
+            this.searchForToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipesThatDrawFromThisDeckToolStripMenuItem});
+            this.searchForToolStripMenuItem1.Name = "searchForToolStripMenuItem1";
+            this.searchForToolStripMenuItem1.Size = new System.Drawing.Size(111, 22);
+            this.searchForToolStripMenuItem1.Text = "Search for...";
+            // 
+            // recipesThatDrawFromThisDeckToolStripMenuItem
+            // 
+            this.recipesThatDrawFromThisDeckToolStripMenuItem.Name = "recipesThatDrawFromThisDeckToolStripMenuItem";
+            this.recipesThatDrawFromThisDeckToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.recipesThatDrawFromThisDeckToolStripMenuItem.Text = "Recipes that draw from this deck";
+            this.recipesThatDrawFromThisDeckToolStripMenuItem.Click += new System.EventHandler(this.recipesThatDrawFromThisDeckToolStripMenuItem_Click);
             // 
             // legaciesLabel
             // 
@@ -335,6 +389,11 @@
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
             // 
+            // legacyContextMenuStrip
+            // 
+            this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(61, 4);
+            // 
             // endingsListBox
             // 
             this.endingsListBox.ContextMenuStrip = this.endingContextMenuStrip;
@@ -346,6 +405,28 @@
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
+            // 
+            // endingContextMenuStrip
+            // 
+            this.endingContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchForToolStripMenuItem2});
+            this.endingContextMenuStrip.Name = "endingContextMenuStrip";
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(137, 26);
+            // 
+            // searchForToolStripMenuItem2
+            // 
+            this.searchForToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipesThatCauseThisEndingToolStripMenuItem});
+            this.searchForToolStripMenuItem2.Name = "searchForToolStripMenuItem2";
+            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.searchForToolStripMenuItem2.Text = "Search for...";
+            // 
+            // recipesThatCauseThisEndingToolStripMenuItem
+            // 
+            this.recipesThatCauseThisEndingToolStripMenuItem.Name = "recipesThatCauseThisEndingToolStripMenuItem";
+            this.recipesThatCauseThisEndingToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.recipesThatCauseThisEndingToolStripMenuItem.Text = "Recipes that cause this ending";
+            this.recipesThatCauseThisEndingToolStripMenuItem.Click += new System.EventHandler(this.recipesThatCauseThisEndingToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
@@ -367,6 +448,36 @@
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
+            // 
+            // verbContextMenuStrip
+            // 
+            this.verbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchForToolStripMenuItem3});
+            this.verbContextMenuStrip.Name = "verbContextMenuStrip";
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(137, 26);
+            // 
+            // searchForToolStripMenuItem3
+            // 
+            this.searchForToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipesThatUseThisVerbToolStripMenuItem,
+            this.elementsWithSlotsForThisVerbToolStripMenuItem});
+            this.searchForToolStripMenuItem3.Name = "searchForToolStripMenuItem3";
+            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(136, 22);
+            this.searchForToolStripMenuItem3.Text = "Search for...";
+            // 
+            // recipesThatUseThisVerbToolStripMenuItem
+            // 
+            this.recipesThatUseThisVerbToolStripMenuItem.Name = "recipesThatUseThisVerbToolStripMenuItem";
+            this.recipesThatUseThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.recipesThatUseThisVerbToolStripMenuItem.Text = "Recipes that use this verb";
+            this.recipesThatUseThisVerbToolStripMenuItem.Click += new System.EventHandler(this.recipesThatUseThisVerbToolStripMenuItem_Click);
+            // 
+            // elementsWithSlotsForThisVerbToolStripMenuItem
+            // 
+            this.elementsWithSlotsForThisVerbToolStripMenuItem.Name = "elementsWithSlotsForThisVerbToolStripMenuItem";
+            this.elementsWithSlotsForThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.elementsWithSlotsForThisVerbToolStripMenuItem.Text = "Elements with Slots for this verb";
+            this.elementsWithSlotsForThisVerbToolStripMenuItem.Click += new System.EventHandler(this.elementsWithSlotsForThisVerbToolStripMenuItem_Click);
             // 
             // verbsLabel
             // 
@@ -568,114 +679,12 @@
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
             // 
-            // recipeContextMenuStrip
+            // viewAsFlowchartToolStripMenuItem
             // 
-            this.recipeContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchForToolStripMenuItem});
-            this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
-            this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(112, 26);
-            // 
-            // searchForToolStripMenuItem
-            // 
-            this.searchForToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recipesThatLinkToThisRecipeToolStripMenuItem});
-            this.searchForToolStripMenuItem.Name = "searchForToolStripMenuItem";
-            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.searchForToolStripMenuItem.Text = "Search for...";
-            // 
-            // recipesThatLinkToThisRecipeToolStripMenuItem
-            // 
-            this.recipesThatLinkToThisRecipeToolStripMenuItem.Name = "recipesThatLinkToThisRecipeToolStripMenuItem";
-            this.recipesThatLinkToThisRecipeToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.recipesThatLinkToThisRecipeToolStripMenuItem.Text = "Recipes that link to this recipe";
-            this.recipesThatLinkToThisRecipeToolStripMenuItem.Click += new System.EventHandler(this.recipesThatLinkToThisRecipeToolStripMenuItem_Click);
-            // 
-            // deckContextMenuStrip
-            // 
-            this.deckContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchForToolStripMenuItem1});
-            this.deckContextMenuStrip.Name = "deckContextMenuStrip";
-            this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(112, 26);
-            // 
-            // searchForToolStripMenuItem1
-            // 
-            this.searchForToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recipesThatDrawFromThisDeckToolStripMenuItem});
-            this.searchForToolStripMenuItem1.Name = "searchForToolStripMenuItem1";
-            this.searchForToolStripMenuItem1.Size = new System.Drawing.Size(111, 22);
-            this.searchForToolStripMenuItem1.Text = "Search for...";
-            // 
-            // recipesThatDrawFromThisDeckToolStripMenuItem
-            // 
-            this.recipesThatDrawFromThisDeckToolStripMenuItem.Name = "recipesThatDrawFromThisDeckToolStripMenuItem";
-            this.recipesThatDrawFromThisDeckToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.recipesThatDrawFromThisDeckToolStripMenuItem.Text = "Recipes that draw from this deck";
-            this.recipesThatDrawFromThisDeckToolStripMenuItem.Click += new System.EventHandler(this.recipesThatDrawFromThisDeckToolStripMenuItem_Click);
-            // 
-            // legacyContextMenuStrip
-            // 
-            this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(61, 4);
-            // 
-            // endingContextMenuStrip
-            // 
-            this.endingContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchForToolStripMenuItem2});
-            this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(137, 26);
-            // 
-            // verbContextMenuStrip
-            // 
-            this.verbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchForToolStripMenuItem3});
-            this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(153, 48);
-            // 
-            // searchForToolStripMenuItem2
-            // 
-            this.searchForToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recipesThatCauseThisEndingToolStripMenuItem});
-            this.searchForToolStripMenuItem2.Name = "searchForToolStripMenuItem2";
-            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.searchForToolStripMenuItem2.Text = "Search for...";
-            // 
-            // recipesThatCauseThisEndingToolStripMenuItem
-            // 
-            this.recipesThatCauseThisEndingToolStripMenuItem.Name = "recipesThatCauseThisEndingToolStripMenuItem";
-            this.recipesThatCauseThisEndingToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.recipesThatCauseThisEndingToolStripMenuItem.Text = "Recipes that cause this ending";
-            this.recipesThatCauseThisEndingToolStripMenuItem.Click += new System.EventHandler(this.recipesThatCauseThisEndingToolStripMenuItem_Click);
-            // 
-            // searchForToolStripMenuItem3
-            // 
-            this.searchForToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recipesThatUseThisVerbToolStripMenuItem,
-            this.elementsWithSlotsForThisVerbToolStripMenuItem});
-            this.searchForToolStripMenuItem3.Name = "searchForToolStripMenuItem3";
-            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
-            this.searchForToolStripMenuItem3.Text = "Search for...";
-            // 
-            // recipesThatUseThisVerbToolStripMenuItem
-            // 
-            this.recipesThatUseThisVerbToolStripMenuItem.Name = "recipesThatUseThisVerbToolStripMenuItem";
-            this.recipesThatUseThisVerbToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.recipesThatUseThisVerbToolStripMenuItem.Text = "Recipes that use this verb";
-            this.recipesThatUseThisVerbToolStripMenuItem.Click += new System.EventHandler(this.recipesThatUseThisVerbToolStripMenuItem_Click);
-            // 
-            // elementsWithSlotsThatRequireThisElementToolStripMenuItem
-            // 
-            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Name = "elementsWithSlotsThatRequireThisElementToolStripMenuItem";
-            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
-            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Text = "Elements with Slots that require this element";
-            // 
-            // elementsWithSlotsForThisVerbToolStripMenuItem
-            // 
-            this.elementsWithSlotsForThisVerbToolStripMenuItem.Name = "elementsWithSlotsForThisVerbToolStripMenuItem";
-            this.elementsWithSlotsForThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.elementsWithSlotsForThisVerbToolStripMenuItem.Text = "Elements with Slots for this verb";
-            this.elementsWithSlotsForThisVerbToolStripMenuItem.Click += new System.EventHandler(this.elementsWithSlotsForThisVerbToolStripMenuItem_Click);
+            this.viewAsFlowchartToolStripMenuItem.Name = "viewAsFlowchartToolStripMenuItem";
+            this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.viewAsFlowchartToolStripMenuItem.Text = "View As Flowchart";
+            this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.viewAsFlowchartToolStripMenuItem_Click);
             // 
             // ModViewer
             // 
@@ -712,12 +721,12 @@
             this.Shown += new System.EventHandler(this.ModViewer_Shown);
             this.aspectContextMenuStrip.ResumeLayout(false);
             this.elementContextMenuStrip.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.recipeContextMenuStrip.ResumeLayout(false);
             this.deckContextMenuStrip.ResumeLayout(false);
             this.endingContextMenuStrip.ResumeLayout(false);
             this.verbContextMenuStrip.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,6 +800,7 @@
         private System.Windows.Forms.ToolStripMenuItem recipesThatUseThisVerbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsThatRequireThisElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsForThisVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAsFlowchartToolStripMenuItem;
     }
 }
 

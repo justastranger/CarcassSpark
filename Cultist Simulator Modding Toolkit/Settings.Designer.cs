@@ -32,6 +32,7 @@
             this.rememberPreviousModCheckBox = new System.Windows.Forms.CheckBox();
             this.previousModTextBox = new System.Windows.Forms.TextBox();
             this.previousModLabel = new System.Windows.Forms.Label();
+            this.saveCleanedVanillaContentCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // openWithVanillaCheckBox
@@ -48,7 +49,7 @@
             // rememberPreviousModCheckBox
             // 
             this.rememberPreviousModCheckBox.AutoSize = true;
-            this.rememberPreviousModCheckBox.Location = new System.Drawing.Point(12, 35);
+            this.rememberPreviousModCheckBox.Location = new System.Drawing.Point(12, 58);
             this.rememberPreviousModCheckBox.Name = "rememberPreviousModCheckBox";
             this.rememberPreviousModCheckBox.Size = new System.Drawing.Size(314, 17);
             this.rememberPreviousModCheckBox.TabIndex = 1;
@@ -58,26 +59,38 @@
             // 
             // previousModTextBox
             // 
-            this.previousModTextBox.Location = new System.Drawing.Point(12, 71);
+            this.previousModTextBox.Location = new System.Drawing.Point(12, 94);
             this.previousModTextBox.Name = "previousModTextBox";
             this.previousModTextBox.ReadOnly = true;
-            this.previousModTextBox.Size = new System.Drawing.Size(303, 20);
+            this.previousModTextBox.Size = new System.Drawing.Size(370, 20);
             this.previousModTextBox.TabIndex = 2;
             // 
             // previousModLabel
             // 
             this.previousModLabel.AutoSize = true;
-            this.previousModLabel.Location = new System.Drawing.Point(12, 55);
+            this.previousModLabel.Location = new System.Drawing.Point(9, 78);
             this.previousModLabel.Name = "previousModLabel";
             this.previousModLabel.Size = new System.Drawing.Size(118, 13);
             this.previousModLabel.TabIndex = 3;
             this.previousModLabel.Text = "Previously Loaded Mod";
             // 
+            // saveCleanedVanillaContentCheckBox
+            // 
+            this.saveCleanedVanillaContentCheckBox.AutoSize = true;
+            this.saveCleanedVanillaContentCheckBox.Location = new System.Drawing.Point(12, 35);
+            this.saveCleanedVanillaContentCheckBox.Name = "saveCleanedVanillaContentCheckBox";
+            this.saveCleanedVanillaContentCheckBox.Size = new System.Drawing.Size(342, 17);
+            this.saveCleanedVanillaContentCheckBox.TabIndex = 4;
+            this.saveCleanedVanillaContentCheckBox.Text = "Save a cleaned copy of the vanilla content files when loading them";
+            this.saveCleanedVanillaContentCheckBox.UseVisualStyleBackColor = true;
+            this.saveCleanedVanillaContentCheckBox.CheckedChanged += new System.EventHandler(this.saveCleanedVanillaContentCheckBox_CheckedChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 261);
+            this.ClientSize = new System.Drawing.Size(394, 261);
+            this.Controls.Add(this.saveCleanedVanillaContentCheckBox);
             this.Controls.Add(this.previousModLabel);
             this.Controls.Add(this.previousModTextBox);
             this.Controls.Add(this.rememberPreviousModCheckBox);
@@ -95,5 +108,6 @@
         private System.Windows.Forms.CheckBox rememberPreviousModCheckBox;
         private System.Windows.Forms.TextBox previousModTextBox;
         private System.Windows.Forms.Label previousModLabel;
+        private System.Windows.Forms.CheckBox saveCleanedVanillaContentCheckBox;
     }
 }

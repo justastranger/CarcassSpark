@@ -46,6 +46,7 @@ namespace CultistSimulatorModdingToolkit
             if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
             if (settings["rememberPreviousMod"] != null) rememberPreviousModCheckBox.Checked = settings["rememberPreviousMod"].ToObject<bool>();
             if (settings["previousMod"] != null) previousModTextBox.Text = settings["previousMod"].ToString();
+            if (settings["saveCleanedVanillaContent"] != null) saveCleanedVanillaContentCheckBox.Checked = settings["saveCleanedVanillaContent"].ToObject<bool>();
         }
 
         private void openWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -57,6 +58,12 @@ namespace CultistSimulatorModdingToolkit
         private void rememberPreviousModCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["rememberPreviousMod"] = rememberPreviousModCheckBox.Checked;
+            saveSettings();
+        }
+
+        private void saveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings["saveCleanedVanillaContent"] = saveCleanedVanillaContentCheckBox.Checked;
             saveSettings();
         }
     }

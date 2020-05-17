@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>justastranger.pfx</AssemblyOriginatorKeyFile>
@@ -44,66 +44,17 @@
       <Private>False</Private>
       <Aliases>CultistSimulator</Aliases>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\Microsoft.Office.Interop.Outlook.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="MindFusion.Barcodes">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Barcodes.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Barcodes.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Barcodes.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Charting">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Charting.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Charting.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Charting.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="MindFusion.Common">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Common.dll</HintPath>
     </Reference>
     <Reference Include="MindFusion.Common.WinForms">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Common.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="MindFusion.DataBinding">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.DataBinding.dll</HintPath>
-    </Reference>
     <Reference Include="MindFusion.Diagramming">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.dll</HintPath>
     </Reference>
     <Reference Include="MindFusion.Diagramming.EffectsProvider">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.EffectsProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Dxf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Dxf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Excel">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Pdf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Svg">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Svg.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Swf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Swf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Visio">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Visio.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Export.Wmf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Export.Wmf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Import.Draw">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Draw.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Import.Svg">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Svg.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Diagramming.Import.Visio">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.Import.Visio.dll</HintPath>
     </Reference>
     <Reference Include="MindFusion.Diagramming.WinForms">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.dll</HintPath>
@@ -116,102 +67,6 @@
     </Reference>
     <Reference Include="MindFusion.Diagramming.WinForms.Design">
       <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Diagramming.WinForms.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Excel">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Gauges">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Gauges.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Gauges.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Gauges.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Graphs">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.HolidayProviders">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.HolidayProviders.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Keyboard.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Keyboard.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Licensing">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Licensing.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Mapping">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Mapping.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Mapping.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Mapping.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Pdf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting.Editor">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting.Excel">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting.Html">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Html.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting.Pdf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Reporting.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Reporting.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling.Excel">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling.Outlook">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Outlook.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling.Pdf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling.Reporting">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.Reporting.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scheduling.WinForms.StandardForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scheduling.WinForms.StandardForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Scripting">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Scripting.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Spreadsheet.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Spreadsheet.WinForms.Design">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Spreadsheet.WinForms.StandardForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Spreadsheet.WinForms.StandardForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Svg">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Svg.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Swf">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Swf.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Tools.ShapeDesigner">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Tools.ShapeDesigner.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.UI.WinForms">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.UI.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Vsx">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Vsx.dll</HintPath>
-    </Reference>
-    <Reference Include="MindFusion.Zip">
-      <HintPath>..\packages\MindFusion.Pack.2019.1.0\lib\net45\MindFusion.Zip.dll</HintPath>
     </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
