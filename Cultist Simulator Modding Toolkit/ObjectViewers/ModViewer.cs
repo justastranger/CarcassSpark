@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using CultistSimulatorModdingToolkit.ObjectTypes;
 using CultistSimulatorModdingToolkit.ObjectViewers;
 using CultistSimulatorModdingToolkit.DictionaryViewers;
+using CultistSimulatorModdingToolkit.Flowchart;
 
 namespace CultistSimulatorModdingToolkit.ObjectViewers
 {
