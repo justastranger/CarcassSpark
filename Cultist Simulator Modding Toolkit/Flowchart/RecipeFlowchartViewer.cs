@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CultistSimulatorModdingToolkit
+namespace CultistSimulatorModdingToolkit.Flowchart
 {
     public partial class RecipeFlowchartViewer : Form
     {

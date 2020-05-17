@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit
+﻿namespace CultistSimulatorModdingToolkit.Flowchart
 {
     partial class RecipeFlowchartViewer
     {
