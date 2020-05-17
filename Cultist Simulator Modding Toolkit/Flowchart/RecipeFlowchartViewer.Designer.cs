@@ -31,7 +31,6 @@
             this.diagram1 = new MindFusion.Diagramming.Diagram();
             this.diagramView1 = new MindFusion.Diagramming.WinForms.DiagramView();
             this.zoomControl1 = new MindFusion.Common.WinForms.ZoomControl();
-            this.gridLayout1 = new MindFusion.Diagramming.Layout.GridLayout();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.loadLinkedRecipesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -118,7 +117,6 @@
         private MindFusion.Diagramming.Diagram diagram1;
         private MindFusion.Diagramming.WinForms.DiagramView diagramView1;
         private MindFusion.Common.WinForms.ZoomControl zoomControl1;
-        private MindFusion.Diagramming.Layout.GridLayout gridLayout1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button loadLinkedRecipesButton;
     }
