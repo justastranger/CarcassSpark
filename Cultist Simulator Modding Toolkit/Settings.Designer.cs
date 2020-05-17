@@ -33,6 +33,8 @@
             this.previousModTextBox = new System.Windows.Forms.TextBox();
             this.previousModLabel = new System.Windows.Forms.Label();
             this.saveCleanedVanillaContentCheckBox = new System.Windows.Forms.CheckBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openWithVanillaCheckBox
@@ -85,16 +87,39 @@
             this.saveCleanedVanillaContentCheckBox.UseVisualStyleBackColor = true;
             this.saveCleanedVanillaContentCheckBox.CheckedChanged += new System.EventHandler(this.saveCleanedVanillaContentCheckBox_CheckedChanged);
             // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(12, 226);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 5;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(307, 226);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 6;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 261);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.saveCleanedVanillaContentCheckBox);
             this.Controls.Add(this.previousModLabel);
             this.Controls.Add(this.previousModTextBox);
             this.Controls.Add(this.rememberPreviousModCheckBox);
             this.Controls.Add(this.openWithVanillaCheckBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);
@@ -109,5 +134,7 @@
         private System.Windows.Forms.TextBox previousModTextBox;
         private System.Windows.Forms.Label previousModLabel;
         private System.Windows.Forms.CheckBox saveCleanedVanillaContentCheckBox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

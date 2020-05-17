@@ -198,6 +198,7 @@
             this.Controls.Add(this.atStartCheckBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "VerbViewer";
             this.Text = "VerbViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -143,6 +143,7 @@
             this.Controls.Add(this.levelNumericUpDown);
             this.Controls.Add(this.mutateAspectIdTextBox);
             this.Controls.Add(this.filterTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MutationViewer";
             this.Text = "MutationViewer";
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();

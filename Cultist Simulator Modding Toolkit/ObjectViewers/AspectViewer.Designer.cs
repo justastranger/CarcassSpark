@@ -259,6 +259,7 @@
             this.Controls.Add(this.iconTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AspectViewer";
             this.Text = "Aspect Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

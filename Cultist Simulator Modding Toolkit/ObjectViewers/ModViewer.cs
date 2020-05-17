@@ -921,6 +921,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void viewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (recipesListBox.SelectedItem == null) return;
             Recipe selectedRecipe = Utilities.getRecipe(recipesListBox.SelectedItem.ToString());
             RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(selectedRecipe);
             rfv.Show();

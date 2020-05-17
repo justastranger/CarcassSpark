@@ -260,6 +260,7 @@
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SlotViewer";
             this.Text = "SlotViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).EndInit();

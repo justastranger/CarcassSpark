@@ -226,6 +226,7 @@
             this.Controls.Add(this.modVersionTextBox);
             this.Controls.Add(this.modAuthorTextBox);
             this.Controls.Add(this.modNameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ManifestViewer";
             this.Text = "ManifestViewer";
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();

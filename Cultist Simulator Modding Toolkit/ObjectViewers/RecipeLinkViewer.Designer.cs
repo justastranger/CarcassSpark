@@ -166,7 +166,7 @@
             this.expulsionLabel.AutoSize = true;
             this.expulsionLabel.Location = new System.Drawing.Point(156, 200);
             this.expulsionLabel.Name = "expulsionLabel";
-            this.expulsionLabel.Size = new System.Drawing.Size(57, 13);
+            this.expulsionLabel.Size = new System.Drawing.Size(52, 13);
             this.expulsionLabel.TabIndex = 10;
             this.expulsionLabel.Text = "Expulsion";
             // 
@@ -214,6 +214,7 @@
             this.Controls.Add(this.additionalCheckBox);
             this.Controls.Add(this.chanceNumericUpDown);
             this.Controls.Add(this.idTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "RecipeLinkViewer";
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();

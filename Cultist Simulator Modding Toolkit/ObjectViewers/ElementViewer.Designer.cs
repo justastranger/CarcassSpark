@@ -422,6 +422,7 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ElementViewer";
             this.Text = "Element Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

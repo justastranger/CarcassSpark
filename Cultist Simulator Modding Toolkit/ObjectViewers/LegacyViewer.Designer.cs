@@ -350,6 +350,7 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LegacyViewer";
             this.Text = "LegacyViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
