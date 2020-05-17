@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CultistSimulatorModdingToolkit.ObjectTypes;
 using CultistSimulatorModdingToolkit.ObjectViewers;
 
-namespace CultistSimulatorModdingToolkit
+namespace CultistSimulatorModdingToolkit.DictionaryViewers
 {
     public partial class LegaciesDictionaryResults : Form
     {

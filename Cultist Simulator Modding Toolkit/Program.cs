@@ -12,7 +12,8 @@ namespace CultistSimulatorModdingToolkit
     {
 
         static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        static string dllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
+        static string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
+        static string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
 
         /// <summary>
         /// The main entry point for the application.
@@ -49,7 +50,7 @@ namespace CultistSimulatorModdingToolkit
 
             try
             {
-                return Assembly.LoadFile(dllDirectory + assemblyFile+".dll");
+                return Assembly.LoadFile(csDllDirectory + assemblyFile+".dll");
             }
             catch (Exception)
             {

@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit
+﻿namespace CultistSimulatorModdingToolkit.DictionaryViewers
 {
     partial class ElementsDictionaryResults
     {
