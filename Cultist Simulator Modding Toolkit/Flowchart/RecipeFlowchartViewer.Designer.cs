@@ -31,13 +31,14 @@
             this.diagram1 = new MindFusion.Diagramming.Diagram();
             this.diagramView1 = new MindFusion.Diagramming.WinForms.DiagramView();
             this.zoomControl1 = new MindFusion.Common.WinForms.ZoomControl();
+            this.treeLayout1 = new MindFusion.Diagramming.Layout.TreeLayout();
             this.SuspendLayout();
             // 
             // diagram1
             // 
+            this.diagram1.AutoAlignNodes = true;
             this.diagram1.LinkCrossings = MindFusion.Diagramming.LinkCrossings.Arcs;
             this.diagram1.LinkHeadShape = MindFusion.Diagramming.Shape.FromId("PointerArrow");
-            this.diagram1.LinkText = "Recipe Link";
             this.diagram1.ShapeText = "Node";
             this.diagram1.TouchThreshold = 0F;
             this.diagram1.TreeViewNodeStyle.Brush = new MindFusion.Drawing.SolidBrush("#FF9ACD32");
@@ -86,5 +87,6 @@
         private MindFusion.Diagramming.Diagram diagram1;
         private MindFusion.Diagramming.WinForms.DiagramView diagramView1;
         private MindFusion.Common.WinForms.ZoomControl zoomControl1;
+        private MindFusion.Diagramming.Layout.TreeLayout treeLayout1;
     }
 }

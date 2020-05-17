@@ -29,11 +29,8 @@ namespace CultistSimulatorModdingToolkit
             recipeNodes.Add(recipe.id, RootRecipeNode);
             recipeNodesThatNeedToBeProcessed.Add(RootRecipeNode);
             RootNode = RootRecipeNode.Node;
-            //y += 200;
             while(recipeNodesThatNeedToBeProcessed.Count > 0)
             {
-                //MessageBox.Show(recipeNodesThatNeedToBeProcessed.Count.ToString() + " Recipes left to chart");
-
                 RecipeNode currentNode = recipeNodesThatNeedToBeProcessed[0];
 
                 foreach (string link in currentNode.linkedRecipes)
@@ -52,9 +49,9 @@ namespace CultistSimulatorModdingToolkit
                         createLink(currentNode.Node, recipeNodes[link].Node);
                     }
                 }
-
                 recipeNodesThatNeedToBeProcessed.Remove(currentNode);
             }
+            treeLayout1.Arrange(diagram1, diagram1.Items);
         }
 
         void createLink(TreeViewNode outgoing, TreeViewNode incoming)
@@ -292,20 +289,11 @@ namespace CultistSimulatorModdingToolkit
                 }
             }
             tempTVN.ResizeToFitText();
-            //recipeNodes.Add(recipe.id, tempTVN);
-            //Dictionary<TreeViewNode, List<string>> returnedValue = new Dictionary<TreeViewNode, List<string>>();
-            //returnedValue.Add(tempTVN, outgoingLinks);
             return new RecipeNode(tempTVN, outgoingLinks);
         }
         
         private void RecipeFlowchartViewer_Load(object sender, EventArgs e)
         {
-            TreeLayout tl = new TreeLayout(RootNode);
-            tl.Type = TreeLayoutType.Cascading;
-            tl.Direction = TreeLayoutDirections.LeftToRight;
-            tl.LevelDistance = 20;
-            tl.LinkStyle = TreeLayoutLinkType.Cascading3;
-            tl.Arrange(diagram1);
         }
 
         public class RecipeNode
