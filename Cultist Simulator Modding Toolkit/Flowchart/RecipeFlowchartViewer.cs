@@ -18,46 +18,110 @@ namespace CultistSimulatorModdingToolkit.Flowchart
         Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
 
         List<RecipeNode> recipeNodesThatNeedToBeProcessed = new List<RecipeNode>();
+
+        int currentProgress = 0;
+
         TreeViewNode RootNode;
-        
+        TopologicalLayout tl = new TopologicalLayout();
+
         public RecipeFlowchartViewer(Recipe recipe)
         {
             InitializeComponent();
-            int x = 5;
-            int y = 5;
-            RecipeNode RootRecipeNode = createRecipeNode(recipe, x, y);
+            RecipeNode RootRecipeNode = createRecipeNode(recipe, 25, 25);
             recipeNodes.Add(recipe.id, RootRecipeNode);
             recipeNodesThatNeedToBeProcessed.Add(RootRecipeNode);
             RootNode = RootRecipeNode.Node;
-            while(recipeNodesThatNeedToBeProcessed.Count > 0)
-            {
-                RecipeNode currentNode = recipeNodesThatNeedToBeProcessed[0];
+            tl.KeepGroupLayout = false;
+            // MessageBox.Show(diagram1.Nodes.Count.ToString() + " Recipes loaded.");
+        }
 
+        void arrangeNodes()
+        {
+            tl.Arrange(diagram1);
+        }
+
+        void processRecipes()
+        {
+            List<RecipeNode> nodesInProgress = new List<RecipeNode>(recipeNodesThatNeedToBeProcessed);
+            recipeNodesThatNeedToBeProcessed.Clear();
+            progressBar1.Visible = true;
+            progressBar1.Value = 0;
+            progressBar1.Maximum = nodesInProgress.Count;
+            progressBar1.Step = 1;
+            foreach (RecipeNode currentNode in nodesInProgress)
+            {
+                //RecipeNode currentNode = recipeNodesThatNeedToBeProcessed[0];
                 foreach (string link in currentNode.linkedRecipes)
                 {
                     // if a node for this recipe doesn't already exist, create it and link to it
                     if (!recipeNodes.ContainsKey(link))
                     {
-                        RecipeNode tmpNode = createRecipeNode(Utilities.getRecipe(link), x, y);
+                        RecipeNode tmpNode = createRecipeNode(Utilities.getRecipe(link), 25, 25);
                         recipeNodes[link] = tmpNode;
-                        createLink(currentNode.Node, tmpNode.Node);
+                        
+                        //createLink(currentNode.Node, currentNode.Node.RootItems.ToList().Find(item => item.Label.Contains("Recipe ID: " + link)), tmpNode.Node);
+                        tmpNode.Node.AttachTo(currentNode.Node, AttachToNode.BottomCenter);
                         recipeNodesThatNeedToBeProcessed.Add(tmpNode);
                         //y += 200;
                     }
-                    else // otherwise if it exists already, just link to it
+                    //else // otherwise if it exists already, just link to it
+                    //{
+                    //    if (diagram1.FindLinkById((string)currentNode.Node.Id + (string)recipeNodes[link].Node.Id) == null) createLink(currentNode.Node, recipeNodes[link].Node);
+                    //}
+                    
+                }
+                foreach (TreeViewItem rootItem in currentNode.Node.RootItems)
+                {
+                    if (rootItem.Label.Contains("Recipes:"))
                     {
-                        createLink(currentNode.Node, recipeNodes[link].Node);
+                        foreach (TreeViewItem child in rootItem.Children)
+                        {
+                            // child.Label -> "Linked Recipe:"
+                            foreach (TreeViewItem recipeChild in child.Children)
+                            {
+                                if (recipeChild.Label.Contains("Recipe ID: "))
+                                {
+                                    createLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ')+1)));
+                                }
+                            }
+                        }
                     }
                 }
-                recipeNodesThatNeedToBeProcessed.Remove(currentNode);
+                progressBar1.PerformStep();
             }
-            treeLayout1.Arrange(diagram1, diagram1.Items);
+            arrangeNodes();
+            if (Settings.settings["flowchartRouteLinks"] != null && Settings.settings["flowchartRouteLinks"].ToObject<bool>())
+            {
+                progressBar1.Value = 0;
+                progressBar1.Maximum = diagram1.Links.Count;
+                foreach (DiagramLink link in diagram1.Links)
+                {
+                    link.AutoRoute = true;
+                    progressBar1.PerformStep();
+                }
+            }
+            progressBar1.Visible = false;
         }
 
         void createLink(TreeViewNode outgoing, TreeViewNode incoming)
         {
             DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoing, incoming);
+            tmp.AddLabel((string)incoming.Id);
+            tmp.Id = (string)outgoing.Id + (string)incoming.Id;
+            //incoming.AttachTo(outgoing, AttachToNode.BottomCenter);
             tmp.AutoRoute = true;
+        }
+
+        void createLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
+        {
+            //DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoingNode, incoming);
+            DiagramLink tmp = new DiagramLink(diagram1);
+            tmp.OriginConnection = new TreeViewConnectionPoint(outgoingNode, tmp, false, outgoingItem);
+            tmp.DestinationConnection = new TreeViewConnectionPoint(incoming, tmp, true, null);
+            tmp.AddLabel((string)incoming.Id);
+            tmp.Id = outgoingItem.Label.Substring(11) + (string)incoming.Id;
+            tmp.AutoRoute = true;
+            diagram1.Links.Add(tmp);
         }
 
         RecipeNode createRecipeNode(Recipe recipe, float x, float y)
@@ -71,6 +135,8 @@ namespace CultistSimulatorModdingToolkit.Flowchart
             List<string> outgoingLinks = new List<string>();
             TreeViewNode tempTVN = diagram1.Factory.CreateTreeViewNode(x, y, 150, 150);
             tempTVN.Id = recipe.id;
+            tempTVN.IgnoreLayout = false;
+            tempTVN.ConnectionStyle = TreeViewConnectionStyle.Items;
             if (recipe.label != null) tempTVN.Text = recipe.label;
             else tempTVN.Text = recipe.id;
             tempTVN.RootItems.Add(new TreeViewItem("Recipe ID: " + recipe.id));
@@ -213,7 +279,7 @@ namespace CultistSimulatorModdingToolkit.Flowchart
                 tempTVN.RootItems.Add(linked);
                 foreach (RecipeLink link in recipe.linked)
                 {
-                    TreeViewItem recipeTree = new TreeViewItem("Linked Recipe: ");
+                    TreeViewItem recipeTree = new TreeViewItem("Linked Recipe:");
                     linked.Children.Add(recipeTree);
                     //linkedNodes.Add(link.id, tempTVN);
                     outgoingLinks.Add(link.id);
@@ -247,10 +313,11 @@ namespace CultistSimulatorModdingToolkit.Flowchart
                 tempTVN.RootItems.Add(linked);
                 foreach (RecipeLink link in recipe.alternativerecipes)
                 {
-                    TreeViewItem recipeTree = new TreeViewItem("Linked Recipe ID: " + link.id);
+                    TreeViewItem recipeTree = new TreeViewItem("Linked Recipe:");
                     linked.Children.Add(recipeTree);
                     //linkedNodes.Add(link.id, tempTVN);
                     outgoingLinks.Add(link.id);
+                    if (link.id != null)recipeTree.Children.Add(new TreeViewItem("Recipe ID: " + link.id));
                     if (link.chance.HasValue) recipeTree.Children.Add(new TreeViewItem("Chance: " + link.chance.Value.ToString()));
                     if (link.additional.HasValue) recipeTree.Children.Add(new TreeViewItem("Additional: " + link.additional.Value.ToString()));
                     if (link.expulsion != null)
@@ -294,6 +361,7 @@ namespace CultistSimulatorModdingToolkit.Flowchart
         
         private void RecipeFlowchartViewer_Load(object sender, EventArgs e)
         {
+            
         }
 
         public class RecipeNode
@@ -306,6 +374,14 @@ namespace CultistSimulatorModdingToolkit.Flowchart
                 this.Node = Node;
                 this.linkedRecipes = linkedRecipes;
             }
+        }
+
+        private void loadLinkedRecipesButton_Click(object sender, EventArgs e)
+        {
+            if (recipeNodesThatNeedToBeProcessed.Count == 0) return;
+            int total = recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count);
+            DialogResult dr = MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + total + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue?", "Loading More Recipes", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes) processRecipes();
         }
     }
 }
