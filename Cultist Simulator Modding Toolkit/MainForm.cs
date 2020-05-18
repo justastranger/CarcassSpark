@@ -67,10 +67,5 @@ namespace CultistSimulatorModdingToolkit
         {
             new Settings().ShowDialog();
         }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }
     }
 }
