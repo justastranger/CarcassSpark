@@ -15,11 +15,11 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> spec; // the actual internal deck
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$append")]
-        public List<Induces> spec_append;
+        public List<string> spec_append;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$prepend")]
-        public List<Induces> spec_prepend;
+        public List<string> spec_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$remove")]
-        public List<Induces> spec_remove;
+        public List<string> spec_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? resetonexhaustion;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -36,21 +36,22 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public List<string> defaultdrawmessages_remove;
 
         [JsonConstructor]
-        public Deck(JArray spec, int? defaultdraws, int? draws, bool? resetonexhaustion, string id = null, string label = null, string description = null, string comments = null,
-                    string defaultcard = null, JObject drawmessages = null,
-                    JObject defaultdrawmessages = null)
+        public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, string id, string label, string description, string comments,
+                    string defaultcard, Dictionary<string, string> drawmessages,
+                    Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
+                    Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
         {
             this.id = id;
             this.label = label;
             this.description = description;
-            this.spec = spec.ToObject<List<string>>();
+            this.spec = spec;
             this.comments = comments;
             this.defaultcard = defaultcard;
             this.resetonexhaustion = resetonexhaustion;
             this.defaultdraws = defaultdraws;
             this.draws = draws;
-            if (drawmessages != null) this.drawmessages = drawmessages.ToObject<Dictionary<string, string>>();
-            if (defaultdrawmessages != null) this.defaultdrawmessages = defaultdrawmessages.ToObject<Dictionary<string, string>>();
+            if (drawmessages != null) this.drawmessages = drawmessages;
+            if (defaultdrawmessages != null) this.defaultdrawmessages = defaultdrawmessages;
         }
         
         public Deck()

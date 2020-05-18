@@ -18,6 +18,10 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public bool? craftable, hintonly;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? maxexecutions, warmup;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Deck internalDeck;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> effects;
@@ -97,19 +101,21 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$remove")]
         public List<Mutation> mutations_remove;
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Deck internalDeck;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
-        public Recipe(bool? craftable, bool? hintonly, int? warmup, int? maxexecutions,
-                      string id, string label = null, string actionId = null, string startdescription = null,
-                      string description = null, JArray extends = null, JObject requirements = null,
-                      JObject effects = null, JArray linked = null, JArray slots = null, JArray alternativerecipes = null,
-                      JObject deckeffect = null, JObject internaldeck = null, JArray mutations = null,
-                      JObject aspects = null, JObject tablereqs = null, JObject extantreqs = null, string ending = null,
-                      string burnimage = null)
+        public Recipe(bool? craftable, bool? hintonly, int? warmup, int? maxexecutions, string id, string label,
+                      string actionId, string startdescription, string description,
+                      List<string> extends, Deck internaldeck,, string ending, string burnimage,
+                      Dictionary<string, int> requirements, Dictionary<string, int> requirements_extend, List<string> requirements_remove,
+                      Dictionary<string, int> effects, Dictionary<string, int> effects_extend, List<string> effects_remove,
+                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<RecipeLink> linked_remove,
+                      List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<RecipeLink> alternativerecipes_remove,
+                      Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
+                      List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<Mutation> mutations_remove,
+                      Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
+                      Dictionary<string, int> tablereqs, Dictionary<string, int> tablereqs_extend, List<string> tablereqs_remove,
+                      Dictionary<string, int> extantreqs, Dictionary<string, int> extantreqs_extend, List<string> extantreqs_remove)
         {
             this.id = id;
             this.label = label;
@@ -120,39 +126,39 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             if (hintonly.HasValue) this.hintonly = hintonly;
             if (ending != null) this.ending = ending;
             if (burnimage != null) this.burnimage = burnimage;
-            if (extends != null) this.extends = extends.ToObject<List<string>>();
+            if (extends != null) this.extends = extends;
             if (warmup.HasValue) this.warmup = warmup;
-            if (requirements != null) this.requirements = requirements.ToObject<Dictionary<string, int>>();
-            if (extantreqs != null) this.extantreqs = extantreqs.ToObject<Dictionary<string, int>>();
-            if (tablereqs != null) this.tablereqs = tablereqs.ToObject<Dictionary<string, int>>();
+            if (requirements != null) this.requirements = requirements;
+            if (extantreqs != null) this.extantreqs = extantreqs;
+            if (tablereqs != null) this.tablereqs = tablereqs;
             if (maxexecutions.HasValue) this.maxexecutions = maxexecutions;
             if (effects != null)
             {
-                this.effects = effects.ToObject<Dictionary<string, int>>();
+                this.effects = effects;
             }
             if (linked != null)
             {
-                this.linked = linked.ToObject<List<RecipeLink>>();
+                this.linked = linked;
             }
             if (slots != null)
             {
-                this.slots = slots.ToObject<List<Slot>>();
+                this.slots = slots;
             }
             if (alternativerecipes != null)
             {
-                this.alternativerecipes = alternativerecipes.ToObject<List<RecipeLink>>();
+                this.alternativerecipes = alternativerecipes;
             }
             if (mutations != null)
             {
-                this.mutations = mutations.ToObject<List<Mutation>>();
+                this.mutations = mutations;
             }
             if (aspects != null)
             {
-                this.aspects = aspects.ToObject<Dictionary<string, int>>();
+                this.aspects = aspects;
             }
             if (deckeffect != null)
             {
-                this.deckeffect = deckeffect.ToObject<Dictionary<string, int>>();
+                this.deckeffect = deckeffect;
             }
             if (hintonly.HasValue)
             {
@@ -160,7 +166,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             }
             if (internaldeck != null)
             {
-                this.internalDeck = internaldeck.ToObject<Deck>();
+                this.internalDeck = internaldeck;
             }
 
         }

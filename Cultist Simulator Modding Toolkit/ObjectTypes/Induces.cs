@@ -9,12 +9,15 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
 {
     public class Induces
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id;
-        public int chance;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? chance;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? additional;
 
         [JsonConstructor]
-        public Induces(string id, int chance, bool? additional)
+        public Induces(string id, int? chance, bool? additional)
         {
             this.id = id;
             this.chance = chance;

@@ -24,13 +24,14 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public List<Slot> slots_remove;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, bool atStart, JArray slots = null)
+        public Verb(string id, string label, string description, bool atStart, List<Slot> slots,
+                    List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.atStart = atStart;
-            if (slots != null) this.slots = slots.ToObject<List<Slot>>();
+            if (slots != null) this.slots = slots;
         }
 
         public Verb()

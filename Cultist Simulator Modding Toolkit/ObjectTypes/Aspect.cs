@@ -28,8 +28,9 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
 
         [JsonConstructor]
         public Aspect(string id, string label, string description,
-                      bool? isHidden, bool? noartneeded, string icon = null, JArray induces = null,
-                      bool? isAspect = true, string comments = null, JToken aspects = null)
+                      bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
+                      List<Induces> induces_prepend, List<Induces> induces_append, List<Induces> induces_remove,
+                      bool? isAspect, string comments, Dictionary<string, int> aspects)
         {
             // necessary
             this.id = id;
@@ -46,13 +47,13 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             // optional
             if (isHidden == true) this.isHidden = true;
             // optional
-            if (induces != null) this.induces = induces.ToObject<List<Induces>>();
+            if (induces != null) this.induces = induces;
             // optional
             this.noartneeded = noartneeded;
             // optional
             this.comments = comments;
             // optional, didn't even know it was possible tbqh
-            if (aspects != null) this.aspects = aspects.ToObject<Dictionary<string, int>>();
+            if (aspects != null) this.aspects = aspects;
         }
 
         public Aspect(string id, string label, string description,

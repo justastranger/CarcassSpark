@@ -37,13 +37,14 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? unique, resaturate;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string[] extends;
+        public List<string> extends;
 
         [JsonConstructor]
         public Element(string id, string label, string description, bool? unique,
-                       string icon, string comments, JToken aspects,
-                       JArray slots, JToken xtriggers, int? animFrames,
-                       int? lifetime, string decayTo, string uniquenessgroup, JArray extends, bool? resaturate)
+                       string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
+                       List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove,
+                       Dictionary<string, string> xtriggers, Dictionary<string, string> xtriggers_extend, List<string> xtriggers_remove, int? animframes,
+                       int? lifetime, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
         {
             // necessary
             this.id = id;
@@ -57,13 +58,13 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             // not necessary
             this.comments = comments;
             // not necessary (stay of execution)
-            if (aspects != null) this.aspects = aspects.ToObject<Dictionary<string, int>>();
+            if (aspects != null) this.aspects = aspects;
             // not necessary
-            if (slots != null) this.slots = slots.ToObject<List<Slot>>();
+            if (slots != null) this.slots = slots;
             // not necessary
-            if (xtriggers != null) this.xtriggers = xtriggers.ToObject<Dictionary<string, string>>();
+            if (xtriggers != null) this.xtriggers = xtriggers;
             // not necessary
-            if (animFrames.HasValue) this.animframes = animFrames;
+            if (animframes.HasValue) this.animframes = animframes;
             // not necessary
             if (unique.HasValue) this.unique = unique;
             // not necessary

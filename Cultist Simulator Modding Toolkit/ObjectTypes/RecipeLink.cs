@@ -22,18 +22,18 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public Expulsion expulsion;
 
         [JsonConstructor]
-        public RecipeLink(string id, int? chance, bool? additional, JObject challenges = null, JObject expulsion = null)
+        public RecipeLink(string id, int? chance, bool? additional, Dictionary<string, string> challenges, Expulsion expulsion)
         {
             this.id = id;
             this.chance = chance;
             this.additional = additional;
             if (challenges != null)
             {
-                this.challenges = challenges.ToObject<Dictionary<string, string>>();
+                this.challenges = challenges;
             }
             if (expulsion != null)
             {
-                this.expulsion = expulsion.ToObject<Expulsion>();
+                this.expulsion = expulsion;
             }
         }
 
