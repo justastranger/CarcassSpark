@@ -3,34 +3,34 @@ Tool to aid in the creation of mods for Cultist Simulator by Weather Factory
 
 Currently Supported:
  - Creation of:
-  - Aspects
-   - Induces
-  - Elements
    - Aspects
-   - XTriggers (aka Cross Triggers)
-   - Slots
-  - Recipes
-   - Requirements
-   - Table Requirements
-   - Extant Requirements
-   - Effects
-   - Aspect Effects
-   - Deck Effects
-   - Alternative Recipe Links
-   - Linked Recipe Links
-   - Mutations
-   - Slots
-   - Internal Decks
-  - Decks
-   - DrawMessages
-   - Spec (The actual Deck)
-  - Legacies
-   - Effects
-  - Endings
-  - Verbs
-   - Slots
-  - Manifests
-   - Dependencies
+     - Induces
+   - Elements
+     - Aspects
+     - XTriggers (aka Cross Triggers)
+     - Slots
+   - Recipes
+     - Requirements
+     - Table Requirements
+     - Extant Requirements
+     - Effects
+     - Aspect Effects
+     - Deck Effects
+     - Alternative Recipe Links
+     - Linked Recipe Links
+     - Mutations
+     - Slots
+     - Internal Decks
+   - Decks
+     - DrawMessages
+     - Spec (The actual Deck)
+   - Legacies
+     - Effects
+   - Endings
+   - Verbs
+     - Slots
+   - Manifests
+     - Dependencies
 
 Currently Unsupported
  - Property Operations
@@ -39,6 +39,8 @@ Currently Unsupported
 # Building
 You will need to provide a reference to Assembly-CSharp.dll from your copy of Cultist Simulator in order to build this project.
 This file is located in the `Cultist Simulator/cultistsimulator_Data/Managed/` folder.
+
+Newtonsoft's JSON.net and MindFusion's Diagramming packages are needed to compile the program. Both can be found through NuGet.
 
 # Images
 In order to display the vanilla images, you will need to extract and sort them yourselves (unless permission is granted to redistribute the images).
