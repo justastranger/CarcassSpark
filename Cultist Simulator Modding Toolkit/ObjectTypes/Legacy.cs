@@ -13,11 +13,21 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool? availableWithoutEndingMatch;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> excludesOnEnding;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$append")]
+        public List<string> excludesOnEnding_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$prepend")]
+        public List<string> excludesOnEnding_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$remove")]
+        public List<string> excludesOnEnding_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> effects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? availableWithoutEndingMatch;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        public Dictionary<string, int> effects_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
+        public List<string> effects_remove;
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription,

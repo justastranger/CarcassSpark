@@ -18,20 +18,87 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public bool? craftable, hintonly;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? maxexecutions, warmup;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> effects, requirements, extantreqs, tablereqs;
+        public Dictionary<string, int> effects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        public Dictionary<string, int> effects_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
+        public List<string> effects_remove;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<RecipeLink> linked, alternativerecipes;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Slot> slots;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Mutation> mutations;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Deck internalDeck;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]
+        public Dictionary<string, int> aspects_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$remove")]
+        public List<string> aspects_remove;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deckeffect;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffect$extend")]
+        public Dictionary<string, int> deckeffect_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffect$remove")]
+        public List<string> deckeffect_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> requirements;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$extend")]
+        public Dictionary<string, int> requirements_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$remove")]
+        public List<string> requirements_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> extantreqs;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$extend")]
+        public Dictionary<string, int> extantreqs_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$remove")]
+        public List<string> extantreqs_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> tablereqs;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$extend")]
+        public Dictionary<string, int> tablereqs_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$remove")]
+        public List<string> tablereqs_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<RecipeLink> linked;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$append")]
+        public List<RecipeLink> linked_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$prepend")]
+        public List<RecipeLink> linked_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$remove")]
+        public List<RecipeLink> linked_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<RecipeLink> alternativerecipes;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$append")]
+        public List<RecipeLink> alternativerecipes_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$prepend")]
+        public List<RecipeLink> alternativerecipes_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$remove")]
+        public List<RecipeLink> alternativerecipes_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<Slot> slots;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$append")]
+        public List<Slot> slots_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
+        public List<Slot> slots_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
+        public List<Slot> slots_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<Mutation> mutations;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$append")]
+        public List<Mutation> mutations_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$prepend")]
+        public List<Mutation> mutations_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$remove")]
+        public List<Mutation> mutations_remove;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Deck internalDeck;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
 

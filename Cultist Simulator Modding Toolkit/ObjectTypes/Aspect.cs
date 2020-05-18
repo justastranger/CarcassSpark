@@ -18,6 +18,12 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public bool? isAspect, isHidden, noartneeded;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Induces> induces;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$append")]
+        public List<Induces> induces_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$prepend")]
+        public List<Induces> induces_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$remove")]
+        public List<Induces> induces_remove;
 
 
         [JsonConstructor]
