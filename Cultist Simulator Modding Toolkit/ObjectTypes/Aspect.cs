@@ -23,13 +23,13 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$prepend")]
         public List<Induces> induces_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$remove")]
-        public List<Induces> induces_remove;
+        public List<string> induces_remove;
 
 
         [JsonConstructor]
         public Aspect(string id, string label, string description,
                       bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
-                      List<Induces> induces_prepend, List<Induces> induces_append, List<Induces> induces_remove,
+                      List<Induces> induces_prepend, List<Induces> induces_append, List<string> induces_remove,
                       bool? isAspect, string comments, Dictionary<string, int> aspects)
         {
             // necessary

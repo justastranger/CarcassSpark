@@ -25,7 +25,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
         public List<Slot> slots_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
-        public List<Slot> slots_remove;
+        public List<string> slots_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> xtriggers;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$extend")]
@@ -50,7 +50,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonConstructor]
         public Element(string id, string label, string description, bool? unique,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
-                       List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove,
+                       List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
                        Dictionary<string, string> xtriggers, Dictionary<string, string> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
                        int? lifetime, int? lifetime_add, int? lifetime_minus, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
         {
