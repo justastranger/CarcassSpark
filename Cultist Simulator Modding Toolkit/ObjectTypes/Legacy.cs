@@ -41,11 +41,16 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             if (description != null) this.description = description;
             if (startdescription != null) this.startdescription = startdescription;
             if (effects != null) this.effects = effects;
+            if (effects_extend != null) this.effects_extend = effects_extend;
+            if (effects_remove != null) this.effects_remove = effects_remove;
             if (image != null) this.image = image;
             if (fromEnding != null) this.fromEnding = fromEnding;
             if (availableWithoutEndingMatch.HasValue) this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             if (startingVerbId != null) this.startingVerbId = startingVerbId;
             if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding;
+            if (excludesOnEnding_prepend != null) this.excludesOnEnding_prepend = excludesOnEnding_prepend;
+            if (excludesOnEnding_append != null) this.excludesOnEnding_append = excludesOnEnding_append;
+            if (excludesOnEnding_remove != null) this.excludesOnEnding_remove = excludesOnEnding_remove;
         }
 
         public Legacy()

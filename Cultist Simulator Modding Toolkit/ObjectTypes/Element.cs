@@ -34,6 +34,14 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public List<string> xtriggers_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? animframes, lifetime;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "animframes$add")]
+        public int? animframes_add;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "animframes$minus")]
+        public int? animframes_minus;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "lifetime$add")]
+        public int? lifetime_add;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "lifetime$minus")]
+        public int? lifetime_minus;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? unique, resaturate;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -43,8 +51,8 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         public Element(string id, string label, string description, bool? unique,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove,
-                       Dictionary<string, string> xtriggers, Dictionary<string, string> xtriggers_extend, List<string> xtriggers_remove, int? animframes,
-                       int? lifetime, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
+                       Dictionary<string, string> xtriggers, Dictionary<string, string> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
+                       int? lifetime, int? lifetime_add, int? lifetime_minus, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
         {
             // necessary
             this.id = id;
@@ -59,29 +67,40 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             this.comments = comments;
             // not necessary (stay of execution)
             if (aspects != null) this.aspects = aspects;
+            if (aspects_extend != null) this.aspects_extend = aspects_extend;
+            if (aspects_remove != null) this.aspects_remove = aspects_remove;
             // not necessary
             if (slots != null) this.slots = slots;
+            if (slots_prepend != null) this.slots_prepend = slots_prepend;
+            if (slots_append != null) this.slots_append = slots_append;
+            if (slots_remove != null) this.slots_remove = slots_remove;
             // not necessary
             if (xtriggers != null) this.xtriggers = xtriggers;
+            if (xtriggers_extend != null) this.xtriggers_extend = xtriggers_extend;
+            if (xtriggers_remove != null) this.xtriggers_remove = xtriggers_remove;
             // not necessary
             if (animframes.HasValue) this.animframes = animframes;
+            if (animframes_add.HasValue) this.animframes_add = animframes_add;
+            if (animframes_minus.HasValue) this.animframes_minus = animframes_minus;
             // not necessary
             if (unique.HasValue) this.unique = unique;
             // not necessary
             if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup;
             // not necessary
             if (lifetime.HasValue) this.lifetime = lifetime;
+            if (lifetime_add.HasValue) this.lifetime_add = lifetime_add;
+            if (lifetime_minus.HasValue) this.lifetime_minus = lifetime_minus;
             // not necessary
             if (resaturate.HasValue) this.resaturate = resaturate;
             // not necessary, always null when lifetime is
             if (decayTo != null) this.decayTo = decayTo;
             // This is only present in modded elements
-            if (extends != null) this.extends = extends.ToObject<string[]>();
+            if (extends != null) this.extends = extends;
         }
         
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
-                       List<Slot> slots, Dictionary<string, string> xtriggers, string[] extends,
+                       List<Slot> slots, Dictionary<string, string> xtriggers, List<string> extends,
                        string decayTo, int? lifetime, bool? unique, int? animframes,
                        string uniquenessgroup)
         {

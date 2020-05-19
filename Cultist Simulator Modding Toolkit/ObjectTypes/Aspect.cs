@@ -48,6 +48,9 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
             if (isHidden == true) this.isHidden = true;
             // optional
             if (induces != null) this.induces = induces;
+            if (induces_prepend != null) this.induces_prepend = induces_prepend;
+            if (induces_append != null) this.induces_append = induces_append;
+            if (induces_remove != null) this.induces_remove = induces_remove;
             // optional
             this.noartneeded = noartneeded;
             // optional
