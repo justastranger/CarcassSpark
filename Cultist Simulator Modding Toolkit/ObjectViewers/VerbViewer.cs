@@ -40,7 +40,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             {
                 foreach (Slot slot in verb.slots)
                 {
-                    slotsListBox.Items.Add(slot.id);
+                    slotsListView.Items.Add(slot.id);
                     slots.Add(slot.id, slot);
                 }
             }
@@ -61,8 +61,8 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void slotsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListBox.SelectedItem == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], editing);
+            if (slotsListView.SelectedItems == null) return;
+            SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text.ToString()], editing);
             sv.ShowDialog();
         }
 
@@ -79,7 +79,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void addSlotButton_Click(object sender, EventArgs e)
         {
-            SlotViewer sv = new SlotViewer(new Slot(), true);
+            SlotViewer sv = new SlotViewer(new Slot(), true, Slot.SlotType.VERB);
             sv.ShowDialog();
             if(sv.DialogResult == DialogResult.OK)
             {
@@ -89,7 +89,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 }
                 displayedVerb.slots.Add(sv.displayedSlot);
                 slots.Add(sv.displayedSlot.id, sv.displayedSlot);
-                slotsListBox.Items.Add(sv.displayedSlot.id);
+                slotsListView.Items.Add(sv.displayedSlot.id);
             }
         }
 
@@ -125,11 +125,11 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (slots.ContainsKey(slotsListBox.SelectedItem.ToString()))
+            if (slots.ContainsKey(slotsListView.SelectedItems[0].Text.ToString()))
             {
-                displayedVerb.slots.Remove(slots[slotsListBox.SelectedItem.ToString()]);
-                slots.Remove(slotsListBox.SelectedItem.ToString());
-                slotsListBox.Items.Remove(slotsListBox.SelectedItem);
+                displayedVerb.slots.Remove(slots[slotsListView.SelectedItems[0].Text.ToString()]);
+                slots.Remove(slotsListView.SelectedItems[0].Text.ToString());
+                slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
             }
         }
     }

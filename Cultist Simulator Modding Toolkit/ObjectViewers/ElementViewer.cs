@@ -22,12 +22,6 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
         {
             InitializeComponent();
             displayedElement = element;
-            if (element.extends != null)
-            {
-                //extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
-                //Element extendedElement = Utilities.getElement(element.extends[0]);
-                //fillValues(extendedElement);
-            }
             fillValues(element);
             if (editing.HasValue)
             {
@@ -49,6 +43,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             lifetimeNumericUpDown.Enabled = editing;
             decayToTextBox.ReadOnly = !editing;
             uniqueCheckBox.Enabled = editing;
+            resaturateCheckBox.Enabled = editing;
             uniquenessgroupTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             extendsTextBox.ReadOnly = !editing;
@@ -66,6 +61,12 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void fillValues(Element element)
         {
+            if (element.extends != null)
+            {
+                extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
+                //Element extendedElement = Utilities.getElement(element.extends[0]);
+                //fillValues(extendedElement);
+            }
             if (element.id != null)
             {
                 idTextBox.Text = element.id;
@@ -88,31 +89,101 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 foreach (Slot slot in element.slots)
                 {
                     slots[slot.id] = slot;
-                    slotsListBox.Items.Add(slot.id);
+                    ListViewItem item = new ListViewItem(slot.id);
+                    slotsListView.Items.Add(item);
+                }
+            }
+            if (element.slots_prepend != null)
+            {
+                foreach (Slot slot in element.slots_prepend)
+                {
+                    slots[slot.id] = slot;
+                    ListViewItem item = new ListViewItem(slot.id);
+                    item.BackColor = Utilities.ListPrependColor;
+                    slotsListView.Items.Insert(0, item);
+                }
+            }
+            if (element.slots_append != null)
+            {
+                foreach (Slot slot in element.slots_append)
+                {
+                    slots[slot.id] = slot;
+                    ListViewItem item = new ListViewItem(slot.id);
+                    item.BackColor = Utilities.ListAppendColor;
+                    slotsListView.Items.Add(item);
+                }
+            }
+            if (element.slots_remove != null)
+            {
+                foreach (string slot in element.slots_remove)
+                {
+                    ListViewItem item = new ListViewItem(slot);
+                    item.BackColor = Utilities.ListRemoveColor;
+                    slotsListView.Items.Add(item);
                 }
             }
             if (element.xtriggers != null)
             {
-                Dictionary<string, string> xtriggers = element.xtriggers;
-                foreach (KeyValuePair<string, string> kvp in xtriggers)
+                foreach (KeyValuePair<string, string> kvp in element.xtriggers)
                 {
                     xtriggersDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
+            if (element.xtriggers_extend != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in element.xtriggers)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(xtriggersDataGridView, kvp.Key, kvp.Value);
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    xtriggersDataGridView.Rows.Add(row);
+                }
+            }
+            if (element.xtriggers_remove != null)
+            {
+                foreach (string removeId in element.xtriggers_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(xtriggersDataGridView, removeId);
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    xtriggersDataGridView.Rows.Add(row);
+                }
+            }
             if (element.aspects != null)
             {
-                Dictionary<string, int> aspects = element.aspects;
-                foreach (KeyValuePair<string, int> kvp in aspects)
+                foreach (KeyValuePair<string, int> kvp in element.aspects)
                 {
                     aspectsDataGridView.Rows.Add(kvp.Key, Convert.ToString(kvp.Value));
                 }
             }
+            if (element.aspects_extend != null)
+            {
+                foreach (KeyValuePair<string, int> kvp in element.aspects_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(aspectsDataGridView, kvp.Key, Convert.ToString(kvp.Value));
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    aspectsDataGridView.Rows.Add(row);
+                    //aspectsDataGridView.Rows.Add(kvp.Key, Convert.ToString(kvp.Value));
+                }
+            }
+            if (element.aspects_remove != null)
+            {
+                foreach (string removeId in element.aspects_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(aspectsDataGridView, removeId );
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    aspectsDataGridView.Rows.Add(row);
+                }
+            }
         }
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private void slotsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListBox.SelectedItem == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListBox.SelectedItem.ToString()], editing);
+            if (slotsListView.SelectedItems == null) return;
+            string slotId = slotsListView.SelectedItems[0].Text.ToString();
+            SlotViewer sv = new SlotViewer(slots[slotId], editing, Slot.SlotType.ELEMENT);
             sv.ShowDialog();
         }
 
@@ -153,18 +224,53 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 displayedElement.xtriggers = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.xtriggers.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        {
+                            if (displayedElement.aspects_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, string>();
+                            displayedElement.aspects_extend.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                        }
+                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        {
+                            if (displayedElement.xtriggers_remove == null) displayedElement.xtriggers_remove = new List<string>();
+                            displayedElement.xtriggers_remove.Add(row.Cells[0].Value.ToString());
+                        }
+                        else
+                        {
+                            if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, string>();
+                            displayedElement.xtriggers.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        }
+                    }
                 }
             }
             if (aspectsDataGridView.Rows.Count > 1) {
-                displayedElement.aspects = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    if (row.Cells[0].Value != null)
+                    {
+                        string key = row.Cells[0].Value.ToString();
+                        int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        {
+                            if (displayedElement.aspects_extend == null) displayedElement.aspects_extend = new Dictionary<string, int>();
+                            if (!displayedElement.aspects_extend.ContainsKey(key)) displayedElement.aspects_extend.Add(key, value.Value);
+                        }
+                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        {
+                            if (displayedElement.aspects_remove == null) displayedElement.aspects_remove = new List<string>();
+                            if (!displayedElement.aspects_remove.Contains(key)) displayedElement.aspects_remove.Add(key);
+                        }
+                        else
+                        {
+                            if (displayedElement.aspects == null) displayedElement.aspects = new Dictionary<string, int>();
+                            if (!displayedElement.aspects.ContainsKey(key)) displayedElement.aspects.Add(key, value.Value);
+                        }
+                    }
+                    //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
             DialogResult = DialogResult.OK;
-
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -180,7 +286,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedElement.extends = new string[] { extendsTextBox.Text };
+            displayedElement.extends = new List<string> { extendsTextBox.Text };
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
@@ -224,15 +330,25 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void addSlotButton_Click(object sender, EventArgs e)
         {
-            SlotViewer sv = new SlotViewer(new Slot(), true);
+            SlotViewer sv = new SlotViewer(new Slot(), true, Slot.SlotType.ELEMENT);
             DialogResult dr = sv.ShowDialog();
             if (dr == DialogResult.OK)
             {
                 slots.Add(sv.displayedSlot.id, sv.displayedSlot);
-                slotsListBox.Items.Add(sv.displayedSlot.id);
+                slotsListView.Items.Add(sv.displayedSlot.id);
                 if (displayedElement.slots == null) displayedElement.slots = new List<Slot>();
                 displayedElement.slots.Add(sv.displayedSlot);
             }
+        }
+
+        private void resaturateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedElement.resaturate = resaturateCheckBox.Checked;
+        }
+
+        private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedElement.unique = uniqueCheckBox.Checked;
         }
     }
 }

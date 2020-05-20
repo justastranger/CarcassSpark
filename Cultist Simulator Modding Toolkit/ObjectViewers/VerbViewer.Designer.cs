@@ -32,7 +32,6 @@
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.atStartCheckBox = new System.Windows.Forms.CheckBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.slotsListBox = new System.Windows.Forms.ListBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
@@ -42,6 +41,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.slotsListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,15 +84,6 @@
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.Text = "Description";
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
-            // 
-            // slotsListBox
-            // 
-            this.slotsListBox.FormattingEnabled = true;
-            this.slotsListBox.Location = new System.Drawing.Point(12, 276);
-            this.slotsListBox.Name = "slotsListBox";
-            this.slotsListBox.Size = new System.Drawing.Size(330, 95);
-            this.slotsListBox.TabIndex = 4;
-            this.slotsListBox.DoubleClick += new System.EventHandler(this.slotsListBox_DoubleClick);
             // 
             // idLabel
             // 
@@ -179,11 +170,22 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // slotsListView
+            // 
+            this.slotsListView.Location = new System.Drawing.Point(12, 276);
+            this.slotsListView.MultiSelect = false;
+            this.slotsListView.Name = "slotsListView";
+            this.slotsListView.Size = new System.Drawing.Size(330, 95);
+            this.slotsListView.TabIndex = 14;
+            this.slotsListView.UseCompatibleStateImageBehavior = false;
+            this.slotsListView.View = System.Windows.Forms.View.List;
+            // 
             // VerbViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 420);
+            this.Controls.Add(this.slotsListView);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cancelButton);
@@ -193,7 +195,6 @@
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.labelLabel);
             this.Controls.Add(this.idLabel);
-            this.Controls.Add(this.slotsListBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.atStartCheckBox);
             this.Controls.Add(this.labelTextBox);
@@ -213,7 +214,6 @@
         private System.Windows.Forms.TextBox labelTextBox;
         private System.Windows.Forms.CheckBox atStartCheckBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.ListBox slotsListBox;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;
         private System.Windows.Forms.Label descriptionLabel;
@@ -223,5 +223,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ListView slotsListView;
     }
 }

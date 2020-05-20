@@ -15,14 +15,15 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
     public partial class SlotViewer : Form
     {
         public Slot displayedSlot;
-        public bool editing, recipeSlot;
+        public bool editing;
+        Slot.SlotType? slotType;
 
-        public SlotViewer(Slot slot, bool? editing, bool? recipeSlot)
+        public SlotViewer(Slot slot, bool? editing, Slot.SlotType? slotType)
         {
             InitializeComponent();
             this.displayedSlot = slot;
             fillValues(slot);
-            if (recipeSlot.HasValue) this.recipeSlot = recipeSlot.Value;
+            if (slotType.HasValue) this.slotType = slotType.Value;
             if (editing.HasValue) setEditingMode(editing.Value);
             else setEditingMode(false);
         }
@@ -32,7 +33,6 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             InitializeComponent();
             this.displayedSlot = slot;
             fillValues(slot);
-            recipeSlot = false;
             if (editing.HasValue) setEditingMode(editing.Value);
             else setEditingMode(false);
         }
@@ -64,16 +64,36 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
         void setEditingMode(bool editing)
         {
             this.editing = editing;
+
+            if (slotType.HasValue)
+            {
+                switch (slotType)
+                {
+                    case Slot.SlotType.ELEMENT:
+                        consumesCheckBox.Visible = true;
+                        greedyCheckBox.Visible = false;
+                        break;
+                    case Slot.SlotType.RECIPE:
+                        greedyCheckBox.Visible = true;
+                        consumesCheckBox.Visible = false;
+                        actionIdTextBox.Visible = false;
+                        actionIdLabel.Visible = false;
+                        break;
+                    case Slot.SlotType.VERB:
+                        consumesCheckBox.Visible = true;
+                        greedyCheckBox.Visible = false;
+                        actionIdLabel.Visible = false;
+                        actionIdTextBox.Visible = false;
+                        break;
+                }
+            }
+
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
-            actionIdTextBox.Visible = !recipeSlot;
-            actionIdLabel.Visible = !recipeSlot;
             actionIdTextBox.ReadOnly = !editing;
             greedyCheckBox.Enabled = editing;
-            greedyCheckBox.Visible = recipeSlot;
             consumesCheckBox.Enabled = editing;
-            consumesCheckBox.Visible = !recipeSlot;
             requiredDataGridView.AllowUserToAddRows = editing;
             requiredDataGridView.AllowUserToDeleteRows = editing;
             requiredDataGridView.ReadOnly = !editing;

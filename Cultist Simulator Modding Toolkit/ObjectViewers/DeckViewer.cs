@@ -69,7 +69,35 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             {
                 foreach (string id in deck.spec)
                 {
-                    specListBox.Items.Add(id);
+                    ListViewItem lvi = new ListViewItem(id);
+                    specListView.Items.Add(lvi);
+                }
+            }
+            if (deck.spec_append != null)
+            {
+                foreach (string id in deck.spec_append)
+                {
+                    ListViewItem lvi = new ListViewItem(id);
+                    lvi.BackColor = Utilities.ListAppendColor;
+                    specListView.Items.Add(lvi);
+                }
+            }
+            if (deck.spec_prepend != null)
+            {
+                foreach (string id in deck.spec_prepend)
+                {
+                    ListViewItem lvi = new ListViewItem(id);
+                    lvi.BackColor = Utilities.ListPrependColor;
+                    specListView.Items.Add(lvi);
+                }
+            }
+            if (deck.spec_remove != null)
+            {
+                foreach (string id in deck.spec_remove)
+                {
+                    ListViewItem lvi = new ListViewItem(id);
+                    lvi.BackColor = Utilities.ListRemoveColor;
+                    specListView.Items.Add(lvi);
                 }
             }
             if (deck.drawmessages != null)
@@ -77,6 +105,26 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 foreach (KeyValuePair<string, string> kvp in deck.drawmessages)
                 {
                     drawmessagesDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (deck.drawmessages_extend != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in deck.drawmessages_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(drawmessagesDataGridView, kvp.Key, kvp.Value);
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    drawmessagesDataGridView.Rows.Add(row);
+                }
+            }
+            if (deck.drawmessages_remove != null)
+            {
+                foreach (string removeId in deck.drawmessages_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(drawmessagesDataGridView, removeId);
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    drawmessagesDataGridView.Rows.Add(row);
                 }
             }
         }
@@ -100,28 +148,12 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
-
-        private void specListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (specListBox.SelectedItem == null) return;
-            string id = specListBox.SelectedItem.ToString();
-            if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
-            {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), editing);
-                dv.ShowDialog();
-            }
-            else if (Utilities.elementExists(id))
-            {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
-                ev.ShowDialog();
-            }
-        }
-
+        
         private void newCardButton_Click(object sender, EventArgs e)
         {
             if(newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
-                specListBox.Items.Add(newCardTextBox.Text);
+                specListView.Items.Add(newCardTextBox.Text);
                 if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
                 displayedDeck.spec.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
@@ -141,7 +173,21 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 displayedDeck.drawmessages = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in drawmessagesDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        {
+                            displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        }
+                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        {
+                            displayedDeck.drawmessages.Remove(row.Cells[0].Value.ToString());
+                        }
+                        else
+                        {
+                            displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        }
+                    }
                 }
             }
             DialogResult = DialogResult.OK;
@@ -180,7 +226,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             {
                 if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
                 {
-                    specListBox.Items.Add(newCardTextBox.Text);
+                    specListView.Items.Add(newCardTextBox.Text);
                     if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
                     displayedDeck.spec.Add(newCardTextBox.Text);
                     newCardTextBox.Text = "";
@@ -206,11 +252,27 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 if (displayedDeck.spec.Contains(newCardTextBox.Text))
                 {
                     displayedDeck.spec.Remove(newCardTextBox.Text);
-                    specListBox.Items.Remove(newCardTextBox.Text);
+                    specListView.Items.RemoveByKey(newCardTextBox.Text);
                     if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
                     newCardTextBox.Text = "";
                     newCardTextBox.Focus();
                 }
+            }
+        }
+
+        private void specListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (specListView.SelectedItems == null) return;
+            string id = specListView.SelectedItems[0].Text.ToString();
+            if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
+            {
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), editing);
+                dv.ShowDialog();
+            }
+            else if (Utilities.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
+                ev.ShowDialog();
             }
         }
     }

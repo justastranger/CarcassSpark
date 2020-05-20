@@ -40,7 +40,6 @@
             this.resultID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersLabel = new System.Windows.Forms.Label();
             this.slotsLabel = new System.Windows.Forms.Label();
-            this.slotsListBox = new System.Windows.Forms.ListBox();
             this.aspectsDataGridView = new System.Windows.Forms.DataGridView();
             this.aspectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +61,8 @@
             this.decayToLabel = new System.Windows.Forms.Label();
             this.addSlotButton = new System.Windows.Forms.Button();
             this.removeSlotButton = new System.Windows.Forms.Button();
+            this.resaturateCheckBox = new System.Windows.Forms.CheckBox();
+            this.slotsListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
@@ -118,12 +119,13 @@
             // 
             this.uniqueCheckBox.AutoSize = true;
             this.uniqueCheckBox.Enabled = false;
-            this.uniqueCheckBox.Location = new System.Drawing.Point(80, 150);
+            this.uniqueCheckBox.Location = new System.Drawing.Point(359, 197);
             this.uniqueCheckBox.Name = "uniqueCheckBox";
             this.uniqueCheckBox.Size = new System.Drawing.Size(60, 17);
             this.uniqueCheckBox.TabIndex = 7;
             this.uniqueCheckBox.Text = "Unique";
             this.uniqueCheckBox.UseVisualStyleBackColor = true;
+            this.uniqueCheckBox.CheckedChanged += new System.EventHandler(this.uniqueCheckBox_CheckedChanged);
             // 
             // uniquenessgroupTextBox
             // 
@@ -178,16 +180,6 @@
             this.slotsLabel.TabIndex = 11;
             this.slotsLabel.Text = "Slots";
             // 
-            // slotsListBox
-            // 
-            this.slotsListBox.FormattingEnabled = true;
-            this.slotsListBox.Location = new System.Drawing.Point(509, 170);
-            this.slotsListBox.Name = "slotsListBox";
-            this.slotsListBox.ScrollAlwaysVisible = true;
-            this.slotsListBox.Size = new System.Drawing.Size(248, 134);
-            this.slotsListBox.TabIndex = 12;
-            this.slotsListBox.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
-            // 
             // aspectsDataGridView
             // 
             this.aspectsDataGridView.AllowUserToResizeColumns = false;
@@ -216,9 +208,9 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(403, 170);
+            this.extendsTextBox.Location = new System.Drawing.Point(367, 171);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(136, 20);
             this.extendsTextBox.TabIndex = 14;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
@@ -263,21 +255,21 @@
             // 
             // lifetimeNumericUpDown
             // 
-            this.lifetimeNumericUpDown.Location = new System.Drawing.Point(40, 182);
+            this.lifetimeNumericUpDown.Location = new System.Drawing.Point(15, 170);
             this.lifetimeNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.lifetimeNumericUpDown.Name = "lifetimeNumericUpDown";
-            this.lifetimeNumericUpDown.Size = new System.Drawing.Size(100, 20);
+            this.lifetimeNumericUpDown.Size = new System.Drawing.Size(125, 20);
             this.lifetimeNumericUpDown.TabIndex = 19;
             this.lifetimeNumericUpDown.ValueChanged += new System.EventHandler(this.lifetimeNumericUpDown_ValueChanged);
             // 
             // lifetimeLabel
             // 
             this.lifetimeLabel.AutoSize = true;
-            this.lifetimeLabel.Location = new System.Drawing.Point(37, 165);
+            this.lifetimeLabel.Location = new System.Drawing.Point(12, 154);
             this.lifetimeLabel.Name = "lifetimeLabel";
             this.lifetimeLabel.Size = new System.Drawing.Size(43, 13);
             this.lifetimeLabel.TabIndex = 20;
@@ -285,7 +277,7 @@
             // 
             // animFramesNumericUpDown
             // 
-            this.animFramesNumericUpDown.Location = new System.Drawing.Point(297, 170);
+            this.animFramesNumericUpDown.Location = new System.Drawing.Point(258, 171);
             this.animFramesNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -299,7 +291,7 @@
             // animFramesLabel
             // 
             this.animFramesLabel.AutoSize = true;
-            this.animFramesLabel.Location = new System.Drawing.Point(294, 154);
+            this.animFramesLabel.Location = new System.Drawing.Point(255, 154);
             this.animFramesLabel.Name = "animFramesLabel";
             this.animFramesLabel.Size = new System.Drawing.Size(90, 13);
             this.animFramesLabel.TabIndex = 22;
@@ -353,7 +345,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(400, 154);
+            this.extendsLabel.Location = new System.Drawing.Point(364, 154);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 28;
@@ -387,11 +379,35 @@
             this.removeSlotButton.Text = "Remove Slot";
             this.removeSlotButton.UseVisualStyleBackColor = true;
             // 
+            // resaturateCheckBox
+            // 
+            this.resaturateCheckBox.AutoSize = true;
+            this.resaturateCheckBox.Location = new System.Drawing.Point(425, 197);
+            this.resaturateCheckBox.Name = "resaturateCheckBox";
+            this.resaturateCheckBox.Size = new System.Drawing.Size(78, 17);
+            this.resaturateCheckBox.TabIndex = 32;
+            this.resaturateCheckBox.Text = "Resaturate";
+            this.resaturateCheckBox.UseVisualStyleBackColor = true;
+            this.resaturateCheckBox.CheckedChanged += new System.EventHandler(this.resaturateCheckBox_CheckedChanged);
+            // 
+            // slotsListView
+            // 
+            this.slotsListView.Location = new System.Drawing.Point(509, 171);
+            this.slotsListView.MultiSelect = false;
+            this.slotsListView.Name = "slotsListView";
+            this.slotsListView.Size = new System.Drawing.Size(248, 133);
+            this.slotsListView.TabIndex = 33;
+            this.slotsListView.UseCompatibleStateImageBehavior = false;
+            this.slotsListView.View = System.Windows.Forms.View.List;
+            this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListView_DoubleClick);
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 345);
+            this.Controls.Add(this.slotsListView);
+            this.Controls.Add(this.resaturateCheckBox);
             this.Controls.Add(this.removeSlotButton);
             this.Controls.Add(this.addSlotButton);
             this.Controls.Add(this.decayToLabel);
@@ -411,7 +427,6 @@
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.aspectsDataGridView);
-            this.Controls.Add(this.slotsListBox);
             this.Controls.Add(this.slotsLabel);
             this.Controls.Add(this.xtriggersLabel);
             this.Controls.Add(this.xtriggersDataGridView);
@@ -449,7 +464,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn resultID;
         private System.Windows.Forms.Label xtriggersLabel;
         private System.Windows.Forms.Label slotsLabel;
-        private System.Windows.Forms.ListBox slotsListBox;
         private System.Windows.Forms.DataGridView aspectsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
@@ -471,5 +485,7 @@
         private System.Windows.Forms.Label decayToLabel;
         private System.Windows.Forms.Button addSlotButton;
         private System.Windows.Forms.Button removeSlotButton;
+        private System.Windows.Forms.CheckBox resaturateCheckBox;
+        private System.Windows.Forms.ListView slotsListView;
     }
 }

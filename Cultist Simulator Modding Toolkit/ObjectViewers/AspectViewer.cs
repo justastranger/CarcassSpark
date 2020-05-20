@@ -80,7 +80,43 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 foreach (Induces induces in aspect.induces)
                 {
                     inducesDictionary.Add(induces.id, induces);
-                    inducesDataGridView.Rows.Add(induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    inducesDataGridView.Rows.Add(newRow);
+                }
+            }
+            if (aspect.induces_prepend != null)
+            {
+                Dictionary<string, Induces> tmpDictionary = new Dictionary<string, Induces>();
+                foreach (Induces induces in aspect.induces_prepend)
+                {
+                    inducesDictionary.Add(induces.id, induces);
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
+                    inducesDataGridView.Rows.Insert(0, newRow);
+                }
+            }
+            if (aspect.induces_append != null)
+            {
+                Dictionary<string, Induces> tmpDictionary = new Dictionary<string, Induces>();
+                foreach (Induces induces in aspect.induces_append)
+                {
+                    inducesDictionary.Add(induces.id, induces);
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListAppendColor;
+                    inducesDataGridView.Rows.Add(newRow);
+                }
+            }
+            if (aspect.induces_remove != null)
+            {
+                foreach (string removeId in aspect.induces_remove)
+                {
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(inducesDataGridView, removeId);
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListRemoveColor;
+                    inducesDataGridView.Rows.Add(newRow);
                 }
             }
         }
@@ -137,7 +173,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.extends = new string[] { extendsTextBox.Text };
+            displayedAspect.extends = new List<string> { extendsTextBox.Text };
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)

@@ -94,7 +94,8 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
         {
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));;
+            manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));
+            Text = manifest.name;
         }
 
         public void loadFile(FileStream file, string filePath)
@@ -114,7 +115,6 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                     jtw.WriteRaw(newFileText);
                 }
             }
-            //MessageBox.Show(filePath);
             JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(newFileText).First;
             string fileType = parsedJToken.Path;
             switch (fileType)
@@ -122,7 +122,6 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 case "elements":
                     foreach (JToken element in parsedJToken.First.ToArray())
                     {
-                        //if (element["isAspect"].ToObject<bool>())
                         if (element["isAspect"] != null)
                         {
                             Aspect deserializedAspect = element.ToObject<Aspect>();
@@ -213,7 +212,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
         }
 
 
-        public ObjectTypes.Element getElement(string id)
+        public Element getElement(string id)
         {
             if (elementExists(id)) return elementsList[id];
             else return null;
@@ -256,7 +255,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             return legaciesList.ContainsKey(id);
         }
 
-        public ObjectTypes.Recipe getRecipe(string id)
+        public Recipe getRecipe(string id)
         {
             if (recipeExists(id)) return recipesList[id];
             else return null;
@@ -422,7 +421,6 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                     jtw.WriteRaw(verbsJson);
                 }
             }
-            // TODO uncomment this when it's safe to do so
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/manifest.json", FileMode.OpenOrCreate))))
             {
@@ -440,7 +438,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (AspectViewer av = new AspectViewer(new Aspect(), true))
             {
                 av.ShowDialog();
-                if (av.DialogResult == DialogResult.OK)
+                if (av.DialogResult == DialogResult.OK && !aspectsList.ContainsKey(av.displayedAspect.id))
                 {
                     aspectsList.Add(av.displayedAspect.id, av.displayedAspect);
                     aspectsListBox.Items.Add(av.displayedAspect.id);
@@ -453,7 +451,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (ElementViewer ev = new ElementViewer(new ObjectTypes.Element(), true))
             {
                 ev.ShowDialog();
-                if (ev.DialogResult == DialogResult.OK)
+                if (ev.DialogResult == DialogResult.OK && !elementsList.ContainsKey(ev.displayedElement.id))
                 {
                     elementsList.Add(ev.displayedElement.id, ev.displayedElement);
                     elementsListBox.Items.Add(ev.displayedElement.id);
@@ -466,7 +464,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (DeckViewer dv = new DeckViewer(new Deck(), true))
             {
                 dv.ShowDialog();
-                if (dv.DialogResult == DialogResult.OK)
+                if (dv.DialogResult == DialogResult.OK && !decksList.ContainsKey(dv.displayedDeck.id))
                 {
                     decksList.Add(dv.displayedDeck.id, dv.displayedDeck);
                     decksListBox.Items.Add(dv.displayedDeck.id);
@@ -479,7 +477,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (LegacyViewer lv = new LegacyViewer(new Legacy(), true))
             {
                 lv.ShowDialog();
-                if (lv.DialogResult == DialogResult.OK)
+                if (lv.DialogResult == DialogResult.OK && !legaciesList.ContainsKey(lv.displayedLegacy.id))
                 {
                     legaciesList.Add(lv.displayedLegacy.id, lv.displayedLegacy);
                     legaciesListBox.Items.Add(lv.displayedLegacy.id);
@@ -492,7 +490,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (EndingViewer ev = new EndingViewer(new Ending(), true))
             {
                 ev.ShowDialog();
-                if (ev.DialogResult == DialogResult.OK)
+                if (ev.DialogResult == DialogResult.OK && !endingsList.ContainsKey(ev.displayedEnding.id))
                 {
                     endingsList.Add(ev.displayedEnding.id, ev.displayedEnding);
                     endingsListBox.Items.Add(ev.displayedEnding.id);
@@ -505,7 +503,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (VerbViewer vv = new VerbViewer(new Verb(), true))
             {
                 vv.ShowDialog();
-                if(vv.DialogResult == DialogResult.OK)
+                if(vv.DialogResult == DialogResult.OK && !verbsList.ContainsKey(vv.displayedVerb.id))
                 {
                     verbsList.Add(vv.displayedVerb.id, vv.displayedVerb);
                     verbsListBox.Items.Add(vv.displayedVerb.id);
@@ -518,7 +516,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             using (RecipeViewer rv = new RecipeViewer(new ObjectTypes.Recipe(), true))
             {
                 rv.ShowDialog();
-                if(rv.DialogResult == DialogResult.OK)
+                if(rv.DialogResult == DialogResult.OK && !recipesList.ContainsKey(rv.displayedRecipe.id))
                 {
                     recipesList.Add(rv.displayedRecipe.id, rv.displayedRecipe);
                     recipesListBox.Items.Add(rv.displayedRecipe.id);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.actionIdTextBox = new System.Windows.Forms.TextBox();
@@ -67,10 +68,7 @@
             this.aspectsLabel = new System.Windows.Forms.Label();
             this.alternativerecipesLabel = new System.Windows.Forms.Label();
             this.linkedLabel = new System.Windows.Forms.Label();
-            this.mutationsListBox = new System.Windows.Forms.ListBox();
             this.mutationsLabel = new System.Windows.Forms.Label();
-            this.alternativerecipesListBox = new System.Windows.Forms.ListBox();
-            this.linkedListBox = new System.Windows.Forms.ListBox();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -92,6 +90,22 @@
             this.removeAlternativeRecipeButton = new System.Windows.Forms.Button();
             this.removeLinkedRecipeButton = new System.Windows.Forms.Button();
             this.removeMutationButton = new System.Windows.Forms.Button();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prependAlternativeRecipeButton = new System.Windows.Forms.Button();
+            this.appendAlternativeReipeButton = new System.Windows.Forms.Button();
+            this.prependLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.appendLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.prependMutationButton = new System.Windows.Forms.Button();
+            this.appendMutationButton = new System.Windows.Forms.Button();
+            this.alternativeRecipesListView = new System.Windows.Forms.ListView();
+            this.linkedRecipesListView = new System.Windows.Forms.ListView();
+            this.mutationsListView = new System.Windows.Forms.ListView();
+            this.portalEffectLabel = new System.Windows.Forms.Label();
+            this.portalEffectDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.signalEndingFlavourDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablereqsDataGridView)).BeginInit();
@@ -100,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).BeginInit();
+            this.propertyOperationContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -131,7 +146,7 @@
             // 
             // endingTextBox
             // 
-            this.endingTextBox.Location = new System.Drawing.Point(12, 64);
+            this.endingTextBox.Location = new System.Drawing.Point(330, 25);
             this.endingTextBox.Name = "endingTextBox";
             this.endingTextBox.Size = new System.Drawing.Size(100, 20);
             this.endingTextBox.TabIndex = 3;
@@ -140,7 +155,7 @@
             // 
             // burnimageTextBox
             // 
-            this.burnimageTextBox.Location = new System.Drawing.Point(118, 64);
+            this.burnimageTextBox.Location = new System.Drawing.Point(542, 25);
             this.burnimageTextBox.Name = "burnimageTextBox";
             this.burnimageTextBox.Size = new System.Drawing.Size(100, 20);
             this.burnimageTextBox.TabIndex = 4;
@@ -194,7 +209,7 @@
             // internaldeckLabel
             // 
             this.internaldeckLabel.AutoSize = true;
-            this.internaldeckLabel.Location = new System.Drawing.Point(174, 87);
+            this.internaldeckLabel.Location = new System.Drawing.Point(86, 87);
             this.internaldeckLabel.Name = "internaldeckLabel";
             this.internaldeckLabel.Size = new System.Drawing.Size(71, 13);
             this.internaldeckLabel.TabIndex = 9;
@@ -203,7 +218,7 @@
             // showInternalDeckButton
             // 
             this.showInternalDeckButton.Enabled = false;
-            this.showInternalDeckButton.Location = new System.Drawing.Point(174, 103);
+            this.showInternalDeckButton.Location = new System.Drawing.Point(89, 103);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
             this.showInternalDeckButton.Size = new System.Drawing.Size(75, 23);
             this.showInternalDeckButton.TabIndex = 10;
@@ -228,6 +243,7 @@
             this.requirementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
             this.amount});
+            this.requirementsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.requirementsDataGridView.Location = new System.Drawing.Point(12, 189);
             this.requirementsDataGridView.Name = "requirementsDataGridView";
             this.requirementsDataGridView.ReadOnly = true;
@@ -258,6 +274,7 @@
             this.extantreqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.extantElementId,
             this.extantAmount});
+            this.extantreqsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.extantreqsDataGridView.Location = new System.Drawing.Point(258, 189);
             this.extantreqsDataGridView.Name = "extantreqsDataGridView";
             this.extantreqsDataGridView.ReadOnly = true;
@@ -297,6 +314,7 @@
             this.tablereqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tableElementId,
             this.tableAmount});
+            this.tablereqsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.tablereqsDataGridView.Location = new System.Drawing.Point(504, 189);
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
             this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
@@ -328,7 +346,7 @@
             // slotLabel
             // 
             this.slotLabel.AutoSize = true;
-            this.slotLabel.Location = new System.Drawing.Point(174, 129);
+            this.slotLabel.Location = new System.Drawing.Point(167, 87);
             this.slotLabel.Name = "slotLabel";
             this.slotLabel.Size = new System.Drawing.Size(25, 13);
             this.slotLabel.TabIndex = 17;
@@ -337,7 +355,7 @@
             // showSlotButton
             // 
             this.showSlotButton.Enabled = false;
-            this.showSlotButton.Location = new System.Drawing.Point(174, 145);
+            this.showSlotButton.Location = new System.Drawing.Point(170, 103);
             this.showSlotButton.Name = "showSlotButton";
             this.showSlotButton.Size = new System.Drawing.Size(75, 23);
             this.showSlotButton.TabIndex = 18;
@@ -353,6 +371,7 @@
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectsElementId,
             this.effectsAmount});
+            this.effectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.effectsDataGridView.Location = new System.Drawing.Point(12, 333);
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
@@ -389,6 +408,7 @@
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.aspectAmount});
+            this.aspectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.aspectsDataGridView.Location = new System.Drawing.Point(258, 333);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
@@ -416,6 +436,7 @@
             this.deckeffectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deckId,
             this.deckDraws});
+            this.deckeffectDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.deckeffectDataGridView.Location = new System.Drawing.Point(504, 333);
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
             this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
@@ -471,16 +492,6 @@
             this.linkedLabel.TabIndex = 27;
             this.linkedLabel.Text = "Linked Recipes";
             // 
-            // mutationsListBox
-            // 
-            this.mutationsListBox.FormattingEnabled = true;
-            this.mutationsListBox.Location = new System.Drawing.Point(504, 477);
-            this.mutationsListBox.Name = "mutationsListBox";
-            this.mutationsListBox.ScrollAlwaysVisible = true;
-            this.mutationsListBox.Size = new System.Drawing.Size(240, 121);
-            this.mutationsListBox.TabIndex = 29;
-            this.mutationsListBox.DoubleClick += new System.EventHandler(this.mutationsListBox_DoubleClick);
-            // 
             // mutationsLabel
             // 
             this.mutationsLabel.AutoSize = true;
@@ -490,29 +501,9 @@
             this.mutationsLabel.TabIndex = 30;
             this.mutationsLabel.Text = "Mutations";
             // 
-            // alternativerecipesListBox
-            // 
-            this.alternativerecipesListBox.FormattingEnabled = true;
-            this.alternativerecipesListBox.Location = new System.Drawing.Point(12, 477);
-            this.alternativerecipesListBox.Name = "alternativerecipesListBox";
-            this.alternativerecipesListBox.ScrollAlwaysVisible = true;
-            this.alternativerecipesListBox.Size = new System.Drawing.Size(240, 121);
-            this.alternativerecipesListBox.TabIndex = 31;
-            this.alternativerecipesListBox.DoubleClick += new System.EventHandler(this.alternativerecipesListBox_DoubleClick);
-            // 
-            // linkedListBox
-            // 
-            this.linkedListBox.FormattingEnabled = true;
-            this.linkedListBox.Location = new System.Drawing.Point(258, 477);
-            this.linkedListBox.Name = "linkedListBox";
-            this.linkedListBox.ScrollAlwaysVisible = true;
-            this.linkedListBox.Size = new System.Drawing.Size(240, 121);
-            this.linkedListBox.TabIndex = 32;
-            this.linkedListBox.DoubleClick += new System.EventHandler(this.linkedListBox_DoubleClick);
-            // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(224, 64);
+            this.extendsTextBox.Location = new System.Drawing.Point(12, 64);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 33;
@@ -543,9 +534,9 @@
             // 
             this.addAlternativeRecipeButton.Location = new System.Drawing.Point(12, 604);
             this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
-            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(34, 23);
             this.addAlternativeRecipeButton.TabIndex = 38;
-            this.addAlternativeRecipeButton.Text = "Add Alternative";
+            this.addAlternativeRecipeButton.Text = "Add";
             this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.addAlternativeRecipeButton.Click += new System.EventHandler(this.addAlternativeRecipeButton_Click);
             // 
@@ -553,9 +544,9 @@
             // 
             this.addLinkedRecipeButton.Location = new System.Drawing.Point(258, 604);
             this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
-            this.addLinkedRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.addLinkedRecipeButton.Size = new System.Drawing.Size(34, 23);
             this.addLinkedRecipeButton.TabIndex = 39;
-            this.addLinkedRecipeButton.Text = "Add Linked Recipe";
+            this.addLinkedRecipeButton.Text = "Add";
             this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.addLinkedRecipeButton.Click += new System.EventHandler(this.addLinkedRecipeButton_Click);
             // 
@@ -563,24 +554,24 @@
             // 
             this.addMutationButton.Location = new System.Drawing.Point(504, 604);
             this.addMutationButton.Name = "addMutationButton";
-            this.addMutationButton.Size = new System.Drawing.Size(120, 23);
+            this.addMutationButton.Size = new System.Drawing.Size(34, 23);
             this.addMutationButton.TabIndex = 40;
-            this.addMutationButton.Text = "Add Mutation";
+            this.addMutationButton.Text = "Add";
             this.addMutationButton.UseVisualStyleBackColor = true;
             this.addMutationButton.Click += new System.EventHandler(this.addMutationButton_Click);
             // 
             // maxExecutionsNumericUpDown
             // 
-            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(89, 103);
+            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(118, 64);
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
-            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(75, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 41;
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.maxExecutionsNumericUpDown_ValueChanged);
             // 
             // maxExecutionsLabel
             // 
             this.maxExecutionsLabel.AutoSize = true;
-            this.maxExecutionsLabel.Location = new System.Drawing.Point(86, 87);
+            this.maxExecutionsLabel.Location = new System.Drawing.Point(115, 48);
             this.maxExecutionsLabel.Name = "maxExecutionsLabel";
             this.maxExecutionsLabel.Size = new System.Drawing.Size(82, 13);
             this.maxExecutionsLabel.TabIndex = 42;
@@ -588,16 +579,16 @@
             // 
             // warmupNumericUpDown
             // 
-            this.warmupNumericUpDown.Location = new System.Drawing.Point(89, 142);
+            this.warmupNumericUpDown.Location = new System.Drawing.Point(199, 64);
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
-            this.warmupNumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.warmupNumericUpDown.Size = new System.Drawing.Size(75, 20);
             this.warmupNumericUpDown.TabIndex = 43;
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.warmupNumericUpDown_ValueChanged);
             // 
             // warmupLabel
             // 
             this.warmupLabel.AutoSize = true;
-            this.warmupLabel.Location = new System.Drawing.Point(87, 126);
+            this.warmupLabel.Location = new System.Drawing.Point(196, 48);
             this.warmupLabel.Name = "warmupLabel";
             this.warmupLabel.Size = new System.Drawing.Size(47, 13);
             this.warmupLabel.TabIndex = 44;
@@ -606,7 +597,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(221, 48);
+            this.extendsLabel.Location = new System.Drawing.Point(9, 48);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 45;
@@ -615,7 +606,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(12, 9);
+            this.idLabel.Location = new System.Drawing.Point(9, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(55, 13);
             this.idLabel.TabIndex = 46;
@@ -642,7 +633,7 @@
             // endingLabel
             // 
             this.endingLabel.AutoSize = true;
-            this.endingLabel.Location = new System.Drawing.Point(12, 48);
+            this.endingLabel.Location = new System.Drawing.Point(327, 9);
             this.endingLabel.Name = "endingLabel";
             this.endingLabel.Size = new System.Drawing.Size(78, 13);
             this.endingLabel.TabIndex = 49;
@@ -651,7 +642,7 @@
             // burnImageLabel
             // 
             this.burnImageLabel.AutoSize = true;
-            this.burnImageLabel.Location = new System.Drawing.Point(115, 48);
+            this.burnImageLabel.Location = new System.Drawing.Point(539, 9);
             this.burnImageLabel.Name = "burnImageLabel";
             this.burnImageLabel.Size = new System.Drawing.Size(61, 13);
             this.burnImageLabel.TabIndex = 50;
@@ -677,39 +668,211 @@
             // 
             // removeAlternativeRecipeButton
             // 
-            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(132, 604);
+            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(193, 604);
             this.removeAlternativeRecipeButton.Name = "removeAlternativeRecipeButton";
-            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(59, 23);
             this.removeAlternativeRecipeButton.TabIndex = 53;
-            this.removeAlternativeRecipeButton.Text = "Remove";
+            this.removeAlternativeRecipeButton.Text = "Delete";
             this.removeAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.removeAlternativeRecipeButton.Click += new System.EventHandler(this.removeAlternativeRecipeButton_Click);
             // 
             // removeLinkedRecipeButton
             // 
-            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(378, 604);
+            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(439, 604);
             this.removeLinkedRecipeButton.Name = "removeLinkedRecipeButton";
-            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(120, 23);
+            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(59, 23);
             this.removeLinkedRecipeButton.TabIndex = 54;
-            this.removeLinkedRecipeButton.Text = "Remove";
+            this.removeLinkedRecipeButton.Text = "Delete";
             this.removeLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.removeLinkedRecipeButton.Click += new System.EventHandler(this.removeLinkedRecipeButton_Click);
             // 
             // removeMutationButton
             // 
-            this.removeMutationButton.Location = new System.Drawing.Point(624, 604);
+            this.removeMutationButton.Location = new System.Drawing.Point(685, 604);
             this.removeMutationButton.Name = "removeMutationButton";
-            this.removeMutationButton.Size = new System.Drawing.Size(120, 23);
+            this.removeMutationButton.Size = new System.Drawing.Size(59, 23);
             this.removeMutationButton.TabIndex = 55;
-            this.removeMutationButton.Text = "Remove";
+            this.removeMutationButton.Text = "Delete";
             this.removeMutationButton.UseVisualStyleBackColor = true;
             this.removeMutationButton.Click += new System.EventHandler(this.removeMutationButton_Click);
+            // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsExtendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(151, 48);
+            // 
+            // setAsExtendToolStripMenuItem
+            // 
+            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
+            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            // 
+            // prependAlternativeRecipeButton
+            // 
+            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(52, 604);
+            this.prependAlternativeRecipeButton.Name = "prependAlternativeRecipeButton";
+            this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(60, 23);
+            this.prependAlternativeRecipeButton.TabIndex = 57;
+            this.prependAlternativeRecipeButton.Text = "Prepend";
+            this.prependAlternativeRecipeButton.UseVisualStyleBackColor = true;
+            this.prependAlternativeRecipeButton.Click += new System.EventHandler(this.prependAlternativeRecipeButton_Click);
+            // 
+            // appendAlternativeReipeButton
+            // 
+            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(118, 604);
+            this.appendAlternativeReipeButton.Name = "appendAlternativeReipeButton";
+            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(69, 23);
+            this.appendAlternativeReipeButton.TabIndex = 58;
+            this.appendAlternativeReipeButton.Text = "Append";
+            this.appendAlternativeReipeButton.UseVisualStyleBackColor = true;
+            this.appendAlternativeReipeButton.Click += new System.EventHandler(this.appendAlternativeReipeButton_Click);
+            // 
+            // prependLinkedRecipeButton
+            // 
+            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(298, 604);
+            this.prependLinkedRecipeButton.Name = "prependLinkedRecipeButton";
+            this.prependLinkedRecipeButton.Size = new System.Drawing.Size(60, 23);
+            this.prependLinkedRecipeButton.TabIndex = 59;
+            this.prependLinkedRecipeButton.Text = "Prepend";
+            this.prependLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.prependLinkedRecipeButton.Click += new System.EventHandler(this.prependLinkedRecipeButton_Click);
+            // 
+            // appendLinkedRecipeButton
+            // 
+            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(364, 604);
+            this.appendLinkedRecipeButton.Name = "appendLinkedRecipeButton";
+            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(69, 23);
+            this.appendLinkedRecipeButton.TabIndex = 60;
+            this.appendLinkedRecipeButton.Text = "Append";
+            this.appendLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.appendLinkedRecipeButton.Click += new System.EventHandler(this.appendLinkedRecipeButton_Click);
+            // 
+            // prependMutationButton
+            // 
+            this.prependMutationButton.Location = new System.Drawing.Point(544, 604);
+            this.prependMutationButton.Name = "prependMutationButton";
+            this.prependMutationButton.Size = new System.Drawing.Size(60, 23);
+            this.prependMutationButton.TabIndex = 61;
+            this.prependMutationButton.Text = "Prepend";
+            this.prependMutationButton.UseVisualStyleBackColor = true;
+            this.prependMutationButton.Click += new System.EventHandler(this.prependMutationButton_Click);
+            // 
+            // appendMutationButton
+            // 
+            this.appendMutationButton.Location = new System.Drawing.Point(610, 604);
+            this.appendMutationButton.Name = "appendMutationButton";
+            this.appendMutationButton.Size = new System.Drawing.Size(69, 23);
+            this.appendMutationButton.TabIndex = 62;
+            this.appendMutationButton.Text = "Append";
+            this.appendMutationButton.UseVisualStyleBackColor = true;
+            this.appendMutationButton.Click += new System.EventHandler(this.appendMutationButton_Click);
+            // 
+            // alternativeRecipesListView
+            // 
+            this.alternativeRecipesListView.Location = new System.Drawing.Point(12, 477);
+            this.alternativeRecipesListView.MultiSelect = false;
+            this.alternativeRecipesListView.Name = "alternativeRecipesListView";
+            this.alternativeRecipesListView.Size = new System.Drawing.Size(240, 121);
+            this.alternativeRecipesListView.TabIndex = 63;
+            this.alternativeRecipesListView.UseCompatibleStateImageBehavior = false;
+            this.alternativeRecipesListView.View = System.Windows.Forms.View.List;
+            this.alternativeRecipesListView.DoubleClick += new System.EventHandler(this.alternativerecipesListBox_DoubleClick);
+            // 
+            // linkedRecipesListView
+            // 
+            this.linkedRecipesListView.Location = new System.Drawing.Point(258, 477);
+            this.linkedRecipesListView.MultiSelect = false;
+            this.linkedRecipesListView.Name = "linkedRecipesListView";
+            this.linkedRecipesListView.Size = new System.Drawing.Size(240, 121);
+            this.linkedRecipesListView.TabIndex = 64;
+            this.linkedRecipesListView.UseCompatibleStateImageBehavior = false;
+            this.linkedRecipesListView.View = System.Windows.Forms.View.List;
+            this.linkedRecipesListView.DoubleClick += new System.EventHandler(this.linkedListBox_DoubleClick);
+            // 
+            // mutationsListView
+            // 
+            this.mutationsListView.Location = new System.Drawing.Point(504, 477);
+            this.mutationsListView.MultiSelect = false;
+            this.mutationsListView.Name = "mutationsListView";
+            this.mutationsListView.Size = new System.Drawing.Size(240, 121);
+            this.mutationsListView.TabIndex = 65;
+            this.mutationsListView.UseCompatibleStateImageBehavior = false;
+            this.mutationsListView.View = System.Windows.Forms.View.List;
+            this.mutationsListView.DoubleClick += new System.EventHandler(this.mutationsListBox_DoubleClick);
+            // 
+            // portalEffectLabel
+            // 
+            this.portalEffectLabel.AutoSize = true;
+            this.portalEffectLabel.Location = new System.Drawing.Point(645, 9);
+            this.portalEffectLabel.Name = "portalEffectLabel";
+            this.portalEffectLabel.Size = new System.Drawing.Size(65, 13);
+            this.portalEffectLabel.TabIndex = 67;
+            this.portalEffectLabel.Text = "Portal Effect";
+            // 
+            // portalEffectDomainUpDown
+            // 
+            this.portalEffectDomainUpDown.Items.Add("None");
+            this.portalEffectDomainUpDown.Items.Add("Wood");
+            this.portalEffectDomainUpDown.Items.Add("WhiteDoor");
+            this.portalEffectDomainUpDown.Items.Add("StagDoor");
+            this.portalEffectDomainUpDown.Items.Add("SpiderDoor");
+            this.portalEffectDomainUpDown.Items.Add("PeacockDoor");
+            this.portalEffectDomainUpDown.Items.Add("TricuspidGate");
+            this.portalEffectDomainUpDown.Location = new System.Drawing.Point(648, 25);
+            this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
+            this.portalEffectDomainUpDown.Size = new System.Drawing.Size(100, 20);
+            this.portalEffectDomainUpDown.TabIndex = 68;
+            // 
+            // signalEndingFlavourDomainUpDown
+            // 
+            this.signalEndingFlavourDomainUpDown.Items.Add("None");
+            this.signalEndingFlavourDomainUpDown.Items.Add("Grand");
+            this.signalEndingFlavourDomainUpDown.Items.Add("Melancholy");
+            this.signalEndingFlavourDomainUpDown.Items.Add("Pale");
+            this.signalEndingFlavourDomainUpDown.Items.Add("Vile");
+            this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(436, 25);
+            this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
+            this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(100, 20);
+            this.signalEndingFlavourDomainUpDown.TabIndex = 69;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(428, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 13);
+            this.label1.TabIndex = 70;
+            this.label1.Text = "Signal Ending Flavour";
             // 
             // RecipeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 668);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.signalEndingFlavourDomainUpDown);
+            this.Controls.Add(this.portalEffectDomainUpDown);
+            this.Controls.Add(this.portalEffectLabel);
+            this.Controls.Add(this.mutationsListView);
+            this.Controls.Add(this.linkedRecipesListView);
+            this.Controls.Add(this.alternativeRecipesListView);
+            this.Controls.Add(this.appendMutationButton);
+            this.Controls.Add(this.prependMutationButton);
+            this.Controls.Add(this.appendLinkedRecipeButton);
+            this.Controls.Add(this.prependLinkedRecipeButton);
+            this.Controls.Add(this.appendAlternativeReipeButton);
+            this.Controls.Add(this.prependAlternativeRecipeButton);
             this.Controls.Add(this.removeMutationButton);
             this.Controls.Add(this.removeLinkedRecipeButton);
             this.Controls.Add(this.removeAlternativeRecipeButton);
@@ -731,10 +894,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.extendsTextBox);
-            this.Controls.Add(this.linkedListBox);
-            this.Controls.Add(this.alternativerecipesListBox);
             this.Controls.Add(this.mutationsLabel);
-            this.Controls.Add(this.mutationsListBox);
             this.Controls.Add(this.linkedLabel);
             this.Controls.Add(this.alternativerecipesLabel);
             this.Controls.Add(this.aspectsLabel);
@@ -773,6 +933,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).EndInit();
+            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -819,10 +980,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deckDraws;
         private System.Windows.Forms.Label alternativerecipesLabel;
         private System.Windows.Forms.Label linkedLabel;
-        private System.Windows.Forms.ListBox mutationsListBox;
         private System.Windows.Forms.Label mutationsLabel;
-        private System.Windows.Forms.ListBox alternativerecipesListBox;
-        private System.Windows.Forms.ListBox linkedListBox;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
@@ -844,5 +1002,21 @@
         private System.Windows.Forms.Button removeAlternativeRecipeButton;
         private System.Windows.Forms.Button removeLinkedRecipeButton;
         private System.Windows.Forms.Button removeMutationButton;
+        private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
+        private System.Windows.Forms.Button prependAlternativeRecipeButton;
+        private System.Windows.Forms.Button appendAlternativeReipeButton;
+        private System.Windows.Forms.Button prependLinkedRecipeButton;
+        private System.Windows.Forms.Button appendLinkedRecipeButton;
+        private System.Windows.Forms.Button prependMutationButton;
+        private System.Windows.Forms.Button appendMutationButton;
+        private System.Windows.Forms.ListView alternativeRecipesListView;
+        private System.Windows.Forms.ListView linkedRecipesListView;
+        private System.Windows.Forms.ListView mutationsListView;
+        private System.Windows.Forms.Label portalEffectLabel;
+        private System.Windows.Forms.DomainUpDown portalEffectDomainUpDown;
+        private System.Windows.Forms.DomainUpDown signalEndingFlavourDomainUpDown;
+        private System.Windows.Forms.Label label1;
     }
 }

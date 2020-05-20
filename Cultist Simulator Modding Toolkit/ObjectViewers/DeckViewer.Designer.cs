@@ -32,7 +32,6 @@
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.specListBox = new System.Windows.Forms.ListBox();
             this.drawmessagesDataGridView = new System.Windows.Forms.DataGridView();
             this.elementId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.message = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,7 @@
             this.defaultCardLabel = new System.Windows.Forms.Label();
             this.drawmessagesLlabel = new System.Windows.Forms.Label();
             this.removeCardButton = new System.Windows.Forms.Button();
+            this.specListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -90,16 +90,6 @@
             this.descriptionTextBox.Size = new System.Drawing.Size(268, 56);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
-            // 
-            // specListBox
-            // 
-            this.specListBox.FormattingEnabled = true;
-            this.specListBox.Location = new System.Drawing.Point(286, 64);
-            this.specListBox.Name = "specListBox";
-            this.specListBox.ScrollAlwaysVisible = true;
-            this.specListBox.Size = new System.Drawing.Size(260, 186);
-            this.specListBox.TabIndex = 4;
-            this.specListBox.DoubleClick += new System.EventHandler(this.specListBox_DoubleClick);
             // 
             // drawmessagesDataGridView
             // 
@@ -264,11 +254,23 @@
             this.removeCardButton.UseVisualStyleBackColor = true;
             this.removeCardButton.Click += new System.EventHandler(this.removeCardButton_Click);
             // 
+            // specListView
+            // 
+            this.specListView.Location = new System.Drawing.Point(286, 64);
+            this.specListView.MultiSelect = false;
+            this.specListView.Name = "specListView";
+            this.specListView.Size = new System.Drawing.Size(260, 183);
+            this.specListView.TabIndex = 21;
+            this.specListView.UseCompatibleStateImageBehavior = false;
+            this.specListView.View = System.Windows.Forms.View.List;
+            this.specListView.DoubleClick += new System.EventHandler(this.specListView_DoubleClick);
+            // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.specListView);
             this.Controls.Add(this.removeCardButton);
             this.Controls.Add(this.drawmessagesLlabel);
             this.Controls.Add(this.defaultCardLabel);
@@ -285,7 +287,6 @@
             this.Controls.Add(this.defaultCardTextBox);
             this.Controls.Add(this.resetOnExhaustionCheckBox);
             this.Controls.Add(this.drawmessagesDataGridView);
-            this.Controls.Add(this.specListBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.labelTextBox);
@@ -306,7 +307,6 @@
         private System.Windows.Forms.TextBox labelTextBox;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.ListBox specListBox;
         private System.Windows.Forms.DataGridView drawmessagesDataGridView;
         private System.Windows.Forms.CheckBox resetOnExhaustionCheckBox;
         private System.Windows.Forms.TextBox defaultCardTextBox;
@@ -325,5 +325,6 @@
         private System.Windows.Forms.Label defaultCardLabel;
         private System.Windows.Forms.Label drawmessagesLlabel;
         private System.Windows.Forms.Button removeCardButton;
+        private System.Windows.Forms.ListView specListView;
     }
 }

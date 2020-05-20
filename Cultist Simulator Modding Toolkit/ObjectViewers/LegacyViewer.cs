@@ -46,11 +46,58 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
+            if (legacy.effects_extend != null)
+            {
+                foreach (KeyValuePair<string, int> kvp in legacy.effects_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.CreateCells(effectsDataGridView, kvp.Key, kvp.Value);
+                    effectsDataGridView.Rows.Add(row);
+                }
+            }
+            if (legacy.effects_remove != null)
+            {
+                foreach (string removeId in legacy.effects_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.CreateCells(effectsDataGridView, removeId);
+                    effectsDataGridView.Rows.Add(row);
+                }
+            }
             if (legacy.excludesOnEnding != null)
             {
                 foreach (string ending in legacy.excludesOnEnding)
                 {
-                    excludesOnEndingListBox.Items.Add(ending);
+                    excludesOnEndingListView.Items.Add(ending);
+                }
+            }
+            if (legacy.excludesOnEnding_prepend != null)
+            {
+                foreach (string ending in legacy.excludesOnEnding_prepend)
+                {
+                    ListViewItem item = new ListViewItem(ending);
+                    item.BackColor = Utilities.ListPrependColor;
+                    excludesOnEndingListView.Items.Add(item);
+                }
+            }
+            if (legacy.excludesOnEnding_append != null)
+            {
+                foreach (string ending in legacy.excludesOnEnding_append)
+                {
+                    ListViewItem item = new ListViewItem(ending);
+                    item.BackColor = Utilities.ListAppendColor;
+                    excludesOnEndingListView.Items.Add(item);
+                }
+            }
+            if (legacy.excludesOnEnding_remove != null)
+            {
+                foreach (string ending in legacy.excludesOnEnding_remove)
+                {
+                    ListViewItem item = new ListViewItem(ending);
+                    item.BackColor = Utilities.ListRemoveColor;
+                    excludesOnEndingListView.Items.Add(item);
                 }
             }
         }
@@ -84,9 +131,9 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             ev.ShowDialog();
         }
 
-        private void excludesOnEndingListBox_DoubleClick(object sender, EventArgs e)
+        private void excludesOnEndingListView_DoubleClick(object sender, EventArgs e)
         {
-            string id = excludesOnEndingListBox.SelectedItem.ToString();
+            string id = excludesOnEndingListView.SelectedItems[0].ToString();
             LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), editing);
             lv.ShowDialog();
         }
@@ -120,7 +167,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
         {
             if (addExcludesTextBox.Text != "" && addExcludesTextBox.Text != null)
             {
-                excludesOnEndingListBox.Items.Add(addExcludesTextBox.Text);
+                excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
                 displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
                 addExcludesTextBox.Text = "";
                 addExcludesTextBox.Focus();
@@ -133,7 +180,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             {
                 if (addExcludesTextBox.Text != "" && addExcludesTextBox.Text != null)
                 {
-                    excludesOnEndingListBox.Items.Add(addExcludesTextBox.Text);
+                    excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
                     displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
                     addExcludesTextBox.Text = "";
                     addExcludesTextBox.Focus();
@@ -187,10 +234,10 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListBox.SelectedItem.ToString()))
+            if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListView.SelectedItems[0].Text))
             {
-                displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListBox.SelectedItem.ToString());
-                excludesOnEndingListBox.Items.Remove(excludesOnEndingListBox.SelectedItem);
+                displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListView.SelectedItems[0].Text);
+                excludesOnEndingListView.Items.Remove(excludesOnEndingListView.SelectedItems[0]);
             }
         }
     }

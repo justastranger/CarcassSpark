@@ -1,4 +1,5 @@
-﻿using System;
+﻿extern alias CultistSimulator;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -16,6 +17,16 @@ namespace CultistSimulatorModdingToolkit
         public static List<ModViewer> currentMods = new List<ModViewer>();
         private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
 
+        public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
+        public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
+        public static Color ListAppendColor = Color.LimeGreen;
+        public static Color ListPrependColor = Color.Aquamarine;
+        public static Color ListRemoveColor = Color.Maroon;
+        
+        static Utilities(){
+            DictionaryExtendStyle.BackColor = Color.LimeGreen;
+            DictionaryRemoveStyle.BackColor = Color.Maroon;
+        }
 
         public static string getIdType(string id)
         {
@@ -28,7 +39,7 @@ namespace CultistSimulatorModdingToolkit
             if (verbExists(id)) return "verb";
             return "unknown";
         }
-
+        
         public static Image getAspectImage(string id)
         {
             foreach (ModViewer mv in currentMods)
@@ -272,6 +283,7 @@ namespace CultistSimulatorModdingToolkit
             }
             return null;
         }
+
 
         public static List<Aspect> getAspects()
         {

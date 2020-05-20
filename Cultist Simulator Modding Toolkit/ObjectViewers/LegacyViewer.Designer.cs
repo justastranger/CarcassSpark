@@ -39,7 +39,6 @@
             this.effectsDataGridView = new System.Windows.Forms.DataGridView();
             this.effectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.effectsAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.excludesOnEndingListBox = new System.Windows.Forms.ListBox();
             this.startingVerbIdTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.idLabel = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@
             this.addExcludesButton = new System.Windows.Forms.Button();
             this.excludeAddLabel = new System.Windows.Forms.Label();
             this.removeButton = new System.Windows.Forms.Button();
+            this.excludesOnEndingListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -161,16 +161,6 @@
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
             this.effectsAmount.Width = 149;
-            // 
-            // excludesOnEndingListBox
-            // 
-            this.excludesOnEndingListBox.FormattingEnabled = true;
-            this.excludesOnEndingListBox.Location = new System.Drawing.Point(130, 390);
-            this.excludesOnEndingListBox.Name = "excludesOnEndingListBox";
-            this.excludesOnEndingListBox.ScrollAlwaysVisible = true;
-            this.excludesOnEndingListBox.Size = new System.Drawing.Size(225, 69);
-            this.excludesOnEndingListBox.TabIndex = 9;
-            this.excludesOnEndingListBox.DoubleClick += new System.EventHandler(this.excludesOnEndingListBox_DoubleClick);
             // 
             // startingVerbIdTextBox
             // 
@@ -319,11 +309,23 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
+            // excludesOnEndingListView
+            // 
+            this.excludesOnEndingListView.Location = new System.Drawing.Point(130, 385);
+            this.excludesOnEndingListView.MultiSelect = false;
+            this.excludesOnEndingListView.Name = "excludesOnEndingListView";
+            this.excludesOnEndingListView.Size = new System.Drawing.Size(224, 77);
+            this.excludesOnEndingListView.TabIndex = 26;
+            this.excludesOnEndingListView.UseCompatibleStateImageBehavior = false;
+            this.excludesOnEndingListView.View = System.Windows.Forms.View.List;
+            this.excludesOnEndingListView.DoubleClick += new System.EventHandler(this.excludesOnEndingListView_DoubleClick);
+            // 
             // LegacyViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(367, 499);
+            this.Controls.Add(this.excludesOnEndingListView);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.excludeAddLabel);
             this.Controls.Add(this.addExcludesButton);
@@ -340,7 +342,6 @@
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.startingVerbIdTextBox);
-            this.Controls.Add(this.excludesOnEndingListBox);
             this.Controls.Add(this.effectsDataGridView);
             this.Controls.Add(this.availableWithoutEndingMatchCheckBox);
             this.Controls.Add(this.startdescriptionTextBox);
@@ -371,7 +372,6 @@
         private System.Windows.Forms.TextBox startdescriptionTextBox;
         private System.Windows.Forms.CheckBox availableWithoutEndingMatchCheckBox;
         private System.Windows.Forms.DataGridView effectsDataGridView;
-        private System.Windows.Forms.ListBox excludesOnEndingListBox;
         private System.Windows.Forms.TextBox startingVerbIdTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Label idLabel;
@@ -390,5 +390,6 @@
         private System.Windows.Forms.Button addExcludesButton;
         private System.Windows.Forms.Label excludeAddLabel;
         private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.ListView excludesOnEndingListView;
     }
 }

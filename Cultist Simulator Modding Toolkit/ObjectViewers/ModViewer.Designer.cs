@@ -55,6 +55,7 @@
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatLinkToThisRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAsFlowchartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decksLabel = new System.Windows.Forms.Label();
             this.decksListBox = new System.Windows.Forms.ListBox();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -97,7 +98,6 @@
             this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
             this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
-            this.viewAsFlowchartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -109,6 +109,7 @@
             // 
             // aspectsListBox
             // 
+            this.aspectsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.aspectsListBox.ContextMenuStrip = this.aspectContextMenuStrip;
             this.aspectsListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.aspectsListBox.Location = new System.Drawing.Point(12, 41);
@@ -181,6 +182,8 @@
             // 
             // aspectsLabel
             // 
+            this.aspectsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.aspectsLabel.AutoSize = true;
             this.aspectsLabel.Location = new System.Drawing.Point(42, 25);
             this.aspectsLabel.Name = "aspectsLabel";
@@ -190,6 +193,8 @@
             // 
             // elementsLabel
             // 
+            this.elementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.elementsLabel.AutoSize = true;
             this.elementsLabel.Location = new System.Drawing.Point(175, 25);
             this.elementsLabel.Name = "elementsLabel";
@@ -199,6 +204,7 @@
             // 
             // elementsListBox
             // 
+            this.elementsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.elementsListBox.ContextMenuStrip = this.elementContextMenuStrip;
             this.elementsListBox.FormattingEnabled = true;
             this.elementsListBox.Location = new System.Drawing.Point(143, 41);
@@ -281,6 +287,8 @@
             // 
             // recipesLabel
             // 
+            this.recipesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.recipesLabel.AutoSize = true;
             this.recipesLabel.Location = new System.Drawing.Point(303, 25);
             this.recipesLabel.Name = "recipesLabel";
@@ -290,6 +298,7 @@
             // 
             // recipesListBox
             // 
+            this.recipesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.recipesListBox.ContextMenuStrip = this.recipeContextMenuStrip;
             this.recipesListBox.FormattingEnabled = true;
             this.recipesListBox.Location = new System.Drawing.Point(274, 41);
@@ -307,7 +316,7 @@
             this.viewAsFlowchartToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(146, 70);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(146, 48);
             // 
             // searchForToolStripMenuItem
             // 
@@ -324,8 +333,17 @@
             this.recipesThatLinkToThisRecipeToolStripMenuItem.Text = "Recipes that link to this recipe";
             this.recipesThatLinkToThisRecipeToolStripMenuItem.Click += new System.EventHandler(this.recipesThatLinkToThisRecipeToolStripMenuItem_Click);
             // 
+            // viewAsFlowchartToolStripMenuItem
+            // 
+            this.viewAsFlowchartToolStripMenuItem.Name = "viewAsFlowchartToolStripMenuItem";
+            this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.viewAsFlowchartToolStripMenuItem.Text = "View As Flowchart";
+            this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.viewAsFlowchartToolStripMenuItem_Click);
+            // 
             // decksLabel
             // 
+            this.decksLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.decksLabel.AutoSize = true;
             this.decksLabel.Location = new System.Drawing.Point(439, 25);
             this.decksLabel.Name = "decksLabel";
@@ -335,6 +353,7 @@
             // 
             // decksListBox
             // 
+            this.decksListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.decksListBox.ContextMenuStrip = this.deckContextMenuStrip;
             this.decksListBox.FormattingEnabled = true;
             this.decksListBox.Location = new System.Drawing.Point(405, 41);
@@ -370,6 +389,8 @@
             // 
             // legaciesLabel
             // 
+            this.legaciesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.legaciesLabel.AutoSize = true;
             this.legaciesLabel.Location = new System.Drawing.Point(566, 25);
             this.legaciesLabel.Name = "legaciesLabel";
@@ -379,6 +400,7 @@
             // 
             // legaciesListBox
             // 
+            this.legaciesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.legaciesListBox.ContextMenuStrip = this.legacyContextMenuStrip;
             this.legaciesListBox.FormattingEnabled = true;
             this.legaciesListBox.Location = new System.Drawing.Point(536, 41);
@@ -396,6 +418,7 @@
             // 
             // endingsListBox
             // 
+            this.endingsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.endingsListBox.ContextMenuStrip = this.endingContextMenuStrip;
             this.endingsListBox.FormattingEnabled = true;
             this.endingsListBox.Location = new System.Drawing.Point(667, 41);
@@ -430,6 +453,8 @@
             // 
             // endingsLabel
             // 
+            this.endingsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.endingsLabel.AutoSize = true;
             this.endingsLabel.Location = new System.Drawing.Point(701, 25);
             this.endingsLabel.Name = "endingsLabel";
@@ -439,6 +464,7 @@
             // 
             // verbsListBox
             // 
+            this.verbsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.verbsListBox.ContextMenuStrip = this.verbContextMenuStrip;
             this.verbsListBox.FormattingEnabled = true;
             this.verbsListBox.Location = new System.Drawing.Point(798, 41);
@@ -481,6 +507,8 @@
             // 
             // verbsLabel
             // 
+            this.verbsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.verbsLabel.AutoSize = true;
             this.verbsLabel.Location = new System.Drawing.Point(842, 25);
             this.verbsLabel.Name = "verbsLabel";
@@ -625,6 +653,8 @@
             // 
             // aspetsSearchTextBox
             // 
+            this.aspetsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.aspetsSearchTextBox.Location = new System.Drawing.Point(12, 337);
             this.aspetsSearchTextBox.Name = "aspetsSearchTextBox";
             this.aspetsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -633,6 +663,8 @@
             // 
             // elementsSearchTextBox
             // 
+            this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.elementsSearchTextBox.Location = new System.Drawing.Point(143, 337);
             this.elementsSearchTextBox.Name = "elementsSearchTextBox";
             this.elementsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -641,6 +673,8 @@
             // 
             // recipesSearchTextBox
             // 
+            this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.recipesSearchTextBox.Location = new System.Drawing.Point(274, 337);
             this.recipesSearchTextBox.Name = "recipesSearchTextBox";
             this.recipesSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -649,6 +683,8 @@
             // 
             // decksSearchTextBox
             // 
+            this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.decksSearchTextBox.Location = new System.Drawing.Point(405, 337);
             this.decksSearchTextBox.Name = "decksSearchTextBox";
             this.decksSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -657,6 +693,8 @@
             // 
             // legaciesSearchTextBox
             // 
+            this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.legaciesSearchTextBox.Location = new System.Drawing.Point(536, 337);
             this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
             this.legaciesSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -665,6 +703,8 @@
             // 
             // endingsSearchTextBox
             // 
+            this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.endingsSearchTextBox.Location = new System.Drawing.Point(667, 337);
             this.endingsSearchTextBox.Name = "endingsSearchTextBox";
             this.endingsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -673,18 +713,13 @@
             // 
             // verbsSearchTextBox
             // 
+            this.verbsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.verbsSearchTextBox.Location = new System.Drawing.Point(798, 337);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
             this.verbsSearchTextBox.Size = new System.Drawing.Size(120, 20);
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
-            // 
-            // viewAsFlowchartToolStripMenuItem
-            // 
-            this.viewAsFlowchartToolStripMenuItem.Name = "viewAsFlowchartToolStripMenuItem";
-            this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.viewAsFlowchartToolStripMenuItem.Text = "View As Flowchart";
-            this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.viewAsFlowchartToolStripMenuItem_Click);
             // 
             // ModViewer
             // 
