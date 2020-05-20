@@ -94,7 +94,7 @@ namespace CultistSimulatorModdingToolkit.Flowchart
         {
             progressBar1.Visible = true;
             progressBar1.Value = 0;
-            progressBar1.Maximum = nodesInProgress.Count;
+            progressBar1.Maximum = recipeNodesThatNeedToBeProcessed.Count;
             progressBar1.Step = 1;
             while (recipeNodesThatNeedToBeProcessed.Count > 0)
             {
