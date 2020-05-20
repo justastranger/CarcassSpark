@@ -17,7 +17,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? additional;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> challenges;
+        public Dictionary<string, string> challenges; // string aspect ID, string challenge type: "base", "advanced". Default if null: "base"
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Expulsion expulsion;
 
