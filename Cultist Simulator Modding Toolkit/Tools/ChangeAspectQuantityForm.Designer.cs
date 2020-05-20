@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit
+﻿namespace CarcassSpark
 {
     partial class ChangeAspectQuantityForm
     {

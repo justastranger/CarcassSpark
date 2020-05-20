@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.DictionaryViewers
+﻿namespace CarcassSpark.DictionaryViewers
 {
     partial class LegaciesDictionaryResults
     {

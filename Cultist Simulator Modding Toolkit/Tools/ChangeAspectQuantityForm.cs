@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CultistSimulatorModdingToolkit
+namespace CarcassSpark
 {
     public partial class ChangeAspectQuantityForm : Form
     {

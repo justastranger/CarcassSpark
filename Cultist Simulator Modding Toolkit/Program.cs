@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CultistSimulatorModdingToolkit
+namespace CarcassSpark
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.ObjectViewers
+﻿namespace CarcassSpark.ObjectViewers
 {
     partial class RecipeViewer
     {
@@ -702,7 +702,8 @@
             this.setAsExtendToolStripMenuItem,
             this.setAsRemoveToolStripMenuItem});
             this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
-            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(151, 48);
+            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(126, 48);
             // 
             // setAsExtendToolStripMenuItem
             // 

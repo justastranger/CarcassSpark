@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectTypes;
-using CultistSimulatorModdingToolkit.ObjectViewers;
+using CarcassSpark.ObjectTypes;
+using CarcassSpark.ObjectViewers;
 
-namespace CultistSimulatorModdingToolkit.ObjectViewers
+namespace CarcassSpark.ObjectViewers
 {
     public partial class SlotViewer : Form
     {

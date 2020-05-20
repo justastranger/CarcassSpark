@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.Flowchart
+﻿namespace CarcassSpark.Flowchart
 {
     partial class RecipeFlowchartViewer
     {

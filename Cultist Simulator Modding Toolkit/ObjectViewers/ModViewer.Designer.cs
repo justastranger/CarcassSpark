@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.ObjectViewers
+﻿namespace CarcassSpark.ObjectViewers
 {
     partial class ModViewer
     {
@@ -751,7 +751,7 @@
             this.Controls.Add(this.aspectsListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModViewer";
-            this.Text = "Cultist Simulator Modding Toolkit";
+            this.Text = "Carcass Spark";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModViewer_FormClosed);
             this.Shown += new System.EventHandler(this.ModViewer_Shown);
             this.aspectContextMenuStrip.ResumeLayout(false);

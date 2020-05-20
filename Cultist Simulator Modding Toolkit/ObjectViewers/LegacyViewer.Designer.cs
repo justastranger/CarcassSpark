@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.ObjectViewers
+﻿namespace CarcassSpark.ObjectViewers
 {
     partial class LegacyViewer
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -56,8 +57,20 @@
             this.excludeAddLabel = new System.Windows.Forms.Label();
             this.removeButton = new System.Windows.Forms.Button();
             this.excludesOnEndingListView = new System.Windows.Forms.ListView();
+            this.statusBarElementsListView = new System.Windows.Forms.ListView();
+            this.statusBarElementsLabel = new System.Windows.Forms.Label();
+            this.statusBarElementTextBox = new System.Windows.Forms.TextBox();
+            this.statusBarElementsLabel2 = new System.Windows.Forms.Label();
+            this.addStatusBarElementButton = new System.Windows.Forms.Button();
+            this.removeStatusBarElementButton = new System.Windows.Forms.Button();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
+            this.propertyOperationContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -93,42 +106,42 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(206, 74);
+            this.descriptionTextBox.Size = new System.Drawing.Size(206, 86);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // imageTextBox
             // 
-            this.imageTextBox.Location = new System.Drawing.Point(12, 161);
+            this.imageTextBox.Location = new System.Drawing.Point(360, 25);
             this.imageTextBox.Name = "imageTextBox";
-            this.imageTextBox.Size = new System.Drawing.Size(130, 20);
+            this.imageTextBox.Size = new System.Drawing.Size(100, 20);
             this.imageTextBox.TabIndex = 4;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
             // 
             // fromEndingTextBox
             // 
-            this.fromEndingTextBox.Location = new System.Drawing.Point(12, 200);
+            this.fromEndingTextBox.Location = new System.Drawing.Point(360, 64);
             this.fromEndingTextBox.Name = "fromEndingTextBox";
-            this.fromEndingTextBox.Size = new System.Drawing.Size(130, 20);
+            this.fromEndingTextBox.Size = new System.Drawing.Size(100, 20);
             this.fromEndingTextBox.TabIndex = 5;
             this.fromEndingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.fromEndingTextBox.TextChanged += new System.EventHandler(this.fromEndingTextBox_TextChanged);
             // 
             // startdescriptionTextBox
             // 
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(148, 157);
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(148, 169);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.startdescriptionTextBox.Size = new System.Drawing.Size(206, 46);
+            this.startdescriptionTextBox.Size = new System.Drawing.Size(206, 87);
             this.startdescriptionTextBox.TabIndex = 6;
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.startdescriptionTextBox_TextChanged);
             // 
             // availableWithoutEndingMatchCheckBox
             // 
             this.availableWithoutEndingMatchCheckBox.AutoSize = true;
-            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(12, 226);
+            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(360, 90);
             this.availableWithoutEndingMatchCheckBox.Name = "availableWithoutEndingMatchCheckBox";
             this.availableWithoutEndingMatchCheckBox.Size = new System.Drawing.Size(178, 17);
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
@@ -144,11 +157,13 @@
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectId,
             this.effectsAmount});
+            this.effectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.effectsDataGridView.Location = new System.Drawing.Point(12, 262);
             this.effectsDataGridView.Name = "effectsDataGridView";
-            this.effectsDataGridView.Size = new System.Drawing.Size(342, 103);
+            this.effectsDataGridView.Size = new System.Drawing.Size(342, 194);
             this.effectsDataGridView.TabIndex = 8;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
+            this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserDeletedRow);
             // 
             // effectId
             // 
@@ -164,16 +179,16 @@
             // 
             // startingVerbIdTextBox
             // 
-            this.startingVerbIdTextBox.Location = new System.Drawing.Point(226, 226);
+            this.startingVerbIdTextBox.Location = new System.Drawing.Point(466, 25);
             this.startingVerbIdTextBox.Name = "startingVerbIdTextBox";
-            this.startingVerbIdTextBox.Size = new System.Drawing.Size(128, 20);
+            this.startingVerbIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.startingVerbIdTextBox.TabIndex = 10;
             this.startingVerbIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.startingVerbIdTextBox.TextChanged += new System.EventHandler(this.startingVerbIdTextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 468);
+            this.okButton.Location = new System.Drawing.Point(12, 462);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 25);
             this.okButton.TabIndex = 11;
@@ -184,7 +199,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(145, 12);
+            this.idLabel.Location = new System.Drawing.Point(145, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(56, 13);
             this.idLabel.TabIndex = 12;
@@ -211,7 +226,7 @@
             // startDescriptionLabel
             // 
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(145, 141);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(145, 153);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
             this.startDescriptionLabel.Size = new System.Drawing.Size(85, 13);
             this.startDescriptionLabel.TabIndex = 15;
@@ -220,7 +235,7 @@
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
-            this.imageLabel.Location = new System.Drawing.Point(12, 145);
+            this.imageLabel.Location = new System.Drawing.Point(357, 9);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(36, 13);
             this.imageLabel.TabIndex = 16;
@@ -229,7 +244,7 @@
             // fromEndingLabel
             // 
             this.fromEndingLabel.AutoSize = true;
-            this.fromEndingLabel.Location = new System.Drawing.Point(9, 184);
+            this.fromEndingLabel.Location = new System.Drawing.Point(357, 48);
             this.fromEndingLabel.Name = "fromEndingLabel";
             this.fromEndingLabel.Size = new System.Drawing.Size(66, 13);
             this.fromEndingLabel.TabIndex = 17;
@@ -247,15 +262,15 @@
             // excludesOnEndingLabel
             // 
             this.excludesOnEndingLabel.AutoSize = true;
-            this.excludesOnEndingLabel.Location = new System.Drawing.Point(53, 368);
+            this.excludesOnEndingLabel.Location = new System.Drawing.Point(357, 184);
             this.excludesOnEndingLabel.Name = "excludesOnEndingLabel";
-            this.excludesOnEndingLabel.Size = new System.Drawing.Size(302, 13);
+            this.excludesOnEndingLabel.Size = new System.Drawing.Size(159, 13);
             this.excludesOnEndingLabel.TabIndex = 19;
-            this.excludesOnEndingLabel.Text = "Exclude This Legacy After Completing One Of These Legacies";
+            this.excludesOnEndingLabel.Text = "Exclude this after these legacies";
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(254, 468);
+            this.cancelButton.Location = new System.Drawing.Point(487, 464);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 23);
             this.cancelButton.TabIndex = 20;
@@ -266,7 +281,7 @@
             // startingVerbLabel
             // 
             this.startingVerbLabel.AutoSize = true;
-            this.startingVerbLabel.Location = new System.Drawing.Point(223, 207);
+            this.startingVerbLabel.Location = new System.Drawing.Point(463, 9);
             this.startingVerbLabel.Name = "startingVerbLabel";
             this.startingVerbLabel.Size = new System.Drawing.Size(68, 13);
             this.startingVerbLabel.TabIndex = 21;
@@ -274,26 +289,26 @@
             // 
             // addExcludesTextBox
             // 
-            this.addExcludesTextBox.Location = new System.Drawing.Point(12, 401);
+            this.addExcludesTextBox.Location = new System.Drawing.Point(360, 301);
             this.addExcludesTextBox.Name = "addExcludesTextBox";
-            this.addExcludesTextBox.Size = new System.Drawing.Size(112, 20);
+            this.addExcludesTextBox.Size = new System.Drawing.Size(115, 20);
             this.addExcludesTextBox.TabIndex = 22;
             this.addExcludesTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addExcludesTextBox_KeyDown);
             // 
             // addExcludesButton
             // 
-            this.addExcludesButton.Location = new System.Drawing.Point(11, 427);
+            this.addExcludesButton.Location = new System.Drawing.Point(481, 301);
             this.addExcludesButton.Name = "addExcludesButton";
-            this.addExcludesButton.Size = new System.Drawing.Size(113, 35);
+            this.addExcludesButton.Size = new System.Drawing.Size(38, 20);
             this.addExcludesButton.TabIndex = 23;
-            this.addExcludesButton.Text = "Add to excludesOnEnding";
+            this.addExcludesButton.Text = "Add";
             this.addExcludesButton.UseVisualStyleBackColor = true;
             this.addExcludesButton.Click += new System.EventHandler(this.addExcludesButton_Click);
             // 
             // excludeAddLabel
             // 
             this.excludeAddLabel.AutoSize = true;
-            this.excludeAddLabel.Location = new System.Drawing.Point(9, 385);
+            this.excludeAddLabel.Location = new System.Drawing.Point(357, 285);
             this.excludeAddLabel.Name = "excludeAddLabel";
             this.excludeAddLabel.Size = new System.Drawing.Size(109, 13);
             this.excludeAddLabel.TabIndex = 24;
@@ -301,9 +316,9 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(130, 468);
+            this.removeButton.Location = new System.Drawing.Point(525, 301);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(75, 23);
+            this.removeButton.Size = new System.Drawing.Size(62, 20);
             this.removeButton.TabIndex = 25;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -311,20 +326,121 @@
             // 
             // excludesOnEndingListView
             // 
-            this.excludesOnEndingListView.Location = new System.Drawing.Point(130, 385);
+            this.excludesOnEndingListView.Location = new System.Drawing.Point(360, 205);
             this.excludesOnEndingListView.MultiSelect = false;
             this.excludesOnEndingListView.Name = "excludesOnEndingListView";
-            this.excludesOnEndingListView.Size = new System.Drawing.Size(224, 77);
+            this.excludesOnEndingListView.Size = new System.Drawing.Size(227, 77);
             this.excludesOnEndingListView.TabIndex = 26;
             this.excludesOnEndingListView.UseCompatibleStateImageBehavior = false;
             this.excludesOnEndingListView.View = System.Windows.Forms.View.List;
             this.excludesOnEndingListView.DoubleClick += new System.EventHandler(this.excludesOnEndingListView_DoubleClick);
             // 
+            // statusBarElementsListView
+            // 
+            this.statusBarElementsListView.Location = new System.Drawing.Point(360, 340);
+            this.statusBarElementsListView.Name = "statusBarElementsListView";
+            this.statusBarElementsListView.Size = new System.Drawing.Size(227, 77);
+            this.statusBarElementsListView.TabIndex = 27;
+            this.statusBarElementsListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // statusBarElementsLabel
+            // 
+            this.statusBarElementsLabel.AutoSize = true;
+            this.statusBarElementsLabel.Location = new System.Drawing.Point(357, 324);
+            this.statusBarElementsLabel.Name = "statusBarElementsLabel";
+            this.statusBarElementsLabel.Size = new System.Drawing.Size(102, 13);
+            this.statusBarElementsLabel.TabIndex = 28;
+            this.statusBarElementsLabel.Text = "Status Bar Elements";
+            // 
+            // statusBarElementTextBox
+            // 
+            this.statusBarElementTextBox.Location = new System.Drawing.Point(360, 439);
+            this.statusBarElementTextBox.Name = "statusBarElementTextBox";
+            this.statusBarElementTextBox.Size = new System.Drawing.Size(115, 20);
+            this.statusBarElementTextBox.TabIndex = 29;
+            this.statusBarElementTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.statusBarElementTextBox_KeyDown);
+            // 
+            // statusBarElementsLabel2
+            // 
+            this.statusBarElementsLabel2.AutoSize = true;
+            this.statusBarElementsLabel2.Location = new System.Drawing.Point(357, 422);
+            this.statusBarElementsLabel2.Name = "statusBarElementsLabel2";
+            this.statusBarElementsLabel2.Size = new System.Drawing.Size(157, 13);
+            this.statusBarElementsLabel2.TabIndex = 30;
+            this.statusBarElementsLabel2.Text = "Element ID to Add to Status Bar";
+            // 
+            // addStatusBarElementButton
+            // 
+            this.addStatusBarElementButton.Location = new System.Drawing.Point(481, 438);
+            this.addStatusBarElementButton.Name = "addStatusBarElementButton";
+            this.addStatusBarElementButton.Size = new System.Drawing.Size(38, 20);
+            this.addStatusBarElementButton.TabIndex = 31;
+            this.addStatusBarElementButton.Text = "Add";
+            this.addStatusBarElementButton.UseVisualStyleBackColor = true;
+            this.addStatusBarElementButton.Click += new System.EventHandler(this.addStatusBarElementButton_Click);
+            // 
+            // removeStatusBarElementButton
+            // 
+            this.removeStatusBarElementButton.Location = new System.Drawing.Point(525, 437);
+            this.removeStatusBarElementButton.Name = "removeStatusBarElementButton";
+            this.removeStatusBarElementButton.Size = new System.Drawing.Size(62, 20);
+            this.removeStatusBarElementButton.TabIndex = 32;
+            this.removeStatusBarElementButton.Text = "Remove";
+            this.removeStatusBarElementButton.UseVisualStyleBackColor = true;
+            this.removeStatusBarElementButton.Click += new System.EventHandler(this.removeStatusBarElementButton_Click);
+            // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsExtendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(151, 48);
+            // 
+            // setAsExtendToolStripMenuItem
+            // 
+            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
+            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(463, 48);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 34;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(466, 64);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.TabIndex = 35;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            // 
             // LegacyViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 499);
+            this.ClientSize = new System.Drawing.Size(599, 499);
+            this.Controls.Add(this.extendsTextBox);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.removeStatusBarElementButton);
+            this.Controls.Add(this.addStatusBarElementButton);
+            this.Controls.Add(this.statusBarElementsLabel2);
+            this.Controls.Add(this.statusBarElementTextBox);
+            this.Controls.Add(this.statusBarElementsLabel);
+            this.Controls.Add(this.statusBarElementsListView);
             this.Controls.Add(this.excludesOnEndingListView);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.excludeAddLabel);
@@ -356,6 +472,7 @@
             this.Text = "LegacyViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).EndInit();
+            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,5 +508,16 @@
         private System.Windows.Forms.Label excludeAddLabel;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.ListView excludesOnEndingListView;
+        private System.Windows.Forms.ListView statusBarElementsListView;
+        private System.Windows.Forms.Label statusBarElementsLabel;
+        private System.Windows.Forms.TextBox statusBarElementTextBox;
+        private System.Windows.Forms.Label statusBarElementsLabel2;
+        private System.Windows.Forms.Button addStatusBarElementButton;
+        private System.Windows.Forms.Button removeStatusBarElementButton;
+        private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.TextBox extendsTextBox;
     }
 }

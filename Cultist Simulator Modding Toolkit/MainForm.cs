@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectTypes;
-using CultistSimulatorModdingToolkit.ObjectViewers;
-using CultistSimulatorModdingToolkit.Flowchart;
+using CarcassSpark.ObjectTypes;
+using CarcassSpark.ObjectViewers;
+using CarcassSpark.Flowchart;
 
-namespace CultistSimulatorModdingToolkit
+namespace CarcassSpark
 {
     public partial class MainForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace CultistSimulatorModdingToolkit.ObjectViewers
+﻿namespace CarcassSpark.ObjectViewers
 {
     partial class MutationViewer
     {

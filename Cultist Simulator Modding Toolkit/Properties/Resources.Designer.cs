@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CultistSimulatorModdingToolkit.Properties {
+namespace CarcassSpark.Properties {
     using System;
     
     

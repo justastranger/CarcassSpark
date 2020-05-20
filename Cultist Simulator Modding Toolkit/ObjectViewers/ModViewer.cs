@@ -13,12 +13,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectTypes;
-using CultistSimulatorModdingToolkit.ObjectViewers;
-using CultistSimulatorModdingToolkit.DictionaryViewers;
-using CultistSimulatorModdingToolkit.Flowchart;
+using CarcassSpark.ObjectTypes;
+using CarcassSpark.ObjectViewers;
+using CarcassSpark.DictionaryViewers;
+using CarcassSpark.Flowchart;
 
-namespace CultistSimulatorModdingToolkit.ObjectViewers
+namespace CarcassSpark.ObjectViewers
 {
     public partial class ModViewer : Form
     {

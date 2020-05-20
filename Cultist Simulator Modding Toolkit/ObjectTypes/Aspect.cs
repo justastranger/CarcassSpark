@@ -8,9 +8,9 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
-using CultistSimulatorModdingToolkit.ObjectTypes;
+using CarcassSpark.ObjectTypes;
 
-namespace CultistSimulatorModdingToolkit.ObjectTypes
+namespace CarcassSpark.ObjectTypes
 {
     public class Aspect : Element
     {

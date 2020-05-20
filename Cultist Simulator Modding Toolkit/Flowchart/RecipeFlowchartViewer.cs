@@ -1,4 +1,4 @@
-﻿using CultistSimulatorModdingToolkit.ObjectTypes;
+﻿using CarcassSpark.ObjectTypes;
 using MindFusion.Diagramming;
 using MindFusion.Diagramming.Layout;
 using System;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CultistSimulatorModdingToolkit.Flowchart
+namespace CarcassSpark.Flowchart
 {
     public partial class RecipeFlowchartViewer : Form
     {

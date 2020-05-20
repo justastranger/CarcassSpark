@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectViewers;
-using CultistSimulatorModdingToolkit.ObjectTypes;
+using CarcassSpark.ObjectViewers;
+using CarcassSpark.ObjectTypes;
 
-namespace CultistSimulatorModdingToolkit
+namespace CarcassSpark
 {
     public class Utilities
     {

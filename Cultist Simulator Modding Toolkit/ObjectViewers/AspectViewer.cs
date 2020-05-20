@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectTypes;
+using CarcassSpark.ObjectTypes;
 
-namespace CultistSimulatorModdingToolkit.ObjectViewers
+namespace CarcassSpark.ObjectViewers
 {
     public partial class AspectViewer : Form
     {

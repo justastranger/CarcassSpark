@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CultistSimulatorModdingToolkit.ObjectTypes;
+using CarcassSpark.ObjectTypes;
 
-namespace CultistSimulatorModdingToolkit.ObjectViewers
+namespace CarcassSpark.ObjectViewers
 {
     public partial class LegacyViewer : Form
     {
@@ -61,7 +61,7 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
                 foreach (string removeId in legacy.effects_remove)
                 {
                     DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     row.CreateCells(effectsDataGridView, removeId);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -147,10 +147,30 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                displayedLegacy.effects = new Dictionary<string, int>();
+                
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    string key = row.Cells[0].Value != null ? row.Cells[0].Value.ToString() : null;
+                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    if (key != null)
+                    {
+                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        {
+                            if (displayedLegacy.effects_extend == null) displayedLegacy.effects_extend = new Dictionary<string, int>();
+                            displayedLegacy.effects_extend[key] = value.Value;
+                        }
+                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        {
+                            if (displayedLegacy.effects_remove == null) displayedLegacy.effects_remove = new List<string>();
+                            if (!displayedLegacy.effects_remove.Contains(key)) displayedLegacy.effects_remove.Add(key);
+                        }
+                        else
+                        {
+                            if (displayedLegacy.effects == null) displayedLegacy.effects = new Dictionary<string, int>();
+                            displayedLegacy.effects[key] = value.Value;
+                        }
+                    }
+                    //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
             DialogResult = DialogResult.OK;
@@ -238,6 +258,103 @@ namespace CultistSimulatorModdingToolkit.ObjectViewers
             {
                 displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListView.SelectedItems[0].Text);
                 excludesOnEndingListView.Items.Remove(excludesOnEndingListView.SelectedItems[0]);
+            }
+        }
+
+        private void addStatusBarElementButton_Click(object sender, EventArgs e)
+        {
+            if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
+            {
+                statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
+                displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
+                statusBarElementTextBox.Text = "";
+                statusBarElementTextBox.Focus();
+            }
+        }
+
+        private void removeStatusBarElementButton_Click(object sender, EventArgs e)
+        {
+            if (displayedLegacy.statusbarelements.Contains(statusBarElementsListView.SelectedItems[0].Text))
+            {
+                displayedLegacy.statusbarelements.Remove(statusBarElementsListView.SelectedItems[0].Text);
+                statusBarElementsListView.Items.Remove(statusBarElementsListView.SelectedItems[0]);
+            }
+        }
+
+        private void statusBarElementTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
+                {
+                    statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
+                    displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
+                    statusBarElementTextBox.Text = "";
+                    statusBarElementTextBox.Focus();
+                }
+            }
+        }
+
+        private void setAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            if (affectedDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.SelectedRows[0];
+                row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+            }
+            else if (affectedDataGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
+                row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+            }
+        }
+
+        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            if (affectedDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.SelectedRows[0];
+                row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+            }
+            else if (affectedDataGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
+                row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+            }
+        }
+
+        private void effectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[0].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            int? value = e.Row.Cells[1].Value != null ? Convert.ToInt32(e.Row.Cells[1].Value) : (int?)null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+                if (displayedLegacy.effects_extend.ContainsKey(key)) displayedLegacy.effects_extend.Remove(key);
+                if (displayedLegacy.effects_extend.Count == 0) displayedLegacy.effects_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+                if (displayedLegacy.effects_remove.Contains(key)) displayedLegacy.effects_remove.Remove(key);
+                if (displayedLegacy.effects_remove.Count == 0) displayedLegacy.effects_remove = null;
+            }
+            else
+            {
+                if (displayedLegacy.effects.ContainsKey(key)) displayedLegacy.effects.Remove(key);
+                if (displayedLegacy.effects.Count == 0) displayedLegacy.effects = null;
+            }
+        }
+
+        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text != null && extendsTextBox.Text != "")
+            {
+                displayedLegacy.extends = new List<string> { extendsTextBox.Text };
+            }
+            else
+            {
+                displayedLegacy.extends = null;
             }
         }
     }
