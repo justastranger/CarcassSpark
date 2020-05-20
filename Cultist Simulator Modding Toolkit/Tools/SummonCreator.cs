@@ -41,7 +41,7 @@ namespace CultistSimulatorModdingToolkit
                 startSummon.effects = new Dictionary<string, int>();
                 startSummon.effects.Add(baseSummon.id, 1);
                 startSummon.linked = new List<RecipeLink>();
-                startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false));
+                startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, null, null));
                 startSummon.actionId = "work";
                 startSummon.warmup = 180;
                 startSummon.requirements["desire"] = -1;
@@ -51,7 +51,7 @@ namespace CultistSimulatorModdingToolkit
                 succeedSummon.label = startSummon.label;
                 succeedSummon.actionId = startSummon.actionId;
                 succeedSummon.description = startSummon.description;
-                startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false));
+                startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, null, null));
             }
         }
 
