@@ -16,9 +16,16 @@ namespace CarcassSpark.ObjectViewers
     {
         public Slot displayedSlot;
         public bool editing;
-        Slot.SlotType? slotType;
+        SlotType? slotType;
+        
+        public enum SlotType
+        {
+            ELEMENT,
+            VERB,
+            RECIPE
+        }
 
-        public SlotViewer(Slot slot, bool? editing, Slot.SlotType? slotType)
+        public SlotViewer(Slot slot, bool? editing, SlotType? slotType)
         {
             InitializeComponent();
             this.displayedSlot = slot;
@@ -69,17 +76,17 @@ namespace CarcassSpark.ObjectViewers
             {
                 switch (slotType)
                 {
-                    case Slot.SlotType.ELEMENT:
+                    case SlotType.ELEMENT:
                         consumesCheckBox.Visible = true;
                         greedyCheckBox.Visible = false;
                         break;
-                    case Slot.SlotType.RECIPE:
+                    case SlotType.RECIPE:
                         greedyCheckBox.Visible = true;
                         consumesCheckBox.Visible = false;
                         actionIdTextBox.Visible = false;
                         actionIdLabel.Visible = false;
                         break;
-                    case Slot.SlotType.VERB:
+                    case SlotType.VERB:
                         consumesCheckBox.Visible = true;
                         greedyCheckBox.Visible = false;
                         actionIdLabel.Visible = false;
