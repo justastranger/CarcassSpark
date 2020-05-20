@@ -46,6 +46,17 @@ namespace CarcassSpark.ObjectTypes
         public bool? unique, resaturate;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string inherits;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<Induces> induces;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$append")]
+        public List<Induces> induces_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$prepend")]
+        public List<Induces> induces_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$remove")]
+        public List<string> induces_remove;
 
         [JsonConstructor]
         public Element(string id, string label, string description, bool? unique,
@@ -126,6 +137,29 @@ namespace CarcassSpark.ObjectTypes
 
         }
         
+
+        public class XTrigger
+        {
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public string morphEffect, id;
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public int? chance, level;
+
+            public XTrigger(string id, int? chance, string morphEffect, int? level)
+            {
+                this.id = id;
+                this.chance = chance;
+                this.morphEffect = morphEffect;
+                this.level = level;
+            }
+
+            public enum MorphEffectType
+            {
+                Transform,
+                Spawn,
+                Mutate
+            }
+        }
     }
     
 }
