@@ -11,11 +11,11 @@ namespace CarcassSpark.ObjectTypes
     public class Recipe
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, actionId, startdescription, description, ending, burnimage;
+        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? craftable, hintonly;
+        public bool? craftable, hintonly, signalimportantloop;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Deck internalDeck;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -94,12 +94,6 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Slot> slots;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$append")]
-        public List<Slot> slots_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
-        public List<Slot> slots_prepend;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
-        public List<string> slots_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Mutation> mutations;
@@ -110,6 +104,13 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$remove")]
         public List<string> mutations_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> purge;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> haltverb;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, int> deleteverb;
+
 
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
@@ -117,8 +118,7 @@ namespace CarcassSpark.ObjectTypes
                       List<string> extends, Deck internaldeck, string ending, string burnimage,
                       Dictionary<string, int> requirements, Dictionary<string, int> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, int> effects, Dictionary<string, int> effects_extend, List<string> effects_remove,
-                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove,
-                      List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
+                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
                       List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
                       Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
                       List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
@@ -159,9 +159,6 @@ namespace CarcassSpark.ObjectTypes
             if (linked_append != null) this.linked_append = linked_append;
             if (linked_remove != null) this.linked_remove = linked_remove;
             if (slots != null) this.slots = slots;
-            if (slots_prepend != null) this.slots_prepend = slots_prepend;
-            if (slots_append != null) this.slots_append = slots_append;
-            if (slots_remove != null) this.slots_remove = slots_remove;
             if (alternativerecipes != null) this.alternativerecipes = alternativerecipes;
             if (alternativerecipes_prepend != null) this.alternativerecipes_prepend = alternativerecipes_prepend;
             if (alternativerecipes_append != null) this.alternativerecipes_append = alternativerecipes_append;
