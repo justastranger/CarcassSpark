@@ -79,6 +79,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void addSlotButton_Click(object sender, EventArgs e)
         {
+            if (slotsListView.Items.Count == 1)
+            {
+                MessageBox.Show("Currently, only one slot is supported by Verbs at this time.");
+                return;
+            }
             SlotViewer sv = new SlotViewer(new Slot(), true, Slot.SlotType.VERB);
             sv.ShowDialog();
             if(sv.DialogResult == DialogResult.OK)
