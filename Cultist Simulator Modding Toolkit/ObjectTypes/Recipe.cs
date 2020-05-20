@@ -81,7 +81,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$prepend")]
         public List<RecipeLink> linked_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$remove")]
-        public List<RecipeLink> linked_remove;
+        public List<string> linked_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<RecipeLink> alternativerecipes;
@@ -90,7 +90,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$prepend")]
         public List<RecipeLink> alternativerecipes_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$remove")]
-        public List<RecipeLink> alternativerecipes_remove;
+        public List<string> alternativerecipes_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Slot> slots;
@@ -99,7 +99,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
         public List<Slot> slots_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
-        public List<Slot> slots_remove;
+        public List<string> slots_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Mutation> mutations;
@@ -108,7 +108,7 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$prepend")]
         public List<Mutation> mutations_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$remove")]
-        public List<Mutation> mutations_remove;
+        public List<string> mutations_remove;
 
 
         [JsonConstructor]
@@ -117,11 +117,11 @@ namespace CultistSimulatorModdingToolkit.ObjectTypes
                       List<string> extends, Deck internaldeck, string ending, string burnimage,
                       Dictionary<string, int> requirements, Dictionary<string, int> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, int> effects, Dictionary<string, int> effects_extend, List<string> effects_remove,
-                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<RecipeLink> linked_remove,
-                      List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove,
-                      List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<RecipeLink> alternativerecipes_remove,
+                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove,
+                      List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
                       Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
-                      List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<Mutation> mutations_remove,
+                      List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                       Dictionary<string, int> tablereqs, Dictionary<string, int> tablereqs_extend, List<string> tablereqs_remove,
                       Dictionary<string, int> extantreqs, Dictionary<string, int> extantreqs_extend, List<string> extantreqs_remove)
