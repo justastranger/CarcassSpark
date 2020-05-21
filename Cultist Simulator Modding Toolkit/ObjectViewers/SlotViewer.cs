@@ -78,19 +78,16 @@ namespace CarcassSpark.ObjectViewers
                 {
                     case SlotType.ELEMENT:
                         consumesCheckBox.Visible = true;
-                        greedyCheckBox.Visible = false;
+                        actionIdTextBox.Visible = true;
+                        actionIdLabel.Visible = true;
                         break;
                     case SlotType.RECIPE:
                         greedyCheckBox.Visible = true;
-                        consumesCheckBox.Visible = false;
-                        actionIdTextBox.Visible = false;
-                        actionIdLabel.Visible = false;
+                        consumesCheckBox.Visible = true;
                         break;
                     case SlotType.VERB:
+                        greedyCheckBox.Visible = true;
                         consumesCheckBox.Visible = true;
-                        greedyCheckBox.Visible = false;
-                        actionIdLabel.Visible = false;
-                        actionIdTextBox.Visible = false;
                         break;
                 }
             }

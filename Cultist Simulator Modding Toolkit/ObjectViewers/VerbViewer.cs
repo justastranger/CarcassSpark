@@ -84,7 +84,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Currently, only one slot is supported by Verbs at this time.");
                 return;
             }
-            SlotViewer sv = new SlotViewer(new Slot(), true, Slot.SlotType.VERB);
+            SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.VERB);
             sv.ShowDialog();
             if(sv.DialogResult == DialogResult.OK)
             {

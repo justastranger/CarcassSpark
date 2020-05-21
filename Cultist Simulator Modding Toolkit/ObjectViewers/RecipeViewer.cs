@@ -374,7 +374,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedRecipe.slots == null && editing)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true, Slot.SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.RECIPE);
                 sv.ShowDialog();
                 if (sv.DialogResult == DialogResult.OK)
                 {
@@ -383,7 +383,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else if (displayedRecipe.slots != null)
             {
-                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0], editing, Slot.SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0], editing, SlotViewer.SlotType.RECIPE);
                 sv.ShowDialog();
                 if (sv.DialogResult == DialogResult.OK)
                 {

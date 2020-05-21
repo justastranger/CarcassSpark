@@ -87,6 +87,7 @@
             this.actionIdTextBox.Size = new System.Drawing.Size(127, 20);
             this.actionIdTextBox.TabIndex = 3;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.actionIdTextBox.Visible = false;
             this.actionIdTextBox.TextChanged += new System.EventHandler(this.actionIdTextBox_TextChanged);
             // 
             // greedyCheckBox
@@ -98,6 +99,7 @@
             this.greedyCheckBox.TabIndex = 6;
             this.greedyCheckBox.Text = "Greedy";
             this.greedyCheckBox.UseVisualStyleBackColor = true;
+            this.greedyCheckBox.Visible = false;
             this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.greedyCheckBox_CheckedChanged);
             // 
             // requiredLabel
@@ -126,6 +128,7 @@
             this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
             this.actionIdLabel.TabIndex = 9;
             this.actionIdLabel.Text = "Verb ID";
+            this.actionIdLabel.Visible = false;
             // 
             // descriptionLabel
             // 
@@ -237,6 +240,7 @@
             this.consumesCheckBox.TabIndex = 17;
             this.consumesCheckBox.Text = "Consumes";
             this.consumesCheckBox.UseVisualStyleBackColor = true;
+            this.consumesCheckBox.Visible = false;
             this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.consumesCheckBox_CheckedChanged);
             // 
             // SlotViewer
