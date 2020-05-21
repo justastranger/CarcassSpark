@@ -57,7 +57,7 @@ namespace CarcassSpark.ObjectTypes
             if (effects_remove != null) this.effects_remove = effects_remove;
             if (image != null) this.image = image;
             if (fromEnding != null) this.fromEnding = fromEnding;
-            if (extends != null & extends.Count == 1) this.extends = extends;
+            if (extends != null && extends.Count == 1) this.extends = extends;
             if (availableWithoutEndingMatch.HasValue) this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             if (startingVerbId != null) this.startingVerbId = startingVerbId;
             if (excludesOnEnding != null) this.excludesOnEnding = excludesOnEnding;
