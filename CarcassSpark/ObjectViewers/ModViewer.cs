@@ -345,24 +345,18 @@ namespace CarcassSpark.ObjectViewers
             if(dr == DialogResult.OK) manifest = mv.displayedManifest;
         }
         
-        private void saveMod(object sender, EventArgs e)
+        private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveMod(currentDirectory);
-        }
-
-
-        private void saveMod(string location)
-        {
-            if (!Directory.Exists(location + "/content/"))
+            if (!Directory.Exists(currentDirectory + "/content/"))
             {
-                Directory.CreateDirectory(location + "/content/");
+                Directory.CreateDirectory(currentDirectory + "/content/");
             }
             if (aspectsListBox.Items.Count > 0)
             {
                 JObject aspects = new JObject();
                 aspects["elements"] = JArray.FromObject(aspectsList.Values);
                 string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/aspects.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/aspects.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(aspectsJson);
                 }
@@ -372,7 +366,7 @@ namespace CarcassSpark.ObjectViewers
                 JObject elements = new JObject();
                 elements["elements"] = JArray.FromObject(elementsList.Values);
                 string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/elements.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/elements.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(elementsJson);
                 }
@@ -382,7 +376,7 @@ namespace CarcassSpark.ObjectViewers
                 JObject recipes = new JObject();
                 recipes["recipes"] = JArray.FromObject(recipesList.Values);
                 string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/recipes.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/recipes.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(recipesJson);
                 }
@@ -392,7 +386,7 @@ namespace CarcassSpark.ObjectViewers
                 JObject decks = new JObject();
                 decks["decks"] = JArray.FromObject(decksList.Values);
                 string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/decks.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/decks.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(decksJson);
                 }
@@ -402,7 +396,7 @@ namespace CarcassSpark.ObjectViewers
                 JObject legacies = new JObject();
                 legacies["legacies"] = JArray.FromObject(legaciesList.Values);
                 string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/legacies.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/legacies.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(legaciesJson);
                 }
@@ -412,7 +406,7 @@ namespace CarcassSpark.ObjectViewers
                 JObject endings = new JObject();
                 endings["endings"] = JArray.FromObject(endingsList.Values);
                 string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/endings.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/endings.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(endingsJson);
                 }
@@ -422,13 +416,13 @@ namespace CarcassSpark.ObjectViewers
                 JObject verbs = new JObject();
                 verbs["verbs"] = JArray.FromObject(verbsList.Values);
                 string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/verbs.json", FileMode.Create))))
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/content/verbs.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(verbsJson);
                 }
             }
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
-            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.OpenOrCreate))))
+            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(currentDirectory + "/manifest.json", FileMode.OpenOrCreate))))
             {
                 jtw.WriteRaw(manifestJson);
             }
@@ -929,26 +923,6 @@ namespace CarcassSpark.ObjectViewers
             Recipe selectedRecipe = Utilities.getRecipe(recipesListBox.SelectedItem.ToString());
             RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(selectedRecipe);
             rfv.Show();
-        }
-
-        private void saveToToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveToFolderBrowserDialog.SelectedPath = currentDirectory;
-            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                saveMod(saveToFolderBrowserDialog.SelectedPath);
-            }
-        }
-
-        private void toggleAutosaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toggleAutosaveToolStripMenuItem.Checked = !toggleAutosaveToolStripMenuItem.Checked;
-            autosaveTimer.Enabled = toggleAutosaveToolStripMenuItem.Enabled;
-        }
-
-        private void autosaveTimer_Tick(object sender, EventArgs e)
-        {
-            saveMod(currentDirectory);
         }
 
         private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)

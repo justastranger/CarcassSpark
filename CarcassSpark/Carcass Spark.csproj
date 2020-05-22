@@ -36,8 +36,7 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>justastranger.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -379,6 +378,7 @@
     <EmbeddedResource Include="ObjectViewers\VerbViewer.resx">
       <DependentUpon>VerbViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="justastranger.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
