@@ -85,11 +85,13 @@
             this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleAutosaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editModeCheckBox = new System.Windows.Forms.CheckBox();
             this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
             this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
@@ -98,6 +100,8 @@
             this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
             this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.autosaveTimer = new System.Windows.Forms.Timer(this.components);
+            this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -531,10 +535,12 @@
             this.fileToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.editManifestToolStripMenuItem,
             this.reloadContentToolStripMenuItem,
             this.saveModToolStripMenuItem,
-            this.toolsToolStripMenuItem});
+            this.saveToToolStripMenuItem,
+            this.toggleAutosaveToolStripMenuItem});
             this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
             this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
@@ -552,7 +558,7 @@
             this.endingToolStripMenuItem,
             this.verbToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // aspectToolStripMenuItem
@@ -604,33 +610,12 @@
             this.verbToolStripMenuItem.Text = "Verb";
             this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
             // 
-            // editManifestToolStripMenuItem
-            // 
-            this.editManifestToolStripMenuItem.Name = "editManifestToolStripMenuItem";
-            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.editManifestToolStripMenuItem.Text = "Edit Manifest";
-            this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.editManifestToolStripMenuItem_Click);
-            // 
-            // reloadContentToolStripMenuItem
-            // 
-            this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
-            this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.reloadContentToolStripMenuItem.Text = "Reload Content";
-            this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
-            // 
-            // saveModToolStripMenuItem
-            // 
-            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.saveModToolStripMenuItem.Text = "Save Mod";
-            this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
-            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.summonGeneratorToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // summonGeneratorToolStripMenuItem
@@ -639,6 +624,41 @@
             this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
+            // 
+            // editManifestToolStripMenuItem
+            // 
+            this.editManifestToolStripMenuItem.Name = "editManifestToolStripMenuItem";
+            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.editManifestToolStripMenuItem.Text = "Edit Manifest";
+            this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.editManifestToolStripMenuItem_Click);
+            // 
+            // reloadContentToolStripMenuItem
+            // 
+            this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
+            this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.reloadContentToolStripMenuItem.Text = "Reload Content";
+            this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
+            // 
+            // saveModToolStripMenuItem
+            // 
+            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveModToolStripMenuItem.Text = "Save Mod";
+            this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveMod);
+            // 
+            // saveToToolStripMenuItem
+            // 
+            this.saveToToolStripMenuItem.Name = "saveToToolStripMenuItem";
+            this.saveToToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveToToolStripMenuItem.Text = "Save To...";
+            this.saveToToolStripMenuItem.Click += new System.EventHandler(this.saveToToolStripMenuItem_Click);
+            // 
+            // toggleAutosaveToolStripMenuItem
+            // 
+            this.toggleAutosaveToolStripMenuItem.Name = "toggleAutosaveToolStripMenuItem";
+            this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.toggleAutosaveToolStripMenuItem.Text = "Toggle Autosave";
+            this.toggleAutosaveToolStripMenuItem.Click += new System.EventHandler(this.toggleAutosaveToolStripMenuItem_Click);
             // 
             // editModeCheckBox
             // 
@@ -720,6 +740,10 @@
             this.verbsSearchTextBox.Size = new System.Drawing.Size(120, 20);
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
+            // 
+            // autosaveTimer
+            // 
+            this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
             // 
             // ModViewer
             // 
@@ -836,6 +860,10 @@
         private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsThatRequireThisElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsForThisVerbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsFlowchartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleAutosaveToolStripMenuItem;
+        private System.Windows.Forms.Timer autosaveTimer;
+        private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
     }
 }
 
