@@ -4,43 +4,80 @@ Tool to aid in the creation of mods for Cultist Simulator by Weather Factory
 Currently Supported:
  - Creation of:
    - Aspects
-     - Induces
+    - Induces
+     - Induces$prepend
+     - Induces$append
+     
    - Elements
-     - Aspects
-     - XTriggers (aka Cross Triggers)
-     - Slots
+    - Aspects
+     - Aspects$extend
+     - Aspects$remove
+    - XTriggers (aka Cross Triggers)
+     - XTriggers$extend
+     - XTriggers$remove
+    - Slots
+     - Slots$prepend
+     - Slots$append
    - Recipes
-     - Requirements
-     - Table Requirements
-     - Extant Requirements
-     - Effects
-     - Aspect Effects
-     - Deck Effects
-     - Alternative Recipe Links
-     - Linked Recipe Links
-     - Mutations
-     - Slots
-     - Internal Decks
+    - Requirements
+     - Requirements$extend
+     - Requirements$remove
+    - Table Requirements
+     - tablereqs$extend
+     - tablereqs$remove
+    - Extant Requirements
+     - extantreqs$extend
+     - extantreqs$remove
+    - Effects
+     - Effects$extend
+     - Effects$remove
+    - Aspect Effects
+     - Aspects$extend
+     - Aspects$remove
+    - Deck Effects
+     - deckeffect$extend
+     - deckeffect$remove
+    - Alternative Recipe Links
+     - alternativerecipes$prepend
+     - alternativerecipes$append
+    - Linked Recipe Links
+     - linked$prepend
+     - linked$prepend
+    - Mutations
+     - mutations$prepend
+     - mutations$prepend
+    - Slots
+    - Internal Decks
    - Decks
-     - DrawMessages
-     - Spec (The actual Deck)
+    - DrawMessages
+     - drawmessages$extend
+     - drawmessages$remove
+    - Spec (The actual Deck)
+     - spec$prepend
+     - spec$append
+     - spec$remove
    - Legacies
-     - Effects
+    - Effects
+     - effects$extend
+     - effects$remove
    - Endings
    - Verbs
-     - Slots
+    - Slots
    - Manifests
-     - Dependencies
+    - Dependencies
 
 Currently Unsupported
  - Property Operations
+  - Most Property Operations are supported, but there's an oversight with how List$Remove works, making it useless for anything but a List<string>
 
 
 # Building
 You will need to provide a reference to Assembly-CSharp.dll from your copy of Cultist Simulator in order to build this project.
 This file is located in the `Cultist Simulator/cultistsimulator_Data/Managed/` folder.
 
-Newtonsoft's JSON.net and MindFusion's Diagramming packages are needed to compile the program. Both can be found through NuGet.
+Newtonsoft's JSON.net is needed to compile the program and can be found through NuGet.
+
+MindFusion LLC has compiled a custom set of assemblies so that this project didn't need a license key. These assemblies only allow this project to not need the license key. I've been granted permission to redistribute these binaries with the source code so that y'all can use it to compile the program too :)
 
 # Images
 In order to display the vanilla images, you will need to extract and sort them yourselves (unless permission is granted to redistribute the images).
