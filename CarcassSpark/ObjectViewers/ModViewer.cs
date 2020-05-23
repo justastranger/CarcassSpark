@@ -4,17 +4,10 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 using CarcassSpark.DictionaryViewers;
 using CarcassSpark.Flowchart;
 using CarcassSpark.Tools;
@@ -998,12 +991,7 @@ namespace CarcassSpark.ObjectViewers
         {
             saveMod(currentDirectory);
         }
-
-        private void editModeCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            editMode = editModeCheckBox.Checked;
-        }
-
+        
         private void deleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
@@ -1173,7 +1161,13 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
         }
-        
+
+        private void toggleEditModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toggleEditModeToolStripMenuItem.Checked = !toggleEditModeToolStripMenuItem.Checked;
+            editMode = toggleEditModeToolStripMenuItem.Checked;
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);

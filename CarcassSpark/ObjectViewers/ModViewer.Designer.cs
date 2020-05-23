@@ -96,7 +96,6 @@
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editModeCheckBox = new System.Windows.Forms.CheckBox();
             this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
             this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
             this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
@@ -109,6 +108,7 @@
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -494,7 +494,7 @@
             this.searchForToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recipesThatCauseThisEndingToolStripMenuItem});
             this.searchForToolStripMenuItem2.Name = "searchForToolStripMenuItem2";
-            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(194, 22);
             this.searchForToolStripMenuItem2.Text = "Search for...";
             // 
             // recipesThatCauseThisEndingToolStripMenuItem
@@ -535,7 +535,7 @@
             this.searchForToolStripMenuItem3,
             this.deleteSelectedVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(181, 48);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -543,7 +543,7 @@
             this.recipesThatUseThisVerbToolStripMenuItem,
             this.elementsWithSlotsForThisVerbToolStripMenuItem});
             this.searchForToolStripMenuItem3.Name = "searchForToolStripMenuItem3";
-            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(136, 22);
+            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.searchForToolStripMenuItem3.Text = "Search for...";
             // 
             // recipesThatUseThisVerbToolStripMenuItem
@@ -591,7 +591,8 @@
             this.saveToToolStripMenuItem,
             this.editManifestToolStripMenuItem,
             this.reloadContentToolStripMenuItem,
-            this.toggleAutosaveToolStripMenuItem});
+            this.toggleAutosaveToolStripMenuItem,
+            this.toggleEditModeToolStripMenuItem});
             this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
             this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
@@ -601,35 +602,35 @@
             // saveModToolStripMenuItem
             // 
             this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.saveModToolStripMenuItem.Text = "Save Mod";
             this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveMod);
             // 
             // saveToToolStripMenuItem
             // 
             this.saveToToolStripMenuItem.Name = "saveToToolStripMenuItem";
-            this.saveToToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveToToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.saveToToolStripMenuItem.Text = "Save To...";
             this.saveToToolStripMenuItem.Click += new System.EventHandler(this.saveToToolStripMenuItem_Click);
             // 
             // editManifestToolStripMenuItem
             // 
             this.editManifestToolStripMenuItem.Name = "editManifestToolStripMenuItem";
-            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.editManifestToolStripMenuItem.Text = "Edit Manifest";
             this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.editManifestToolStripMenuItem_Click);
             // 
             // reloadContentToolStripMenuItem
             // 
             this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
-            this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.reloadContentToolStripMenuItem.Text = "Reload Content";
             this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
             // 
             // toggleAutosaveToolStripMenuItem
             // 
             this.toggleAutosaveToolStripMenuItem.Name = "toggleAutosaveToolStripMenuItem";
-            this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.toggleAutosaveToolStripMenuItem.Text = "Toggle Autosave";
             this.toggleAutosaveToolStripMenuItem.Click += new System.EventHandler(this.toggleAutosaveToolStripMenuItem_Click);
             // 
@@ -716,17 +717,6 @@
             this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
-            // 
-            // editModeCheckBox
-            // 
-            this.editModeCheckBox.AutoSize = true;
-            this.editModeCheckBox.Location = new System.Drawing.Point(844, 8);
-            this.editModeCheckBox.Name = "editModeCheckBox";
-            this.editModeCheckBox.Size = new System.Drawing.Size(74, 17);
-            this.editModeCheckBox.TabIndex = 16;
-            this.editModeCheckBox.Text = "Edit Mode";
-            this.editModeCheckBox.UseVisualStyleBackColor = true;
-            this.editModeCheckBox.CheckedChanged += new System.EventHandler(this.editModeCheckBox_CheckedChanged);
             // 
             // aspetsSearchTextBox
             // 
@@ -824,6 +814,13 @@
             this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
             this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
             // 
+            // toggleEditModeToolStripMenuItem
+            // 
+            this.toggleEditModeToolStripMenuItem.Name = "toggleEditModeToolStripMenuItem";
+            this.toggleEditModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.toggleEditModeToolStripMenuItem.Text = "Toggle Edit Mode";
+            this.toggleEditModeToolStripMenuItem.Click += new System.EventHandler(this.toggleEditModeToolStripMenuItem_Click);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -836,7 +833,6 @@
             this.Controls.Add(this.recipesSearchTextBox);
             this.Controls.Add(this.elementsSearchTextBox);
             this.Controls.Add(this.aspetsSearchTextBox);
-            this.Controls.Add(this.editModeCheckBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.verbsLabel);
             this.Controls.Add(this.verbsListBox);
@@ -890,7 +886,6 @@
         private System.Windows.Forms.ToolStripDropDownButton fileToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
-        private System.Windows.Forms.CheckBox editModeCheckBox;
         private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
         private System.Windows.Forms.TextBox aspetsSearchTextBox;
         private System.Windows.Forms.TextBox elementsSearchTextBox;
@@ -951,6 +946,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleEditModeToolStripMenuItem;
     }
 }
 
