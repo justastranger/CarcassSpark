@@ -43,6 +43,11 @@ namespace CarcassSpark
             return "unknown";
         }
         
+        public static Image getVanillaAspect(string path)
+        {
+            throw new NotImplementedException("I still haven't figured out how to do this.");
+        }
+
         public static Image getAspectImage(string id)
         {
             foreach (ModViewer mv in currentMods)
