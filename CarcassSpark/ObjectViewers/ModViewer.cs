@@ -45,6 +45,7 @@ namespace CarcassSpark.ObjectViewers
             if (newMod)
             {
                 createManifest();
+                editMode = true;
             }
             refreshContent();
         }
@@ -58,9 +59,8 @@ namespace CarcassSpark.ObjectViewers
 
         void setEditingMode(bool editing)
         {
-
+            editMode = editing;
             toolStrip1.Visible = editing;
-            editModeCheckBox.Visible = editing;
             deleteSelectedAspectToolStripMenuItem.Visible = editing;
             deleteSelectedDeckToolStripMenuItem.Visible = editing;
             deleteSelectedElementToolStripMenuItem.Visible = editing;
