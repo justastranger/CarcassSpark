@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CarcassSpark.ObjectViewers;
 using CarcassSpark.ObjectTypes;
 
-namespace CarcassSpark
+namespace CarcassSpark.Tools
 {
     public partial class SummonCreator : Form
     {

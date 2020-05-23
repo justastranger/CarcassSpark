@@ -1,4 +1,4 @@
-﻿namespace CarcassSpark
+﻿namespace CarcassSpark.Tools
 {
     partial class ChangeAspectQuantityForm
     {

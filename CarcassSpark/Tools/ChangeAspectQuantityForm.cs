@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CarcassSpark
+namespace CarcassSpark.Tools
 {
     public partial class ChangeAspectQuantityForm : Form
     {

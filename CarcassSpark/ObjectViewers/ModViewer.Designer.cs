@@ -743,6 +743,7 @@
             // 
             // autosaveTimer
             // 
+            this.autosaveTimer.Interval = 30000;
             this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
             // 
             // ModViewer
