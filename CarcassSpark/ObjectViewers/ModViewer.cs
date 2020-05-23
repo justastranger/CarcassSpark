@@ -991,11 +991,180 @@ namespace CarcassSpark.ObjectViewers
             editMode = editModeCheckBox.Checked;
         }
 
+        private void deleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            string selected = (string)aspectsListBox.SelectedItem;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                aspectsListBox.Items.Remove(selected);
+                aspectsList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListBox.SelectedItem == null) return;
+            string selected = (string)elementsListBox.SelectedItem;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                elementsListBox.Items.Remove(selected);
+                elementsList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListBox.SelectedItem == null) return;
+            string selected = (string)recipesListBox.SelectedItem;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                recipesListBox.Items.Remove(selected);
+                recipesList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (decksListBox.SelectedItem == null) return;
+            string selected = (string)decksListBox.SelectedItem;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                decksListBox.Items.Remove(selected);
+                decksList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selected = legaciesListBox.SelectedItem as string;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                legaciesListBox.Items.Remove(selected);
+                legaciesList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selected = endingsListBox.SelectedItem as string;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                endingsListBox.Items.Remove(selected);
+                endingsList.Remove(selected);
+            }
+        }
+
+        private void deleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selected = verbsListBox.SelectedItem as string;
+            if (confirmDelete(selected) == DialogResult.OK)
+            {
+                verbsListBox.Items.Remove(selected);
+                verbsList.Remove(selected);
+            }
+        }
+
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;
             else if (manifest != null) return;
             else Close();
+        }
+        
+        public void deleted(string id)
+        {
+            MessageBox.Show(id + "has been deleted.");
+        }
+
+        private void aspectsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                aspectsListBox.SelectedIndex = -1;
+                if (aspectsListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    aspectsListBox.SelectedIndex = aspectsListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void elementsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                elementsListBox.SelectedIndex = -1;
+                if (elementsListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    elementsListBox.SelectedIndex = elementsListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void recipesListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                recipesListBox.SelectedIndex = -1;
+                if (recipesListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    recipesListBox.SelectedIndex = recipesListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void decksListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                decksListBox.SelectedIndex = -1;
+                if (decksListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    decksListBox.SelectedIndex = decksListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void legaciesListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                legaciesListBox.SelectedIndex = -1;
+                if (legaciesListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    legaciesListBox.SelectedIndex = legaciesListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void endingsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                endingsListBox.SelectedIndex = -1;
+                if (endingsListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    endingsListBox.SelectedIndex = endingsListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+
+        private void verbsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                verbsListBox.SelectedIndex = -1;
+                if (verbsListBox.IndexFromPoint(e.Location) > 0)
+                {
+                    verbsListBox.SelectedIndex = verbsListBox.IndexFromPoint(e.Location);
+                }
+            }
+        }
+        
+        public DialogResult confirmDelete(string id)
+        {
+            if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
+            return MessageBox.Show("Are you sure you'd like to delete " + id + "?", "Delete Item", MessageBoxButtons.YesNo);
         }
     }
 }
