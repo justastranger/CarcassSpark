@@ -77,16 +77,6 @@
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.elementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +92,16 @@
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
             this.autosaveTimer = new System.Windows.Forms.Timer(this.components);
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.newItemToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.aspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -523,7 +523,9 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripDropDownButton});
+            this.fileToolStripDropDownButton,
+            this.newItemToolStripButton,
+            this.toolsToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(930, 25);
@@ -534,96 +536,16 @@
             // 
             this.fileToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.toolsToolStripMenuItem,
-            this.editManifestToolStripMenuItem,
-            this.reloadContentToolStripMenuItem,
             this.saveModToolStripMenuItem,
             this.saveToToolStripMenuItem,
+            this.editManifestToolStripMenuItem,
+            this.reloadContentToolStripMenuItem,
             this.toggleAutosaveToolStripMenuItem});
             this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
             this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
             this.fileToolStripDropDownButton.Size = new System.Drawing.Size(38, 22);
             this.fileToolStripDropDownButton.Text = "File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aspectToolStripMenuItem,
-            this.elementToolStripMenuItem,
-            this.recipeToolStripMenuItem,
-            this.deckToolStripMenuItem,
-            this.legacyToolStripMenuItem,
-            this.endingToolStripMenuItem,
-            this.verbToolStripMenuItem});
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.newToolStripMenuItem.Text = "New...";
-            // 
-            // aspectToolStripMenuItem
-            // 
-            this.aspectToolStripMenuItem.Name = "aspectToolStripMenuItem";
-            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.aspectToolStripMenuItem.Text = "Aspect";
-            this.aspectToolStripMenuItem.Click += new System.EventHandler(this.aspectToolStripMenuItem_Click);
-            // 
-            // elementToolStripMenuItem
-            // 
-            this.elementToolStripMenuItem.Name = "elementToolStripMenuItem";
-            this.elementToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.elementToolStripMenuItem.Text = "Element";
-            this.elementToolStripMenuItem.Click += new System.EventHandler(this.elementToolStripMenuItem_Click);
-            // 
-            // recipeToolStripMenuItem
-            // 
-            this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
-            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.recipeToolStripMenuItem.Text = "Recipe";
-            this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
-            // 
-            // deckToolStripMenuItem
-            // 
-            this.deckToolStripMenuItem.Name = "deckToolStripMenuItem";
-            this.deckToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.deckToolStripMenuItem.Text = "Deck";
-            this.deckToolStripMenuItem.Click += new System.EventHandler(this.deckToolStripMenuItem_Click);
-            // 
-            // legacyToolStripMenuItem
-            // 
-            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
-            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.legacyToolStripMenuItem.Text = "Legacy";
-            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
-            // 
-            // endingToolStripMenuItem
-            // 
-            this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
-            this.endingToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.endingToolStripMenuItem.Text = "Ending";
-            this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
-            // 
-            // verbToolStripMenuItem
-            // 
-            this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
-            this.verbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.verbToolStripMenuItem.Text = "Verb";
-            this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.summonGeneratorToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // summonGeneratorToolStripMenuItem
-            // 
-            this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
-            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
-            this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
             // 
             // editManifestToolStripMenuItem
             // 
@@ -746,6 +668,90 @@
             this.autosaveTimer.Interval = 30000;
             this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
             // 
+            // newItemToolStripButton
+            // 
+            this.newItemToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newItemToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aspectToolStripMenuItem,
+            this.elementToolStripMenuItem,
+            this.recipeToolStripMenuItem,
+            this.deckToolStripMenuItem,
+            this.legacyToolStripMenuItem,
+            this.endingToolStripMenuItem,
+            this.verbToolStripMenuItem});
+            this.newItemToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newItemToolStripButton.Image")));
+            this.newItemToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newItemToolStripButton.Name = "newItemToolStripButton";
+            this.newItemToolStripButton.Size = new System.Drawing.Size(53, 22);
+            this.newItemToolStripButton.Text = "New...";
+            // 
+            // aspectToolStripMenuItem
+            // 
+            this.aspectToolStripMenuItem.Name = "aspectToolStripMenuItem";
+            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aspectToolStripMenuItem.Text = "Aspect";
+            this.aspectToolStripMenuItem.Click += new System.EventHandler(this.aspectToolStripMenuItem_Click);
+            // 
+            // elementToolStripMenuItem
+            // 
+            this.elementToolStripMenuItem.Name = "elementToolStripMenuItem";
+            this.elementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.elementToolStripMenuItem.Text = "Element";
+            this.elementToolStripMenuItem.Click += new System.EventHandler(this.elementToolStripMenuItem_Click);
+            // 
+            // recipeToolStripMenuItem
+            // 
+            this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
+            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recipeToolStripMenuItem.Text = "Recipe";
+            this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
+            // 
+            // deckToolStripMenuItem
+            // 
+            this.deckToolStripMenuItem.Name = "deckToolStripMenuItem";
+            this.deckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deckToolStripMenuItem.Text = "Deck";
+            this.deckToolStripMenuItem.Click += new System.EventHandler(this.deckToolStripMenuItem_Click);
+            // 
+            // legacyToolStripMenuItem
+            // 
+            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
+            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.legacyToolStripMenuItem.Text = "Legacy";
+            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
+            // 
+            // endingToolStripMenuItem
+            // 
+            this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
+            this.endingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.endingToolStripMenuItem.Text = "Ending";
+            this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
+            // 
+            // verbToolStripMenuItem
+            // 
+            this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
+            this.verbToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.verbToolStripMenuItem.Text = "Verb";
+            this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
+            // 
+            // toolsToolStripButton
+            // 
+            this.toolsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolsToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.summonGeneratorToolStripMenuItem});
+            this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
+            this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolsToolStripButton.Name = "toolsToolStripButton";
+            this.toolsToolStripButton.Size = new System.Drawing.Size(47, 22);
+            this.toolsToolStripButton.Text = "Tools";
+            // 
+            // summonGeneratorToolStripMenuItem
+            // 
+            this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
+            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
+            this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,20 +815,10 @@
         private System.Windows.Forms.Label verbsLabel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton fileToolStripDropDownButton;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem elementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem endingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
         private System.Windows.Forms.CheckBox editModeCheckBox;
         private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem summonGeneratorToolStripMenuItem;
         private System.Windows.Forms.TextBox aspetsSearchTextBox;
         private System.Windows.Forms.TextBox elementsSearchTextBox;
         private System.Windows.Forms.TextBox recipesSearchTextBox;
@@ -865,6 +861,16 @@
         private System.Windows.Forms.ToolStripMenuItem toggleAutosaveToolStripMenuItem;
         private System.Windows.Forms.Timer autosaveTimer;
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
+        private System.Windows.Forms.ToolStripDropDownButton newItemToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem aspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem elementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem endingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolsToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem summonGeneratorToolStripMenuItem;
     }
 }
 
