@@ -17,6 +17,7 @@ using CarcassSpark.ObjectTypes;
 using CarcassSpark.ObjectViewers;
 using CarcassSpark.DictionaryViewers;
 using CarcassSpark.Flowchart;
+using CarcassSpark.Tools;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -24,7 +25,7 @@ namespace CarcassSpark.ObjectViewers
     {
         public string currentDirectory;
         public Manifest manifest;
-        public bool isVanilla, foundManifest, editMode = false;
+        public bool isVanilla, editMode = false;
         
         public Dictionary<string, Aspect> aspectsList = new Dictionary<string, Aspect>();
         public Dictionary<string, Element> elementsList = new Dictionary<string, Element>();
@@ -37,14 +38,32 @@ namespace CarcassSpark.ObjectViewers
         public ModViewer(string location, bool isVanilla)
         {
             InitializeComponent();
-            this.currentDirectory = location;
+            currentDirectory = location;
             this.isVanilla = isVanilla;
-            toolStrip1.Visible = !this.isVanilla;
-            editModeCheckBox.Visible = !this.isVanilla;
+            toolStrip1.Visible = !isVanilla;
+            editModeCheckBox.Visible = !isVanilla;
 
             refreshContent();
         }
-        
+
+        public ModViewer(bool newMod, string location)
+        {
+            InitializeComponent();
+            currentDirectory = location;
+            if (newMod)
+            {
+                createManifest();
+            }
+            refreshContent();
+        }
+
+        public ModViewer(string location)
+        {
+            InitializeComponent();
+            currentDirectory = location;
+            refreshContent();
+        }
+
         void refreshContent()
         {
             aspectsListBox.Items.Clear();
@@ -61,32 +80,48 @@ namespace CarcassSpark.ObjectViewers
             endingsList.Clear();
             verbsListBox.Items.Clear();
             verbsList.Clear();
-
-            foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
-            {   
+            if (!isVanilla) checkForManifest();
+            if (isVanilla) foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
+            {
                 using (FileStream fs = new FileStream(file, FileMode.Open))
                 {
-                    if (file.Contains("manifest.json")){
-                        loadManifest(fs);
-                        foundManifest = true;
-                    } else {
-                        loadFile(fs, file);
-                    }
+                    loadFile(fs, file);
                 }
             }
-            if (!File.Exists(currentDirectory + "/manifest.json") && !isVanilla)
+            else if (Directory.Exists(currentDirectory + "\\content\\")) foreach (string file in Directory.EnumerateFiles(currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+            {
+                using (FileStream fs = new FileStream(file, FileMode.Open))
+                {
+                    loadFile(fs, file);
+                }
+            }
+        }
+
+        public void createManifest()
+        {
+            ManifestViewer mv = new ManifestViewer(new Manifest());
+            DialogResult mvdr = mv.ShowDialog();
+            if (mvdr == DialogResult.OK)
+            {
+                manifest = mv.displayedManifest;
+            }
+            saveMod(currentDirectory);
+        }
+
+        public void checkForManifest()
+        {
+            string manifestPath = currentDirectory + "/manifest.json";
+            if (File.Exists(currentDirectory + "/manifest.json"))
+            {
+                using (FileStream fs = new FileStream(manifestPath, FileMode.Open))
+                {
+                    loadManifest(fs);
+                }
+            }
+            else
             {
                 DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dr == DialogResult.Yes)
-                {
-                    ManifestViewer mv = new ManifestViewer(new Manifest());
-                    DialogResult mvdr = mv.ShowDialog();
-                    if (mvdr == DialogResult.OK)
-                    {
-                        manifest = mv.displayedManifest;
-                        foundManifest = true;
-                    }
-                }
+                createManifest();
             }
         }
 
@@ -959,7 +994,7 @@ namespace CarcassSpark.ObjectViewers
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;
-            else if (foundManifest) return;
+            else if (manifest != null) return;
             else Close();
         }
     }

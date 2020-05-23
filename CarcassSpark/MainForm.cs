@@ -51,11 +51,11 @@ namespace CarcassSpark
 
         private void openModButton_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = currentDirectory;
-            DialogResult dr = folderBrowserDialog1.ShowDialog();
+            modFolderBrowserDialog.SelectedPath = currentDirectory;
+            DialogResult dr = modFolderBrowserDialog.ShowDialog();
             if(dr == DialogResult.OK)
             {
-                string location = folderBrowserDialog1.SelectedPath;
+                string location = modFolderBrowserDialog.SelectedPath;
                 ModViewer mv = new ModViewer(location, false);
                 Utilities.currentMods.Add(mv);
                 Settings.settings["previousMod"] = mv.currentDirectory;
@@ -66,6 +66,20 @@ namespace CarcassSpark
         private void openSettingsButton_Click(object sender, EventArgs e)
         {
             new Settings().ShowDialog();
+        }
+
+        private void newModButton_Click(object sender, EventArgs e)
+        {
+            modFolderBrowserDialog.SelectedPath = currentDirectory;
+            DialogResult dr = modFolderBrowserDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                string location = modFolderBrowserDialog.SelectedPath;
+                ModViewer mv = new ModViewer(true, location);
+                Utilities.currentMods.Add(mv);
+                Settings.settings["previousMod"] = mv.currentDirectory;
+                mv.Show();
+            }
         }
     }
 }
