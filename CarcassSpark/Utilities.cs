@@ -16,6 +16,9 @@ namespace CarcassSpark
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
         private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
+        // This is the root asset bundle that contains references to all the game's assets
+        // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
+        private static string directoryToVanillaAssets = "./cultistsimulator_Data/globalgamemanagers";
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
