@@ -1,3 +1,9 @@
+# Installation
+Acquire the binaries (by any means necessary) and place them in your Cultist Simulator installation Folder.
+
+If you downloaded it through Steam like I did, that will be in `steamapps/common/Cultist Simulator`.
+
+
 # Cultist-Simulator-Modding-Toolkit
 Tool to aid in the creation of mods for Cultist Simulator by Weather Factory
 
@@ -7,7 +13,6 @@ Currently Supported:
     - Induces
      - Induces$prepend
      - Induces$append
-     
    - Elements
     - Aspects
      - Aspects$extend
@@ -60,6 +65,10 @@ Currently Supported:
     - Effects
      - effects$extend
      - effects$remove
+	- Exclude on Ending
+	 - excludeonending$prepend
+	 - excludeonending$append
+	 - excludeonending$remove
    - Endings
    - Verbs
     - Slots
