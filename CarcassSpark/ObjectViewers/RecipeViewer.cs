@@ -438,6 +438,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects OR elements
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = requirementsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -453,6 +454,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can also be aspects or elements
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = extantreqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -468,6 +470,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = tablereqsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -483,6 +486,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -498,6 +502,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.aspectExists(id))
             {
@@ -508,6 +513,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be decks
+            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = deckeffectDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.deckExists(id))
             {
