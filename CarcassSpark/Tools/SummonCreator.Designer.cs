@@ -37,9 +37,9 @@
             this.inspectPreButton = new System.Windows.Forms.Button();
             this.createRecipeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.baseSummonIdTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.successSummonTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.inspectBaseRecipeButton = new System.Windows.Forms.Button();
@@ -132,13 +132,13 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Base Summon Recipe";
             // 
-            // textBox1
+            // baseSummonIdTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 189);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.baseSummonIdTextBox.Location = new System.Drawing.Point(12, 189);
+            this.baseSummonIdTextBox.Name = "baseSummonIdTextBox";
+            this.baseSummonIdTextBox.ReadOnly = true;
+            this.baseSummonIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.baseSummonIdTextBox.TabIndex = 9;
             // 
             // label2
             // 
@@ -149,13 +149,13 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Success Recipe";
             // 
-            // textBox2
+            // successSummonTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 228);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 11;
+            this.successSummonTextBox.Location = new System.Drawing.Point(12, 228);
+            this.successSummonTextBox.Name = "successSummonTextBox";
+            this.successSummonTextBox.ReadOnly = true;
+            this.successSummonTextBox.Size = new System.Drawing.Size(100, 20);
+            this.successSummonTextBox.TabIndex = 11;
             // 
             // okButton
             // 
@@ -208,9 +208,9 @@
             this.Controls.Add(this.inspectBaseRecipeButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.successSummonTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.baseSummonIdTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.createRecipeButton);
             this.Controls.Add(this.inspectPreButton);
@@ -238,9 +238,9 @@
         private System.Windows.Forms.Button inspectPreButton;
         private System.Windows.Forms.Button createRecipeButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox baseSummonIdTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox successSummonTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button inspectBaseRecipeButton;

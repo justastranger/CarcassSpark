@@ -52,6 +52,10 @@ namespace CarcassSpark.Tools
                 succeedSummon.actionId = startSummon.actionId;
                 succeedSummon.description = startSummon.description;
                 startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, null, null));
+                baseSummonIdTextBox.Text = baseSummon.id;
+                successSummonTextBox.Text = succeedSummon.id;
+                inspectBaseButton.Enabled = true;
+                inspectSuccessRecipeButton.Enabled = true;
             }
         }
 
