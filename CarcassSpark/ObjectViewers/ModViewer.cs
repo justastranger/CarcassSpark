@@ -40,8 +40,7 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             currentDirectory = location;
             this.isVanilla = isVanilla;
-            toolStrip1.Visible = !isVanilla;
-            editModeCheckBox.Visible = !isVanilla;
+            setEditingMode(!isVanilla);
 
             refreshContent();
         }
@@ -62,6 +61,20 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             currentDirectory = location;
             refreshContent();
+        }
+
+        void setEditingMode(bool editing)
+        {
+
+            toolStrip1.Visible = editing;
+            editModeCheckBox.Visible = editing;
+            deleteSelectedAspectToolStripMenuItem.Visible = editing;
+            deleteSelectedDeckToolStripMenuItem.Visible = editing;
+            deleteSelectedElementToolStripMenuItem.Visible = editing;
+            deleteSelectedEndingToolStripMenuItem.Visible = editing;
+            deleteSelectedLegacyToolStripMenuItem.Visible = editing;
+            deleteSelectedRecipeToolStripMenuItem.Visible = editing;
+            deleteSelectedVerbToolStripMenuItem.Visible = editing;
         }
 
         void refreshContent()
