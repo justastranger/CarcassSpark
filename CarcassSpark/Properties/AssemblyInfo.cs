@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Carcass Spark")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Cultist Simulator Modding Toolkit")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Carcass Spark")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2020 by justastranger#4169")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
