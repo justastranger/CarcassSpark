@@ -9,7 +9,7 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Mutation
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "filter")] // PropertyName = filter because the check for "filterOnAspectId" is broken but "filter" still works
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] //, PropertyName = "filter")] // PropertyName = filter because the check for "filterOnAspectId" is broken but "filter" still works
         public string filterOnAspectId; // element ID to use to select a card, can filter based on aspect or card itself
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string mutateAspectId; // Aspect on filtered card to modify
