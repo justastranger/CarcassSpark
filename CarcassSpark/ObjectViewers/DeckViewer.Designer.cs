@@ -103,6 +103,7 @@
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
             this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 134);
             this.drawmessagesDataGridView.TabIndex = 5;
+            this.drawmessagesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.drawmessagesDataGridView_UserDeletedRow);
             // 
             // elementId
             // 

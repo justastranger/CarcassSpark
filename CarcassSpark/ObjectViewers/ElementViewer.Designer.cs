@@ -149,6 +149,7 @@
             this.xtriggersDataGridView.Size = new System.Drawing.Size(248, 126);
             this.xtriggersDataGridView.TabIndex = 9;
             this.xtriggersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.xtriggersDataGridView_CellDoubleClick);
+            this.xtriggersDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.xtriggersDataGridView_UserDeletedRow);
             // 
             // xtriggerID
             // 
@@ -193,6 +194,7 @@
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
             this.aspectsDataGridView.TabIndex = 13;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
+            this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserDeletedRow);
             // 
             // aspectId
             // 

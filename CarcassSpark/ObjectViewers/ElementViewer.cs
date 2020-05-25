@@ -244,7 +244,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            if (aspectsDataGridView.Rows.Count > 1) {
+            if (aspectsDataGridView.Rows.Count > 1)
+            {
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null)
@@ -349,6 +350,56 @@ namespace CarcassSpark.ObjectViewers
         private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedElement.unique = uniqueCheckBox.Checked;
+        }
+
+        private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedElement.aspects_extend == null) return;
+                if (displayedElement.aspects_extend.ContainsKey(key)) displayedElement.aspects_extend.Remove(key);
+                if (displayedElement.aspects_extend.Count == 0) displayedElement.aspects_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedElement.aspects_remove == null) return;
+                if (displayedElement.aspects_remove.Contains(key)) displayedElement.aspects_remove.Remove(key);
+                if (displayedElement.aspects_remove.Count == 0) displayedElement.aspects_remove = null;
+            }
+            else
+            {
+                if (displayedElement.aspects == null) return;
+                if (displayedElement.aspects.ContainsKey(key)) displayedElement.aspects.Remove(key);
+                if (displayedElement.aspects.Count == 0) displayedElement.aspects = null;
+            }
+        }
+
+        private void xtriggersDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedElement.xtriggers_extend == null) return;
+                if (displayedElement.xtriggers_extend.ContainsKey(key)) displayedElement.xtriggers_extend.Remove(key);
+                if (displayedElement.xtriggers_extend.Count == 0) displayedElement.xtriggers_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedElement.xtriggers_remove == null) return;
+                if (displayedElement.xtriggers_remove.Contains(key)) displayedElement.xtriggers_remove.Remove(key);
+                if (displayedElement.xtriggers_remove.Count == 0) displayedElement.xtriggers_remove = null;
+            }
+            else
+            {
+                if (displayedElement.xtriggers == null) return;
+                if (displayedElement.xtriggers.ContainsKey(key)) displayedElement.xtriggers.Remove(key);
+                if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
+            }
         }
     }
 }

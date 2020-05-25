@@ -68,16 +68,19 @@
             this.legaciesLabel = new System.Windows.Forms.Label();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsListBox = new System.Windows.Forms.ListBox();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsWithSlotsForThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -86,6 +89,7 @@
             this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleAutosaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newItemToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.aspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,10 +109,7 @@
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
             this.autosaveTimer = new System.Windows.Forms.Timer(this.components);
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -467,6 +468,13 @@
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
             this.legacyContextMenuStrip.Size = new System.Drawing.Size(195, 26);
             // 
+            // deleteSelectedLegacyToolStripMenuItem
+            // 
+            this.deleteSelectedLegacyToolStripMenuItem.Name = "deleteSelectedLegacyToolStripMenuItem";
+            this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteSelectedLegacyToolStripMenuItem.Text = "Delete Selected Legacy";
+            this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedLegacyToolStripMenuItem_Click);
+            // 
             // endingsListBox
             // 
             this.endingsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -503,6 +511,13 @@
             this.recipesThatCauseThisEndingToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.recipesThatCauseThisEndingToolStripMenuItem.Text = "Recipes that cause this ending";
             this.recipesThatCauseThisEndingToolStripMenuItem.Click += new System.EventHandler(this.recipesThatCauseThisEndingToolStripMenuItem_Click);
+            // 
+            // deleteSelectedEndingToolStripMenuItem
+            // 
+            this.deleteSelectedEndingToolStripMenuItem.Name = "deleteSelectedEndingToolStripMenuItem";
+            this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteSelectedEndingToolStripMenuItem.Text = "Delete Selected Ending";
+            this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedEndingToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
@@ -559,6 +574,13 @@
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Text = "Elements with Slots for this verb";
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Click += new System.EventHandler(this.elementsWithSlotsForThisVerbToolStripMenuItem_Click);
+            // 
+            // deleteSelectedVerbToolStripMenuItem
+            // 
+            this.deleteSelectedVerbToolStripMenuItem.Name = "deleteSelectedVerbToolStripMenuItem";
+            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
+            this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
             // 
             // verbsLabel
             // 
@@ -633,6 +655,13 @@
             this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.toggleAutosaveToolStripMenuItem.Text = "Toggle Autosave";
             this.toggleAutosaveToolStripMenuItem.Click += new System.EventHandler(this.toggleAutosaveToolStripMenuItem_Click);
+            // 
+            // toggleEditModeToolStripMenuItem
+            // 
+            this.toggleEditModeToolStripMenuItem.Name = "toggleEditModeToolStripMenuItem";
+            this.toggleEditModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.toggleEditModeToolStripMenuItem.Text = "Toggle Edit Mode";
+            this.toggleEditModeToolStripMenuItem.Click += new System.EventHandler(this.toggleEditModeToolStripMenuItem_Click);
             // 
             // newItemToolStripButton
             // 
@@ -793,39 +822,20 @@
             this.autosaveTimer.Interval = 30000;
             this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
             // 
-            // deleteSelectedLegacyToolStripMenuItem
+            // ProgressBar
             // 
-            this.deleteSelectedLegacyToolStripMenuItem.Name = "deleteSelectedLegacyToolStripMenuItem";
-            this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.deleteSelectedLegacyToolStripMenuItem.Text = "Delete Selected Legacy";
-            this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedLegacyToolStripMenuItem_Click);
-            // 
-            // deleteSelectedEndingToolStripMenuItem
-            // 
-            this.deleteSelectedEndingToolStripMenuItem.Name = "deleteSelectedEndingToolStripMenuItem";
-            this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.deleteSelectedEndingToolStripMenuItem.Text = "Delete Selected Ending";
-            this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedEndingToolStripMenuItem_Click);
-            // 
-            // deleteSelectedVerbToolStripMenuItem
-            // 
-            this.deleteSelectedVerbToolStripMenuItem.Name = "deleteSelectedVerbToolStripMenuItem";
-            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
-            this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
-            // 
-            // toggleEditModeToolStripMenuItem
-            // 
-            this.toggleEditModeToolStripMenuItem.Name = "toggleEditModeToolStripMenuItem";
-            this.toggleEditModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.toggleEditModeToolStripMenuItem.Text = "Toggle Edit Mode";
-            this.toggleEditModeToolStripMenuItem.Click += new System.EventHandler(this.toggleEditModeToolStripMenuItem_Click);
+            this.ProgressBar.Location = new System.Drawing.Point(178, 2);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(740, 23);
+            this.ProgressBar.TabIndex = 24;
+            this.ProgressBar.Visible = false;
             // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 369);
+            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.verbsSearchTextBox);
             this.Controls.Add(this.endingsSearchTextBox);
             this.Controls.Add(this.legaciesSearchTextBox);
@@ -947,6 +957,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleEditModeToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar ProgressBar;
     }
 }
 

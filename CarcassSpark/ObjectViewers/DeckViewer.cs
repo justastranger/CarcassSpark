@@ -275,5 +275,30 @@ namespace CarcassSpark.ObjectViewers
                 ev.ShowDialog();
             }
         }
+
+        private void drawmessagesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedDeck.drawmessages_extend == null) return;
+                if (displayedDeck.drawmessages_extend.ContainsKey(key)) displayedDeck.drawmessages_extend.Remove(key);
+                if (displayedDeck.drawmessages_extend.Count == 0) displayedDeck.drawmessages_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedDeck.drawmessages_remove == null) return;
+                if (displayedDeck.drawmessages_remove.Contains(key)) displayedDeck.drawmessages_remove.Remove(key);
+                if (displayedDeck.drawmessages_remove.Count == 0) displayedDeck.drawmessages_remove = null;
+            }
+            else
+            {
+                if (displayedDeck.drawmessages == null) return;
+                if (displayedDeck.drawmessages.ContainsKey(key)) displayedDeck.drawmessages.Remove(key);
+                if (displayedDeck.drawmessages.Count == 0) displayedDeck.drawmessages = null;
+            }
+        }
     }
 }

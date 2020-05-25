@@ -193,8 +193,32 @@ namespace CarcassSpark.ObjectViewers
 
         private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedAspect.induces.Contains(inducesDictionary[e.Row.Cells[0].Value.ToString()])) displayedAspect.induces.Remove(inducesDictionary[e.Row.Cells[0].Value.ToString()]);
-            if (displayedAspect.induces.Count == 0) displayedAspect.induces = null;
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            Induces induces = key != null ? inducesDictionary[key] : null;
+            if (e.Row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
+            {
+                if (displayedAspect.induces_append == null) return;
+                if (displayedAspect.induces_append.Contains(induces)) displayedAspect.induces_append.Remove(induces);
+                if (displayedAspect.induces_append.Count == 0) displayedAspect.induces_append = null;
+            }
+            else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
+            {
+                if (displayedAspect.induces_prepend == null) return;
+                if (displayedAspect.induces_prepend.Contains(induces)) displayedAspect.induces_prepend.Remove(induces);
+                if (displayedAspect.induces_prepend.Count == 0) displayedAspect.induces_prepend = null;
+            }
+            else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
+            {
+                if (displayedAspect.induces_remove == null) return;
+                if (displayedAspect.induces_remove.Contains(key)) displayedAspect.induces_remove.Remove(key);
+                if (displayedAspect.induces_remove.Count == 0) displayedAspect.induces_remove = null;
+            }
+            else
+            {
+                if (displayedAspect.induces == null) return;
+                if (displayedAspect.induces.Contains(induces)) displayedAspect.induces.Remove(induces);
+                if (displayedAspect.induces.Count == 0) displayedAspect.induces = null;
+            }
         }
     }
 }

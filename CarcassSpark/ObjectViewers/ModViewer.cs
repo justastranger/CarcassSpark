@@ -394,6 +394,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void saveMod(string location)
         {
+            ProgressBar.Value = 0;
+            ProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
+            ProgressBar.Visible = true;
             if (!Directory.Exists(location + "/content/"))
             {
                 Directory.CreateDirectory(location + "/content/");
@@ -407,6 +410,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(aspectsJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (elementsListBox.Items.Count > 0)
             {
@@ -417,6 +421,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(elementsJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (recipesListBox.Items.Count > 0)
             {
@@ -427,6 +432,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(recipesJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (decksListBox.Items.Count > 0)
             {
@@ -437,6 +443,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(decksJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (legaciesListBox.Items.Count > 0)
             {
@@ -447,6 +454,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(legaciesJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (endingsListBox.Items.Count > 0)
             {
@@ -457,6 +465,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(endingsJson);
                 }
+                ProgressBar.PerformStep();
             }
             if (verbsListBox.Items.Count > 0)
             {
@@ -467,12 +476,15 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(verbsJson);
                 }
+                ProgressBar.PerformStep();
             }
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.OpenOrCreate))))
             {
                 jtw.WriteRaw(manifestJson);
             }
+            ProgressBar.PerformStep();
+            ProgressBar.Visible = false;
         }
 
         private void ModViewer_FormClosed(object sender, FormClosedEventArgs e)

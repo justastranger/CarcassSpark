@@ -194,6 +194,7 @@ namespace CarcassSpark.ObjectViewers
         private void requiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedSlot.required.Count == 0) displayedSlot.required = null;
         }
 
         private void consumesCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -234,6 +235,7 @@ namespace CarcassSpark.ObjectViewers
         private void forbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
+            if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
         }
     }
 }
