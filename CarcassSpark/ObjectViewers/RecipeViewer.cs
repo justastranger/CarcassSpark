@@ -395,26 +395,34 @@ namespace CarcassSpark.ObjectViewers
         private void alternativerecipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems == null) return;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Text.ToString()], editing);
+            string oldId = alternativeRecipesListView.SelectedItems[0].Text;
+            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Text], editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
-                alternativerecipeLinks.Remove(alternativeRecipesListView.SelectedItems[0].ToString());
+                if (oldId != rlv.displayedRecipeLink.id)
+                {
+                    alternativerecipeLinks.Remove(alternativeRecipesListView.SelectedItems[0].Text);
+                }
                 alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 alternativerecipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
                 displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
-
             }
         }
 
         private void linkedListBox_DoubleClick(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems == null) return;
+            string oldId = linkedRecipesListView.SelectedItems[0].Text;
             RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedRecipesListView.SelectedItems[0].Text.ToString()], editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
-                recipeLinks.Remove(linkedRecipesListView.SelectedItems.ToString());
+                if (oldId != rlv.displayedRecipeLink.id)
+                {
+                    recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
+                }
+                recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
                 linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
                 displayedRecipe.linked[linkedRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
@@ -425,19 +433,23 @@ namespace CarcassSpark.ObjectViewers
         private void mutationsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems == null) return;
+            string oldId = mutationsListView.SelectedItems[0].Text;
             MutationViewer mv = new MutationViewer(mutations[mutationsListView.SelectedItems[0].Text.ToString()], editing);
             mv.ShowDialog();
             if (mv.DialogResult == DialogResult.OK)
             {
-                mutations.Remove(mv.displayedMutation.mutateAspectId);
+                if (oldId != mv.displayedMutation.mutateAspectId)
+                {
+                    mutations.Remove(mutationsListView.SelectedItems[0].Text);
+                }
                 mutationsListView.Items[mutationsListView.SelectedIndices[0]].Text = mv.displayedMutation.mutateAspectId;
-                mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
+                mutations[mv.displayedMutation.mutateAspectId] = mv.displayedMutation;
                 displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
             }
         }
 
         private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can be aspects OR elements
+        { // can be aspects OR elements, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = requirementsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
@@ -453,7 +465,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can also be aspects or elements
+        { // can also be aspects or elements, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = extantreqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
@@ -469,7 +481,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can be elements or aspects
+        { // can be elements or aspects, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = tablereqsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
@@ -485,7 +497,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can be elements or aspects
+        { // can be elements or aspects, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.elementExists(id))
@@ -501,7 +513,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can be aspects
+        { // can be aspects, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.aspectExists(id))
@@ -512,7 +524,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { // can only be decks
+        { // can only be decks, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
             string id = deckeffectDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.deckExists(id))
@@ -698,8 +710,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     alternativeRecipesListView.Items.Add(rlv.displayedRecipeLink.id);
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.alternativerecipes != null) displayedRecipe.alternativerecipes.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.alternativerecipes = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    //if (displayedRecipe.alternativerecipes != null) displayedRecipe.alternativerecipes.Add(rlv.displayedRecipeLink);
+                    //else displayedRecipe.alternativerecipes = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveAlternativeRecipes();
                 }
             }
         }
@@ -715,8 +728,9 @@ namespace CarcassSpark.ObjectViewers
                     item.BackColor = Utilities.ListPrependColor;
                     alternativeRecipesListView.Items.Insert(0, item);
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.alternativerecipes_prepend != null) displayedRecipe.alternativerecipes_prepend.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.alternativerecipes_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    // if (displayedRecipe.alternativerecipes_prepend != null) displayedRecipe.alternativerecipes_prepend.Add(rlv.displayedRecipeLink);
+                    // else displayedRecipe.alternativerecipes_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveAlternativeRecipes();
                 }
             }
         }
@@ -732,8 +746,9 @@ namespace CarcassSpark.ObjectViewers
                     item.BackColor = Utilities.ListAppendColor;
                     alternativeRecipesListView.Items.Add(item);
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.alternativerecipes_append != null) displayedRecipe.alternativerecipes_append.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.alternativerecipes_append = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    // if (displayedRecipe.alternativerecipes_append != null) displayedRecipe.alternativerecipes_append.Add(rlv.displayedRecipeLink);
+                    // else displayedRecipe.alternativerecipes_append = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveAlternativeRecipes();
                 }
             }
         }
@@ -747,8 +762,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     linkedRecipesListView.Items.Add(rlv.displayedRecipeLink.id);
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.linked != null) displayedRecipe.linked.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.linked = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    // if (displayedRecipe.linked != null) displayedRecipe.linked.Add(rlv.displayedRecipeLink);
+                    // else displayedRecipe.linked = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveLinkedRecipes();
                 }
             }
         }
@@ -764,8 +780,9 @@ namespace CarcassSpark.ObjectViewers
                     item.BackColor = Utilities.ListPrependColor;
                     linkedRecipesListView.Items.Insert(0, item);
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.linked_prepend != null) displayedRecipe.linked_prepend.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.linked_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    // if (displayedRecipe.linked_prepend != null) displayedRecipe.linked_prepend.Add(rlv.displayedRecipeLink);
+                    // else displayedRecipe.linked_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveLinkedRecipes();
                 }
             }
         }
@@ -781,8 +798,9 @@ namespace CarcassSpark.ObjectViewers
                     item.BackColor = Utilities.ListPrependColor;
                     linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
-                    if (displayedRecipe.linked_append != null) displayedRecipe.linked_append.Add(rlv.displayedRecipeLink);
-                    else displayedRecipe.linked_append = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    // if (displayedRecipe.linked_append != null) displayedRecipe.linked_append.Add(rlv.displayedRecipeLink);
+                    // else displayedRecipe.linked_append = new List<RecipeLink> { rlv.displayedRecipeLink };
+                    saveLinkedRecipes();
                 }
             }
         }
@@ -1057,32 +1075,29 @@ namespace CarcassSpark.ObjectViewers
                 string value = alternativeRecipesListView.SelectedItems[0].Text.ToString();
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    displayedRecipe.alternativerecipes_prepend.Remove(alternativerecipeLinks[value]);
+                    // displayedRecipe.alternativerecipes_prepend.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(value);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.alternativerecipes_prepend.Count == 0) displayedRecipe.alternativerecipes_prepend = null;
                 }
                 else if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    displayedRecipe.alternativerecipes_append.Remove(alternativerecipeLinks[value]);
+                    // displayedRecipe.alternativerecipes_append.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(value);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.alternativerecipes_append.Count == 0) displayedRecipe.alternativerecipes_append = null;
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    displayedRecipe.alternativerecipes_remove.Remove(value);
+                    // displayedRecipe.alternativerecipes_remove.Remove(value);
                     alternativerecipeLinks.Remove(value);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.alternativerecipes_remove.Count == 0) displayedRecipe.alternativerecipes_remove = null;
                 }
                 else
                 {
-                    displayedRecipe.alternativerecipes.Remove(alternativerecipeLinks[value]);
+                    // displayedRecipe.alternativerecipes.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(value);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.alternativerecipes.Count == 0) displayedRecipe.alternativerecipes = null;
                 }
+                saveAlternativeRecipes();
             }
         }
 
@@ -1187,6 +1202,124 @@ namespace CarcassSpark.ObjectViewers
             {
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
                 row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+            }
+        }
+
+        private void moveAltRecipeUpButton_Click(object sender, EventArgs e)
+        {
+            if (alternativeRecipesListView.SelectedItems.Count == 0) return;
+            // check to see if first item is selected
+            if (alternativeRecipesListView.SelectedIndices[0] == 0) return;
+
+            int selectedIndex = alternativeRecipesListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex--;
+            ListViewItem selectedItem = alternativeRecipesListView.SelectedItems[0];
+            alternativeRecipesListView.Items.Remove(selectedItem);
+            alternativeRecipesListView.Items.Insert(affectedIndex-1, selectedItem);
+            saveAlternativeRecipes();
+        }
+
+        private void moveAltRecipeDownButton_Click(object sender, EventArgs e)
+        {
+            if (alternativeRecipesListView.SelectedItems.Count == 0) return;
+            // check to see if last item is selected
+            if (alternativeRecipesListView.SelectedIndices[0] == alternativeRecipesListView.Items.Count-1) return;
+
+            int selectedIndex = alternativeRecipesListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex++;
+            ListViewItem selectedItem = alternativeRecipesListView.SelectedItems[0];
+            alternativeRecipesListView.Items.Remove(selectedItem);
+            alternativeRecipesListView.Items.Insert(affectedIndex+1, selectedItem);
+            saveAlternativeRecipes();
+        }
+
+        private void moveLinkedRecipeUpButton_Click(object sender, EventArgs e)
+        {
+            if (linkedRecipesListView.SelectedItems.Count == 0) return;
+            // check to see if first item is selected
+            if (linkedRecipesListView.SelectedIndices[0] == 0) return;
+
+            int selectedIndex = linkedRecipesListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex--;
+            ListViewItem selectedItem = linkedRecipesListView.SelectedItems[0];
+            linkedRecipesListView.Items.Remove(selectedItem);
+            linkedRecipesListView.Items.Insert(affectedIndex-1, selectedItem);
+            saveAlternativeRecipes();
+        }
+
+        private void moveLinkedRecipeDownButton_Click(object sender, EventArgs e)
+        {
+            if (linkedRecipesListView.SelectedItems.Count == 0) return;
+            // check to see if last item is selected
+            if (linkedRecipesListView.SelectedIndices[0] == linkedRecipesListView.Items.Count - 1) return;
+
+            int selectedIndex = linkedRecipesListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex++;
+            ListViewItem selectedItem = linkedRecipesListView.SelectedItems[0];
+            linkedRecipesListView.Items.Remove(selectedItem);
+            linkedRecipesListView.Items.Insert(affectedIndex+1, selectedItem);
+            saveAlternativeRecipes();
+        }
+
+        private void saveAlternativeRecipes()
+        {
+            displayedRecipe.alternativerecipes = null;
+            displayedRecipe.alternativerecipes_prepend = null;
+            displayedRecipe.alternativerecipes_append = null;
+            displayedRecipe.alternativerecipes_remove = null;
+            foreach (ListViewItem item in alternativeRecipesListView.Items)
+            {
+                if (item.BackColor == Utilities.ListAppendColor)
+                {
+                    if (displayedRecipe.alternativerecipes_append == null) displayedRecipe.alternativerecipes_append = new List<RecipeLink>();
+                    displayedRecipe.alternativerecipes_append.Add(alternativerecipeLinks[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListPrependColor)
+                {
+                    if (displayedRecipe.alternativerecipes_prepend == null) displayedRecipe.alternativerecipes_prepend = new List<RecipeLink>();
+                    displayedRecipe.alternativerecipes_prepend.Add(alternativerecipeLinks[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListRemoveColor)
+                {
+                    if (displayedRecipe.alternativerecipes_remove == null) displayedRecipe.alternativerecipes_remove = new List<String>();
+                    displayedRecipe.alternativerecipes_remove.Add(item.Text);
+                }
+                else
+                {
+                    if (displayedRecipe.alternativerecipes == null) displayedRecipe.alternativerecipes = new List<RecipeLink>();
+                    displayedRecipe.alternativerecipes.Add(alternativerecipeLinks[item.Text]);
+                }
+            }
+        }
+
+        private void saveLinkedRecipes()
+        {
+            displayedRecipe.linked = null;
+            displayedRecipe.linked_prepend = null;
+            displayedRecipe.linked_append = null;
+            displayedRecipe.linked_remove = null;
+            foreach (ListViewItem item in linkedRecipesListView.Items)
+            {
+                if (item.BackColor == Utilities.ListAppendColor)
+                {
+                    if (displayedRecipe.linked_append == null) displayedRecipe.linked_append = new List<RecipeLink>();
+                    displayedRecipe.linked_append.Add(alternativerecipeLinks[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListPrependColor)
+                {
+                    if (displayedRecipe.linked_prepend == null) displayedRecipe.linked_prepend = new List<RecipeLink>();
+                    displayedRecipe.linked_prepend.Add(alternativerecipeLinks[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListRemoveColor)
+                {
+                    if (displayedRecipe.linked_remove == null) displayedRecipe.linked_remove = new List<String>();
+                    displayedRecipe.linked_remove.Add(item.Text);
+                }
+                else
+                {
+                    if (displayedRecipe.linked == null) displayedRecipe.linked = new List<RecipeLink>();
+                    displayedRecipe.linked.Add(alternativerecipeLinks[item.Text]);
+                }
             }
         }
     }
