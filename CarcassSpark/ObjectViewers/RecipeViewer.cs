@@ -79,6 +79,10 @@ namespace CarcassSpark.ObjectViewers
             appendAlternativeReipeButton.Visible = editing;
             appendLinkedRecipeButton.Visible = editing;
             appendMutationButton.Visible = editing;
+            moveAltRecipeDownButton.Visible = editing;
+            moveAltRecipeUpButton.Visible = editing;
+            moveLinkedRecipeDownButton.Visible = editing;
+            moveLinkedRecipeUpButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
