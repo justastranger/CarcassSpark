@@ -697,6 +697,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
+            saveAlternativeRecipes();
+            saveLinkedRecipes();
             DialogResult = DialogResult.OK;
             Close();
         }
