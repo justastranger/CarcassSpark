@@ -1309,12 +1309,12 @@ namespace CarcassSpark.ObjectViewers
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
                     if (displayedRecipe.linked_append == null) displayedRecipe.linked_append = new List<RecipeLink>();
-                    displayedRecipe.linked_append.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.linked_append.Add(recipeLinks[item.Text]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
                     if (displayedRecipe.linked_prepend == null) displayedRecipe.linked_prepend = new List<RecipeLink>();
-                    displayedRecipe.linked_prepend.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.linked_prepend.Add(recipeLinks[item.Text]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
@@ -1324,7 +1324,7 @@ namespace CarcassSpark.ObjectViewers
                 else
                 {
                     if (displayedRecipe.linked == null) displayedRecipe.linked = new List<RecipeLink>();
-                    displayedRecipe.linked.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.linked.Add(recipeLinks[item.Text]);
                 }
             }
         }
