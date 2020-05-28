@@ -33,6 +33,8 @@
             this.zoomControl1 = new MindFusion.Common.WinForms.ZoomControl();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.loadLinkedRecipesButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // diagram1
@@ -96,11 +98,23 @@
             this.loadLinkedRecipesButton.UseVisualStyleBackColor = true;
             this.loadLinkedRecipesButton.Click += new System.EventHandler(this.loadLinkedRecipesButton_Click);
             // 
+            // exportButton
+            // 
+            this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportButton.Location = new System.Drawing.Point(548, 41);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(116, 23);
+            this.exportButton.TabIndex = 4;
+            this.exportButton.Text = "Export to PNG";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            // 
             // RecipeFlowchartViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 411);
+            this.Controls.Add(this.exportButton);
             this.Controls.Add(this.loadLinkedRecipesButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.zoomControl1);
@@ -119,5 +133,7 @@
         private MindFusion.Common.WinForms.ZoomControl zoomControl1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button loadLinkedRecipesButton;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

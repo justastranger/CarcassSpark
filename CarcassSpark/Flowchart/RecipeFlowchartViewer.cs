@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -431,6 +432,15 @@ namespace CarcassSpark.Flowchart
             else
             {
                 processRecipes();
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap exportedImage = diagram1.CreateImage(diagram1.Bounds, 65f);
+                exportedImage.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
         }
     }

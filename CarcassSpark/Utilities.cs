@@ -15,6 +15,9 @@ namespace CarcassSpark
     public class Utilities
     {
         public static List<ModViewer> currentMods = new List<ModViewer>();
+
+
+        public static string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
