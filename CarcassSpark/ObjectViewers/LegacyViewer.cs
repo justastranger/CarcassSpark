@@ -265,6 +265,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
             {
+                if (displayedLegacy.statusbarelements == null) displayedLegacy.statusbarelements = new List<string>();
                 statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
                 displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
                 statusBarElementTextBox.Text = "";
@@ -278,6 +279,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedLegacy.statusbarelements.Remove(statusBarElementsListView.SelectedItems[0].Text);
                 statusBarElementsListView.Items.Remove(statusBarElementsListView.SelectedItems[0]);
+                if (displayedLegacy.statusbarelements.Count == 0) displayedLegacy.statusbarelements = null;
             }
         }
 
