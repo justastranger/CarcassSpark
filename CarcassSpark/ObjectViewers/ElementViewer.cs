@@ -77,7 +77,7 @@ namespace CarcassSpark.ObjectViewers
             if (element.label != null) labelTextBox.Text = element.label;
             if (element.icon != null)
             {
-                // iconTextBox.Text = element.icon;
+                iconTextBox.Text = element.icon;
                 pictureBox1.Image = Utilities.getElementImage(element.icon);
             }
             if (element.animframes.HasValue) animFramesNumericUpDown.Value = element.animframes.Value;
