@@ -95,11 +95,18 @@
     <Compile Include="ObjectTypes\Induces.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
     <Compile Include="ObjectTypes\RecipeLink.cs" />
+    <Compile Include="ObjectTypes\XTrigger.cs" />
     <Compile Include="ObjectViewers\AspectViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ObjectViewers\AspectViewer.Designer.cs">
       <DependentUpon>AspectViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectViewers\XTriggerViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectViewers\XTriggerViewer.Designer.cs">
+      <DependentUpon>XTriggerViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ChangeAspectQuantityForm.cs">
       <SubType>Form</SubType>
@@ -235,6 +242,9 @@
     </Compile>
     <EmbeddedResource Include="ObjectViewers\AspectViewer.resx">
       <DependentUpon>AspectViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectViewers\XTriggerViewer.resx">
+      <DependentUpon>XTriggerViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>

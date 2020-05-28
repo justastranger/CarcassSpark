@@ -35,9 +35,6 @@
             this.decayToTextBox = new System.Windows.Forms.TextBox();
             this.uniqueCheckBox = new System.Windows.Forms.CheckBox();
             this.uniquenessgroupTextBox = new System.Windows.Forms.TextBox();
-            this.xtriggersDataGridView = new System.Windows.Forms.DataGridView();
-            this.xtriggerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resultID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersLabel = new System.Windows.Forms.Label();
             this.slotsLabel = new System.Windows.Forms.Label();
             this.aspectsDataGridView = new System.Windows.Forms.DataGridView();
@@ -63,8 +60,10 @@
             this.removeSlotButton = new System.Windows.Forms.Button();
             this.resaturateCheckBox = new System.Windows.Forms.CheckBox();
             this.slotsListView = new System.Windows.Forms.ListView();
+            this.xtriggersListView = new System.Windows.Forms.ListView();
+            this.newXTriggerButton = new System.Windows.Forms.Button();
+            this.deleteXTriggerButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).BeginInit();
@@ -135,33 +134,6 @@
             this.uniquenessgroupTextBox.TabIndex = 8;
             this.uniquenessgroupTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uniquenessgroupTextBox.TextChanged += new System.EventHandler(this.uniquenessgroupTextBox_TextChanged);
-            // 
-            // xtriggersDataGridView
-            // 
-            this.xtriggersDataGridView.AllowUserToResizeColumns = false;
-            this.xtriggersDataGridView.AllowUserToResizeRows = false;
-            this.xtriggersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.xtriggersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.xtriggerID,
-            this.resultID});
-            this.xtriggersDataGridView.Location = new System.Drawing.Point(255, 25);
-            this.xtriggersDataGridView.Name = "xtriggersDataGridView";
-            this.xtriggersDataGridView.Size = new System.Drawing.Size(248, 126);
-            this.xtriggersDataGridView.TabIndex = 9;
-            this.xtriggersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.xtriggersDataGridView_CellDoubleClick);
-            this.xtriggersDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.xtriggersDataGridView_UserDeletedRow);
-            // 
-            // xtriggerID
-            // 
-            this.xtriggerID.HeaderText = "Catalyst";
-            this.xtriggerID.Name = "xtriggerID";
-            this.xtriggerID.Width = 103;
-            // 
-            // resultID
-            // 
-            this.resultID.HeaderText = "Result";
-            this.resultID.Name = "resultID";
-            this.resultID.Width = 102;
             // 
             // xtriggersLabel
             // 
@@ -259,7 +231,7 @@
             // 
             this.lifetimeNumericUpDown.Location = new System.Drawing.Point(15, 170);
             this.lifetimeNumericUpDown.Maximum = new decimal(new int[] {
-            1000,
+            999999,
             0,
             0,
             0});
@@ -403,11 +375,45 @@
             this.slotsListView.View = System.Windows.Forms.View.List;
             this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListView_DoubleClick);
             // 
+            // xtriggersListView
+            // 
+            this.xtriggersListView.Location = new System.Drawing.Point(258, 26);
+            this.xtriggersListView.MultiSelect = false;
+            this.xtriggersListView.Name = "xtriggersListView";
+            this.xtriggersListView.Size = new System.Drawing.Size(248, 97);
+            this.xtriggersListView.TabIndex = 34;
+            this.xtriggersListView.UseCompatibleStateImageBehavior = false;
+            this.xtriggersListView.View = System.Windows.Forms.View.List;
+            this.xtriggersListView.DoubleClick += new System.EventHandler(this.xtriggersListView_DoubleClick);
+            // 
+            // newXTriggerButton
+            // 
+            this.newXTriggerButton.Location = new System.Drawing.Point(258, 128);
+            this.newXTriggerButton.Name = "newXTriggerButton";
+            this.newXTriggerButton.Size = new System.Drawing.Size(87, 23);
+            this.newXTriggerButton.TabIndex = 35;
+            this.newXTriggerButton.Text = "New XTrigger";
+            this.newXTriggerButton.UseVisualStyleBackColor = true;
+            this.newXTriggerButton.Click += new System.EventHandler(this.newXTriggerButton_Click);
+            // 
+            // deleteXTriggerButton
+            // 
+            this.deleteXTriggerButton.Location = new System.Drawing.Point(351, 128);
+            this.deleteXTriggerButton.Name = "deleteXTriggerButton";
+            this.deleteXTriggerButton.Size = new System.Drawing.Size(90, 23);
+            this.deleteXTriggerButton.TabIndex = 36;
+            this.deleteXTriggerButton.Text = "Delete XTrigger";
+            this.deleteXTriggerButton.UseVisualStyleBackColor = true;
+            this.deleteXTriggerButton.Click += new System.EventHandler(this.deleteXTriggerButton_Click);
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 345);
+            this.Controls.Add(this.deleteXTriggerButton);
+            this.Controls.Add(this.newXTriggerButton);
+            this.Controls.Add(this.xtriggersListView);
             this.Controls.Add(this.slotsListView);
             this.Controls.Add(this.resaturateCheckBox);
             this.Controls.Add(this.removeSlotButton);
@@ -431,7 +437,6 @@
             this.Controls.Add(this.aspectsDataGridView);
             this.Controls.Add(this.slotsLabel);
             this.Controls.Add(this.xtriggersLabel);
-            this.Controls.Add(this.xtriggersDataGridView);
             this.Controls.Add(this.uniquenessgroupTextBox);
             this.Controls.Add(this.uniqueCheckBox);
             this.Controls.Add(this.decayToTextBox);
@@ -443,7 +448,6 @@
             this.Name = "ElementViewer";
             this.Text = "Element Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).EndInit();
@@ -461,9 +465,6 @@
         private System.Windows.Forms.TextBox decayToTextBox;
         private System.Windows.Forms.CheckBox uniqueCheckBox;
         private System.Windows.Forms.TextBox uniquenessgroupTextBox;
-        private System.Windows.Forms.DataGridView xtriggersDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn xtriggerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resultID;
         private System.Windows.Forms.Label xtriggersLabel;
         private System.Windows.Forms.Label slotsLabel;
         private System.Windows.Forms.DataGridView aspectsDataGridView;
@@ -489,5 +490,8 @@
         private System.Windows.Forms.Button removeSlotButton;
         private System.Windows.Forms.CheckBox resaturateCheckBox;
         private System.Windows.Forms.ListView slotsListView;
+        private System.Windows.Forms.ListView xtriggersListView;
+        private System.Windows.Forms.Button newXTriggerButton;
+        private System.Windows.Forms.Button deleteXTriggerButton;
     }
 }

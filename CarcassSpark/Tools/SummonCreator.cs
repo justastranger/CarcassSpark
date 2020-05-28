@@ -38,14 +38,14 @@ namespace CarcassSpark.Tools
             if (rv.DialogResult == DialogResult.OK)
             {
                 startSummon = rv.displayedRecipe;
-                startSummon.effects = new Dictionary<string, int>();
-                startSummon.effects.Add(baseSummon.id, 1);
+                startSummon.effects = new Dictionary<string, string>();
+                startSummon.effects.Add(baseSummon.id, "1");
                 startSummon.linked = new List<RecipeLink>();
                 startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, null, null));
                 startSummon.actionId = "work";
                 startSummon.warmup = 180;
-                startSummon.requirements["desire"] = -1;
-                startSummon.requirements["ritual"] = 1;
+                startSummon.requirements["desire"] = "-1";
+                startSummon.requirements["ritual"] = "1";
                 succeedSummon = new Recipe();
                 succeedSummon.id = startSummon.id + "_success";
                 succeedSummon.label = startSummon.label;
@@ -116,8 +116,8 @@ namespace CarcassSpark.Tools
                             break;
                     }
                 }
-                Dictionary<string, string> tempXTriggers = baseSummon.xtriggers;
-                tempXTriggers.Add("killmanifesting", baseSummon.decayTo);
+                Dictionary<string, List<XTrigger>> tempXTriggers = baseSummon.xtriggers;
+                tempXTriggers.Add("killmanifesting", new List<XTrigger> { new XTrigger(baseSummon.decayTo)});
                 preSummon = new Element();
                 preSummon.id = "pre." + baseSummon.id;
                 preSummon.label = baseSummon.label;

@@ -47,9 +47,11 @@ namespace CarcassSpark.ObjectViewers
             uniquenessgroupTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             extendsTextBox.ReadOnly = !editing;
-            xtriggersDataGridView.AllowUserToAddRows = editing;
-            xtriggersDataGridView.AllowUserToDeleteRows = editing;
-            xtriggersDataGridView.ReadOnly = !editing;
+            // xtriggersDataGridView.AllowUserToAddRows = editing;
+            // xtriggersDataGridView.AllowUserToDeleteRows = editing;
+            // xtriggersDataGridView.ReadOnly = !editing;
+            newXTriggerButton.Visible = editing;
+            deleteXTriggerButton.Visible = editing;
             aspectsDataGridView.AllowUserToAddRows = editing;
             aspectsDataGridView.AllowUserToDeleteRows = editing;
             aspectsDataGridView.ReadOnly = !editing;
@@ -75,7 +77,7 @@ namespace CarcassSpark.ObjectViewers
             if (element.label != null) labelTextBox.Text = element.label;
             if (element.icon != null)
             {
-                iconTextBox.Text = element.icon;
+                // iconTextBox.Text = element.icon;
                 pictureBox1.Image = Utilities.getElementImage(element.icon);
             }
             if (element.animframes.HasValue) animFramesNumericUpDown.Value = element.animframes.Value;
@@ -124,29 +126,28 @@ namespace CarcassSpark.ObjectViewers
             }
             if (element.xtriggers != null)
             {
-                foreach (KeyValuePair<string, string> kvp in element.xtriggers)
+                foreach (KeyValuePair<string, List<XTrigger>> kvp in element.xtriggers)
                 {
-                    xtriggersDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                    ListViewItem item = new ListViewItem(kvp.Key);
+                    xtriggersListView.Items.Add(item);
                 }
             }
             if (element.xtriggers_extend != null)
             {
-                foreach (KeyValuePair<string, string> kvp in element.xtriggers)
+                foreach (KeyValuePair<string, List<XTrigger>> kvp in element.xtriggers_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(xtriggersDataGridView, kvp.Key, kvp.Value);
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
-                    xtriggersDataGridView.Rows.Add(row);
+                    ListViewItem item = new ListViewItem(kvp.Key);
+                    item.BackColor = Utilities.DictionaryExtendStyle.BackColor;
+                    xtriggersListView.Items.Add(item);
                 }
             }
             if (element.xtriggers_remove != null)
             {
                 foreach (string removeId in element.xtriggers_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(xtriggersDataGridView, removeId);
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
-                    xtriggersDataGridView.Rows.Add(row);
+                    ListViewItem item = new ListViewItem(removeId);
+                    item.BackColor = Utilities.DictionaryRemoveStyle.BackColor;
+                    xtriggersListView.Items.Add(item);
                 }
             }
             if (element.aspects != null)
@@ -194,22 +195,36 @@ namespace CarcassSpark.ObjectViewers
             av.ShowDialog();
         }
 
-        private void xtriggersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void xtriggersListView_DoubleClick(object sender, EventArgs e)
         {
-            string id = xtriggersDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            if (Utilities.elementExists(id))
+            if (xtriggersListView.SelectedItems.Count != 1) return;
+            string id = xtriggersListView.SelectedItems[0].Text;
+            List<XTrigger> xTriggers = new List<XTrigger>();
+            if (xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryExtendStyle.BackColor)
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
-                ev.Show();
+                xTriggers = displayedElement.xtriggers_extend[id];
             }
-            else if (Utilities.aspectExists(id))
+            else if (xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryRemoveStyle.BackColor)
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), editing);
-                av.ShowDialog();
+                // There isn't a List<XTrigger> here, so display nothing
             }
             else
             {
-                MessageBox.Show("XTrigger catalyst and result must both be either aspects or elements.", "What the hell is this?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                xTriggers = displayedElement.xtriggers[id];
+            }
+            XTriggerViewer xtv = new XTriggerViewer(id, xTriggers, editing, xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryRemoveStyle.BackColor);
+            if (xtv.ShowDialog() == DialogResult.OK)
+            {
+                if (xtv.catalyst != xtriggersListView.SelectedItems[0].Text)
+                {
+                    displayedElement.xtriggers.Remove(xtriggersListView.SelectedItems[0].Text);
+                    xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
+                    displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                }
+                else
+                {
+                    displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                }
             }
         }
 
@@ -220,30 +235,30 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All Elements must have an ID");
                 return;
             }
-            if (xtriggersDataGridView.Rows.Count > 1) {
-                displayedElement.xtriggers = new Dictionary<string, string>();
-                foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
-                {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
-                    {
-                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
-                        {
-                            if (displayedElement.aspects_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, string>();
-                            displayedElement.aspects_extend.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
-                        }
-                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
-                        {
-                            if (displayedElement.xtriggers_remove == null) displayedElement.xtriggers_remove = new List<string>();
-                            displayedElement.xtriggers_remove.Add(row.Cells[0].Value.ToString());
-                        }
-                        else
-                        {
-                            if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, string>();
-                            displayedElement.xtriggers.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
-                        }
-                    }
-                }
-            }
+            // if (xtriggersDataGridView.Rows.Count > 1) {
+            // displayedElement.xtriggers = new Dictionary<string, Element.XTrigger>();
+            // foreach (ListViewItem item in xtriggersListView.Items)
+            // {
+            // if (item.Text != null)
+            // {
+            // if (item.BackColor == Utilities.DictionaryExtendStyle.BackColor)
+            // {
+            // if (displayedElement.aspects_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, Element.XTrigger>();
+            // displayedElement.aspects_extend.Add(item.Text, Convert.ToInt32(item.Cells[1].Value));
+            // }
+            // else if (item.BackColor == Utilities.DictionaryRemoveStyle.BackColor)
+            // {
+            // if (displayedElement.xtriggers_remove == null) displayedElement.xtriggers_remove = new List<string>();
+            // displayedElement.xtriggers_remove.Add(item.Text.ToString());
+            // }
+            // else
+            // {
+            // if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, Element.XTrigger>();
+            // displayedElement.xtriggers.Add(item.Text, item.Cells[1].Value.ToString());
+            // }
+            // }
+            // }
+            // }
             if (aspectsDataGridView.Rows.Count > 1)
             {
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
@@ -398,6 +413,51 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (displayedElement.xtriggers == null) return;
                 if (displayedElement.xtriggers.ContainsKey(key)) displayedElement.xtriggers.Remove(key);
+                if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
+            }
+        }
+
+        private void newXTriggerButton_Click(object sender, EventArgs e)
+        {
+            XTriggerViewer xtv = new XTriggerViewer();
+            if (xtv.ShowDialog() == DialogResult.OK)
+            {
+                if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, List<XTrigger>>();
+                xtriggersListView.Items.Add(xtv.catalyst);
+                displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+            }
+        }
+
+        private void deleteXTriggerButton_Click(object sender, EventArgs e)
+        {
+            if (xtriggersListView.SelectedItems.Count == 0) return;
+            ListViewItem item = xtriggersListView.SelectedItems[0];
+            string selectedId = item.Text;
+            if (item.BackColor == Utilities.DictionaryExtendStyle.BackColor)
+            {
+                if (displayedElement.xtriggers_extend.ContainsKey(selectedId))
+                {
+                    displayedElement.xtriggers_extend.Remove(selectedId);
+                    xtriggersListView.Items.Remove(item);
+                }
+                if (displayedElement.xtriggers_extend.Count == 0) displayedElement.xtriggers_extend = null;
+            }
+            else if (item.BackColor == Utilities.DictionaryRemoveStyle.BackColor)
+            {
+                if (displayedElement.xtriggers_remove.Contains(selectedId))
+                {
+                    displayedElement.xtriggers_remove.Remove(selectedId);
+                    xtriggersListView.Items.Remove(item);
+                }
+                if (displayedElement.xtriggers_remove.Count == 0) displayedElement.xtriggers_remove = null;
+            }
+            else
+            {
+                if (displayedElement.xtriggers.ContainsKey(selectedId))
+                {
+                    displayedElement.xtriggers.Remove(selectedId);
+                    xtriggersListView.Items.Remove(item);
+                }
                 if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
             }
         }

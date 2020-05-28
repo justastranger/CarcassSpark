@@ -33,9 +33,9 @@ namespace CarcassSpark.ObjectTypes
         public int? warmup_minus;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> effects;
+        public Dictionary<string, string> effects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
-        public Dictionary<string, int> effects_extend;
+        public Dictionary<string, string> effects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
         public List<string> effects_remove;
 
@@ -54,23 +54,23 @@ namespace CarcassSpark.ObjectTypes
         public List<string> deckeffect_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> requirements;
+        public Dictionary<string, string> requirements;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$extend")]
-        public Dictionary<string, int> requirements_extend;
+        public Dictionary<string, string> requirements_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$remove")]
         public List<string> requirements_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> extantreqs;
+        public Dictionary<string, string> extantreqs;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$extend")]
-        public Dictionary<string, int> extantreqs_extend;
+        public Dictionary<string, string> extantreqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$remove")]
         public List<string> extantreqs_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> tablereqs;
+        public Dictionary<string, string> tablereqs;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$extend")]
-        public Dictionary<string, int> tablereqs_extend;
+        public Dictionary<string, string> tablereqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$remove")]
         public List<string> tablereqs_remove;
 
@@ -116,15 +116,15 @@ namespace CarcassSpark.ObjectTypes
         public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
                       string actionId, string startdescription, string description, string id, string label,
                       List<string> extends, Deck internaldeck, string ending, string burnimage,
-                      Dictionary<string, int> requirements, Dictionary<string, int> requirements_extend, List<string> requirements_remove,
-                      Dictionary<string, int> effects, Dictionary<string, int> effects_extend, List<string> effects_remove,
+                      Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
+                      Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
                       List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
                       Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
                       List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
-                      Dictionary<string, int> tablereqs, Dictionary<string, int> tablereqs_extend, List<string> tablereqs_remove,
-                      Dictionary<string, int> extantreqs, Dictionary<string, int> extantreqs_extend, List<string> extantreqs_remove)
+                      Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqs_extend, List<string> tablereqs_remove,
+                      Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove)
         {
             this.id = id;
             this.label = label;

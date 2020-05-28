@@ -259,36 +259,36 @@ namespace CarcassSpark.Flowchart
             {
                 TreeViewItem requirements = new TreeViewItem("Requirements:");
                 tempTVN.RootItems.Add(requirements);
-                foreach (KeyValuePair<string, int> kvp in recipe.requirements)
+                foreach (KeyValuePair<string, string> kvp in recipe.requirements)
                 {
-                    requirements.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
+                    requirements.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
                 }
             }
             if (recipe.tablereqs != null)
             {
                 TreeViewItem tablereqs = new TreeViewItem("Table Requirements:");
                 tempTVN.RootItems.Add(tablereqs);
-                foreach (KeyValuePair<string, int> kvp in recipe.tablereqs)
+                foreach (KeyValuePair<string, string> kvp in recipe.tablereqs)
                 {
-                    tablereqs.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
+                    tablereqs.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
                 }
             }
             if (recipe.extantreqs != null)
             {
                 TreeViewItem extantreqs = new TreeViewItem("ExtantRequirements:");
                 tempTVN.RootItems.Add(extantreqs);
-                foreach (KeyValuePair<string, int> kvp in recipe.extantreqs)
+                foreach (KeyValuePair<string, string> kvp in recipe.extantreqs)
                 {
-                    extantreqs.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
+                    extantreqs.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
                 }
             }
             if (recipe.effects != null)
             {
                 TreeViewItem effects = new TreeViewItem("Card Effects:");
                 tempTVN.RootItems.Add(effects);
-                foreach (KeyValuePair<string, int> kvp in recipe.effects)
+                foreach (KeyValuePair<string, string> kvp in recipe.effects)
                 {
-                    effects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
+                    effects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
                 }
             }
             if (recipe.aspects != null)

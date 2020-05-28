@@ -164,6 +164,17 @@ namespace CarcassSpark.ObjectViewers
                 case "elements":
                     foreach (JToken element in parsedJToken.First.ToArray())
                     {
+                        if (element["xtriggers"] != null)
+                        {
+                            foreach (JProperty xtrigger in element["xtriggers"])
+                            {
+                                string catalyst = xtrigger.Name;
+                                if (xtrigger.Value as JArray != null) xtrigger.Value = xtrigger.Value as JArray;
+                                else if (xtrigger.Value as JObject != null) xtrigger.Value = new JArray(xtrigger.Value);
+                                else if (xtrigger.Value.Value<string>() != null) xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
+                            }
+                        }
+
                         if (element["isAspect"] != null)
                         {
                             Aspect deserializedAspect = element.ToObject<Aspect>();
@@ -184,7 +195,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         else
                         {
-                            ObjectTypes.Element deserializedElement = element.ToObject<ObjectTypes.Element>();
+                            Element deserializedElement = element.ToObject<Element>();
                             if (!elementsList.ContainsKey(deserializedElement.id))
                             {
                                 elementsList.Add(deserializedElement.id, deserializedElement);
@@ -196,7 +207,11 @@ namespace CarcassSpark.ObjectViewers
                 case "recipes":
                     foreach (JToken recipe in parsedJToken.First.ToArray())
                     {
-                        ObjectTypes.Recipe deserializedRecipe = recipe.ToObject<ObjectTypes.Recipe>();
+                        // if (recipe["extantreqs"] as JObject != null) foreach (JProperty extantreq in recipe["extantreqs"])
+                        // {
+                        //     if (extantreq.Value.Value<string>() == "-") extantreq.Value = "-1";
+                        // }
+                        Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                         if (!recipesList.ContainsKey(deserializedRecipe.id))
                         {
                             recipesList.Add(deserializedRecipe.id, deserializedRecipe);
@@ -508,7 +523,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void elementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ElementViewer ev = new ElementViewer(new ObjectTypes.Element(), true))
+            using (ElementViewer ev = new ElementViewer(new Element(), true))
             {
                 ev.ShowDialog();
                 if (ev.DialogResult == DialogResult.OK && !elementsList.ContainsKey(ev.displayedElement.id))
@@ -573,7 +588,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void recipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (RecipeViewer rv = new RecipeViewer(new ObjectTypes.Recipe(), true))
+            using (RecipeViewer rv = new RecipeViewer(new Recipe(), true))
             {
                 rv.ShowDialog();
                 if(rv.DialogResult == DialogResult.OK && !recipesList.ContainsKey(rv.displayedRecipe.id))
@@ -735,12 +750,12 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if ((recipe.requirements != null && recipe.requirements.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.requirements[aspectsListBox.SelectedItem.ToString()] > 0) ||
-                    (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.extantreqs[aspectsListBox.SelectedItem.ToString()] > 0) ||
-                    (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.tablereqs[aspectsListBox.SelectedItem.ToString()] > 0))
-                {
-                    tmp.Add(recipe.id, recipe);
-                }
+                // if ((recipe.requirements != null && recipe.requirements.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.requirements[aspectsListBox.SelectedItem.ToString()] > 0) ||
+                // (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.extantreqs[aspectsListBox.SelectedItem.ToString()] > 0) ||
+                // (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.tablereqs[aspectsListBox.SelectedItem.ToString()] > 0))
+                // {
+                // tmp.Add(recipe.id, recipe);
+                // }
             }
             if (tmp.Count > 0)
             {
@@ -791,10 +806,10 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in elementsList.Values)
             {
-                if (element.xtriggers != null && element.xtriggers.ContainsValue(elementsListBox.SelectedItem.ToString()))
-                {
-                    tmp.Add(element.id, element);
-                }
+                // if (element.xtriggers != null && element.xtriggers.ContainsValue(elementsListBox.SelectedItem.ToString()))
+                // {
+                //  tmp.Add(element.id, element);
+                // }
             }
             if (tmp.Count > 0)
             {
@@ -809,12 +824,12 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if ((recipe.requirements != null && recipe.requirements.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.requirements[elementsListBox.SelectedItem.ToString()] > 0) ||
-                    (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.extantreqs[elementsListBox.SelectedItem.ToString()] > 0) ||
-                    (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.tablereqs[elementsListBox.SelectedItem.ToString()] > 0))
-                {
-                    tmp.Add(recipe.id, recipe);
-                }
+                // if ((recipe.requirements != null && recipe.requirements.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.requirements[elementsListBox.SelectedItem.ToString()] > 0) ||
+                // (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.extantreqs[elementsListBox.SelectedItem.ToString()] > 0) ||
+                // (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.tablereqs[elementsListBox.SelectedItem.ToString()] > 0))
+                // {
+                // tmp.Add(recipe.id, recipe);
+                // }
             }
             if (tmp.Count > 0)
             {
@@ -829,10 +844,10 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if (recipe.effects != null && recipe.effects.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.effects[elementsListBox.SelectedItem.ToString()] > 0)
-                {
-                    tmp.Add(recipe.id, recipe);
-                }
+                // if (recipe.effects != null && recipe.effects.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.effects[elementsListBox.SelectedItem.ToString()] > 0)
+                // {
+                //     tmp.Add(recipe.id, recipe);
+                // }
             }
             if (tmp.Count > 0)
             {

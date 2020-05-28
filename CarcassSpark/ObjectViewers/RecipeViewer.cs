@@ -115,7 +115,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
                 requirementsDataGridView.Rows.Clear();
-                foreach (KeyValuePair<string, int> kvp in recipe.requirements)
+                foreach (KeyValuePair<string, string> kvp in recipe.requirements)
                 {
                     requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
@@ -123,7 +123,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.requirements_extend != null && recipe.requirements_extend.Count > 0)
             {
                 //requirementsDataGridView.Rows.Clear();
-                foreach (KeyValuePair<string, int> kvp in recipe.requirements_extend)
+                foreach (KeyValuePair<string, string> kvp in recipe.requirements_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
@@ -147,14 +147,14 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.extantreqs != null && recipe.extantreqs.Count > 0)
             {
                 extantreqsDataGridView.Rows.Clear();
-                foreach (KeyValuePair<string, int> kvp in recipe.extantreqs)
+                foreach (KeyValuePair<string, string> kvp in recipe.extantreqs)
                 {
                     extantreqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.extantreqs_extend != null && recipe.extantreqs_extend.Count > 0)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.extantreqs_extend)
+                foreach (KeyValuePair<string, string> kvp in recipe.extantreqs_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
@@ -175,14 +175,14 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.tablereqs != null && recipe.tablereqs.Count > 0)
             {
                 tablereqsDataGridView.Rows.Clear();
-                foreach (KeyValuePair<string, int> kvp in recipe.tablereqs)
+                foreach (KeyValuePair<string, string> kvp in recipe.tablereqs)
                 {
                     tablereqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.tablereqs_extend != null && recipe.tablereqs_extend.Count > 0)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.tablereqs_extend)
+                foreach (KeyValuePair<string, string> kvp in recipe.tablereqs_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
@@ -203,14 +203,14 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.effects != null && recipe.effects.Count > 0)
             {
                 effectsDataGridView.Rows.Clear();
-                foreach (KeyValuePair<string, int> kvp in recipe.effects)
+                foreach (KeyValuePair<string, string> kvp in recipe.effects)
                 {
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.effects_extend != null && recipe.effects_extend.Count > 0)
             {
-                foreach (KeyValuePair<string, int> kvp in recipe.effects_extend)
+                foreach (KeyValuePair<string, string> kvp in recipe.effects_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
@@ -470,7 +470,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can also be aspects or elements, don't allow editing these from a recipe
-            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
+            if (extantreqsDataGridView.SelectedCells[0].Value == null) return;
             string id = extantreqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
@@ -486,8 +486,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
-            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
-            string id = tablereqsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (tablereqsDataGridView.SelectedCells[0].Value == null) return;
+            string id = tablereqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
@@ -502,8 +502,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
-            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
-            string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (effectsDataGridView.SelectedCells[0].Value == null) return;
+            string id = effectsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
@@ -518,19 +518,24 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects, don't allow editing these from a recipe
-            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
-            string id = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (aspectsDataGridView.SelectedCells[0].Value == null) return;
+            string id = aspectsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
                 av.ShowDialog();
             }
+            else if (Utilities.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ev.ShowDialog();
+            }
         }
 
         private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be decks, don't allow editing these from a recipe
-            if (requirementsDataGridView.SelectedCells[0].Value == null) return;
-            string id = deckeffectDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (deckeffectDataGridView.SelectedCells[0].Value == null) return;
+            string id = deckeffectDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.deckExists(id))
             {
                 DeckViewer dv = new DeckViewer(Utilities.getDeck(id), false);
@@ -558,11 +563,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    string value = row.Cells[1].Value.ToString();
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.requirements_extend == null) displayedRecipe.requirements_extend = new Dictionary<string, int>();
-                        displayedRecipe.requirements_extend[key] = value.Value;
+                        if (displayedRecipe.requirements_extend == null) displayedRecipe.requirements_extend = new Dictionary<string, string>();
+                        displayedRecipe.requirements_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
@@ -571,8 +576,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        if (displayedRecipe.requirements == null) displayedRecipe.requirements = new Dictionary<string, int>();
-                        displayedRecipe.requirements[key] = value.Value;
+                        if (displayedRecipe.requirements == null) displayedRecipe.requirements = new Dictionary<string, string>();
+                        displayedRecipe.requirements[key] = value;
                     }
                 }
             }
@@ -583,11 +588,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    string value = row.Cells[1].Value.ToString();
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.extantreqs_extend == null) displayedRecipe.extantreqs_extend = new Dictionary<string, int>();
-                        displayedRecipe.extantreqs_extend[key] = value.Value;
+                        if (displayedRecipe.extantreqs_extend == null) displayedRecipe.extantreqs_extend = new Dictionary<string, string>();
+                        displayedRecipe.extantreqs_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
@@ -596,8 +601,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        if (displayedRecipe.extantreqs == null) displayedRecipe.extantreqs = new Dictionary<string, int>();
-                        displayedRecipe.extantreqs[key] = value.Value;
+                        if (displayedRecipe.extantreqs == null) displayedRecipe.extantreqs = new Dictionary<string, string>();
+                        displayedRecipe.extantreqs[key] = value;
                     }
                 }
             }
@@ -608,11 +613,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    string value = row.Cells[1].Value.ToString();
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.tablereqs_extend == null) displayedRecipe.tablereqs_extend = new Dictionary<string, int>();
-                        displayedRecipe.tablereqs_extend[key] = value.Value;
+                        if (displayedRecipe.tablereqs_extend == null) displayedRecipe.tablereqs_extend = new Dictionary<string, string>();
+                        displayedRecipe.tablereqs_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
@@ -621,8 +626,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        if (displayedRecipe.tablereqs == null) displayedRecipe.tablereqs = new Dictionary<string, int>();
-                        displayedRecipe.tablereqs[key] = value.Value;
+                        if (displayedRecipe.tablereqs == null) displayedRecipe.tablereqs = new Dictionary<string, string>();
+                        displayedRecipe.tablereqs[key] = value;
                     }
                 }
             }
@@ -633,11 +638,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    string value = row.Cells[1].Value.ToString();
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.effects_extend == null) displayedRecipe.effects_extend = new Dictionary<string, int>();
-                        displayedRecipe.effects_extend[key] = value.Value;
+                        if (displayedRecipe.effects_extend == null) displayedRecipe.effects_extend = new Dictionary<string, string>();
+                        displayedRecipe.effects_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
@@ -646,8 +651,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        if (displayedRecipe.effects == null) displayedRecipe.effects = new Dictionary<string, int>();
-                        displayedRecipe.effects[key] = value.Value;
+                        if (displayedRecipe.effects == null) displayedRecipe.effects = new Dictionary<string, string>();
+                        displayedRecipe.effects[key] = value;
                     }
                 }
             }

@@ -27,9 +27,9 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
         public List<string> slots_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> xtriggers;
+        public Dictionary<string, List<XTrigger>> xtriggers;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$extend")]
-        public Dictionary<string, string> xtriggers_extend;
+        public Dictionary<string, List<XTrigger>> xtriggers_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$remove")]
         public List<string> xtriggers_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -62,7 +62,7 @@ namespace CarcassSpark.ObjectTypes
         public Element(string id, string label, string description, bool? unique,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
-                       Dictionary<string, string> xtriggers, Dictionary<string, string> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
+                       Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
                        int? lifetime, int? lifetime_add, int? lifetime_minus, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
         {
             // necessary
@@ -111,7 +111,7 @@ namespace CarcassSpark.ObjectTypes
         
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
-                       List<Slot> slots, Dictionary<string, string> xtriggers, List<string> extends,
+                       List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers, List<string> extends,
                        string decayTo, int? lifetime, bool? unique, int? animframes,
                        string uniquenessgroup)
         {
@@ -137,29 +137,6 @@ namespace CarcassSpark.ObjectTypes
 
         }
         
-
-        public class XTrigger
-        {
-            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public string morphEffect, id;
-            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public int? chance, level;
-
-            public XTrigger(string id, int? chance, string morphEffect, int? level)
-            {
-                this.id = id;
-                this.chance = chance;
-                this.morphEffect = morphEffect;
-                this.level = level;
-            }
-
-            public enum MorphEffectType
-            {
-                Transform,
-                Spawn,
-                Mutate
-            }
-        }
     }
     
 }
