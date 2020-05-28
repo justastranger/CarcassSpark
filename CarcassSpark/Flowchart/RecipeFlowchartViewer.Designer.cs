@@ -109,6 +109,10 @@
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "\"PNG files|*.png\"";
+            // 
             // RecipeFlowchartViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
