@@ -62,7 +62,7 @@ namespace CarcassSpark.ObjectViewers
         private void slotsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListView.SelectedItems == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text.ToString()], editing);
+            SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text], editing);
             sv.ShowDialog();
         }
 

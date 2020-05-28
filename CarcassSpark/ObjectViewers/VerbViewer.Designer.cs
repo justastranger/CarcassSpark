@@ -179,6 +179,7 @@
             this.slotsListView.TabIndex = 14;
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
+            this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListBox_DoubleClick);
             // 
             // VerbViewer
             // 
