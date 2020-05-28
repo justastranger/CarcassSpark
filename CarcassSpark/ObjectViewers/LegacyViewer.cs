@@ -100,6 +100,13 @@ namespace CarcassSpark.ObjectViewers
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
+            if (legacy.statusbarelements != null)
+            {
+                foreach (string element in legacy.statusbarelements)
+                {
+                    statusBarElementsListView.Items.Add(element);
+                }
+            }
         }
 
         void setEditingMode(bool editing)
@@ -258,11 +265,17 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListView.SelectedItems[0].Text);
                 excludesOnEndingListView.Items.Remove(excludesOnEndingListView.SelectedItems[0]);
+                if (displayedLegacy.excludesOnEnding.Count == 0) displayedLegacy.excludesOnEnding = null;
             }
         }
 
         private void addStatusBarElementButton_Click(object sender, EventArgs e)
         {
+            if (displayedLegacy.statusbarelements != null && displayedLegacy.statusbarelements.Count == 4)
+            {
+                MessageBox.Show("There is currently a limit of 4 statusbarelements");
+                return;
+            }
             if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
             {
                 if (displayedLegacy.statusbarelements == null) displayedLegacy.statusbarelements = new List<string>();
@@ -287,8 +300,14 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (displayedLegacy.statusbarelements != null && displayedLegacy.statusbarelements.Count == 4)
+                {
+                    MessageBox.Show("There is currently a limit of 4 statusbarelements");
+                    return;
+                }
                 if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
                 {
+                    if (displayedLegacy.statusbarelements == null) displayedLegacy.statusbarelements = new List<string>();
                     statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
                     displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
                     statusBarElementTextBox.Text = "";
