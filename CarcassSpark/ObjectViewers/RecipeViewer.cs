@@ -94,6 +94,8 @@ namespace CarcassSpark.ObjectViewers
             deleteVerbDataGridView.ReadOnly = !editing;
             deleteVerbDataGridView.AllowUserToAddRows = editing;
             deleteVerbDataGridView.AllowUserToDeleteRows = editing;
+            moveMutationUpButton.Visible = editing;
+            moveMutationDownButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
             if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;
