@@ -1111,7 +1111,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 aspectsListBox.SelectedIndex = -1;
-                if (aspectsListBox.IndexFromPoint(e.Location) > 0)
+                if (aspectsListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     aspectsListBox.SelectedIndex = aspectsListBox.IndexFromPoint(e.Location);
                 }
@@ -1123,7 +1123,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 elementsListBox.SelectedIndex = -1;
-                if (elementsListBox.IndexFromPoint(e.Location) > 0)
+                if (elementsListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     elementsListBox.SelectedIndex = elementsListBox.IndexFromPoint(e.Location);
                 }
@@ -1135,7 +1135,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 recipesListBox.SelectedIndex = -1;
-                if (recipesListBox.IndexFromPoint(e.Location) > 0)
+                if (recipesListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     recipesListBox.SelectedIndex = recipesListBox.IndexFromPoint(e.Location);
                 }
@@ -1147,7 +1147,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 decksListBox.SelectedIndex = -1;
-                if (decksListBox.IndexFromPoint(e.Location) > 0)
+                if (decksListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     decksListBox.SelectedIndex = decksListBox.IndexFromPoint(e.Location);
                 }
@@ -1159,7 +1159,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 legaciesListBox.SelectedIndex = -1;
-                if (legaciesListBox.IndexFromPoint(e.Location) > 0)
+                if (legaciesListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     legaciesListBox.SelectedIndex = legaciesListBox.IndexFromPoint(e.Location);
                 }
@@ -1171,7 +1171,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 endingsListBox.SelectedIndex = -1;
-                if (endingsListBox.IndexFromPoint(e.Location) > 0)
+                if (endingsListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     endingsListBox.SelectedIndex = endingsListBox.IndexFromPoint(e.Location);
                 }
@@ -1183,7 +1183,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 verbsListBox.SelectedIndex = -1;
-                if (verbsListBox.IndexFromPoint(e.Location) > 0)
+                if (verbsListBox.IndexFromPoint(e.Location) >= 0)
                 {
                     verbsListBox.SelectedIndex = verbsListBox.IndexFromPoint(e.Location);
                 }
