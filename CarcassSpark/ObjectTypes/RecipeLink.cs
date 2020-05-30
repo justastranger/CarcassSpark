@@ -27,14 +27,8 @@ namespace CarcassSpark.ObjectTypes
             this.id = id;
             this.chance = chance;
             this.additional = additional;
-            if (challenges != null)
-            {
-                this.challenges = challenges;
-            }
-            if (expulsion != null)
-            {
-                this.expulsion = expulsion;
-            }
+            this.challenges = challenges;
+            this.expulsion = expulsion;
         }
 
         public RecipeLink()
@@ -47,13 +41,13 @@ namespace CarcassSpark.ObjectTypes
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public Dictionary<string, int> filter;
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public int limit;
+            public int? limit;
 
             [JsonConstructor]
             public Expulsion(Dictionary<string, int> filter, int? limit)
             {
                 this.filter = filter;
-                if (limit.HasValue) this.limit = limit.Value;
+                this.limit = limit;
             }
 
             public Expulsion(int limit)

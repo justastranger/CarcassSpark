@@ -52,25 +52,25 @@ namespace CarcassSpark.ObjectTypes
             this.id = id;
             this.label = label;
             this.description = description;
-            if (spec != null)this.spec = spec;
-            if (spec_append != null) this.spec_append = spec_append;
-            if (spec_prepend != null) this.spec_prepend = spec_prepend;
-            if (spec_remove != null) this.spec_remove = spec_remove;
+            this.spec = spec;
+            this.spec_append = spec_append;
+            this.spec_prepend = spec_prepend;
+            this.spec_remove = spec_remove;
             this.comments = comments;
             this.defaultcard = defaultcard;
             this.resetonexhaustion = resetonexhaustion;
-            if (defaultdraws.HasValue) this.defaultdraws = defaultdraws;
-            if (defaultdraws_add.HasValue) this.defaultdraws_add = defaultdraws_add;
-            if (defaultdraws_minus.HasValue) this.defaultdraws_minus = defaultdraws_minus;
-            if (draws.HasValue) this.draws = draws;
-            if (draws_add.HasValue) this.draws_add = draws_add;
-            if (draws_minus.HasValue) this.draws_minus = draws_minus;
-            if (drawmessages != null) this.drawmessages = drawmessages;
-            if (drawmessages_extend != null) this.drawmessages_extend = drawmessages_extend;
-            if (drawmessages_remove != null) this.drawmessages_remove = drawmessages_remove;
-            if (defaultdrawmessages != null) this.defaultdrawmessages = defaultdrawmessages;
-            if (defaultdrawmessages_extend != null) this.defaultdrawmessages_extend = defaultdrawmessages_extend;
-            if (defaultdrawmessages_remove != null) this.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            this.defaultdraws = defaultdraws;
+            this.defaultdraws_add = defaultdraws_add;
+            this.defaultdraws_minus = defaultdraws_minus;
+            this.draws = draws;
+            this.draws_add = draws_add;
+            this.draws_minus = draws_minus;
+            this.drawmessages = drawmessages;
+            this.drawmessages_extend = drawmessages_extend;
+            this.drawmessages_remove = drawmessages_remove;
+            this.defaultdrawmessages = defaultdrawmessages;
+            this.defaultdrawmessages_extend = defaultdrawmessages_extend;
+            this.defaultdrawmessages_remove = defaultdrawmessages_remove;
         }
         
         public Deck()

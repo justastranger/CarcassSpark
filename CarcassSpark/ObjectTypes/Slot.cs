@@ -31,14 +31,9 @@ namespace CarcassSpark.ObjectTypes
             this.actionId = actionId;
             // optional
             // required.First -> { "funds" : 1 } somehow
-            if (required != null) this.required = required;
-            //if (required.Children().Count() > 1) this.required = required.ToObject<ElementDictionary>();//.First.Value<int>();
-            //else
-            //{
-            //    this.required = new ElementDictionary(((JObject)required.First)., required.First.First.Value<int>());
-            //}
+            this.required = required;
             // optional
-            if (forbidden != null) this.forbidden = forbidden;
+            this.forbidden = forbidden;
             // optional
             this.greedy = greedy;
             this.consumes = consumes;

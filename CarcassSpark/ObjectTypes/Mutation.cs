@@ -21,11 +21,10 @@ namespace CarcassSpark.ObjectTypes
         [JsonConstructor]
         public Mutation(string filterOnAspectId, string filter, string mutateAspectId, string mutate, int? mutationLevel, int? level, bool? additive)
         {
-            this.filterOnAspectId = filterOnAspectId != null ? filterOnAspectId : filter;
-            this.mutateAspectId = mutateAspectId != null ? mutateAspectId : mutate;
-            if (mutationLevel.HasValue) this.mutationLevel = mutationLevel;
-            else if (level.HasValue) this.mutationLevel = level;
-            if (additive.HasValue) this.additive = additive;
+            this.filterOnAspectId = filterOnAspectId ?? filter;
+            this.mutateAspectId = mutateAspectId ?? mutate;
+            this.mutationLevel = mutationLevel ?? level;
+            this.additive = additive;
         }
 
         public Mutation()

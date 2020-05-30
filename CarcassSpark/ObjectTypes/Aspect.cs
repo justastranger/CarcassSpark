@@ -36,18 +36,18 @@ namespace CarcassSpark.ObjectTypes
             else this.icon = id;
             // isHidden is true iff isAspect is true
             // optional
-            if (isHidden == true) this.isHidden = true;
+            this.isHidden = isHidden;
             // optional
-            if (induces != null) this.induces = induces;
-            if (induces_prepend != null) this.induces_prepend = induces_prepend;
-            if (induces_append != null) this.induces_append = induces_append;
-            if (induces_remove != null) this.induces_remove = induces_remove;
+            this.induces = induces;
+            this.induces_prepend = induces_prepend;
+            this.induces_append = induces_append;
+            this.induces_remove = induces_remove;
             // optional
             this.noartneeded = noartneeded;
             // optional
             this.comments = comments;
             // optional, didn't even know it was possible tbqh
-            if (aspects != null) this.aspects = aspects;
+            this.aspects = aspects;
         }
 
         public Aspect()

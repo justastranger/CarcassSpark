@@ -77,36 +77,36 @@ namespace CarcassSpark.ObjectTypes
             // not necessary
             this.comments = comments;
             // not necessary (stay of execution)
-            if (aspects != null) this.aspects = aspects;
-            if (aspects_extend != null) this.aspects_extend = aspects_extend;
-            if (aspects_remove != null) this.aspects_remove = aspects_remove;
+            this.aspects = aspects;
+            this.aspects_extend = aspects_extend;
+            this.aspects_remove = aspects_remove;
             // not necessary
-            if (slots != null) this.slots = slots;
-            if (slots_prepend != null) this.slots_prepend = slots_prepend;
-            if (slots_append != null) this.slots_append = slots_append;
-            if (slots_remove != null) this.slots_remove = slots_remove;
+            this.slots = slots;
+            this.slots_prepend = slots_prepend;
+            this.slots_append = slots_append;
+            this.slots_remove = slots_remove;
             // not necessary
-            if (xtriggers != null) this.xtriggers = xtriggers;
-            if (xtriggers_extend != null) this.xtriggers_extend = xtriggers_extend;
-            if (xtriggers_remove != null) this.xtriggers_remove = xtriggers_remove;
+            this.xtriggers = xtriggers;
+            this.xtriggers_extend = xtriggers_extend;
+            this.xtriggers_remove = xtriggers_remove;
             // not necessary
-            if (animframes.HasValue) this.animframes = animframes;
-            if (animframes_add.HasValue) this.animframes_add = animframes_add;
-            if (animframes_minus.HasValue) this.animframes_minus = animframes_minus;
+            this.animframes = animframes;
+            this.animframes_add = animframes_add;
+            this.animframes_minus = animframes_minus;
             // not necessary
-            if (unique.HasValue) this.unique = unique;
+            this.unique = unique;
             // not necessary
-            if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup;
+            this.uniquenessgroup = uniquenessgroup;
             // not necessary
-            if (lifetime.HasValue) this.lifetime = lifetime;
-            if (lifetime_add.HasValue) this.lifetime_add = lifetime_add;
-            if (lifetime_minus.HasValue) this.lifetime_minus = lifetime_minus;
+            this.lifetime = lifetime;
+            this.lifetime_add = lifetime_add;
+            this.lifetime_minus = lifetime_minus;
             // not necessary
-            if (resaturate.HasValue) this.resaturate = resaturate;
+            this.resaturate = resaturate;
             // not necessary, always null when lifetime is
-            if (decayTo != null) this.decayTo = decayTo;
+            this.decayTo = decayTo;
             // This is only present in modded elements
-            if (extends != null) this.extends = extends;
+            this.extends = extends;
         }
         
         public Element(string id, string label, string description,
@@ -118,18 +118,17 @@ namespace CarcassSpark.ObjectTypes
             this.id = id;
             this.label = label;
             this.description = description;
-            if (icon != null) this.icon = icon;
-            else this.icon = id;
+            this.icon = icon;
             this.comments = comments;
-            if (aspects != null) this.aspects = aspects;
-            if (slots != null) this.slots = slots;
-            if (xtriggers != null) this.xtriggers = xtriggers;
-            if (extends != null) this.extends = extends;
-            if (decayTo != null) this.decayTo = decayTo;
-            if (lifetime.HasValue) this.lifetime = lifetime;
-            if (unique.HasValue) this.unique = unique;
-            if (animframes.HasValue) this.animframes = animframes;
-            if (uniquenessgroup != null) this.uniquenessgroup = uniquenessgroup; ;
+            this.aspects = aspects;
+            this.slots = slots;
+            this.xtriggers = xtriggers;
+            this.extends = extends;
+            this.decayTo = decayTo;
+            this.lifetime = lifetime;
+            this.unique = unique;
+            this.animframes = animframes;
+            this.uniquenessgroup = uniquenessgroup; ;
         }
         
         public Element()
