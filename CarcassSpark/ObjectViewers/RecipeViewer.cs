@@ -84,6 +84,16 @@ namespace CarcassSpark.ObjectViewers
             moveLinkedRecipeDownButton.Visible = editing;
             moveLinkedRecipeUpButton.Visible = editing;
             okButton.Visible = editing;
+            signalImportantLoopCheckBox.Enabled = editing;
+            purgeDataGridView.ReadOnly = !editing;
+            purgeDataGridView.AllowUserToAddRows = editing;
+            purgeDataGridView.AllowUserToDeleteRows = editing;
+            haltVerbDataGridView.ReadOnly = !editing;
+            haltVerbDataGridView.AllowUserToAddRows = editing;
+            haltVerbDataGridView.AllowUserToDeleteRows = editing;
+            deleteVerbDataGridView.ReadOnly = !editing;
+            deleteVerbDataGridView.AllowUserToAddRows = editing;
+            deleteVerbDataGridView.AllowUserToDeleteRows = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
             if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;
@@ -349,6 +359,102 @@ namespace CarcassSpark.ObjectViewers
                 {
                     mutations.Add(mutation.mutateAspectId, mutation);
                     mutationsListView.Items.Add(mutation.mutateAspectId);
+                }
+            }
+            if (recipe.purge != null && recipe.purge.Count > 0)
+            {
+                purgeDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.purge)
+                {
+                    purgeDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.purge_extend != null && recipe.purge_extend.Count > 0)
+            {
+                //purgeDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.purge_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.CreateCells(purgeDataGridView, kvp.Key, kvp.Value);
+                    purgeDataGridView.Rows.Add(row);
+                    //purgeDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.purge_remove != null && recipe.purge_remove.Count > 0)
+            {
+                //purgeDataGridView.Rows.Clear();
+                foreach (string removeId in recipe.purge_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    row.CreateCells(purgeDataGridView, removeId);
+                    purgeDataGridView.Rows.Add(row);
+                    //purgeDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.deleteverb != null && recipe.deleteverb.Count > 0)
+            {
+                deleteVerbDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.deleteverb)
+                {
+                    deleteVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.deleteverb_extend != null && recipe.deleteverb_extend.Count > 0)
+            {
+                //deleteVerbDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.deleteverb_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.CreateCells(deleteVerbDataGridView, kvp.Key, kvp.Value);
+                    deleteVerbDataGridView.Rows.Add(row);
+                    //deleteVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.deleteverb_remove != null && recipe.deleteverb_remove.Count > 0)
+            {
+                //deleteVerbDataGridView.Rows.Clear();
+                foreach (string removeId in recipe.deleteverb_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    row.CreateCells(deleteVerbDataGridView, removeId);
+                    deleteVerbDataGridView.Rows.Add(row);
+                    //deleteVerbDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.haltverb != null && recipe.haltverb.Count > 0)
+            {
+                haltVerbDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.haltverb)
+                {
+                    haltVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.haltverb_extend != null && recipe.haltverb_extend.Count > 0)
+            {
+                //haltVerbDataGridView.Rows.Clear();
+                foreach (KeyValuePair<string, int> kvp in recipe.haltverb_extend)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    row.CreateCells(haltVerbDataGridView, kvp.Key, kvp.Value);
+                    haltVerbDataGridView.Rows.Add(row);
+                    //haltVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
+                }
+            }
+            if (recipe.haltverb_remove != null && recipe.haltverb_remove.Count > 0)
+            {
+                //haltVerbDataGridView.Rows.Clear();
+                foreach (string removeId in recipe.haltverb_remove)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    row.CreateCells(haltVerbDataGridView, removeId);
+                    haltVerbDataGridView.Rows.Add(row);
+                    //haltVerbDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
         }
@@ -1332,6 +1438,153 @@ namespace CarcassSpark.ObjectViewers
                     displayedRecipe.linked.Add(recipeLinks[item.Text]);
                 }
             }
+        }
+
+        private void signalImportantLoopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.signalimportantloop = signalImportantLoopCheckBox.Checked;
+        }
+
+        private void purgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (purgeDataGridView.SelectedCells[0].Value == null) return;
+            string id = purgeDataGridView.SelectedCells[0].Value.ToString();
+            if (Utilities.aspectExists(id))
+            {
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                av.ShowDialog();
+            }
+            else if (Utilities.elementExists(id))
+            {
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ev.ShowDialog();
+            }
+        }
+
+        private void haltVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value == null) return;
+            string id = haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (Utilities.verbExists(id))
+            {
+                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), false);
+                vv.ShowDialog();
+            }
+        }
+
+        private void deleteVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value == null) return;
+            string id = deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (Utilities.verbExists(id))
+            {
+                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), false);
+                vv.ShowDialog();
+            }
+        }
+
+        private void deleteVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedRecipe.deleteverb_extend == null) return;
+                if (displayedRecipe.deleteverb_extend.ContainsKey(key)) displayedRecipe.deleteverb_extend.Remove(key);
+                if (displayedRecipe.deleteverb_extend.Count == 0) displayedRecipe.deleteverb_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedRecipe.deleteverb_remove == null) return;
+                if (displayedRecipe.deleteverb_remove.Contains(key)) displayedRecipe.deleteverb_remove.Remove(key);
+                if (displayedRecipe.deleteverb_remove.Count == 0) displayedRecipe.deleteverb_remove = null;
+            }
+            else
+            {
+                if (displayedRecipe.deleteverb == null) return;
+                if (displayedRecipe.deleteverb.ContainsKey(key)) displayedRecipe.deleteverb.Remove(key);
+                if (displayedRecipe.deleteverb.Count == 0) displayedRecipe.deleteverb = null;
+            }
+        }
+
+        private void haltVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedRecipe.haltverb_extend == null) return;
+                if (displayedRecipe.haltverb_extend.ContainsKey(key)) displayedRecipe.haltverb_extend.Remove(key);
+                if (displayedRecipe.haltverb_extend.Count == 0) displayedRecipe.haltverb_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedRecipe.haltverb_remove == null) return;
+                if (displayedRecipe.haltverb_remove.Contains(key)) displayedRecipe.haltverb_remove.Remove(key);
+                if (displayedRecipe.haltverb_remove.Count == 0) displayedRecipe.haltverb_remove = null;
+            }
+            else
+            {
+                if (displayedRecipe.haltverb == null) return;
+                if (displayedRecipe.haltverb.ContainsKey(key)) displayedRecipe.haltverb.Remove(key);
+                if (displayedRecipe.haltverb.Count == 0) displayedRecipe.haltverb = null;
+            }
+        }
+
+        private void purgeDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            {
+
+                if (displayedRecipe.purge_extend == null) return;
+                if (displayedRecipe.purge_extend.ContainsKey(key)) displayedRecipe.purge_extend.Remove(key);
+                if (displayedRecipe.purge_extend.Count == 0) displayedRecipe.purge_extend = null;
+            }
+            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            {
+
+                if (displayedRecipe.purge_remove == null) return;
+                if (displayedRecipe.purge_remove.Contains(key)) displayedRecipe.purge_remove.Remove(key);
+                if (displayedRecipe.purge_remove.Count == 0) displayedRecipe.purge_remove = null;
+            }
+            else
+            {
+                if (displayedRecipe.purge == null) return;
+                if (displayedRecipe.purge.ContainsKey(key)) displayedRecipe.purge.Remove(key);
+                if (displayedRecipe.purge.Count == 0) displayedRecipe.purge = null;
+            }
+        }
+
+        private void moveMutationUpButton_Click(object sender, EventArgs e)
+        {
+            if (mutationsListView.SelectedItems.Count == 0) return;
+            // check to see if first item is selected
+            if (mutationsListView.SelectedIndices[0] == 0) return;
+
+            int selectedIndex = mutationsListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex--;
+            ListViewItem selectedItem = mutationsListView.SelectedItems[0];
+            mutationsListView.Items.Remove(selectedItem);
+            mutationsListView.Items.Insert(affectedIndex - 1, selectedItem);
+            // TODO refactor mutation storage/handling so I can save it like linked and alternate recipes
+            // saveMutations();
+        }
+
+        private void moveMutationDownButton_Click(object sender, EventArgs e)
+        {
+            if (mutationsListView.SelectedItems.Count == 0) return;
+            // check to see if last item is selected
+            if (mutationsListView.SelectedIndices[0] == mutationsListView.Items.Count - 1) return;
+
+            int selectedIndex = mutationsListView.SelectedIndices[0];
+            int affectedIndex = selectedIndex++;
+            ListViewItem selectedItem = mutationsListView.SelectedItems[0];
+            mutationsListView.Items.Remove(selectedItem);
+            mutationsListView.Items.Insert(affectedIndex + 1, selectedItem);
+            // saveMutations();
         }
     }
 }

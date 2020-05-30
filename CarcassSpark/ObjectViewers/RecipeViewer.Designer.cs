@@ -105,11 +105,26 @@
             this.portalEffectLabel = new System.Windows.Forms.Label();
             this.portalEffectDomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.signalEndingFlavourDomainUpDown = new System.Windows.Forms.DomainUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.signalEndingFlavourLabel = new System.Windows.Forms.Label();
             this.moveAltRecipeUpButton = new System.Windows.Forms.Button();
             this.moveAltRecipeDownButton = new System.Windows.Forms.Button();
             this.moveLinkedRecipeUpButton = new System.Windows.Forms.Button();
             this.moveLinkedRecipeDownButton = new System.Windows.Forms.Button();
+            this.signalImportantLoopCheckBox = new System.Windows.Forms.CheckBox();
+            this.purgeDataGridView = new System.Windows.Forms.DataGridView();
+            this.purgeLabel = new System.Windows.Forms.Label();
+            this.haltVerbLabel = new System.Windows.Forms.Label();
+            this.haltVerbDataGridView = new System.Windows.Forms.DataGridView();
+            this.deleteVerbLabel = new System.Windows.Forms.Label();
+            this.deleteVerbDataGridView = new System.Windows.Forms.DataGridView();
+            this.deleteVerbIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.haltVerbIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.haltVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purgeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purgeAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moveMutationUpButton = new System.Windows.Forms.Button();
+            this.moveMutationDownButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -119,6 +134,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purgeDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.haltVerbDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -549,7 +567,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(669, 633);
+            this.cancelButton.Location = new System.Drawing.Point(945, 633);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 37;
@@ -851,14 +869,14 @@
             this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(100, 20);
             this.signalEndingFlavourDomainUpDown.TabIndex = 69;
             // 
-            // label1
+            // signalEndingFlavourLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(428, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 13);
-            this.label1.TabIndex = 70;
-            this.label1.Text = "Signal Ending Flavour";
+            this.signalEndingFlavourLabel.AutoSize = true;
+            this.signalEndingFlavourLabel.Location = new System.Drawing.Point(428, 9);
+            this.signalEndingFlavourLabel.Name = "signalEndingFlavourLabel";
+            this.signalEndingFlavourLabel.Size = new System.Drawing.Size(110, 13);
+            this.signalEndingFlavourLabel.TabIndex = 70;
+            this.signalEndingFlavourLabel.Text = "Signal Ending Flavour";
             // 
             // moveAltRecipeUpButton
             // 
@@ -900,16 +918,167 @@
             this.moveLinkedRecipeDownButton.UseVisualStyleBackColor = true;
             this.moveLinkedRecipeDownButton.Click += new System.EventHandler(this.moveLinkedRecipeDownButton_Click);
             // 
+            // signalImportantLoopCheckBox
+            // 
+            this.signalImportantLoopCheckBox.AutoSize = true;
+            this.signalImportantLoopCheckBox.Location = new System.Drawing.Point(12, 138);
+            this.signalImportantLoopCheckBox.Name = "signalImportantLoopCheckBox";
+            this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(129, 17);
+            this.signalImportantLoopCheckBox.TabIndex = 75;
+            this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
+            this.signalImportantLoopCheckBox.UseVisualStyleBackColor = true;
+            this.signalImportantLoopCheckBox.CheckedChanged += new System.EventHandler(this.signalImportantLoopCheckBox_CheckedChanged);
+            // 
+            // purgeDataGridView
+            // 
+            this.purgeDataGridView.AllowUserToResizeColumns = false;
+            this.purgeDataGridView.AllowUserToResizeRows = false;
+            this.purgeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.purgeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.purgeIdDataGridViewTextBoxColumn,
+            this.purgeAmountDataGridViewTextBoxColumn});
+            this.purgeDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
+            this.purgeDataGridView.Location = new System.Drawing.Point(750, 189);
+            this.purgeDataGridView.Name = "purgeDataGridView";
+            this.purgeDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.purgeDataGridView.TabIndex = 76;
+            this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purgeDataGridView_CellDoubleClick);
+            this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.purgeDataGridView_UserDeletedRow);
+            // 
+            // purgeLabel
+            // 
+            this.purgeLabel.AutoSize = true;
+            this.purgeLabel.Location = new System.Drawing.Point(855, 173);
+            this.purgeLabel.Name = "purgeLabel";
+            this.purgeLabel.Size = new System.Drawing.Size(35, 13);
+            this.purgeLabel.TabIndex = 77;
+            this.purgeLabel.Text = "Purge";
+            // 
+            // haltVerbLabel
+            // 
+            this.haltVerbLabel.AutoSize = true;
+            this.haltVerbLabel.Location = new System.Drawing.Point(839, 317);
+            this.haltVerbLabel.Name = "haltVerbLabel";
+            this.haltVerbLabel.Size = new System.Drawing.Size(51, 13);
+            this.haltVerbLabel.TabIndex = 79;
+            this.haltVerbLabel.Text = "Halt Verb";
+            // 
+            // haltVerbDataGridView
+            // 
+            this.haltVerbDataGridView.AllowUserToResizeColumns = false;
+            this.haltVerbDataGridView.AllowUserToResizeRows = false;
+            this.haltVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.haltVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.haltVerbIdDataGridViewTextBoxColumn,
+            this.haltVerbAmountDataGridViewTextBoxColumn});
+            this.haltVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
+            this.haltVerbDataGridView.Location = new System.Drawing.Point(750, 333);
+            this.haltVerbDataGridView.Name = "haltVerbDataGridView";
+            this.haltVerbDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.haltVerbDataGridView.TabIndex = 78;
+            this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.haltVerbDataGridView_CellDoubleClick);
+            this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.haltVerbDataGridView_UserDeletedRow);
+            // 
+            // deleteVerbLabel
+            // 
+            this.deleteVerbLabel.AutoSize = true;
+            this.deleteVerbLabel.Location = new System.Drawing.Point(839, 461);
+            this.deleteVerbLabel.Name = "deleteVerbLabel";
+            this.deleteVerbLabel.Size = new System.Drawing.Size(63, 13);
+            this.deleteVerbLabel.TabIndex = 81;
+            this.deleteVerbLabel.Text = "Delete Verb";
+            // 
+            // deleteVerbDataGridView
+            // 
+            this.deleteVerbDataGridView.AllowUserToResizeColumns = false;
+            this.deleteVerbDataGridView.AllowUserToResizeRows = false;
+            this.deleteVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.deleteVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.deleteVerbIdDataGridViewTextBoxColumn,
+            this.deleteVerbAmountDataGridViewTextBoxColumn});
+            this.deleteVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
+            this.deleteVerbDataGridView.Location = new System.Drawing.Point(750, 477);
+            this.deleteVerbDataGridView.Name = "deleteVerbDataGridView";
+            this.deleteVerbDataGridView.Size = new System.Drawing.Size(240, 121);
+            this.deleteVerbDataGridView.TabIndex = 80;
+            this.deleteVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deleteVerbDataGridView_CellDoubleClick);
+            this.deleteVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deleteVerbDataGridView_UserDeletedRow);
+            // 
+            // deleteVerbIdDataGridViewTextBoxColumn
+            // 
+            this.deleteVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
+            this.deleteVerbIdDataGridViewTextBoxColumn.Name = "deleteVerbIdDataGridViewTextBoxColumn";
+            this.deleteVerbIdDataGridViewTextBoxColumn.Width = 99;
+            // 
+            // deleteVerbAmountDataGridViewTextBoxColumn
+            // 
+            this.deleteVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.deleteVerbAmountDataGridViewTextBoxColumn.Name = "deleteVerbAmountDataGridViewTextBoxColumn";
+            this.deleteVerbAmountDataGridViewTextBoxColumn.Width = 98;
+            // 
+            // haltVerbIdDataGridViewTextBoxColumn
+            // 
+            this.haltVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
+            this.haltVerbIdDataGridViewTextBoxColumn.Name = "haltVerbIdDataGridViewTextBoxColumn";
+            this.haltVerbIdDataGridViewTextBoxColumn.Width = 99;
+            // 
+            // haltVerbAmountDataGridViewTextBoxColumn
+            // 
+            this.haltVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.haltVerbAmountDataGridViewTextBoxColumn.Name = "haltVerbAmountDataGridViewTextBoxColumn";
+            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 98;
+            // 
+            // purgeIdDataGridViewTextBoxColumn
+            // 
+            this.purgeIdDataGridViewTextBoxColumn.HeaderText = "Element ID";
+            this.purgeIdDataGridViewTextBoxColumn.Name = "purgeIdDataGridViewTextBoxColumn";
+            this.purgeIdDataGridViewTextBoxColumn.Width = 99;
+            // 
+            // purgeAmountDataGridViewTextBoxColumn
+            // 
+            this.purgeAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.purgeAmountDataGridViewTextBoxColumn.Name = "purgeAmountDataGridViewTextBoxColumn";
+            this.purgeAmountDataGridViewTextBoxColumn.Width = 98;
+            // 
+            // moveMutationUpButton
+            // 
+            this.moveMutationUpButton.Location = new System.Drawing.Point(570, 633);
+            this.moveMutationUpButton.Name = "moveMutationUpButton";
+            this.moveMutationUpButton.Size = new System.Drawing.Size(34, 23);
+            this.moveMutationUpButton.TabIndex = 82;
+            this.moveMutationUpButton.Text = "Up";
+            this.moveMutationUpButton.UseVisualStyleBackColor = true;
+            this.moveMutationUpButton.Click += new System.EventHandler(this.moveMutationUpButton_Click);
+            // 
+            // moveMutationDownButton
+            // 
+            this.moveMutationDownButton.Location = new System.Drawing.Point(610, 633);
+            this.moveMutationDownButton.Name = "moveMutationDownButton";
+            this.moveMutationDownButton.Size = new System.Drawing.Size(49, 23);
+            this.moveMutationDownButton.TabIndex = 83;
+            this.moveMutationDownButton.Text = "Down";
+            this.moveMutationDownButton.UseVisualStyleBackColor = true;
+            this.moveMutationDownButton.Click += new System.EventHandler(this.moveMutationDownButton_Click);
+            // 
             // RecipeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 668);
+            this.ClientSize = new System.Drawing.Size(1032, 668);
+            this.Controls.Add(this.moveMutationDownButton);
+            this.Controls.Add(this.moveMutationUpButton);
+            this.Controls.Add(this.deleteVerbLabel);
+            this.Controls.Add(this.deleteVerbDataGridView);
+            this.Controls.Add(this.haltVerbLabel);
+            this.Controls.Add(this.haltVerbDataGridView);
+            this.Controls.Add(this.purgeLabel);
+            this.Controls.Add(this.purgeDataGridView);
+            this.Controls.Add(this.signalImportantLoopCheckBox);
             this.Controls.Add(this.moveLinkedRecipeDownButton);
             this.Controls.Add(this.moveLinkedRecipeUpButton);
             this.Controls.Add(this.moveAltRecipeDownButton);
             this.Controls.Add(this.moveAltRecipeUpButton);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.signalEndingFlavourLabel);
             this.Controls.Add(this.signalEndingFlavourDomainUpDown);
             this.Controls.Add(this.portalEffectDomainUpDown);
             this.Controls.Add(this.portalEffectLabel);
@@ -983,6 +1152,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.deckeffectDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxExecutionsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.warmupNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purgeDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.haltVerbDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1066,10 +1238,25 @@
         private System.Windows.Forms.Label portalEffectLabel;
         private System.Windows.Forms.DomainUpDown portalEffectDomainUpDown;
         private System.Windows.Forms.DomainUpDown signalEndingFlavourDomainUpDown;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label signalEndingFlavourLabel;
         private System.Windows.Forms.Button moveAltRecipeUpButton;
         private System.Windows.Forms.Button moveAltRecipeDownButton;
         private System.Windows.Forms.Button moveLinkedRecipeUpButton;
         private System.Windows.Forms.Button moveLinkedRecipeDownButton;
+        private System.Windows.Forms.CheckBox signalImportantLoopCheckBox;
+        private System.Windows.Forms.DataGridView purgeDataGridView;
+        private System.Windows.Forms.Label purgeLabel;
+        private System.Windows.Forms.Label haltVerbLabel;
+        private System.Windows.Forms.DataGridView haltVerbDataGridView;
+        private System.Windows.Forms.Label deleteVerbLabel;
+        private System.Windows.Forms.DataGridView deleteVerbDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deleteVerbIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deleteVerbAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn haltVerbIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn haltVerbAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purgeIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purgeAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button moveMutationUpButton;
+        private System.Windows.Forms.Button moveMutationDownButton;
     }
 }

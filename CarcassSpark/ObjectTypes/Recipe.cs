@@ -106,16 +106,30 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> purge;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$extend")]
+        public Dictionary<string, int> purge_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$remove")]
+        public List<string> purge_remove;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> haltverb;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$extend")]
+        public Dictionary<string, int> haltverb_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$remove")]
+        public List<string> haltverb_remove;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deleteverb;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$extend")]
+        public Dictionary<string, int> deleteverb_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$remove")]
+        public List<string> deleteverb_remove;
 
 
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
-                      string actionId, string startdescription, string description, string id, string label,
-                      List<string> extends, Deck internaldeck, string ending, string burnimage,
+                      string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
+                      List<string> extends, Deck internalDeck, string ending, string burnimage,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
@@ -124,58 +138,72 @@ namespace CarcassSpark.ObjectTypes
                       List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                       Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqs_extend, List<string> tablereqs_remove,
-                      Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove)
+                      Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove,
+                      Dictionary<string, int> purge, Dictionary<string, int> purge_extend, List<string> purge_remove,
+                      Dictionary<string, int> haltverb, Dictionary<string, int> haltverb_extend, List<string> haltverb_remove,
+                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove)
         {
             this.id = id;
             this.label = label;
             this.actionId = actionId;
             this.startdescription = startdescription;
             this.description = description;
-            if (craftable.HasValue) this.craftable = craftable;
-            if (hintonly.HasValue) this.hintonly = hintonly;
-            if (ending != null) this.ending = ending;
-            if (burnimage != null) this.burnimage = burnimage;
-            if (extends != null) this.extends = extends;
-            if (warmup.HasValue) this.warmup = warmup;
-            if (warmup_add.HasValue) this.warmup_add = warmup_add;
-            if (warmup_minus.HasValue) this.warmup_minus = warmup_minus;
-            if (requirements != null) this.requirements = requirements;
-            if (requirements_extend != null) this.requirements_extend = requirements_extend;
-            if (requirements_remove != null) this.requirements_remove = requirements_remove;
-            if (extantreqs != null) this.extantreqs = extantreqs;
-            if (extantreqs_extend != null) this.extantreqs_extend = extantreqs_extend;
-            if (extantreqs_remove != null) this.extantreqs_remove = extantreqs_remove;
-            if (tablereqs != null) this.tablereqs = tablereqs;
-            if (tablereqs_extend != null) this.tablereqs_extend = tablereqs_extend;
-            if (tablereqs_remove != null) this.tablereqs_remove = tablereqs_remove;
-            if (maxexecutions.HasValue) this.maxexecutions = maxexecutions;
-            if (maxexecutions_add.HasValue) this.maxexecutions_add = maxexecutions_add;
-            if (maxexecutions_minus.HasValue) this.maxexecutions_minus = maxexecutions_minus;
-            if (effects != null) this.effects = effects;
-            if (effects_extend != null) this.effects_extend = effects_extend;
-            if (effects_remove != null) this.effects_remove = effects_remove;
-            if (linked != null) this.linked = linked;
-            if (linked_prepend != null) this.linked_prepend = linked_prepend;
-            if (linked_append != null) this.linked_append = linked_append;
-            if (linked_remove != null) this.linked_remove = linked_remove;
-            if (slots != null) this.slots = slots;
-            if (alternativerecipes != null) this.alternativerecipes = alternativerecipes;
-            if (alternativerecipes_prepend != null) this.alternativerecipes_prepend = alternativerecipes_prepend;
-            if (alternativerecipes_append != null) this.alternativerecipes_append = alternativerecipes_append;
-            if (alternativerecipes_remove != null) this.alternativerecipes_remove = alternativerecipes_remove;
-            if (mutations != null) this.mutations = mutations;
-            if (mutations_prepend != null) this.mutations_prepend = mutations_prepend;
-            if (mutations_append != null) this.mutations_append = mutations_append;
-            if (mutations_remove != null) this.mutations_remove = mutations_remove;
-            if (aspects != null) this.aspects = aspects;
-            if (aspects_extend != null) this.aspects_extend = aspects_extend;
-            if (aspects_remove != null) this.aspects_remove = aspects_remove;
-            if (deckeffect != null) this.deckeffect = deckeffect;
-            if (deckeffect_extend != null) this.deckeffect_extend = deckeffect_extend;
-            if (deckeffect_remove != null) this.deckeffect_remove = deckeffect_remove;
-            if (hintonly.HasValue) this.hintonly = hintonly.Value;
-            if (internaldeck != null) this.internalDeck = internaldeck;
-
+            this.craftable = craftable;
+            this.hintonly = hintonly;
+            this.ending = ending;
+            this.burnimage = burnimage;
+            this.extends = extends;
+            this.warmup = warmup;
+            this.warmup_add = warmup_add;
+            this.warmup_minus = warmup_minus;
+            this.requirements = requirements;
+            this.requirements_extend = requirements_extend;
+            this.requirements_remove = requirements_remove;
+            this.extantreqs = extantreqs;
+            this.extantreqs_extend = extantreqs_extend;
+            this.extantreqs_remove = extantreqs_remove;
+            this.tablereqs = tablereqs;
+            this.tablereqs_extend = tablereqs_extend;
+            this.tablereqs_remove = tablereqs_remove;
+            this.maxexecutions = maxexecutions;
+            this.maxexecutions_add = maxexecutions_add;
+            this.maxexecutions_minus = maxexecutions_minus;
+            this.effects = effects;
+            this.effects_extend = effects_extend;
+            this.effects_remove = effects_remove;
+            this.linked = linked;
+            this.linked_prepend = linked_prepend;
+            this.linked_append = linked_append;
+            this.linked_remove = linked_remove;
+            this.slots = slots;
+            this.alternativerecipes = alternativerecipes;
+            this.alternativerecipes_prepend = alternativerecipes_prepend;
+            this.alternativerecipes_append = alternativerecipes_append;
+            this.alternativerecipes_remove = alternativerecipes_remove;
+            this.mutations = mutations;
+            this.mutations_prepend = mutations_prepend;
+            this.mutations_append = mutations_append;
+            this.mutations_remove = mutations_remove;
+            this.aspects = aspects;
+            this.aspects_extend = aspects_extend;
+            this.aspects_remove = aspects_remove;
+            this.deckeffect = deckeffect;
+            this.deckeffect_extend = deckeffect_extend;
+            this.deckeffect_remove = deckeffect_remove;
+            this.hintonly = hintonly;
+            this.internalDeck = internalDeck;
+            this.purge = purge;
+            this.purge_extend = purge_extend;
+            this.purge_remove = purge_remove;
+            this.haltverb = haltverb;
+            this.haltverb_extend = haltverb_extend;
+            this.haltverb_remove = haltverb_remove;
+            this.deleteverb = deleteverb;
+            this.deleteverb_extend = deleteverb_extend;
+            this.deleteverb_remove = deleteverb_remove;
+            this.portaleffect = portaleffect;
+            this.signalendingflavour = signalendingflavour;
+            this.signalimportantloop = signalimportantloop;
         }
 
         public Recipe()
