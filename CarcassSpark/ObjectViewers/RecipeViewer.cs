@@ -933,8 +933,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     mutationsListView.Items.Add(mv.displayedMutation.mutateAspectId);
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
-                    if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
-                    else displayedRecipe.mutations = new List<Mutation> { mv.displayedMutation };
+                    // if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
+                    // else displayedRecipe.mutations = new List<Mutation> { mv.displayedMutation };
+                    saveMutations();
                 }
             }
         }
@@ -948,8 +949,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     mutationsListView.Items.Add(mv.displayedMutation.mutateAspectId);
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
-                    if (displayedRecipe.mutations_prepend != null) displayedRecipe.mutations_prepend.Add(mv.displayedMutation);
-                    else displayedRecipe.mutations_prepend = new List<Mutation> { mv.displayedMutation };
+                    // if (displayedRecipe.mutations_prepend != null) displayedRecipe.mutations_prepend.Add(mv.displayedMutation);
+                    // else displayedRecipe.mutations_prepend = new List<Mutation> { mv.displayedMutation };
+                    saveMutations();
                 }
             }
         }
@@ -963,8 +965,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     mutationsListView.Items.Add(mv.displayedMutation.mutateAspectId);
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
-                    if (displayedRecipe.mutations_append != null) displayedRecipe.mutations_append.Add(mv.displayedMutation);
-                    else displayedRecipe.mutations_append = new List<Mutation> { mv.displayedMutation };
+                    // if (displayedRecipe.mutations_append != null) displayedRecipe.mutations_append.Add(mv.displayedMutation);
+                    // else displayedRecipe.mutations_append = new List<Mutation> { mv.displayedMutation };
+                    saveMutations();
                 }
             }
         }
@@ -1400,7 +1403,7 @@ namespace CarcassSpark.ObjectViewers
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    if (displayedRecipe.alternativerecipes_remove == null) displayedRecipe.alternativerecipes_remove = new List<String>();
+                    if (displayedRecipe.alternativerecipes_remove == null) displayedRecipe.alternativerecipes_remove = new List<string>();
                     displayedRecipe.alternativerecipes_remove.Add(item.Text);
                 }
                 else
@@ -1431,7 +1434,7 @@ namespace CarcassSpark.ObjectViewers
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    if (displayedRecipe.linked_remove == null) displayedRecipe.linked_remove = new List<String>();
+                    if (displayedRecipe.linked_remove == null) displayedRecipe.linked_remove = new List<string>();
                     displayedRecipe.linked_remove.Add(item.Text);
                 }
                 else
@@ -1572,7 +1575,7 @@ namespace CarcassSpark.ObjectViewers
             mutationsListView.Items.Remove(selectedItem);
             mutationsListView.Items.Insert(affectedIndex - 1, selectedItem);
             // TODO refactor mutation storage/handling so I can save it like linked and alternate recipes
-            // saveMutations();
+            saveMutations();
         }
 
         private void moveMutationDownButton_Click(object sender, EventArgs e)
@@ -1586,7 +1589,39 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = mutationsListView.SelectedItems[0];
             mutationsListView.Items.Remove(selectedItem);
             mutationsListView.Items.Insert(affectedIndex + 1, selectedItem);
-            // saveMutations();
+            saveMutations();
         }
+
+        private void saveMutations()
+        {
+            displayedRecipe.mutations = null;
+            displayedRecipe.mutations_prepend = null;
+            displayedRecipe.mutations_append = null;
+            displayedRecipe.mutations_remove = null;
+            foreach (ListViewItem item in linkedRecipesListView.Items)
+            {
+                if (item.BackColor == Utilities.ListAppendColor)
+                {
+                    if (displayedRecipe.mutations_append == null) displayedRecipe.mutations_append = new List<Mutation>();
+                    displayedRecipe.mutations_append.Add(mutations[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListPrependColor)
+                {
+                    if (displayedRecipe.mutations_prepend == null) displayedRecipe.mutations_prepend = new List<Mutation>();
+                    displayedRecipe.mutations_prepend.Add(mutations[item.Text]);
+                }
+                else if (item.BackColor == Utilities.ListRemoveColor)
+                {
+                    if (displayedRecipe.mutations_remove == null) displayedRecipe.mutations_remove = new List<string>();
+                    displayedRecipe.mutations_remove.Add(item.Text);
+                }
+                else
+                {
+                    if (displayedRecipe.mutations == null) displayedRecipe.mutations = new List<Mutation>();
+                    displayedRecipe.mutations.Add(mutations[item.Text]);
+                }
+            }
+        }
+
     }
 }
