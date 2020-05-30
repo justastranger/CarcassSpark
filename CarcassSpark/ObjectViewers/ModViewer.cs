@@ -748,14 +748,24 @@ namespace CarcassSpark.ObjectViewers
         {
             if (aspectsListBox.SelectedItem == null) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            string id = aspectsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in recipesList.Values)
             {
-                // if ((recipe.requirements != null && recipe.requirements.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.requirements[aspectsListBox.SelectedItem.ToString()] > 0) ||
-                // (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.extantreqs[aspectsListBox.SelectedItem.ToString()] > 0) ||
-                // (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.tablereqs[aspectsListBox.SelectedItem.ToString()] > 0))
-                // {
-                // tmp.Add(recipe.id, recipe);
-                // }
+                if (recipe.requirements != null)
+                {
+                    if (recipe.requirements.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.requirements.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.extantreqs != null)
+                {
+                    if (recipe.extantreqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.extantreqs.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.tablereqs != null)
+                {
+                    if (recipe.tablereqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.tablereqs.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
             }
             if (tmp.Count > 0)
             {
@@ -804,12 +814,19 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListBox.SelectedItem == null) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            string id = elementsListBox.SelectedItem.ToString();
             foreach (Element element in elementsList.Values)
             {
-                // if (element.xtriggers != null && element.xtriggers.ContainsValue(elementsListBox.SelectedItem.ToString()))
-                // {
-                //  tmp.Add(element.id, element);
-                // }
+                if (element.xtriggers != null)
+                {
+                    foreach (KeyValuePair<string, List<XTrigger>> xtrigger in element.xtriggers)
+                    {
+                        foreach (XTrigger xtriggereffect in xtrigger.Value)
+                        {
+                            if (xtriggereffect.id == id) tmp.Add(element.id, element);
+                        }
+                    }
+                }
             }
             if (tmp.Count > 0)
             {
@@ -822,14 +839,21 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListBox.SelectedItem == null) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in recipesList.Values)
             {
-                // if ((recipe.requirements != null && recipe.requirements.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.requirements[elementsListBox.SelectedItem.ToString()] > 0) ||
-                // (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.extantreqs[elementsListBox.SelectedItem.ToString()] > 0) ||
-                // (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.tablereqs[elementsListBox.SelectedItem.ToString()] > 0))
-                // {
-                // tmp.Add(recipe.id, recipe);
-                // }
+                if (recipe.requirements != null)
+                {
+                    if (recipe.requirements.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.extantreqs != null)
+                {
+                    if (recipe.extantreqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.tablereqs != null)
+                {
+                    if (recipe.tablereqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                }
             }
             if (tmp.Count > 0)
             {
@@ -842,12 +866,16 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListBox.SelectedItem == null) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in recipesList.Values)
             {
-                // if (recipe.effects != null && recipe.effects.ContainsKey(elementsListBox.SelectedItem.ToString()) && recipe.effects[elementsListBox.SelectedItem.ToString()] > 0)
-                // {
-                //     tmp.Add(recipe.id, recipe);
-                // }
+                if (recipe.effects != null)
+                {
+                    if (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id))
+                    {
+                        tmp.Add(recipe.id, recipe);
+                    }
+                }
             }
             if (tmp.Count > 0)
             {
