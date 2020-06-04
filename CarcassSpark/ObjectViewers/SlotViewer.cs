@@ -114,12 +114,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if(Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -129,12 +129,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -208,12 +208,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -223,12 +223,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 

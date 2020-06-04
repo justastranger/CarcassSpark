@@ -273,12 +273,12 @@ namespace CarcassSpark.ObjectViewers
             if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
                 DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), null);
-                dv.ShowDialog();
+                dv.Show();
             }
             else if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 

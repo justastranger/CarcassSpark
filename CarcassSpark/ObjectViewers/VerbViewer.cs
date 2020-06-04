@@ -69,7 +69,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (slotsListView.SelectedItems == null) return;
             SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text], editing);
-            sv.ShowDialog();
+            sv.Show();
         }
 
         private void okButton_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace CarcassSpark.DictionaryViewers
             if (Utilities.recipeExists(resultsListBox.SelectedItem.ToString()))
             {
                 RecipeViewer ev = new RecipeViewer(Utilities.getRecipe(resultsListBox.SelectedItem.ToString()), null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 

@@ -33,7 +33,7 @@ namespace CarcassSpark.DictionaryViewers
             if (Utilities.elementExists(resultsListBox.SelectedItem.ToString()))
             {
                 ElementViewer ev = new ElementViewer(results[resultsListBox.SelectedItem.ToString()], null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 

@@ -33,7 +33,7 @@ namespace CarcassSpark.DictionaryViewers
             if (Utilities.legacyExists(resultsListBox.SelectedItem.ToString()))
             {
                 LegacyViewer ev = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 
@@ -65,7 +65,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             LegacyViewer lv = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
-            lv.ShowDialog();
+            lv.Show();
         }
     }
 }

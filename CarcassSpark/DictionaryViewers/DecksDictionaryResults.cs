@@ -43,7 +43,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             DeckViewer dv = new DeckViewer(results[resultsListBox.SelectedItem.ToString()], null);
-            dv.ShowDialog();
+            dv.Show();
         }
     }
 }

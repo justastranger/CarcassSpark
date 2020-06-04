@@ -813,7 +813,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
-                edr.ShowDialog();
+                edr.Show();
             }
         }
 
@@ -831,7 +831,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
-                edr.ShowDialog();
+                edr.Show();
             }
         }
 
@@ -861,7 +861,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -879,7 +879,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -897,7 +897,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
-                edr.ShowDialog();
+                edr.Show();
             }
         }
 
@@ -922,7 +922,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
-                edr.ShowDialog();
+                edr.Show();
             }
         }
 
@@ -949,7 +949,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -971,7 +971,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -989,7 +989,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 DecksDictionaryResults ddr = new DecksDictionaryResults(tmp);
-                ddr.ShowDialog();
+                ddr.Show();
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 LegaciesDictionaryResults ldr = new LegaciesDictionaryResults(tmp);
-                ldr.ShowDialog();
+                ldr.Show();
             }
         }
 
@@ -1035,7 +1035,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -1053,7 +1053,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -1071,7 +1071,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -1089,7 +1089,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.ShowDialog();
+                rdr.Show();
             }
         }
 
@@ -1107,7 +1107,7 @@ namespace CarcassSpark.ObjectViewers
             if (tmp.Count > 0)
             {
                 ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
-                edr.ShowDialog();
+                edr.Show();
             }
         }
 

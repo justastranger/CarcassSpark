@@ -187,14 +187,14 @@ namespace CarcassSpark.ObjectViewers
             if (slotsListView.SelectedItems == null) return;
             string slotId = slotsListView.SelectedItems[0].Text.ToString();
             SlotViewer sv = new SlotViewer(slots[slotId], editing, SlotViewer.SlotType.ELEMENT);
-            sv.ShowDialog();
+            sv.Show();
         }
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), null);
-            av.ShowDialog();
+            av.Show();
         }
 
         private void xtriggersListView_DoubleClick(object sender, EventArgs e)

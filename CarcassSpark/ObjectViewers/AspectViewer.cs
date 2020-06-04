@@ -127,7 +127,7 @@ namespace CarcassSpark.ObjectViewers
         {
             string id = inducesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), null);
-            rv.ShowDialog();
+            rv.Show();
         }
         
         private void okButton_Click(object sender, EventArgs e)

@@ -21,13 +21,13 @@ namespace CarcassSpark.Tools
         private void inspectBaseButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(baseSummon, null);
-            ev.ShowDialog();
+            ev.Show();
         }
 
         private void inspectPreButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(preSummon, null);
-            ev.ShowDialog();
+            ev.Show();
         }
 
         private void baseRecipe_Assign(object sender, Recipe result)

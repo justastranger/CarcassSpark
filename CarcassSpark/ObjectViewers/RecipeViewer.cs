@@ -569,12 +569,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -585,12 +585,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -601,12 +601,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -617,12 +617,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
             else if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
         }
 
@@ -633,12 +633,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
             else if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 
@@ -649,7 +649,7 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.deckExists(id))
             {
                 DeckViewer dv = new DeckViewer(Utilities.getDeck(id), null);
-                dv.ShowDialog();
+                dv.Show();
             }
         }
 
@@ -1460,12 +1460,12 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
-                av.ShowDialog();
+                av.Show();
             }
             else if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
-                ev.ShowDialog();
+                ev.Show();
             }
         }
 
@@ -1476,7 +1476,7 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.verbExists(id))
             {
                 VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
-                vv.ShowDialog();
+                vv.Show();
             }
         }
 
@@ -1487,7 +1487,7 @@ namespace CarcassSpark.ObjectViewers
             if (Utilities.verbExists(id))
             {
                 VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
-                vv.ShowDialog();
+                vv.Show();
             }
         }
 

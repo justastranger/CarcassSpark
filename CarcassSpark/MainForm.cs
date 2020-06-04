@@ -66,7 +66,7 @@ namespace CarcassSpark
 
         private void openSettingsButton_Click(object sender, EventArgs e)
         {
-            new Settings().ShowDialog();
+            new Settings().Show();
         }
 
         private void newModButton_Click(object sender, EventArgs e)
