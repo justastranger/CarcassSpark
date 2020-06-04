@@ -55,11 +55,12 @@ namespace CarcassSpark
             DialogResult dr = modFolderBrowserDialog.ShowDialog();
             if(dr == DialogResult.OK)
             {
-                string location = modFolderBrowserDialog.SelectedPath;
+                string location = Settings.settings["previousMod"] != null ? Settings.settings["previousMod"].ToString() : modFolderBrowserDialog.SelectedPath;
                 ModViewer mv = new ModViewer(location, false);
                 Utilities.currentMods.Add(mv);
                 Settings.settings["previousMod"] = mv.currentDirectory;
                 mv.Show();
+                Settings.saveSettings();
             }
         }
 

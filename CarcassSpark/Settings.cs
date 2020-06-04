@@ -24,7 +24,7 @@ namespace CarcassSpark
             populateSettings();
         }
 
-        private static void saveSettings()
+        public static void saveSettings()
         {
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
             {
