@@ -16,13 +16,18 @@ namespace CarcassSpark.ObjectViewers
     {
         public Ending displayedEnding;
         bool editing;
+        event EventHandler<Ending> SuccessCallback;
 
-        public EndingViewer(Ending ending, bool? editing)
+        public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback)
         {
             InitializeComponent();
             displayedEnding = ending;
             fillValues(ending);
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null)
+            {
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else setEditingMode(false);
         }
 
@@ -96,6 +101,7 @@ namespace CarcassSpark.ObjectViewers
             }
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedEnding);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

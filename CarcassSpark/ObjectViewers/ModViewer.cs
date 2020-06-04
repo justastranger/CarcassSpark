@@ -345,54 +345,96 @@ namespace CarcassSpark.ObjectViewers
             return verbsList.ContainsKey(id);
         }
 
+        private void aspectListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), aspectsList_Assign);
+            av.Show();
+        }
+
+        private void aspectsList_Assign(object sender, Aspect result)
+        {
+            aspectsList[result.id] = result;
+            aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
+            // aspectsListBox.SelectedItem = result.id;
+        }
+
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), editMode);
-            dv.ShowDialog();
+            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), decksList_Assign);
+            dv.Show();
         }
 
-        private void recipesListBox_DoubleClick(object sender, EventArgs e)
+        private void decksList_Assign(object sender, Deck result)
         {
-            if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), editMode);
-            rv.ShowDialog();
+            decksList[result.id] = result;
+            decksListBox.Items[decksListBox.SelectedIndex] = result.id;
         }
 
-        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
+        private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (legaciesListBox.SelectedItem == null) return;
-            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), editMode);
-            lv.ShowDialog();
+            if (elementsListBox.SelectedItem == null) return;
+            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), elementsList_Assign);
+            ev.Show();
+        }
+
+        private void elementsList_Assign(object sender, Element result)
+        {
+            elementsList[result.id] = result;
+            elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
         }
 
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (endingsListBox.SelectedItem == null) return;
-            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), editMode);
-            ev.ShowDialog();
+            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), endingsList_Assign);
+            ev.Show();
+        }
+
+        private void endingsList_Assign(object sender, Ending result)
+        {
+            endingsList[result.id] = result;
+            endingsListBox.Items[endingsListBox.SelectedIndex] = result.id;
+        }
+
+        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (legaciesListBox.SelectedItem == null) return;
+            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), legaciesList_Assign);
+            lv.Show();
+        }
+
+        private void legaciesList_Assign(object sender, Legacy result)
+        {
+            legaciesList[result.id] = result;
+            legaciesListBox.Items[legaciesListBox.SelectedIndex] = result.id;
+        }
+
+        private void recipesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (recipesListBox.SelectedItem == null) return;
+            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), recipesList_Assign);
+            rv.Show();
+        }
+
+        private void recipesList_Assign(object sender, Recipe result)
+        {
+            recipesList[result.id] = result;
+            recipesListBox.Items[recipesListBox.SelectedIndex] = result.id;
         }
 
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (verbsListBox.SelectedItem == null) return;
-            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), editMode);
-            vv.ShowDialog();
+            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), verbsList_Assign);
+            vv.Show();
         }
 
-
-        private void elementsListBox_DoubleClick(object sender, EventArgs e)
+        private void verbsList_Assign(object sender, Verb result)
         {
-            if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), editMode);
-            ev.ShowDialog();
-        }
-
-        private void aspectListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), editMode);
-            av.ShowDialog();
+            verbsList[result.id] = result;
+            verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
         }
 
         private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -510,93 +552,86 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (AspectViewer av = new AspectViewer(new Aspect(), true))
-            {
-                av.ShowDialog();
-                if (av.DialogResult == DialogResult.OK && !aspectsList.ContainsKey(av.displayedAspect.id))
-                {
-                    aspectsList.Add(av.displayedAspect.id, av.displayedAspect);
-                    aspectsListBox.Items.Add(av.displayedAspect.id);
-                }
-            }
+            AspectViewer av = new AspectViewer(new Aspect(), aspectsList_Add);
+            av.Show();
         }
 
-        private void elementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aspectsList_Add(object sender, Aspect result)
         {
-            using (ElementViewer ev = new ElementViewer(new Element(), true))
-            {
-                ev.ShowDialog();
-                if (ev.DialogResult == DialogResult.OK && !elementsList.ContainsKey(ev.displayedElement.id))
-                {
-                    elementsList.Add(ev.displayedElement.id, ev.displayedElement);
-                    elementsListBox.Items.Add(ev.displayedElement.id);
-                }
-            }
+            aspectsList[result.id] = result;
+            aspectsListBox.Items.Add(result.id);
         }
 
         private void deckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DeckViewer dv = new DeckViewer(new Deck(), true))
-            {
-                dv.ShowDialog();
-                if (dv.DialogResult == DialogResult.OK && !decksList.ContainsKey(dv.displayedDeck.id))
-                {
-                    decksList.Add(dv.displayedDeck.id, dv.displayedDeck);
-                    decksListBox.Items.Add(dv.displayedDeck.id);
-                }
-            }
+            DeckViewer dv = new DeckViewer(new Deck(), decksList_Add);
+            dv.Show();
         }
 
-        private void legacyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void decksList_Add(object sender, Deck result)
         {
-            using (LegacyViewer lv = new LegacyViewer(new Legacy(), true))
-            {
-                lv.ShowDialog();
-                if (lv.DialogResult == DialogResult.OK && !legaciesList.ContainsKey(lv.displayedLegacy.id))
-                {
-                    legaciesList.Add(lv.displayedLegacy.id, lv.displayedLegacy);
-                    legaciesListBox.Items.Add(lv.displayedLegacy.id);
-                }
-            }
+            decksList[result.id] = result;
+            decksListBox.Items.Add(result.id);
+        }
+
+        private void elementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ElementViewer ev = new ElementViewer(new Element(), elementsList_Add);
+            ev.Show();
+        }
+
+        private void elementsList_Add(object sender, Element result)
+        {
+            elementsList[result.id] = result;
+            elementsListBox.Items.Add(result.id);
         }
 
         private void endingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (EndingViewer ev = new EndingViewer(new Ending(), true))
-            {
-                ev.ShowDialog();
-                if (ev.DialogResult == DialogResult.OK && !endingsList.ContainsKey(ev.displayedEnding.id))
-                {
-                    endingsList.Add(ev.displayedEnding.id, ev.displayedEnding);
-                    endingsListBox.Items.Add(ev.displayedEnding.id);
-                }
-            }
+            EndingViewer ev = new EndingViewer(new Ending(), endingsList_Add);
+            ev.Show();
         }
 
-        private void verbToolStripMenuItem_Click(object sender, EventArgs e)
+        private void endingsList_Add(object sender, Ending result)
         {
-            using (VerbViewer vv = new VerbViewer(new Verb(), true))
-            {
-                vv.ShowDialog();
-                if(vv.DialogResult == DialogResult.OK && !verbsList.ContainsKey(vv.displayedVerb.id))
-                {
-                    verbsList.Add(vv.displayedVerb.id, vv.displayedVerb);
-                    verbsListBox.Items.Add(vv.displayedVerb.id);
-                }
-            }
+            endingsList[result.id] = result;
+            endingsListBox.Items.Add(result.id);
+        }
+
+        private void legacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LegacyViewer lv = new LegacyViewer(new Legacy(), legaciesList_Add);
+            lv.Show();
+        }
+
+        private void legaciesList_Add(object sender, Legacy result)
+        {
+            legaciesList[result.id] = result;
+            legaciesListBox.Items.Add(result.id);
         }
 
         private void recipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (RecipeViewer rv = new RecipeViewer(new Recipe(), true))
-            {
-                rv.ShowDialog();
-                if(rv.DialogResult == DialogResult.OK && !recipesList.ContainsKey(rv.displayedRecipe.id))
-                {
-                    recipesList.Add(rv.displayedRecipe.id, rv.displayedRecipe);
-                    recipesListBox.Items.Add(rv.displayedRecipe.id);
-                }
-            }
+            RecipeViewer rv = new RecipeViewer(new Recipe(), recipesList_Add);
+            rv.Show();
+        }
+
+        private void recipesList_Add(object sender, Recipe result)
+        {
+            recipesList[result.id] = result;
+            recipesListBox.Items.Add(result.id);
+        }
+
+        private void verbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VerbViewer vv = new VerbViewer(new Verb(), verbsList_Add);
+            vv.Show();
+        }
+
+        private void verbsList_Add(object sender, Verb result)
+        {
+            verbsList[result.id] = result;
+            verbsListBox.Items.Add(result.id);
         }
 
         private void reloadContentToolStripMenuItem_Click(object sender, EventArgs e)

@@ -15,14 +15,20 @@ namespace CarcassSpark.ObjectViewers
     {
         public Verb displayedVerb;
         bool editing;
+        event EventHandler<Verb> SuccessCallback;
+
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
-        public VerbViewer(Verb verb, bool? editing)
+        public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback)
         {
             InitializeComponent();
             displayedVerb = verb;
             fillValues(verb);
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null)
+            {
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else setEditingMode(false);
         }
         
@@ -75,6 +81,7 @@ namespace CarcassSpark.ObjectViewers
             }
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedVerb);
         }
 
         private void addSlotButton_Click(object sender, EventArgs e)

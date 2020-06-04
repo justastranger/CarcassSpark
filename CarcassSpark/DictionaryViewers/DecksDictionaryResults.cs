@@ -42,7 +42,7 @@ namespace CarcassSpark.DictionaryViewers
         private void resultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(results[resultsListBox.SelectedItem.ToString()], false);
+            DeckViewer dv = new DeckViewer(results[resultsListBox.SelectedItem.ToString()], null);
             dv.ShowDialog();
         }
     }

@@ -65,7 +65,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void openRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(idTextBox.Text), false);
+            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(idTextBox.Text), null);
             rv.ShowDialog();
         }
 
@@ -131,12 +131,12 @@ namespace CarcassSpark.ObjectViewers
             switch (Utilities.getIdType(id))
             {
                 case "aspect":
-                    AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                    AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                     av.ShowDialog();
                     break;
 
                 case "element":
-                    ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                    ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                     ev.ShowDialog();
                     break;
                 default:
@@ -152,7 +152,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void challengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), false);
+            AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null);
             av.ShowDialog();
         }
     }

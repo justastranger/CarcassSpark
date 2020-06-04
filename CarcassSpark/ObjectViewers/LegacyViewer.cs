@@ -15,13 +15,18 @@ namespace CarcassSpark.ObjectViewers
     {
         public Legacy displayedLegacy;
         bool editing;
+        event EventHandler<Legacy> SuccessCallback;
 
-        public LegacyViewer(Legacy legacy, bool? editing)
+        public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback)
         {
             InitializeComponent();
             displayedLegacy = legacy;
             fillValues(legacy);
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null)
+            {
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else setEditingMode(false);
         }
 
@@ -134,15 +139,15 @@ namespace CarcassSpark.ObjectViewers
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
-            ev.ShowDialog();
+            ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+            ev.Show();
         }
 
         private void excludesOnEndingListView_DoubleClick(object sender, EventArgs e)
         {
             string id = excludesOnEndingListView.SelectedItems[0].ToString();
-            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), editing);
-            lv.ShowDialog();
+            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), null);
+            lv.Show();
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -182,6 +187,7 @@ namespace CarcassSpark.ObjectViewers
             }
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedLegacy);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

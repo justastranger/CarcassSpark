@@ -16,19 +16,24 @@ namespace CarcassSpark.ObjectViewers
     {
         public Recipe displayedRecipe;
         bool editing;
+        event EventHandler<Recipe> SuccessCallback;
 
         Dictionary<string, RecipeLink> recipeLinks = new Dictionary<string, RecipeLink>();
         Dictionary<string, RecipeLink> alternativerecipeLinks = new Dictionary<string, RecipeLink>();
         Dictionary<string, Mutation> mutations = new Dictionary<string, Mutation>();
 
-        public RecipeViewer(Recipe recipe, bool? editing)
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback)
         {
             InitializeComponent();
             displayedRecipe = recipe;
             
             fillValues(recipe);
 
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null)
+            {
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else setEditingMode(false);
         }
 
@@ -465,21 +470,18 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedRecipe.internalDeck == null && editing)
             {
-                DeckViewer dv = new DeckViewer(new Deck(), true, true);
-                dv.ShowDialog();
-                if(dv.DialogResult == DialogResult.OK)
-                {
-                    displayedRecipe.internalDeck = dv.displayedDeck;
-                }
+                DeckViewer dv = new DeckViewer(new Deck(), internalDeck_Assign, true);
+                dv.Show();
             } else if (displayedRecipe.internalDeck != null)
             {
-                DeckViewer dv = new DeckViewer(displayedRecipe.internalDeck, editing, true);
-                dv.ShowDialog();
-                if(dv.DialogResult == DialogResult.OK)
-                {
-                    displayedRecipe.internalDeck = dv.displayedDeck;
-                }
+                DeckViewer dv = new DeckViewer(displayedRecipe.internalDeck, editing ? internalDeck_Assign : (EventHandler<Deck>)null, true);
+                dv.Show();
             }
+        }
+
+        private void internalDeck_Assign(object sender, Deck result)
+        {
+            displayedRecipe.internalDeck = result;
         }
 
         private void showSlotButton_Click(object sender, EventArgs e)
@@ -566,12 +568,12 @@ namespace CarcassSpark.ObjectViewers
             string id = requirementsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
         }
@@ -582,12 +584,12 @@ namespace CarcassSpark.ObjectViewers
             string id = extantreqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
         }
@@ -598,12 +600,12 @@ namespace CarcassSpark.ObjectViewers
             string id = tablereqsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
         }
@@ -614,12 +616,12 @@ namespace CarcassSpark.ObjectViewers
             string id = effectsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
             else if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
         }
@@ -630,12 +632,12 @@ namespace CarcassSpark.ObjectViewers
             string id = aspectsDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
             else if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
         }
@@ -646,7 +648,7 @@ namespace CarcassSpark.ObjectViewers
             string id = deckeffectDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.deckExists(id))
             {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id), false);
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id), null);
                 dv.ShowDialog();
             }
         }
@@ -818,6 +820,7 @@ namespace CarcassSpark.ObjectViewers
             saveLinkedRecipes();
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedRecipe);
         }
 
         private void addAlternativeRecipeButton_Click(object sender, EventArgs e)
@@ -1456,12 +1459,12 @@ namespace CarcassSpark.ObjectViewers
             string id = purgeDataGridView.SelectedCells[0].Value.ToString();
             if (Utilities.aspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), false);
+                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
                 av.ShowDialog();
             }
             else if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), false);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
         }
@@ -1472,7 +1475,7 @@ namespace CarcassSpark.ObjectViewers
             string id = haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.verbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), false);
+                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
                 vv.ShowDialog();
             }
         }
@@ -1483,7 +1486,7 @@ namespace CarcassSpark.ObjectViewers
             string id = deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.verbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), false);
+                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
                 vv.ShowDialog();
             }
         }

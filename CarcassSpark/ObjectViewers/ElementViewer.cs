@@ -17,15 +17,17 @@ namespace CarcassSpark.ObjectViewers
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         public Element displayedElement;
         bool editing;
+        event EventHandler<Element> SuccessCallback;
 
-        public ElementViewer(Element element, bool? editing)
+        public ElementViewer(Element element, EventHandler<Element> SuccessCallback)
         {
             InitializeComponent();
             displayedElement = element;
             fillValues(element);
-            if (editing.HasValue)
+            if (SuccessCallback != null)
             {
-                setEditingMode(editing.Value);
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
             }
             else
             {
@@ -191,7 +193,7 @@ namespace CarcassSpark.ObjectViewers
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), editing);
+            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), null);
             av.ShowDialog();
         }
 
@@ -287,6 +289,8 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
             DialogResult = DialogResult.OK;
+            Close();
+            SuccessCallback?.Invoke(this, displayedElement);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

@@ -32,7 +32,7 @@ namespace CarcassSpark.DictionaryViewers
             if (resultsListBox.SelectedItem == null) return;
             if (Utilities.legacyExists(resultsListBox.SelectedItem.ToString()))
             {
-                LegacyViewer ev = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], false);
+                LegacyViewer ev = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
                 ev.ShowDialog();
             }
         }
@@ -64,7 +64,7 @@ namespace CarcassSpark.DictionaryViewers
         private void resultsListBox_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            LegacyViewer lv = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], false);
+            LegacyViewer lv = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
             lv.ShowDialog();
         }
     }

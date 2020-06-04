@@ -16,8 +16,9 @@ namespace CarcassSpark.ObjectViewers
         public Aspect displayedAspect;
         Dictionary<string, Induces> inducesDictionary;
         bool editing;
+        event EventHandler<Aspect> SuccessCallback;
 
-        public AspectViewer(Aspect aspect, bool? editing)
+        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
         {
             InitializeComponent();
             this.displayedAspect = aspect;
@@ -28,18 +29,19 @@ namespace CarcassSpark.ObjectViewers
                 fillValues(extendedAspect);
             }
             fillValues(aspect);
-            if (editing.HasValue)
+            if (SuccessCallback != null)
             {
-                setEditingMode(editing.Value);
-                this.editing = editing.Value;
+                this.SuccessCallback += SuccessCallback;
+                setEditingMode(true);
+                editing = true;
             }
             else
             {
                 setEditingMode(false);
-                this.editing = false;
+                editing = false;
             }
         }
-
+        
         void setEditingMode(bool editing)
         {
             idTextBox.ReadOnly = !editing;
@@ -124,10 +126,10 @@ namespace CarcassSpark.ObjectViewers
         private void inducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = inducesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), editing);
+            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), null);
             rv.ShowDialog();
         }
-
+        
         private void okButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
@@ -144,6 +146,7 @@ namespace CarcassSpark.ObjectViewers
             }
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedAspect);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

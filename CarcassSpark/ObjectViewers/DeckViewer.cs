@@ -15,6 +15,7 @@ namespace CarcassSpark.ObjectViewers
     {
         public Deck displayedDeck;
         bool editing;
+        event EventHandler<Deck> SuccessCallback;
 
         public DeckViewer(Deck deck)
         {
@@ -25,22 +26,26 @@ namespace CarcassSpark.ObjectViewers
             setInternal(false);
         }
 
-        public DeckViewer(Deck deck, bool? editing)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             fillValues(deck);
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null)
+            {
+                setEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else setEditingMode(false);
             setInternal(false);
         }
 
-        public DeckViewer(Deck deck, bool? editing, bool? internalDeck)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             fillValues(deck);
-            if (editing.HasValue) setEditingMode(editing.Value);
+            if (SuccessCallback != null) setEditingMode(true);
             else setEditingMode(false);
             if (internalDeck.HasValue) setInternal(internalDeck.Value);
             else setInternal(false);
@@ -192,6 +197,7 @@ namespace CarcassSpark.ObjectViewers
             }
             DialogResult = DialogResult.OK;
             Close();
+            SuccessCallback?.Invoke(this, displayedDeck);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -266,12 +272,12 @@ namespace CarcassSpark.ObjectViewers
             string id = specListView.SelectedItems[0].Text.ToString();
             if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), editing);
+                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), null);
                 dv.ShowDialog();
             }
             else if (Utilities.elementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), editing);
+                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
                 ev.ShowDialog();
             }
         }
