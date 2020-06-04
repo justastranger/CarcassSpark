@@ -348,8 +348,16 @@ namespace CarcassSpark.ObjectViewers
         private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
-            AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), aspectsList_Assign);
-            av.Show();
+            if (editMode)
+            {
+                AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), aspectsList_Assign);
+                av.Show();
+            }
+            else
+            {
+                AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), null);
+                av.Show();
+            }
         }
 
         private void aspectsList_Assign(object sender, Aspect result)
@@ -362,8 +370,16 @@ namespace CarcassSpark.ObjectViewers
         private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), decksList_Assign);
-            dv.Show();
+            if (editMode)
+            {
+                DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), decksList_Assign);
+                dv.Show();
+            }
+            else
+            {
+                DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), null);
+                dv.Show();
+            }
         }
 
         private void decksList_Assign(object sender, Deck result)
@@ -375,8 +391,16 @@ namespace CarcassSpark.ObjectViewers
         private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListBox.SelectedItem == null) return;
-            ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), elementsList_Assign);
-            ev.Show();
+            if (editMode)
+            {
+                ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), elementsList_Assign);
+                ev.Show();
+            }
+            else
+            {
+                ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), null);
+                ev.Show();
+            }
         }
 
         private void elementsList_Assign(object sender, Element result)
@@ -388,8 +412,16 @@ namespace CarcassSpark.ObjectViewers
         private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (endingsListBox.SelectedItem == null) return;
-            EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), endingsList_Assign);
-            ev.Show();
+            if (editMode)
+            {
+                EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), endingsList_Assign);
+                ev.Show();
+            }
+            else
+            {
+                EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), null);
+                ev.Show();
+            }
         }
 
         private void endingsList_Assign(object sender, Ending result)
@@ -401,8 +433,16 @@ namespace CarcassSpark.ObjectViewers
         private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (legaciesListBox.SelectedItem == null) return;
-            LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), legaciesList_Assign);
-            lv.Show();
+            if (editMode)
+            {
+                LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), legaciesList_Assign);
+                lv.Show();
+            }
+            else
+            {
+                LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), null);
+                lv.Show();
+            }
         }
 
         private void legaciesList_Assign(object sender, Legacy result)
@@ -414,8 +454,16 @@ namespace CarcassSpark.ObjectViewers
         private void recipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), recipesList_Assign);
-            rv.Show();
+            if (editMode)
+            {
+                RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), recipesList_Assign);
+                rv.Show();
+            }
+            else
+            {
+                RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), null);
+                rv.Show();
+            }
         }
 
         private void recipesList_Assign(object sender, Recipe result)
@@ -427,8 +475,16 @@ namespace CarcassSpark.ObjectViewers
         private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (verbsListBox.SelectedItem == null) return;
-            VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), verbsList_Assign);
-            vv.Show();
+            if (editMode)
+            {
+                VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), verbsList_Assign);
+                vv.Show();
+            }
+            else
+            {
+                VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), null);
+                vv.Show();
+            }
         }
 
         private void verbsList_Assign(object sender, Verb result)
