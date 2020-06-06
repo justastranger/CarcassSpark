@@ -41,6 +41,7 @@ namespace CarcassSpark.ObjectViewers
             if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
             if (ending.anim != null) animDomainUpDown.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
+            if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
         }
 
         void setEditingMode(bool editing)
@@ -94,9 +95,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null || displayedEnding.achievement == null)
             {
-                MessageBox.Show("All Endings must have an ID");
+                MessageBox.Show("All values must be filled for the Ending to be valid.");
                 return;
             }
             DialogResult = DialogResult.OK;
@@ -108,6 +109,11 @@ namespace CarcassSpark.ObjectViewers
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void achievementTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedEnding.achievement = achievementTextBox.Text;
         }
     }
 }

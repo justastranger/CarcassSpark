@@ -43,6 +43,8 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.achievementTextBox = new System.Windows.Forms.TextBox();
+            this.achievementLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +90,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(166, 82);
+            this.descriptionTextBox.Size = new System.Drawing.Size(166, 43);
             this.descriptionTextBox.TabIndex = 6;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -190,11 +192,30 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // achievementTextBox
+            // 
+            this.achievementTextBox.Location = new System.Drawing.Point(216, 282);
+            this.achievementTextBox.Name = "achievementTextBox";
+            this.achievementTextBox.Size = new System.Drawing.Size(168, 20);
+            this.achievementTextBox.TabIndex = 17;
+            this.achievementTextBox.TextChanged += new System.EventHandler(this.achievementTextBox_TextChanged);
+            // 
+            // achievementLabel
+            // 
+            this.achievementLabel.AutoSize = true;
+            this.achievementLabel.Location = new System.Drawing.Point(313, 266);
+            this.achievementLabel.Name = "achievementLabel";
+            this.achievementLabel.Size = new System.Drawing.Size(69, 13);
+            this.achievementLabel.TabIndex = 18;
+            this.achievementLabel.Text = "Achievement";
+            // 
             // EndingViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 343);
+            this.Controls.Add(this.achievementLabel);
+            this.Controls.Add(this.achievementTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.descriptionLabel);
@@ -236,5 +257,7 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox achievementTextBox;
+        private System.Windows.Forms.Label achievementLabel;
     }
 }
