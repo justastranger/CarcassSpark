@@ -16,6 +16,10 @@ namespace CarcassSpark
     public partial class Settings : Form
     {
         public static JObject settings = new JObject();
+        // settings["openWithVanilla"]
+        // settings["rememberPreviousMod"]
+        // settings["previousMod"]
+        // settings["saveCleanedVanillaContent"]
         static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
