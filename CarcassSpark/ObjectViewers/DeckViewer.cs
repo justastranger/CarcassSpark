@@ -149,7 +149,9 @@ namespace CarcassSpark.ObjectViewers
             drawmessagesDataGridView.AllowUserToDeleteRows = editing;
             newCardTextBox.Visible = editing;
             newCardButton.Visible = editing;
-            removeCardButton.Visible = editing;
+            specAppendButton.Visible = editing;
+            specPrependButton.Visible = editing;
+            specRemoveButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
@@ -250,22 +252,7 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
         }
-
-        private void removeCardButton_Click(object sender, EventArgs e)
-        {
-            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
-            {
-                if (displayedDeck.spec.Contains(newCardTextBox.Text))
-                {
-                    displayedDeck.spec.Remove(newCardTextBox.Text);
-                    specListView.Items.RemoveByKey(newCardTextBox.Text);
-                    if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
-                    newCardTextBox.Text = "";
-                    newCardTextBox.Focus();
-                }
-            }
-        }
-
+        
         private void specListView_DoubleClick(object sender, EventArgs e)
         {
             if (specListView.SelectedItems == null) return;
@@ -351,6 +338,44 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.spec_remove.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = specListView.SelectedItems[0];
+            specListView.Items.Remove(item);
+            if (item.BackColor == Utilities.ListAppendColor)
+            {
+                if (displayedDeck.spec_append.Contains(item.Text)) displayedDeck.spec_append.Remove(item.Text);
+                if (displayedDeck.spec_append.Count == 0) displayedDeck.spec_append = null;
+            }
+            else if (item.BackColor == Utilities.ListPrependColor)
+            {
+                if (displayedDeck.spec_prepend.Contains(item.Text)) displayedDeck.spec_prepend.Remove(item.Text);
+                if (displayedDeck.spec_prepend.Count == 0) displayedDeck.spec_prepend = null;
+            }
+            else if (item.BackColor == Utilities.ListRemoveColor)
+            {
+                if (displayedDeck.spec_remove.Contains(item.Text)) displayedDeck.spec_remove.Remove(item.Text);
+                if (displayedDeck.spec_remove.Count == 0) displayedDeck.spec_remove = null;
+            }
+            else
+            {
+                if (displayedDeck.spec.Contains(item.Text)) displayedDeck.spec.Remove(item.Text);
+                if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
+            }
+        }
+
+        private void specListView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (specListView.HitTest(e.Location).Item != null)
+                {
+                    specListView.HitTest(e.Location).Item.Selected = true;
+                    //contextMenuStrip1.Show(e.Location);
+                }
             }
         }
     }
