@@ -504,12 +504,48 @@ namespace CarcassSpark.ObjectViewers
         {
             ManifestViewer mv = new ManifestViewer(manifest);
             DialogResult dr = mv.ShowDialog();
-            if(dr == DialogResult.OK) manifest = mv.displayedManifest;
+            if (dr == DialogResult.OK)
+            {
+                manifest = mv.displayedManifest;
+                saveMod(currentDirectory);
+            }
         }
         
         private void saveMod(object sender, EventArgs e)
         {
             saveMod(currentDirectory);
+        }
+
+        private void createDirectories(string modLocation)
+        {
+            if (!Directory.Exists(modLocation + "/content/"))
+            {
+                Directory.CreateDirectory(modLocation + "/content/");
+            }
+            if (!Directory.Exists(modLocation + "/images/elementart/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/elementart/");
+            }
+            if (!Directory.Exists(modLocation + "/images/endingart/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/endingart/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons40/aspects/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons40/aspects/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons100/legacies/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons100/legacies/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons100/verbs/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons100/verbs/");
+            }
+            if (!Directory.Exists(modLocation + "/images/statusbaricons/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/statusbaricons/");
+            }
         }
 
 
@@ -518,10 +554,7 @@ namespace CarcassSpark.ObjectViewers
             ProgressBar.Value = 0;
             ProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
             ProgressBar.Visible = true;
-            if (!Directory.Exists(location + "/content/"))
-            {
-                Directory.CreateDirectory(location + "/content/");
-            }
+            createDirectories(location);
             if (aspectsListBox.Items.Count > 0)
             {
                 JObject aspects = new JObject();
