@@ -1183,8 +1183,9 @@ namespace CarcassSpark.ObjectViewers
         {
             if (aspectsListBox.SelectedItem == null) return;
             string selected = (string)aspectsListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
+                MessageBox.Show(selected);
                 aspectsListBox.Items.Remove(selected);
                 aspectsList.Remove(selected);
             }
@@ -1194,7 +1195,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListBox.SelectedItem == null) return;
             string selected = (string)elementsListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 elementsListBox.Items.Remove(selected);
                 elementsList.Remove(selected);
@@ -1205,7 +1206,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (recipesListBox.SelectedItem == null) return;
             string selected = (string)recipesListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 recipesListBox.Items.Remove(selected);
                 recipesList.Remove(selected);
@@ -1216,7 +1217,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (decksListBox.SelectedItem == null) return;
             string selected = (string)decksListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 decksListBox.Items.Remove(selected);
                 decksList.Remove(selected);
@@ -1226,7 +1227,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = legaciesListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 legaciesListBox.Items.Remove(selected);
                 legaciesList.Remove(selected);
@@ -1236,7 +1237,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = endingsListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 endingsListBox.Items.Remove(selected);
                 endingsList.Remove(selected);
@@ -1246,7 +1247,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = verbsListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 verbsListBox.Items.Remove(selected);
                 verbsList.Remove(selected);
