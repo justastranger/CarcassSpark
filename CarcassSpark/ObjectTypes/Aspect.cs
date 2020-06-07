@@ -60,7 +60,7 @@ namespace CarcassSpark.ObjectTypes
             return JsonConvert.SerializeObject(this);
         }
         
-        public Aspect Copy()
+        new public Aspect Copy()
         {
             Aspect tmp = new Aspect();
             tmp.id = id;
