@@ -3,6 +3,7 @@
  - Add support for the other 2 languages
  - Fix bug where the last opened mod is only saved after opening and closing the settings form.
  - Once I figure out how to guarantee that the user has access to the game's assets, switch over to ListView's in the ModViewer form so that everything can be displayed with their icons and sorted similarly to frangiclave (vertically as one segregated ListView)
+ - Image Selectors for each form with an image that copy the selected image to the correct folder
 
  # Property Operations
  - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for slots)
