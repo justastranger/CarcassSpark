@@ -324,7 +324,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.extends = extendsTextBox.Text;
+            displayedDeck.extends = new List<string> { extendsTextBox.Text };
         }
 
         private void specRemoveButton_Click(object sender, EventArgs e)
