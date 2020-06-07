@@ -117,6 +117,10 @@ namespace CarcassSpark.ObjectViewers
         private void additionalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.additional = additionalCheckBox.Checked;
+            if (!displayedRecipeLink.additional.Value)
+            {
+                displayedRecipeLink.additional = null;
+            }
         }
 
         private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)

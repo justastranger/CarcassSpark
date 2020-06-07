@@ -40,7 +40,7 @@ namespace CarcassSpark.ObjectViewers
                 pictureBox1.Image = Utilities.getVerbImage(verb.id);
             }
             labelTextBox.Text = verb.label;
-            atStartCheckBox.Checked = verb.atStart;
+            if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
             descriptionTextBox.Text = verb.description;
             if (verb.slots != null)
             {
@@ -128,6 +128,10 @@ namespace CarcassSpark.ObjectViewers
         private void atStartCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedVerb.atStart = atStartCheckBox.Checked;
+            if (!displayedVerb.atStart.Value)
+            {
+                displayedVerb.atStart = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)

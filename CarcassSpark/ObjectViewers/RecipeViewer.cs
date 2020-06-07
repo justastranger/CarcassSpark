@@ -1020,11 +1020,19 @@ namespace CarcassSpark.ObjectViewers
         private void craftableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedRecipe.craftable = craftableCheckBox.Checked;
+            if (!displayedRecipe.craftable.Value)
+            {
+                displayedRecipe.craftable = null;
+            }
         }
 
         private void hintonlyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedRecipe.hintonly = hintonlyCheckBox.Checked;
+            if (!displayedRecipe.hintonly.Value)
+            {
+                displayedRecipe.hintonly = null;
+            }
         }
 
         private void warmupNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -1451,6 +1459,10 @@ namespace CarcassSpark.ObjectViewers
         private void signalImportantLoopCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedRecipe.signalimportantloop = signalImportantLoopCheckBox.Checked;
+            if (!displayedRecipe.signalimportantloop.Value)
+            {
+                displayedRecipe.signalimportantloop = null;
+            }
         }
 
         private void purgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

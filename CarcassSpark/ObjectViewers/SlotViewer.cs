@@ -189,6 +189,10 @@ namespace CarcassSpark.ObjectViewers
         private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.greedy = greedyCheckBox.Checked;
+            if (!displayedSlot.greedy.Value)
+            {
+                displayedSlot.greedy = null;
+            }
         }
 
         private void requiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -200,6 +204,10 @@ namespace CarcassSpark.ObjectViewers
         private void consumesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.consumes = consumesCheckBox.Checked;
+            if (!displayedSlot.consumes.Value)
+            {
+                displayedSlot.consumes = null;
+            }
         }
 
         private void forbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)

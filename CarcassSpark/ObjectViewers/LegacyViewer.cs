@@ -263,6 +263,10 @@ namespace CarcassSpark.ObjectViewers
         private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
         {
             displayedLegacy.availableWithoutEndingMatch = availableWithoutEndingMatchCheckBox.Checked;
+            if (!displayedLegacy.availableWithoutEndingMatch.Value)
+            {
+                displayedLegacy.availableWithoutEndingMatch = null;
+            }
         }
 
         private void removeButton_Click(object sender, EventArgs e)

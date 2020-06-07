@@ -75,6 +75,10 @@ namespace CarcassSpark.ObjectViewers
         private void additiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedMutation.additive = additiveCheckBox.Checked;
+            if (!displayedMutation.additive.Value)
+            {
+                displayedMutation.additive = null;
+            }
         }
     }
 }
