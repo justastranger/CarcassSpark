@@ -1626,5 +1626,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void signalEndingFlavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.signalendingflavour = signalEndingFlavourDomainUpDown.Text;
+        }
     }
 }
