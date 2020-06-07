@@ -60,16 +60,28 @@ namespace CarcassSpark.ObjectViewers
         private void filterTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedMutation.filterOnAspectId = filterTextBox.Text;
+            if (displayedMutation.filterOnAspectId == "")
+            {
+                displayedMutation.filterOnAspectId = null;
+            }
         }
 
         private void mutateAspectIdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedMutation.mutateAspectId = mutateAspectIdTextBox.Text;
+            if (displayedMutation.mutateAspectId == "")
+            {
+                displayedMutation.mutateAspectId = null;
+            }
         }
 
         private void levelNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedMutation.mutationLevel = Convert.ToInt32(levelNumericUpDown.Value);
+            if (displayedMutation.mutationLevel == 0)
+            {
+                displayedMutation.mutationLevel = null;
+            }
         }
 
         private void additiveCheckBox_CheckedChanged(object sender, EventArgs e)

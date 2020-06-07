@@ -118,11 +118,19 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getVerbImage(idTextBox.Text);
             }
+            if (displayedVerb.id == "")
+            {
+                displayedVerb.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.label = labelTextBox.Text;
+            if (displayedVerb.label == "")
+            {
+                displayedVerb.label = null;
+            }
         }
 
         private void atStartCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -137,6 +145,10 @@ namespace CarcassSpark.ObjectViewers
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.description = descriptionTextBox.Text;
+            if (displayedVerb.description == "")
+            {
+                displayedVerb.description = null;
+            }
         }
 
         private void removeButton_Click(object sender, EventArgs e)

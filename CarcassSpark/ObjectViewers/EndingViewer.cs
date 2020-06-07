@@ -62,11 +62,19 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.id = idTextBox.Text;
+            if (displayedEnding.id == "")
+            {
+                displayedEnding.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.label = labelTextBox.Text;
+            if (displayedEnding.label == "")
+            {
+                displayedEnding.label = null;
+            }
         }
 
         private void imageTextBox_TextChanged(object sender, EventArgs e)
@@ -76,21 +84,37 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getEndingImage(imageTextBox.Text);
             }
+            if (displayedEnding.image == "")
+            {
+                displayedEnding.image = null;
+            }
         }
 
         private void flavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             displayedEnding.flavour = flavourDomainUpDown.Text;
+            if (displayedEnding.flavour == "")
+            {
+                displayedEnding.flavour = null;
+            }
         }
 
         private void animDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             displayedEnding.anim = animDomainUpDown.Text;
+            if (displayedEnding.anim == "")
+            {
+                displayedEnding.anim = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
+            if (displayedEnding.description == "")
+            {
+                displayedEnding.description = null;
+            }
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -114,6 +138,10 @@ namespace CarcassSpark.ObjectViewers
         private void achievementTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.achievement = achievementTextBox.Text;
+            if (displayedEnding.achievement == "")
+            {
+                displayedEnding.achievement = null;
+            }
         }
     }
 }

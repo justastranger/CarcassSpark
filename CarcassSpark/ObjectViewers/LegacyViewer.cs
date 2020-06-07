@@ -224,21 +224,37 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.id = idTextBox.Text;
+            if (displayedLegacy.id == "")
+            {
+                displayedLegacy.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.label = labelTextBox.Text;
+            if (displayedLegacy.label == "")
+            {
+                displayedLegacy.label = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.description = descriptionTextBox.Text;
+            if (displayedLegacy.description == "")
+            {
+                displayedLegacy.description = null;
+            }
         }
 
         private void startdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.startdescription = startdescriptionTextBox.Text;
+            if (displayedLegacy.startdescription == "")
+            {
+                displayedLegacy.startdescription = null;
+            }
         }
 
         private void imageTextBox_TextChanged(object sender, EventArgs e)
@@ -248,16 +264,28 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getLegacyImage(imageTextBox.Text);
             }
+            if (displayedLegacy.image == "")
+            {
+                displayedLegacy.image = null;
+            }
         }
 
         private void fromEndingTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.fromEnding = fromEndingTextBox.Text;
+            if (displayedLegacy.fromEnding == "")
+            {
+                displayedLegacy.fromEnding = null;
+            }
         }
 
         private void startingVerbIdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.startingVerbId = startingVerbIdTextBox.Text;
+            if (displayedLegacy.startingVerbId == "")
+            {
+                displayedLegacy.startingVerbId = null;
+            }
         }
 
         private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
@@ -379,11 +407,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (extendsTextBox.Text != null && extendsTextBox.Text != "")
-            {
-                displayedLegacy.extends = new List<string> { extendsTextBox.Text };
-            }
-            else
+            displayedLegacy.extends = new List<string> { extendsTextBox.Text };
+            if (displayedLegacy.extends[0] == "")
             {
                 displayedLegacy.extends = null;
             }

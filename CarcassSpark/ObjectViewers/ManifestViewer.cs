@@ -36,26 +36,46 @@ namespace CarcassSpark.ObjectViewers
         private void modNameTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.name = modNameTextBox.Text;
+            if (displayedManifest.name == "")
+            {
+                displayedManifest.name = null;
+            }
         }
 
         private void modAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.author = modAuthorTextBox.Text;
+            if (displayedManifest.author == "")
+            {
+                displayedManifest.author = null;
+            }
         }
 
         private void modVersionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.version = modVersionTextBox.Text;
+            if (displayedManifest.version == "")
+            {
+                displayedManifest.version = null;
+            }
         }
 
         private void modDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.description = modDescriptionTextBox.Text;
+            if (displayedManifest.description == "")
+            {
+                displayedManifest.description = null;
+            }
         }
 
         private void longDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.description_long = longDescriptionTextBox.Text;
+            if (displayedManifest.description_long == "")
+            {
+                displayedManifest.description_long = null;
+            }
         }
 
         private void okButton_Click(object sender, EventArgs e)

@@ -237,30 +237,6 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All Elements must have an ID");
                 return;
             }
-            // if (xtriggersDataGridView.Rows.Count > 1) {
-            // displayedElement.xtriggers = new Dictionary<string, Element.XTrigger>();
-            // foreach (ListViewItem item in xtriggersListView.Items)
-            // {
-            // if (item.Text != null)
-            // {
-            // if (item.BackColor == Utilities.DictionaryExtendStyle.BackColor)
-            // {
-            // if (displayedElement.aspects_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, Element.XTrigger>();
-            // displayedElement.aspects_extend.Add(item.Text, Convert.ToInt32(item.Cells[1].Value));
-            // }
-            // else if (item.BackColor == Utilities.DictionaryRemoveStyle.BackColor)
-            // {
-            // if (displayedElement.xtriggers_remove == null) displayedElement.xtriggers_remove = new List<string>();
-            // displayedElement.xtriggers_remove.Add(item.Text.ToString());
-            // }
-            // else
-            // {
-            // if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, Element.XTrigger>();
-            // displayedElement.xtriggers.Add(item.Text, item.Cells[1].Value.ToString());
-            // }
-            // }
-            // }
-            // }
             if (aspectsDataGridView.Rows.Count > 1)
             {
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
@@ -302,16 +278,28 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.id = idTextBox.Text;
+            if (displayedElement.id == "")
+            {
+                displayedElement.id = null;
+            }
         }
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.extends = new List<string> { extendsTextBox.Text };
+            if (displayedElement.extends[0] == "")
+            {
+                displayedElement.extends = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.label = labelTextBox.Text;
+            if (displayedElement.label == "")
+            {
+                displayedElement.label = null;
+            }
         }
 
         private void iconTextBox_TextChanged(object sender, EventArgs e)
@@ -321,31 +309,55 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getElementImage(iconTextBox.Text);
             }
+            if (displayedElement.icon == "")
+            {
+                displayedElement.icon = null;
+            }
         }
 
         private void uniquenessgroupTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.uniquenessgroup = uniquenessgroupTextBox.Text;
+            if (displayedElement.uniquenessgroup == "")
+            {
+                displayedElement.uniquenessgroup = null;
+            }
         }
 
         private void decayToTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.decayTo = decayToTextBox.Text;
+            if (displayedElement.decayTo == "")
+            {
+                displayedElement.decayTo = null;
+            }
         }
 
         private void lifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedElement.lifetime = Convert.ToInt32(lifetimeNumericUpDown.Value);
+            if (displayedElement.lifetime == 0)
+            {
+                displayedElement.lifetime = null;
+            }
         }
 
         private void animFramesNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedElement.animframes = Convert.ToInt32(animFramesNumericUpDown.Value);
+            if (displayedElement.animframes == 0)
+            {
+                displayedElement.animframes = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.description = descriptionTextBox.Text;
+            if (displayedElement.description == "")
+            {
+                displayedElement.description = null;
+            }
         }
 
         private void addSlotButton_Click(object sender, EventArgs e)

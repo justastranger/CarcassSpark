@@ -1038,16 +1038,28 @@ namespace CarcassSpark.ObjectViewers
         private void warmupNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
+            if (displayedRecipe.warmup == 0)
+            {
+                displayedRecipe.warmup = null;
+            }
         }
 
         private void startdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.startdescription = startdescriptionTextBox.Text;
+            if (displayedRecipe.startdescription == "")
+            {
+                displayedRecipe.startdescription = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.description = descriptionTextBox.Text;
+            if (displayedRecipe.description == "")
+            {
+                displayedRecipe.description = null;
+            }
         }
 
         private void requirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -1641,6 +1653,19 @@ namespace CarcassSpark.ObjectViewers
         private void signalEndingFlavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             displayedRecipe.signalendingflavour = signalEndingFlavourDomainUpDown.Text;
+            if (displayedRecipe.signalendingflavour == "")
+            {
+                displayedRecipe.signalendingflavour = null;
+            }
+        }
+
+        private void portalEffectDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.portaleffect = portalEffectDomainUpDown.Text;
+            if (displayedRecipe.portaleffect == "")
+            {
+                displayedRecipe.portaleffect = null;
+            }
         }
     }
 }

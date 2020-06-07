@@ -112,6 +112,10 @@ namespace CarcassSpark.ObjectViewers
         private void catalystTextBox_TextChanged(object sender, EventArgs e)
         {
             catalyst = catalystTextBox.Text;
+            if (catalyst == "")
+            {
+                catalyst = null;
+            }
         }
     }
 }

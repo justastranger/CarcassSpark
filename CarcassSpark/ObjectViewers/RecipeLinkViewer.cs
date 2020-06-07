@@ -107,11 +107,19 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.id = idTextBox.Text;
+            if (displayedRecipeLink.id == "")
+            {
+                displayedRecipeLink.id = null;
+            }
         }
 
         private void chanceNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.chance = Convert.ToInt32(chanceNumericUpDown.Value);
+            if (displayedRecipeLink.chance == 0)
+            {
+                displayedRecipeLink.chance = null;
+            }
         }
 
         private void additionalCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -129,7 +137,7 @@ namespace CarcassSpark.ObjectViewers
             if (displayedRecipeLink.challenges.Count == 0) displayedRecipeLink.challenges = null;
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void expulsionsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = expulsionDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             switch (Utilities.getIdType(id))

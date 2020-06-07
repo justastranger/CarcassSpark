@@ -212,21 +212,37 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.id = idTextBox.Text;
+            if (displayedDeck.id == "")
+            {
+                displayedDeck.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.label = labelTextBox.Text;
+            if (displayedDeck.label == "")
+            {
+                displayedDeck.label = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.description = descriptionTextBox.Text;
+            if (displayedDeck.description == "")
+            {
+                displayedDeck.description = null;
+            }
         }
 
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.comments = commentsTextBox.Text;
+            if (displayedDeck.comments == "")
+            {
+                displayedDeck.comments = null;
+            }
         }
 
         private void newCardTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -247,6 +263,10 @@ namespace CarcassSpark.ObjectViewers
         private void defaultCardTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.defaultcard = defaultCardTextBox.Text;
+            if (displayedDeck.defaultcard == "")
+            {
+                displayedDeck.defaultcard = null;
+            }
         }
 
         private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -330,6 +350,10 @@ namespace CarcassSpark.ObjectViewers
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.extends = new List<string> { extendsTextBox.Text };
+            if (displayedDeck.extends[0] == "")
+            {
+                displayedDeck.extends = null;
+            }
         }
 
         private void specRemoveButton_Click(object sender, EventArgs e)

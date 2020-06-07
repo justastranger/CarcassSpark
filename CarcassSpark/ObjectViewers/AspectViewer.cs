@@ -158,11 +158,19 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.id = idTextBox.Text;
+            if (displayedAspect.id == "")
+            {
+                displayedAspect.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.label = labelTextBox.Text;
+            if (displayedAspect.label == "")
+            {
+                displayedAspect.label = null;
+            }
         }
 
         private void iconTextBox_TextChanged(object sender, EventArgs e)
@@ -172,16 +180,28 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getAspectImage(iconTextBox.Text);
             }
+            if (displayedAspect.icon == "")
+            {
+                displayedAspect.icon = null;
+            }
         }
 
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.extends = new List<string> { extendsTextBox.Text };
+            if (displayedAspect.extends[0] == "")
+            {
+                displayedAspect.label = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.description = descriptionTextBox.Text;
+            if (displayedAspect.description == "")
+            {
+                displayedAspect.description = null;
+            }
         }
 
         private void isHiddenCheckBox_CheckedChanged(object sender, EventArgs e)

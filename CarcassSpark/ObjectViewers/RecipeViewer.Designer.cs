@@ -856,6 +856,7 @@
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
             this.portalEffectDomainUpDown.Size = new System.Drawing.Size(100, 20);
             this.portalEffectDomainUpDown.TabIndex = 68;
+            this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.portalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
             // 

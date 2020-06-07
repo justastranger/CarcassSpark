@@ -182,7 +182,7 @@
             this.expulsionDataGridView.Name = "expulsionDataGridView";
             this.expulsionDataGridView.Size = new System.Drawing.Size(356, 117);
             this.expulsionDataGridView.TabIndex = 11;
-            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expulsionsDataGridView_CellDoubleClick);
             this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionDataGridView_UserDeletedRow);
             // 
             // expulsionFilter
