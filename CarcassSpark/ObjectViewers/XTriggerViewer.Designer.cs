@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTriggerViewer));
             this.catalystTextBox = new System.Windows.Forms.TextBox();
             this.catalystLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
@@ -140,6 +141,7 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.catalystLabel);
             this.Controls.Add(this.catalystTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "XTriggerViewer";
             this.Text = "XTriggerViewer";
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();

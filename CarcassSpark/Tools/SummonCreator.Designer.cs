@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SummonCreator));
             this.createBaseElementButton = new System.Windows.Forms.Button();
             this.baseIdTextBox = new System.Windows.Forms.TextBox();
             this.baseElementLlabel = new System.Windows.Forms.Label();
@@ -220,6 +221,7 @@
             this.Controls.Add(this.baseElementLlabel);
             this.Controls.Add(this.baseIdTextBox);
             this.Controls.Add(this.createBaseElementButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SummonCreator";
             this.Text = "SummonCreator";
             this.ResumeLayout(false);

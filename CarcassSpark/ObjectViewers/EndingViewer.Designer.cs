@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EndingViewer));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -232,6 +233,7 @@
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EndingViewer";
             this.Text = "EndingViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

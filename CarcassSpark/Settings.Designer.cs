@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.openWithVanillaCheckBox = new System.Windows.Forms.CheckBox();
             this.rememberPreviousModCheckBox = new System.Windows.Forms.CheckBox();
             this.previousModTextBox = new System.Windows.Forms.TextBox();
@@ -120,6 +121,7 @@
             this.Controls.Add(this.rememberPreviousModCheckBox);
             this.Controls.Add(this.openWithVanillaCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeAspectQuantityForm));
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.okButton1 = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -74,6 +75,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton1);
             this.Controls.Add(this.numericUpDown1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChangeAspectQuantityForm";
             this.Text = "Change Aspect Quantity";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

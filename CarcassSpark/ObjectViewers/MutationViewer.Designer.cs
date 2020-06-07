@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MutationViewer));
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.mutateAspectIdTextBox = new System.Windows.Forms.TextBox();
             this.levelNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -144,6 +145,7 @@
             this.Controls.Add(this.mutateAspectIdTextBox);
             this.Controls.Add(this.filterTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MutationViewer";
             this.Text = "MutationViewer";
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();

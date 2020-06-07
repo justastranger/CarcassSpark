@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerbViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.atStartCheckBox = new System.Windows.Forms.CheckBox();
@@ -201,6 +202,7 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VerbViewer";
             this.Text = "VerbViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

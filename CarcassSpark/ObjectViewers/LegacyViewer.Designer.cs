@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LegacyViewer));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -40,6 +41,9 @@
             this.effectsDataGridView = new System.Windows.Forms.DataGridView();
             this.effectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.effectsAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startingVerbIdTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.idLabel = new System.Windows.Forms.Label();
@@ -63,9 +67,6 @@
             this.statusBarElementsLabel2 = new System.Windows.Forms.Label();
             this.addStatusBarElementButton = new System.Windows.Forms.Button();
             this.removeStatusBarElementButton = new System.Windows.Forms.Button();
-            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -176,6 +177,28 @@
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
             this.effectsAmount.Width = 149;
+            // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsExtendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(151, 48);
+            // 
+            // setAsExtendToolStripMenuItem
+            // 
+            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
+            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
             // 
             // startingVerbIdTextBox
             // 
@@ -389,28 +412,6 @@
             this.removeStatusBarElementButton.UseVisualStyleBackColor = true;
             this.removeStatusBarElementButton.Click += new System.EventHandler(this.removeStatusBarElementButton_Click);
             // 
-            // propertyOperationContextMenuStrip
-            // 
-            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setAsExtendToolStripMenuItem,
-            this.setAsRemoveToolStripMenuItem});
-            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
-            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(151, 48);
-            // 
-            // setAsExtendToolStripMenuItem
-            // 
-            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
-            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
-            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
-            // 
-            // setAsRemoveToolStripMenuItem
-            // 
-            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
-            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
-            // 
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
@@ -468,6 +469,7 @@
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LegacyViewer";
             this.Text = "LegacyViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

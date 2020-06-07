@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.loadVanillaButton = new System.Windows.Forms.Button();
             this.openModButton = new System.Windows.Forms.Button();
             this.modFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -89,6 +90,7 @@
             this.Controls.Add(this.openModButton);
             this.Controls.Add(this.loadVanillaButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
