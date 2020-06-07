@@ -47,7 +47,7 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, string id, string label, string description, string comments,
-                    string defaultcard, Dictionary<string, string> drawmessages, string extends,
+                    string defaultcard, Dictionary<string, string> drawmessages, List<string> extends,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
                     Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
         {
