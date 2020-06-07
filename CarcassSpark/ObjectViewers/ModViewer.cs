@@ -1315,6 +1315,167 @@ namespace CarcassSpark.ObjectViewers
             editMode = toggleEditModeToolStripMenuItem.Checked;
         }
 
+        private void duplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect newAspect = aspectsList[aspectsListBox.SelectedItem as string].Copy();
+            string id = newAspect.id;
+            if (aspectsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (aspectsListBox.Items.Contains(id+tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newAspect.id = id;
+            aspectsListBox.Items.Add(newAspect.id);
+            aspectsList.Add(newAspect.id, newAspect);
+        }
+
+        private void duplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element newElement = elementsList[elementsListBox.SelectedItem as string].Copy();
+            string id = newElement.id;
+            if (elementsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (elementsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newElement.id = id;
+            elementsListBox.Items.Add(newElement.id);
+            elementsList.Add(newElement.id, newElement);
+        }
+
+        private void duplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe newRecipe = recipesList[recipesListBox.SelectedItem as string].Copy();
+            string id = newRecipe.id;
+            if (recipesListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (recipesListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newRecipe.id = id;
+            recipesListBox.Items.Add(newRecipe.id);
+            recipesList.Add(newRecipe.id, newRecipe);
+        }
+
+        private void duplicateSelectedDeskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck newDeck = decksList[decksListBox.SelectedItem as string].Copy();
+            string id = newDeck.id;
+            if (decksListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (decksListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newDeck.id = id;
+            decksListBox.Items.Add(newDeck.id);
+            decksList.Add(newDeck.id, newDeck);
+        }
+
+        private void duplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy newLegacy = legaciesList[legaciesListBox.SelectedItem as string].Copy();
+            string id = newLegacy.id;
+            if (legaciesListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (legaciesListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newLegacy.id = id;
+            legaciesListBox.Items.Add(newLegacy.id);
+            legaciesList.Add(newLegacy.id, newLegacy);
+        }
+
+        private void duplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending newEnding = endingsList[endingsListBox.SelectedItem as string].Copy();
+            string id = newEnding.id;
+            if (endingsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (endingsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newEnding.id = id;
+            endingsListBox.Items.Add(newEnding.id);
+            endingsList.Add(newEnding.id, newEnding);
+        }
+
+        private void duplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb newVerb = verbsList[verbsListBox.SelectedItem as string].Copy();
+            string id = newVerb.id;
+            if (verbsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (verbsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newVerb.id = id;
+            verbsListBox.Items.Add(newVerb.id);
+            verbsList.Add(newVerb.id, newVerb);
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
