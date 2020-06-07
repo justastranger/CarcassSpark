@@ -55,6 +55,7 @@
             this.specAppendButton = new System.Windows.Forms.Button();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.specRemoveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -255,7 +256,7 @@
             this.removeCardButton.Name = "removeCardButton";
             this.removeCardButton.Size = new System.Drawing.Size(66, 23);
             this.removeCardButton.TabIndex = 20;
-            this.removeCardButton.Text = "Remove";
+            this.removeCardButton.Text = "Delete";
             this.removeCardButton.UseVisualStyleBackColor = true;
             this.removeCardButton.Click += new System.EventHandler(this.removeCardButton_Click);
             // 
@@ -272,7 +273,7 @@
             // 
             // specPrependButton
             // 
-            this.specPrependButton.Location = new System.Drawing.Point(408, 282);
+            this.specPrependButton.Location = new System.Drawing.Point(336, 282);
             this.specPrependButton.Name = "specPrependButton";
             this.specPrependButton.Size = new System.Drawing.Size(66, 23);
             this.specPrependButton.TabIndex = 22;
@@ -282,7 +283,7 @@
             // 
             // specAppendButton
             // 
-            this.specAppendButton.Location = new System.Drawing.Point(480, 282);
+            this.specAppendButton.Location = new System.Drawing.Point(408, 282);
             this.specAppendButton.Name = "specAppendButton";
             this.specAppendButton.Size = new System.Drawing.Size(66, 23);
             this.specAppendButton.TabIndex = 23;
@@ -307,11 +308,22 @@
             this.extendsLabel.TabIndex = 25;
             this.extendsLabel.Text = "Extends";
             // 
+            // specRemoveButton
+            // 
+            this.specRemoveButton.Location = new System.Drawing.Point(480, 282);
+            this.specRemoveButton.Name = "specRemoveButton";
+            this.specRemoveButton.Size = new System.Drawing.Size(66, 23);
+            this.specRemoveButton.TabIndex = 26;
+            this.specRemoveButton.Text = "Remove";
+            this.specRemoveButton.UseVisualStyleBackColor = true;
+            this.specRemoveButton.Click += new System.EventHandler(this.specRemoveButton_Click);
+            // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.specRemoveButton);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.specAppendButton);
@@ -376,5 +388,6 @@
         private System.Windows.Forms.Button specAppendButton;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.Button specRemoveButton;
     }
 }

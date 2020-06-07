@@ -339,5 +339,19 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedDeck.extends = extendsTextBox.Text;
         }
+
+        private void specRemoveButton_Click(object sender, EventArgs e)
+        {
+            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            {
+                ListViewItem item = new ListViewItem(newCardTextBox.Text);
+                item.BackColor = Utilities.ListRemoveColor;
+                specListView.Items.Add(item);
+                if (displayedDeck.spec_remove == null) displayedDeck.spec_remove = new List<string>();
+                displayedDeck.spec_remove.Add(newCardTextBox.Text);
+                newCardTextBox.Text = "";
+                newCardTextBox.Focus();
+            }
+        }
     }
 }
