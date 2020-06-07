@@ -168,7 +168,7 @@ namespace CarcassSpark.ObjectViewers
         private void iconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.icon = iconTextBox.Text;
-            if(Utilities.getAspectImage(iconTextBox.Text) != null)
+            if (Utilities.getAspectImage(iconTextBox.Text) != null)
             {
                 pictureBox1.Image = Utilities.getAspectImage(iconTextBox.Text);
             }
