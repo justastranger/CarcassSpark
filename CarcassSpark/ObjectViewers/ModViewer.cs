@@ -69,6 +69,13 @@ namespace CarcassSpark.ObjectViewers
             deleteSelectedLegacyToolStripMenuItem.Visible = editing;
             deleteSelectedRecipeToolStripMenuItem.Visible = editing;
             deleteSelectedVerbToolStripMenuItem.Visible = editing;
+            duplicateSelectedAspectToolStripMenuItem.Visible = editing;
+            duplicateSelectedDeskToolStripMenuItem.Visible = editing;
+            duplicateSelectedElementToolStripMenuItem.Visible = editing;
+            duplicateSelectedEndingToolStripMenuItem.Visible = editing;
+            duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
+            duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
+            duplicateSelectedVerbToolStripMenuItem.Visible = editing;
         }
 
         void refreshContent()
