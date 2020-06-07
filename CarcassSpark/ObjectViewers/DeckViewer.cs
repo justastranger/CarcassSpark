@@ -70,6 +70,7 @@ namespace CarcassSpark.ObjectViewers
             if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
             defaultCardTextBox.Text = deck.defaultcard;
             if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
+            if (deck.extends != null) extendsTextBox.Text = deck.extends[0];
             if (deck.spec != null)
             {
                 foreach (string id in deck.spec)
