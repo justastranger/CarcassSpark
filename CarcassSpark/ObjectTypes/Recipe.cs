@@ -210,5 +210,72 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
+
+        public Recipe Copy()
+        {
+            Recipe tmp = new Recipe();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.actionId = actionId;
+            tmp.startdescription = startdescription;
+            tmp.description = description;
+            tmp.craftable = craftable;
+            tmp.hintonly = hintonly;
+            tmp.ending = ending;
+            tmp.burnimage = burnimage;
+            tmp.extends = extends;
+            tmp.warmup = warmup;
+            tmp.warmup_add = warmup_add;
+            tmp.warmup_minus = warmup_minus;
+            tmp.requirements = requirements;
+            tmp.requirements_extend = requirements_extend;
+            tmp.requirements_remove = requirements_remove;
+            tmp.extantreqs = extantreqs;
+            tmp.extantreqs_extend = extantreqs_extend;
+            tmp.extantreqs_remove = extantreqs_remove;
+            tmp.tablereqs = tablereqs;
+            tmp.tablereqs_extend = tablereqs_extend;
+            tmp.tablereqs_remove = tablereqs_remove;
+            tmp.maxexecutions = maxexecutions;
+            tmp.maxexecutions_add = maxexecutions_add;
+            tmp.maxexecutions_minus = maxexecutions_minus;
+            tmp.effects = effects;
+            tmp.effects_extend = effects_extend;
+            tmp.effects_remove = effects_remove;
+            tmp.linked = linked;
+            tmp.linked_prepend = linked_prepend;
+            tmp.linked_append = linked_append;
+            tmp.linked_remove = linked_remove;
+            tmp.slots = slots;
+            tmp.alternativerecipes = alternativerecipes;
+            tmp.alternativerecipes_prepend = alternativerecipes_prepend;
+            tmp.alternativerecipes_append = alternativerecipes_append;
+            tmp.alternativerecipes_remove = alternativerecipes_remove;
+            tmp.mutations = mutations;
+            tmp.mutations_prepend = mutations_prepend;
+            tmp.mutations_append = mutations_append;
+            tmp.mutations_remove = mutations_remove;
+            tmp.aspects = aspects;
+            tmp.aspects_extend = aspects_extend;
+            tmp.aspects_remove = aspects_remove;
+            tmp.deckeffect = deckeffect;
+            tmp.deckeffect_extend = deckeffect_extend;
+            tmp.deckeffect_remove = deckeffect_remove;
+            tmp.hintonly = hintonly;
+            tmp.internalDeck = internalDeck;
+            tmp.purge = purge;
+            tmp.purge_extend = purge_extend;
+            tmp.purge_remove = purge_remove;
+            tmp.haltverb = haltverb;
+            tmp.haltverb_extend = haltverb_extend;
+            tmp.haltverb_remove = haltverb_remove;
+            tmp.deleteverb = deleteverb;
+            tmp.deleteverb_extend = deleteverb_extend;
+            tmp.deleteverb_remove = deleteverb_remove;
+            tmp.portaleffect = portaleffect;
+            tmp.signalendingflavour = signalendingflavour;
+            tmp.signalimportantloop = signalimportantloop;
+            return tmp;
+        }
     }
 }

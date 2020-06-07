@@ -136,6 +136,38 @@ namespace CarcassSpark.ObjectTypes
 
         }
         
+        public Element Copy()
+        {
+            Element tmp = new Element();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.description = description;
+            if (icon != null) tmp.icon = icon;
+            else tmp.icon = id;
+            tmp.comments = comments;
+            tmp.aspects = aspects;
+            tmp.aspects_extend = aspects_extend;
+            tmp.aspects_remove = aspects_remove;
+            tmp.slots = slots;
+            tmp.slots_prepend = slots_prepend;
+            tmp.slots_append = slots_append;
+            tmp.slots_remove = slots_remove;
+            tmp.xtriggers = xtriggers;
+            tmp.xtriggers_extend = xtriggers_extend;
+            tmp.xtriggers_remove = xtriggers_remove;
+            tmp.animframes = animframes;
+            tmp.animframes_add = animframes_add;
+            tmp.animframes_minus = animframes_minus;
+            tmp.unique = unique;
+            tmp.uniquenessgroup = uniquenessgroup;
+            tmp.lifetime = lifetime;
+            tmp.lifetime_add = lifetime_add;
+            tmp.lifetime_minus = lifetime_minus;
+            tmp.resaturate = resaturate;
+            tmp.decayTo = decayTo;
+            tmp.extends = extends;
+            return tmp;
+        }
     }
     
 }

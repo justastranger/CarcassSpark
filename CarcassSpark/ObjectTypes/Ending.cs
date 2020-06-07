@@ -28,5 +28,18 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
+
+        public Ending Copy()
+        {
+            Ending tmp = new Ending();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.description = description;
+            tmp.image = image;
+            tmp.flavour = flavour;
+            tmp.anim = anim;
+            tmp.achievement = achievement;
+            return tmp;
+        }
     }
 }

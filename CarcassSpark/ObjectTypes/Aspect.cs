@@ -60,5 +60,24 @@ namespace CarcassSpark.ObjectTypes
             return JsonConvert.SerializeObject(this);
         }
         
+        public Aspect Copy()
+        {
+            Aspect tmp = new Aspect();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.description = description;
+            tmp.isAspect = isAspect;
+            if (icon != null) tmp.icon = icon;
+            else tmp.icon = id;
+            tmp.isHidden = isHidden;
+            tmp.induces = induces;
+            tmp.induces_prepend = induces_prepend;
+            tmp.induces_append = induces_append;
+            tmp.induces_remove = induces_remove;
+            tmp.noartneeded = noartneeded;
+            tmp.comments = comments;
+            tmp.aspects = aspects;
+            return tmp;
+        }
     }
 }
