@@ -306,5 +306,38 @@ namespace CarcassSpark.ObjectViewers
                 if (displayedDeck.drawmessages.Count == 0) displayedDeck.drawmessages = null;
             }
         }
+
+        private void specPrependButton_Click(object sender, EventArgs e)
+        {
+            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            {
+                ListViewItem item = new ListViewItem(newCardTextBox.Text);
+                item.BackColor = Utilities.ListPrependColor;
+                specListView.Items.Add(item);
+                if (displayedDeck.spec_prepend == null) displayedDeck.spec_prepend = new List<string>();
+                displayedDeck.spec_prepend.Add(newCardTextBox.Text);
+                newCardTextBox.Text = "";
+                newCardTextBox.Focus();
+            }
+        }
+
+        private void specAppendButton_Click(object sender, EventArgs e)
+        {
+            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            {
+                ListViewItem item = new ListViewItem(newCardTextBox.Text);
+                item.BackColor = Utilities.ListAppendColor;
+                specListView.Items.Add(item);
+                if (displayedDeck.spec_append == null) displayedDeck.spec_append = new List<string>();
+                displayedDeck.spec_append.Add(newCardTextBox.Text);
+                newCardTextBox.Text = "";
+                newCardTextBox.Focus();
+            }
+        }
+
+        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedDeck.extends = extendsTextBox.Text;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Deck
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, comments, defaultcard;
+        public string id, label, description, comments, defaultcard, extends;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> spec; // the actual internal deck
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$append")]
@@ -45,7 +45,7 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, string id, string label, string description, string comments,
-                    string defaultcard, Dictionary<string, string> drawmessages,
+                    string defaultcard, Dictionary<string, string> drawmessages, string extends,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
                     Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
         {
@@ -71,6 +71,7 @@ namespace CarcassSpark.ObjectTypes
             this.defaultdrawmessages = defaultdrawmessages;
             this.defaultdrawmessages_extend = defaultdrawmessages_extend;
             this.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            this.extends = extends;
         }
         
         public Deck()

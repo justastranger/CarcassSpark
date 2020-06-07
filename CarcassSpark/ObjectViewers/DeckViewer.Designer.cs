@@ -51,6 +51,10 @@
             this.drawmessagesLlabel = new System.Windows.Forms.Label();
             this.removeCardButton = new System.Windows.Forms.Button();
             this.specListView = new System.Windows.Forms.ListView();
+            this.specPrependButton = new System.Windows.Forms.Button();
+            this.specAppendButton = new System.Windows.Forms.Button();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +81,7 @@
             // 
             this.commentsTextBox.Location = new System.Drawing.Point(286, 25);
             this.commentsTextBox.Name = "commentsTextBox";
-            this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
+            this.commentsTextBox.Size = new System.Drawing.Size(154, 20);
             this.commentsTextBox.TabIndex = 2;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
@@ -87,7 +91,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(268, 56);
+            this.descriptionTextBox.Size = new System.Drawing.Size(268, 30);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -130,7 +134,7 @@
             // 
             // defaultCardTextBox
             // 
-            this.defaultCardTextBox.Location = new System.Drawing.Point(358, 282);
+            this.defaultCardTextBox.Location = new System.Drawing.Point(92, 100);
             this.defaultCardTextBox.Name = "defaultCardTextBox";
             this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
@@ -230,7 +234,7 @@
             // defaultCardLabel
             // 
             this.defaultCardLabel.AutoSize = true;
-            this.defaultCardLabel.Location = new System.Drawing.Point(286, 285);
+            this.defaultCardLabel.Location = new System.Drawing.Point(20, 103);
             this.defaultCardLabel.Name = "defaultCardLabel";
             this.defaultCardLabel.Size = new System.Drawing.Size(66, 13);
             this.defaultCardLabel.TabIndex = 18;
@@ -266,11 +270,52 @@
             this.specListView.View = System.Windows.Forms.View.List;
             this.specListView.DoubleClick += new System.EventHandler(this.specListView_DoubleClick);
             // 
+            // specPrependButton
+            // 
+            this.specPrependButton.Location = new System.Drawing.Point(408, 282);
+            this.specPrependButton.Name = "specPrependButton";
+            this.specPrependButton.Size = new System.Drawing.Size(66, 23);
+            this.specPrependButton.TabIndex = 22;
+            this.specPrependButton.Text = "Prepend";
+            this.specPrependButton.UseVisualStyleBackColor = true;
+            this.specPrependButton.Click += new System.EventHandler(this.specPrependButton_Click);
+            // 
+            // specAppendButton
+            // 
+            this.specAppendButton.Location = new System.Drawing.Point(480, 282);
+            this.specAppendButton.Name = "specAppendButton";
+            this.specAppendButton.Size = new System.Drawing.Size(66, 23);
+            this.specAppendButton.TabIndex = 23;
+            this.specAppendButton.Text = "Append";
+            this.specAppendButton.UseVisualStyleBackColor = true;
+            this.specAppendButton.Click += new System.EventHandler(this.specAppendButton_Click);
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(446, 25);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.TabIndex = 24;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(443, 9);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 25;
+            this.extendsLabel.Text = "Extends";
+            // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.extendsTextBox);
+            this.Controls.Add(this.specAppendButton);
+            this.Controls.Add(this.specPrependButton);
             this.Controls.Add(this.specListView);
             this.Controls.Add(this.removeCardButton);
             this.Controls.Add(this.drawmessagesLlabel);
@@ -327,5 +372,9 @@
         private System.Windows.Forms.Label drawmessagesLlabel;
         private System.Windows.Forms.Button removeCardButton;
         private System.Windows.Forms.ListView specListView;
+        private System.Windows.Forms.Button specPrependButton;
+        private System.Windows.Forms.Button specAppendButton;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
     }
 }
