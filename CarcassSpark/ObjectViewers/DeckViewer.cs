@@ -252,6 +252,10 @@ namespace CarcassSpark.ObjectViewers
         private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
+            if (!displayedDeck.resetonexhaustion.Value)
+            {
+                displayedDeck.resetonexhaustion = null;
+            }
         }
         
         private void specListView_DoubleClick(object sender, EventArgs e)

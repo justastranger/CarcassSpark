@@ -364,11 +364,19 @@ namespace CarcassSpark.ObjectViewers
         private void resaturateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedElement.resaturate = resaturateCheckBox.Checked;
+            if (!displayedElement.resaturate.Value)
+            {
+                displayedElement.resaturate = null;
+            }
         }
 
         private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedElement.unique = uniqueCheckBox.Checked;
+            if (!displayedElement.unique.Value)
+            {
+                displayedElement.unique = null;
+            }
         }
 
         private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)

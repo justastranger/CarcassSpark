@@ -187,11 +187,19 @@ namespace CarcassSpark.ObjectViewers
         private void isHiddenCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedAspect.isHidden = isHiddenCheckBox.Checked;
+            if (!displayedAspect.isHidden.Value)
+            {
+                displayedAspect.isHidden = null;
+            }
         }
 
         private void noartworkneededCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedAspect.noartneeded = noartworkneededCheckBox.Checked;
+            if (!displayedAspect.noartneeded.Value)
+            {
+                displayedAspect.noartneeded = null;
+            }
         }
 
         private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
