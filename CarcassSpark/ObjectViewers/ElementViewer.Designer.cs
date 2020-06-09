@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ElementViewer));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
@@ -64,10 +65,14 @@
             this.xtriggersListView = new System.Windows.Forms.ListView();
             this.newXTriggerButton = new System.Windows.Forms.Button();
             this.deleteXTriggerButton = new System.Windows.Forms.Button();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).BeginInit();
+            this.propertyOperationContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -162,6 +167,7 @@
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.amount});
+            this.aspectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.aspectsDataGridView.Location = new System.Drawing.Point(509, 25);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
@@ -407,6 +413,29 @@
             this.deleteXTriggerButton.UseVisualStyleBackColor = true;
             this.deleteXTriggerButton.Click += new System.EventHandler(this.deleteXTriggerButton_Click);
             // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsExtendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(128, 70);
+            // 
+            // setAsExtendToolStripMenuItem
+            // 
+            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
+            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            // 
             // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -453,6 +482,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).EndInit();
+            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,5 +525,8 @@
         private System.Windows.Forms.ListView xtriggersListView;
         private System.Windows.Forms.Button newXTriggerButton;
         private System.Windows.Forms.Button deleteXTriggerButton;
+        private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
     }
 }

@@ -60,6 +60,8 @@ namespace CarcassSpark.ObjectViewers
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
             removeSlotButton.Visible = editing;
+            setAsExtendToolStripMenuItem.Visible = editing;
+            setAsRemoveToolStripMenuItem.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
@@ -483,6 +485,36 @@ namespace CarcassSpark.ObjectViewers
                     xtriggersListView.Items.Remove(item);
                 }
                 if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
+            }
+        }
+
+        private void setAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            if (affectedDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.SelectedRows[0];
+                row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+            }
+            else if (affectedDataGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
+                row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+            }
+        }
+
+        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            if (affectedDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.SelectedRows[0];
+                row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+            }
+            else if (affectedDataGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
+                row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
             }
         }
     }
