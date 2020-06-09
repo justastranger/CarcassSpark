@@ -1185,7 +1185,6 @@ namespace CarcassSpark.ObjectViewers
             string selected = (string)aspectsListBox.SelectedItem;
             if (confirmDelete(selected) == DialogResult.Yes)
             {
-                MessageBox.Show(selected);
                 aspectsListBox.Items.Remove(selected);
                 aspectsList.Remove(selected);
             }
