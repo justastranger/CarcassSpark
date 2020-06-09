@@ -670,7 +670,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (requirementsDataGridView.RowCount > 1)
             {
-                //displayedRecipe.requirements = new Dictionary<string, int>();
+                displayedRecipe.requirements = null;
+                displayedRecipe.requirements_extend = null;
+                displayedRecipe.requirements_remove = null;
                 foreach (DataGridViewRow row in requirementsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -695,7 +697,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (extantreqsDataGridView.RowCount > 1)
             {
-                //displayedRecipe.extantreqs = new Dictionary<string, int>();
+                displayedRecipe.extantreqs = null;
+                displayedRecipe.extantreqs_extend = null;
+                displayedRecipe.extantreqs_remove = null;
                 foreach (DataGridViewRow row in extantreqsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -720,7 +724,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (tablereqsDataGridView.RowCount > 1)
             {
-                //displayedRecipe.tablereqs = new Dictionary<string, int>();
+                displayedRecipe.tablereqs = null;
+                displayedRecipe.tablereqs_extend = null;
+                displayedRecipe.tablereqs_remove = null;
                 foreach (DataGridViewRow row in tablereqsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -745,7 +751,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                //displayedRecipe.effects = new Dictionary<string, int>();
+                displayedRecipe.effects = null;
+                displayedRecipe.effects_extend = null;
+                displayedRecipe.effects_remove = null;
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -770,7 +778,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (aspectsDataGridView.RowCount > 1)
             {
-                //displayedRecipe.aspects = new Dictionary<string, int>();
+                displayedRecipe.aspects = null;
+                displayedRecipe.aspects_extend = null;
+                displayedRecipe.aspects_remove = null;
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -795,7 +805,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (deckeffectDataGridView.RowCount > 1)
             {
-                //displayedRecipe.deckeffect = new Dictionary<string, int>();
+                displayedRecipe.deckeffect = null;
+                displayedRecipe.deckeffect_extend = null;
+                displayedRecipe.deckeffect_remove = null;
                 foreach (DataGridViewRow row in deckeffectDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null) continue;
@@ -815,6 +827,87 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (displayedRecipe.deckeffect == null) displayedRecipe.deckeffect = new Dictionary<string, int>();
                         displayedRecipe.deckeffect[key] = value.Value;
+                    }
+                }
+            }
+            if (purgeDataGridView.RowCount > 1)
+            {
+                displayedRecipe.purge = null;
+                displayedRecipe.purge_extend = null;
+                displayedRecipe.purge_remove = null;
+                foreach (DataGridViewRow row in purgeDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value == null) continue;
+                    string key = row.Cells[0].Value.ToString();
+                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    {
+                        if (displayedRecipe.purge_extend == null) displayedRecipe.purge_extend = new Dictionary<string, int>();
+                        displayedRecipe.purge_extend[key] = value.Value;
+                    }
+                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    {
+                        if (displayedRecipe.purge_remove == null) displayedRecipe.purge_remove = new List<string>();
+                        if (!displayedRecipe.purge_remove.Contains(key)) displayedRecipe.purge_remove.Add(key);
+                    }
+                    else
+                    {
+                        if (displayedRecipe.purge == null) displayedRecipe.purge = new Dictionary<string, int>();
+                        displayedRecipe.purge[key] = value.Value;
+                    }
+                }
+            }
+            if (haltVerbDataGridView.RowCount > 1)
+            {
+                displayedRecipe.haltverb = null;
+                displayedRecipe.haltverb_extend = null;
+                displayedRecipe.haltverb_remove = null;
+                foreach (DataGridViewRow row in haltVerbDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value == null) continue;
+                    string key = row.Cells[0].Value.ToString();
+                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    {
+                        if (displayedRecipe.haltverb_extend == null) displayedRecipe.haltverb_extend = new Dictionary<string, int>();
+                        displayedRecipe.haltverb_extend[key] = value.Value;
+                    }
+                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    {
+                        if (displayedRecipe.haltverb_remove == null) displayedRecipe.haltverb_remove = new List<string>();
+                        if (!displayedRecipe.haltverb_remove.Contains(key)) displayedRecipe.haltverb_remove.Add(key);
+                    }
+                    else
+                    {
+                        if (displayedRecipe.haltverb == null) displayedRecipe.haltverb = new Dictionary<string, int>();
+                        displayedRecipe.haltverb[key] = value.Value;
+                    }
+                }
+            }
+            if (deleteVerbDataGridView.RowCount > 1)
+            {
+                displayedRecipe.deleteverb = null;
+                displayedRecipe.deleteverb_extend = null;
+                displayedRecipe.deleteverb_remove = null;
+                foreach (DataGridViewRow row in deleteVerbDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value == null) continue;
+                    string key = row.Cells[0].Value.ToString();
+                    int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
+                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    {
+                        if (displayedRecipe.deleteverb_extend == null) displayedRecipe.deleteverb_extend = new Dictionary<string, int>();
+                        displayedRecipe.deleteverb_extend[key] = value.Value;
+                    }
+                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    {
+                        if (displayedRecipe.deleteverb_remove == null) displayedRecipe.deleteverb_remove = new List<string>();
+                        if (!displayedRecipe.deleteverb_remove.Contains(key)) displayedRecipe.deleteverb_remove.Add(key);
+                    }
+                    else
+                    {
+                        if (displayedRecipe.deleteverb == null) displayedRecipe.deleteverb = new Dictionary<string, int>();
+                        displayedRecipe.deleteverb[key] = value.Value;
                     }
                 }
             }
