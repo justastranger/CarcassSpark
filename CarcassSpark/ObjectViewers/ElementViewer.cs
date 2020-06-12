@@ -194,7 +194,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
+            if(aspectID == null)
+            {
+                return;
+            }
             AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), null);
             av.Show();
         }
