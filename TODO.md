@@ -4,6 +4,9 @@
  - Fix bug where the last opened mod is only saved after opening and closing the settings form.
  - Once I figure out how to guarantee that the user has access to the game's assets, switch over to ListView's in the ModViewer form so that everything can be displayed with their icons and sorted similarly to frangiclave (vertically as one segregated ListView)
  - Import Image toolstrip menu item in Mod Viewer's "File..." toolstrip menu
+ - Import/Export feature for objects, exporting just the object in a JSON file to be imported into another mod
+   - Export as "$(type)_$(id).json" by default in a directory of the user's choosing
+ - ThreeState Checkboxes, true false and indeterminate
 
  # Property Operations
  - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for slots)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AspectViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -49,8 +50,13 @@
             this.iconLabel = new System.Windows.Forms.Label();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsPrependToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsAppendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
+            this.propertyOperationContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -117,6 +123,7 @@
             this.recipeId,
             this.chance,
             this.inducesAdditional});
+            this.inducesDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.inducesDataGridView.Location = new System.Drawing.Point(287, 31);
             this.inducesDataGridView.Name = "inducesDataGridView";
             this.inducesDataGridView.Size = new System.Drawing.Size(355, 143);
@@ -238,6 +245,37 @@
             this.descriptionLabel.TabIndex = 17;
             this.descriptionLabel.Text = "Description";
             // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsPrependToolStripMenuItem,
+            this.setAsAppendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(128, 92);
+            // 
+            // setAsPrependToolStripMenuItem
+            // 
+            this.setAsPrependToolStripMenuItem.Name = "setAsPrependToolStripMenuItem";
+            this.setAsPrependToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.setAsPrependToolStripMenuItem.Text = "Set as Prepend";
+            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.setAsPrependToolStripMenuItem_Click);
+            // 
+            // setAsAppendToolStripMenuItem
+            // 
+            this.setAsAppendToolStripMenuItem.Name = "setAsAppendToolStripMenuItem";
+            this.setAsAppendToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.setAsAppendToolStripMenuItem.Text = "Set as Append";
+            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.setAsAppendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            // 
             // AspectViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +304,7 @@
             this.Text = "Aspect Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).EndInit();
+            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +332,9 @@
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inducesAdditional;
+        private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem setAsPrependToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsAppendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
     }
 }
