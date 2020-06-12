@@ -228,7 +228,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void forbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            string id = forbiddenDataGridView.SelectedCells[0].Value.ToString();
+            string id = forbiddenDataGridView.SelectedCells[0].Value as String;
+            if (id == null)
+            {
+                return;
+            }
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
@@ -243,7 +247,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void requiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            string id = requiredDataGridView.SelectedCells[0].Value.ToString();
+            string id = requiredDataGridView.SelectedCells[0].Value as String;
+            if (id == null) return;
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);

@@ -1,7 +1,9 @@
 # Installation
 Acquire the binaries (by any means necessary) and place them in your Cultist Simulator installation Folder.
 
-If you downloaded it through Steam like I did, that will be in `steamapps/common/Cultist Simulator`.
+Pre-compiled binaries can be found [here](https://github.com/justastranger/CarcassSpark/releases).
+
+If you downloaded it through Steam like I did, the correct folder will be in `steamapps/common/Cultist Simulator`.
 
 # Starting Out
 One of the first things you should do is open the vanilla files. There's a checkbox in the Settings menu that causes this to happen automatically. This allows all of the vanilla content to be inspected wherever it comes up in the Viewe forms. You'll be presented with a Mod Viewer. It's a simple overview, listing everything that's part of that particular content source in searchable ListBoxes.
@@ -10,7 +12,7 @@ To start off with creating a new mod, we'll be going back to the Main Form where
 
 Once you've chosen your new mod's folder, a manifest editor will appear for you to fill out. You can put in anything for this, or nothing at all if you're really lazy. Once you press the OK button to close the dialog, the manifest will be saved and your modding has officially begun!
 
-
+Mods go into your `LocalLow/Weather Factory/Cultist Simulator/mods` folder on Windows. This folder can be accessed by entering `%appdata%/../locallow/Weather Factory/Cultist Simulator/` into explorer or by creating a shortcut to `%appdata%/../locallow/Weather Factory/Cultist Simulator/`.
 
 # Property Support:
 Currently Supported:
