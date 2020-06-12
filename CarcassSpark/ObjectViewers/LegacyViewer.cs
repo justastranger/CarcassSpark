@@ -138,7 +138,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
+            if(id == null) return;
             ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
             ev.Show();
         }

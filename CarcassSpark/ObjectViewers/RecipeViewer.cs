@@ -567,7 +567,8 @@ namespace CarcassSpark.ObjectViewers
         private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects OR elements, don't allow editing these from a recipe
             if (requirementsDataGridView.SelectedCells[0].Value == null) return;
-            string id = requirementsDataGridView.SelectedCells[0].Value.ToString();
+            string id = requirementsDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
@@ -583,7 +584,8 @@ namespace CarcassSpark.ObjectViewers
         private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can also be aspects or elements, don't allow editing these from a recipe
             if (extantreqsDataGridView.SelectedCells[0].Value == null) return;
-            string id = extantreqsDataGridView.SelectedCells[0].Value.ToString();
+            string id = extantreqsDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
@@ -599,7 +601,8 @@ namespace CarcassSpark.ObjectViewers
         private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
             if (tablereqsDataGridView.SelectedCells[0].Value == null) return;
-            string id = tablereqsDataGridView.SelectedCells[0].Value.ToString();
+            string id = tablereqsDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
@@ -615,7 +618,8 @@ namespace CarcassSpark.ObjectViewers
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
             if (effectsDataGridView.SelectedCells[0].Value == null) return;
-            string id = effectsDataGridView.SelectedCells[0].Value.ToString();
+            string id = effectsDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.elementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
@@ -631,7 +635,8 @@ namespace CarcassSpark.ObjectViewers
         private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects, don't allow editing these from a recipe
             if (aspectsDataGridView.SelectedCells[0].Value == null) return;
-            string id = aspectsDataGridView.SelectedCells[0].Value.ToString();
+            string id = aspectsDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
@@ -647,7 +652,8 @@ namespace CarcassSpark.ObjectViewers
         private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be decks, don't allow editing these from a recipe
             if (deckeffectDataGridView.SelectedCells[0].Value == null) return;
-            string id = deckeffectDataGridView.SelectedCells[0].Value.ToString();
+            string id = deckeffectDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.deckExists(id))
             {
                 DeckViewer dv = new DeckViewer(Utilities.getDeck(id), null);
@@ -1575,7 +1581,8 @@ namespace CarcassSpark.ObjectViewers
         private void purgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (purgeDataGridView.SelectedCells[0].Value == null) return;
-            string id = purgeDataGridView.SelectedCells[0].Value.ToString();
+            string id = purgeDataGridView.SelectedCells[0].Value as String;
+            if(id == null) return;
             if (Utilities.aspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
