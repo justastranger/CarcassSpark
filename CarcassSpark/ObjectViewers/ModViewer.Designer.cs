@@ -593,7 +593,7 @@
             this.verbsListBox.Location = new System.Drawing.Point(798, 41);
             this.verbsListBox.Name = "verbsListBox";
             this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(120, 290);
+            this.verbsListBox.Size = new System.Drawing.Size(125, 290);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
@@ -897,7 +897,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 369);
+            this.ClientSize = new System.Drawing.Size(935, 369);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.verbsSearchTextBox);
             this.Controls.Add(this.endingsSearchTextBox);
