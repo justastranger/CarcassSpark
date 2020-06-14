@@ -1525,19 +1525,19 @@ namespace CarcassSpark.ObjectViewers
                 switch (ii.displayedImageType.ToLower())
                 {
                     case "aspect":
-                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName);
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName, true);
                         break;
                     case "element":
-                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName);
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName, true);
                         break;
                     case "ending":
-                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName);
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName, true);
                         break;
                     case "legacy":
-                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName);
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName, true);
                         break;
                     case "verb":
-                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName);
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName, true);
                         break;
                 }
                 MessageBox.Show("Imported " + ii.displayedImageType + " image.");
