@@ -221,23 +221,23 @@
             // 
             this.aspectsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspectsLabel.AutoSize = true;
-            this.aspectsLabel.Location = new System.Drawing.Point(42, 25);
+            this.aspectsLabel.Location = new System.Drawing.Point(12, 25);
             this.aspectsLabel.Name = "aspectsLabel";
-            this.aspectsLabel.Size = new System.Drawing.Size(45, 13);
+            this.aspectsLabel.Size = new System.Drawing.Size(125, 13);
             this.aspectsLabel.TabIndex = 2;
             this.aspectsLabel.Text = "Aspects";
+            this.aspectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // elementsLabel
             // 
             this.elementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.elementsLabel.AutoSize = true;
-            this.elementsLabel.Location = new System.Drawing.Point(175, 25);
+            this.elementsLabel.Location = new System.Drawing.Point(143, 25);
             this.elementsLabel.Name = "elementsLabel";
-            this.elementsLabel.Size = new System.Drawing.Size(50, 13);
+            this.elementsLabel.Size = new System.Drawing.Size(125, 13);
             this.elementsLabel.TabIndex = 3;
             this.elementsLabel.Text = "Elements";
+            this.elementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // elementsListBox
             // 
@@ -343,12 +343,12 @@
             // 
             this.recipesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.recipesLabel.AutoSize = true;
-            this.recipesLabel.Location = new System.Drawing.Point(303, 25);
+            this.recipesLabel.Location = new System.Drawing.Point(274, 25);
             this.recipesLabel.Name = "recipesLabel";
-            this.recipesLabel.Size = new System.Drawing.Size(46, 13);
+            this.recipesLabel.Size = new System.Drawing.Size(125, 13);
             this.recipesLabel.TabIndex = 5;
             this.recipesLabel.Text = "Recipes";
+            this.recipesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // recipesListBox
             // 
@@ -415,12 +415,12 @@
             // 
             this.decksLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.decksLabel.AutoSize = true;
-            this.decksLabel.Location = new System.Drawing.Point(439, 25);
+            this.decksLabel.Location = new System.Drawing.Point(405, 25);
             this.decksLabel.Name = "decksLabel";
-            this.decksLabel.Size = new System.Drawing.Size(38, 13);
+            this.decksLabel.Size = new System.Drawing.Size(125, 13);
             this.decksLabel.TabIndex = 7;
             this.decksLabel.Text = "Decks";
+            this.decksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // decksListBox
             // 
@@ -475,16 +475,16 @@
             // 
             this.legaciesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.legaciesLabel.AutoSize = true;
-            this.legaciesLabel.Location = new System.Drawing.Point(566, 25);
+            this.legaciesLabel.Location = new System.Drawing.Point(536, 25);
             this.legaciesLabel.Name = "legaciesLabel";
-            this.legaciesLabel.Size = new System.Drawing.Size(50, 13);
+            this.legaciesLabel.Size = new System.Drawing.Size(125, 13);
             this.legaciesLabel.TabIndex = 9;
             this.legaciesLabel.Text = "Legacies";
             this.duplicateSelectedDeckToolStripMenuItem.Name = "duplicateSelectedDeckToolStripMenuItem";
             this.duplicateSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.duplicateSelectedDeckToolStripMenuItem.Text = "Duplicate Selected Deck";
             this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeckToolStripMenuItem_Click);
+            this.legaciesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // legaciesListBox
             // 
@@ -578,12 +578,12 @@
             // 
             this.endingsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.endingsLabel.AutoSize = true;
-            this.endingsLabel.Location = new System.Drawing.Point(701, 25);
+            this.endingsLabel.Location = new System.Drawing.Point(667, 25);
             this.endingsLabel.Name = "endingsLabel";
-            this.endingsLabel.Size = new System.Drawing.Size(45, 13);
+            this.endingsLabel.Size = new System.Drawing.Size(125, 13);
             this.endingsLabel.TabIndex = 12;
             this.endingsLabel.Text = "Endings";
+            this.endingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // verbsListBox
             // 
@@ -649,12 +649,12 @@
             // 
             this.verbsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.verbsLabel.AutoSize = true;
-            this.verbsLabel.Location = new System.Drawing.Point(842, 25);
+            this.verbsLabel.Location = new System.Drawing.Point(798, 25);
             this.verbsLabel.Name = "verbsLabel";
-            this.verbsLabel.Size = new System.Drawing.Size(34, 13);
+            this.verbsLabel.Size = new System.Drawing.Size(125, 13);
             this.verbsLabel.TabIndex = 14;
             this.verbsLabel.Text = "Verbs";
+            this.verbsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // toolStrip1
             // 
