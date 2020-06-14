@@ -940,7 +940,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.toolStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModViewer";
             this.Text = "Carcass Spark";
