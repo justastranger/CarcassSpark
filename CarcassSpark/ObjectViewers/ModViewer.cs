@@ -118,8 +118,8 @@ namespace CarcassSpark.ObjectViewers
             if (mvdr == DialogResult.OK)
             {
                 manifest = mv.displayedManifest;
+                saveMod(currentDirectory);
             }
-            saveMod(currentDirectory);
         }
 
         public void checkForManifest()
