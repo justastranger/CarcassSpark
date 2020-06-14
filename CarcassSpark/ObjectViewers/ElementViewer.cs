@@ -270,14 +270,12 @@ namespace CarcassSpark.ObjectViewers
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedElement);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 

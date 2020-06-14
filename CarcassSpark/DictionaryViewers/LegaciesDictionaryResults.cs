@@ -51,13 +51,11 @@ namespace CarcassSpark.DictionaryViewers
 
         private void okButton_Click_1(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void cancelButton_Click_1(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 

@@ -124,14 +124,12 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All values must be filled for the Ending to be valid.");
                 return;
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedEnding);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 

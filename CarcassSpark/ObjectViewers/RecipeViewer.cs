@@ -663,7 +663,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -919,7 +918,6 @@ namespace CarcassSpark.ObjectViewers
             }
             saveAlternativeRecipes();
             saveLinkedRecipes();
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedRecipe);
         }

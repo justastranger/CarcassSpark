@@ -198,14 +198,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedDeck);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 

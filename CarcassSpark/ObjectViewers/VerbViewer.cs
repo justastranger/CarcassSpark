@@ -79,7 +79,6 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All Verbs must have an ID");
                 return;
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedVerb);
         }
@@ -107,7 +106,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
