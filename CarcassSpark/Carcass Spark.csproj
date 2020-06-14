@@ -227,6 +227,12 @@
     <Compile Include="ObjectViewers\SlotViewer.Designer.cs">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ImageImporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ImageImporter.Designer.cs">
+      <DependentUpon>ImageImporter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\SummonCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ImageImporter.resx">
+      <DependentUpon>ImageImporter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\SummonCreator.resx">
       <DependentUpon>SummonCreator.cs</DependentUpon>

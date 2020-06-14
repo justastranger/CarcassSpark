@@ -1516,7 +1516,12 @@ namespace CarcassSpark.ObjectViewers
             verbsListBox.Items.Add(newVerb.id);
             verbsList.Add(newVerb.id, newVerb);
         }
-        
+
+        private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);

@@ -118,6 +118,7 @@
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -791,7 +792,8 @@
             // 
             this.toolsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolsToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.summonGeneratorToolStripMenuItem});
+            this.summonGeneratorToolStripMenuItem,
+            this.imageImporterToolStripMenuItem});
             this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
             this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolsToolStripButton.Name = "toolsToolStripButton";
@@ -932,6 +934,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 332);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
+            // imageImporterToolStripMenuItem
+            // 
+            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.imageImporterToolStripMenuItem.Text = "Image Importer";
+            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1050,6 +1059,7 @@
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem imageImporterToolStripMenuItem;
     }
 }
 
