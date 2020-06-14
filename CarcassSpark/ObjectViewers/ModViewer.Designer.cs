@@ -812,8 +812,7 @@
             // 
             // aspetsSearchTextBox
             // 
-            this.aspetsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspetsSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.aspetsSearchTextBox.Location = new System.Drawing.Point(12, 337);
             this.aspetsSearchTextBox.Name = "aspetsSearchTextBox";
             this.aspetsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -822,8 +821,7 @@
             // 
             // elementsSearchTextBox
             // 
-            this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.elementsSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.elementsSearchTextBox.Location = new System.Drawing.Point(143, 337);
             this.elementsSearchTextBox.Name = "elementsSearchTextBox";
             this.elementsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -832,8 +830,7 @@
             // 
             // recipesSearchTextBox
             // 
-            this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.recipesSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.recipesSearchTextBox.Location = new System.Drawing.Point(274, 337);
             this.recipesSearchTextBox.Name = "recipesSearchTextBox";
             this.recipesSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -842,8 +839,7 @@
             // 
             // decksSearchTextBox
             // 
-            this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.decksSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.decksSearchTextBox.Location = new System.Drawing.Point(405, 337);
             this.decksSearchTextBox.Name = "decksSearchTextBox";
             this.decksSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -852,8 +848,7 @@
             // 
             // legaciesSearchTextBox
             // 
-            this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.legaciesSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.legaciesSearchTextBox.Location = new System.Drawing.Point(536, 337);
             this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
             this.legaciesSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -862,8 +857,7 @@
             // 
             // endingsSearchTextBox
             // 
-            this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.endingsSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.endingsSearchTextBox.Location = new System.Drawing.Point(667, 337);
             this.endingsSearchTextBox.Name = "endingsSearchTextBox";
             this.endingsSearchTextBox.Size = new System.Drawing.Size(125, 20);
@@ -872,8 +866,7 @@
             // 
             // verbsSearchTextBox
             // 
-            this.verbsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.verbsSearchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.verbsSearchTextBox.Location = new System.Drawing.Point(798, 337);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
             this.verbsSearchTextBox.Size = new System.Drawing.Size(125, 20);
