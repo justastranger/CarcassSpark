@@ -664,7 +664,7 @@
             this.toolsToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(930, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(935, 25);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -876,7 +876,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.verbsSearchTextBox.Location = new System.Drawing.Point(798, 337);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
-            this.verbsSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.verbsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
             // 
@@ -889,7 +889,7 @@
             // 
             this.ProgressBar.Location = new System.Drawing.Point(178, 2);
             this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(740, 23);
+            this.ProgressBar.Size = new System.Drawing.Size(745, 23);
             this.ProgressBar.TabIndex = 24;
             this.ProgressBar.Visible = false;
             // 
