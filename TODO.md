@@ -1,7 +1,6 @@
  - RecipeViewer needs to have Property Operations implemented for Warmup and Max Executions
  - Several Search Operations were temporarily disabled so that I could push a release on day 1 of Exile, they need to be fixed and re-enabled.
  - Add support for the other 2 languages
- - Fix bug where the last opened mod is only saved after opening and closing the settings form.
  - Once I figure out how to guarantee that the user has access to the game's assets, switch over to ListView's in the ModViewer form so that everything can be displayed with their icons and sorted similarly to frangiclave (vertically as one segregated ListView)
  - Import Image toolstrip menu item in Mod Viewer's "File..." toolstrip menu
  - Import/Export feature for objects, exporting just the object in a JSON file to be imported into another mod

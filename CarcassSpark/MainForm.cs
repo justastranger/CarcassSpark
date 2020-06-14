@@ -80,6 +80,7 @@ namespace CarcassSpark
                 Utilities.currentMods.Add(mv);
                 Settings.settings["previousMod"] = mv.currentDirectory;
                 mv.Show();
+                Settings.saveSettings();
             }
         }
     }
