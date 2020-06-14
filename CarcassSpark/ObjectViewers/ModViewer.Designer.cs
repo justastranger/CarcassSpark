@@ -219,8 +219,7 @@
             // 
             // aspectsLabel
             // 
-            this.aspectsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspectsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.aspectsLabel.Location = new System.Drawing.Point(12, 25);
             this.aspectsLabel.Name = "aspectsLabel";
             this.aspectsLabel.Size = new System.Drawing.Size(125, 13);
@@ -230,8 +229,7 @@
             // 
             // elementsLabel
             // 
-            this.elementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.elementsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.elementsLabel.Location = new System.Drawing.Point(143, 25);
             this.elementsLabel.Name = "elementsLabel";
             this.elementsLabel.Size = new System.Drawing.Size(125, 13);
@@ -341,8 +339,7 @@
             // 
             // recipesLabel
             // 
-            this.recipesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.recipesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.recipesLabel.Location = new System.Drawing.Point(274, 25);
             this.recipesLabel.Name = "recipesLabel";
             this.recipesLabel.Size = new System.Drawing.Size(125, 13);
@@ -413,8 +410,7 @@
             // 
             // decksLabel
             // 
-            this.decksLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.decksLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.decksLabel.Location = new System.Drawing.Point(405, 25);
             this.decksLabel.Name = "decksLabel";
             this.decksLabel.Size = new System.Drawing.Size(125, 13);
@@ -473,8 +469,7 @@
             // 
             // legaciesLabel
             // 
-            this.legaciesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.legaciesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.legaciesLabel.Location = new System.Drawing.Point(536, 25);
             this.legaciesLabel.Name = "legaciesLabel";
             this.legaciesLabel.Size = new System.Drawing.Size(125, 13);
@@ -576,8 +571,7 @@
             // 
             // endingsLabel
             // 
-            this.endingsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.endingsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.endingsLabel.Location = new System.Drawing.Point(667, 25);
             this.endingsLabel.Name = "endingsLabel";
             this.endingsLabel.Size = new System.Drawing.Size(125, 13);
@@ -647,8 +641,7 @@
             // 
             // verbsLabel
             // 
-            this.verbsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.verbsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.verbsLabel.Location = new System.Drawing.Point(798, 25);
             this.verbsLabel.Name = "verbsLabel";
             this.verbsLabel.Size = new System.Drawing.Size(125, 13);
