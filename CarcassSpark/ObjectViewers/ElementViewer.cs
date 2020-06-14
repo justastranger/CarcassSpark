@@ -379,24 +379,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void resaturateCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedElement.resaturate = resaturateCheckBox.Checked;
-            if (!displayedElement.resaturate.Value)
-            {
-                displayedElement.resaturate = null;
-            }
-        }
-
-        private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedElement.unique = uniqueCheckBox.Checked;
-            if (!displayedElement.unique.Value)
-            {
-                displayedElement.unique = null;
-            }
-        }
-
         private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
@@ -520,6 +502,20 @@ namespace CarcassSpark.ObjectViewers
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
                 row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
             }
+        }
+
+        private void uniqueCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (uniqueCheckBox.CheckState == CheckState.Checked) displayedElement.unique = true;
+            if (uniqueCheckBox.CheckState == CheckState.Unchecked) displayedElement.unique = false;
+            if (uniqueCheckBox.CheckState == CheckState.Indeterminate) displayedElement.unique = null;
+        }
+
+        private void resaturateCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (resaturateCheckBox.CheckState == CheckState.Checked) displayedElement.resaturate = true;
+            if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
+            if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
         }
     }
 }

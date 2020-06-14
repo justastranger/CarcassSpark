@@ -73,8 +73,9 @@
             this.atStartCheckBox.Size = new System.Drawing.Size(165, 17);
             this.atStartCheckBox.TabIndex = 2;
             this.atStartCheckBox.Text = "Start new game with this verb";
+            this.atStartCheckBox.ThreeState = true;
             this.atStartCheckBox.UseVisualStyleBackColor = true;
-            this.atStartCheckBox.CheckedChanged += new System.EventHandler(this.atStartCheckBox_CheckedChanged);
+            this.atStartCheckBox.CheckStateChanged += new System.EventHandler(this.atStartCheckBox_CheckStateChanged);
             // 
             // descriptionTextBox
             // 

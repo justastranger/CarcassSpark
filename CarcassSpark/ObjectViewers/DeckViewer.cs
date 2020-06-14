@@ -268,15 +268,6 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.defaultcard = null;
             }
         }
-
-        private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
-            if (!displayedDeck.resetonexhaustion.Value)
-            {
-                displayedDeck.resetonexhaustion = null;
-            }
-        }
         
         private void specListView_DoubleClick(object sender, EventArgs e)
         {
@@ -406,6 +397,13 @@ namespace CarcassSpark.ObjectViewers
                     //contextMenuStrip1.Show(e.Location);
                 }
             }
+        }
+
+        private void resetOnExhaustionCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
         }
     }
 }

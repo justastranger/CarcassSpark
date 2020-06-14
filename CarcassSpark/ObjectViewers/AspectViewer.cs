@@ -230,24 +230,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void isHiddenCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedAspect.isHidden = isHiddenCheckBox.Checked;
-            if (!displayedAspect.isHidden.Value)
-            {
-                displayedAspect.isHidden = null;
-            }
-        }
-
-        private void noartworkneededCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedAspect.noartneeded = noartworkneededCheckBox.Checked;
-            if (!displayedAspect.noartneeded.Value)
-            {
-                displayedAspect.noartneeded = null;
-            }
-        }
-
         private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value as string : null;
@@ -321,6 +303,20 @@ namespace CarcassSpark.ObjectViewers
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
                 row.DefaultCellStyle.BackColor = Utilities.ListRemoveColor;
             }
+        }
+
+        private void isHiddenCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (isHiddenCheckBox.CheckState == CheckState.Checked) displayedAspect.isHidden = true;
+            if (isHiddenCheckBox.CheckState == CheckState.Unchecked) displayedAspect.isHidden = false;
+            if (isHiddenCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.isHidden = null;
+        }
+
+        private void noartworkneededCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (noartworkneededCheckBox.CheckState == CheckState.Checked) displayedAspect.noartneeded = true;
+            if (noartworkneededCheckBox.CheckState == CheckState.Unchecked) displayedAspect.noartneeded = false;
+            if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.noartneeded = null;
         }
     }
 }

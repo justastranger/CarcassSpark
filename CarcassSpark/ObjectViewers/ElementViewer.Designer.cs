@@ -42,6 +42,9 @@
             this.aspectsDataGridView = new System.Windows.Forms.DataGridView();
             this.aspectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
@@ -65,14 +68,11 @@
             this.xtriggersListView = new System.Windows.Forms.ListView();
             this.newXTriggerButton = new System.Windows.Forms.Button();
             this.deleteXTriggerButton = new System.Windows.Forms.Button();
-            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
+            this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).BeginInit();
-            this.propertyOperationContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -129,8 +129,9 @@
             this.uniqueCheckBox.Size = new System.Drawing.Size(60, 17);
             this.uniqueCheckBox.TabIndex = 7;
             this.uniqueCheckBox.Text = "Unique";
+            this.uniqueCheckBox.ThreeState = true;
             this.uniqueCheckBox.UseVisualStyleBackColor = true;
-            this.uniqueCheckBox.CheckedChanged += new System.EventHandler(this.uniqueCheckBox_CheckedChanged);
+            this.uniqueCheckBox.CheckStateChanged += new System.EventHandler(this.uniqueCheckBox_CheckStateChanged);
             // 
             // uniquenessgroupTextBox
             // 
@@ -186,6 +187,29 @@
             this.amount.HeaderText = "Amount";
             this.amount.Name = "amount";
             this.amount.Width = 102;
+            // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsExtendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(126, 48);
+            // 
+            // setAsExtendToolStripMenuItem
+            // 
+            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
+            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
             // 
             // extendsTextBox
             // 
@@ -368,8 +392,9 @@
             this.resaturateCheckBox.Size = new System.Drawing.Size(78, 17);
             this.resaturateCheckBox.TabIndex = 32;
             this.resaturateCheckBox.Text = "Resaturate";
+            this.resaturateCheckBox.ThreeState = true;
             this.resaturateCheckBox.UseVisualStyleBackColor = true;
-            this.resaturateCheckBox.CheckedChanged += new System.EventHandler(this.resaturateCheckBox_CheckedChanged);
+            this.resaturateCheckBox.CheckStateChanged += new System.EventHandler(this.resaturateCheckBox_CheckStateChanged);
             // 
             // slotsListView
             // 
@@ -412,29 +437,6 @@
             this.deleteXTriggerButton.Text = "Delete XTrigger";
             this.deleteXTriggerButton.UseVisualStyleBackColor = true;
             this.deleteXTriggerButton.Click += new System.EventHandler(this.deleteXTriggerButton_Click);
-            // 
-            // propertyOperationContextMenuStrip
-            // 
-            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setAsExtendToolStripMenuItem,
-            this.setAsRemoveToolStripMenuItem});
-            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
-            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
-            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(128, 70);
-            // 
-            // setAsExtendToolStripMenuItem
-            // 
-            this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
-            this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
-            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
-            // 
-            // setAsRemoveToolStripMenuItem
-            // 
-            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
-            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
             // 
             // ElementViewer
             // 
@@ -480,9 +482,9 @@
             this.Text = "Element Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
+            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).EndInit();
-            this.propertyOperationContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

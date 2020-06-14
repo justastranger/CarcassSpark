@@ -1118,24 +1118,6 @@ namespace CarcassSpark.ObjectViewers
             else displayedRecipe.extends = new List<string> { extendsTextBox.Text };
         }
 
-        private void craftableCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedRecipe.craftable = craftableCheckBox.Checked;
-            if (!displayedRecipe.craftable.Value)
-            {
-                displayedRecipe.craftable = null;
-            }
-        }
-
-        private void hintonlyCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedRecipe.hintonly = hintonlyCheckBox.Checked;
-            if (!displayedRecipe.hintonly.Value)
-            {
-                displayedRecipe.hintonly = null;
-            }
-        }
-
         private void warmupNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
@@ -1569,15 +1551,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void signalImportantLoopCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedRecipe.signalimportantloop = signalImportantLoopCheckBox.Checked;
-            if (!displayedRecipe.signalimportantloop.Value)
-            {
-                displayedRecipe.signalimportantloop = null;
-            }
-        }
-
         private void purgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (purgeDataGridView.SelectedCells[0].Value == null) return;
@@ -1768,6 +1741,27 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedRecipe.portaleffect = null;
             }
+        }
+
+        private void craftableCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (craftableCheckBox.CheckState == CheckState.Checked) displayedRecipe.craftable = true;
+            if (craftableCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.craftable = false;
+            if (craftableCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.craftable = null;
+        }
+
+        private void hintonlyCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (hintonlyCheckBox.CheckState == CheckState.Checked) displayedRecipe.hintonly = true;
+            if (hintonlyCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.hintonly = false;
+            if (hintonlyCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.hintonly = null;
+        }
+
+        private void signalImportantLoopCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (signalImportantLoopCheckBox.CheckState == CheckState.Checked) displayedRecipe.signalimportantloop = true;
+            if (signalImportantLoopCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.signalimportantloop = false;
+            if (signalImportantLoopCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.signalimportantloop = null;
         }
     }
 }

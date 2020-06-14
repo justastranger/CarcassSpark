@@ -513,6 +513,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void saveMod(object sender, EventArgs e)
         {
+            
             saveMod(currentDirectory);
         }
 
@@ -1515,7 +1516,7 @@ namespace CarcassSpark.ObjectViewers
             verbsListBox.Items.Add(newVerb.id);
             verbsList.Add(newVerb.id, newVerb);
         }
-
+        
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);

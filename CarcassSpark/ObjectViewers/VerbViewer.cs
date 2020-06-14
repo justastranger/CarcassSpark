@@ -133,15 +133,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void atStartCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedVerb.atStart = atStartCheckBox.Checked;
-            if (!displayedVerb.atStart.Value)
-            {
-                displayedVerb.atStart = null;
-            }
-        }
-
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.description = descriptionTextBox.Text;
@@ -159,6 +150,13 @@ namespace CarcassSpark.ObjectViewers
                 slots.Remove(slotsListView.SelectedItems[0].Text.ToString());
                 slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
             }
+        }
+
+        private void atStartCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (atStartCheckBox.CheckState == CheckState.Checked) displayedVerb.atStart = true;
+            if (atStartCheckBox.CheckState == CheckState.Unchecked) displayedVerb.atStart = false;
+            if (atStartCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.atStart = null;
         }
     }
 }

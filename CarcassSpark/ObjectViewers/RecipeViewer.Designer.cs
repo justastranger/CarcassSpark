@@ -214,8 +214,9 @@
             this.craftableCheckBox.Size = new System.Drawing.Size(68, 17);
             this.craftableCheckBox.TabIndex = 7;
             this.craftableCheckBox.Text = "Craftable";
+            this.craftableCheckBox.ThreeState = true;
             this.craftableCheckBox.UseVisualStyleBackColor = true;
-            this.craftableCheckBox.CheckedChanged += new System.EventHandler(this.craftableCheckBox_CheckedChanged);
+            this.craftableCheckBox.CheckStateChanged += new System.EventHandler(this.craftableCheckBox_CheckStateChanged);
             // 
             // hintonlyCheckBox
             // 
@@ -226,8 +227,9 @@
             this.hintonlyCheckBox.Size = new System.Drawing.Size(69, 17);
             this.hintonlyCheckBox.TabIndex = 8;
             this.hintonlyCheckBox.Text = "Hint Only";
+            this.hintonlyCheckBox.ThreeState = true;
             this.hintonlyCheckBox.UseVisualStyleBackColor = true;
-            this.hintonlyCheckBox.CheckedChanged += new System.EventHandler(this.hintonlyCheckBox_CheckedChanged);
+            this.hintonlyCheckBox.CheckStateChanged += new System.EventHandler(this.hintonlyCheckBox_CheckStateChanged);
             // 
             // internaldeckLabel
             // 
@@ -929,8 +931,9 @@
             this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(129, 17);
             this.signalImportantLoopCheckBox.TabIndex = 75;
             this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
+            this.signalImportantLoopCheckBox.ThreeState = true;
             this.signalImportantLoopCheckBox.UseVisualStyleBackColor = true;
-            this.signalImportantLoopCheckBox.CheckedChanged += new System.EventHandler(this.signalImportantLoopCheckBox_CheckedChanged);
+            this.signalImportantLoopCheckBox.CheckStateChanged += new System.EventHandler(this.signalImportantLoopCheckBox_CheckStateChanged);
             // 
             // purgeDataGridView
             // 

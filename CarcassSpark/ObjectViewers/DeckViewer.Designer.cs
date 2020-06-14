@@ -134,8 +134,9 @@
             this.resetOnExhaustionCheckBox.Size = new System.Drawing.Size(115, 17);
             this.resetOnExhaustionCheckBox.TabIndex = 6;
             this.resetOnExhaustionCheckBox.Text = "resetOnExhaustion";
+            this.resetOnExhaustionCheckBox.ThreeState = true;
             this.resetOnExhaustionCheckBox.UseVisualStyleBackColor = true;
-            this.resetOnExhaustionCheckBox.CheckedChanged += new System.EventHandler(this.resetOnExhaustionCheckBox_CheckedChanged);
+            this.resetOnExhaustionCheckBox.CheckStateChanged += new System.EventHandler(this.resetOnExhaustionCheckBox_CheckStateChanged);
             // 
             // defaultCardTextBox
             // 

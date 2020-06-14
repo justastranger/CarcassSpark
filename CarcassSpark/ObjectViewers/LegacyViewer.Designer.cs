@@ -147,8 +147,9 @@
             this.availableWithoutEndingMatchCheckBox.Size = new System.Drawing.Size(178, 17);
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
             this.availableWithoutEndingMatchCheckBox.Text = "Available Without Ending Match";
+            this.availableWithoutEndingMatchCheckBox.ThreeState = true;
             this.availableWithoutEndingMatchCheckBox.UseVisualStyleBackColor = true;
-            this.availableWithoutEndingMatchCheckBox.CheckedChanged += new System.EventHandler(this.availableWithoutEndingMatch_CheckedChanged);
+            this.availableWithoutEndingMatchCheckBox.CheckStateChanged += new System.EventHandler(this.availableWithoutEndingMatchCheckBox_CheckStateChanged);
             // 
             // effectsDataGridView
             // 

@@ -289,15 +289,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedLegacy.availableWithoutEndingMatch = availableWithoutEndingMatchCheckBox.Checked;
-            if (!displayedLegacy.availableWithoutEndingMatch.Value)
-            {
-                displayedLegacy.availableWithoutEndingMatch = null;
-            }
-        }
-
         private void removeButton_Click(object sender, EventArgs e)
         {
             if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListView.SelectedItems[0].Text))
@@ -413,6 +404,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedLegacy.extends = null;
             }
+        }
+
+        private void availableWithoutEndingMatchCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Checked) displayedLegacy.availableWithoutEndingMatch = true;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.availableWithoutEndingMatch = false;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.availableWithoutEndingMatch = null;
         }
     }
 }
