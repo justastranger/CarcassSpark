@@ -1519,7 +1519,29 @@ namespace CarcassSpark.ObjectViewers
 
         private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ImageImporter ii = new ImageImporter();
+            if (ii.ShowDialog() == DialogResult.OK)
+            {
+                switch (ii.displayedImageType.ToLower())
+                {
+                    case "aspect":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName);
+                        break;
+                    case "element":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName);
+                        break;
+                    case "ending":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName);
+                        break;
+                    case "legacy":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName);
+                        break;
+                    case "verb":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName);
+                        break;
+                }
+                MessageBox.Show("Imported " + ii.displayedImageType + " image.");
+            }
         }
 
         public DialogResult confirmDelete(string id)

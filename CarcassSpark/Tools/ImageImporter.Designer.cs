@@ -73,6 +73,7 @@
             // 
             // okButton
             // 
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 314);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +84,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(193, 314);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -103,7 +105,7 @@
             // 
             // openImageFileDialog
             // 
-            this.openImageFileDialog.Filter = "\"PNG files|*.png\"";
+            this.openImageFileDialog.Filter = "PNG files|*.png";
             // 
             // ImageImporter
             // 
