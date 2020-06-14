@@ -70,7 +70,7 @@ namespace CarcassSpark.ObjectViewers
             deleteSelectedRecipeToolStripMenuItem.Visible = editing;
             deleteSelectedVerbToolStripMenuItem.Visible = editing;
             duplicateSelectedAspectToolStripMenuItem.Visible = editing;
-            duplicateSelectedDeskToolStripMenuItem.Visible = editing;
+            duplicateSelectedDeckToolStripMenuItem.Visible = editing;
             duplicateSelectedElementToolStripMenuItem.Visible = editing;
             duplicateSelectedEndingToolStripMenuItem.Visible = editing;
             duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
@@ -118,8 +118,8 @@ namespace CarcassSpark.ObjectViewers
             if (mvdr == DialogResult.OK)
             {
                 manifest = mv.displayedManifest;
+                saveMod(currentDirectory);
             }
-            saveMod(currentDirectory);
         }
 
         public void checkForManifest()
@@ -1425,7 +1425,7 @@ namespace CarcassSpark.ObjectViewers
             recipesList.Add(newRecipe.id, newRecipe);
         }
 
-        private void duplicateSelectedDeskToolStripMenuItem_Click(object sender, EventArgs e)
+        private void duplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Deck newDeck = decksList[decksListBox.SelectedItem as string].Copy();
             string id = newDeck.id;
