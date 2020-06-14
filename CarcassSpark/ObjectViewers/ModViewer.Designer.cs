@@ -68,8 +68,8 @@
             this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.duplicateSelectedDeskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesLabel = new System.Windows.Forms.Label();
+            this.duplicateSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -441,7 +441,7 @@
             this.deckContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem1,
             this.deleteSelectedDeckToolStripMenuItem,
-            this.duplicateSelectedDeskToolStripMenuItem});
+            this.duplicateSelectedDeckToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
             this.deckContextMenuStrip.Size = new System.Drawing.Size(175, 70);
@@ -468,12 +468,8 @@
             this.deleteSelectedDeckToolStripMenuItem.Text = "Delete Selected Deck";
             this.deleteSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedDeckToolStripMenuItem_Click);
             // 
-            // duplicateSelectedDeskToolStripMenuItem
+            // duplicateSelectedDeckToolStripMenuItem
             // 
-            this.duplicateSelectedDeskToolStripMenuItem.Name = "duplicateSelectedDeskToolStripMenuItem";
-            this.duplicateSelectedDeskToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.duplicateSelectedDeskToolStripMenuItem.Text = "Duplicate Selected Desk";
-            this.duplicateSelectedDeskToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeskToolStripMenuItem_Click);
             // 
             // legaciesLabel
             // 
@@ -485,6 +481,10 @@
             this.legaciesLabel.Size = new System.Drawing.Size(50, 13);
             this.legaciesLabel.TabIndex = 9;
             this.legaciesLabel.Text = "Legacies";
+            this.duplicateSelectedDeckToolStripMenuItem.Name = "duplicateSelectedDeckToolStripMenuItem";
+            this.duplicateSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.duplicateSelectedDeckToolStripMenuItem.Text = "Duplicate Selected Deck";
+            this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeckToolStripMenuItem_Click);
             // 
             // legaciesListBox
             // 
@@ -1025,7 +1025,7 @@
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedRecipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedDeskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedDeckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
