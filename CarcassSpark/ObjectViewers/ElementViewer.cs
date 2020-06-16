@@ -521,5 +521,10 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedElement.comments = commentsTextBox.Text;
         }
+
+        private void inheritsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedElement.inherits = inheritsTextBox.Text;
+        }
     }
 }

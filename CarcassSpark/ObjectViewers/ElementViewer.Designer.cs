@@ -70,6 +70,8 @@
             this.deleteXTriggerButton = new System.Windows.Forms.Button();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
+            this.inheritsLabel = new System.Windows.Forms.Label();
+            this.inheritsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -126,7 +128,7 @@
             // 
             this.uniqueCheckBox.AutoSize = true;
             this.uniqueCheckBox.Enabled = false;
-            this.uniqueCheckBox.Location = new System.Drawing.Point(258, 197);
+            this.uniqueCheckBox.Location = new System.Drawing.Point(15, 196);
             this.uniqueCheckBox.Name = "uniqueCheckBox";
             this.uniqueCheckBox.Size = new System.Drawing.Size(60, 17);
             this.uniqueCheckBox.TabIndex = 7;
@@ -224,7 +226,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 220);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 248);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(491, 71);
@@ -234,7 +236,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 349);
+            this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 16;
@@ -245,7 +247,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(682, 349);
+            this.cancelButton.Location = new System.Drawing.Point(682, 377);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 17;
@@ -345,7 +347,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(12, 201);
+            this.descriptionLabel.Location = new System.Drawing.Point(12, 232);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 27;
@@ -391,7 +393,7 @@
             // resaturateCheckBox
             // 
             this.resaturateCheckBox.AutoSize = true;
-            this.resaturateCheckBox.Location = new System.Drawing.Point(324, 197);
+            this.resaturateCheckBox.Location = new System.Drawing.Point(15, 212);
             this.resaturateCheckBox.Name = "resaturateCheckBox";
             this.resaturateCheckBox.Size = new System.Drawing.Size(78, 17);
             this.resaturateCheckBox.TabIndex = 32;
@@ -445,7 +447,7 @@
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(12, 294);
+            this.commentsLabel.Location = new System.Drawing.Point(12, 322);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 37;
@@ -453,7 +455,7 @@
             // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(12, 310);
+            this.commentsTextBox.Location = new System.Drawing.Point(12, 338);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -461,12 +463,31 @@
             this.commentsTextBox.TabIndex = 38;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
+            // inheritsLabel
+            // 
+            this.inheritsLabel.AutoSize = true;
+            this.inheritsLabel.Location = new System.Drawing.Point(364, 194);
+            this.inheritsLabel.Name = "inheritsLabel";
+            this.inheritsLabel.Size = new System.Drawing.Size(41, 13);
+            this.inheritsLabel.TabIndex = 39;
+            this.inheritsLabel.Text = "Inherits";
+            // 
+            // inheritsTextBox
+            // 
+            this.inheritsTextBox.Location = new System.Drawing.Point(367, 212);
+            this.inheritsTextBox.Name = "inheritsTextBox";
+            this.inheritsTextBox.Size = new System.Drawing.Size(136, 20);
+            this.inheritsTextBox.TabIndex = 40;
+            this.inheritsTextBox.TextChanged += new System.EventHandler(this.inheritsTextBox_TextChanged);
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 384);
+            this.ClientSize = new System.Drawing.Size(769, 412);
+            this.Controls.Add(this.inheritsTextBox);
+            this.Controls.Add(this.inheritsLabel);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.deleteXTriggerButton);
@@ -558,5 +579,7 @@
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentsTextBox;
+        private System.Windows.Forms.Label inheritsLabel;
+        private System.Windows.Forms.TextBox inheritsTextBox;
     }
 }
