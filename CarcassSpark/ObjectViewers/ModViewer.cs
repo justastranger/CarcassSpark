@@ -35,6 +35,7 @@ namespace CarcassSpark.ObjectViewers
             this.isVanilla = isVanilla;
             setEditingMode(!isVanilla);
             saveFileDialog.InitialDirectory = currentDirectory;
+            openFileDialog.InitialDirectory = currentDirectory;
             refreshContent();
         }
 
@@ -567,6 +568,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/aspects.json"))
+                {
+                    File.Delete(location + "/content/aspects.json");
+                }
+            }
             if (elementsListBox.Items.Count > 0)
             {
                 JObject elements = new JObject();
@@ -577,6 +585,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(elementsJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/elements.json"))
+                {
+                    File.Delete(location + "/content/elements.json");
+                }
             }
             if (recipesListBox.Items.Count > 0)
             {
@@ -589,6 +604,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/recipes.json"))
+                {
+                    File.Delete(location + "/content/recipes.json");
+                }
+            }
             if (decksListBox.Items.Count > 0)
             {
                 JObject decks = new JObject();
@@ -599,6 +621,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(decksJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/decks.json"))
+                {
+                    File.Delete(location + "/content/decks.json");
+                }
             }
             if (legaciesListBox.Items.Count > 0)
             {
@@ -611,6 +640,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/legacies.json"))
+                {
+                    File.Delete(location + "/content/legacies.json");
+                }
+            }
             if (endingsListBox.Items.Count > 0)
             {
                 JObject endings = new JObject();
@@ -622,6 +658,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/endings.json"))
+                {
+                    File.Delete(location + "/content/endings.json");
+                }
+            }
             if (verbsListBox.Items.Count > 0)
             {
                 JObject verbs = new JObject();
@@ -632,6 +675,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(verbsJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/verbs.json"))
+                {
+                    File.Delete(location + "/content/verbs.json");
+                }
             }
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.OpenOrCreate))))
@@ -1594,6 +1644,30 @@ namespace CarcassSpark.ObjectViewers
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
                 {
                     jtw.WriteRaw(JSON);
+                }
+            }
+        }
+
+        private void aspectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (aspectsListBox.Items.Contains(deserializedAspect.id))
+                    {
+                        MessageBox.Show("Aspect already exists, overwriting.");
+                    }
+                    else
+                    {
+                        aspectsListBox.Items.Add(deserializedAspect.id);
+                    }
+                    aspectsList[deserializedAspect.id] = deserializedAspect;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Aspect");
                 }
             }
         }

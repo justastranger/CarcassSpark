@@ -40,6 +40,7 @@
             this.slotsRequiringThisAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectsLabel = new System.Windows.Forms.Label();
             this.elementsLabel = new System.Windows.Forms.Label();
             this.elementsListBox = new System.Windows.Forms.ListBox();
@@ -54,6 +55,7 @@
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesLabel = new System.Windows.Forms.Label();
             this.recipesListBox = new System.Windows.Forms.ListBox();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -62,6 +64,7 @@
             this.viewAsFlowchartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decksLabel = new System.Windows.Forms.Label();
             this.decksListBox = new System.Windows.Forms.ListBox();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -69,17 +72,20 @@
             this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesLabel = new System.Windows.Forms.Label();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsListBox = new System.Windows.Forms.ListBox();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -88,6 +94,7 @@
             this.elementsWithSlotsForThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -119,14 +126,16 @@
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.exportSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.exportSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.aspectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deckToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.legacyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.endingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.verbToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -228,6 +237,13 @@
             this.duplicateSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.duplicateSelectedAspectToolStripMenuItem.Text = "Duplicate Selected Aspect";
             this.duplicateSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedAspectToolStripMenuItem_Click);
+            // 
+            // exportSelectedAspectToolStripMenuItem
+            // 
+            this.exportSelectedAspectToolStripMenuItem.Name = "exportSelectedAspectToolStripMenuItem";
+            this.exportSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.exportSelectedAspectToolStripMenuItem.Text = "Export Selected Aspect";
+            this.exportSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedAspectToolStripMenuItem_Click);
             // 
             // aspectsLabel
             // 
@@ -350,6 +366,13 @@
             this.duplicateSelectedElementToolStripMenuItem.Text = "Duplicate Selected Element";
             this.duplicateSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedElementToolStripMenuItem_Click);
             // 
+            // exportSelectedElementToolStripMenuItem
+            // 
+            this.exportSelectedElementToolStripMenuItem.Name = "exportSelectedElementToolStripMenuItem";
+            this.exportSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.exportSelectedElementToolStripMenuItem.Text = "Export Selected Element";
+            this.exportSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedElementToolStripMenuItem_Click);
+            // 
             // recipesLabel
             // 
             this.recipesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -422,6 +445,13 @@
             this.duplicateSelectedRecipeToolStripMenuItem.Text = "Duplicate Selected Recipe";
             this.duplicateSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedRecipeToolStripMenuItem_Click);
             // 
+            // exportSelectedRecipeToolStripMenuItem
+            // 
+            this.exportSelectedRecipeToolStripMenuItem.Name = "exportSelectedRecipeToolStripMenuItem";
+            this.exportSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.exportSelectedRecipeToolStripMenuItem.Text = "Export Selected Recipe";
+            this.exportSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedRecipeToolStripMenuItem_Click);
+            // 
             // decksLabel
             // 
             this.decksLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -486,6 +516,13 @@
             this.duplicateSelectedDeckToolStripMenuItem.Text = "Duplicate Selected Deck";
             this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeckToolStripMenuItem_Click);
             // 
+            // exportSelectedDeckToolStripMenuItem
+            // 
+            this.exportSelectedDeckToolStripMenuItem.Name = "exportSelectedDeckToolStripMenuItem";
+            this.exportSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.exportSelectedDeckToolStripMenuItem.Text = "Export Selected Deck";
+            this.exportSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedDeckToolStripMenuItem_Click);
+            // 
             // legaciesLabel
             // 
             this.legaciesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -532,6 +569,13 @@
             this.duplicateSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.duplicateSelectedLegacyToolStripMenuItem.Text = "Duplicate Selected Legacy";
             this.duplicateSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedLegacyToolStripMenuItem_Click);
+            // 
+            // exportSelectedLegacyToolStripMenuItem
+            // 
+            this.exportSelectedLegacyToolStripMenuItem.Name = "exportSelectedLegacyToolStripMenuItem";
+            this.exportSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.exportSelectedLegacyToolStripMenuItem.Text = "Export Selected Legacy";
+            this.exportSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedLegacyToolStripMenuItem_Click);
             // 
             // endingsListBox
             // 
@@ -586,6 +630,13 @@
             this.duplicateSelectedEndingToolStripMenuItem.Text = "Duplicate Selected Ending";
             this.duplicateSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedEndingToolStripMenuItem_Click);
             // 
+            // exportSelectedEndingToolStripMenuItem
+            // 
+            this.exportSelectedEndingToolStripMenuItem.Name = "exportSelectedEndingToolStripMenuItem";
+            this.exportSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.exportSelectedEndingToolStripMenuItem.Text = "Export Selected Ending";
+            this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedEndingToolStripMenuItem_Click);
+            // 
             // endingsLabel
             // 
             this.endingsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -618,7 +669,7 @@
             this.duplicateSelectedVerbToolStripMenuItem,
             this.exportSelectedVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(198, 114);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(198, 92);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -657,6 +708,13 @@
             this.duplicateSelectedVerbToolStripMenuItem.Text = "Duplicate Selected Verb";
             this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedVerbToolStripMenuItem_Click);
             // 
+            // exportSelectedVerbToolStripMenuItem
+            // 
+            this.exportSelectedVerbToolStripMenuItem.Name = "exportSelectedVerbToolStripMenuItem";
+            this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.exportSelectedVerbToolStripMenuItem.Text = "Export Selected Verb";
+            this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedVerbToolStripMenuItem_Click);
+            // 
             // verbsLabel
             // 
             this.verbsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -672,6 +730,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripDropDownButton,
             this.newItemToolStripButton,
+            this.importToolStripButton,
             this.toolsToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -751,55 +810,55 @@
             this.newItemToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newItemToolStripButton.Image")));
             this.newItemToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newItemToolStripButton.Name = "newItemToolStripButton";
-            this.newItemToolStripButton.Size = new System.Drawing.Size(53, 22);
-            this.newItemToolStripButton.Text = "New...";
+            this.newItemToolStripButton.Size = new System.Drawing.Size(44, 22);
+            this.newItemToolStripButton.Text = "New";
             // 
             // aspectToolStripMenuItem
             // 
             this.aspectToolStripMenuItem.Name = "aspectToolStripMenuItem";
-            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aspectToolStripMenuItem.Text = "Aspect";
             this.aspectToolStripMenuItem.Click += new System.EventHandler(this.aspectToolStripMenuItem_Click);
             // 
             // elementToolStripMenuItem
             // 
             this.elementToolStripMenuItem.Name = "elementToolStripMenuItem";
-            this.elementToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.elementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.elementToolStripMenuItem.Text = "Element";
             this.elementToolStripMenuItem.Click += new System.EventHandler(this.elementToolStripMenuItem_Click);
             // 
             // recipeToolStripMenuItem
             // 
             this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
-            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.recipeToolStripMenuItem.Text = "Recipe";
             this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
             // 
             // deckToolStripMenuItem
             // 
             this.deckToolStripMenuItem.Name = "deckToolStripMenuItem";
-            this.deckToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.deckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deckToolStripMenuItem.Text = "Deck";
             this.deckToolStripMenuItem.Click += new System.EventHandler(this.deckToolStripMenuItem_Click);
             // 
             // legacyToolStripMenuItem
             // 
             this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
-            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.legacyToolStripMenuItem.Text = "Legacy";
             this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
             // 
             // endingToolStripMenuItem
             // 
             this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
-            this.endingToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.endingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.endingToolStripMenuItem.Text = "Ending";
             this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
             // 
             // verbToolStripMenuItem
             // 
             this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
-            this.verbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.verbToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verbToolStripMenuItem.Text = "Verb";
             this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
             // 
@@ -906,9 +965,9 @@
             // 
             // ProgressBar
             // 
-            this.ProgressBar.Location = new System.Drawing.Point(178, 2);
+            this.ProgressBar.Location = new System.Drawing.Point(197, 2);
             this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(745, 23);
+            this.ProgressBar.Size = new System.Drawing.Size(726, 23);
             this.ProgressBar.TabIndex = 24;
             this.ProgressBar.Visible = false;
             // 
@@ -956,58 +1015,73 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 332);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
-            // exportSelectedAspectToolStripMenuItem
-            // 
-            this.exportSelectedAspectToolStripMenuItem.Name = "exportSelectedAspectToolStripMenuItem";
-            this.exportSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.exportSelectedAspectToolStripMenuItem.Text = "Export Selected Aspect";
-            this.exportSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedAspectToolStripMenuItem_Click);
-            // 
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "JSON files|*.json";
             // 
-            // exportSelectedElementToolStripMenuItem
+            // importToolStripButton
             // 
-            this.exportSelectedElementToolStripMenuItem.Name = "exportSelectedElementToolStripMenuItem";
-            this.exportSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.exportSelectedElementToolStripMenuItem.Text = "Export Selected Element";
-            this.exportSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedElementToolStripMenuItem_Click);
+            this.importToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.importToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aspectToolStripMenuItem1,
+            this.elementToolStripMenuItem1,
+            this.recipeToolStripMenuItem1,
+            this.deckToolStripMenuItem1,
+            this.legacyToolStripMenuItem1,
+            this.endingToolStripMenuItem1,
+            this.verbToolStripMenuItem1});
+            this.importToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("importToolStripButton.Image")));
+            this.importToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.importToolStripButton.Name = "importToolStripButton";
+            this.importToolStripButton.Size = new System.Drawing.Size(56, 22);
+            this.importToolStripButton.Text = "Import";
             // 
-            // exportSelectedRecipeToolStripMenuItem
+            // aspectToolStripMenuItem1
             // 
-            this.exportSelectedRecipeToolStripMenuItem.Name = "exportSelectedRecipeToolStripMenuItem";
-            this.exportSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.exportSelectedRecipeToolStripMenuItem.Text = "Export Selected Recipe";
-            this.exportSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedRecipeToolStripMenuItem_Click);
+            this.aspectToolStripMenuItem1.Name = "aspectToolStripMenuItem1";
+            this.aspectToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aspectToolStripMenuItem1.Text = "Aspect";
+            this.aspectToolStripMenuItem1.Click += new System.EventHandler(this.aspectToolStripMenuItem1_Click);
             // 
-            // exportSelectedDeckToolStripMenuItem
+            // elementToolStripMenuItem1
             // 
-            this.exportSelectedDeckToolStripMenuItem.Name = "exportSelectedDeckToolStripMenuItem";
-            this.exportSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.exportSelectedDeckToolStripMenuItem.Text = "Export Selected Deck";
-            this.exportSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedDeckToolStripMenuItem_Click);
+            this.elementToolStripMenuItem1.Name = "elementToolStripMenuItem1";
+            this.elementToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.elementToolStripMenuItem1.Text = "Element";
             // 
-            // exportSelectedLegacyToolStripMenuItem
+            // recipeToolStripMenuItem1
             // 
-            this.exportSelectedLegacyToolStripMenuItem.Name = "exportSelectedLegacyToolStripMenuItem";
-            this.exportSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.exportSelectedLegacyToolStripMenuItem.Text = "Export Selected Legacy";
-            this.exportSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedLegacyToolStripMenuItem_Click);
+            this.recipeToolStripMenuItem1.Name = "recipeToolStripMenuItem1";
+            this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.recipeToolStripMenuItem1.Text = "Recipe";
             // 
-            // exportSelectedEndingToolStripMenuItem
+            // deckToolStripMenuItem1
             // 
-            this.exportSelectedEndingToolStripMenuItem.Name = "exportSelectedEndingToolStripMenuItem";
-            this.exportSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.exportSelectedEndingToolStripMenuItem.Text = "Export Selected Ending";
-            this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedEndingToolStripMenuItem_Click);
+            this.deckToolStripMenuItem1.Name = "deckToolStripMenuItem1";
+            this.deckToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deckToolStripMenuItem1.Text = "Deck";
             // 
-            // exportSelectedVerbToolStripMenuItem
+            // legacyToolStripMenuItem1
             // 
-            this.exportSelectedVerbToolStripMenuItem.Name = "exportSelectedVerbToolStripMenuItem";
-            this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.exportSelectedVerbToolStripMenuItem.Text = "Export Selected Verb";
-            this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedVerbToolStripMenuItem_Click);
+            this.legacyToolStripMenuItem1.Name = "legacyToolStripMenuItem1";
+            this.legacyToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.legacyToolStripMenuItem1.Text = "Legacy";
+            // 
+            // endingToolStripMenuItem1
+            // 
+            this.endingToolStripMenuItem1.Name = "endingToolStripMenuItem1";
+            this.endingToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.endingToolStripMenuItem1.Text = "Ending";
+            // 
+            // verbToolStripMenuItem1
+            // 
+            this.verbToolStripMenuItem1.Name = "verbToolStripMenuItem1";
+            this.verbToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.verbToolStripMenuItem1.Text = "Verb";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "JSON files|*.json";
             // 
             // ModViewer
             // 
@@ -1136,6 +1210,15 @@
         private System.Windows.Forms.ToolStripMenuItem exportSelectedLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportSelectedVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton importToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem aspectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem elementToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deckToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem endingToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
