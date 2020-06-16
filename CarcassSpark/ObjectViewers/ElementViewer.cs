@@ -520,11 +520,13 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.comments = commentsTextBox.Text;
+            if (displayedElement.comments == "") displayedElement.comments = null;
         }
 
         private void inheritsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.inherits = inheritsTextBox.Text;
+            if (displayedElement.inherits == "") displayedElement.inherits = null;
         }
     }
 }
