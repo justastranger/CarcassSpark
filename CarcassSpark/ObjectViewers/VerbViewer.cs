@@ -59,6 +59,7 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly = !editing;
             atStartCheckBox.Enabled = editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
             removeButton.Visible = editing;

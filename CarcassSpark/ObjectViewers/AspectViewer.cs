@@ -46,6 +46,7 @@ namespace CarcassSpark.ObjectViewers
             iconTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             extendsTextBox.ReadOnly = !editing;
+            commentTextBox.ReadOnly = !editing;
             isHiddenCheckBox.Enabled = editing;
             noartworkneededCheckBox.Enabled = editing;
             inducesDataGridView.AllowUserToAddRows = editing;

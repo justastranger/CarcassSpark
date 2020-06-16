@@ -48,6 +48,7 @@ namespace CarcassSpark.ObjectViewers
             extendsTextBox.ReadOnly = !editing;
             startdescriptionTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             signalEndingFlavourDomainUpDown.ReadOnly = !editing;
             portalEffectDomainUpDown.ReadOnly = !editing;
             craftableCheckBox.Enabled = editing;

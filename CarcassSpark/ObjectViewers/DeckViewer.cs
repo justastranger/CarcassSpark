@@ -142,6 +142,7 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             resetOnExhaustionCheckBox.Enabled = editing;
             defaultCardTextBox.ReadOnly = !editing;
             drawsNumericUpDown.Enabled = editing;
