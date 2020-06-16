@@ -1547,90 +1547,53 @@ namespace CarcassSpark.ObjectViewers
         private void exportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getAspect(aspectsListBox.SelectedItem as string) == null) return;
-            string aspectJSON = JsonConvert.SerializeObject(getAspect(aspectsListBox.SelectedItem as string), Formatting.Indented);
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(aspectJSON);
-                }
-            }
+            exportObject(getAspect(aspectsListBox.SelectedItem as string));
         }
 
         private void exportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getElement(elementsListBox.SelectedItem as string) == null) return;
-            string elementJSON = JsonConvert.SerializeObject(getElement(elementsListBox.SelectedItem as string), Formatting.Indented);
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(elementJSON);
-                }
-            }
+            exportObject(getElement(elementsListBox.SelectedItem as string));
         }
 
         private void exportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getRecipe(recipesListBox.SelectedItem as string) == null) return;
-            string recipeJSON = JsonConvert.SerializeObject(getRecipe(recipesListBox.SelectedItem as string));
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(recipeJSON);
-                }
-            }
+            exportObject(getRecipe(recipesListBox.SelectedItem as string));
         }
 
         private void exportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getDeck(decksListBox.SelectedItem as string) == null) return;
-            string deckJSON = JsonConvert.SerializeObject(getDeck(decksListBox.SelectedItem as string));
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(deckJSON);
-                }
-            }
+            exportObject(getDeck(decksListBox.SelectedItem as string));
         }
 
         private void exportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getLegacy(legaciesListBox.SelectedItem as string) == null) return;
-            string legacyJSON = JsonConvert.SerializeObject(getLegacy(legaciesListBox.SelectedItem as string));
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(legacyJSON);
-                }
-            }
+            exportObject(getLegacy(legaciesListBox.SelectedItem as string));
         }
 
         private void exportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getEnding(endingsListBox.SelectedItem as string) == null) return;
-            string endingJSON = JsonConvert.SerializeObject(getEnding(endingsListBox.SelectedItem as string));
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
-                {
-                    jtw.WriteRaw(endingJSON);
-                }
-            }
+            exportObject(getEnding(endingsListBox.SelectedItem as string));
         }
 
         private void exportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getVerb(verbsListBox.SelectedItem as string) == null) return;
-            string verbJSON = JsonConvert.SerializeObject(getVerb(verbsListBox.SelectedItem as string));
+            exportObject(getVerb(verbsListBox.SelectedItem as string));
+        }
+
+        private void exportObject(object objectToExport)
+        {
+            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
                 {
-                    jtw.WriteRaw(verbJSON);
+                    jtw.WriteRaw(JSON);
                 }
             }
         }
