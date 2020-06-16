@@ -1596,49 +1596,57 @@ namespace CarcassSpark.ObjectViewers
 
         private void exportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getAspect(aspectsListBox.SelectedItem as string) == null) return;
-            exportObject(getAspect(aspectsListBox.SelectedItem as string));
+            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            if (exportedAspect == null) return;
+            exportObject(exportedAspect, exportedAspect.id);
         }
 
         private void exportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getElement(elementsListBox.SelectedItem as string) == null) return;
-            exportObject(getElement(elementsListBox.SelectedItem as string));
+            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            if (exportedElement == null) return;
+            exportObject(exportedElement, exportedElement.id);
         }
 
         private void exportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getRecipe(recipesListBox.SelectedItem as string) == null) return;
-            exportObject(getRecipe(recipesListBox.SelectedItem as string));
+            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            if (exportedRecipe == null) return;
+            exportObject(exportedRecipe, exportedRecipe.id);
         }
 
         private void exportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getDeck(decksListBox.SelectedItem as string) == null) return;
-            exportObject(getDeck(decksListBox.SelectedItem as string));
+            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            if (exportedDeck == null) return;
+            exportObject(exportedDeck, exportedDeck.id);
         }
 
         private void exportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getLegacy(legaciesListBox.SelectedItem as string) == null) return;
-            exportObject(getLegacy(legaciesListBox.SelectedItem as string));
+            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            if (exportedLegacy == null) return;
+            exportObject(exportedLegacy, exportedLegacy.id);
         }
 
         private void exportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getEnding(endingsListBox.SelectedItem as string) == null) return;
-            exportObject(getEnding(endingsListBox.SelectedItem as string));
+            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            if (exportedEnding == null) return;
+            exportObject(exportedEnding, exportedEnding.id);
         }
 
         private void exportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (getVerb(verbsListBox.SelectedItem as string) == null) return;
-            exportObject(getVerb(verbsListBox.SelectedItem as string));
+            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            exportObject(exportedVerb, exportedVerb.id);
         }
 
-        private void exportObject(object objectToExport)
+        private void exportObject(object objectToExport, string id)
         {
             string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
+            saveFileDialog.FileName = objectToExport.GetType().Name + "_" + id + ".json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
