@@ -418,7 +418,7 @@ namespace CarcassSpark.Flowchart
             if (recipeNodesThatNeedToBeProcessed.Count == 0 || recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) == 0) return;
             if (!skipYesNo)
             {
-                switch (MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue?", "Loading More Recipes", MessageBoxButtons.YesNoCancel))
+                switch (MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue? Pressing Cancel will supprress this warning.", "Loading More Recipes", MessageBoxButtons.YesNoCancel))
                 {
                     case DialogResult.Cancel:
                         skipYesNo = true;
