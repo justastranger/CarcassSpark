@@ -1768,7 +1768,7 @@ namespace CarcassSpark.ObjectViewers
             displayedRecipe.comments = commentsTextBox.Text;
             if (displayedRecipe.comments == "")
             {
-                displayedRecipe.comments = null
+                displayedRecipe.comments = null;
             }
         }
     }
