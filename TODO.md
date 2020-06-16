@@ -8,8 +8,12 @@
  - Help button on Viewer forms to help explain the purposes of various properties
 
  # Property Operations
- - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for slots)
+
+# Currently Unsupported Properties
+ - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for, for example, slots)
    - Basically everywhere List$remove is used
+
+# Properties That Need to be Implemented in Viewer Forms
  - Int$add(int value)
  - Int$minus(int value)
    - RecipeViewer
@@ -18,10 +22,3 @@
    - Element
      - Lifetime
      - Animation Frames
-
-
-# Currently Unsupported Properties
- - None that I'm currently aware of, please create an issue if you notice I missed something.
-
-# Properties That Need to be Implemented in Viewer Forms
- - ?
