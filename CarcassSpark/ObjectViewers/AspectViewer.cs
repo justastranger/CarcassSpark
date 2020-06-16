@@ -15,7 +15,6 @@ namespace CarcassSpark.ObjectViewers
     {
         public Aspect displayedAspect;
         Dictionary<string, Induces> inducesDictionary;
-        bool editing;
         event EventHandler<Aspect> SuccessCallback;
 
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
@@ -33,12 +32,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 this.SuccessCallback += SuccessCallback;
                 setEditingMode(true);
-                editing = true;
             }
             else
             {
                 setEditingMode(false);
-                editing = false;
             }
         }
         
