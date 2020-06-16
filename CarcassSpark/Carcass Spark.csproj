@@ -42,8 +42,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>E:\Games\SteamLibrary\steamapps\common\Cultist Simulator\cultistsimulator_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Assembly-CSharp.dll</HintPath>
       <Aliases>CultistSimulator</Aliases>
       <Private>False</Private>
     </Reference>
