@@ -1672,6 +1672,150 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void elementToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (elementsListBox.Items.Contains(deserializedElement.id))
+                    {
+                        MessageBox.Show("Element already exists, overwriting.");
+                    }
+                    else
+                    {
+                        elementsListBox.Items.Add(deserializedElement.id);
+                    }
+                    elementsList[deserializedElement.id] = deserializedElement;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Element");
+                }
+            }
+        }
+
+        private void recipeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (recipesListBox.Items.Contains(deserializedRecipe.id))
+                    {
+                        MessageBox.Show("Recipe already exists, overwriting.");
+                    }
+                    else
+                    {
+                        recipesListBox.Items.Add(deserializedRecipe.id);
+                    }
+                    recipesList[deserializedRecipe.id] = deserializedRecipe;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Recipe");
+                }
+            }
+        }
+
+        private void deckToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (decksListBox.Items.Contains(deserializedDeck.id))
+                    {
+                        MessageBox.Show("Deck already exists, overwriting.");
+                    }
+                    else
+                    {
+                        decksListBox.Items.Add(deserializedDeck.id);
+                    }
+                    decksList[deserializedDeck.id] = deserializedDeck;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Deck");
+                }
+            }
+        }
+
+        private void legacyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (legaciesListBox.Items.Contains(deserializedLegacy.id))
+                    {
+                        MessageBox.Show("Legacy already exists, overwriting.");
+                    }
+                    else
+                    {
+                        legaciesListBox.Items.Add(deserializedLegacy.id);
+                    }
+                    legaciesList[deserializedLegacy.id] = deserializedLegacy;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Legacy");
+                }
+            }
+        }
+
+        private void endingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (endingsListBox.Items.Contains(deserializedEnding.id))
+                    {
+                        MessageBox.Show("Ending already exists, overwriting.");
+                    }
+                    else
+                    {
+                        endingsListBox.Items.Add(deserializedEnding.id);
+                    }
+                    endingsList[deserializedEnding.id] = deserializedEnding;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Ending");
+                }
+            }
+        }
+
+        private void verbToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (verbsListBox.Items.Contains(deserializedVerb.id))
+                    {
+                        MessageBox.Show("Verb already exists, overwriting.");
+                    }
+                    else
+                    {
+                        verbsListBox.Items.Add(deserializedVerb.id);
+                    }
+                    verbsList[deserializedVerb.id] = deserializedVerb;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Verb");
+                }
+            }
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);

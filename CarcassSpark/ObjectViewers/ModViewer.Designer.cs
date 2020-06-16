@@ -1048,36 +1048,42 @@
             this.elementToolStripMenuItem1.Name = "elementToolStripMenuItem1";
             this.elementToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.elementToolStripMenuItem1.Text = "Element";
+            this.elementToolStripMenuItem1.Click += new System.EventHandler(this.elementToolStripMenuItem1_Click);
             // 
             // recipeToolStripMenuItem1
             // 
             this.recipeToolStripMenuItem1.Name = "recipeToolStripMenuItem1";
             this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.recipeToolStripMenuItem1.Text = "Recipe";
+            this.recipeToolStripMenuItem1.Click += new System.EventHandler(this.recipeToolStripMenuItem1_Click);
             // 
             // deckToolStripMenuItem1
             // 
             this.deckToolStripMenuItem1.Name = "deckToolStripMenuItem1";
             this.deckToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.deckToolStripMenuItem1.Text = "Deck";
+            this.deckToolStripMenuItem1.Click += new System.EventHandler(this.deckToolStripMenuItem1_Click);
             // 
             // legacyToolStripMenuItem1
             // 
             this.legacyToolStripMenuItem1.Name = "legacyToolStripMenuItem1";
             this.legacyToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.legacyToolStripMenuItem1.Text = "Legacy";
+            this.legacyToolStripMenuItem1.Click += new System.EventHandler(this.legacyToolStripMenuItem1_Click);
             // 
             // endingToolStripMenuItem1
             // 
             this.endingToolStripMenuItem1.Name = "endingToolStripMenuItem1";
             this.endingToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.endingToolStripMenuItem1.Text = "Ending";
+            this.endingToolStripMenuItem1.Click += new System.EventHandler(this.endingToolStripMenuItem1_Click);
             // 
             // verbToolStripMenuItem1
             // 
             this.verbToolStripMenuItem1.Name = "verbToolStripMenuItem1";
             this.verbToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.verbToolStripMenuItem1.Text = "Verb";
+            this.verbToolStripMenuItem1.Click += new System.EventHandler(this.verbToolStripMenuItem1_Click);
             // 
             // openFileDialog
             // 
