@@ -148,12 +148,12 @@ namespace CarcassSpark.ObjectViewers
                         if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
                         {
                             if (displayedAspect.induces_append == null) displayedAspect.induces_append = new List<Induces>();
-                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
                         {
                             if (displayedAspect.induces_prepend == null) displayedAspect.induces_prepend = new List<Induces>();
-                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
                         {
@@ -163,7 +163,7 @@ namespace CarcassSpark.ObjectViewers
                         else
                         {
                             if (displayedAspect.induces == null) displayedAspect.induces = new List<Induces>();
-                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                     }
                 }

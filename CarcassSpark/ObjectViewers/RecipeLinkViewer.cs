@@ -84,7 +84,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (expulsionDataGridView.RowCount > 1)
             {
-                displayedRecipeLink.expulsion = new RecipeLink.Expulsion(1);
+                displayedRecipeLink.expulsion = new Expulsion(Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) > 0 ? Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) : 1);
                 foreach (DataGridViewRow row in expulsionDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
@@ -163,6 +163,11 @@ namespace CarcassSpark.ObjectViewers
         {
             AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null);
             av.Show();
+        }
+
+        private void totalExpulsionLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (displayedRecipeLink.expulsion != null) displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
         }
     }
 }

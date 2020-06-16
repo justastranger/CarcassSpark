@@ -45,9 +45,12 @@
             this.expulsionDataGridView = new System.Windows.Forms.DataGridView();
             this.expulsionFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expulsionLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expulsionTotalLimitLabel = new System.Windows.Forms.Label();
+            this.totalExpulsionLimitNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalExpulsionLimitNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -167,7 +170,7 @@
             // expulsionLabel
             // 
             this.expulsionLabel.AutoSize = true;
-            this.expulsionLabel.Location = new System.Drawing.Point(156, 200);
+            this.expulsionLabel.Location = new System.Drawing.Point(12, 210);
             this.expulsionLabel.Name = "expulsionLabel";
             this.expulsionLabel.Size = new System.Drawing.Size(52, 13);
             this.expulsionLabel.TabIndex = 10;
@@ -181,9 +184,9 @@
             this.expulsionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.expulsionFilter,
             this.expulsionLimit});
-            this.expulsionDataGridView.Location = new System.Drawing.Point(12, 216);
+            this.expulsionDataGridView.Location = new System.Drawing.Point(12, 229);
             this.expulsionDataGridView.Name = "expulsionDataGridView";
-            this.expulsionDataGridView.Size = new System.Drawing.Size(356, 117);
+            this.expulsionDataGridView.Size = new System.Drawing.Size(356, 104);
             this.expulsionDataGridView.TabIndex = 11;
             this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expulsionsDataGridView_CellDoubleClick);
             this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionDataGridView_UserDeletedRow);
@@ -200,12 +203,36 @@
             this.expulsionLimit.Name = "expulsionLimit";
             this.expulsionLimit.Width = 156;
             // 
+            // expulsionTotalLimitLabel
+            // 
+            this.expulsionTotalLimitLabel.AutoSize = true;
+            this.expulsionTotalLimitLabel.Location = new System.Drawing.Point(78, 205);
+            this.expulsionTotalLimitLabel.Name = "expulsionTotalLimitLabel";
+            this.expulsionTotalLimitLabel.Size = new System.Drawing.Size(103, 13);
+            this.expulsionTotalLimitLabel.TabIndex = 12;
+            this.expulsionTotalLimitLabel.Text = "Total Expulsion Limit";
+            // 
+            // totalExpulsionLimitNumericUpDown
+            // 
+            this.totalExpulsionLimitNumericUpDown.Location = new System.Drawing.Point(187, 203);
+            this.totalExpulsionLimitNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.totalExpulsionLimitNumericUpDown.Name = "totalExpulsionLimitNumericUpDown";
+            this.totalExpulsionLimitNumericUpDown.Size = new System.Drawing.Size(55, 20);
+            this.totalExpulsionLimitNumericUpDown.TabIndex = 13;
+            this.totalExpulsionLimitNumericUpDown.ValueChanged += new System.EventHandler(this.totalExpulsionLimitNumericUpDown_ValueChanged);
+            // 
             // RecipeLinkViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 374);
+            this.Controls.Add(this.totalExpulsionLimitNumericUpDown);
+            this.Controls.Add(this.expulsionTotalLimitLabel);
             this.Controls.Add(this.expulsionDataGridView);
             this.Controls.Add(this.expulsionLabel);
             this.Controls.Add(this.cancelButton);
@@ -225,6 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalExpulsionLimitNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,5 +276,7 @@
         private System.Windows.Forms.DataGridView expulsionDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn expulsionFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn expulsionLimit;
+        private System.Windows.Forms.Label expulsionTotalLimitLabel;
+        private System.Windows.Forms.NumericUpDown totalExpulsionLimitNumericUpDown;
     }
 }
