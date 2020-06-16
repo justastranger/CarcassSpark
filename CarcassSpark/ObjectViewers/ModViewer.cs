@@ -1824,6 +1824,61 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        public void copyObjectJSONToClipboard(object objectToExport)
+        {
+            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
+            Clipboard.SetText(JSON);
+        }
+
+        private void copySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            if (exportedAspect == null) return;
+            copyObjectJSONToClipboard(exportedAspect);
+        }
+
+        private void copySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            if (exportedElement == null) return;
+            copyObjectJSONToClipboard(exportedElement);
+        }
+
+        private void copySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            if (exportedRecipe == null) return;
+            copyObjectJSONToClipboard(exportedRecipe);
+        }
+
+        private void copySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            if (exportedDeck == null) return;
+            copyObjectJSONToClipboard(exportedDeck);
+        }
+
+        private void copySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            if (exportedLegacy == null) return;
+            copyObjectJSONToClipboard(exportedLegacy);
+        }
+
+        private void copySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            if (exportedEnding == null) return;
+            copyObjectJSONToClipboard(exportedEnding);
+        }
+
+        private void copySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            if (exportedVerb == null) return;
+            copyObjectJSONToClipboard(exportedVerb);
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
