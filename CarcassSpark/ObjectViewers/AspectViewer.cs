@@ -318,6 +318,7 @@ namespace CarcassSpark.ObjectViewers
         private void commentTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.comments = commentTextBox.Text;
+            if (displayedAspect.comments == "") displayedAspect.comments = null;
         }
     }
 }

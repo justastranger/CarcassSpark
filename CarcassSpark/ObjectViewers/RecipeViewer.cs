@@ -1766,6 +1766,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.comments = commentsTextBox.Text;
+            if (displayedRecipe.comments == "")
+            {
+                displayedRecipe.comments = null
+            }
         }
     }
 }

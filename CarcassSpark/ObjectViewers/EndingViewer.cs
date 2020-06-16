@@ -146,6 +146,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.comments = commentsTextBox.Text;
+            if (displayedEnding.comments == "")
+            {
+                displayedEnding.comments = null;
+            }
         }
     }
 }

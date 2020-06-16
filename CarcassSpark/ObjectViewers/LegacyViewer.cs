@@ -415,6 +415,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.comments = commentsTextBox.Text;
+            if (displayedLegacy.comments == "")
+            {
+                displayedLegacy.comments = null;
+            }
         }
     }
 }
