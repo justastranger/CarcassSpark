@@ -107,6 +107,7 @@
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
             this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
             this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
@@ -118,7 +119,14 @@
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.exportSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -149,10 +157,11 @@
             this.aspectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
             this.deleteSelectedAspectToolStripMenuItem,
-            this.duplicateSelectedAspectToolStripMenuItem});
+            this.duplicateSelectedAspectToolStripMenuItem,
+            this.exportSelectedAspectToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(186, 70);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(186, 92);
             // 
             // searchToolStripMenuItem
             // 
@@ -259,10 +268,11 @@
             this.elementContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem1,
             this.deleteSelectedElementToolStripMenuItem,
-            this.duplicateSelectedElementToolStripMenuItem});
+            this.duplicateSelectedElementToolStripMenuItem,
+            this.exportSelectedElementToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(193, 70);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(193, 92);
             // 
             // searchToolStripMenuItem1
             // 
@@ -370,10 +380,11 @@
             this.searchForToolStripMenuItem,
             this.viewAsFlowchartToolStripMenuItem,
             this.deleteSelectedRecipeToolStripMenuItem,
-            this.duplicateSelectedRecipeToolStripMenuItem});
+            this.duplicateSelectedRecipeToolStripMenuItem,
+            this.exportSelectedRecipeToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(185, 92);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(185, 114);
             // 
             // searchForToolStripMenuItem
             // 
@@ -440,10 +451,11 @@
             this.deckContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem1,
             this.deleteSelectedDeckToolStripMenuItem,
-            this.duplicateSelectedDeckToolStripMenuItem});
+            this.duplicateSelectedDeckToolStripMenuItem,
+            this.exportSelectedDeckToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(176, 70);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(176, 92);
             // 
             // searchForToolStripMenuItem1
             // 
@@ -502,9 +514,10 @@
             // 
             this.legacyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteSelectedLegacyToolStripMenuItem,
-            this.duplicateSelectedLegacyToolStripMenuItem});
+            this.duplicateSelectedLegacyToolStripMenuItem,
+            this.exportSelectedLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(212, 48);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(212, 70);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
@@ -539,9 +552,10 @@
             this.endingContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem2,
             this.deleteSelectedEndingToolStripMenuItem,
-            this.duplicateSelectedEndingToolStripMenuItem});
+            this.duplicateSelectedEndingToolStripMenuItem,
+            this.exportSelectedEndingToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(212, 70);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(212, 92);
             // 
             // searchForToolStripMenuItem2
             // 
@@ -601,9 +615,10 @@
             this.verbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem3,
             this.deleteSelectedVerbToolStripMenuItem,
-            this.duplicateSelectedVerbToolStripMenuItem});
+            this.duplicateSelectedVerbToolStripMenuItem,
+            this.exportSelectedVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(198, 70);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(198, 114);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -807,6 +822,13 @@
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
             // 
+            // imageImporterToolStripMenuItem
+            // 
+            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.imageImporterToolStripMenuItem.Text = "Image Importer";
+            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
+            // 
             // aspetsSearchTextBox
             // 
             this.aspetsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -934,12 +956,58 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 332);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
-            // imageImporterToolStripMenuItem
+            // exportSelectedAspectToolStripMenuItem
             // 
-            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.imageImporterToolStripMenuItem.Text = "Image Importer";
-            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
+            this.exportSelectedAspectToolStripMenuItem.Name = "exportSelectedAspectToolStripMenuItem";
+            this.exportSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.exportSelectedAspectToolStripMenuItem.Text = "Export Selected Aspect";
+            this.exportSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedAspectToolStripMenuItem_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "JSON files|*.json";
+            // 
+            // exportSelectedElementToolStripMenuItem
+            // 
+            this.exportSelectedElementToolStripMenuItem.Name = "exportSelectedElementToolStripMenuItem";
+            this.exportSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.exportSelectedElementToolStripMenuItem.Text = "Export Selected Element";
+            this.exportSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedElementToolStripMenuItem_Click);
+            // 
+            // exportSelectedRecipeToolStripMenuItem
+            // 
+            this.exportSelectedRecipeToolStripMenuItem.Name = "exportSelectedRecipeToolStripMenuItem";
+            this.exportSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.exportSelectedRecipeToolStripMenuItem.Text = "Export Selected Recipe";
+            this.exportSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedRecipeToolStripMenuItem_Click);
+            // 
+            // exportSelectedDeckToolStripMenuItem
+            // 
+            this.exportSelectedDeckToolStripMenuItem.Name = "exportSelectedDeckToolStripMenuItem";
+            this.exportSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.exportSelectedDeckToolStripMenuItem.Text = "Export Selected Deck";
+            this.exportSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedDeckToolStripMenuItem_Click);
+            // 
+            // exportSelectedLegacyToolStripMenuItem
+            // 
+            this.exportSelectedLegacyToolStripMenuItem.Name = "exportSelectedLegacyToolStripMenuItem";
+            this.exportSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.exportSelectedLegacyToolStripMenuItem.Text = "Export Selected Legacy";
+            this.exportSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedLegacyToolStripMenuItem_Click);
+            // 
+            // exportSelectedEndingToolStripMenuItem
+            // 
+            this.exportSelectedEndingToolStripMenuItem.Name = "exportSelectedEndingToolStripMenuItem";
+            this.exportSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.exportSelectedEndingToolStripMenuItem.Text = "Export Selected Ending";
+            this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedEndingToolStripMenuItem_Click);
+            // 
+            // exportSelectedVerbToolStripMenuItem
+            // 
+            this.exportSelectedVerbToolStripMenuItem.Name = "exportSelectedVerbToolStripMenuItem";
+            this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.exportSelectedVerbToolStripMenuItem.Text = "Export Selected Verb";
+            this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedVerbToolStripMenuItem_Click);
             // 
             // ModViewer
             // 
@@ -1060,6 +1128,14 @@
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem imageImporterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedAspectToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedVerbToolStripMenuItem;
     }
 }
 
