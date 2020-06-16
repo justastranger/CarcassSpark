@@ -156,5 +156,10 @@ namespace CarcassSpark.ObjectViewers
             if (atStartCheckBox.CheckState == CheckState.Unchecked) displayedVerb.atStart = false;
             if (atStartCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.atStart = null;
         }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedVerb.comments = commentsTextBox.Text;
+        }
     }
 }

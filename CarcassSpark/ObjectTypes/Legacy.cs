@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Legacy
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, startdescription, image, fromEnding, startingVerbId;
+        public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? availableWithoutEndingMatch;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -40,7 +40,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> extends;
 
         [JsonConstructor]
-        public Legacy(string id, string label, string description, string startdescription,
+        public Legacy(string id, string label, string description, string startdescription, string comments,
                       Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch,
                       string startingVerbId, List<string> excludesOnEnding,
                       List<string> excludesOnEnding_prepend, List<string> excludesOnEnding_append, List<string> excludesOnEnding_remove,
@@ -55,6 +55,7 @@ namespace CarcassSpark.ObjectTypes
             this.effects = effects;
             this.effects_extend = effects_extend;
             this.effects_remove = effects_remove;
+            this.comments = comments;
             this.image = image;
             this.fromEnding = fromEnding;
             this.extends = extends;
@@ -98,6 +99,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.statusbarelements_prepend = statusbarelements_prepend;
             tmp.statusbarelements_append = statusbarelements_append;
             tmp.statusbarelements_remove = statusbarelements_remove;
+            tmp.comments = comments;
             return tmp;
         }
     }

@@ -126,6 +126,8 @@
             this.deleteVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moveMutationUpButton = new System.Windows.Forms.Button();
             this.moveMutationDownButton = new System.Windows.Forms.Button();
+            this.commentsTextBox = new System.Windows.Forms.TextBox();
+            this.commentsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -614,7 +616,7 @@
             // 
             this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(118, 64);
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
-            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(61, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 41;
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.maxExecutionsNumericUpDown_ValueChanged);
             // 
@@ -629,9 +631,9 @@
             // 
             // warmupNumericUpDown
             // 
-            this.warmupNumericUpDown.Location = new System.Drawing.Point(199, 64);
+            this.warmupNumericUpDown.Location = new System.Drawing.Point(185, 64);
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
-            this.warmupNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.warmupNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.warmupNumericUpDown.TabIndex = 43;
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.warmupNumericUpDown_ValueChanged);
             // 
@@ -701,7 +703,7 @@
             // startDescriptionLabel
             // 
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(344, 74);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(255, 74);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
             this.startDescriptionLabel.Size = new System.Drawing.Size(82, 13);
             this.startDescriptionLabel.TabIndex = 51;
@@ -710,7 +712,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(604, 74);
+            this.descriptionLabel.Location = new System.Drawing.Point(501, 74);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 52;
@@ -1068,12 +1070,33 @@
             this.moveMutationDownButton.UseVisualStyleBackColor = true;
             this.moveMutationDownButton.Click += new System.EventHandler(this.moveMutationDownButton_Click);
             // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(750, 89);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(240, 81);
+            this.commentsTextBox.TabIndex = 84;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(747, 74);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 85;
+            this.commentsLabel.Text = "Comments";
+            // 
             // RecipeViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 668);
+            this.Controls.Add(this.commentsLabel);
+            this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.moveMutationDownButton);
             this.Controls.Add(this.moveMutationUpButton);
             this.Controls.Add(this.deleteVerbLabel);
@@ -1268,5 +1291,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn purgeAmountDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button moveMutationUpButton;
         private System.Windows.Forms.Button moveMutationDownButton;
+        private System.Windows.Forms.TextBox commentsTextBox;
+        private System.Windows.Forms.Label commentsLabel;
     }
 }

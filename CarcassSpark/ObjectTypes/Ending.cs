@@ -9,11 +9,11 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Ending
     {
-        // [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, image, flavour, anim, achievement;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string id, label, description, image, flavour, anim, achievement, comments;
 
         [JsonConstructor]
-        public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement)
+        public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement, string comments)
         {
             this.id = id;
             this.label = label;
@@ -22,6 +22,7 @@ namespace CarcassSpark.ObjectTypes
             this.flavour = flavour;
             this.anim = anim;
             this.achievement = achievement;
+            this.comments = comments;
         }
 
         public Ending()
@@ -39,6 +40,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.flavour = flavour;
             tmp.anim = anim;
             tmp.achievement = achievement;
+            tmp.comments = comments;
             return tmp;
         }
     }

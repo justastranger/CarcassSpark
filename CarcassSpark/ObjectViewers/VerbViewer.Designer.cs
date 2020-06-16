@@ -43,6 +43,8 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.slotsListView = new System.Windows.Forms.ListView();
+            this.commentsLabel = new System.Windows.Forms.Label();
+            this.commentsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,12 +187,33 @@
             this.slotsListView.View = System.Windows.Forms.View.List;
             this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListBox_DoubleClick);
             // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(146, 110);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 15;
+            this.commentsLabel.Text = "Comments";
+            // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(146, 126);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(196, 38);
+            this.commentsTextBox.TabIndex = 16;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
             // VerbViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 420);
+            this.Controls.Add(this.commentsTextBox);
+            this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.slotsListView);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.removeButton);
@@ -231,5 +254,7 @@
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView slotsListView;
+        private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.TextBox commentsTextBox;
     }
 }

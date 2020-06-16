@@ -69,6 +69,8 @@
             this.removeStatusBarElementButton = new System.Windows.Forms.Button();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.commentsLabel = new System.Windows.Forms.Label();
+            this.commentsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -432,12 +434,33 @@
             this.extendsTextBox.TabIndex = 35;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(360, 110);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 36;
+            this.commentsLabel.Text = "Comments";
+            // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(360, 126);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(227, 55);
+            this.commentsTextBox.TabIndex = 37;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
             // LegacyViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 499);
+            this.Controls.Add(this.commentsTextBox);
+            this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.removeStatusBarElementButton);
@@ -525,5 +548,7 @@
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.TextBox commentsTextBox;
     }
 }

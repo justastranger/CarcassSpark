@@ -515,5 +515,10 @@ namespace CarcassSpark.ObjectViewers
             if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
             if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
         }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedElement.comments = commentsTextBox.Text;
+        }
     }
 }

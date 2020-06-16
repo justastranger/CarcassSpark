@@ -68,6 +68,8 @@
             this.xtriggersListView = new System.Windows.Forms.ListView();
             this.newXTriggerButton = new System.Windows.Forms.Button();
             this.deleteXTriggerButton = new System.Windows.Forms.Button();
+            this.commentsLabel = new System.Windows.Forms.Label();
+            this.commentsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -124,7 +126,7 @@
             // 
             this.uniqueCheckBox.AutoSize = true;
             this.uniqueCheckBox.Enabled = false;
-            this.uniqueCheckBox.Location = new System.Drawing.Point(359, 197);
+            this.uniqueCheckBox.Location = new System.Drawing.Point(258, 197);
             this.uniqueCheckBox.Name = "uniqueCheckBox";
             this.uniqueCheckBox.Size = new System.Drawing.Size(60, 17);
             this.uniqueCheckBox.TabIndex = 7;
@@ -225,14 +227,14 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 220);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(491, 84);
+            this.descriptionTextBox.Size = new System.Drawing.Size(491, 71);
             this.descriptionTextBox.TabIndex = 15;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 310);
+            this.okButton.Location = new System.Drawing.Point(12, 349);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 16;
@@ -243,7 +245,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(682, 310);
+            this.cancelButton.Location = new System.Drawing.Point(682, 349);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 17;
@@ -343,7 +345,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(146, 204);
+            this.descriptionLabel.Location = new System.Drawing.Point(12, 201);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 27;
@@ -389,7 +391,7 @@
             // resaturateCheckBox
             // 
             this.resaturateCheckBox.AutoSize = true;
-            this.resaturateCheckBox.Location = new System.Drawing.Point(425, 197);
+            this.resaturateCheckBox.Location = new System.Drawing.Point(324, 197);
             this.resaturateCheckBox.Name = "resaturateCheckBox";
             this.resaturateCheckBox.Size = new System.Drawing.Size(78, 17);
             this.resaturateCheckBox.TabIndex = 32;
@@ -440,12 +442,33 @@
             this.deleteXTriggerButton.UseVisualStyleBackColor = true;
             this.deleteXTriggerButton.Click += new System.EventHandler(this.deleteXTriggerButton_Click);
             // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(12, 294);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 37;
+            this.commentsLabel.Text = "Comments";
+            // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(12, 310);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(491, 33);
+            this.commentsTextBox.TabIndex = 38;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 345);
+            this.ClientSize = new System.Drawing.Size(769, 384);
+            this.Controls.Add(this.commentsTextBox);
+            this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.deleteXTriggerButton);
             this.Controls.Add(this.newXTriggerButton);
             this.Controls.Add(this.xtriggersListView);
@@ -533,5 +556,7 @@
         private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
+        private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.TextBox commentsTextBox;
     }
 }

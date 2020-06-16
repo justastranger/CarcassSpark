@@ -410,5 +410,10 @@ namespace CarcassSpark.ObjectViewers
             if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.availableWithoutEndingMatch = false;
             if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.availableWithoutEndingMatch = null;
         }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedLegacy.comments = commentsTextBox.Text;
+        }
     }
 }

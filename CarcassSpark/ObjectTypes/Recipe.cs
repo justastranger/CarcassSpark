@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Recipe
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour;
+        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour, comments;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -129,7 +129,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
-                      List<string> extends, Deck internalDeck, string ending, string burnimage,
+                      List<string> extends, Deck internalDeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
@@ -148,6 +148,7 @@ namespace CarcassSpark.ObjectTypes
             this.actionId = actionId;
             this.startdescription = startdescription;
             this.description = description;
+            this.comments = comments;
             this.craftable = craftable;
             this.hintonly = hintonly;
             this.ending = ending;
@@ -219,6 +220,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.actionId = actionId;
             tmp.startdescription = startdescription;
             tmp.description = description;
+            tmp.comments = comments;
             tmp.craftable = craftable;
             tmp.hintonly = hintonly;
             tmp.ending = ending;

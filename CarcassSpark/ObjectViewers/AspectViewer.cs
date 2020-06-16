@@ -316,5 +316,10 @@ namespace CarcassSpark.ObjectViewers
             if (noartworkneededCheckBox.CheckState == CheckState.Unchecked) displayedAspect.noartneeded = false;
             if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.noartneeded = null;
         }
+
+        private void commentTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedAspect.comments = commentTextBox.Text;
+        }
     }
 }

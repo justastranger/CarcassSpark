@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Verb
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description;
+        public string id, label, description, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? atStart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -24,12 +24,13 @@ namespace CarcassSpark.ObjectTypes
         public List<Slot> slots_remove;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, bool? atStart, List<Slot> slots,
+        public Verb(string id, string label, string description, string comments, bool? atStart, List<Slot> slots,
                     List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
         {
             this.id = id;
             this.label = label;
             this.description = description;
+            this.comments = comments;
             this.atStart = atStart;
             this.slots = slots;
             this.slots_prepend = slots_prepend;
@@ -48,6 +49,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.id = id;
             tmp.label = label;
             tmp.description = description;
+            tmp.comments = comments;
             tmp.atStart = atStart;
             tmp.slots = slots;
             tmp.slots_prepend = slots_prepend;

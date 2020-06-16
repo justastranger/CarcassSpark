@@ -1761,5 +1761,10 @@ namespace CarcassSpark.ObjectViewers
             if (signalImportantLoopCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.signalimportantloop = false;
             if (signalImportantLoopCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.signalimportantloop = null;
         }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.comments = commentsTextBox.Text;
+        }
     }
 }

@@ -141,5 +141,10 @@ namespace CarcassSpark.ObjectViewers
                 displayedEnding.achievement = null;
             }
         }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedEnding.comments = commentsTextBox.Text;
+        }
     }
 }
