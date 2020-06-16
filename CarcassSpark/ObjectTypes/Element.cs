@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Element
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string icon, id, label, description, comments, decayTo, uniquenessgroup;
+        public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]
@@ -46,8 +46,6 @@ namespace CarcassSpark.ObjectTypes
         public bool? unique, resaturate;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string inherits;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Induces> induces;
@@ -59,7 +57,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> induces_remove;
 
         [JsonConstructor]
-        public Element(string id, string label, string description, bool? unique,
+        public Element(string id, string label, string description, string inherits, bool? unique,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
                        Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
@@ -107,13 +105,15 @@ namespace CarcassSpark.ObjectTypes
             this.decayTo = decayTo;
             // This is only present in modded elements
             this.extends = extends;
+            // This is how element templating is done
+            this.inherits = inherits;
         }
         
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
                        List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers, List<string> extends,
                        string decayTo, int? lifetime, bool? unique, int? animframes,
-                       string uniquenessgroup)
+                       string uniquenessgroup, string inherits)
         {
             this.id = id;
             this.label = label;
@@ -128,7 +128,8 @@ namespace CarcassSpark.ObjectTypes
             this.lifetime = lifetime;
             this.unique = unique;
             this.animframes = animframes;
-            this.uniquenessgroup = uniquenessgroup; ;
+            this.uniquenessgroup = uniquenessgroup;
+            this.inherits = inherits;
         }
         
         public Element()
@@ -166,6 +167,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.resaturate = resaturate;
             tmp.decayTo = decayTo;
             tmp.extends = extends;
+            tmp.inherits = inherits;
             return tmp;
         }
     }
