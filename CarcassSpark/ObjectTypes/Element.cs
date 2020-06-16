@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     public class Element
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits;
+        public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits, verbicon;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]

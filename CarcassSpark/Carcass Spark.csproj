@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectTypes\Expulsion.cs" />
     <Compile Include="ObjectTypes\Induces.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
     <Compile Include="ObjectTypes\RecipeLink.cs" />

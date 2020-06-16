@@ -15,13 +15,16 @@ namespace CarcassSpark.ObjectTypes
         public int? chance;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? additional;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Expulsion expulsion;
 
         [JsonConstructor]
-        public Induces(string id, int? chance, bool? additional)
+        public Induces(string id, int? chance, bool? additional, Expulsion expulsion)
         {
             this.id = id;
             this.chance = chance;
             this.additional = additional;
+            this.expulsion = expulsion;
         }
     }
 }
