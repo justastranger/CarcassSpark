@@ -919,6 +919,7 @@ namespace CarcassSpark.ObjectViewers
             }
             saveAlternativeRecipes();
             saveLinkedRecipes();
+            saveMutations();
             Close();
             SuccessCallback?.Invoke(this, displayedRecipe);
         }
@@ -1699,7 +1700,7 @@ namespace CarcassSpark.ObjectViewers
             displayedRecipe.mutations_prepend = null;
             displayedRecipe.mutations_append = null;
             displayedRecipe.mutations_remove = null;
-            foreach (ListViewItem item in linkedRecipesListView.Items)
+            foreach (ListViewItem item in mutationsListView.Items)
             {
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
