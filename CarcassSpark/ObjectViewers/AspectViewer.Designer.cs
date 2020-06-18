@@ -130,7 +130,7 @@
             this.inducesDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.inducesDataGridView.Location = new System.Drawing.Point(287, 31);
             this.inducesDataGridView.Name = "inducesDataGridView";
-            this.inducesDataGridView.Size = new System.Drawing.Size(355, 143);
+            this.inducesDataGridView.Size = new System.Drawing.Size(355, 169);
             this.inducesDataGridView.TabIndex = 6;
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
             this.inducesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.inducesDataGridView_UserDeletedRow);
