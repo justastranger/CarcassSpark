@@ -18,7 +18,7 @@ namespace CarcassSpark.ObjectTypes
         public bool? isAspect, isHidden, noartneeded;
         
         [JsonConstructor]
-        public Aspect(string id, string label, string description,
+        public Aspect(string id, string label, string description, string inherits, List<string> extends,
                       bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
                       List<Induces> induces_prepend, List<Induces> induces_append, List<string> induces_remove,
                       bool? isAspect, string comments, Dictionary<string, int> aspects)
@@ -48,6 +48,8 @@ namespace CarcassSpark.ObjectTypes
             this.comments = comments;
             // optional, didn't even know it was possible tbqh
             this.aspects = aspects;
+            this.extends = extends;
+            this.inherits = inherits;
         }
 
         public Aspect()
@@ -77,6 +79,8 @@ namespace CarcassSpark.ObjectTypes
             tmp.noartneeded = noartneeded;
             tmp.comments = comments;
             tmp.aspects = aspects;
+            tmp.extends = extends;
+            tmp.inherits = inherits;
             return tmp;
         }
     }
