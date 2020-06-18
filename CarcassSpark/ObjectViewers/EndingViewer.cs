@@ -56,6 +56,7 @@ namespace CarcassSpark.ObjectViewers
             flavourDomainUpDown.Enabled = editing;
             animDomainUpDown.ReadOnly = !editing;
             animDomainUpDown.Enabled = editing;
+            achievementTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
         }

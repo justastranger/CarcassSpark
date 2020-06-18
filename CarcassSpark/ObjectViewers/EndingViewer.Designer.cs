@@ -46,17 +46,15 @@
             this.achievementTextBox = new System.Windows.Forms.TextBox();
             this.achievementLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.idTextBox.Location = new System.Drawing.Point(201, 25);
+            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.idTextBox.Location = new System.Drawing.Point(462, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(183, 20);
             this.idTextBox.TabIndex = 1;
@@ -65,7 +63,8 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(12, 25);
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTextBox.Location = new System.Drawing.Point(273, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(183, 20);
             this.labelTextBox.TabIndex = 2;
@@ -74,8 +73,8 @@
             // 
             // imageTextBox
             // 
-            this.imageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.imageTextBox.Location = new System.Drawing.Point(15, 282);
+            this.imageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageTextBox.Location = new System.Drawing.Point(273, 282);
             this.imageTextBox.Name = "imageTextBox";
             this.imageTextBox.Size = new System.Drawing.Size(183, 20);
             this.imageTextBox.TabIndex = 3;
@@ -84,22 +83,20 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(189, 3);
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionTextBox.Location = new System.Drawing.Point(273, 103);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(180, 153);
+            this.descriptionTextBox.Size = new System.Drawing.Size(372, 153);
             this.descriptionTextBox.TabIndex = 6;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // idLabel
             // 
-            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(328, 9);
+            this.idLabel.Location = new System.Drawing.Point(589, 9);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(54, 13);
             this.idLabel.TabIndex = 7;
@@ -107,8 +104,9 @@
             // 
             // labelLabel
             // 
+            this.labelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(9, 9);
+            this.labelLabel.Location = new System.Drawing.Point(270, 9);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(69, 13);
             this.labelLabel.TabIndex = 8;
@@ -116,9 +114,9 @@
             // 
             // imageLabel
             // 
-            this.imageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.imageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.imageLabel.AutoSize = true;
-            this.imageLabel.Location = new System.Drawing.Point(12, 266);
+            this.imageLabel.Location = new System.Drawing.Point(273, 266);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(72, 13);
             this.imageLabel.TabIndex = 9;
@@ -126,8 +124,9 @@
             // 
             // flavourLabel
             // 
+            this.flavourLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.flavourLabel.AutoSize = true;
-            this.flavourLabel.Location = new System.Drawing.Point(9, 48);
+            this.flavourLabel.Location = new System.Drawing.Point(270, 48);
             this.flavourLabel.Name = "flavourLabel";
             this.flavourLabel.Size = new System.Drawing.Size(78, 13);
             this.flavourLabel.TabIndex = 10;
@@ -135,12 +134,13 @@
             // 
             // flavourDomainUpDown
             // 
+            this.flavourDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.flavourDomainUpDown.Items.Add("None");
             this.flavourDomainUpDown.Items.Add("Grand");
             this.flavourDomainUpDown.Items.Add("Melancholy");
             this.flavourDomainUpDown.Items.Add("Pale");
             this.flavourDomainUpDown.Items.Add("Vile");
-            this.flavourDomainUpDown.Location = new System.Drawing.Point(12, 64);
+            this.flavourDomainUpDown.Location = new System.Drawing.Point(273, 64);
             this.flavourDomainUpDown.Name = "flavourDomainUpDown";
             this.flavourDomainUpDown.Size = new System.Drawing.Size(183, 20);
             this.flavourDomainUpDown.TabIndex = 11;
@@ -148,11 +148,11 @@
             // 
             // animDomainUpDown
             // 
-            this.animDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.animDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.animDomainUpDown.Items.Add("DramaticLight");
             this.animDomainUpDown.Items.Add("DramaticLightCool");
             this.animDomainUpDown.Items.Add("DramaticLightEvil");
-            this.animDomainUpDown.Location = new System.Drawing.Point(201, 64);
+            this.animDomainUpDown.Location = new System.Drawing.Point(462, 64);
             this.animDomainUpDown.Name = "animDomainUpDown";
             this.animDomainUpDown.Size = new System.Drawing.Size(183, 20);
             this.animDomainUpDown.TabIndex = 12;
@@ -160,9 +160,9 @@
             // 
             // animLabel
             // 
-            this.animLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.animLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.animLabel.AutoSize = true;
-            this.animLabel.Location = new System.Drawing.Point(331, 48);
+            this.animLabel.Location = new System.Drawing.Point(592, 48);
             this.animLabel.Name = "animLabel";
             this.animLabel.Size = new System.Drawing.Size(53, 13);
             this.animLabel.TabIndex = 13;
@@ -170,10 +170,9 @@
             // 
             // descriptionLabel
             // 
-            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(324, 87);
+            this.descriptionLabel.Location = new System.Drawing.Point(585, 87);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 14;
@@ -195,7 +194,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(309, 385);
+            this.cancelButton.Location = new System.Drawing.Point(570, 385);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 16;
@@ -206,7 +205,7 @@
             // achievementTextBox
             // 
             this.achievementTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.achievementTextBox.Location = new System.Drawing.Point(201, 282);
+            this.achievementTextBox.Location = new System.Drawing.Point(462, 282);
             this.achievementTextBox.Name = "achievementTextBox";
             this.achievementTextBox.Size = new System.Drawing.Size(183, 20);
             this.achievementTextBox.TabIndex = 17;
@@ -216,7 +215,7 @@
             // 
             this.achievementLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.achievementLabel.AutoSize = true;
-            this.achievementLabel.Location = new System.Drawing.Point(315, 266);
+            this.achievementLabel.Location = new System.Drawing.Point(576, 266);
             this.achievementLabel.Name = "achievementLabel";
             this.achievementLabel.Size = new System.Drawing.Size(69, 13);
             this.achievementLabel.TabIndex = 18;
@@ -227,33 +226,17 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 153);
+            this.pictureBox1.Size = new System.Drawing.Size(253, 367);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.descriptionTextBox, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 103);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(372, 159);
-            this.tableLayoutPanel1.TabIndex = 20;
-            // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(12, 321);
+            this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.commentsTextBox.Location = new System.Drawing.Point(273, 321);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -263,8 +246,9 @@
             // 
             // commentsLabel
             // 
+            this.commentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(12, 305);
+            this.commentsLabel.Location = new System.Drawing.Point(273, 305);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 20;
@@ -275,8 +259,10 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 420);
+            this.ClientSize = new System.Drawing.Size(657, 420);
+            this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.commentsLabel);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.achievementLabel);
             this.Controls.Add(this.achievementTextBox);
@@ -293,14 +279,11 @@
             this.Controls.Add(this.imageTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EndingViewer";
             this.Text = "EndingViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +308,6 @@
         private System.Windows.Forms.TextBox achievementTextBox;
         private System.Windows.Forms.Label achievementLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.Label commentsLabel;
     }
