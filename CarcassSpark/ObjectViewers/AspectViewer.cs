@@ -52,6 +52,7 @@ namespace CarcassSpark.ObjectViewers
             inducesDataGridView.AllowUserToAddRows = editing;
             inducesDataGridView.AllowUserToDeleteRows = editing;
             inducesDataGridView.ReadOnly = !editing;
+            inheritsTextBox.ReadOnly = !editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             okButton.Visible = editing;
         }
@@ -319,6 +320,12 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedAspect.comments = commentTextBox.Text;
             if (displayedAspect.comments == "") displayedAspect.comments = null;
+        }
+
+        private void inheritsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedAspect.inherits = inheritsTextBox.Text;
+            if (displayedAspect.inherits == "") displayedAspect.inherits = null;
         }
     }
 }

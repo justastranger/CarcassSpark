@@ -56,6 +56,8 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentTextBox = new System.Windows.Forms.TextBox();
+            this.inheritsLabel = new System.Windows.Forms.Label();
+            this.inheritsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -99,11 +101,11 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 180);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 206);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(630, 69);
+            this.descriptionTextBox.Size = new System.Drawing.Size(630, 43);
             this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -276,7 +278,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(143, 164);
+            this.descriptionLabel.Location = new System.Drawing.Point(12, 187);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 17;
@@ -301,12 +303,31 @@
             this.commentTextBox.TabIndex = 19;
             this.commentTextBox.TextChanged += new System.EventHandler(this.commentTextBox_TextChanged);
             // 
+            // inheritsLabel
+            // 
+            this.inheritsLabel.AutoSize = true;
+            this.inheritsLabel.Location = new System.Drawing.Point(143, 164);
+            this.inheritsLabel.Name = "inheritsLabel";
+            this.inheritsLabel.Size = new System.Drawing.Size(41, 13);
+            this.inheritsLabel.TabIndex = 20;
+            this.inheritsLabel.Text = "Inherits";
+            // 
+            // inheritsTextBox
+            // 
+            this.inheritsTextBox.Location = new System.Drawing.Point(146, 180);
+            this.inheritsTextBox.Name = "inheritsTextBox";
+            this.inheritsTextBox.Size = new System.Drawing.Size(134, 20);
+            this.inheritsTextBox.TabIndex = 21;
+            this.inheritsTextBox.TextChanged += new System.EventHandler(this.inheritsTextBox_TextChanged);
+            // 
             // AspectViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 310);
+            this.Controls.Add(this.inheritsTextBox);
+            this.Controls.Add(this.inheritsLabel);
             this.Controls.Add(this.commentTextBox);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.descriptionLabel);
@@ -367,5 +388,7 @@
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentTextBox;
+        private System.Windows.Forms.Label inheritsLabel;
+        private System.Windows.Forms.TextBox inheritsTextBox;
     }
 }
