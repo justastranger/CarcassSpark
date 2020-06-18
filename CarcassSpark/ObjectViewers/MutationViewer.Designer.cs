@@ -149,6 +149,7 @@
             this.Controls.Add(this.filterTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MutationViewer";
             this.Text = "MutationViewer";
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();

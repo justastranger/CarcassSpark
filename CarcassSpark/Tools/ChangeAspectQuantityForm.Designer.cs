@@ -76,6 +76,7 @@
             this.Controls.Add(this.okButton1);
             this.Controls.Add(this.numericUpDown1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ChangeAspectQuantityForm";
             this.Text = "Change Aspect Quantity";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

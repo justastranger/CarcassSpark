@@ -122,6 +122,7 @@
             this.Controls.Add(this.openWithVanillaCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);

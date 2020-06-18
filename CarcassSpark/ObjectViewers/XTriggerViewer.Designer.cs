@@ -145,6 +145,7 @@
             this.Controls.Add(this.catalystLabel);
             this.Controls.Add(this.catalystTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "XTriggerViewer";
             this.Text = "XTriggerViewer";
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();

@@ -364,6 +364,7 @@
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "DeckViewer";
             this.Text = "DeckViewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();

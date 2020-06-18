@@ -119,6 +119,7 @@
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.displayPictureBox);
+            this.MaximizeBox = false;
             this.Name = "ImageImporter";
             this.Text = "ImageImporter";
             ((System.ComponentModel.ISupportInitialize)(this.displayPictureBox)).EndInit();

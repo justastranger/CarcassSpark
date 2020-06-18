@@ -232,6 +232,7 @@
             this.Controls.Add(this.modNameTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ManifestViewer";
             this.Text = "ManifestViewer";
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();

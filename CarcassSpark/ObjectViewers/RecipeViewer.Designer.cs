@@ -1174,6 +1174,7 @@
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RecipeViewer";
             this.Text = "RecipeViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();

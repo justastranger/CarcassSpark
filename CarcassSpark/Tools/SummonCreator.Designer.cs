@@ -222,6 +222,7 @@
             this.Controls.Add(this.baseIdTextBox);
             this.Controls.Add(this.createBaseElementButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SummonCreator";
             this.Text = "SummonCreator";
             this.ResumeLayout(false);
