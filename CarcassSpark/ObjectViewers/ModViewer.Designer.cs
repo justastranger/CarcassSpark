@@ -91,6 +91,7 @@
             this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -100,6 +101,7 @@
             this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -141,8 +143,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -685,6 +685,13 @@
             this.exportSelectedEndingToolStripMenuItem.Text = "Export Selected Ending";
             this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedEndingToolStripMenuItem_Click);
             // 
+            // copySelectedEndingJSONToClipboardToolStripMenuItem
+            // 
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Name = "copySelectedEndingJSONToClipboardToolStripMenuItem";
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Text = "Copy Selected Ending JSON to Clipboard";
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedEndingJSONToClipboardToolStripMenuItem_Click);
+            // 
             // endingsLabel
             // 
             this.endingsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -718,7 +725,7 @@
             this.exportSelectedVerbToolStripMenuItem,
             this.copySelectedVerbJSONToClipboardToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(276, 136);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(276, 114);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -726,7 +733,7 @@
             this.recipesThatUseThisVerbToolStripMenuItem,
             this.elementsWithSlotsForThisVerbToolStripMenuItem});
             this.searchForToolStripMenuItem3.Name = "searchForToolStripMenuItem3";
-            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(197, 22);
+            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(275, 22);
             this.searchForToolStripMenuItem3.Text = "Search for...";
             // 
             // recipesThatUseThisVerbToolStripMenuItem
@@ -746,23 +753,30 @@
             // deleteSelectedVerbToolStripMenuItem
             // 
             this.deleteSelectedVerbToolStripMenuItem.Name = "deleteSelectedVerbToolStripMenuItem";
-            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
             this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
             // 
             // duplicateSelectedVerbToolStripMenuItem
             // 
             this.duplicateSelectedVerbToolStripMenuItem.Name = "duplicateSelectedVerbToolStripMenuItem";
-            this.duplicateSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.duplicateSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.duplicateSelectedVerbToolStripMenuItem.Text = "Duplicate Selected Verb";
             this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedVerbToolStripMenuItem_Click);
             // 
             // exportSelectedVerbToolStripMenuItem
             // 
             this.exportSelectedVerbToolStripMenuItem.Name = "exportSelectedVerbToolStripMenuItem";
-            this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.exportSelectedVerbToolStripMenuItem.Text = "Export Selected Verb";
             this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedVerbToolStripMenuItem_Click);
+            // 
+            // copySelectedVerbJSONToClipboardToolStripMenuItem
+            // 
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Name = "copySelectedVerbJSONToClipboardToolStripMenuItem";
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Text = "Copy Selected Verb JSON to Clipboard";
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedVerbJSONToClipboardToolStripMenuItem_Click);
             // 
             // verbsLabel
             // 
@@ -1137,20 +1151,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
-            // 
-            // copySelectedEndingJSONToClipboardToolStripMenuItem
-            // 
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Name = "copySelectedEndingJSONToClipboardToolStripMenuItem";
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Text = "Copy Selected Ending JSON to Clipboard";
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedEndingJSONToClipboardToolStripMenuItem_Click);
-            // 
-            // copySelectedVerbJSONToClipboardToolStripMenuItem
-            // 
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Name = "copySelectedVerbJSONToClipboardToolStripMenuItem";
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Text = "Copy Selected Verb JSON to Clipboard";
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedVerbJSONToClipboardToolStripMenuItem_Click);
             // 
             // ModViewer
             // 
