@@ -128,6 +128,21 @@
             this.moveMutationDownButton = new System.Windows.Forms.Button();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.recipeIDPanel = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -140,11 +155,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.purgeDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.haltVerbDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.recipeIDPanel.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(12, 25);
+            this.idTextBox.Location = new System.Drawing.Point(3, 20);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 0;
@@ -153,7 +183,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(118, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(3, 19);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 1;
@@ -162,7 +192,7 @@
             // 
             // actionIdTextBox
             // 
-            this.actionIdTextBox.Location = new System.Drawing.Point(224, 25);
+            this.actionIdTextBox.Location = new System.Drawing.Point(6, 20);
             this.actionIdTextBox.Name = "actionIdTextBox";
             this.actionIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.actionIdTextBox.TabIndex = 2;
@@ -171,7 +201,7 @@
             // 
             // endingTextBox
             // 
-            this.endingTextBox.Location = new System.Drawing.Point(330, 25);
+            this.endingTextBox.Location = new System.Drawing.Point(3, 19);
             this.endingTextBox.Name = "endingTextBox";
             this.endingTextBox.Size = new System.Drawing.Size(100, 20);
             this.endingTextBox.TabIndex = 3;
@@ -180,40 +210,51 @@
             // 
             // burnimageTextBox
             // 
-            this.burnimageTextBox.Location = new System.Drawing.Point(542, 25);
+            this.burnimageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.burnimageTextBox.Location = new System.Drawing.Point(3, 20);
             this.burnimageTextBox.Name = "burnimageTextBox";
-            this.burnimageTextBox.Size = new System.Drawing.Size(100, 20);
+            this.burnimageTextBox.Size = new System.Drawing.Size(103, 20);
             this.burnimageTextBox.TabIndex = 4;
             this.burnimageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.burnimageTextBox.TextChanged += new System.EventHandler(this.burnimageTextBox_TextChanged);
             // 
             // startdescriptionTextBox
             // 
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(258, 90);
+            this.startdescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(261, 93);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.startdescriptionTextBox.Size = new System.Drawing.Size(240, 80);
+            this.startdescriptionTextBox.Size = new System.Drawing.Size(252, 88);
             this.startdescriptionTextBox.TabIndex = 5;
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.startdescriptionTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(504, 90);
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionTextBox.Location = new System.Drawing.Point(519, 93);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(240, 80);
+            this.descriptionTextBox.Size = new System.Drawing.Size(252, 88);
             this.descriptionTextBox.TabIndex = 6;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // craftableCheckBox
             // 
+            this.craftableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.craftableCheckBox.AutoSize = true;
             this.craftableCheckBox.Enabled = false;
-            this.craftableCheckBox.Location = new System.Drawing.Point(12, 92);
+            this.craftableCheckBox.Location = new System.Drawing.Point(3, 3);
             this.craftableCheckBox.Name = "craftableCheckBox";
-            this.craftableCheckBox.Size = new System.Drawing.Size(68, 17);
+            this.craftableCheckBox.Size = new System.Drawing.Size(252, 24);
             this.craftableCheckBox.TabIndex = 7;
             this.craftableCheckBox.Text = "Craftable";
             this.craftableCheckBox.ThreeState = true;
@@ -222,11 +263,14 @@
             // 
             // hintonlyCheckBox
             // 
+            this.hintonlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.hintonlyCheckBox.AutoSize = true;
             this.hintonlyCheckBox.Enabled = false;
-            this.hintonlyCheckBox.Location = new System.Drawing.Point(12, 115);
+            this.hintonlyCheckBox.Location = new System.Drawing.Point(3, 33);
             this.hintonlyCheckBox.Name = "hintonlyCheckBox";
-            this.hintonlyCheckBox.Size = new System.Drawing.Size(69, 17);
+            this.hintonlyCheckBox.Size = new System.Drawing.Size(252, 24);
             this.hintonlyCheckBox.TabIndex = 8;
             this.hintonlyCheckBox.Text = "Hint Only";
             this.hintonlyCheckBox.ThreeState = true;
@@ -235,19 +279,26 @@
             // 
             // internaldeckLabel
             // 
+            this.internaldeckLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.internaldeckLabel.AutoSize = true;
-            this.internaldeckLabel.Location = new System.Drawing.Point(86, 87);
+            this.internaldeckLabel.Location = new System.Drawing.Point(519, 0);
             this.internaldeckLabel.Name = "internaldeckLabel";
-            this.internaldeckLabel.Size = new System.Drawing.Size(71, 13);
+            this.internaldeckLabel.Size = new System.Drawing.Size(252, 30);
             this.internaldeckLabel.TabIndex = 9;
             this.internaldeckLabel.Text = "Internal Deck";
+            this.internaldeckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // showInternalDeckButton
             // 
+            this.showInternalDeckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.showInternalDeckButton.Enabled = false;
-            this.showInternalDeckButton.Location = new System.Drawing.Point(89, 103);
+            this.showInternalDeckButton.Location = new System.Drawing.Point(519, 33);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
-            this.showInternalDeckButton.Size = new System.Drawing.Size(75, 23);
+            this.showInternalDeckButton.Size = new System.Drawing.Size(252, 24);
             this.showInternalDeckButton.TabIndex = 10;
             this.showInternalDeckButton.Text = "Show";
             this.showInternalDeckButton.UseVisualStyleBackColor = true;
@@ -255,26 +306,34 @@
             // 
             // requirementsLabel
             // 
+            this.requirementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.requirementsLabel.AutoSize = true;
-            this.requirementsLabel.Location = new System.Drawing.Point(99, 173);
+            this.requirementsLabel.Location = new System.Drawing.Point(3, 184);
             this.requirementsLabel.Name = "requirementsLabel";
-            this.requirementsLabel.Size = new System.Drawing.Size(72, 13);
+            this.requirementsLabel.Size = new System.Drawing.Size(252, 25);
             this.requirementsLabel.TabIndex = 11;
             this.requirementsLabel.Text = "Requirements";
+            this.requirementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // requirementsDataGridView
             // 
             this.requirementsDataGridView.AllowUserToResizeColumns = false;
             this.requirementsDataGridView.AllowUserToResizeRows = false;
+            this.requirementsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requirementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.requirementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requirementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
             this.amount});
             this.requirementsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.requirementsDataGridView.Location = new System.Drawing.Point(12, 189);
+            this.requirementsDataGridView.Location = new System.Drawing.Point(3, 212);
             this.requirementsDataGridView.Name = "requirementsDataGridView";
             this.requirementsDataGridView.ReadOnly = true;
-            this.requirementsDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.requirementsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.requirementsDataGridView.TabIndex = 12;
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requirementsDataGridView_CellDoubleClick);
             this.requirementsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requirementsDataGridView_UserDeletedRow);
@@ -284,14 +343,14 @@
             this.elementId.HeaderText = "Element ID";
             this.elementId.Name = "elementId";
             this.elementId.ReadOnly = true;
-            this.elementId.Width = 99;
+            this.elementId.Width = 84;
             // 
             // amount
             // 
             this.amount.HeaderText = "Amount";
             this.amount.Name = "amount";
             this.amount.ReadOnly = true;
-            this.amount.Width = 98;
+            this.amount.Width = 68;
             // 
             // propertyOperationContextMenuStrip
             // 
@@ -320,15 +379,19 @@
             // 
             this.extantreqsDataGridView.AllowUserToResizeColumns = false;
             this.extantreqsDataGridView.AllowUserToResizeRows = false;
+            this.extantreqsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.extantreqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.extantreqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.extantreqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.extantElementId,
             this.extantAmount});
             this.extantreqsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.extantreqsDataGridView.Location = new System.Drawing.Point(258, 189);
+            this.extantreqsDataGridView.Location = new System.Drawing.Point(261, 212);
             this.extantreqsDataGridView.Name = "extantreqsDataGridView";
             this.extantreqsDataGridView.ReadOnly = true;
-            this.extantreqsDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.extantreqsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.extantreqsDataGridView.TabIndex = 13;
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.extantreqsDataGridView_CellDoubleClick);
             this.extantreqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.extantreqsDataGridView_UserDeletedRow);
@@ -338,36 +401,44 @@
             this.extantElementId.HeaderText = "Element ID";
             this.extantElementId.Name = "extantElementId";
             this.extantElementId.ReadOnly = true;
-            this.extantElementId.Width = 99;
+            this.extantElementId.Width = 84;
             // 
             // extantAmount
             // 
             this.extantAmount.HeaderText = "Amount";
             this.extantAmount.Name = "extantAmount";
             this.extantAmount.ReadOnly = true;
-            this.extantAmount.Width = 98;
+            this.extantAmount.Width = 68;
             // 
             // extantrequirementsLabel
             // 
+            this.extantrequirementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.extantrequirementsLabel.AutoSize = true;
-            this.extantrequirementsLabel.Location = new System.Drawing.Point(326, 173);
+            this.extantrequirementsLabel.Location = new System.Drawing.Point(261, 184);
             this.extantrequirementsLabel.Name = "extantrequirementsLabel";
-            this.extantrequirementsLabel.Size = new System.Drawing.Size(105, 13);
+            this.extantrequirementsLabel.Size = new System.Drawing.Size(252, 25);
             this.extantrequirementsLabel.TabIndex = 14;
             this.extantrequirementsLabel.Text = "Extant Requirements";
+            this.extantrequirementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tablereqsDataGridView
             // 
             this.tablereqsDataGridView.AllowUserToResizeColumns = false;
             this.tablereqsDataGridView.AllowUserToResizeRows = false;
+            this.tablereqsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablereqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.tablereqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablereqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tableElementId,
             this.tableAmount});
             this.tablereqsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.tablereqsDataGridView.Location = new System.Drawing.Point(504, 189);
+            this.tablereqsDataGridView.Location = new System.Drawing.Point(519, 212);
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
-            this.tablereqsDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.tablereqsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.tablereqsDataGridView.TabIndex = 15;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablereqsDataGridView_CellDoubleClick);
             this.tablereqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablereqsDataGridView_UserDeletedRow);
@@ -376,38 +447,49 @@
             // 
             this.tableElementId.HeaderText = "Element ID";
             this.tableElementId.Name = "tableElementId";
-            this.tableElementId.Width = 99;
+            this.tableElementId.Width = 84;
             // 
             // tableAmount
             // 
             this.tableAmount.HeaderText = "Amount";
             this.tableAmount.Name = "tableAmount";
-            this.tableAmount.Width = 98;
+            this.tableAmount.Width = 68;
             // 
             // tablerequirementsLabel
             // 
+            this.tablerequirementsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tablerequirementsLabel.AutoSize = true;
-            this.tablerequirementsLabel.Location = new System.Drawing.Point(576, 173);
+            this.tablerequirementsLabel.Location = new System.Drawing.Point(519, 184);
             this.tablerequirementsLabel.Name = "tablerequirementsLabel";
-            this.tablerequirementsLabel.Size = new System.Drawing.Size(102, 13);
+            this.tablerequirementsLabel.Size = new System.Drawing.Size(252, 25);
             this.tablerequirementsLabel.TabIndex = 16;
             this.tablerequirementsLabel.Text = "Table Requirements";
+            this.tablerequirementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // slotLabel
             // 
+            this.slotLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.slotLabel.AutoSize = true;
-            this.slotLabel.Location = new System.Drawing.Point(167, 87);
+            this.slotLabel.Location = new System.Drawing.Point(777, 0);
             this.slotLabel.Name = "slotLabel";
-            this.slotLabel.Size = new System.Drawing.Size(25, 13);
+            this.slotLabel.Size = new System.Drawing.Size(252, 30);
             this.slotLabel.TabIndex = 17;
             this.slotLabel.Text = "Slot";
+            this.slotLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // showSlotButton
             // 
+            this.showSlotButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.showSlotButton.Enabled = false;
-            this.showSlotButton.Location = new System.Drawing.Point(170, 103);
+            this.showSlotButton.Location = new System.Drawing.Point(777, 33);
             this.showSlotButton.Name = "showSlotButton";
-            this.showSlotButton.Size = new System.Drawing.Size(75, 23);
+            this.showSlotButton.Size = new System.Drawing.Size(252, 24);
             this.showSlotButton.TabIndex = 18;
             this.showSlotButton.Text = "Show";
             this.showSlotButton.UseVisualStyleBackColor = true;
@@ -417,14 +499,18 @@
             // 
             this.effectsDataGridView.AllowUserToResizeColumns = false;
             this.effectsDataGridView.AllowUserToResizeRows = false;
+            this.effectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.effectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.effectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectsElementId,
             this.effectsAmount});
             this.effectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.effectsDataGridView.Location = new System.Drawing.Point(12, 333);
+            this.effectsDataGridView.Location = new System.Drawing.Point(3, 331);
             this.effectsDataGridView.Name = "effectsDataGridView";
-            this.effectsDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.effectsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.effectsDataGridView.TabIndex = 19;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserDeletedRow);
@@ -433,35 +519,43 @@
             // 
             this.effectsElementId.HeaderText = "Element ID";
             this.effectsElementId.Name = "effectsElementId";
-            this.effectsElementId.Width = 99;
+            this.effectsElementId.Width = 84;
             // 
             // effectsAmount
             // 
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.Width = 98;
+            this.effectsAmount.Width = 68;
             // 
             // effectsLabel
             // 
+            this.effectsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.effectsLabel.AutoSize = true;
-            this.effectsLabel.Location = new System.Drawing.Point(99, 317);
+            this.effectsLabel.Location = new System.Drawing.Point(3, 303);
             this.effectsLabel.Name = "effectsLabel";
-            this.effectsLabel.Size = new System.Drawing.Size(40, 13);
+            this.effectsLabel.Size = new System.Drawing.Size(252, 25);
             this.effectsLabel.TabIndex = 20;
             this.effectsLabel.Text = "Effects";
+            this.effectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // aspectsDataGridView
             // 
             this.aspectsDataGridView.AllowUserToResizeColumns = false;
             this.aspectsDataGridView.AllowUserToResizeRows = false;
+            this.aspectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.aspectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.aspectAmount});
             this.aspectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.aspectsDataGridView.Location = new System.Drawing.Point(258, 333);
+            this.aspectsDataGridView.Location = new System.Drawing.Point(261, 331);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
-            this.aspectsDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.aspectsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.aspectsDataGridView.TabIndex = 21;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
             this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserDeletedRow);
@@ -470,26 +564,30 @@
             // 
             this.aspectId.HeaderText = "Aspect ID";
             this.aspectId.Name = "aspectId";
-            this.aspectId.Width = 99;
+            this.aspectId.Width = 79;
             // 
             // aspectAmount
             // 
             this.aspectAmount.HeaderText = "Amount";
             this.aspectAmount.Name = "aspectAmount";
-            this.aspectAmount.Width = 98;
+            this.aspectAmount.Width = 68;
             // 
             // deckeffectDataGridView
             // 
             this.deckeffectDataGridView.AllowUserToResizeColumns = false;
             this.deckeffectDataGridView.AllowUserToResizeRows = false;
+            this.deckeffectDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.deckeffectDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.deckeffectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.deckeffectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deckId,
             this.deckDraws});
             this.deckeffectDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.deckeffectDataGridView.Location = new System.Drawing.Point(504, 333);
+            this.deckeffectDataGridView.Location = new System.Drawing.Point(519, 331);
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
-            this.deckeffectDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.deckeffectDataGridView.Size = new System.Drawing.Size(252, 88);
             this.deckeffectDataGridView.TabIndex = 22;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deckeffectDataGridView_CellDoubleClick);
             this.deckeffectDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deckeffectDataGridView_UserDeletedRow);
@@ -498,74 +596,95 @@
             // 
             this.deckId.HeaderText = "Deck ID";
             this.deckId.Name = "deckId";
-            this.deckId.Width = 99;
+            this.deckId.Width = 72;
             // 
             // deckDraws
             // 
             this.deckDraws.HeaderText = "Amount";
             this.deckDraws.Name = "deckDraws";
-            this.deckDraws.Width = 98;
+            this.deckDraws.Width = 68;
             // 
             // deckeffectLabel
             // 
+            this.deckeffectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.deckeffectLabel.AutoSize = true;
-            this.deckeffectLabel.Location = new System.Drawing.Point(595, 317);
+            this.deckeffectLabel.Location = new System.Drawing.Point(519, 303);
             this.deckeffectLabel.Name = "deckeffectLabel";
-            this.deckeffectLabel.Size = new System.Drawing.Size(64, 13);
+            this.deckeffectLabel.Size = new System.Drawing.Size(252, 25);
             this.deckeffectLabel.TabIndex = 23;
             this.deckeffectLabel.Text = "Deck Effect";
+            this.deckeffectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // aspectsLabel
             // 
+            this.aspectsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.aspectsLabel.AutoSize = true;
-            this.aspectsLabel.Location = new System.Drawing.Point(344, 317);
+            this.aspectsLabel.Location = new System.Drawing.Point(261, 303);
             this.aspectsLabel.Name = "aspectsLabel";
-            this.aspectsLabel.Size = new System.Drawing.Size(45, 13);
+            this.aspectsLabel.Size = new System.Drawing.Size(252, 25);
             this.aspectsLabel.TabIndex = 24;
             this.aspectsLabel.Text = "Aspects";
+            this.aspectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // alternativerecipesLabel
             // 
+            this.alternativerecipesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.alternativerecipesLabel.AutoSize = true;
-            this.alternativerecipesLabel.Location = new System.Drawing.Point(72, 461);
+            this.alternativerecipesLabel.Location = new System.Drawing.Point(3, 422);
             this.alternativerecipesLabel.Name = "alternativerecipesLabel";
-            this.alternativerecipesLabel.Size = new System.Drawing.Size(99, 13);
+            this.alternativerecipesLabel.Size = new System.Drawing.Size(252, 25);
             this.alternativerecipesLabel.TabIndex = 26;
             this.alternativerecipesLabel.Text = "Alternative Recipes";
+            this.alternativerecipesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkedLabel
             // 
+            this.linkedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.linkedLabel.AutoSize = true;
-            this.linkedLabel.Location = new System.Drawing.Point(326, 461);
+            this.linkedLabel.Location = new System.Drawing.Point(261, 422);
             this.linkedLabel.Name = "linkedLabel";
-            this.linkedLabel.Size = new System.Drawing.Size(81, 13);
+            this.linkedLabel.Size = new System.Drawing.Size(252, 25);
             this.linkedLabel.TabIndex = 27;
             this.linkedLabel.Text = "Linked Recipes";
+            this.linkedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // mutationsLabel
             // 
+            this.mutationsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mutationsLabel.AutoSize = true;
-            this.mutationsLabel.Location = new System.Drawing.Point(595, 461);
+            this.mutationsLabel.Location = new System.Drawing.Point(519, 422);
             this.mutationsLabel.Name = "mutationsLabel";
-            this.mutationsLabel.Size = new System.Drawing.Size(53, 13);
+            this.mutationsLabel.Size = new System.Drawing.Size(252, 25);
             this.mutationsLabel.TabIndex = 30;
             this.mutationsLabel.Text = "Mutations";
+            this.mutationsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(12, 64);
+            this.extendsTextBox.Location = new System.Drawing.Point(3, 19);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(103, 20);
             this.extendsTextBox.TabIndex = 33;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 633);
+            this.okButton.Location = new System.Drawing.Point(6, 33);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(42, 23);
             this.okButton.TabIndex = 36;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -573,8 +692,9 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(945, 633);
+            this.cancelButton.Location = new System.Drawing.Point(954, 582);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 37;
@@ -584,9 +704,10 @@
             // 
             // addAlternativeRecipeButton
             // 
-            this.addAlternativeRecipeButton.Location = new System.Drawing.Point(12, 604);
+            this.addAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addAlternativeRecipeButton.Location = new System.Drawing.Point(9, 4);
             this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
-            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(34, 23);
+            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(40, 23);
             this.addAlternativeRecipeButton.TabIndex = 38;
             this.addAlternativeRecipeButton.Text = "Add";
             this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
@@ -594,9 +715,10 @@
             // 
             // addLinkedRecipeButton
             // 
-            this.addLinkedRecipeButton.Location = new System.Drawing.Point(258, 604);
+            this.addLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addLinkedRecipeButton.Location = new System.Drawing.Point(9, 5);
             this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
-            this.addLinkedRecipeButton.Size = new System.Drawing.Size(34, 23);
+            this.addLinkedRecipeButton.Size = new System.Drawing.Size(40, 23);
             this.addLinkedRecipeButton.TabIndex = 39;
             this.addLinkedRecipeButton.Text = "Add";
             this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -604,9 +726,10 @@
             // 
             // addMutationButton
             // 
-            this.addMutationButton.Location = new System.Drawing.Point(504, 604);
+            this.addMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addMutationButton.Location = new System.Drawing.Point(9, 6);
             this.addMutationButton.Name = "addMutationButton";
-            this.addMutationButton.Size = new System.Drawing.Size(34, 23);
+            this.addMutationButton.Size = new System.Drawing.Size(40, 23);
             this.addMutationButton.TabIndex = 40;
             this.addMutationButton.Text = "Add";
             this.addMutationButton.UseVisualStyleBackColor = true;
@@ -614,16 +737,21 @@
             // 
             // maxExecutionsNumericUpDown
             // 
-            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(118, 64);
+            this.maxExecutionsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(88, 3);
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
-            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(61, 20);
+            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(158, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 41;
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.maxExecutionsNumericUpDown_ValueChanged);
             // 
             // maxExecutionsLabel
             // 
+            this.maxExecutionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.maxExecutionsLabel.AutoSize = true;
-            this.maxExecutionsLabel.Location = new System.Drawing.Point(115, 48);
+            this.maxExecutionsLabel.Location = new System.Drawing.Point(3, 3);
             this.maxExecutionsLabel.Name = "maxExecutionsLabel";
             this.maxExecutionsLabel.Size = new System.Drawing.Size(82, 13);
             this.maxExecutionsLabel.TabIndex = 42;
@@ -631,16 +759,21 @@
             // 
             // warmupNumericUpDown
             // 
-            this.warmupNumericUpDown.Location = new System.Drawing.Point(185, 64);
+            this.warmupNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.warmupNumericUpDown.Location = new System.Drawing.Point(56, 3);
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
-            this.warmupNumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.warmupNumericUpDown.Size = new System.Drawing.Size(193, 20);
             this.warmupNumericUpDown.TabIndex = 43;
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.warmupNumericUpDown_ValueChanged);
             // 
             // warmupLabel
             // 
+            this.warmupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.warmupLabel.AutoSize = true;
-            this.warmupLabel.Location = new System.Drawing.Point(196, 48);
+            this.warmupLabel.Location = new System.Drawing.Point(3, 5);
             this.warmupLabel.Name = "warmupLabel";
             this.warmupLabel.Size = new System.Drawing.Size(47, 13);
             this.warmupLabel.TabIndex = 44;
@@ -649,7 +782,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(9, 48);
+            this.extendsLabel.Location = new System.Drawing.Point(3, 4);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 45;
@@ -658,7 +791,7 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(9, 9);
+            this.idLabel.Location = new System.Drawing.Point(3, 4);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(55, 13);
             this.idLabel.TabIndex = 46;
@@ -667,7 +800,7 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(115, 9);
+            this.labelLabel.Location = new System.Drawing.Point(3, 3);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 47;
@@ -676,7 +809,7 @@
             // actionIdLabel
             // 
             this.actionIdLabel.AutoSize = true;
-            this.actionIdLabel.Location = new System.Drawing.Point(221, 9);
+            this.actionIdLabel.Location = new System.Drawing.Point(3, 4);
             this.actionIdLabel.Name = "actionIdLabel";
             this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
             this.actionIdLabel.TabIndex = 48;
@@ -685,7 +818,7 @@
             // endingLabel
             // 
             this.endingLabel.AutoSize = true;
-            this.endingLabel.Location = new System.Drawing.Point(327, 9);
+            this.endingLabel.Location = new System.Drawing.Point(3, 3);
             this.endingLabel.Name = "endingLabel";
             this.endingLabel.Size = new System.Drawing.Size(78, 13);
             this.endingLabel.TabIndex = 49;
@@ -693,8 +826,10 @@
             // 
             // burnImageLabel
             // 
+            this.burnImageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.burnImageLabel.AutoSize = true;
-            this.burnImageLabel.Location = new System.Drawing.Point(539, 9);
+            this.burnImageLabel.Location = new System.Drawing.Point(4, 4);
             this.burnImageLabel.Name = "burnImageLabel";
             this.burnImageLabel.Size = new System.Drawing.Size(61, 13);
             this.burnImageLabel.TabIndex = 50;
@@ -702,27 +837,36 @@
             // 
             // startDescriptionLabel
             // 
+            this.startDescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(255, 74);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(261, 60);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
-            this.startDescriptionLabel.Size = new System.Drawing.Size(82, 13);
+            this.startDescriptionLabel.Size = new System.Drawing.Size(252, 30);
             this.startDescriptionLabel.TabIndex = 51;
             this.startDescriptionLabel.Text = "StartDescription";
+            this.startDescriptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // descriptionLabel
             // 
+            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(501, 74);
+            this.descriptionLabel.Location = new System.Drawing.Point(519, 60);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.Size = new System.Drawing.Size(252, 30);
             this.descriptionLabel.TabIndex = 52;
             this.descriptionLabel.Text = "Description";
+            this.descriptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // removeAlternativeRecipeButton
             // 
-            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(193, 604);
+            this.removeAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(185, 4);
             this.removeAlternativeRecipeButton.Name = "removeAlternativeRecipeButton";
-            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(59, 23);
+            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(64, 23);
             this.removeAlternativeRecipeButton.TabIndex = 53;
             this.removeAlternativeRecipeButton.Text = "Delete";
             this.removeAlternativeRecipeButton.UseVisualStyleBackColor = true;
@@ -730,9 +874,10 @@
             // 
             // removeLinkedRecipeButton
             // 
-            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(439, 604);
+            this.removeLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(185, 5);
             this.removeLinkedRecipeButton.Name = "removeLinkedRecipeButton";
-            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(59, 23);
+            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(64, 23);
             this.removeLinkedRecipeButton.TabIndex = 54;
             this.removeLinkedRecipeButton.Text = "Delete";
             this.removeLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -740,9 +885,10 @@
             // 
             // removeMutationButton
             // 
-            this.removeMutationButton.Location = new System.Drawing.Point(685, 604);
+            this.removeMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeMutationButton.Location = new System.Drawing.Point(185, 6);
             this.removeMutationButton.Name = "removeMutationButton";
-            this.removeMutationButton.Size = new System.Drawing.Size(59, 23);
+            this.removeMutationButton.Size = new System.Drawing.Size(64, 23);
             this.removeMutationButton.TabIndex = 55;
             this.removeMutationButton.Text = "Delete";
             this.removeMutationButton.UseVisualStyleBackColor = true;
@@ -750,7 +896,8 @@
             // 
             // prependAlternativeRecipeButton
             // 
-            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(52, 604);
+            this.prependAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(55, 4);
             this.prependAlternativeRecipeButton.Name = "prependAlternativeRecipeButton";
             this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(60, 23);
             this.prependAlternativeRecipeButton.TabIndex = 57;
@@ -760,9 +907,10 @@
             // 
             // appendAlternativeReipeButton
             // 
-            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(118, 604);
+            this.appendAlternativeReipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(121, 4);
             this.appendAlternativeReipeButton.Name = "appendAlternativeReipeButton";
-            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(69, 23);
+            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(58, 23);
             this.appendAlternativeReipeButton.TabIndex = 58;
             this.appendAlternativeReipeButton.Text = "Append";
             this.appendAlternativeReipeButton.UseVisualStyleBackColor = true;
@@ -770,7 +918,8 @@
             // 
             // prependLinkedRecipeButton
             // 
-            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(298, 604);
+            this.prependLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(55, 6);
             this.prependLinkedRecipeButton.Name = "prependLinkedRecipeButton";
             this.prependLinkedRecipeButton.Size = new System.Drawing.Size(60, 23);
             this.prependLinkedRecipeButton.TabIndex = 59;
@@ -780,9 +929,10 @@
             // 
             // appendLinkedRecipeButton
             // 
-            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(364, 604);
+            this.appendLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(121, 6);
             this.appendLinkedRecipeButton.Name = "appendLinkedRecipeButton";
-            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(69, 23);
+            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(58, 23);
             this.appendLinkedRecipeButton.TabIndex = 60;
             this.appendLinkedRecipeButton.Text = "Append";
             this.appendLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -790,7 +940,8 @@
             // 
             // prependMutationButton
             // 
-            this.prependMutationButton.Location = new System.Drawing.Point(544, 604);
+            this.prependMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prependMutationButton.Location = new System.Drawing.Point(55, 6);
             this.prependMutationButton.Name = "prependMutationButton";
             this.prependMutationButton.Size = new System.Drawing.Size(60, 23);
             this.prependMutationButton.TabIndex = 61;
@@ -800,9 +951,10 @@
             // 
             // appendMutationButton
             // 
-            this.appendMutationButton.Location = new System.Drawing.Point(610, 604);
+            this.appendMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.appendMutationButton.Location = new System.Drawing.Point(121, 6);
             this.appendMutationButton.Name = "appendMutationButton";
-            this.appendMutationButton.Size = new System.Drawing.Size(69, 23);
+            this.appendMutationButton.Size = new System.Drawing.Size(58, 23);
             this.appendMutationButton.TabIndex = 62;
             this.appendMutationButton.Text = "Append";
             this.appendMutationButton.UseVisualStyleBackColor = true;
@@ -810,10 +962,13 @@
             // 
             // alternativeRecipesListView
             // 
-            this.alternativeRecipesListView.Location = new System.Drawing.Point(12, 477);
+            this.alternativeRecipesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.alternativeRecipesListView.Location = new System.Drawing.Point(3, 450);
             this.alternativeRecipesListView.MultiSelect = false;
             this.alternativeRecipesListView.Name = "alternativeRecipesListView";
-            this.alternativeRecipesListView.Size = new System.Drawing.Size(240, 121);
+            this.alternativeRecipesListView.Size = new System.Drawing.Size(252, 88);
             this.alternativeRecipesListView.TabIndex = 63;
             this.alternativeRecipesListView.UseCompatibleStateImageBehavior = false;
             this.alternativeRecipesListView.View = System.Windows.Forms.View.List;
@@ -821,10 +976,13 @@
             // 
             // linkedRecipesListView
             // 
-            this.linkedRecipesListView.Location = new System.Drawing.Point(258, 477);
+            this.linkedRecipesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkedRecipesListView.Location = new System.Drawing.Point(261, 450);
             this.linkedRecipesListView.MultiSelect = false;
             this.linkedRecipesListView.Name = "linkedRecipesListView";
-            this.linkedRecipesListView.Size = new System.Drawing.Size(240, 121);
+            this.linkedRecipesListView.Size = new System.Drawing.Size(252, 88);
             this.linkedRecipesListView.TabIndex = 64;
             this.linkedRecipesListView.UseCompatibleStateImageBehavior = false;
             this.linkedRecipesListView.View = System.Windows.Forms.View.List;
@@ -832,10 +990,13 @@
             // 
             // mutationsListView
             // 
-            this.mutationsListView.Location = new System.Drawing.Point(504, 477);
+            this.mutationsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mutationsListView.Location = new System.Drawing.Point(519, 450);
             this.mutationsListView.MultiSelect = false;
             this.mutationsListView.Name = "mutationsListView";
-            this.mutationsListView.Size = new System.Drawing.Size(240, 121);
+            this.mutationsListView.Size = new System.Drawing.Size(252, 88);
             this.mutationsListView.TabIndex = 65;
             this.mutationsListView.UseCompatibleStateImageBehavior = false;
             this.mutationsListView.View = System.Windows.Forms.View.List;
@@ -843,8 +1004,10 @@
             // 
             // portalEffectLabel
             // 
+            this.portalEffectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.portalEffectLabel.AutoSize = true;
-            this.portalEffectLabel.Location = new System.Drawing.Point(645, 9);
+            this.portalEffectLabel.Location = new System.Drawing.Point(3, 4);
             this.portalEffectLabel.Name = "portalEffectLabel";
             this.portalEffectLabel.Size = new System.Drawing.Size(65, 13);
             this.portalEffectLabel.TabIndex = 67;
@@ -852,6 +1015,8 @@
             // 
             // portalEffectDomainUpDown
             // 
+            this.portalEffectDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.portalEffectDomainUpDown.Items.Add("None");
             this.portalEffectDomainUpDown.Items.Add("Wood");
             this.portalEffectDomainUpDown.Items.Add("WhiteDoor");
@@ -859,29 +1024,33 @@
             this.portalEffectDomainUpDown.Items.Add("SpiderDoor");
             this.portalEffectDomainUpDown.Items.Add("PeacockDoor");
             this.portalEffectDomainUpDown.Items.Add("TricuspidGate");
-            this.portalEffectDomainUpDown.Location = new System.Drawing.Point(648, 25);
+            this.portalEffectDomainUpDown.Location = new System.Drawing.Point(3, 19);
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
-            this.portalEffectDomainUpDown.Size = new System.Drawing.Size(100, 20);
+            this.portalEffectDomainUpDown.Size = new System.Drawing.Size(103, 20);
             this.portalEffectDomainUpDown.TabIndex = 68;
             this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.portalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
             // 
+            this.signalEndingFlavourDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.signalEndingFlavourDomainUpDown.Items.Add("None");
             this.signalEndingFlavourDomainUpDown.Items.Add("Grand");
             this.signalEndingFlavourDomainUpDown.Items.Add("Melancholy");
             this.signalEndingFlavourDomainUpDown.Items.Add("Pale");
             this.signalEndingFlavourDomainUpDown.Items.Add("Vile");
-            this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(436, 25);
+            this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(3, 19);
             this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
-            this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(100, 20);
+            this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(109, 20);
             this.signalEndingFlavourDomainUpDown.TabIndex = 69;
             this.signalEndingFlavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.signalEndingFlavourDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourLabel
             // 
+            this.signalEndingFlavourLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.signalEndingFlavourLabel.AutoSize = true;
-            this.signalEndingFlavourLabel.Location = new System.Drawing.Point(428, 9);
+            this.signalEndingFlavourLabel.Location = new System.Drawing.Point(3, 3);
             this.signalEndingFlavourLabel.Name = "signalEndingFlavourLabel";
             this.signalEndingFlavourLabel.Size = new System.Drawing.Size(110, 13);
             this.signalEndingFlavourLabel.TabIndex = 70;
@@ -889,9 +1058,10 @@
             // 
             // moveAltRecipeUpButton
             // 
-            this.moveAltRecipeUpButton.Location = new System.Drawing.Point(96, 633);
+            this.moveAltRecipeUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveAltRecipeUpButton.Location = new System.Drawing.Point(55, 33);
             this.moveAltRecipeUpButton.Name = "moveAltRecipeUpButton";
-            this.moveAltRecipeUpButton.Size = new System.Drawing.Size(30, 23);
+            this.moveAltRecipeUpButton.Size = new System.Drawing.Size(60, 23);
             this.moveAltRecipeUpButton.TabIndex = 71;
             this.moveAltRecipeUpButton.Text = "Up";
             this.moveAltRecipeUpButton.UseVisualStyleBackColor = true;
@@ -899,9 +1069,10 @@
             // 
             // moveAltRecipeDownButton
             // 
-            this.moveAltRecipeDownButton.Location = new System.Drawing.Point(132, 633);
+            this.moveAltRecipeDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveAltRecipeDownButton.Location = new System.Drawing.Point(121, 33);
             this.moveAltRecipeDownButton.Name = "moveAltRecipeDownButton";
-            this.moveAltRecipeDownButton.Size = new System.Drawing.Size(47, 23);
+            this.moveAltRecipeDownButton.Size = new System.Drawing.Size(58, 23);
             this.moveAltRecipeDownButton.TabIndex = 72;
             this.moveAltRecipeDownButton.Text = "Down";
             this.moveAltRecipeDownButton.UseVisualStyleBackColor = true;
@@ -909,9 +1080,10 @@
             // 
             // moveLinkedRecipeUpButton
             // 
-            this.moveLinkedRecipeUpButton.Location = new System.Drawing.Point(329, 633);
+            this.moveLinkedRecipeUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveLinkedRecipeUpButton.Location = new System.Drawing.Point(55, 35);
             this.moveLinkedRecipeUpButton.Name = "moveLinkedRecipeUpButton";
-            this.moveLinkedRecipeUpButton.Size = new System.Drawing.Size(29, 23);
+            this.moveLinkedRecipeUpButton.Size = new System.Drawing.Size(60, 23);
             this.moveLinkedRecipeUpButton.TabIndex = 73;
             this.moveLinkedRecipeUpButton.Text = "Up";
             this.moveLinkedRecipeUpButton.UseVisualStyleBackColor = true;
@@ -919,9 +1091,10 @@
             // 
             // moveLinkedRecipeDownButton
             // 
-            this.moveLinkedRecipeDownButton.Location = new System.Drawing.Point(364, 633);
+            this.moveLinkedRecipeDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveLinkedRecipeDownButton.Location = new System.Drawing.Point(121, 35);
             this.moveLinkedRecipeDownButton.Name = "moveLinkedRecipeDownButton";
-            this.moveLinkedRecipeDownButton.Size = new System.Drawing.Size(43, 23);
+            this.moveLinkedRecipeDownButton.Size = new System.Drawing.Size(58, 23);
             this.moveLinkedRecipeDownButton.TabIndex = 74;
             this.moveLinkedRecipeDownButton.Text = "Down";
             this.moveLinkedRecipeDownButton.UseVisualStyleBackColor = true;
@@ -929,10 +1102,13 @@
             // 
             // signalImportantLoopCheckBox
             // 
+            this.signalImportantLoopCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.signalImportantLoopCheckBox.AutoSize = true;
-            this.signalImportantLoopCheckBox.Location = new System.Drawing.Point(12, 138);
+            this.signalImportantLoopCheckBox.Location = new System.Drawing.Point(261, 3);
             this.signalImportantLoopCheckBox.Name = "signalImportantLoopCheckBox";
-            this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(129, 17);
+            this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(252, 24);
             this.signalImportantLoopCheckBox.TabIndex = 75;
             this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
             this.signalImportantLoopCheckBox.ThreeState = true;
@@ -943,14 +1119,18 @@
             // 
             this.purgeDataGridView.AllowUserToResizeColumns = false;
             this.purgeDataGridView.AllowUserToResizeRows = false;
+            this.purgeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.purgeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.purgeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.purgeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.purgeIdDataGridViewTextBoxColumn,
             this.purgeAmountDataGridViewTextBoxColumn});
             this.purgeDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.purgeDataGridView.Location = new System.Drawing.Point(750, 189);
+            this.purgeDataGridView.Location = new System.Drawing.Point(777, 212);
             this.purgeDataGridView.Name = "purgeDataGridView";
-            this.purgeDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.purgeDataGridView.Size = new System.Drawing.Size(252, 88);
             this.purgeDataGridView.TabIndex = 76;
             this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purgeDataGridView_CellDoubleClick);
             this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.purgeDataGridView_UserDeletedRow);
@@ -959,44 +1139,56 @@
             // 
             this.purgeIdDataGridViewTextBoxColumn.HeaderText = "Element ID";
             this.purgeIdDataGridViewTextBoxColumn.Name = "purgeIdDataGridViewTextBoxColumn";
-            this.purgeIdDataGridViewTextBoxColumn.Width = 99;
+            this.purgeIdDataGridViewTextBoxColumn.Width = 84;
             // 
             // purgeAmountDataGridViewTextBoxColumn
             // 
             this.purgeAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.purgeAmountDataGridViewTextBoxColumn.Name = "purgeAmountDataGridViewTextBoxColumn";
-            this.purgeAmountDataGridViewTextBoxColumn.Width = 98;
+            this.purgeAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // purgeLabel
             // 
+            this.purgeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.purgeLabel.AutoSize = true;
-            this.purgeLabel.Location = new System.Drawing.Point(855, 173);
+            this.purgeLabel.Location = new System.Drawing.Point(777, 184);
             this.purgeLabel.Name = "purgeLabel";
-            this.purgeLabel.Size = new System.Drawing.Size(35, 13);
+            this.purgeLabel.Size = new System.Drawing.Size(252, 25);
             this.purgeLabel.TabIndex = 77;
             this.purgeLabel.Text = "Purge";
+            this.purgeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // haltVerbLabel
             // 
+            this.haltVerbLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.haltVerbLabel.AutoSize = true;
-            this.haltVerbLabel.Location = new System.Drawing.Point(839, 317);
+            this.haltVerbLabel.Location = new System.Drawing.Point(777, 303);
             this.haltVerbLabel.Name = "haltVerbLabel";
-            this.haltVerbLabel.Size = new System.Drawing.Size(51, 13);
+            this.haltVerbLabel.Size = new System.Drawing.Size(252, 25);
             this.haltVerbLabel.TabIndex = 79;
             this.haltVerbLabel.Text = "Halt Verb";
+            this.haltVerbLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // haltVerbDataGridView
             // 
             this.haltVerbDataGridView.AllowUserToResizeColumns = false;
             this.haltVerbDataGridView.AllowUserToResizeRows = false;
+            this.haltVerbDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.haltVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.haltVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.haltVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.haltVerbIdDataGridViewTextBoxColumn,
             this.haltVerbAmountDataGridViewTextBoxColumn});
             this.haltVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.haltVerbDataGridView.Location = new System.Drawing.Point(750, 333);
+            this.haltVerbDataGridView.Location = new System.Drawing.Point(777, 331);
             this.haltVerbDataGridView.Name = "haltVerbDataGridView";
-            this.haltVerbDataGridView.Size = new System.Drawing.Size(240, 125);
+            this.haltVerbDataGridView.Size = new System.Drawing.Size(252, 88);
             this.haltVerbDataGridView.TabIndex = 78;
             this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.haltVerbDataGridView_CellDoubleClick);
             this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.haltVerbDataGridView_UserDeletedRow);
@@ -1005,35 +1197,43 @@
             // 
             this.haltVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
             this.haltVerbIdDataGridViewTextBoxColumn.Name = "haltVerbIdDataGridViewTextBoxColumn";
-            this.haltVerbIdDataGridViewTextBoxColumn.Width = 99;
+            this.haltVerbIdDataGridViewTextBoxColumn.Width = 68;
             // 
             // haltVerbAmountDataGridViewTextBoxColumn
             // 
             this.haltVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.haltVerbAmountDataGridViewTextBoxColumn.Name = "haltVerbAmountDataGridViewTextBoxColumn";
-            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 98;
+            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // deleteVerbLabel
             // 
+            this.deleteVerbLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteVerbLabel.AutoSize = true;
-            this.deleteVerbLabel.Location = new System.Drawing.Point(839, 461);
+            this.deleteVerbLabel.Location = new System.Drawing.Point(777, 422);
             this.deleteVerbLabel.Name = "deleteVerbLabel";
-            this.deleteVerbLabel.Size = new System.Drawing.Size(63, 13);
+            this.deleteVerbLabel.Size = new System.Drawing.Size(252, 25);
             this.deleteVerbLabel.TabIndex = 81;
             this.deleteVerbLabel.Text = "Delete Verb";
+            this.deleteVerbLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // deleteVerbDataGridView
             // 
             this.deleteVerbDataGridView.AllowUserToResizeColumns = false;
             this.deleteVerbDataGridView.AllowUserToResizeRows = false;
+            this.deleteVerbDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.deleteVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.deleteVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deleteVerbIdDataGridViewTextBoxColumn,
             this.deleteVerbAmountDataGridViewTextBoxColumn});
             this.deleteVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.deleteVerbDataGridView.Location = new System.Drawing.Point(750, 477);
+            this.deleteVerbDataGridView.Location = new System.Drawing.Point(777, 450);
             this.deleteVerbDataGridView.Name = "deleteVerbDataGridView";
-            this.deleteVerbDataGridView.Size = new System.Drawing.Size(240, 121);
+            this.deleteVerbDataGridView.Size = new System.Drawing.Size(252, 88);
             this.deleteVerbDataGridView.TabIndex = 80;
             this.deleteVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deleteVerbDataGridView_CellDoubleClick);
             this.deleteVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deleteVerbDataGridView_UserDeletedRow);
@@ -1042,19 +1242,20 @@
             // 
             this.deleteVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
             this.deleteVerbIdDataGridViewTextBoxColumn.Name = "deleteVerbIdDataGridViewTextBoxColumn";
-            this.deleteVerbIdDataGridViewTextBoxColumn.Width = 99;
+            this.deleteVerbIdDataGridViewTextBoxColumn.Width = 68;
             // 
             // deleteVerbAmountDataGridViewTextBoxColumn
             // 
             this.deleteVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.deleteVerbAmountDataGridViewTextBoxColumn.Name = "deleteVerbAmountDataGridViewTextBoxColumn";
-            this.deleteVerbAmountDataGridViewTextBoxColumn.Width = 98;
+            this.deleteVerbAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // moveMutationUpButton
             // 
-            this.moveMutationUpButton.Location = new System.Drawing.Point(570, 633);
+            this.moveMutationUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveMutationUpButton.Location = new System.Drawing.Point(55, 35);
             this.moveMutationUpButton.Name = "moveMutationUpButton";
-            this.moveMutationUpButton.Size = new System.Drawing.Size(34, 23);
+            this.moveMutationUpButton.Size = new System.Drawing.Size(60, 23);
             this.moveMutationUpButton.TabIndex = 82;
             this.moveMutationUpButton.Text = "Up";
             this.moveMutationUpButton.UseVisualStyleBackColor = true;
@@ -1062,9 +1263,10 @@
             // 
             // moveMutationDownButton
             // 
-            this.moveMutationDownButton.Location = new System.Drawing.Point(610, 633);
+            this.moveMutationDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveMutationDownButton.Location = new System.Drawing.Point(121, 35);
             this.moveMutationDownButton.Name = "moveMutationDownButton";
-            this.moveMutationDownButton.Size = new System.Drawing.Size(49, 23);
+            this.moveMutationDownButton.Size = new System.Drawing.Size(58, 23);
             this.moveMutationDownButton.TabIndex = 83;
             this.moveMutationDownButton.Text = "Down";
             this.moveMutationDownButton.UseVisualStyleBackColor = true;
@@ -1072,22 +1274,246 @@
             // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(750, 89);
+            this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.commentsTextBox.Location = new System.Drawing.Point(777, 93);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(240, 81);
+            this.commentsTextBox.Size = new System.Drawing.Size(252, 88);
             this.commentsTextBox.TabIndex = 84;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
             // commentsLabel
             // 
+            this.commentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(747, 74);
+            this.commentsLabel.Location = new System.Drawing.Point(777, 60);
             this.commentsLabel.Name = "commentsLabel";
-            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.Size = new System.Drawing.Size(252, 30);
             this.commentsLabel.TabIndex = 85;
             this.commentsLabel.Text = "Comments";
+            this.commentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.showSlotButton, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.slotLabel, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.showInternalDeckButton, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.internaldeckLabel, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.signalImportantLoopCheckBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.hintonlyCheckBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.craftableCheckBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.commentsLabel, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.startdescriptionTextBox, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.descriptionLabel, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.startDescriptionLabel, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.deckeffectDataGridView, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.haltVerbDataGridView, 3, 7);
+            this.tableLayoutPanel1.Controls.Add(this.purgeDataGridView, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.commentsTextBox, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tablereqsDataGridView, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.extantreqsDataGridView, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.descriptionTextBox, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.purgeLabel, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.haltVerbLabel, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.deleteVerbLabel, 3, 8);
+            this.tableLayoutPanel1.Controls.Add(this.requirementsDataGridView, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.effectsDataGridView, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.aspectsDataGridView, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.deleteVerbDataGridView, 3, 9);
+            this.tableLayoutPanel1.Controls.Add(this.mutationsListView, 2, 9);
+            this.tableLayoutPanel1.Controls.Add(this.linkedRecipesListView, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.alternativeRecipesListView, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.alternativerecipesLabel, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.linkedLabel, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.mutationsLabel, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.effectsLabel, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.deckeffectLabel, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.requirementsLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.extantrequirementsLabel, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tablerequirementsLabel, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.cancelButton, 3, 10);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 60);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 11;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 608);
+            this.tableLayoutPanel1.TabIndex = 86;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.maxExecutionsLabel);
+            this.panel1.Controls.Add(this.maxExecutionsNumericUpDown);
+            this.panel1.Location = new System.Drawing.Point(3, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(246, 24);
+            this.panel1.TabIndex = 87;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.warmupLabel);
+            this.panel2.Controls.Add(this.warmupNumericUpDown);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(261, 33);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(252, 24);
+            this.panel2.TabIndex = 88;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.addAlternativeRecipeButton);
+            this.panel3.Controls.Add(this.prependAlternativeRecipeButton);
+            this.panel3.Controls.Add(this.okButton);
+            this.panel3.Controls.Add(this.appendAlternativeReipeButton);
+            this.panel3.Controls.Add(this.removeAlternativeRecipeButton);
+            this.panel3.Controls.Add(this.moveAltRecipeUpButton);
+            this.panel3.Controls.Add(this.moveAltRecipeDownButton);
+            this.panel3.Location = new System.Drawing.Point(3, 544);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(252, 59);
+            this.panel3.TabIndex = 87;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.addLinkedRecipeButton);
+            this.panel4.Controls.Add(this.prependLinkedRecipeButton);
+            this.panel4.Controls.Add(this.appendLinkedRecipeButton);
+            this.panel4.Controls.Add(this.moveLinkedRecipeDownButton);
+            this.panel4.Controls.Add(this.removeLinkedRecipeButton);
+            this.panel4.Controls.Add(this.moveLinkedRecipeUpButton);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(261, 544);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(252, 61);
+            this.panel4.TabIndex = 89;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.addMutationButton);
+            this.panel5.Controls.Add(this.moveMutationUpButton);
+            this.panel5.Controls.Add(this.moveMutationDownButton);
+            this.panel5.Controls.Add(this.prependMutationButton);
+            this.panel5.Controls.Add(this.appendMutationButton);
+            this.panel5.Controls.Add(this.removeMutationButton);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(519, 544);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(252, 61);
+            this.panel5.TabIndex = 90;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.recipeIDPanel);
+            this.flowLayoutPanel1.Controls.Add(this.panel6);
+            this.flowLayoutPanel1.Controls.Add(this.panel7);
+            this.flowLayoutPanel1.Controls.Add(this.panel8);
+            this.flowLayoutPanel1.Controls.Add(this.panel9);
+            this.flowLayoutPanel1.Controls.Add(this.panel10);
+            this.flowLayoutPanel1.Controls.Add(this.panel11);
+            this.flowLayoutPanel1.Controls.Add(this.panel12);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1032, 54);
+            this.flowLayoutPanel1.TabIndex = 87;
+            // 
+            // recipeIDPanel
+            // 
+            this.recipeIDPanel.Controls.Add(this.idLabel);
+            this.recipeIDPanel.Controls.Add(this.idTextBox);
+            this.recipeIDPanel.Location = new System.Drawing.Point(3, 3);
+            this.recipeIDPanel.Name = "recipeIDPanel";
+            this.recipeIDPanel.Size = new System.Drawing.Size(109, 43);
+            this.recipeIDPanel.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.labelLabel);
+            this.panel6.Controls.Add(this.labelTextBox);
+            this.panel6.Location = new System.Drawing.Point(118, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(109, 43);
+            this.panel6.TabIndex = 88;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.actionIdTextBox);
+            this.panel7.Controls.Add(this.actionIdLabel);
+            this.panel7.Location = new System.Drawing.Point(233, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(109, 43);
+            this.panel7.TabIndex = 89;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.endingTextBox);
+            this.panel8.Controls.Add(this.endingLabel);
+            this.panel8.Location = new System.Drawing.Point(348, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(109, 43);
+            this.panel8.TabIndex = 90;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.signalEndingFlavourDomainUpDown);
+            this.panel9.Controls.Add(this.signalEndingFlavourLabel);
+            this.panel9.Location = new System.Drawing.Point(463, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(115, 43);
+            this.panel9.TabIndex = 91;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.burnimageTextBox);
+            this.panel10.Controls.Add(this.burnImageLabel);
+            this.panel10.Location = new System.Drawing.Point(584, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(109, 43);
+            this.panel10.TabIndex = 92;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.portalEffectDomainUpDown);
+            this.panel11.Controls.Add(this.portalEffectLabel);
+            this.panel11.Location = new System.Drawing.Point(699, 3);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(109, 43);
+            this.panel11.TabIndex = 93;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.extendsLabel);
+            this.panel12.Controls.Add(this.extendsTextBox);
+            this.panel12.Location = new System.Drawing.Point(814, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(109, 43);
+            this.panel12.TabIndex = 94;
             // 
             // RecipeViewer
             // 
@@ -1096,86 +1522,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(1032, 668);
-            this.Controls.Add(this.commentsLabel);
-            this.Controls.Add(this.commentsTextBox);
-            this.Controls.Add(this.moveMutationDownButton);
-            this.Controls.Add(this.moveMutationUpButton);
-            this.Controls.Add(this.deleteVerbLabel);
-            this.Controls.Add(this.deleteVerbDataGridView);
-            this.Controls.Add(this.haltVerbLabel);
-            this.Controls.Add(this.haltVerbDataGridView);
-            this.Controls.Add(this.purgeLabel);
-            this.Controls.Add(this.purgeDataGridView);
-            this.Controls.Add(this.signalImportantLoopCheckBox);
-            this.Controls.Add(this.moveLinkedRecipeDownButton);
-            this.Controls.Add(this.moveLinkedRecipeUpButton);
-            this.Controls.Add(this.moveAltRecipeDownButton);
-            this.Controls.Add(this.moveAltRecipeUpButton);
-            this.Controls.Add(this.signalEndingFlavourLabel);
-            this.Controls.Add(this.signalEndingFlavourDomainUpDown);
-            this.Controls.Add(this.portalEffectDomainUpDown);
-            this.Controls.Add(this.portalEffectLabel);
-            this.Controls.Add(this.mutationsListView);
-            this.Controls.Add(this.linkedRecipesListView);
-            this.Controls.Add(this.alternativeRecipesListView);
-            this.Controls.Add(this.appendMutationButton);
-            this.Controls.Add(this.prependMutationButton);
-            this.Controls.Add(this.appendLinkedRecipeButton);
-            this.Controls.Add(this.prependLinkedRecipeButton);
-            this.Controls.Add(this.appendAlternativeReipeButton);
-            this.Controls.Add(this.prependAlternativeRecipeButton);
-            this.Controls.Add(this.removeMutationButton);
-            this.Controls.Add(this.removeLinkedRecipeButton);
-            this.Controls.Add(this.removeAlternativeRecipeButton);
-            this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.startDescriptionLabel);
-            this.Controls.Add(this.burnImageLabel);
-            this.Controls.Add(this.endingLabel);
-            this.Controls.Add(this.actionIdLabel);
-            this.Controls.Add(this.labelLabel);
-            this.Controls.Add(this.idLabel);
-            this.Controls.Add(this.extendsLabel);
-            this.Controls.Add(this.warmupLabel);
-            this.Controls.Add(this.warmupNumericUpDown);
-            this.Controls.Add(this.maxExecutionsLabel);
-            this.Controls.Add(this.maxExecutionsNumericUpDown);
-            this.Controls.Add(this.addMutationButton);
-            this.Controls.Add(this.addLinkedRecipeButton);
-            this.Controls.Add(this.addAlternativeRecipeButton);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.extendsTextBox);
-            this.Controls.Add(this.mutationsLabel);
-            this.Controls.Add(this.linkedLabel);
-            this.Controls.Add(this.alternativerecipesLabel);
-            this.Controls.Add(this.aspectsLabel);
-            this.Controls.Add(this.deckeffectLabel);
-            this.Controls.Add(this.deckeffectDataGridView);
-            this.Controls.Add(this.aspectsDataGridView);
-            this.Controls.Add(this.effectsLabel);
-            this.Controls.Add(this.effectsDataGridView);
-            this.Controls.Add(this.showSlotButton);
-            this.Controls.Add(this.slotLabel);
-            this.Controls.Add(this.tablerequirementsLabel);
-            this.Controls.Add(this.tablereqsDataGridView);
-            this.Controls.Add(this.extantrequirementsLabel);
-            this.Controls.Add(this.extantreqsDataGridView);
-            this.Controls.Add(this.requirementsDataGridView);
-            this.Controls.Add(this.requirementsLabel);
-            this.Controls.Add(this.showInternalDeckButton);
-            this.Controls.Add(this.internaldeckLabel);
-            this.Controls.Add(this.hintonlyCheckBox);
-            this.Controls.Add(this.craftableCheckBox);
-            this.Controls.Add(this.descriptionTextBox);
-            this.Controls.Add(this.startdescriptionTextBox);
-            this.Controls.Add(this.burnimageTextBox);
-            this.Controls.Add(this.endingTextBox);
-            this.Controls.Add(this.actionIdTextBox);
-            this.Controls.Add(this.labelTextBox);
-            this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "RecipeViewer";
             this.Text = "RecipeViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
@@ -1190,8 +1539,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.purgeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.haltVerbDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.recipeIDPanel.ResumeLayout(false);
+            this.recipeIDPanel.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1295,5 +1669,20 @@
         private System.Windows.Forms.Button moveMutationDownButton;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel recipeIDPanel;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
     }
 }
