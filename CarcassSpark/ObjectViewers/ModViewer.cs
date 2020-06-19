@@ -1427,6 +1427,8 @@ namespace CarcassSpark.ObjectViewers
             newAspect.id = id;
             aspectsListBox.Items.Add(newAspect.id);
             aspectsList.Add(newAspect.id, newAspect);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1450,6 +1452,8 @@ namespace CarcassSpark.ObjectViewers
             newElement.id = id;
             elementsListBox.Items.Add(newElement.id);
             elementsList.Add(newElement.id, newElement);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1473,6 +1477,8 @@ namespace CarcassSpark.ObjectViewers
             newRecipe.id = id;
             recipesListBox.Items.Add(newRecipe.id);
             recipesList.Add(newRecipe.id, newRecipe);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1496,6 +1502,8 @@ namespace CarcassSpark.ObjectViewers
             newDeck.id = id;
             decksListBox.Items.Add(newDeck.id);
             decksList.Add(newDeck.id, newDeck);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1519,6 +1527,8 @@ namespace CarcassSpark.ObjectViewers
             newLegacy.id = id;
             legaciesListBox.Items.Add(newLegacy.id);
             legaciesList.Add(newLegacy.id, newLegacy);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1542,6 +1552,8 @@ namespace CarcassSpark.ObjectViewers
             newEnding.id = id;
             endingsListBox.Items.Add(newEnding.id);
             endingsList.Add(newEnding.id, newEnding);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1565,6 +1577,8 @@ namespace CarcassSpark.ObjectViewers
             newVerb.id = id;
             verbsListBox.Items.Add(newVerb.id);
             verbsList.Add(newVerb.id, newVerb);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)
