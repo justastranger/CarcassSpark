@@ -129,12 +129,8 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.recipeIDPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -143,6 +139,11 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -156,12 +157,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.haltVerbDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.recipeIDPanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -170,51 +167,59 @@
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(3, 20);
+            this.idTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.idTextBox.Location = new System.Drawing.Point(0, 22);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(100, 20);
+            this.idTextBox.Size = new System.Drawing.Size(123, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(3, 19);
+            this.labelTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelTextBox.Location = new System.Drawing.Point(0, 22);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(100, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(123, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
             // 
             // actionIdTextBox
             // 
-            this.actionIdTextBox.Location = new System.Drawing.Point(6, 20);
+            this.actionIdTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.actionIdTextBox.Location = new System.Drawing.Point(0, 22);
             this.actionIdTextBox.Name = "actionIdTextBox";
-            this.actionIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.actionIdTextBox.Size = new System.Drawing.Size(123, 20);
             this.actionIdTextBox.TabIndex = 2;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.actionIdTextBox.TextChanged += new System.EventHandler(this.actionIdTextBox_TextChanged);
             // 
             // endingTextBox
             // 
-            this.endingTextBox.Location = new System.Drawing.Point(3, 19);
+            this.endingTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.endingTextBox.Location = new System.Drawing.Point(0, 22);
             this.endingTextBox.Name = "endingTextBox";
-            this.endingTextBox.Size = new System.Drawing.Size(100, 20);
+            this.endingTextBox.Size = new System.Drawing.Size(123, 20);
             this.endingTextBox.TabIndex = 3;
             this.endingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.endingTextBox.TextChanged += new System.EventHandler(this.endingTextBox_TextChanged);
             // 
             // burnimageTextBox
             // 
-            this.burnimageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.burnimageTextBox.Location = new System.Drawing.Point(3, 20);
+            this.burnimageTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.burnimageTextBox.Location = new System.Drawing.Point(0, 22);
             this.burnimageTextBox.Name = "burnimageTextBox";
-            this.burnimageTextBox.Size = new System.Drawing.Size(103, 20);
+            this.burnimageTextBox.Size = new System.Drawing.Size(123, 20);
             this.burnimageTextBox.TabIndex = 4;
             this.burnimageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.burnimageTextBox.TextChanged += new System.EventHandler(this.burnimageTextBox_TextChanged);
@@ -671,20 +676,21 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(3, 19);
+            this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(103, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(123, 20);
             this.extendsTextBox.TabIndex = 33;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(6, 33);
+            this.okButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.okButton.Location = new System.Drawing.Point(3, 33);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(42, 23);
+            this.okButton.Size = new System.Drawing.Size(57, 25);
             this.okButton.TabIndex = 36;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -704,10 +710,10 @@
             // 
             // addAlternativeRecipeButton
             // 
-            this.addAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addAlternativeRecipeButton.Location = new System.Drawing.Point(9, 4);
+            this.addAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addAlternativeRecipeButton.Location = new System.Drawing.Point(3, 3);
             this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
-            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(40, 23);
+            this.addAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.addAlternativeRecipeButton.TabIndex = 38;
             this.addAlternativeRecipeButton.Text = "Add";
             this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
@@ -715,10 +721,10 @@
             // 
             // addLinkedRecipeButton
             // 
-            this.addLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addLinkedRecipeButton.Location = new System.Drawing.Point(9, 5);
+            this.addLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addLinkedRecipeButton.Location = new System.Drawing.Point(3, 3);
             this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
-            this.addLinkedRecipeButton.Size = new System.Drawing.Size(40, 23);
+            this.addLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.addLinkedRecipeButton.TabIndex = 39;
             this.addLinkedRecipeButton.Text = "Add";
             this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -726,10 +732,10 @@
             // 
             // addMutationButton
             // 
-            this.addMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addMutationButton.Location = new System.Drawing.Point(9, 6);
+            this.addMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addMutationButton.Location = new System.Drawing.Point(3, 3);
             this.addMutationButton.Name = "addMutationButton";
-            this.addMutationButton.Size = new System.Drawing.Size(40, 23);
+            this.addMutationButton.Size = new System.Drawing.Size(57, 24);
             this.addMutationButton.TabIndex = 40;
             this.addMutationButton.Text = "Add";
             this.addMutationButton.UseVisualStyleBackColor = true;
@@ -782,7 +788,8 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(3, 4);
+            this.extendsLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.extendsLabel.Location = new System.Drawing.Point(0, 0);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 45;
@@ -791,7 +798,8 @@
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(3, 4);
+            this.idLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.idLabel.Location = new System.Drawing.Point(0, 0);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(55, 13);
             this.idLabel.TabIndex = 46;
@@ -800,7 +808,8 @@
             // labelLabel
             // 
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(3, 3);
+            this.labelLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelLabel.Location = new System.Drawing.Point(0, 0);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
             this.labelLabel.TabIndex = 47;
@@ -809,7 +818,8 @@
             // actionIdLabel
             // 
             this.actionIdLabel.AutoSize = true;
-            this.actionIdLabel.Location = new System.Drawing.Point(3, 4);
+            this.actionIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.actionIdLabel.Location = new System.Drawing.Point(0, 0);
             this.actionIdLabel.Name = "actionIdLabel";
             this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
             this.actionIdLabel.TabIndex = 48;
@@ -818,7 +828,8 @@
             // endingLabel
             // 
             this.endingLabel.AutoSize = true;
-            this.endingLabel.Location = new System.Drawing.Point(3, 3);
+            this.endingLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.endingLabel.Location = new System.Drawing.Point(0, 0);
             this.endingLabel.Name = "endingLabel";
             this.endingLabel.Size = new System.Drawing.Size(78, 13);
             this.endingLabel.TabIndex = 49;
@@ -826,10 +837,9 @@
             // 
             // burnImageLabel
             // 
-            this.burnImageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.burnImageLabel.AutoSize = true;
-            this.burnImageLabel.Location = new System.Drawing.Point(4, 4);
+            this.burnImageLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.burnImageLabel.Location = new System.Drawing.Point(0, 0);
             this.burnImageLabel.Name = "burnImageLabel";
             this.burnImageLabel.Size = new System.Drawing.Size(61, 13);
             this.burnImageLabel.TabIndex = 50;
@@ -863,10 +873,10 @@
             // 
             // removeAlternativeRecipeButton
             // 
-            this.removeAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(185, 4);
+            this.removeAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(192, 3);
             this.removeAlternativeRecipeButton.Name = "removeAlternativeRecipeButton";
-            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(64, 23);
+            this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.removeAlternativeRecipeButton.TabIndex = 53;
             this.removeAlternativeRecipeButton.Text = "Delete";
             this.removeAlternativeRecipeButton.UseVisualStyleBackColor = true;
@@ -874,10 +884,10 @@
             // 
             // removeLinkedRecipeButton
             // 
-            this.removeLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(185, 5);
+            this.removeLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removeLinkedRecipeButton.Location = new System.Drawing.Point(192, 3);
             this.removeLinkedRecipeButton.Name = "removeLinkedRecipeButton";
-            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(64, 23);
+            this.removeLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.removeLinkedRecipeButton.TabIndex = 54;
             this.removeLinkedRecipeButton.Text = "Delete";
             this.removeLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -885,10 +895,10 @@
             // 
             // removeMutationButton
             // 
-            this.removeMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeMutationButton.Location = new System.Drawing.Point(185, 6);
+            this.removeMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removeMutationButton.Location = new System.Drawing.Point(192, 3);
             this.removeMutationButton.Name = "removeMutationButton";
-            this.removeMutationButton.Size = new System.Drawing.Size(64, 23);
+            this.removeMutationButton.Size = new System.Drawing.Size(57, 24);
             this.removeMutationButton.TabIndex = 55;
             this.removeMutationButton.Text = "Delete";
             this.removeMutationButton.UseVisualStyleBackColor = true;
@@ -896,10 +906,10 @@
             // 
             // prependAlternativeRecipeButton
             // 
-            this.prependAlternativeRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(55, 4);
+            this.prependAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(66, 3);
             this.prependAlternativeRecipeButton.Name = "prependAlternativeRecipeButton";
-            this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(60, 23);
+            this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.prependAlternativeRecipeButton.TabIndex = 57;
             this.prependAlternativeRecipeButton.Text = "Prepend";
             this.prependAlternativeRecipeButton.UseVisualStyleBackColor = true;
@@ -907,10 +917,10 @@
             // 
             // appendAlternativeReipeButton
             // 
-            this.appendAlternativeReipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(121, 4);
+            this.appendAlternativeReipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(129, 3);
             this.appendAlternativeReipeButton.Name = "appendAlternativeReipeButton";
-            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(58, 23);
+            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(57, 24);
             this.appendAlternativeReipeButton.TabIndex = 58;
             this.appendAlternativeReipeButton.Text = "Append";
             this.appendAlternativeReipeButton.UseVisualStyleBackColor = true;
@@ -918,10 +928,10 @@
             // 
             // prependLinkedRecipeButton
             // 
-            this.prependLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(55, 6);
+            this.prependLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(66, 3);
             this.prependLinkedRecipeButton.Name = "prependLinkedRecipeButton";
-            this.prependLinkedRecipeButton.Size = new System.Drawing.Size(60, 23);
+            this.prependLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.prependLinkedRecipeButton.TabIndex = 59;
             this.prependLinkedRecipeButton.Text = "Prepend";
             this.prependLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -929,10 +939,10 @@
             // 
             // appendLinkedRecipeButton
             // 
-            this.appendLinkedRecipeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(121, 6);
+            this.appendLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(129, 3);
             this.appendLinkedRecipeButton.Name = "appendLinkedRecipeButton";
-            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(58, 23);
+            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
             this.appendLinkedRecipeButton.TabIndex = 60;
             this.appendLinkedRecipeButton.Text = "Append";
             this.appendLinkedRecipeButton.UseVisualStyleBackColor = true;
@@ -940,10 +950,10 @@
             // 
             // prependMutationButton
             // 
-            this.prependMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.prependMutationButton.Location = new System.Drawing.Point(55, 6);
+            this.prependMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prependMutationButton.Location = new System.Drawing.Point(66, 3);
             this.prependMutationButton.Name = "prependMutationButton";
-            this.prependMutationButton.Size = new System.Drawing.Size(60, 23);
+            this.prependMutationButton.Size = new System.Drawing.Size(57, 24);
             this.prependMutationButton.TabIndex = 61;
             this.prependMutationButton.Text = "Prepend";
             this.prependMutationButton.UseVisualStyleBackColor = true;
@@ -951,10 +961,10 @@
             // 
             // appendMutationButton
             // 
-            this.appendMutationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.appendMutationButton.Location = new System.Drawing.Point(121, 6);
+            this.appendMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.appendMutationButton.Location = new System.Drawing.Point(129, 3);
             this.appendMutationButton.Name = "appendMutationButton";
-            this.appendMutationButton.Size = new System.Drawing.Size(58, 23);
+            this.appendMutationButton.Size = new System.Drawing.Size(57, 24);
             this.appendMutationButton.TabIndex = 62;
             this.appendMutationButton.Text = "Append";
             this.appendMutationButton.UseVisualStyleBackColor = true;
@@ -1004,10 +1014,9 @@
             // 
             // portalEffectLabel
             // 
-            this.portalEffectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.portalEffectLabel.AutoSize = true;
-            this.portalEffectLabel.Location = new System.Drawing.Point(3, 4);
+            this.portalEffectLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.portalEffectLabel.Location = new System.Drawing.Point(0, 0);
             this.portalEffectLabel.Name = "portalEffectLabel";
             this.portalEffectLabel.Size = new System.Drawing.Size(65, 13);
             this.portalEffectLabel.TabIndex = 67;
@@ -1015,8 +1024,7 @@
             // 
             // portalEffectDomainUpDown
             // 
-            this.portalEffectDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.portalEffectDomainUpDown.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.portalEffectDomainUpDown.Items.Add("None");
             this.portalEffectDomainUpDown.Items.Add("Wood");
             this.portalEffectDomainUpDown.Items.Add("WhiteDoor");
@@ -1024,33 +1032,31 @@
             this.portalEffectDomainUpDown.Items.Add("SpiderDoor");
             this.portalEffectDomainUpDown.Items.Add("PeacockDoor");
             this.portalEffectDomainUpDown.Items.Add("TricuspidGate");
-            this.portalEffectDomainUpDown.Location = new System.Drawing.Point(3, 19);
+            this.portalEffectDomainUpDown.Location = new System.Drawing.Point(0, 22);
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
-            this.portalEffectDomainUpDown.Size = new System.Drawing.Size(103, 20);
+            this.portalEffectDomainUpDown.Size = new System.Drawing.Size(123, 20);
             this.portalEffectDomainUpDown.TabIndex = 68;
             this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.portalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
             // 
-            this.signalEndingFlavourDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.signalEndingFlavourDomainUpDown.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.signalEndingFlavourDomainUpDown.Items.Add("None");
             this.signalEndingFlavourDomainUpDown.Items.Add("Grand");
             this.signalEndingFlavourDomainUpDown.Items.Add("Melancholy");
             this.signalEndingFlavourDomainUpDown.Items.Add("Pale");
             this.signalEndingFlavourDomainUpDown.Items.Add("Vile");
-            this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(3, 19);
+            this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(0, 22);
             this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
-            this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(109, 20);
+            this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(123, 20);
             this.signalEndingFlavourDomainUpDown.TabIndex = 69;
             this.signalEndingFlavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.signalEndingFlavourDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourLabel
             // 
-            this.signalEndingFlavourLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.signalEndingFlavourLabel.AutoSize = true;
-            this.signalEndingFlavourLabel.Location = new System.Drawing.Point(3, 3);
+            this.signalEndingFlavourLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.signalEndingFlavourLabel.Location = new System.Drawing.Point(0, 0);
             this.signalEndingFlavourLabel.Name = "signalEndingFlavourLabel";
             this.signalEndingFlavourLabel.Size = new System.Drawing.Size(110, 13);
             this.signalEndingFlavourLabel.TabIndex = 70;
@@ -1058,10 +1064,10 @@
             // 
             // moveAltRecipeUpButton
             // 
-            this.moveAltRecipeUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveAltRecipeUpButton.Location = new System.Drawing.Point(55, 33);
+            this.moveAltRecipeUpButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveAltRecipeUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveAltRecipeUpButton.Name = "moveAltRecipeUpButton";
-            this.moveAltRecipeUpButton.Size = new System.Drawing.Size(60, 23);
+            this.moveAltRecipeUpButton.Size = new System.Drawing.Size(57, 25);
             this.moveAltRecipeUpButton.TabIndex = 71;
             this.moveAltRecipeUpButton.Text = "Up";
             this.moveAltRecipeUpButton.UseVisualStyleBackColor = true;
@@ -1069,10 +1075,10 @@
             // 
             // moveAltRecipeDownButton
             // 
-            this.moveAltRecipeDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveAltRecipeDownButton.Location = new System.Drawing.Point(121, 33);
+            this.moveAltRecipeDownButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveAltRecipeDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveAltRecipeDownButton.Name = "moveAltRecipeDownButton";
-            this.moveAltRecipeDownButton.Size = new System.Drawing.Size(58, 23);
+            this.moveAltRecipeDownButton.Size = new System.Drawing.Size(57, 25);
             this.moveAltRecipeDownButton.TabIndex = 72;
             this.moveAltRecipeDownButton.Text = "Down";
             this.moveAltRecipeDownButton.UseVisualStyleBackColor = true;
@@ -1080,10 +1086,10 @@
             // 
             // moveLinkedRecipeUpButton
             // 
-            this.moveLinkedRecipeUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveLinkedRecipeUpButton.Location = new System.Drawing.Point(55, 35);
+            this.moveLinkedRecipeUpButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveLinkedRecipeUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveLinkedRecipeUpButton.Name = "moveLinkedRecipeUpButton";
-            this.moveLinkedRecipeUpButton.Size = new System.Drawing.Size(60, 23);
+            this.moveLinkedRecipeUpButton.Size = new System.Drawing.Size(57, 25);
             this.moveLinkedRecipeUpButton.TabIndex = 73;
             this.moveLinkedRecipeUpButton.Text = "Up";
             this.moveLinkedRecipeUpButton.UseVisualStyleBackColor = true;
@@ -1091,10 +1097,10 @@
             // 
             // moveLinkedRecipeDownButton
             // 
-            this.moveLinkedRecipeDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveLinkedRecipeDownButton.Location = new System.Drawing.Point(121, 35);
+            this.moveLinkedRecipeDownButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveLinkedRecipeDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveLinkedRecipeDownButton.Name = "moveLinkedRecipeDownButton";
-            this.moveLinkedRecipeDownButton.Size = new System.Drawing.Size(58, 23);
+            this.moveLinkedRecipeDownButton.Size = new System.Drawing.Size(57, 25);
             this.moveLinkedRecipeDownButton.TabIndex = 74;
             this.moveLinkedRecipeDownButton.Text = "Down";
             this.moveLinkedRecipeDownButton.UseVisualStyleBackColor = true;
@@ -1252,10 +1258,10 @@
             // 
             // moveMutationUpButton
             // 
-            this.moveMutationUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveMutationUpButton.Location = new System.Drawing.Point(55, 35);
+            this.moveMutationUpButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveMutationUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveMutationUpButton.Name = "moveMutationUpButton";
-            this.moveMutationUpButton.Size = new System.Drawing.Size(60, 23);
+            this.moveMutationUpButton.Size = new System.Drawing.Size(57, 25);
             this.moveMutationUpButton.TabIndex = 82;
             this.moveMutationUpButton.Text = "Up";
             this.moveMutationUpButton.UseVisualStyleBackColor = true;
@@ -1263,10 +1269,10 @@
             // 
             // moveMutationDownButton
             // 
-            this.moveMutationDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.moveMutationDownButton.Location = new System.Drawing.Point(121, 35);
+            this.moveMutationDownButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moveMutationDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveMutationDownButton.Name = "moveMutationDownButton";
-            this.moveMutationDownButton.Size = new System.Drawing.Size(58, 23);
+            this.moveMutationDownButton.Size = new System.Drawing.Size(57, 25);
             this.moveMutationDownButton.TabIndex = 83;
             this.moveMutationDownButton.Text = "Down";
             this.moveMutationDownButton.UseVisualStyleBackColor = true;
@@ -1305,6 +1311,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.cancelButton, 3, 10);
             this.tableLayoutPanel1.Controls.Add(this.showSlotButton, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.slotLabel, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.showInternalDeckButton, 2, 1);
@@ -1337,7 +1344,6 @@
             this.tableLayoutPanel1.Controls.Add(this.linkedLabel, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.mutationsLabel, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.effectsLabel, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.deckeffectLabel, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.requirementsLabel, 0, 4);
@@ -1345,11 +1351,11 @@
             this.tableLayoutPanel1.Controls.Add(this.tablerequirementsLabel, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 2, 10);
-            this.tableLayoutPanel1.Controls.Add(this.cancelButton, 3, 10);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 60);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 10);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 57);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -1366,15 +1372,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 608);
             this.tableLayoutPanel1.TabIndex = 86;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.maxExecutionsLabel);
-            this.panel1.Controls.Add(this.maxExecutionsNumericUpDown);
-            this.panel1.Location = new System.Drawing.Point(3, 63);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(246, 24);
-            this.panel1.TabIndex = 87;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.warmupLabel);
@@ -1385,135 +1382,209 @@
             this.panel2.Size = new System.Drawing.Size(252, 24);
             this.panel2.TabIndex = 88;
             // 
-            // panel3
+            // panel1
             // 
-            this.panel3.Controls.Add(this.addAlternativeRecipeButton);
-            this.panel3.Controls.Add(this.prependAlternativeRecipeButton);
-            this.panel3.Controls.Add(this.okButton);
-            this.panel3.Controls.Add(this.appendAlternativeReipeButton);
-            this.panel3.Controls.Add(this.removeAlternativeRecipeButton);
-            this.panel3.Controls.Add(this.moveAltRecipeUpButton);
-            this.panel3.Controls.Add(this.moveAltRecipeDownButton);
-            this.panel3.Location = new System.Drawing.Point(3, 544);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(252, 59);
-            this.panel3.TabIndex = 87;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.addLinkedRecipeButton);
-            this.panel4.Controls.Add(this.prependLinkedRecipeButton);
-            this.panel4.Controls.Add(this.appendLinkedRecipeButton);
-            this.panel4.Controls.Add(this.moveLinkedRecipeDownButton);
-            this.panel4.Controls.Add(this.removeLinkedRecipeButton);
-            this.panel4.Controls.Add(this.moveLinkedRecipeUpButton);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(261, 544);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(252, 61);
-            this.panel4.TabIndex = 89;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.addMutationButton);
-            this.panel5.Controls.Add(this.moveMutationUpButton);
-            this.panel5.Controls.Add(this.moveMutationDownButton);
-            this.panel5.Controls.Add(this.prependMutationButton);
-            this.panel5.Controls.Add(this.appendMutationButton);
-            this.panel5.Controls.Add(this.removeMutationButton);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(519, 544);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(252, 61);
-            this.panel5.TabIndex = 90;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.recipeIDPanel);
-            this.flowLayoutPanel1.Controls.Add(this.panel6);
-            this.flowLayoutPanel1.Controls.Add(this.panel7);
-            this.flowLayoutPanel1.Controls.Add(this.panel8);
-            this.flowLayoutPanel1.Controls.Add(this.panel9);
-            this.flowLayoutPanel1.Controls.Add(this.panel10);
-            this.flowLayoutPanel1.Controls.Add(this.panel11);
-            this.flowLayoutPanel1.Controls.Add(this.panel12);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1032, 54);
-            this.flowLayoutPanel1.TabIndex = 87;
+            this.panel1.Controls.Add(this.maxExecutionsLabel);
+            this.panel1.Controls.Add(this.maxExecutionsNumericUpDown);
+            this.panel1.Location = new System.Drawing.Point(3, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(246, 24);
+            this.panel1.TabIndex = 87;
             // 
             // recipeIDPanel
             // 
             this.recipeIDPanel.Controls.Add(this.idLabel);
             this.recipeIDPanel.Controls.Add(this.idTextBox);
+            this.recipeIDPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recipeIDPanel.Location = new System.Drawing.Point(3, 3);
             this.recipeIDPanel.Name = "recipeIDPanel";
-            this.recipeIDPanel.Size = new System.Drawing.Size(109, 43);
+            this.recipeIDPanel.Size = new System.Drawing.Size(123, 42);
             this.recipeIDPanel.TabIndex = 0;
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.labelLabel);
             this.panel6.Controls.Add(this.labelTextBox);
-            this.panel6.Location = new System.Drawing.Point(118, 3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(132, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(109, 43);
+            this.panel6.Size = new System.Drawing.Size(123, 42);
             this.panel6.TabIndex = 88;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.actionIdTextBox);
             this.panel7.Controls.Add(this.actionIdLabel);
-            this.panel7.Location = new System.Drawing.Point(233, 3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(261, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(109, 43);
+            this.panel7.Size = new System.Drawing.Size(123, 42);
             this.panel7.TabIndex = 89;
             // 
             // panel8
             // 
             this.panel8.Controls.Add(this.endingTextBox);
             this.panel8.Controls.Add(this.endingLabel);
-            this.panel8.Location = new System.Drawing.Point(348, 3);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(390, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(109, 43);
+            this.panel8.Size = new System.Drawing.Size(123, 42);
             this.panel8.TabIndex = 90;
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.signalEndingFlavourDomainUpDown);
             this.panel9.Controls.Add(this.signalEndingFlavourLabel);
-            this.panel9.Location = new System.Drawing.Point(463, 3);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(519, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(115, 43);
+            this.panel9.Size = new System.Drawing.Size(123, 42);
             this.panel9.TabIndex = 91;
             // 
             // panel10
             // 
             this.panel10.Controls.Add(this.burnimageTextBox);
             this.panel10.Controls.Add(this.burnImageLabel);
-            this.panel10.Location = new System.Drawing.Point(584, 3);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(648, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(109, 43);
+            this.panel10.Size = new System.Drawing.Size(123, 42);
             this.panel10.TabIndex = 92;
             // 
             // panel11
             // 
             this.panel11.Controls.Add(this.portalEffectDomainUpDown);
             this.panel11.Controls.Add(this.portalEffectLabel);
-            this.panel11.Location = new System.Drawing.Point(699, 3);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(777, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(109, 43);
+            this.panel11.Size = new System.Drawing.Size(123, 42);
             this.panel11.TabIndex = 93;
             // 
             // panel12
             // 
             this.panel12.Controls.Add(this.extendsLabel);
             this.panel12.Controls.Add(this.extendsTextBox);
-            this.panel12.Location = new System.Drawing.Point(814, 3);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(906, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(109, 43);
+            this.panel12.Size = new System.Drawing.Size(123, 42);
             this.panel12.TabIndex = 94;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Controls.Add(this.moveMutationDownButton, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.moveMutationUpButton, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.addMutationButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.prependMutationButton, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.removeMutationButton, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.appendMutationButton, 2, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(519, 544);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(252, 61);
+            this.tableLayoutPanel2.TabIndex = 91;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 4;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.Controls.Add(this.addLinkedRecipeButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.removeLinkedRecipeButton, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.moveLinkedRecipeDownButton, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.appendLinkedRecipeButton, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.prependLinkedRecipeButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.moveLinkedRecipeUpButton, 1, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(261, 544);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(252, 61);
+            this.tableLayoutPanel3.TabIndex = 92;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.Controls.Add(this.addAlternativeRecipeButton, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.okButton, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.prependAlternativeRecipeButton, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeDownButton, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeUpButton, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.removeAlternativeRecipeButton, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.appendAlternativeReipeButton, 2, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 544);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(252, 61);
+            this.tableLayoutPanel4.TabIndex = 93;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1032, 668);
+            this.tableLayoutPanel5.TabIndex = 88;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 8;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel6.Controls.Add(this.panel12, 7, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel11, 6, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel10, 5, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel9, 4, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel8, 3, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel7, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel6, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.recipeIDPanel, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1032, 48);
+            this.tableLayoutPanel6.TabIndex = 87;
             // 
             // RecipeViewer
             // 
@@ -1522,8 +1593,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(1032, 668);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RecipeViewer";
             this.Text = "RecipeViewer";
@@ -1541,14 +1611,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.deleteVerbDataGridView)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.recipeIDPanel.ResumeLayout(false);
             this.recipeIDPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1565,6 +1631,11 @@
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1672,10 +1743,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel recipeIDPanel;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
@@ -1684,5 +1751,10 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
     }
 }
