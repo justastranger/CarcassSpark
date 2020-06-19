@@ -144,6 +144,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -172,6 +173,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -273,7 +275,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.hintonlyCheckBox.AutoSize = true;
             this.hintonlyCheckBox.Enabled = false;
-            this.hintonlyCheckBox.Location = new System.Drawing.Point(3, 33);
+            this.hintonlyCheckBox.Location = new System.Drawing.Point(519, 3);
             this.hintonlyCheckBox.Name = "hintonlyCheckBox";
             this.hintonlyCheckBox.Size = new System.Drawing.Size(252, 24);
             this.hintonlyCheckBox.TabIndex = 8;
@@ -288,9 +290,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.internaldeckLabel.AutoSize = true;
-            this.internaldeckLabel.Location = new System.Drawing.Point(519, 0);
+            this.internaldeckLabel.Location = new System.Drawing.Point(3, 0);
             this.internaldeckLabel.Name = "internaldeckLabel";
-            this.internaldeckLabel.Size = new System.Drawing.Size(252, 30);
+            this.internaldeckLabel.Size = new System.Drawing.Size(120, 44);
             this.internaldeckLabel.TabIndex = 9;
             this.internaldeckLabel.Text = "Internal Deck";
             this.internaldeckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -301,9 +303,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.showInternalDeckButton.Enabled = false;
-            this.showInternalDeckButton.Location = new System.Drawing.Point(519, 33);
+            this.showInternalDeckButton.Location = new System.Drawing.Point(3, 47);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
-            this.showInternalDeckButton.Size = new System.Drawing.Size(252, 24);
+            this.showInternalDeckButton.Size = new System.Drawing.Size(120, 38);
             this.showInternalDeckButton.TabIndex = 10;
             this.showInternalDeckButton.Text = "Show";
             this.showInternalDeckButton.UseVisualStyleBackColor = true;
@@ -479,9 +481,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.slotLabel.AutoSize = true;
-            this.slotLabel.Location = new System.Drawing.Point(777, 0);
+            this.slotLabel.Location = new System.Drawing.Point(129, 0);
             this.slotLabel.Name = "slotLabel";
-            this.slotLabel.Size = new System.Drawing.Size(252, 30);
+            this.slotLabel.Size = new System.Drawing.Size(120, 44);
             this.slotLabel.TabIndex = 17;
             this.slotLabel.Text = "Slot";
             this.slotLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -492,9 +494,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.showSlotButton.Enabled = false;
-            this.showSlotButton.Location = new System.Drawing.Point(777, 33);
+            this.showSlotButton.Location = new System.Drawing.Point(129, 47);
             this.showSlotButton.Name = "showSlotButton";
-            this.showSlotButton.Size = new System.Drawing.Size(252, 24);
+            this.showSlotButton.Size = new System.Drawing.Size(120, 38);
             this.showSlotButton.TabIndex = 18;
             this.showSlotButton.Text = "Show";
             this.showSlotButton.UseVisualStyleBackColor = true;
@@ -679,7 +681,7 @@
             this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(123, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
             this.extendsTextBox.TabIndex = 33;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
@@ -700,7 +702,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(954, 582);
+            this.cancelButton.Location = new System.Drawing.Point(955, 582);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 37;
@@ -743,21 +745,18 @@
             // 
             // maxExecutionsNumericUpDown
             // 
-            this.maxExecutionsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(88, 3);
+            this.maxExecutionsNumericUpDown.Dock = System.Windows.Forms.DockStyle.Right;
+            this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(88, 0);
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
-            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(158, 20);
+            this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(164, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 41;
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.maxExecutionsNumericUpDown_ValueChanged);
             // 
             // maxExecutionsLabel
             // 
-            this.maxExecutionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.maxExecutionsLabel.AutoSize = true;
-            this.maxExecutionsLabel.Location = new System.Drawing.Point(3, 3);
+            this.maxExecutionsLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.maxExecutionsLabel.Location = new System.Drawing.Point(0, 0);
             this.maxExecutionsLabel.Name = "maxExecutionsLabel";
             this.maxExecutionsLabel.Size = new System.Drawing.Size(82, 13);
             this.maxExecutionsLabel.TabIndex = 42;
@@ -765,21 +764,18 @@
             // 
             // warmupNumericUpDown
             // 
-            this.warmupNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.warmupNumericUpDown.Location = new System.Drawing.Point(56, 3);
+            this.warmupNumericUpDown.Dock = System.Windows.Forms.DockStyle.Right;
+            this.warmupNumericUpDown.Location = new System.Drawing.Point(53, 0);
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
-            this.warmupNumericUpDown.Size = new System.Drawing.Size(193, 20);
+            this.warmupNumericUpDown.Size = new System.Drawing.Size(199, 20);
             this.warmupNumericUpDown.TabIndex = 43;
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.warmupNumericUpDown_ValueChanged);
             // 
             // warmupLabel
             // 
-            this.warmupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.warmupLabel.AutoSize = true;
-            this.warmupLabel.Location = new System.Drawing.Point(3, 5);
+            this.warmupLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.warmupLabel.Location = new System.Drawing.Point(0, 0);
             this.warmupLabel.Name = "warmupLabel";
             this.warmupLabel.Size = new System.Drawing.Size(47, 13);
             this.warmupLabel.TabIndex = 44;
@@ -1136,7 +1132,7 @@
             this.purgeDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.purgeDataGridView.Location = new System.Drawing.Point(777, 212);
             this.purgeDataGridView.Name = "purgeDataGridView";
-            this.purgeDataGridView.Size = new System.Drawing.Size(252, 88);
+            this.purgeDataGridView.Size = new System.Drawing.Size(253, 88);
             this.purgeDataGridView.TabIndex = 76;
             this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purgeDataGridView_CellDoubleClick);
             this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.purgeDataGridView_UserDeletedRow);
@@ -1161,7 +1157,7 @@
             this.purgeLabel.AutoSize = true;
             this.purgeLabel.Location = new System.Drawing.Point(777, 184);
             this.purgeLabel.Name = "purgeLabel";
-            this.purgeLabel.Size = new System.Drawing.Size(252, 25);
+            this.purgeLabel.Size = new System.Drawing.Size(253, 25);
             this.purgeLabel.TabIndex = 77;
             this.purgeLabel.Text = "Purge";
             this.purgeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1174,7 +1170,7 @@
             this.haltVerbLabel.AutoSize = true;
             this.haltVerbLabel.Location = new System.Drawing.Point(777, 303);
             this.haltVerbLabel.Name = "haltVerbLabel";
-            this.haltVerbLabel.Size = new System.Drawing.Size(252, 25);
+            this.haltVerbLabel.Size = new System.Drawing.Size(253, 25);
             this.haltVerbLabel.TabIndex = 79;
             this.haltVerbLabel.Text = "Halt Verb";
             this.haltVerbLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1194,7 +1190,7 @@
             this.haltVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.haltVerbDataGridView.Location = new System.Drawing.Point(777, 331);
             this.haltVerbDataGridView.Name = "haltVerbDataGridView";
-            this.haltVerbDataGridView.Size = new System.Drawing.Size(252, 88);
+            this.haltVerbDataGridView.Size = new System.Drawing.Size(253, 88);
             this.haltVerbDataGridView.TabIndex = 78;
             this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.haltVerbDataGridView_CellDoubleClick);
             this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.haltVerbDataGridView_UserDeletedRow);
@@ -1219,7 +1215,7 @@
             this.deleteVerbLabel.AutoSize = true;
             this.deleteVerbLabel.Location = new System.Drawing.Point(777, 422);
             this.deleteVerbLabel.Name = "deleteVerbLabel";
-            this.deleteVerbLabel.Size = new System.Drawing.Size(252, 25);
+            this.deleteVerbLabel.Size = new System.Drawing.Size(253, 25);
             this.deleteVerbLabel.TabIndex = 81;
             this.deleteVerbLabel.Text = "Delete Verb";
             this.deleteVerbLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1239,7 +1235,7 @@
             this.deleteVerbDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.deleteVerbDataGridView.Location = new System.Drawing.Point(777, 450);
             this.deleteVerbDataGridView.Name = "deleteVerbDataGridView";
-            this.deleteVerbDataGridView.Size = new System.Drawing.Size(252, 88);
+            this.deleteVerbDataGridView.Size = new System.Drawing.Size(253, 88);
             this.deleteVerbDataGridView.TabIndex = 80;
             this.deleteVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.deleteVerbDataGridView_CellDoubleClick);
             this.deleteVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.deleteVerbDataGridView_UserDeletedRow);
@@ -1287,7 +1283,7 @@
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(252, 88);
+            this.commentsTextBox.Size = new System.Drawing.Size(253, 88);
             this.commentsTextBox.TabIndex = 84;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
@@ -1299,7 +1295,7 @@
             this.commentsLabel.AutoSize = true;
             this.commentsLabel.Location = new System.Drawing.Point(777, 60);
             this.commentsLabel.Name = "commentsLabel";
-            this.commentsLabel.Size = new System.Drawing.Size(252, 30);
+            this.commentsLabel.Size = new System.Drawing.Size(253, 30);
             this.commentsLabel.TabIndex = 85;
             this.commentsLabel.Text = "Comments";
             this.commentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1312,12 +1308,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.cancelButton, 3, 10);
-            this.tableLayoutPanel1.Controls.Add(this.showSlotButton, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.slotLabel, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.showInternalDeckButton, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.internaldeckLabel, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.signalImportantLoopCheckBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.hintonlyCheckBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.craftableCheckBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.commentsLabel, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.startdescriptionTextBox, 1, 3);
@@ -1350,10 +1341,12 @@
             this.tableLayoutPanel1.Controls.Add(this.extantrequirementsLabel, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.tablerequirementsLabel, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 10);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.hintonlyCheckBox, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 57);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1369,7 +1362,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 608);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1033, 608);
             this.tableLayoutPanel1.TabIndex = 86;
             // 
             // panel2
@@ -1386,9 +1379,10 @@
             // 
             this.panel1.Controls.Add(this.maxExecutionsLabel);
             this.panel1.Controls.Add(this.maxExecutionsNumericUpDown);
-            this.panel1.Location = new System.Drawing.Point(3, 63);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(246, 24);
+            this.panel1.Size = new System.Drawing.Size(252, 24);
             this.panel1.TabIndex = 87;
             // 
             // recipeIDPanel
@@ -1468,7 +1462,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(906, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(123, 42);
+            this.panel12.Size = new System.Drawing.Size(124, 42);
             this.panel12.TabIndex = 94;
             // 
             // tableLayoutPanel2
@@ -1556,7 +1550,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1032, 668);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1039, 668);
             this.tableLayoutPanel5.TabIndex = 88;
             // 
             // tableLayoutPanel6
@@ -1583,8 +1577,26 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(1032, 48);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1033, 48);
             this.tableLayoutPanel6.TabIndex = 87;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.internaldeckLabel, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.showSlotButton, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.showInternalDeckButton, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.slotLabel, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 93);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(252, 88);
+            this.tableLayoutPanel7.TabIndex = 94;
             // 
             // RecipeViewer
             // 
@@ -1592,9 +1604,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(1032, 668);
+            this.ClientSize = new System.Drawing.Size(1039, 668);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1055, 707);
             this.Name = "RecipeViewer";
             this.Text = "RecipeViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
@@ -1636,6 +1649,8 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1756,5 +1771,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
     }
 }
