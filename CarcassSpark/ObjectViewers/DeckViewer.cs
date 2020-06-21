@@ -145,6 +145,7 @@ namespace CarcassSpark.ObjectViewers
             commentsTextBox.ReadOnly = !editing;
             resetOnExhaustionCheckBox.Enabled = editing;
             defaultCardTextBox.ReadOnly = !editing;
+            extendsTextBox.ReadOnly = !editing;
             drawsNumericUpDown.Enabled = editing;
             drawmessagesDataGridView.ReadOnly = !editing;
             drawmessagesDataGridView.AllowUserToAddRows = editing;

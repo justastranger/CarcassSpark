@@ -124,6 +124,7 @@ namespace CarcassSpark.ObjectViewers
             commentsTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             fromEndingTextBox.ReadOnly = !editing;
+            extendsTextBox.ReadOnly = !editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
             startingVerbIdTextBox.ReadOnly = !editing;
             effectsDataGridView.ReadOnly = !editing;

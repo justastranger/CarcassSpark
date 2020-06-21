@@ -50,6 +50,7 @@ namespace CarcassSpark.ObjectViewers
             descriptionTextBox.ReadOnly = !editing;
             extendsTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
+            inheritsTextBox.ReadOnly = !editing;
             // xtriggersDataGridView.AllowUserToAddRows = editing;
             // xtriggersDataGridView.AllowUserToDeleteRows = editing;
             // xtriggersDataGridView.ReadOnly = !editing;
