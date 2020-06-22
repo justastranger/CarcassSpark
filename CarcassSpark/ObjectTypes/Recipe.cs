@@ -133,7 +133,7 @@ namespace CarcassSpark.ObjectTypes
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
-                      List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
                       Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
                       List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
@@ -177,7 +177,7 @@ namespace CarcassSpark.ObjectTypes
             this.linked_append = linked_append;
             this.linked_remove = linked_remove;
             this.slots = slots;
-            this.alternativerecipes = alternativerecipes;
+            this.alternativerecipes = alt == null ? alternativerecipes : alt;
             this.alternativerecipes_prepend = alternativerecipes_prepend;
             this.alternativerecipes_append = alternativerecipes_append;
             this.alternativerecipes_remove = alternativerecipes_remove;
