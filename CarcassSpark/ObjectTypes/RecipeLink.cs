@@ -20,8 +20,24 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, string> challenges; // string aspect ID, string challenge type: "base", "advanced". Default if null: "base"
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Expulsion expulsion;
-
+        
         [JsonConstructor]
+        public RecipeLink(string id, int? chance, bool? additional, object challenges, Expulsion expulsion)
+        {
+            this.id = id;
+            this.chance = chance;
+            this.additional = additional;
+            if (challenges != null)
+            {
+                if (challenges is string) this.challenges = new Dictionary<string, string>() { [challenges as string] = "base" };
+                else if (challenges is Dictionary<string, string>)
+                {
+                    this.challenges = challenges as Dictionary<string, string>;
+                }
+            }
+            this.expulsion = expulsion;
+        }
+
         public RecipeLink(string id, int? chance, bool? additional, Dictionary<string, string> challenges, Expulsion expulsion)
         {
             this.id = id;
