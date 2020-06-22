@@ -114,6 +114,11 @@
     <Compile Include="ObjectViewers\XTriggerViewer.Designer.cs">
       <DependentUpon>XTriggerViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ChangeAspectQuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
