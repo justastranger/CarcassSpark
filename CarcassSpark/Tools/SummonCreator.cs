@@ -36,7 +36,7 @@ namespace CarcassSpark.Tools
             startSummon.effects = new Dictionary<string, string>();
             startSummon.effects.Add(baseSummon.id, "1");
             startSummon.linked = new List<RecipeLink>();
-            startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, null, null));
+            startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string,string>)null, null));
             startSummon.actionId = "work";
             startSummon.warmup = 180;
             startSummon.requirements["desire"] = "-1";
@@ -46,7 +46,7 @@ namespace CarcassSpark.Tools
             succeedSummon.label = startSummon.label;
             succeedSummon.actionId = startSummon.actionId;
             succeedSummon.description = startSummon.description;
-            startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, null, null));
+            startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, (Dictionary<string, string>)null, null));
             baseSummonIdTextBox.Text = baseSummon.id;
             successSummonTextBox.Text = succeedSummon.id;
             inspectBaseButton.Enabled = true;
