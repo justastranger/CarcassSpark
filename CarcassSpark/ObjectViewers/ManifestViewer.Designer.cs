@@ -81,6 +81,7 @@
             this.modDescriptionTextBox.Location = new System.Drawing.Point(12, 142);
             this.modDescriptionTextBox.Multiline = true;
             this.modDescriptionTextBox.Name = "modDescriptionTextBox";
+            this.modDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.modDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.modDescriptionTextBox.TabIndex = 3;
             this.modDescriptionTextBox.TextChanged += new System.EventHandler(this.modDescriptionTextBox_TextChanged);
@@ -90,6 +91,7 @@
             this.longDescriptionTextBox.Location = new System.Drawing.Point(12, 221);
             this.longDescriptionTextBox.Multiline = true;
             this.longDescriptionTextBox.Name = "longDescriptionTextBox";
+            this.longDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.longDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.longDescriptionTextBox.TabIndex = 4;
             this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.longDescriptionTextBox_TextChanged);
