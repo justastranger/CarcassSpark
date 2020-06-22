@@ -962,7 +962,11 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if (recipe.aspects != null && recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0)
+                if (recipe.aspects != null &&(recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.effects != null && (recipe.effects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && Convert.ToInt32(recipe.effects[aspectsListBox.SelectedItem.ToString()]) > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1051,12 +1055,13 @@ namespace CarcassSpark.ObjectViewers
             string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if (recipe.effects != null)
+                if (recipe.effects != null && (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id)))
                 {
-                    if (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id))
-                    {
-                        tmp.Add(recipe.id, recipe);
-                    }
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
                 }
             }
             if (tmp.Count > 0)
