@@ -28,24 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.contentTextBox = new System.Windows.Forms.TextBox();
             this.contentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.scintilla1 = new ScintillaNET.Scintilla();
             this.SuspendLayout();
-            // 
-            // contentTextBox
-            // 
-            this.contentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.contentTextBox.Location = new System.Drawing.Point(0, 0);
-            this.contentTextBox.Multiline = true;
-            this.contentTextBox.Name = "contentTextBox";
-            this.contentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.contentTextBox.Size = new System.Drawing.Size(587, 441);
-            this.contentTextBox.TabIndex = 0;
-            this.contentTextBox.TextChanged += new System.EventHandler(this.contentTextBox_TextChanged);
             // 
             // contentTypeComboBox
             // 
@@ -91,28 +78,37 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // scintilla1
+            // 
+            this.scintilla1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scintilla1.Lexer = ScintillaNET.Lexer.Json;
+            this.scintilla1.Location = new System.Drawing.Point(12, 12);
+            this.scintilla1.Name = "scintilla1";
+            this.scintilla1.Size = new System.Drawing.Size(563, 429);
+            this.scintilla1.TabIndex = 4;
+            // 
             // ClipboardImporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 482);
+            this.Controls.Add(this.scintilla1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.contentTypeComboBox);
-            this.Controls.Add(this.contentTextBox);
             this.Name = "ClipboardImporter";
             this.Text = "ClipboardImporter";
             this.Load += new System.EventHandler(this.ClipboardImporter_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox contentTextBox;
         private System.Windows.Forms.ComboBox contentTypeComboBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private ScintillaNET.Scintilla scintilla1;
     }
 }

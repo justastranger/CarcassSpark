@@ -30,13 +30,13 @@ namespace CarcassSpark.Tools
         {
             if (Clipboard.ContainsText())
             {
-                contentTextBox.Text = Clipboard.GetText();
+                scintilla1.Text = Clipboard.GetText();
             }
         }
 
         private void contentTextBox_TextChanged(object sender, EventArgs e)
         {
-            objectText = contentTextBox.Text;
+            objectText = scintilla1.Text;
         }
 
         private void okButton_Click(object sender, EventArgs e)
