@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScintillaNET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,18 @@ namespace CarcassSpark.Tools
         public ClipboardImporter()
         {
             InitializeComponent();
+            scintillaEditor.Styles[Style.Json.Default].ForeColor = Color.Silver;
+            scintillaEditor.Styles[Style.Json.BlockComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.LineComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.Number].ForeColor = Color.Olive;
+            scintillaEditor.Styles[Style.Json.PropertyName].ForeColor = Color.Red;
+            scintillaEditor.Styles[Style.Json.String].ForeColor = Color.DarkRed;
+            scintillaEditor.Styles[Style.Json.StringEol].ForeColor = Color.Pink;
+            scintillaEditor.Styles[Style.Json.Operator].ForeColor = Color.Purple;
+            scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
+            scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
         }
-        
+
 
         private void contentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -30,15 +41,10 @@ namespace CarcassSpark.Tools
         {
             if (Clipboard.ContainsText())
             {
-                scintilla1.Text = Clipboard.GetText();
+                scintillaEditor.Text = Clipboard.GetText();
             }
         }
-
-        private void contentTextBox_TextChanged(object sender, EventArgs e)
-        {
-            objectText = scintilla1.Text;
-        }
-
+        
         private void okButton_Click(object sender, EventArgs e)
         {
             if (objectType == null)
@@ -52,6 +58,11 @@ namespace CarcassSpark.Tools
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void scintillaEditor_TextChanged(object sender, EventArgs e)
+        {
+            objectText = scintillaEditor.Text;
         }
     }
 }

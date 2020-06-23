@@ -31,7 +31,7 @@
             this.contentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.scintilla1 = new ScintillaNET.Scintilla();
+            this.scintillaEditor = new ScintillaNET.Scintilla();
             this.SuspendLayout();
             // 
             // contentTypeComboBox
@@ -78,23 +78,25 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // scintilla1
+            // scintillaEditor
             // 
-            this.scintilla1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.scintillaEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.scintilla1.Lexer = ScintillaNET.Lexer.Json;
-            this.scintilla1.Location = new System.Drawing.Point(12, 12);
-            this.scintilla1.Name = "scintilla1";
-            this.scintilla1.Size = new System.Drawing.Size(563, 429);
-            this.scintilla1.TabIndex = 4;
+            this.scintillaEditor.Lexer = ScintillaNET.Lexer.Json;
+            this.scintillaEditor.Location = new System.Drawing.Point(12, 12);
+            this.scintillaEditor.Name = "scintillaEditor";
+            this.scintillaEditor.Size = new System.Drawing.Size(563, 429);
+            this.scintillaEditor.TabIndex = 4;
+            this.scintillaEditor.UseTabs = true;
+            this.scintillaEditor.TextChanged += new System.EventHandler(this.scintillaEditor_TextChanged);
             // 
             // ClipboardImporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 482);
-            this.Controls.Add(this.scintilla1);
+            this.Controls.Add(this.scintillaEditor);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.contentTypeComboBox);
@@ -109,6 +111,6 @@
         private System.Windows.Forms.ComboBox contentTypeComboBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
-        private ScintillaNET.Scintilla scintilla1;
+        private ScintillaNET.Scintilla scintillaEditor;
     }
 }
