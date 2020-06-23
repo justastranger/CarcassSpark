@@ -38,7 +38,6 @@ namespace CarcassSpark.Tools
             try
             {
                 contentTypeComboBox.Text = type;
-                contentTypeComboBox.Visible = false;
             }
             catch (Exception e)
             {
@@ -56,6 +55,44 @@ namespace CarcassSpark.Tools
             scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Text = json;
+        }
+
+        public JsonEditor(string json, bool hideComboBox, bool readOnly)
+        {
+            InitializeComponent();
+            scintillaEditor.Styles[Style.Json.Default].ForeColor = Color.Silver;
+            scintillaEditor.Styles[Style.Json.BlockComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.LineComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.Number].ForeColor = Color.Olive;
+            scintillaEditor.Styles[Style.Json.PropertyName].ForeColor = Color.Red;
+            scintillaEditor.Styles[Style.Json.String].ForeColor = Color.DarkRed;
+            scintillaEditor.Styles[Style.Json.StringEol].ForeColor = Color.Pink;
+            scintillaEditor.Styles[Style.Json.Operator].ForeColor = Color.Purple;
+            scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
+            scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
+            scintillaEditor.Text = json;
+            contentTypeComboBox.Visible = !hideComboBox;
+            scintillaEditor.ReadOnly = readOnly;
+            Text = readOnly ? "JSON Viewer" : "JSON Editor";
+        }
+
+        public JsonEditor(string json, bool readOnly)
+        {
+            InitializeComponent();
+            scintillaEditor.Styles[Style.Json.Default].ForeColor = Color.Silver;
+            scintillaEditor.Styles[Style.Json.BlockComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.LineComment].ForeColor = Color.Green;
+            scintillaEditor.Styles[Style.Json.Number].ForeColor = Color.Olive;
+            scintillaEditor.Styles[Style.Json.PropertyName].ForeColor = Color.Red;
+            scintillaEditor.Styles[Style.Json.String].ForeColor = Color.DarkRed;
+            scintillaEditor.Styles[Style.Json.StringEol].ForeColor = Color.Pink;
+            scintillaEditor.Styles[Style.Json.Operator].ForeColor = Color.Purple;
+            scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
+            scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
+            scintillaEditor.Text = json;
+            contentTypeComboBox.Enabled = false;
+            scintillaEditor.ReadOnly = readOnly;
+            Text = readOnly ? "JSON Viewer" : "JSON Editor";
         }
 
         private void contentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
