@@ -143,6 +143,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.fromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -929,6 +930,7 @@
             // 
             this.importToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.importToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromClipboardToolStripMenuItem,
             this.aspectToolStripMenuItem1,
             this.elementToolStripMenuItem1,
             this.recipeToolStripMenuItem1,
@@ -945,49 +947,49 @@
             // aspectToolStripMenuItem1
             // 
             this.aspectToolStripMenuItem1.Name = "aspectToolStripMenuItem1";
-            this.aspectToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.aspectToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.aspectToolStripMenuItem1.Text = "Aspect";
             this.aspectToolStripMenuItem1.Click += new System.EventHandler(this.aspectToolStripMenuItem1_Click);
             // 
             // elementToolStripMenuItem1
             // 
             this.elementToolStripMenuItem1.Name = "elementToolStripMenuItem1";
-            this.elementToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.elementToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.elementToolStripMenuItem1.Text = "Element";
             this.elementToolStripMenuItem1.Click += new System.EventHandler(this.elementToolStripMenuItem1_Click);
             // 
             // recipeToolStripMenuItem1
             // 
             this.recipeToolStripMenuItem1.Name = "recipeToolStripMenuItem1";
-            this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.recipeToolStripMenuItem1.Text = "Recipe";
             this.recipeToolStripMenuItem1.Click += new System.EventHandler(this.recipeToolStripMenuItem1_Click);
             // 
             // deckToolStripMenuItem1
             // 
             this.deckToolStripMenuItem1.Name = "deckToolStripMenuItem1";
-            this.deckToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.deckToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.deckToolStripMenuItem1.Text = "Deck";
             this.deckToolStripMenuItem1.Click += new System.EventHandler(this.deckToolStripMenuItem1_Click);
             // 
             // legacyToolStripMenuItem1
             // 
             this.legacyToolStripMenuItem1.Name = "legacyToolStripMenuItem1";
-            this.legacyToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.legacyToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.legacyToolStripMenuItem1.Text = "Legacy";
             this.legacyToolStripMenuItem1.Click += new System.EventHandler(this.legacyToolStripMenuItem1_Click);
             // 
             // endingToolStripMenuItem1
             // 
             this.endingToolStripMenuItem1.Name = "endingToolStripMenuItem1";
-            this.endingToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.endingToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.endingToolStripMenuItem1.Text = "Ending";
             this.endingToolStripMenuItem1.Click += new System.EventHandler(this.endingToolStripMenuItem1_Click);
             // 
             // verbToolStripMenuItem1
             // 
             this.verbToolStripMenuItem1.Name = "verbToolStripMenuItem1";
-            this.verbToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.verbToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.verbToolStripMenuItem1.Text = "Verb";
             this.verbToolStripMenuItem1.Click += new System.EventHandler(this.verbToolStripMenuItem1_Click);
             // 
@@ -1152,6 +1154,13 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // fromClipboardToolStripMenuItem
+            // 
+            this.fromClipboardToolStripMenuItem.Name = "fromClipboardToolStripMenuItem";
+            this.fromClipboardToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.fromClipboardToolStripMenuItem.Text = "From Clipboard";
+            this.fromClipboardToolStripMenuItem.Click += new System.EventHandler(this.fromClipboardToolStripMenuItem_Click);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1295,6 +1304,7 @@
         private System.Windows.Forms.ToolStripMenuItem copySelectedLegacyJSONToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectedEndingJSONToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectedVerbJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromClipboardToolStripMenuItem;
     }
 }
 

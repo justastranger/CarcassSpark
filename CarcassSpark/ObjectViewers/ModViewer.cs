@@ -1898,6 +1898,76 @@ namespace CarcassSpark.ObjectViewers
             copyObjectJSONToClipboard(exportedVerb);
         }
 
+        private void fromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClipboardImporter ci = new ClipboardImporter();
+            if (ci.ShowDialog() == DialogResult.OK)
+            {
+                switch (ci.objectType)
+                {
+                    case "Aspect":
+                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(ci.objectText);
+                        aspectsList[deserializedAspect.id] = deserializedAspect;
+                        if (!aspectsListBox.Items.Contains(deserializedAspect.id))
+                        {
+                            aspectsListBox.Items.Add(deserializedAspect.id);
+                        }
+                        break;
+                    case "Element":
+                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(ci.objectText);
+                        elementsList[deserializedElement.id] = deserializedElement;
+                        if (!elementsListBox.Items.Contains(deserializedElement.id))
+                        {
+                            elementsListBox.Items.Add(deserializedElement.id);
+                        }
+                        break;
+                    case "Recipe":
+                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(ci.objectText);
+                        recipesList[deserializedRecipe.id] = deserializedRecipe;
+                        if (!recipesListBox.Items.Contains(deserializedRecipe.id))
+                        {
+                            recipesListBox.Items.Add(deserializedRecipe.id);
+                        }
+                        break;
+                    case "Deck":
+                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(ci.objectText);
+                        decksList[deserializedDeck.id] = deserializedDeck;
+                        if (!decksListBox.Items.Contains(deserializedDeck.id))
+                        {
+                            decksListBox.Items.Add(deserializedDeck.id);
+                        }
+                        break;
+                    case "Legacy":
+                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(ci.objectText);
+                        legaciesList[deserializedLegacy.id] = deserializedLegacy;
+                        if (!legaciesListBox.Items.Contains(deserializedLegacy.id))
+                        {
+                            legaciesListBox.Items.Add(deserializedLegacy.id);
+                        }
+                        break;
+                    case "Ending":
+                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(ci.objectText);
+                        endingsList[deserializedEnding.id] = deserializedEnding;
+                        if (!endingsListBox.Items.Contains(deserializedEnding.id))
+                        {
+                            endingsListBox.Items.Add(deserializedEnding.id);
+                        }
+                        break;
+                    case "Verb":
+                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(ci.objectText);
+                        verbsList[deserializedVerb.id] = deserializedVerb;
+                        if (!verbsListBox.Items.Contains(deserializedVerb.id))
+                        {
+                            verbsListBox.Items.Add(deserializedVerb.id);
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                }
+            }
+        }
+
         public DialogResult confirmDelete(string id)
         {
             if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
