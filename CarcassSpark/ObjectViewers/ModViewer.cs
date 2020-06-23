@@ -77,13 +77,16 @@ namespace CarcassSpark.ObjectViewers
             duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
             duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
             duplicateSelectedVerbToolStripMenuItem.Visible = editing;
-            editSelectedAspectsJSONToolStripMenuItem.Visible = editing;
-            editSelectedDecksJSONToolStripMenuItem.Visible = editing;
-            editSelectedElementsJSONToolStripMenuItem.Visible = editing;
-            editSelectedEndingsJSONToolStripMenuItem.Visible = editing;
-            editSelectedLegacysJSONToolStripMenuItem.Visible = editing;
-            editSelectedRecipesJSONToolStripMenuItem.Visible = editing;
-            editSelectedVerbsJSONToolStripMenuItem.Visible = editing;
+            toggleEditModeToolStripMenuItem.Checked = editing;
+            /* Uncomment to hide the Open Selected <Object>'s JSON outside of edit mode
+            openSelectedAspectsJSONToolStripMenuItem.Visible = editing;
+            openSelectedDecksJSONToolStripMenuItem.Visible = editing;
+            openSelectedElementsJSONToolStripMenuItem.Visible = editing;
+            openSelectedEndingsJSONToolStripMenuItem.Visible = editing;
+            openSelectedLegacysJSONToolStripMenuItem.Visible = editing;
+            openSelectedRecipesJSONToolStripMenuItem.Visible = editing;
+            openSelectedVerbsJSONToolStripMenuItem.Visible = editing;
+            */
         }
 
         void refreshContent()
@@ -691,7 +694,7 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
-            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.OpenOrCreate))))
+            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.Create))))
             {
                 jtw.WriteRaw(manifestJson);
             }
@@ -1980,7 +1983,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Aspect aspectToEdit = getAspect(aspectsListBox.SelectedItem as string);
             if (aspectToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), "Aspect");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
@@ -1992,7 +1995,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Element elementToEdit = getElement(elementsListBox.SelectedItem as string);
             if (elementToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), "Element");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
@@ -2004,7 +2007,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Recipe recipeToEdit = getRecipe(recipesListBox.SelectedItem as string);
             if (recipeToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), "Recipe");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
@@ -2016,7 +2019,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Deck deckToEdit = getDeck(decksListBox.SelectedItem as string);
             if (deckToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), "Deck");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
@@ -2028,7 +2031,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Legacy legacyToEdit = getLegacy(legaciesListBox.SelectedItem as string);
             if (legacyToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), "Legacy");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
@@ -2040,7 +2043,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Ending endingToEdit = getEnding(endingsListBox.SelectedItem as string);
             if (endingToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), "Ending");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
@@ -2052,7 +2055,7 @@ namespace CarcassSpark.ObjectViewers
         {
             Verb verbToEdit = getVerb(verbsListBox.SelectedItem as string);
             if (verbToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), "Verb");
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
