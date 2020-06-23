@@ -120,6 +120,7 @@
             this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.fromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.elementToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,7 +144,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.fromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedAspectsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedElementsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedRecipesJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedDecksJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedLegacysJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedEndingsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedVerbsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -176,10 +183,11 @@
             this.deleteSelectedAspectToolStripMenuItem,
             this.duplicateSelectedAspectToolStripMenuItem,
             this.exportSelectedAspectToolStripMenuItem,
-            this.copyAspectJSONToClipboardToolStripMenuItem});
+            this.copyAspectJSONToClipboardToolStripMenuItem,
+            this.editSelectedAspectsJSONToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(264, 114);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(264, 136);
             // 
             // searchToolStripMenuItem
             // 
@@ -302,10 +310,11 @@
             this.deleteSelectedElementToolStripMenuItem,
             this.duplicateSelectedElementToolStripMenuItem,
             this.exportSelectedElementToolStripMenuItem,
-            this.copyElementJSONToClipboardToolStripMenuItem});
+            this.copyElementJSONToClipboardToolStripMenuItem,
+            this.editSelectedElementsJSONToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(271, 114);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(271, 136);
             // 
             // searchToolStripMenuItem1
             // 
@@ -429,10 +438,11 @@
             this.deleteSelectedRecipeToolStripMenuItem,
             this.duplicateSelectedRecipeToolStripMenuItem,
             this.exportSelectedRecipeToolStripMenuItem,
-            this.copyRecipeJSONToClipboardToolStripMenuItem});
+            this.copyRecipeJSONToClipboardToolStripMenuItem,
+            this.editSelectedRecipesJSONToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(216, 136);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(216, 158);
             // 
             // searchForToolStripMenuItem
             // 
@@ -515,10 +525,11 @@
             this.deleteSelectedDeckToolStripMenuItem,
             this.duplicateSelectedDeckToolStripMenuItem,
             this.exportSelectedDeckToolStripMenuItem,
-            this.copyDeckJSONToClipboardToolStripMenuItem});
+            this.copyDeckJSONToClipboardToolStripMenuItem,
+            this.editSelectedDecksJSONToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(254, 114);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(254, 136);
             // 
             // searchForToolStripMenuItem1
             // 
@@ -593,9 +604,10 @@
             this.deleteSelectedLegacyToolStripMenuItem,
             this.duplicateSelectedLegacyToolStripMenuItem,
             this.exportSelectedLegacyToolStripMenuItem,
-            this.copySelectedLegacyJSONToClipboardToolStripMenuItem});
+            this.copySelectedLegacyJSONToClipboardToolStripMenuItem,
+            this.editSelectedLegacysJSONToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(290, 92);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(290, 114);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
@@ -646,9 +658,10 @@
             this.deleteSelectedEndingToolStripMenuItem,
             this.duplicateSelectedEndingToolStripMenuItem,
             this.exportSelectedEndingToolStripMenuItem,
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem});
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem,
+            this.editSelectedEndingsJSONToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(290, 114);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(290, 136);
             // 
             // searchForToolStripMenuItem2
             // 
@@ -724,9 +737,10 @@
             this.deleteSelectedVerbToolStripMenuItem,
             this.duplicateSelectedVerbToolStripMenuItem,
             this.exportSelectedVerbToolStripMenuItem,
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem});
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem,
+            this.editSelectedVerbsJSONToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(276, 114);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(276, 158);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -944,6 +958,13 @@
             this.importToolStripButton.Size = new System.Drawing.Size(56, 22);
             this.importToolStripButton.Text = "Import";
             // 
+            // fromClipboardToolStripMenuItem
+            // 
+            this.fromClipboardToolStripMenuItem.Name = "fromClipboardToolStripMenuItem";
+            this.fromClipboardToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.fromClipboardToolStripMenuItem.Text = "From Clipboard";
+            this.fromClipboardToolStripMenuItem.Click += new System.EventHandler(this.fromClipboardToolStripMenuItem_Click);
+            // 
             // aspectToolStripMenuItem1
             // 
             this.aspectToolStripMenuItem1.Name = "aspectToolStripMenuItem1";
@@ -1154,12 +1175,54 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
-            // fromClipboardToolStripMenuItem
+            // editSelectedAspectsJSONToolStripMenuItem
             // 
-            this.fromClipboardToolStripMenuItem.Name = "fromClipboardToolStripMenuItem";
-            this.fromClipboardToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.fromClipboardToolStripMenuItem.Text = "From Clipboard";
-            this.fromClipboardToolStripMenuItem.Click += new System.EventHandler(this.fromClipboardToolStripMenuItem_Click);
+            this.editSelectedAspectsJSONToolStripMenuItem.Name = "editSelectedAspectsJSONToolStripMenuItem";
+            this.editSelectedAspectsJSONToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.editSelectedAspectsJSONToolStripMenuItem.Text = "Edit Selected Aspect\'s JSON";
+            this.editSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedAspectsJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedElementsJSONToolStripMenuItem
+            // 
+            this.editSelectedElementsJSONToolStripMenuItem.Name = "editSelectedElementsJSONToolStripMenuItem";
+            this.editSelectedElementsJSONToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.editSelectedElementsJSONToolStripMenuItem.Text = "Edit Selected Element\'s JSON";
+            this.editSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedElementsJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedRecipesJSONToolStripMenuItem
+            // 
+            this.editSelectedRecipesJSONToolStripMenuItem.Name = "editSelectedRecipesJSONToolStripMenuItem";
+            this.editSelectedRecipesJSONToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.editSelectedRecipesJSONToolStripMenuItem.Text = "Edit Selected Recipe\'s JSON";
+            this.editSelectedRecipesJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedRecipesJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedDecksJSONToolStripMenuItem
+            // 
+            this.editSelectedDecksJSONToolStripMenuItem.Name = "editSelectedDecksJSONToolStripMenuItem";
+            this.editSelectedDecksJSONToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.editSelectedDecksJSONToolStripMenuItem.Text = "Edit Selected Deck\'s JSON";
+            this.editSelectedDecksJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedDecksJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedLegacysJSONToolStripMenuItem
+            // 
+            this.editSelectedLegacysJSONToolStripMenuItem.Name = "editSelectedLegacysJSONToolStripMenuItem";
+            this.editSelectedLegacysJSONToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.editSelectedLegacysJSONToolStripMenuItem.Text = "Edit Selected Legacy\'s JSON";
+            this.editSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedLegacysJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedEndingsJSONToolStripMenuItem
+            // 
+            this.editSelectedEndingsJSONToolStripMenuItem.Name = "editSelectedEndingsJSONToolStripMenuItem";
+            this.editSelectedEndingsJSONToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.editSelectedEndingsJSONToolStripMenuItem.Text = "Edit Selected Ending\'s JSON";
+            this.editSelectedEndingsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedEndingsJSONToolStripMenuItem_Click);
+            // 
+            // editSelectedVerbsJSONToolStripMenuItem
+            // 
+            this.editSelectedVerbsJSONToolStripMenuItem.Name = "editSelectedVerbsJSONToolStripMenuItem";
+            this.editSelectedVerbsJSONToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.editSelectedVerbsJSONToolStripMenuItem.Text = "Edit Selected Verb\'s JSON";
+            this.editSelectedVerbsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedVerbsJSONToolStripMenuItem_Click);
             // 
             // ModViewer
             // 
@@ -1305,6 +1368,13 @@
         private System.Windows.Forms.ToolStripMenuItem copySelectedEndingJSONToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectedVerbJSONToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedAspectsJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedElementsJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedRecipesJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedDecksJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedLegacysJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedEndingsJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedVerbsJSONToolStripMenuItem;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿namespace CarcassSpark.Tools
 {
-    partial class ClipboardImporter
+    partial class JsonEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,7 @@
             this.scintillaEditor.UseTabs = true;
             this.scintillaEditor.TextChanged += new System.EventHandler(this.scintillaEditor_TextChanged);
             // 
-            // ClipboardImporter
+            // JsonEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,9 +100,8 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.contentTypeComboBox);
-            this.Name = "ClipboardImporter";
-            this.Text = "ClipboardImporter";
-            this.Load += new System.EventHandler(this.ClipboardImporter_Load);
+            this.Name = "JsonEditor";
+            this.Text = "JSON Editor";
             this.ResumeLayout(false);
 
         }

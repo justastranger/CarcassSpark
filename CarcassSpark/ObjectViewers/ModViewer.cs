@@ -77,6 +77,13 @@ namespace CarcassSpark.ObjectViewers
             duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
             duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
             duplicateSelectedVerbToolStripMenuItem.Visible = editing;
+            editSelectedAspectsJSONToolStripMenuItem.Visible = editing;
+            editSelectedDecksJSONToolStripMenuItem.Visible = editing;
+            editSelectedElementsJSONToolStripMenuItem.Visible = editing;
+            editSelectedEndingsJSONToolStripMenuItem.Visible = editing;
+            editSelectedLegacysJSONToolStripMenuItem.Visible = editing;
+            editSelectedRecipesJSONToolStripMenuItem.Visible = editing;
+            editSelectedVerbsJSONToolStripMenuItem.Visible = editing;
         }
 
         void refreshContent()
@@ -1900,13 +1907,14 @@ namespace CarcassSpark.ObjectViewers
 
         private void fromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClipboardImporter ci = new ClipboardImporter();
-            if (ci.ShowDialog() == DialogResult.OK)
+            if (!Clipboard.ContainsText()) return;
+            JsonEditor je = new JsonEditor(Clipboard.GetText());
+            if (je.ShowDialog() == DialogResult.OK)
             {
-                switch (ci.objectType)
+                switch (je.objectType)
                 {
                     case "Aspect":
-                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(ci.objectText);
+                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
                         aspectsList[deserializedAspect.id] = deserializedAspect;
                         if (!aspectsListBox.Items.Contains(deserializedAspect.id))
                         {
@@ -1914,7 +1922,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Element":
-                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(ci.objectText);
+                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                         elementsList[deserializedElement.id] = deserializedElement;
                         if (!elementsListBox.Items.Contains(deserializedElement.id))
                         {
@@ -1922,7 +1930,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Recipe":
-                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(ci.objectText);
+                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
                         recipesList[deserializedRecipe.id] = deserializedRecipe;
                         if (!recipesListBox.Items.Contains(deserializedRecipe.id))
                         {
@@ -1930,7 +1938,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Deck":
-                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(ci.objectText);
+                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                         decksList[deserializedDeck.id] = deserializedDeck;
                         if (!decksListBox.Items.Contains(deserializedDeck.id))
                         {
@@ -1938,7 +1946,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Legacy":
-                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(ci.objectText);
+                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
                         legaciesList[deserializedLegacy.id] = deserializedLegacy;
                         if (!legaciesListBox.Items.Contains(deserializedLegacy.id))
                         {
@@ -1946,7 +1954,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Ending":
-                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(ci.objectText);
+                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
                         endingsList[deserializedEnding.id] = deserializedEnding;
                         if (!endingsListBox.Items.Contains(deserializedEnding.id))
                         {
@@ -1954,7 +1962,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         break;
                     case "Verb":
-                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(ci.objectText);
+                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
                         verbsList[deserializedVerb.id] = deserializedVerb;
                         if (!verbsListBox.Items.Contains(deserializedVerb.id))
                         {
@@ -1965,6 +1973,90 @@ namespace CarcassSpark.ObjectViewers
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
+            }
+        }
+
+        private void editSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect aspectToEdit = getAspect(aspectsListBox.SelectedItem as string);
+            if (aspectToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), "Aspect");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
+                aspectsList[aspectsListBox.SelectedItem as string] = deserializedAspect;
+            }
+        }
+
+        private void editSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element elementToEdit = getElement(elementsListBox.SelectedItem as string);
+            if (elementToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), "Element");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
+                elementsList[elementsListBox.SelectedItem as string] = deserializedElement;
+            }
+        }
+
+        private void editSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe recipeToEdit = getRecipe(recipesListBox.SelectedItem as string);
+            if (recipeToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), "Recipe");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
+                recipesList[recipesListBox.SelectedItem as string] = deserializedRecipe;
+            }
+        }
+
+        private void editSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck deckToEdit = getDeck(decksListBox.SelectedItem as string);
+            if (deckToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), "Deck");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
+                decksList[decksListBox.SelectedItem as string] = deserializedDeck;
+            }
+        }
+
+        private void editSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy legacyToEdit = getLegacy(legaciesListBox.SelectedItem as string);
+            if (legacyToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), "Legacy");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
+                legaciesList[legaciesListBox.SelectedItem as string] = deserializedLegacy;
+            }
+        }
+
+        private void editSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending endingToEdit = getEnding(endingsListBox.SelectedItem as string);
+            if (endingToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), "Ending");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
+                endingsList[endingsListBox.SelectedItem as string] = deserializedEnding;
+            }
+        }
+
+        private void editSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb verbToEdit = getVerb(verbsListBox.SelectedItem as string);
+            if (verbToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), "Verb");
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
+                verbsList[verbsListBox.SelectedItem as string] = deserializedVerb;
             }
         }
 
