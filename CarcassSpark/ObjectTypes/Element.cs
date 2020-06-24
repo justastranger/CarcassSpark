@@ -70,8 +70,8 @@ namespace CarcassSpark.ObjectTypes
             // necessary
             this.description = description;
             // not necessary
-            if (icon != null) this.icon = icon;
-            else this.icon = id;
+            this.icon = icon;
+            // else this.icon = id;
             // not necessary
             this.comments = comments;
             // not necessary (stay of execution)
@@ -143,8 +143,8 @@ namespace CarcassSpark.ObjectTypes
             tmp.id = id;
             tmp.label = label;
             tmp.description = description;
-            if (icon != null) tmp.icon = icon;
-            else tmp.icon = id;
+            tmp.icon = icon;
+            // else tmp.icon = id;
             tmp.comments = comments;
             tmp.aspects = aspects;
             tmp.aspects_extend = aspects_extend;

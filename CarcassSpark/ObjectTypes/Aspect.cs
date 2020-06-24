@@ -32,8 +32,8 @@ namespace CarcassSpark.ObjectTypes
             // optional
             this.isAspect = isAspect;
             // optional
-            if (icon != null) this.icon = icon;
-            else this.icon = id;
+            this.icon = icon;
+            // else this.icon = id;
             // isHidden is true iff isAspect is true
             // optional
             this.isHidden = isHidden;
@@ -69,8 +69,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.label = label;
             tmp.description = description;
             tmp.isAspect = isAspect;
-            if (icon != null) tmp.icon = icon;
-            else tmp.icon = id;
+            tmp.icon = icon;
             tmp.isHidden = isHidden;
             tmp.induces = induces;
             tmp.induces_prepend = induces_prepend;
