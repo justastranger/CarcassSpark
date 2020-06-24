@@ -101,6 +101,8 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
+            displayedManifest.name.Replace(' ', '_');
+            displayedManifest.name.Replace('.', '_');
             Close();
         }
 
