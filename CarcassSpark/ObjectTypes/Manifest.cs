@@ -20,7 +20,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string description_long;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Dependency> dependencies;
+        public List<string> dependencies;
 
         public Manifest(string name, string author, string version, string description, string description_long)
         {
@@ -31,7 +31,7 @@ namespace CarcassSpark.ObjectTypes
             this.description_long = description_long;
         }
 
-        public Manifest(string name, string author, string version, string description, string description_long, List<Dependency> dependencies)
+        public Manifest(string name, string author, string version, string description, string description_long, List<string> dependencies)
         {
             this.name = name;
             this.author = author;
@@ -67,6 +67,19 @@ namespace CarcassSpark.ObjectTypes
             public Dependency()
             {
 
+            }
+
+            public override string ToString()
+            {
+                if (modId != null && version != null && VersionOperator != null)
+                {
+                    return modId + " " + VersionOperator + " " + version;
+                }
+                else if (modId != null && (version == null || VersionOperator == null))
+                {
+                    return modId;
+                }
+                else return modId;
             }
         }
     }

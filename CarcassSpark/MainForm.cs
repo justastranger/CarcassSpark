@@ -51,7 +51,7 @@ namespace CarcassSpark
 
         private void openModButton_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = (Settings.settings["rememberPreviousMod"] != null && Settings.settings["rememberPreviousMod"].ToObject<bool>() && Settings.settings["previousMod"] != null) ? Settings.settings["previousMod"].ToString() : currentDirectory;
+            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMod"] != null) ? Settings.settings["previousMod"].ToString() : currentDirectory;
             DialogResult dr = modFolderBrowserDialog.ShowDialog();
             if(dr == DialogResult.OK)
             {

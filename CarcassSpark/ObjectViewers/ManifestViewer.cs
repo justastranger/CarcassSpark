@@ -26,9 +26,15 @@ namespace CarcassSpark.ObjectViewers
             longDescriptionTextBox.Text = manifest.description_long;
             if (manifest.dependencies != null)
             {
-                foreach (Manifest.Dependency dep in manifest.dependencies)
+                foreach (string dep in manifest.dependencies)
                 {
-                    dependeniesDataGridView.Rows.Add(dep.modId, dep.VersionOperator, dep.version);
+                    string[] depPieces = dep.Split(' ');
+                    if (depPieces.Count() > 0)
+                    {
+                        if (depPieces.Count() == 1) dependeniesDataGridView.Rows.Add(dep);
+                        if (depPieces.Count() == 3) dependeniesDataGridView.Rows.Add(depPieces[0], depPieces[1], depPieces[2]);
+                    }
+                    // dependeniesDataGridView.Rows.Add(dep.modId, dep.VersionOperator, dep.version);
                 }
             }
         }
@@ -82,7 +88,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if(dependeniesDataGridView.RowCount > 1)
             {
-                displayedManifest.dependencies = new List<Manifest.Dependency>();
+                displayedManifest.dependencies = new List<string>();
                 foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
                 {
                     Manifest.Dependency dep = new Manifest.Dependency();
@@ -91,7 +97,7 @@ namespace CarcassSpark.ObjectViewers
                     if (row.Cells[2].Value != null) dep.version = row.Cells[2].Value.ToString();
                     if (dep.modId != null)
                     {
-                        displayedManifest.dependencies.Add(dep);
+                        displayedManifest.dependencies.Add(dep.ToString());
                     }
                 }
             }
