@@ -102,6 +102,7 @@
             this.Controls.Add(this.contentTypeComboBox);
             this.Name = "JsonEditor";
             this.Text = "JSON Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JsonEditor_FormClosing);
             this.ResumeLayout(false);
 
         }

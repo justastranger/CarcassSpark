@@ -102,11 +102,7 @@ namespace CarcassSpark.Tools
         
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (objectType == null)
-            {
-                MessageBox.Show("Please select an object type from the combo box next to the OK button.");
-                return;
-            }
+            
             Close();
         }
 
@@ -118,6 +114,16 @@ namespace CarcassSpark.Tools
         private void scintillaEditor_TextChanged(object sender, EventArgs e)
         {
             objectText = scintillaEditor.Text;
+        }
+
+        private void JsonEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (contentTypeComboBox.Visible && objectType == null)
+            {
+                MessageBox.Show("Please select an object type from the combo box next to the OK button.");
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }
