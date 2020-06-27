@@ -22,15 +22,18 @@ namespace CarcassSpark.ObjectTypes
         public List<Slot> slots_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
         public List<Slot> slots_remove;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, string comments, bool? atStart, List<Slot> slots,
+        public Verb(string id, string label, string description, string comments, List<string> extends, bool? atStart, List<Slot> slots,
                     List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.comments = comments;
+            this.extends = extends;
             this.atStart = atStart;
             this.slots = slots;
             this.slots_prepend = slots_prepend;

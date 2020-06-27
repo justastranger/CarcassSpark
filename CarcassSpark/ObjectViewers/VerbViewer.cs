@@ -166,5 +166,10 @@ namespace CarcassSpark.ObjectViewers
                 displayedVerb.comments = null;
             }
         }
+
+        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedVerb.extends = new List<string>() { extendsTextBox.Text };
+        }
     }
 }
