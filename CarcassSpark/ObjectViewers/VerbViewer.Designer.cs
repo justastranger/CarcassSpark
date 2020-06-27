@@ -54,7 +54,7 @@
             // 
             this.idTextBox.Location = new System.Drawing.Point(149, 25);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(127, 20);
+            this.idTextBox.Size = new System.Drawing.Size(193, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
@@ -63,7 +63,7 @@
             // 
             this.labelTextBox.Location = new System.Drawing.Point(149, 64);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(127, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(193, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
@@ -204,16 +204,17 @@
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(196, 38);
+            this.commentsTextBox.Size = new System.Drawing.Size(330, 38);
             this.commentsTextBox.TabIndex = 16;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(146, 103);
+            this.extendsTextBox.Location = new System.Drawing.Point(149, 103);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(130, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(193, 20);
             this.extendsTextBox.TabIndex = 17;
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
             // 
             // extendsLabel
