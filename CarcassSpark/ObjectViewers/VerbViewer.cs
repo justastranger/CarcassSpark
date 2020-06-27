@@ -50,6 +50,7 @@ namespace CarcassSpark.ObjectViewers
                     slots.Add(slot.id, slot);
                 }
             }
+            extendsTextBox.Text = verb.extends[0];
         }
 
         void setEditingMode(bool editing)
