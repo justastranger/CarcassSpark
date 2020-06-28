@@ -78,6 +78,7 @@
             // 
             // modDescriptionTextBox
             // 
+            this.modDescriptionTextBox.AcceptsReturn = true;
             this.modDescriptionTextBox.Location = new System.Drawing.Point(12, 142);
             this.modDescriptionTextBox.Multiline = true;
             this.modDescriptionTextBox.Name = "modDescriptionTextBox";
@@ -88,6 +89,7 @@
             // 
             // longDescriptionTextBox
             // 
+            this.longDescriptionTextBox.AcceptsReturn = true;
             this.longDescriptionTextBox.Location = new System.Drawing.Point(12, 221);
             this.longDescriptionTextBox.Multiline = true;
             this.longDescriptionTextBox.Name = "longDescriptionTextBox";

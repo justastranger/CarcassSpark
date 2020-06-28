@@ -101,6 +101,7 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 206);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -295,6 +296,7 @@
             // 
             // commentTextBox
             // 
+            this.commentTextBox.AcceptsReturn = true;
             this.commentTextBox.Location = new System.Drawing.Point(118, 268);
             this.commentTextBox.Multiline = true;
             this.commentTextBox.Name = "commentTextBox";

@@ -83,6 +83,7 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(273, 103);
             this.descriptionTextBox.Multiline = true;
@@ -235,6 +236,7 @@
             // 
             // commentsTextBox
             // 
+            this.commentsTextBox.AcceptsReturn = true;
             this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsTextBox.Location = new System.Drawing.Point(273, 321);
             this.commentsTextBox.Multiline = true;

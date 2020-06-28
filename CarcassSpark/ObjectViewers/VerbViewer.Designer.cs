@@ -83,12 +83,12 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 223);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.Text = "Description";
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // idLabel
@@ -192,7 +192,7 @@
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(9, 150);
+            this.commentsLabel.Location = new System.Drawing.Point(9, 143);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 15;
@@ -200,11 +200,12 @@
             // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(12, 166);
+            this.commentsTextBox.AcceptsReturn = true;
+            this.commentsTextBox.Location = new System.Drawing.Point(12, 159);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(330, 38);
+            this.commentsTextBox.Size = new System.Drawing.Size(330, 45);
             this.commentsTextBox.TabIndex = 16;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
