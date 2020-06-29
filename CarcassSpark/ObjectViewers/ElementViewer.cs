@@ -247,6 +247,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (aspectsDataGridView.Rows.Count > 1)
             {
+                displayedElement.aspects = null;
+                displayedElement.aspects_extend = null;
+                displayedElement.aspects_remove = null;
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null)
