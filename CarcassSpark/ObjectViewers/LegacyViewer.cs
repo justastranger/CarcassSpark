@@ -36,6 +36,8 @@ namespace CarcassSpark.ObjectViewers
             if (legacy.label != null) labelTextBox.Text = legacy.label;
             if (legacy.description != null) descriptionTextBox.Text = legacy.description;
             if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
+            if (legacy.comments != null) commentsTextBox.Text = legacy.comments;
+            if (legacy.extends != null && legacy.extends.Count > 0) extendsTextBox.Text = legacy.extends[0];
             if (legacy.image != null) imageTextBox.Text = legacy.image;
             if (Utilities.getLegacyImage(legacy.image) != null)
             {
