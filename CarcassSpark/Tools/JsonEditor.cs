@@ -30,6 +30,10 @@ namespace CarcassSpark.Tools
             scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Text = json;
+            if (Settings.settings["jsonEditorLastContentType"] != null && Settings.settings["jsonEditorLastContentType"].ToString() != "")
+            {
+                contentTypeComboBox.Text = Settings.settings["jsonEditorLastContentType"].ToString();
+            }
         }
 
         public JsonEditor(string json, string type)
@@ -71,12 +75,22 @@ namespace CarcassSpark.Tools
             scintillaEditor.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Text = json;
-            contentTypeComboBox.Visible = !hideComboBox;
+            if (hideComboBox)
+            {
+                contentTypeComboBox.Visible = false;
+            }
+            else
+            {
+                if (Settings.settings["jsonEditorLastContentType"] != null && Settings.settings["jsonEditorLastContentType"].ToString() != "")
+                {
+                    contentTypeComboBox.Text = Settings.settings["jsonEditorLastContentType"].ToString();
+                }
+            }
             scintillaEditor.ReadOnly = readOnly;
             Text = readOnly ? "JSON Viewer" : "JSON Editor";
         }
-
-        public JsonEditor(string json, bool readOnly)
+        
+        public JsonEditor(string json, string type, bool readOnly)
         {
             InitializeComponent();
             scintillaEditor.Styles[Style.Json.Default].ForeColor = Color.Silver;
@@ -91,6 +105,7 @@ namespace CarcassSpark.Tools
             scintillaEditor.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
             scintillaEditor.Text = json;
             contentTypeComboBox.Enabled = false;
+            contentTypeComboBox.Text = type;
             scintillaEditor.ReadOnly = readOnly;
             Text = readOnly ? "JSON Viewer" : "JSON Editor";
         }
@@ -98,6 +113,8 @@ namespace CarcassSpark.Tools
         private void contentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             objectType = contentTypeComboBox.Text;
+            Settings.settings["jsonEditorLastContentType"] = objectType;
+            Settings.saveSettings();
         }
         
         private void okButton_Click(object sender, EventArgs e)
@@ -118,7 +135,7 @@ namespace CarcassSpark.Tools
 
         private void JsonEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (contentTypeComboBox.Visible && objectType == null)
+            if (DialogResult != DialogResult.Cancel && contentTypeComboBox.Visible && objectType == null)
             {
                 MessageBox.Show("Please select an object type from the combo box next to the OK button.");
                 e.Cancel = true;

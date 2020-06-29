@@ -1861,6 +1861,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (aspectsListBox.SelectedItem == null) return;
             Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
             if (exportedAspect == null) return;
             copyObjectJSONToClipboard(exportedAspect);
@@ -1868,6 +1869,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (elementsListBox.SelectedItem == null) return;
             Element exportedElement = getElement(elementsListBox.SelectedItem as string);
             if (exportedElement == null) return;
             copyObjectJSONToClipboard(exportedElement);
@@ -1875,6 +1877,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (recipesListBox.SelectedItem == null) return;
             Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
             if (exportedRecipe == null) return;
             copyObjectJSONToClipboard(exportedRecipe);
@@ -1882,6 +1885,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (decksListBox.SelectedItem == null) return;
             Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
             if (exportedDeck == null) return;
             copyObjectJSONToClipboard(exportedDeck);
@@ -1889,6 +1893,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (legaciesListBox.SelectedItem == null) return;
             Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
             if (exportedLegacy == null) return;
             copyObjectJSONToClipboard(exportedLegacy);
@@ -1896,6 +1901,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (endingsListBox.SelectedItem == null) return;
             Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
             if (exportedEnding == null) return;
             copyObjectJSONToClipboard(exportedEnding);
@@ -1903,6 +1909,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void copySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (verbsListBox.SelectedItem == null) return;
             Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
             if (exportedVerb == null) return;
             copyObjectJSONToClipboard(exportedVerb);
