@@ -47,6 +47,7 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,6 +228,18 @@
             this.extendsLabel.TabIndex = 18;
             this.extendsLabel.Text = "Extends";
             // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Location = new System.Drawing.Point(146, 139);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deletedCheckBox.TabIndex = 19;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            // 
             // VerbViewer
             // 
             this.AcceptButton = this.okButton;
@@ -234,6 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(354, 420);
+            this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.commentsTextBox);
@@ -283,5 +297,6 @@
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }

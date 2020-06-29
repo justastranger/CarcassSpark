@@ -42,6 +42,7 @@ namespace CarcassSpark.ObjectViewers
             if (verb.label != null) labelTextBox.Text = verb.label;
             if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
             if (verb.description != null) descriptionTextBox.Text = verb.description;
+            if (verb.deleted.HasValue) deletedCheckBox.Checked = verb.deleted.Value;
             if (verb.slots != null && verb.slots.Count > 0)
             {
                 if (verb.slots.Count > 1) MessageBox.Show("Cultist Simulator does not currently support Verbs with more than one Starting Slot. Carcass Spark will add them, but only so you can remove them. The game will not as long as there is more than one slot.", "Error: Too Many Slots", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -172,6 +173,13 @@ namespace CarcassSpark.ObjectViewers
         private void extendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.extends = new List<string>() { extendsTextBox.Text };
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedVerb.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedVerb.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.deleted = null;
         }
     }
 }
