@@ -800,7 +800,7 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem,
             this.openSelectedVerbsJSONToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 158);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 136);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -929,6 +929,7 @@
             // reloadContentToolStripMenuItem
             // 
             this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
+            this.reloadContentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.reloadContentToolStripMenuItem.Text = "Reload Content";
             this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
