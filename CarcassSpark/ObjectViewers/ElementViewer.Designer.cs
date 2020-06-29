@@ -72,6 +72,7 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.inheritsLabel = new System.Windows.Forms.Label();
             this.inheritsTextBox = new System.Windows.Forms.TextBox();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -482,6 +483,18 @@
             this.inheritsTextBox.TabIndex = 40;
             this.inheritsTextBox.TextChanged += new System.EventHandler(this.inheritsTextBox_TextChanged);
             // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Location = new System.Drawing.Point(77, 196);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deletedCheckBox.TabIndex = 41;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckedChanged += new System.EventHandler(this.deletedCheckBox_CheckedChanged);
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
@@ -489,6 +502,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(769, 412);
+            this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.inheritsTextBox);
             this.Controls.Add(this.inheritsLabel);
             this.Controls.Add(this.commentsTextBox);
@@ -585,5 +599,6 @@
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.Label inheritsLabel;
         private System.Windows.Forms.TextBox inheritsTextBox;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }

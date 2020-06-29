@@ -90,6 +90,7 @@ namespace CarcassSpark.ObjectViewers
             if (element.comments != null) commentsTextBox.Text = element.comments;
             if (element.inherits != null) inheritsTextBox.Text = element.inherits;
             if (element.extends != null && element.extends.Count > 0) extendsTextBox.Text = element.extends[0];
+            if (element.deleted.HasValue) deletedCheckBox.Checked = element.deleted.Value;
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
@@ -529,6 +530,13 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedElement.inherits = inheritsTextBox.Text;
             if (displayedElement.inherits == "") displayedElement.inherits = null;
+        }
+
+        private void deletedCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedElement.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedElement.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedElement.deleted = null;
         }
     }
 }
