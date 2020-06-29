@@ -251,6 +251,7 @@
             // duplicateSelectedAspectToolStripMenuItem
             // 
             this.duplicateSelectedAspectToolStripMenuItem.Name = "duplicateSelectedAspectToolStripMenuItem";
+            this.duplicateSelectedAspectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.duplicateSelectedAspectToolStripMenuItem.Text = "Duplicate Selected Aspect";
             this.duplicateSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedAspectToolStripMenuItem_Click);
@@ -396,6 +397,7 @@
             // duplicateSelectedElementToolStripMenuItem
             // 
             this.duplicateSelectedElementToolStripMenuItem.Name = "duplicateSelectedElementToolStripMenuItem";
+            this.duplicateSelectedElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.duplicateSelectedElementToolStripMenuItem.Text = "Duplicate Selected Element";
             this.duplicateSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedElementToolStripMenuItem_Click);
@@ -492,6 +494,7 @@
             // duplicateSelectedRecipeToolStripMenuItem
             // 
             this.duplicateSelectedRecipeToolStripMenuItem.Name = "duplicateSelectedRecipeToolStripMenuItem";
+            this.duplicateSelectedRecipeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.duplicateSelectedRecipeToolStripMenuItem.Text = "Duplicate Selected Recipe";
             this.duplicateSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedRecipeToolStripMenuItem_Click);
@@ -580,6 +583,7 @@
             // duplicateSelectedDeckToolStripMenuItem
             // 
             this.duplicateSelectedDeckToolStripMenuItem.Name = "duplicateSelectedDeckToolStripMenuItem";
+            this.duplicateSelectedDeckToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.duplicateSelectedDeckToolStripMenuItem.Text = "Duplicate Selected Deck";
             this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeckToolStripMenuItem_Click);
@@ -651,6 +655,7 @@
             // duplicateSelectedLegacyToolStripMenuItem
             // 
             this.duplicateSelectedLegacyToolStripMenuItem.Name = "duplicateSelectedLegacyToolStripMenuItem";
+            this.duplicateSelectedLegacyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.duplicateSelectedLegacyToolStripMenuItem.Text = "Duplicate Selected Legacy";
             this.duplicateSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedLegacyToolStripMenuItem_Click);
@@ -728,6 +733,7 @@
             // duplicateSelectedEndingToolStripMenuItem
             // 
             this.duplicateSelectedEndingToolStripMenuItem.Name = "duplicateSelectedEndingToolStripMenuItem";
+            this.duplicateSelectedEndingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.duplicateSelectedEndingToolStripMenuItem.Text = "Duplicate Selected Ending";
             this.duplicateSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedEndingToolStripMenuItem_Click);
@@ -823,6 +829,7 @@
             // duplicateSelectedVerbToolStripMenuItem
             // 
             this.duplicateSelectedVerbToolStripMenuItem.Name = "duplicateSelectedVerbToolStripMenuItem";
+            this.duplicateSelectedVerbToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.duplicateSelectedVerbToolStripMenuItem.Text = "Duplicate Selected Verb";
             this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedVerbToolStripMenuItem_Click);
