@@ -69,12 +69,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void fillValues(Element element)
         {
-            if (element.extends != null)
-            {
-                extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
-                //Element extendedElement = Utilities.getElement(element.extends[0]);
-                //fillValues(extendedElement);
-            }
             if (element.id != null)
             {
                 idTextBox.Text = element.id;
@@ -90,8 +84,12 @@ namespace CarcassSpark.ObjectViewers
             if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
             if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
+            if (element.resaturate.HasValue) resaturateCheckBox.Checked = element.resaturate.Value;
             if (element.uniquenessgroup != null) uniquenessgroupTextBox.Text = element.uniquenessgroup;
             if (element.description != null) descriptionTextBox.Text = element.description;
+            if (element.comments != null) commentsTextBox.Text = element.comments;
+            if (element.inherits != null) inheritsTextBox.Text = element.inherits;
+            if (element.extends != null && element.extends.Count > 0) extendsTextBox.Text = element.extends[0];
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
