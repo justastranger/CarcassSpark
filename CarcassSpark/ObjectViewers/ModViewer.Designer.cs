@@ -244,6 +244,7 @@
             // deleteSelectedAspectToolStripMenuItem
             // 
             this.deleteSelectedAspectToolStripMenuItem.Name = "deleteSelectedAspectToolStripMenuItem";
+            this.deleteSelectedAspectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.deleteSelectedAspectToolStripMenuItem.Text = "Delete Selected Aspect";
             this.deleteSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedAspectToolStripMenuItem_Click);
@@ -390,6 +391,7 @@
             // deleteSelectedElementToolStripMenuItem
             // 
             this.deleteSelectedElementToolStripMenuItem.Name = "deleteSelectedElementToolStripMenuItem";
+            this.deleteSelectedElementToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.deleteSelectedElementToolStripMenuItem.Text = "Delete Selected Element";
             this.deleteSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedElementToolStripMenuItem_Click);
@@ -487,6 +489,7 @@
             // deleteSelectedRecipeToolStripMenuItem
             // 
             this.deleteSelectedRecipeToolStripMenuItem.Name = "deleteSelectedRecipeToolStripMenuItem";
+            this.deleteSelectedRecipeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.deleteSelectedRecipeToolStripMenuItem.Text = "Delete Selected Recipe";
             this.deleteSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedRecipeToolStripMenuItem_Click);
@@ -576,6 +579,7 @@
             // deleteSelectedDeckToolStripMenuItem
             // 
             this.deleteSelectedDeckToolStripMenuItem.Name = "deleteSelectedDeckToolStripMenuItem";
+            this.deleteSelectedDeckToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.deleteSelectedDeckToolStripMenuItem.Text = "Delete Selected Deck";
             this.deleteSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedDeckToolStripMenuItem_Click);
@@ -648,6 +652,7 @@
             // deleteSelectedLegacyToolStripMenuItem
             // 
             this.deleteSelectedLegacyToolStripMenuItem.Name = "deleteSelectedLegacyToolStripMenuItem";
+            this.deleteSelectedLegacyToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.deleteSelectedLegacyToolStripMenuItem.Text = "Delete Selected Legacy";
             this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedLegacyToolStripMenuItem_Click);
@@ -726,6 +731,7 @@
             // deleteSelectedEndingToolStripMenuItem
             // 
             this.deleteSelectedEndingToolStripMenuItem.Name = "deleteSelectedEndingToolStripMenuItem";
+            this.deleteSelectedEndingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.deleteSelectedEndingToolStripMenuItem.Text = "Delete Selected Ending";
             this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedEndingToolStripMenuItem_Click);
@@ -794,7 +800,7 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem,
             this.openSelectedVerbsJSONToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 136);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 158);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -822,6 +828,7 @@
             // deleteSelectedVerbToolStripMenuItem
             // 
             this.deleteSelectedVerbToolStripMenuItem.Name = "deleteSelectedVerbToolStripMenuItem";
+            this.deleteSelectedVerbToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
             this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
