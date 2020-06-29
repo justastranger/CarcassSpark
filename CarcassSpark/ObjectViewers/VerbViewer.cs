@@ -34,23 +34,24 @@ namespace CarcassSpark.ObjectViewers
         
         void fillValues(Verb verb)
         {
-            idTextBox.Text = verb.id;
+            if (verb.id != null) idTextBox.Text = verb.id;
             if (Utilities.getVerbImage(verb.id) != null)
             {
                 pictureBox1.Image = Utilities.getVerbImage(verb.id);
             }
-            labelTextBox.Text = verb.label;
+            if (verb.label != null) labelTextBox.Text = verb.label;
             if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
-            descriptionTextBox.Text = verb.description;
-            if (verb.slots != null)
+            if (verb.description != null) descriptionTextBox.Text = verb.description;
+            if (verb.slots != null && verb.slots.Count > 0)
             {
+                if (verb.slots.Count > 1) MessageBox.Show("Cultist Simulator does not currently support Verbs with more than one Starting Slot. Carcass Spark will add them, but only so you can remove them. The game will not as long as there is more than one slot.", "Error: Too Many Slots", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 foreach (Slot slot in verb.slots)
                 {
                     slotsListView.Items.Add(slot.id);
                     slots.Add(slot.id, slot);
                 }
             }
-            extendsTextBox.Text = verb.extends[0];
+            if (verb.extends != null && verb.extends.Count > 0) extendsTextBox.Text = verb.extends[0];
         }
 
         void setEditingMode(bool editing)
