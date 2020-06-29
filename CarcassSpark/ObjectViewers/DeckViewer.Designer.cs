@@ -59,6 +59,7 @@
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.specRemoveButton = new System.Windows.Forms.Button();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -109,9 +110,9 @@
             this.drawmessagesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
             this.message});
-            this.drawmessagesDataGridView.Location = new System.Drawing.Point(12, 168);
+            this.drawmessagesDataGridView.Location = new System.Drawing.Point(12, 221);
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
-            this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 134);
+            this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 150);
             this.drawmessagesDataGridView.TabIndex = 5;
             this.drawmessagesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.drawmessagesDataGridView_UserDeletedRow);
             // 
@@ -130,7 +131,7 @@
             // resetOnExhaustionCheckBox
             // 
             this.resetOnExhaustionCheckBox.AutoSize = true;
-            this.resetOnExhaustionCheckBox.Location = new System.Drawing.Point(165, 126);
+            this.resetOnExhaustionCheckBox.Location = new System.Drawing.Point(12, 151);
             this.resetOnExhaustionCheckBox.Name = "resetOnExhaustionCheckBox";
             this.resetOnExhaustionCheckBox.Size = new System.Drawing.Size(115, 17);
             this.resetOnExhaustionCheckBox.TabIndex = 6;
@@ -166,7 +167,7 @@
             // 
             // newCardTextBox
             // 
-            this.newCardTextBox.Location = new System.Drawing.Point(286, 256);
+            this.newCardTextBox.Location = new System.Drawing.Point(286, 322);
             this.newCardTextBox.Name = "newCardTextBox";
             this.newCardTextBox.Size = new System.Drawing.Size(260, 20);
             this.newCardTextBox.TabIndex = 10;
@@ -174,7 +175,7 @@
             // 
             // newCardButton
             // 
-            this.newCardButton.Location = new System.Drawing.Point(286, 282);
+            this.newCardButton.Location = new System.Drawing.Point(286, 348);
             this.newCardButton.Name = "newCardButton";
             this.newCardButton.Size = new System.Drawing.Size(53, 23);
             this.newCardButton.TabIndex = 11;
@@ -185,7 +186,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 307);
+            this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 12;
@@ -196,7 +197,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(471, 307);
+            this.cancelButton.Location = new System.Drawing.Point(471, 377);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 13;
@@ -252,7 +253,7 @@
             // drawmessagesLlabel
             // 
             this.drawmessagesLlabel.AutoSize = true;
-            this.drawmessagesLlabel.Location = new System.Drawing.Point(104, 152);
+            this.drawmessagesLlabel.Location = new System.Drawing.Point(12, 205);
             this.drawmessagesLlabel.Name = "drawmessagesLlabel";
             this.drawmessagesLlabel.Size = new System.Drawing.Size(83, 13);
             this.drawmessagesLlabel.TabIndex = 19;
@@ -264,7 +265,7 @@
             this.specListView.Location = new System.Drawing.Point(286, 64);
             this.specListView.MultiSelect = false;
             this.specListView.Name = "specListView";
-            this.specListView.Size = new System.Drawing.Size(260, 183);
+            this.specListView.Size = new System.Drawing.Size(260, 252);
             this.specListView.TabIndex = 21;
             this.specListView.UseCompatibleStateImageBehavior = false;
             this.specListView.View = System.Windows.Forms.View.List;
@@ -287,7 +288,7 @@
             // 
             // specPrependButton
             // 
-            this.specPrependButton.Location = new System.Drawing.Point(345, 282);
+            this.specPrependButton.Location = new System.Drawing.Point(345, 348);
             this.specPrependButton.Name = "specPrependButton";
             this.specPrependButton.Size = new System.Drawing.Size(57, 23);
             this.specPrependButton.TabIndex = 22;
@@ -297,7 +298,7 @@
             // 
             // specAppendButton
             // 
-            this.specAppendButton.Location = new System.Drawing.Point(408, 282);
+            this.specAppendButton.Location = new System.Drawing.Point(408, 348);
             this.specAppendButton.Name = "specAppendButton";
             this.specAppendButton.Size = new System.Drawing.Size(66, 23);
             this.specAppendButton.TabIndex = 23;
@@ -324,7 +325,7 @@
             // 
             // specRemoveButton
             // 
-            this.specRemoveButton.Location = new System.Drawing.Point(480, 282);
+            this.specRemoveButton.Location = new System.Drawing.Point(480, 348);
             this.specRemoveButton.Name = "specRemoveButton";
             this.specRemoveButton.Size = new System.Drawing.Size(66, 23);
             this.specRemoveButton.TabIndex = 26;
@@ -332,13 +333,26 @@
             this.specRemoveButton.UseVisualStyleBackColor = true;
             this.specRemoveButton.Click += new System.EventHandler(this.specRemoveButton_Click);
             // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Location = new System.Drawing.Point(12, 174);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deletedCheckBox.TabIndex = 27;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckedChanged += new System.EventHandler(this.deletedCheckBox_CheckedChanged);
+            // 
             // DeckViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(558, 342);
+            this.ClientSize = new System.Drawing.Size(558, 412);
+            this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.specRemoveButton);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
@@ -408,5 +422,6 @@
         private System.Windows.Forms.Button specRemoveButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }
