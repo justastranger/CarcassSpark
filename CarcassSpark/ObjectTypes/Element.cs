@@ -43,7 +43,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "lifetime$minus")]
         public int? lifetime_minus;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? unique, resaturate;
+        public bool? unique, resaturate, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
 
@@ -57,7 +57,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> induces_remove;
 
         [JsonConstructor]
-        public Element(string id, string label, string description, string inherits, bool? unique,
+        public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
                        Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes, int? animframes_add, int? animframes_minus,
@@ -93,6 +93,7 @@ namespace CarcassSpark.ObjectTypes
             this.animframes_minus = animframes_minus;
             // not necessary
             this.unique = unique;
+            this.deleted = deleted;
             // not necessary
             this.uniquenessgroup = uniquenessgroup;
             // not necessary
@@ -168,6 +169,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.decayTo = decayTo;
             tmp.extends = extends;
             tmp.inherits = inherits;
+            tmp.deleted = deleted;
             return tmp;
         }
     }

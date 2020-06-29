@@ -21,7 +21,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$remove")]
         public List<string> spec_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? resetonexhaustion;
+        public bool? resetonexhaustion, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? draws, defaultdraws;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "draws$add")]
@@ -46,7 +46,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> extends;
 
         [JsonConstructor]
-        public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, string id, string label, string description, string comments,
+        public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
                     string defaultcard, Dictionary<string, string> drawmessages, List<string> extends,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
                     Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
@@ -61,6 +61,7 @@ namespace CarcassSpark.ObjectTypes
             this.comments = comments;
             this.defaultcard = defaultcard;
             this.resetonexhaustion = resetonexhaustion;
+            this.deleted = deleted;
             this.defaultdraws = defaultdraws;
             this.defaultdraws_add = defaultdraws_add;
             this.defaultdraws_minus = defaultdraws_minus;
@@ -107,6 +108,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.defaultdrawmessages_extend = defaultdrawmessages_extend;
             tmp.defaultdrawmessages_remove = defaultdrawmessages_remove;
             tmp.extends = extends;
+            tmp.deleted = deleted;
             return tmp;
         }
     }

@@ -15,7 +15,7 @@ namespace CarcassSpark.ObjectTypes
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? craftable, hintonly, signalimportantloop;
+        public bool? craftable, hintonly, signalimportantloop, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Deck internalDeck;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -127,7 +127,7 @@ namespace CarcassSpark.ObjectTypes
 
 
         [JsonConstructor]
-        public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
+        public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
                       List<string> extends, Deck internalDeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
@@ -154,6 +154,7 @@ namespace CarcassSpark.ObjectTypes
             this.ending = ending;
             this.burnimage = burnimage;
             this.extends = extends;
+            this.deleted = deleted;
             this.warmup = warmup;
             this.warmup_add = warmup_add;
             this.warmup_minus = warmup_minus;
@@ -277,6 +278,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.portaleffect = portaleffect;
             tmp.signalendingflavour = signalendingflavour;
             tmp.signalimportantloop = signalimportantloop;
+            tmp.deleted = deleted;
             return tmp;
         }
     }

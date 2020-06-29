@@ -11,9 +11,13 @@ namespace CarcassSpark.ObjectTypes
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, image, flavour, anim, achievement, comments;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool? deleted;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
-        public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement, string comments)
+        public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement, string comments, bool? deleted, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -23,6 +27,8 @@ namespace CarcassSpark.ObjectTypes
             this.anim = anim;
             this.achievement = achievement;
             this.comments = comments;
+            this.deleted = deleted;
+            this.extends = extends;
         }
 
         public Ending()
@@ -41,6 +47,8 @@ namespace CarcassSpark.ObjectTypes
             tmp.anim = anim;
             tmp.achievement = achievement;
             tmp.comments = comments;
+            tmp.deleted = deleted;
+            tmp.extends = extends;
             return tmp;
         }
     }

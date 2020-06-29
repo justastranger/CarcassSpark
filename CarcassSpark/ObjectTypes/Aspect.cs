@@ -21,7 +21,7 @@ namespace CarcassSpark.ObjectTypes
         public Aspect(string id, string label, string description, string inherits, List<string> extends,
                       bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
                       List<Induces> induces_prepend, List<Induces> induces_append, List<string> induces_remove,
-                      bool? isAspect, string comments, Dictionary<string, int> aspects)
+                      bool? isAspect, bool? deleted, string comments, Dictionary<string, int> aspects)
         {
             // necessary
             this.id = id;
@@ -50,6 +50,7 @@ namespace CarcassSpark.ObjectTypes
             this.aspects = aspects;
             this.extends = extends;
             this.inherits = inherits;
+            this.deleted = deleted;
         }
 
         public Aspect()
@@ -80,6 +81,7 @@ namespace CarcassSpark.ObjectTypes
             tmp.aspects = aspects;
             tmp.extends = extends;
             tmp.inherits = inherits;
+            tmp.deleted = deleted;
             return tmp;
         }
     }
