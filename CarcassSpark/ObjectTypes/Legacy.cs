@@ -69,7 +69,7 @@ namespace CarcassSpark.ObjectTypes
             this.statusbarelements_prepend = statusbarelements_prepend;
             this.statusbarelements_append = statusbarelements_append;
             this.statusbarelements_remove = statusbarelements_remove;
-            this.deleted = deleted
+            this.deleted = deleted;
         }
 
         public Legacy()
