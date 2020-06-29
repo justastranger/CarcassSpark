@@ -78,6 +78,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
             if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
             if (aspect.extends != null && aspect.extends.Count > 0) extendsTextBox.Text = aspect.extends[0];
+            if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
