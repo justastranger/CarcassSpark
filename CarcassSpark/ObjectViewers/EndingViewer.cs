@@ -43,6 +43,7 @@ namespace CarcassSpark.ObjectViewers
             if (ending.description != null) descriptionTextBox.Text = ending.description;
             if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
+            if (ending.deleted.HasValue) deletedCheckBox.Checked = ending.deleted.Value;
         }
 
         void setEditingMode(bool editing)
@@ -152,6 +153,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedEnding.comments = null;
             }
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedEnding.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedEnding.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedEnding.deleted = null;
         }
     }
 }

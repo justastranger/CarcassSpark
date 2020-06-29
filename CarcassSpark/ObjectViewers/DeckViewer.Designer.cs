@@ -343,7 +343,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckedChanged += new System.EventHandler(this.deletedCheckBox_CheckedChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
             // 
             // DeckViewer
             // 

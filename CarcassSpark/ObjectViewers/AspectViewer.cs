@@ -332,7 +332,7 @@ namespace CarcassSpark.ObjectViewers
             if (displayedAspect.inherits == "") displayedAspect.inherits = null;
         }
 
-        private void deletedCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedAspect.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedAspect.deleted = false;
