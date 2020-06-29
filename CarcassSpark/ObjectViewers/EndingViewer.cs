@@ -41,6 +41,7 @@ namespace CarcassSpark.ObjectViewers
             if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
             if (ending.anim != null) animDomainUpDown.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
+            if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
         }
 
