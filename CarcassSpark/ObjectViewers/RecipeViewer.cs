@@ -133,6 +133,7 @@ namespace CarcassSpark.ObjectViewers
             else showInternalDeckButton.Enabled = false;
             if (recipe.slots != null) showSlotButton.Enabled = true;
             else showSlotButton.Enabled = false;
+            if (recipe.deleted.HasValue) deletedCheckBox.Checked = recipe.deleted.Value;
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
                 requirementsDataGridView.Rows.Clear();
@@ -1752,6 +1753,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedRecipe.comments = null;
             }
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedRecipe.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.deleted = null;
         }
     }
 }

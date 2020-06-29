@@ -145,6 +145,7 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -1350,6 +1351,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.hintonlyCheckBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.deletedCheckBox, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 57);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1601,6 +1603,19 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1033, 48);
             this.tableLayoutPanel6.TabIndex = 87;
             // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deletedCheckBox.Location = new System.Drawing.Point(777, 3);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(253, 24);
+            this.deletedCheckBox.TabIndex = 95;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            // 
             // RecipeViewer
             // 
             this.AcceptButton = this.okButton;
@@ -1775,5 +1790,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }
