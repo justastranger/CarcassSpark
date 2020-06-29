@@ -75,6 +75,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (aspect.description != null) descriptionTextBox.Text = aspect.description;
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
+            if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
+            if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
+            if (aspect.extends != null && aspect.extends.Count > 0) extendsTextBox.Text = aspect.extends[0];
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
