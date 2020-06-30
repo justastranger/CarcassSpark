@@ -158,6 +158,7 @@ namespace CarcassSpark.ObjectViewers
             specRemoveButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
         
         private void newCardButton_Click(object sender, EventArgs e)

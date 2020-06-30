@@ -139,6 +139,7 @@ namespace CarcassSpark.ObjectViewers
             addExcludesTextBox.Visible = editing;
             removeButton.Visible = editing;
             excludeAddLabel.Visible = editing;
+            deletedCheckBox.Enabled = editing;
         }
 
         private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

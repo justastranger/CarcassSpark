@@ -55,6 +55,7 @@ namespace CarcassSpark.ObjectViewers
             inheritsTextBox.ReadOnly = !editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             okButton.Visible = editing;
+            deletedCheckBox.Enabled = editing;
         }
 
         public void fillValues(Aspect aspect)

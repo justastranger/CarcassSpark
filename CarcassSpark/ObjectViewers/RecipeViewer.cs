@@ -104,6 +104,7 @@ namespace CarcassSpark.ObjectViewers
             moveMutationDownButton.Visible = editing;
             setAsExtendToolStripMenuItem.Visible = editing;
             setAsRemoveToolStripMenuItem.Visible = editing;
+            deletedCheckBox.Enabled = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
             if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;

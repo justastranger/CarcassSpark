@@ -67,6 +67,7 @@ namespace CarcassSpark.ObjectViewers
             addSlotButton.Visible = editing;
             removeButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
 
         private void slotsListBox_DoubleClick(object sender, EventArgs e)

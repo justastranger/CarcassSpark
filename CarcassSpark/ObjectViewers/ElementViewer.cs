@@ -65,6 +65,7 @@ namespace CarcassSpark.ObjectViewers
             setAsExtendToolStripMenuItem.Visible = editing;
             setAsRemoveToolStripMenuItem.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
 
         private void fillValues(Element element)

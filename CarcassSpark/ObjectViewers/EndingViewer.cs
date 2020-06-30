@@ -61,6 +61,7 @@ namespace CarcassSpark.ObjectViewers
             achievementTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
