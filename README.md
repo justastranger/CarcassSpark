@@ -1,7 +1,7 @@
 # Installation
 Acquire the binaries (by any means necessary) and place them in your Cultist Simulator installation Folder.
 
-Pre-compiled binaries can be found [here](https://github.com/justastranger/CarcassSpark/releases).
+The latest release can be found [here](https://github.com/justastranger/CarcassSpark/releases/new).
 
 If you downloaded it through Steam like I did, the correct folder will be in `steamapps/common/Cultist Simulator`.
 
