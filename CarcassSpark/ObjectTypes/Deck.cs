@@ -81,35 +81,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
-        
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Deck Copy()
         {
-            Deck tmp = new Deck();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.spec = spec;
-            tmp.spec_append = spec_append;
-            tmp.spec_prepend = spec_prepend;
-            tmp.spec_remove = spec_remove;
-            tmp.comments = comments;
-            tmp.defaultcard = defaultcard;
-            tmp.resetonexhaustion = resetonexhaustion;
-            tmp.defaultdraws = defaultdraws;
-            tmp.defaultdraws_add = defaultdraws_add;
-            tmp.defaultdraws_minus = defaultdraws_minus;
-            tmp.draws = draws;
-            tmp.draws_add = draws_add;
-            tmp.draws_minus = draws_minus;
-            tmp.drawmessages = drawmessages;
-            tmp.drawmessages_extend = drawmessages_extend;
-            tmp.drawmessages_remove = drawmessages_remove;
-            tmp.defaultdrawmessages = defaultdrawmessages;
-            tmp.defaultdrawmessages_extend = defaultdrawmessages_extend;
-            tmp.defaultdrawmessages_remove = defaultdrawmessages_remove;
-            tmp.extends = extends;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Deck(new List<string>(spec), defaultdraws, defaultdraws_add, defaultdraws_minus, draws, draws_add, draws_minus, resetonexhaustion, deleted, id, label, description, comments, defaultcard, new Dictionary<string, string>(drawmessages), new List<string>(extends), new Dictionary<string, string>(defaultdrawmessages), new List<string>(spec_append), new List<string>(spec_prepend), new List<string>(spec_remove), new Dictionary<string, string>(drawmessages_extend), new List<string>(drawmessages_remove), new Dictionary<string, string>(defaultdrawmessages_extend), new List<string>(defaultdrawmessages_remove));
         }
     }
 

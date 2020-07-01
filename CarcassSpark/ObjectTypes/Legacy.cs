@@ -77,32 +77,14 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Legacy Copy()
         {
-            Legacy tmp = new Legacy();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.startdescription = startdescription;
-            tmp.effects = effects;
-            tmp.effects_extend = effects_extend;
-            tmp.effects_remove = effects_remove;
-            tmp.image = image;
-            tmp.fromEnding = fromEnding;
-            tmp.extends = extends;
-            tmp.availableWithoutEndingMatch = availableWithoutEndingMatch;
-            tmp.startingVerbId = startingVerbId;
-            tmp.excludesOnEnding = excludesOnEnding;
-            tmp.excludesOnEnding_prepend = excludesOnEnding_prepend;
-            tmp.excludesOnEnding_append = excludesOnEnding_append;
-            tmp.excludesOnEnding_remove = excludesOnEnding_remove;
-            tmp.statusbarelements = statusbarelements;
-            tmp.statusbarelements_prepend = statusbarelements_prepend;
-            tmp.statusbarelements_append = statusbarelements_append;
-            tmp.statusbarelements_remove = statusbarelements_remove;
-            tmp.comments = comments;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Legacy(id, label, description, startdescription, comments, new Dictionary<string, int>(effects), image, fromEnding, availableWithoutEndingMatch, startingVerbId, new List<string>(excludesOnEnding), new List<string>(excludesOnEnding_prepend), new List<string>(excludesOnEnding_append), new List<string>(excludesOnEnding_remove), new Dictionary<string, int>(effects_extend), new List<string>(effects_remove), new List<string>(statusbarelements), new List<string>(statusbarelements_prepend), new List<string>(statusbarelements_append), new List<string>(statusbarelements_remove), new List<string>(extends), deleted);
         }
     }
 }

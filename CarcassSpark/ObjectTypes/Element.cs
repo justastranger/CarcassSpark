@@ -137,40 +137,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
-        
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Element Copy()
         {
-            Element tmp = new Element();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.icon = icon;
-            // else tmp.icon = id;
-            tmp.comments = comments;
-            tmp.aspects = aspects;
-            tmp.aspects_extend = aspects_extend;
-            tmp.aspects_remove = aspects_remove;
-            tmp.slots = slots;
-            tmp.slots_prepend = slots_prepend;
-            tmp.slots_append = slots_append;
-            tmp.slots_remove = slots_remove;
-            tmp.xtriggers = xtriggers;
-            tmp.xtriggers_extend = xtriggers_extend;
-            tmp.xtriggers_remove = xtriggers_remove;
-            tmp.animframes = animframes;
-            tmp.animframes_add = animframes_add;
-            tmp.animframes_minus = animframes_minus;
-            tmp.unique = unique;
-            tmp.uniquenessgroup = uniquenessgroup;
-            tmp.lifetime = lifetime;
-            tmp.lifetime_add = lifetime_add;
-            tmp.lifetime_minus = lifetime_minus;
-            tmp.resaturate = resaturate;
-            tmp.decayTo = decayTo;
-            tmp.extends = extends;
-            tmp.inherits = inherits;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Element(id, label, description, icon, unique, deleted, icon, comments, new Dictionary<string, int>(aspects), new Dictionary<string, int>(aspects_extend), new List<string>(aspects_remove), new List<Slot>(slots), new List<Slot>(slots_prepend), new List<Slot>(slots_append), new List<string>(slots_remove), new Dictionary<string, List<XTrigger>>(xtriggers), new Dictionary<string, List<XTrigger>>(xtriggers_extend), new List<string>(xtriggers_remove), animframes, animframes_add, animframes_minus, lifetime, lifetime_add, lifetime_minus, decayTo, uniquenessgroup, new List<string>(extends), resaturate);
         }
     }
     

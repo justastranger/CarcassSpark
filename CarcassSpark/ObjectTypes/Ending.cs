@@ -36,20 +36,14 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Ending Copy()
         {
-            Ending tmp = new Ending();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.image = image;
-            tmp.flavour = flavour;
-            tmp.anim = anim;
-            tmp.achievement = achievement;
-            tmp.comments = comments;
-            tmp.deleted = deleted;
-            tmp.extends = extends;
-            return tmp;
+            return new Ending(id, label, description, image, flavour, anim, achievement, comments, deleted, new List<string>(extends));
         }
     }
 }

@@ -26,5 +26,15 @@ namespace CarcassSpark.ObjectTypes
             this.additional = additional;
             this.expulsion = expulsion;
         }
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Induces Copy()
+        {
+            return new Induces(id, chance, additional, expulsion.Copy());
+        }
     }
 }

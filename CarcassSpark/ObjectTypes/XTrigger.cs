@@ -33,6 +33,16 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public XTrigger Copy()
+        {
+            return new XTrigger(id, chance, morphEffect, level);
+        }
+
         public enum MorphEffectType
         {
             Transform,

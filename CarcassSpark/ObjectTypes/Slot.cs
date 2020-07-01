@@ -63,5 +63,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Slot Copy()
+        {
+            return new Slot(id, label, description, greedy, consumes, new Dictionary<string, int>(required), actionId, new Dictionary<string, int>(forbidden));
+        }
     }
 }

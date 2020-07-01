@@ -21,6 +21,16 @@ namespace CarcassSpark.ObjectTypes
             this.limit = limit;
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Expulsion Copy()
+        {
+            return new Expulsion(new Dictionary<string, int>(filter), limit);
+        }
+
         public Expulsion(int limit)
         {
             filter = new Dictionary<string, int>();

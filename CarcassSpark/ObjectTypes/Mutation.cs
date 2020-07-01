@@ -31,5 +31,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Mutation Copy()
+        {
+            return new Mutation(filterOnAspectId, null, mutateAspectId, null, mutationLevel, null, additive);
+        }
     }
 }

@@ -51,6 +51,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
-        
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public RecipeLink Copy()
+        {
+            return new RecipeLink(id, chance, additional, new Dictionary<string, string>(challenges), expulsion.Copy());
+        }
     }
 }

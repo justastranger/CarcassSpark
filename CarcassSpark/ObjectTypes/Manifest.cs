@@ -51,6 +51,16 @@ namespace CarcassSpark.ObjectTypes
             description_long = "";
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Manifest Copy()
+        {
+            return new Manifest(name, author, version, description, description_long, new List<string>(dependencies));
+        }
+
         public class Dependency
         {
             public string modId;
@@ -80,6 +90,11 @@ namespace CarcassSpark.ObjectTypes
                     return modId;
                 }
                 else return modId;
+            }
+
+            public Dependency Copy()
+            {
+                return new Dependency(modId, version, VersionOperator);
             }
         }
     }
