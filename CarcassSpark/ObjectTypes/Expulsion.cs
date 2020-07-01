@@ -28,7 +28,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Expulsion Copy()
         {
-            return new Expulsion(new Dictionary<string, int>(filter), limit);
+            return new Expulsion(filter != null ? new Dictionary<string, int>(filter) : null, limit);
         }
 
         public Expulsion(int limit)

@@ -43,7 +43,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Ending Copy()
         {
-            return new Ending(id, label, description, image, flavour, anim, achievement, comments, deleted, new List<string>(extends));
+            return new Ending(id, label, description, image, flavour, anim, achievement, comments, deleted, extends != null ? new List<string>(extends) : null);
         }
     }
 }

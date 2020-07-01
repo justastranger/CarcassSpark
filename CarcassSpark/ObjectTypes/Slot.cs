@@ -71,7 +71,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Slot Copy()
         {
-            return new Slot(id, label, description, greedy, consumes, new Dictionary<string, int>(required), actionId, new Dictionary<string, int>(forbidden));
+            return new Slot(id, label, description, greedy, consumes, required != null ? new Dictionary<string, int>(required) : null, actionId, forbidden != null ? new Dictionary<string, int>(forbidden) : null);
         }
     }
 }

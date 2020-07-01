@@ -89,7 +89,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Deck Copy()
         {
-            return new Deck(new List<string>(spec), defaultdraws, defaultdraws_add, defaultdraws_minus, draws, draws_add, draws_minus, resetonexhaustion, deleted, id, label, description, comments, defaultcard, new Dictionary<string, string>(drawmessages), new List<string>(extends), new Dictionary<string, string>(defaultdrawmessages), new List<string>(spec_append), new List<string>(spec_prepend), new List<string>(spec_remove), new Dictionary<string, string>(drawmessages_extend), new List<string>(drawmessages_remove), new Dictionary<string, string>(defaultdrawmessages_extend), new List<string>(defaultdrawmessages_remove));
+            return new Deck(spec != null ? new List<string>(spec) : null, defaultdraws, defaultdraws_add, defaultdraws_minus, draws, draws_add, draws_minus, resetonexhaustion, deleted, id, label, description, comments, defaultcard, drawmessages != null ? new Dictionary<string, string>(drawmessages) : null, extends != null ? new List<string>(extends) : null, defaultdrawmessages != null ? new Dictionary<string, string>(defaultdrawmessages) : null, spec_append != null ? new List<string>(spec_append) : null, spec_prepend != null ? new List<string>(spec_prepend) : null, spec_remove != null ? new List<string>(spec_remove) : null, drawmessages_extend != null ? new Dictionary<string, string>(drawmessages_extend) : null, drawmessages_remove != null ? new List<string>(drawmessages_remove) : null, defaultdrawmessages_extend != null ? new Dictionary<string, string>(defaultdrawmessages_extend) : null, defaultdrawmessages_remove != null ? new List<string>(defaultdrawmessages_remove) : null);
         }
     }
 

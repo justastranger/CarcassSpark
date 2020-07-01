@@ -34,7 +34,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Induces Copy()
         {
-            return new Induces(id, chance, additional, expulsion.Copy());
+            return new Induces(id, chance, additional, expulsion != null ? expulsion.Copy() : null);
         }
     }
 }

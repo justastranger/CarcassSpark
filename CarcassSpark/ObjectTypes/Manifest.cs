@@ -58,7 +58,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Manifest Copy()
         {
-            return new Manifest(name, author, version, description, description_long, new List<string>(dependencies));
+            return new Manifest(name, author, version, description, description_long, dependencies != null ? new List<string>(dependencies) : null);
         }
 
         public class Dependency

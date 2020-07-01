@@ -54,7 +54,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Verb Copy()
         {
-            return new Verb(id, label, description, comments, new List<string>(extends), atStart, deleted, new List<Slot>(slots), new List<Slot>(slots_prepend), new List<Slot>(slots_append), new List<Slot>(slots_remove));
+            return new Verb(id, label, description, comments, extends != null ? new List<string>(extends) : null, atStart, deleted, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<Slot>(slots_remove) : null);
         }
     }
 }
