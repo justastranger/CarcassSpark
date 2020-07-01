@@ -64,7 +64,6 @@
             // 
             this.previousModTextBox.Location = new System.Drawing.Point(12, 94);
             this.previousModTextBox.Name = "previousModTextBox";
-            this.previousModTextBox.ReadOnly = true;
             this.previousModTextBox.Size = new System.Drawing.Size(370, 20);
             this.previousModTextBox.TabIndex = 2;
             // 
@@ -90,6 +89,7 @@
             // 
             // okButton
             // 
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 226);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
