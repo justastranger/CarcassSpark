@@ -20,6 +20,7 @@ namespace CarcassSpark
         // settings["rememberPreviousMod"]
         // settings["previousMod"]
         // settings["saveCleanedVanillaContent"]
+        // settings["loadAllFlowchartNodes"]
         static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
@@ -87,6 +88,11 @@ namespace CarcassSpark
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void loadAllFlowchartNodesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings["loadAllFlowchartNodes"] = loadAllFlowchartNodesCheckBox.Checked;
         }
     }
 }

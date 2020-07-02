@@ -37,6 +37,11 @@ namespace CarcassSpark.Flowchart
             //tl.KeepGroupLayout = true;
             //layout.Orientation = MindFusion.Diagramming.Layout.Orientation.Vertical;
             layout.EnableParallelism = true;
+            if (Settings.settings["loadAllFlowchartNodes"] != null && Settings.settings["loadAllFlowchartNodes"].ToObject<bool>())
+            {
+                loadLinkedRecipesButton.Visible = false;
+                processAllRecipes();
+            }
         }
 
         void arrangeNodes()
@@ -418,7 +423,7 @@ namespace CarcassSpark.Flowchart
             if (recipeNodesThatNeedToBeProcessed.Count == 0 || recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) == 0) return;
             if (!skipYesNo)
             {
-                switch (MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue? Pressing Cancel will supprress this warning.", "Loading More Recipes", MessageBoxButtons.YesNoCancel))
+                switch (MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue? Pressing Cancel will supprress this warning. There is a config setting that can be enabled to load all nodes at once when this form is opened, completely bypassing this.", "Loading More Recipes", MessageBoxButtons.YesNoCancel))
                 {
                     case DialogResult.Cancel:
                         skipYesNo = true;

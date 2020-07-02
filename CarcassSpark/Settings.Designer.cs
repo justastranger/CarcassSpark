@@ -36,6 +36,7 @@
             this.saveCleanedVanillaContentCheckBox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.loadAllFlowchartNodesCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // openWithVanillaCheckBox
@@ -109,6 +110,17 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // loadAllFlowchartNodesCheckBox
+            // 
+            this.loadAllFlowchartNodesCheckBox.AutoSize = true;
+            this.loadAllFlowchartNodesCheckBox.Location = new System.Drawing.Point(12, 120);
+            this.loadAllFlowchartNodesCheckBox.Name = "loadAllFlowchartNodesCheckBox";
+            this.loadAllFlowchartNodesCheckBox.Size = new System.Drawing.Size(189, 17);
+            this.loadAllFlowchartNodesCheckBox.TabIndex = 7;
+            this.loadAllFlowchartNodesCheckBox.Text = "Load All Flowchart Nodes At Once";
+            this.loadAllFlowchartNodesCheckBox.UseVisualStyleBackColor = true;
+            this.loadAllFlowchartNodesCheckBox.CheckedChanged += new System.EventHandler(this.loadAllFlowchartNodesCheckBox_CheckedChanged);
+            // 
             // Settings
             // 
             this.AcceptButton = this.okButton;
@@ -116,6 +128,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(394, 261);
+            this.Controls.Add(this.loadAllFlowchartNodesCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.saveCleanedVanillaContentCheckBox);
@@ -142,5 +155,6 @@
         private System.Windows.Forms.CheckBox saveCleanedVanillaContentCheckBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.CheckBox loadAllFlowchartNodesCheckBox;
     }
 }

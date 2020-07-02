@@ -90,7 +90,7 @@
             // loadLinkedRecipesButton
             // 
             this.loadLinkedRecipesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadLinkedRecipesButton.Location = new System.Drawing.Point(548, 12);
+            this.loadLinkedRecipesButton.Location = new System.Drawing.Point(539, 41);
             this.loadLinkedRecipesButton.Name = "loadLinkedRecipesButton";
             this.loadLinkedRecipesButton.Size = new System.Drawing.Size(116, 23);
             this.loadLinkedRecipesButton.TabIndex = 3;
@@ -101,7 +101,7 @@
             // exportButton
             // 
             this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportButton.Location = new System.Drawing.Point(548, 41);
+            this.exportButton.Location = new System.Drawing.Point(539, 12);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(116, 23);
             this.exportButton.TabIndex = 4;
