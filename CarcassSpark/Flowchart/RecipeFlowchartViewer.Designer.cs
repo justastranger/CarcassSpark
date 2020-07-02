@@ -111,7 +111,7 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "\"PNG files|*.png\"";
+            this.saveFileDialog1.Filter = "PNG files|*.png";
             // 
             // RecipeFlowchartViewer
             // 
