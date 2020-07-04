@@ -38,8 +38,8 @@ namespace CarcassSpark.ObjectViewers
             if (ending.image != null) imageTextBox.Text = ending.image;
             if (ending.id != null && ending.image == null) pictureBox1.Image = Utilities.getEndingImage(ending.id);
             else if (ending.image != null) pictureBox1.Image = Utilities.getEndingImage(ending.image);
-            if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
-            if (ending.anim != null) animDomainUpDown.Text = ending.anim;
+            if (ending.flavour != null) endindFlavourComboBox.Text = ending.flavour;
+            if (ending.anim != null) animComboBox.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
             if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
@@ -54,10 +54,8 @@ namespace CarcassSpark.ObjectViewers
             imageTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
-            flavourDomainUpDown.ReadOnly = !editing;
-            flavourDomainUpDown.Enabled = editing;
-            animDomainUpDown.ReadOnly = !editing;
-            animDomainUpDown.Enabled = editing;
+            endindFlavourComboBox.Enabled = editing;
+            animComboBox.Enabled = editing;
             achievementTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
@@ -94,17 +92,7 @@ namespace CarcassSpark.ObjectViewers
                 displayedEnding.image = null;
             }
         }
-
-        private void flavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void animDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
