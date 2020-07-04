@@ -43,7 +43,7 @@ namespace CarcassSpark.Tools
             {
                 contentTypeComboBox.Text = type;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("That was an invalid type.");
                 return;
