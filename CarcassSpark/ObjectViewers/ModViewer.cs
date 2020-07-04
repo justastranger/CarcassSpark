@@ -933,11 +933,10 @@ namespace CarcassSpark.ObjectViewers
 
         private string[] searchKeys(List<string> keysList, string searchPattern)
         {
-            var results = from id in keysList
-                          let regex = new Regex(searchPattern)
-                          where regex.IsMatch(id)
-                          select id;
-            return results.ToArray();
+            Regex regex = new Regex(searchPattern);
+            return (from id in keysList
+                    where regex.IsMatch(id)
+                    select id).ToArray();
         }
         
         private void elementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
