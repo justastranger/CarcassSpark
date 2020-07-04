@@ -833,89 +833,150 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void aspetsSearchTextBox_TextChanged(object sender, EventArgs e)
+        private void aspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             aspectsListBox.Items.Clear();
-            Regex searchTerm = new Regex(aspectsSearchTextBox.Text);
-            foreach (string id in aspectsList.Keys.ToList())
+            try
             {
-                //if (id.Contains(aspectsSearchTextBox.Text))
-                if (searchTerm.IsMatch(id))
+                Regex searchTerm = new Regex(aspectsSearchTextBox.Text);
+                foreach (string id in aspectsList.Keys.ToList())
                 {
-                    aspectsListBox.Items.Add(id);
+                    // if (id.Contains(aspectsSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        aspectsListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                aspectsListBox.Items.AddRange(new ListBox.ObjectCollection(aspectsListBox, aspectsList.Keys.ToArray()));
             }
         }
 
         private void elementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             elementsListBox.Items.Clear();
-            foreach (string id in elementsList.Keys.ToList())
+            try
             {
-                if (id.Contains(elementsSearchTextBox.Text))
+                Regex searchTerm = new Regex(elementsSearchTextBox.Text);
+                foreach (string id in elementsList.Keys.ToList())
                 {
-                    elementsListBox.Items.Add(id);
+                    // if (id.Contains(elementsSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        elementsListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                elementsListBox.Items.AddRange(new ListBox.ObjectCollection(elementsListBox, elementsList.Keys.ToArray()));
             }
         }
 
         private void recipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             recipesListBox.Items.Clear();
-            foreach (string id in recipesList.Keys.ToList())
-            {
-                if (id.Contains(recipesSearchTextBox.Text))
+            try
+            { 
+                Regex searchTerm = new Regex(recipesSearchTextBox.Text);
+                foreach (string id in recipesList.Keys.ToList())
                 {
-                    recipesListBox.Items.Add(id);
+                    // if (id.Contains(recipesSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        recipesListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                recipesListBox.Items.AddRange(new ListBox.ObjectCollection(recipesListBox, recipesList.Keys.ToArray()));
             }
         }
 
         private void decksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             decksListBox.Items.Clear();
-            foreach (string id in decksList.Keys.ToList())
+            try
             {
-                if (id.Contains(decksSearchTextBox.Text))
+                Regex searchTerm = new Regex(recipesSearchTextBox.Text);
+                foreach (string id in decksList.Keys.ToList())
                 {
-                    decksListBox.Items.Add(id);
+                    // if (id.Contains(decksSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        decksListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                decksListBox.Items.AddRange(new ListBox.ObjectCollection(decksListBox, decksList.Keys.ToArray()));
             }
         }
 
         private void legaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             legaciesListBox.Items.Clear();
-            foreach (string id in legaciesList.Keys.ToList())
+            try
             {
-                if (id.Contains(legaciesSearchTextBox.Text))
+                Regex searchTerm = new Regex(legaciesSearchTextBox.Text);
+                foreach (string id in legaciesList.Keys.ToList())
                 {
-                    legaciesListBox.Items.Add(id);
+                    // if (id.Contains(legaciesSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        legaciesListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                legaciesListBox.Items.AddRange(new ListBox.ObjectCollection(legaciesListBox, legaciesList.Keys.ToArray()));
             }
         }
 
         private void endingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             endingsListBox.Items.Clear();
-            foreach (string id in endingsList.Keys.ToList())
+            try
             {
-                if (id.Contains(endingsSearchTextBox.Text))
+                Regex searchTerm = new Regex(endingsSearchTextBox.Text);
+                foreach (string id in endingsList.Keys.ToList())
                 {
-                    endingsListBox.Items.Add(id);
+                    // if (id.Contains(endingsSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        endingsListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                endingsListBox.Items.AddRange(new ListBox.ObjectCollection(endingsListBox, endingsList.Keys.ToArray()));
             }
         }
 
         private void verbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             verbsListBox.Items.Clear();
-            foreach (string id in verbsList.Keys.ToList())
+            try
             {
-                if (id.Contains(verbsSearchTextBox.Text))
+                Regex searchTerm = new Regex(verbsSearchTextBox.Text);
+                foreach (string id in verbsList.Keys.ToList())
                 {
-                    verbsListBox.Items.Add(id);
+                    // if (id.Contains(verbsSearchTextBox.Text))
+                    if (searchTerm.IsMatch(id))
+                    {
+                        verbsListBox.Items.Add(id);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                verbsListBox.Items.AddRange(new ListBox.ObjectCollection(verbsListBox, verbsList.Keys.ToArray()));
             }
         }
 

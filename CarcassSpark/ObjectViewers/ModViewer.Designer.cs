@@ -1125,7 +1125,7 @@
             this.aspectsSearchTextBox.Name = "aspetsSearchTextBox";
             this.aspectsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.aspectsSearchTextBox.TabIndex = 17;
-            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspetsSearchTextBox_TextChanged);
+            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspectsSearchTextBox_TextChanged);
             // 
             // elementsSearchTextBox
             // 
