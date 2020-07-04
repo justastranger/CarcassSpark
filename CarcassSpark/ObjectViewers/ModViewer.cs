@@ -838,19 +838,12 @@ namespace CarcassSpark.ObjectViewers
             aspectsListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(aspectsSearchTextBox.Text);
-                foreach (string id in aspectsList.Keys.ToList())
-                {
-                    // if (id.Contains(aspectsSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        aspectsListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(aspectsList.Keys.ToList(), aspectsSearchTextBox.Text);
+                aspectsListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                aspectsListBox.Items.AddRange(new ListBox.ObjectCollection(aspectsListBox, aspectsList.Keys.ToArray()));
+                aspectsListBox.Items.AddRange(aspectsList.Keys.ToArray());
             }
         }
 
@@ -859,19 +852,12 @@ namespace CarcassSpark.ObjectViewers
             elementsListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(elementsSearchTextBox.Text);
-                foreach (string id in elementsList.Keys.ToList())
-                {
-                    // if (id.Contains(elementsSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        elementsListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(elementsList.Keys.ToList(), elementsSearchTextBox.Text);
+                elementsListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                elementsListBox.Items.AddRange(new ListBox.ObjectCollection(elementsListBox, elementsList.Keys.ToArray()));
+                elementsListBox.Items.AddRange(elementsList.Keys.ToArray());
             }
         }
 
@@ -879,20 +865,13 @@ namespace CarcassSpark.ObjectViewers
         {
             recipesListBox.Items.Clear();
             try
-            { 
-                Regex searchTerm = new Regex(recipesSearchTextBox.Text);
-                foreach (string id in recipesList.Keys.ToList())
-                {
-                    // if (id.Contains(recipesSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        recipesListBox.Items.Add(id);
-                    }
-                }
+            {
+                string[] keysToAdd = searchKeys(recipesList.Keys.ToList(), recipesSearchTextBox.Text);
+                recipesListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                recipesListBox.Items.AddRange(new ListBox.ObjectCollection(recipesListBox, recipesList.Keys.ToArray()));
+                recipesListBox.Items.AddRange(recipesList.Keys.ToArray());
             }
         }
 
@@ -901,19 +880,12 @@ namespace CarcassSpark.ObjectViewers
             decksListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(recipesSearchTextBox.Text);
-                foreach (string id in decksList.Keys.ToList())
-                {
-                    // if (id.Contains(decksSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        decksListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(decksList.Keys.ToList(), decksSearchTextBox.Text);
+                decksListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                decksListBox.Items.AddRange(new ListBox.ObjectCollection(decksListBox, decksList.Keys.ToArray()));
+                decksListBox.Items.AddRange(decksList.Keys.ToArray());
             }
         }
 
@@ -922,19 +894,12 @@ namespace CarcassSpark.ObjectViewers
             legaciesListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(legaciesSearchTextBox.Text);
-                foreach (string id in legaciesList.Keys.ToList())
-                {
-                    // if (id.Contains(legaciesSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        legaciesListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(legaciesList.Keys.ToList(), legaciesSearchTextBox.Text);
+                legaciesListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                legaciesListBox.Items.AddRange(new ListBox.ObjectCollection(legaciesListBox, legaciesList.Keys.ToArray()));
+                legaciesListBox.Items.AddRange(legaciesList.Keys.ToArray());
             }
         }
 
@@ -943,19 +908,12 @@ namespace CarcassSpark.ObjectViewers
             endingsListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(endingsSearchTextBox.Text);
-                foreach (string id in endingsList.Keys.ToList())
-                {
-                    // if (id.Contains(endingsSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        endingsListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(endingsList.Keys.ToList(), endingsSearchTextBox.Text);
+                endingsListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                endingsListBox.Items.AddRange(new ListBox.ObjectCollection(endingsListBox, endingsList.Keys.ToArray()));
+                endingsListBox.Items.AddRange(endingsList.Keys.ToArray());
             }
         }
 
@@ -964,22 +922,24 @@ namespace CarcassSpark.ObjectViewers
             verbsListBox.Items.Clear();
             try
             {
-                Regex searchTerm = new Regex(verbsSearchTextBox.Text);
-                foreach (string id in verbsList.Keys.ToList())
-                {
-                    // if (id.Contains(verbsSearchTextBox.Text))
-                    if (searchTerm.IsMatch(id))
-                    {
-                        verbsListBox.Items.Add(id);
-                    }
-                }
+                string[] keysToAdd = searchKeys(verbsList.Keys.ToList(), verbsSearchTextBox.Text);
+                verbsListBox.Items.AddRange(keysToAdd);
             }
             catch (Exception)
             {
-                verbsListBox.Items.AddRange(new ListBox.ObjectCollection(verbsListBox, verbsList.Keys.ToArray()));
+                verbsListBox.Items.AddRange(verbsList.Keys.ToArray());
             }
         }
 
+        private string[] searchKeys(List<string> keysList, string searchPattern)
+        {
+            var results = from id in keysList
+                          let regex = new Regex(searchPattern)
+                          where regex.IsMatch(id)
+                          select id;
+            return results.ToArray();
+        }
+        
         private void elementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
