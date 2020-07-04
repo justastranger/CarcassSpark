@@ -11,6 +11,7 @@ using CarcassSpark.ObjectTypes;
 using CarcassSpark.DictionaryViewers;
 using CarcassSpark.Flowchart;
 using CarcassSpark.Tools;
+using System.Text.RegularExpressions;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -835,9 +836,11 @@ namespace CarcassSpark.ObjectViewers
         private void aspetsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             aspectsListBox.Items.Clear();
+            Regex searchTerm = new Regex(aspectsSearchTextBox.Text);
             foreach (string id in aspectsList.Keys.ToList())
             {
-                if (id.Contains(aspetsSearchTextBox.Text))
+                //if (id.Contains(aspectsSearchTextBox.Text))
+                if (searchTerm.IsMatch(id))
                 {
                     aspectsListBox.Items.Add(id);
                 }

@@ -138,7 +138,7 @@
             this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.aspectsSearchTextBox = new System.Windows.Forms.TextBox();
             this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
             this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
             this.decksSearchTextBox = new System.Windows.Forms.TextBox();
@@ -1119,13 +1119,13 @@
             // 
             // aspetsSearchTextBox
             // 
-            this.aspetsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.aspectsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspetsSearchTextBox.Location = new System.Drawing.Point(3, 296);
-            this.aspetsSearchTextBox.Name = "aspetsSearchTextBox";
-            this.aspetsSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.aspetsSearchTextBox.TabIndex = 17;
-            this.aspetsSearchTextBox.TextChanged += new System.EventHandler(this.aspetsSearchTextBox_TextChanged);
+            this.aspectsSearchTextBox.Location = new System.Drawing.Point(3, 296);
+            this.aspectsSearchTextBox.Name = "aspetsSearchTextBox";
+            this.aspectsSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.aspectsSearchTextBox.TabIndex = 17;
+            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspetsSearchTextBox_TextChanged);
             // 
             // elementsSearchTextBox
             // 
@@ -1223,7 +1223,7 @@
             this.tableLayoutPanel1.Controls.Add(this.recipesSearchTextBox, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.elementsSearchTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.aspetsSearchTextBox, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.aspectsSearchTextBox, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.decksSearchTextBox, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.verbsLabel, 6, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 28);
@@ -1310,7 +1310,7 @@
         private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
-        private System.Windows.Forms.TextBox aspetsSearchTextBox;
+        private System.Windows.Forms.TextBox aspectsSearchTextBox;
         private System.Windows.Forms.TextBox elementsSearchTextBox;
         private System.Windows.Forms.TextBox recipesSearchTextBox;
         private System.Windows.Forms.TextBox decksSearchTextBox;
