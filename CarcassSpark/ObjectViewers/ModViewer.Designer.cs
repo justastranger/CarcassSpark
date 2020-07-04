@@ -147,10 +147,11 @@
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
             this.autosaveTimer = new System.Windows.Forms.Timer(this.components);
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -160,6 +161,7 @@
             this.verbContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // aspectsListBox
@@ -170,7 +172,7 @@
             this.aspectsListBox.Location = new System.Drawing.Point(3, 16);
             this.aspectsListBox.Name = "aspectsListBox";
             this.aspectsListBox.ScrollAlwaysVisible = true;
-            this.aspectsListBox.Size = new System.Drawing.Size(125, 287);
+            this.aspectsListBox.Size = new System.Drawing.Size(125, 274);
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
             this.aspectsListBox.DoubleClick += new System.EventHandler(this.aspectListBox_DoubleClick);
@@ -307,7 +309,7 @@
             this.elementsListBox.Location = new System.Drawing.Point(134, 16);
             this.elementsListBox.Name = "elementsListBox";
             this.elementsListBox.ScrollAlwaysVisible = true;
-            this.elementsListBox.Size = new System.Drawing.Size(125, 287);
+            this.elementsListBox.Size = new System.Drawing.Size(125, 274);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             this.elementsListBox.DoubleClick += new System.EventHandler(this.elementsListBox_DoubleClick);
@@ -444,7 +446,7 @@
             this.recipesListBox.Location = new System.Drawing.Point(265, 16);
             this.recipesListBox.Name = "recipesListBox";
             this.recipesListBox.ScrollAlwaysVisible = true;
-            this.recipesListBox.Size = new System.Drawing.Size(125, 287);
+            this.recipesListBox.Size = new System.Drawing.Size(125, 274);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
@@ -542,7 +544,7 @@
             this.decksListBox.Location = new System.Drawing.Point(396, 16);
             this.decksListBox.Name = "decksListBox";
             this.decksListBox.ScrollAlwaysVisible = true;
-            this.decksListBox.Size = new System.Drawing.Size(125, 287);
+            this.decksListBox.Size = new System.Drawing.Size(125, 274);
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
@@ -632,7 +634,7 @@
             this.legaciesListBox.Location = new System.Drawing.Point(527, 16);
             this.legaciesListBox.Name = "legaciesListBox";
             this.legaciesListBox.ScrollAlwaysVisible = true;
-            this.legaciesListBox.Size = new System.Drawing.Size(125, 287);
+            this.legaciesListBox.Size = new System.Drawing.Size(125, 274);
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
@@ -695,7 +697,7 @@
             this.endingsListBox.Location = new System.Drawing.Point(658, 16);
             this.endingsListBox.Name = "endingsListBox";
             this.endingsListBox.ScrollAlwaysVisible = true;
-            this.endingsListBox.Size = new System.Drawing.Size(125, 287);
+            this.endingsListBox.Size = new System.Drawing.Size(125, 274);
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
@@ -784,7 +786,7 @@
             this.verbsListBox.Location = new System.Drawing.Point(789, 16);
             this.verbsListBox.Name = "verbsListBox";
             this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(125, 287);
+            this.verbsListBox.Size = new System.Drawing.Size(125, 274);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
@@ -968,49 +970,49 @@
             // aspectToolStripMenuItem
             // 
             this.aspectToolStripMenuItem.Name = "aspectToolStripMenuItem";
-            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.aspectToolStripMenuItem.Text = "Aspect";
             this.aspectToolStripMenuItem.Click += new System.EventHandler(this.aspectToolStripMenuItem_Click);
             // 
             // elementToolStripMenuItem
             // 
             this.elementToolStripMenuItem.Name = "elementToolStripMenuItem";
-            this.elementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.elementToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.elementToolStripMenuItem.Text = "Element";
             this.elementToolStripMenuItem.Click += new System.EventHandler(this.elementToolStripMenuItem_Click);
             // 
             // recipeToolStripMenuItem
             // 
             this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
-            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.recipeToolStripMenuItem.Text = "Recipe";
             this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
             // 
             // deckToolStripMenuItem
             // 
             this.deckToolStripMenuItem.Name = "deckToolStripMenuItem";
-            this.deckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deckToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.deckToolStripMenuItem.Text = "Deck";
             this.deckToolStripMenuItem.Click += new System.EventHandler(this.deckToolStripMenuItem_Click);
             // 
             // legacyToolStripMenuItem
             // 
             this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
-            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.legacyToolStripMenuItem.Text = "Legacy";
             this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
             // 
             // endingToolStripMenuItem
             // 
             this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
-            this.endingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.endingToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.endingToolStripMenuItem.Text = "Ending";
             this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
             // 
             // verbToolStripMenuItem
             // 
             this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
-            this.verbToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.verbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.verbToolStripMenuItem.Text = "Verb";
             this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
             // 
@@ -1119,7 +1121,7 @@
             // 
             this.aspetsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspetsSearchTextBox.Location = new System.Drawing.Point(3, 309);
+            this.aspetsSearchTextBox.Location = new System.Drawing.Point(3, 296);
             this.aspetsSearchTextBox.Name = "aspetsSearchTextBox";
             this.aspetsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.aspetsSearchTextBox.TabIndex = 17;
@@ -1129,7 +1131,7 @@
             // 
             this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.elementsSearchTextBox.Location = new System.Drawing.Point(134, 309);
+            this.elementsSearchTextBox.Location = new System.Drawing.Point(134, 296);
             this.elementsSearchTextBox.Name = "elementsSearchTextBox";
             this.elementsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.elementsSearchTextBox.TabIndex = 18;
@@ -1139,7 +1141,7 @@
             // 
             this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.recipesSearchTextBox.Location = new System.Drawing.Point(265, 309);
+            this.recipesSearchTextBox.Location = new System.Drawing.Point(265, 296);
             this.recipesSearchTextBox.Name = "recipesSearchTextBox";
             this.recipesSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.recipesSearchTextBox.TabIndex = 19;
@@ -1149,7 +1151,7 @@
             // 
             this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.decksSearchTextBox.Location = new System.Drawing.Point(396, 309);
+            this.decksSearchTextBox.Location = new System.Drawing.Point(396, 296);
             this.decksSearchTextBox.Name = "decksSearchTextBox";
             this.decksSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.decksSearchTextBox.TabIndex = 20;
@@ -1159,7 +1161,7 @@
             // 
             this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.legaciesSearchTextBox.Location = new System.Drawing.Point(527, 309);
+            this.legaciesSearchTextBox.Location = new System.Drawing.Point(527, 296);
             this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
             this.legaciesSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.legaciesSearchTextBox.TabIndex = 21;
@@ -1169,7 +1171,7 @@
             // 
             this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.endingsSearchTextBox.Location = new System.Drawing.Point(658, 309);
+            this.endingsSearchTextBox.Location = new System.Drawing.Point(658, 296);
             this.endingsSearchTextBox.Name = "endingsSearchTextBox";
             this.endingsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.endingsSearchTextBox.TabIndex = 22;
@@ -1179,7 +1181,7 @@
             // 
             this.verbsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.verbsSearchTextBox.Location = new System.Drawing.Point(789, 309);
+            this.verbsSearchTextBox.Location = new System.Drawing.Point(789, 296);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
             this.verbsSearchTextBox.Size = new System.Drawing.Size(125, 20);
             this.verbsSearchTextBox.TabIndex = 23;
@@ -1189,14 +1191,6 @@
             // 
             this.autosaveTimer.Interval = 30000;
             this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
-            // 
-            // ProgressBar
-            // 
-            this.ProgressBar.Location = new System.Drawing.Point(197, 2);
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(726, 23);
-            this.ProgressBar.TabIndex = 24;
-            this.ProgressBar.Visible = false;
             // 
             // tableLayoutPanel1
             // 
@@ -1239,7 +1233,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 332);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 319);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // saveFileDialog
@@ -1250,13 +1244,28 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 347);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(935, 22);
+            this.statusStrip1.TabIndex = 26;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(921, 16);
+            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 369);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModViewer";
@@ -1274,6 +1283,8 @@
             this.toolStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1359,7 +1370,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleEditModeToolStripMenuItem;
-        private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedRecipeToolStripMenuItem;
@@ -1401,6 +1411,8 @@
         private System.Windows.Forms.ToolStripMenuItem openSelectedLegacysJSONToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSelectedEndingsJSONToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSelectedVerbsJSONToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
     }
 }
 

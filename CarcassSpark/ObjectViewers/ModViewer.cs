@@ -105,6 +105,9 @@ namespace CarcassSpark.ObjectViewers
             endingsList.Clear();
             verbsListBox.Items.Clear();
             verbsList.Clear();
+            toolStripProgressBar.Value = 0;
+            toolStripProgressBar.Visible = true;
+            toolStripProgressBar.Maximum = 1;
             if (!isVanilla) checkForManifest();
             if (isVanilla) foreach (string file in Directory.EnumerateFiles(currentDirectory, "*.json", SearchOption.AllDirectories))
             {
@@ -120,6 +123,7 @@ namespace CarcassSpark.ObjectViewers
                     loadFile(fs, file);
                 }
             }
+            toolStripProgressBar.Visible = false;
         }
 
         public void createManifest()
@@ -160,7 +164,6 @@ namespace CarcassSpark.ObjectViewers
 
         public void loadFile(FileStream file, string filePath)
         {
-
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
             string newFileText = JsonConvert.SerializeObject(ht, Formatting.Indented);
@@ -180,6 +183,7 @@ namespace CarcassSpark.ObjectViewers
             switch (fileType)
             {
                 case "elements":
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken element in parsedJToken.First.ToArray())
                     {
                         if (element["xtriggers"] != null)
@@ -198,6 +202,7 @@ namespace CarcassSpark.ObjectViewers
                             Aspect deserializedAspect = element.ToObject<Aspect>();
                             if (!aspectsList.ContainsKey(deserializedAspect.id))
                             {
+                                toolStripProgressBar.PerformStep();
                                 aspectsList.Add(deserializedAspect.id, deserializedAspect);
                                 aspectsListBox.Items.Add(deserializedAspect.id);
                             }
@@ -207,6 +212,7 @@ namespace CarcassSpark.ObjectViewers
                             Aspect deserializedAspect = element.ToObject<Aspect>();
                             if (!aspectsList.ContainsKey(deserializedAspect.id))
                             {
+                                toolStripProgressBar.PerformStep();
                                 aspectsList.Add(deserializedAspect.id, deserializedAspect);
                                 aspectsListBox.Items.Add(deserializedAspect.id);
                             }
@@ -216,6 +222,7 @@ namespace CarcassSpark.ObjectViewers
                             Element deserializedElement = element.ToObject<Element>();
                             if (!elementsList.ContainsKey(deserializedElement.id))
                             {
+                                toolStripProgressBar.PerformStep();
                                 elementsList.Add(deserializedElement.id, deserializedElement);
                                 elementsListBox.Items.Add(deserializedElement.id);
                             }
@@ -223,6 +230,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     return;
                 case "recipes":
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken recipe in parsedJToken.First.ToArray())
                     {
                         // if (recipe["extantreqs"] as JObject != null) foreach (JProperty extantreq in recipe["extantreqs"])
@@ -232,50 +240,59 @@ namespace CarcassSpark.ObjectViewers
                         Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                         if (!recipesList.ContainsKey(deserializedRecipe.id))
                         {
+                            toolStripProgressBar.PerformStep();
                             recipesList.Add(deserializedRecipe.id, deserializedRecipe);
                             recipesListBox.Items.Add(deserializedRecipe.id);
                         }
                     }
                     return;
                 case "decks":
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken deck in parsedJToken.First.ToArray())
                     {
                         Deck deserializedDeck = deck.ToObject<Deck>();
                         if (!decksList.ContainsKey(deserializedDeck.id))
                         {
+                            toolStripProgressBar.PerformStep();
                             decksList.Add(deserializedDeck.id, deserializedDeck);
                             decksListBox.Items.Add(deserializedDeck.id);
                         }
                     }
                     return;
                 case "legacies":
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken legacy in parsedJToken.First.ToArray())
                     {
                         Legacy deserializedLegacy = legacy.ToObject<Legacy>();
                         if (!legaciesList.ContainsKey(deserializedLegacy.id))
                         {
+                            toolStripProgressBar.PerformStep();
                             legaciesList.Add(deserializedLegacy.id, deserializedLegacy);
                             legaciesListBox.Items.Add(deserializedLegacy.id);
                         }
                     }
                     return;
                 case "endings":
-                    foreach(JToken ending in parsedJToken.First.ToArray())
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
+                    foreach (JToken ending in parsedJToken.First.ToArray())
                     {
                         Ending deserializedEnding = ending.ToObject<Ending>();
                         if (!endingsList.ContainsKey(deserializedEnding.id))
                         {
+                            toolStripProgressBar.PerformStep();
                             endingsList.Add(deserializedEnding.id, deserializedEnding);
                             endingsListBox.Items.Add(deserializedEnding.id);
                         }
                     }
                     return;
                 case "verbs":
-                    foreach(JToken verb in parsedJToken.First.ToArray())
+                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
+                    foreach (JToken verb in parsedJToken.First.ToArray())
                     {
                         Verb deserializedVerb = verb.ToObject<Verb>();
                         if (!verbsList.ContainsKey(deserializedVerb.id))
                         {
+                            toolStripProgressBar.PerformStep();
                             verbsList.Add(deserializedVerb.id, deserializedVerb);
                             verbsListBox.Items.Add(deserializedVerb.id);
                         }
@@ -524,7 +541,6 @@ namespace CarcassSpark.ObjectViewers
         
         private void saveMod(object sender, EventArgs e)
         {
-            
             saveMod(currentDirectory);
         }
 
@@ -563,9 +579,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void saveMod(string location)
         {
-            ProgressBar.Value = 0;
-            ProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
-            ProgressBar.Visible = true;
+            toolStripProgressBar.Value = 0;
+            toolStripProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
+            toolStripProgressBar.Visible = true;
             createDirectories(location);
             if (aspectsListBox.Items.Count > 0)
             {
@@ -576,7 +592,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(aspectsJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -594,7 +610,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(elementsJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -612,7 +628,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(recipesJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -630,7 +646,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(decksJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -648,7 +664,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(legaciesJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -666,7 +682,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(endingsJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -684,7 +700,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(verbsJson);
                 }
-                ProgressBar.PerformStep();
+                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -698,8 +714,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 jtw.WriteRaw(manifestJson);
             }
-            ProgressBar.PerformStep();
-            ProgressBar.Visible = false;
+            toolStripProgressBar.PerformStep();
+            toolStripProgressBar.Visible = false;
         }
 
         private void ModViewer_FormClosed(object sender, FormClosedEventArgs e)
