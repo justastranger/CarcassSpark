@@ -37,8 +37,6 @@
             this.labelLabel = new System.Windows.Forms.Label();
             this.imageLabel = new System.Windows.Forms.Label();
             this.flavourLabel = new System.Windows.Forms.Label();
-            this.flavourDomainUpDown = new System.Windows.Forms.DomainUpDown();
-            this.animDomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.animLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
@@ -49,6 +47,8 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
+            this.endindFlavourComboBox = new System.Windows.Forms.ComboBox();
+            this.animComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,9 +65,9 @@
             // labelTextBox
             // 
             this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTextBox.Location = new System.Drawing.Point(273, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(271, 25);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(183, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(185, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
@@ -75,9 +75,9 @@
             // imageTextBox
             // 
             this.imageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.imageTextBox.Location = new System.Drawing.Point(273, 282);
+            this.imageTextBox.Location = new System.Drawing.Point(271, 282);
             this.imageTextBox.Name = "imageTextBox";
-            this.imageTextBox.Size = new System.Drawing.Size(183, 20);
+            this.imageTextBox.Size = new System.Drawing.Size(185, 20);
             this.imageTextBox.TabIndex = 3;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
@@ -86,11 +86,11 @@
             // 
             this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(273, 103);
+            this.descriptionTextBox.Location = new System.Drawing.Point(271, 103);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(372, 153);
+            this.descriptionTextBox.Size = new System.Drawing.Size(374, 153);
             this.descriptionTextBox.TabIndex = 6;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -133,32 +133,6 @@
             this.flavourLabel.Size = new System.Drawing.Size(78, 13);
             this.flavourLabel.TabIndex = 10;
             this.flavourLabel.Text = "Ending Flavour";
-            // 
-            // flavourDomainUpDown
-            // 
-            this.flavourDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.flavourDomainUpDown.Items.Add("None");
-            this.flavourDomainUpDown.Items.Add("Grand");
-            this.flavourDomainUpDown.Items.Add("Melancholy");
-            this.flavourDomainUpDown.Items.Add("Pale");
-            this.flavourDomainUpDown.Items.Add("Vile");
-            this.flavourDomainUpDown.Location = new System.Drawing.Point(273, 64);
-            this.flavourDomainUpDown.Name = "flavourDomainUpDown";
-            this.flavourDomainUpDown.Size = new System.Drawing.Size(183, 20);
-            this.flavourDomainUpDown.TabIndex = 11;
-            this.flavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.flavourDomainUpDown_SelectedItemChanged);
-            // 
-            // animDomainUpDown
-            // 
-            this.animDomainUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.animDomainUpDown.Items.Add("DramaticLight");
-            this.animDomainUpDown.Items.Add("DramaticLightCool");
-            this.animDomainUpDown.Items.Add("DramaticLightEvil");
-            this.animDomainUpDown.Location = new System.Drawing.Point(462, 64);
-            this.animDomainUpDown.Name = "animDomainUpDown";
-            this.animDomainUpDown.Size = new System.Drawing.Size(183, 20);
-            this.animDomainUpDown.TabIndex = 12;
-            this.animDomainUpDown.SelectedItemChanged += new System.EventHandler(this.animDomainUpDown_SelectedItemChanged);
             // 
             // animLabel
             // 
@@ -239,11 +213,11 @@
             // 
             this.commentsTextBox.AcceptsReturn = true;
             this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.commentsTextBox.Location = new System.Drawing.Point(273, 321);
+            this.commentsTextBox.Location = new System.Drawing.Point(271, 321);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(370, 58);
+            this.commentsTextBox.Size = new System.Drawing.Size(372, 58);
             this.commentsTextBox.TabIndex = 19;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
@@ -269,6 +243,34 @@
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
             // 
+            // endindFlavourComboBox
+            // 
+            this.endindFlavourComboBox.FormattingEnabled = true;
+            this.endindFlavourComboBox.Items.AddRange(new object[] {
+            "None",
+            "Grand",
+            "Melancholy",
+            "Pale",
+            "Vile"});
+            this.endindFlavourComboBox.Location = new System.Drawing.Point(271, 64);
+            this.endindFlavourComboBox.Name = "endindFlavourComboBox";
+            this.endindFlavourComboBox.Size = new System.Drawing.Size(185, 21);
+            this.endindFlavourComboBox.TabIndex = 22;
+            this.endindFlavourComboBox.SelectedIndexChanged += new System.EventHandler(this.endindFlavourComboBox_SelectedIndexChanged);
+            // 
+            // animComboBox
+            // 
+            this.animComboBox.FormattingEnabled = true;
+            this.animComboBox.Items.AddRange(new object[] {
+            "DramaticLight",
+            "DramaticLightCool",
+            "DramaticLightEvil"});
+            this.animComboBox.Location = new System.Drawing.Point(462, 64);
+            this.animComboBox.Name = "animComboBox";
+            this.animComboBox.Size = new System.Drawing.Size(181, 21);
+            this.animComboBox.TabIndex = 23;
+            this.animComboBox.SelectedIndexChanged += new System.EventHandler(this.animComboBox_SelectedIndexChanged);
+            // 
             // EndingViewer
             // 
             this.AcceptButton = this.okButton;
@@ -276,6 +278,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(657, 420);
+            this.Controls.Add(this.animComboBox);
+            this.Controls.Add(this.endindFlavourComboBox);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.commentsLabel);
@@ -287,8 +291,6 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.animLabel);
-            this.Controls.Add(this.animDomainUpDown);
-            this.Controls.Add(this.flavourDomainUpDown);
             this.Controls.Add(this.flavourLabel);
             this.Controls.Add(this.imageLabel);
             this.Controls.Add(this.labelLabel);
@@ -317,8 +319,6 @@
         private System.Windows.Forms.Label labelLabel;
         private System.Windows.Forms.Label imageLabel;
         private System.Windows.Forms.Label flavourLabel;
-        private System.Windows.Forms.DomainUpDown flavourDomainUpDown;
-        private System.Windows.Forms.DomainUpDown animDomainUpDown;
         private System.Windows.Forms.Label animLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Button okButton;
@@ -329,5 +329,7 @@
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.CheckBox deletedCheckBox;
+        private System.Windows.Forms.ComboBox endindFlavourComboBox;
+        private System.Windows.Forms.ComboBox animComboBox;
     }
 }

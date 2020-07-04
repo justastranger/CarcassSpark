@@ -97,20 +97,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void flavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
-            displayedEnding.flavour = flavourDomainUpDown.Text;
-            if (displayedEnding.flavour == "")
-            {
-                displayedEnding.flavour = null;
-            }
+            
         }
 
         private void animDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
-            displayedEnding.anim = animDomainUpDown.Text;
-            if (displayedEnding.anim == "")
-            {
-                displayedEnding.anim = null;
-            }
+            
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -161,6 +153,24 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedEnding.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedEnding.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedEnding.deleted = null;
+        }
+
+        private void endindFlavourComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.flavour = endindFlavourComboBox.Text;
+            if (displayedEnding.flavour == "")
+            {
+                displayedEnding.flavour = null;
+            }
+        }
+
+        private void animComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.anim = animComboBox.Text;
+            if (displayedEnding.anim == "")
+            {
+                displayedEnding.anim = null;
+            }
         }
     }
 }
