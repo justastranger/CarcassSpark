@@ -92,7 +92,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!(new Regex("^([a-zA-Z_]+$").IsMatch(displayedManifest.name)))
+            if (!(new Regex("^([a-zA-Z_]+)$").IsMatch(displayedManifest.name)))
             {
                 MessageBox.Show("Mod name should only consist of letters (upper and lowercase) and underscores or else the game will never say that the mod is present when used as a dependency.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
