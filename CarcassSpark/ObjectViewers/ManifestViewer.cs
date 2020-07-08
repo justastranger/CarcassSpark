@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CarcassSpark.ObjectTypes;
+using System.Text.RegularExpressions;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -86,7 +87,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if(dependeniesDataGridView.RowCount > 1)
+            if (displayedManifest.name == null || displayedManifest.name == "")
+            {
+                MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!(new Regex("^([a-zA-Z_]+$").IsMatch(displayedManifest.name)))
+            {
+                MessageBox.Show("Mod name should only consist of letters (upper and lowercase) and underscores or else the game will never say that the mod is present when used as a dependency.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (dependeniesDataGridView.RowCount > 1)
             {
                 displayedManifest.dependencies = new List<string>();
                 foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
@@ -101,8 +111,6 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            displayedManifest.name.Replace(' ', '_');
-            displayedManifest.name.Replace('.', '_');
             Close();
         }
 
