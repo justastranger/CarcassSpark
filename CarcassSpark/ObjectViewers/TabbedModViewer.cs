@@ -17,17 +17,30 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class TabbedModViewer : Form
     {
-        TabPage VanillaTab = new TabPage("Vanilla");
-
         ModViewerTabControl SelectedModViewer;
 
         public TabbedModViewer()
         {
             InitializeComponent();
-            SelectedModViewer = new ModViewerTabControl(Utilities.directoryToVanillaContent, true, false);
-            VanillaTab.Controls.Add(SelectedModViewer);
-            ModViewerTabs.TabPages.Add(VanillaTab);
-            ModViewerTabs.SelectTab(VanillaTab);
+            CreateNewModViewerTab(Utilities.directoryToVanillaContent, true, false);
+        }
+
+        private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
+        {
+            SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
+            TabPage newPage = new TabPage(SelectedModViewer.Content.getName());
+            newPage.Controls.Add(SelectedModViewer);
+            ModViewerTabs.TabPages.Add(newPage);
+            ModViewerTabs.SelectTab(newPage);
+        }
+
+        private void CreateNewModViewerTab(ModViewerTabControl mvtc)
+        {
+            SelectedModViewer = mvtc;
+            TabPage newPage = new TabPage(SelectedModViewer.Content.getName());
+            newPage.Controls.Add(SelectedModViewer);
+            ModViewerTabs.TabPages.Add(newPage);
+            ModViewerTabs.SelectTab(newPage);
         }
 
         private void openModToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,12 +60,9 @@ namespace CarcassSpark.ObjectViewers
                 }
                 if (mvtc != null)
                 {
-                    TabPage newPage = new TabPage(mvtc.Content.getName());
+                    CreateNewModViewerTab(mvtc);
                     Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
-                    newPage.Controls.Add(mvtc);
-                    ModViewerTabs.TabPages.Add(newPage);
                     Settings.saveSettings();
-                    ModViewerTabs.SelectTab(newPage);
                 }
             }
         }
@@ -63,13 +73,21 @@ namespace CarcassSpark.ObjectViewers
             if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = modFolderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
-                TabPage newPage = new TabPage(mvtc.Content.getName());
-                Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
-                newPage.Controls.Add(mvtc);
-                ModViewerTabs.TabPages.Add(newPage);
-                Settings.saveSettings();
-                ModViewerTabs.SelectTab(newPage);
+                ModViewerTabControl mvtc = null;
+                try
+                {
+                    mvtc = new ModViewerTabControl(location, false, true);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Creating Mod");
+                }
+                if (mvtc != null)
+                {
+                    CreateNewModViewerTab(mvtc);
+                    Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
+                    Settings.saveSettings();
+                }
             }
         }
 
