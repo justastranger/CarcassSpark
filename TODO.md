@@ -3,6 +3,10 @@
  - Add support for the other 2 languages
  - Once I figure out how to guarantee that the user has access to the game's assets, switch over to ListView's in the ModViewer form so that everything can be displayed with their icons and sorted similarly to frangiclave (vertically as one segregated ListView)
  - Help button on Viewer forms to help explain the purposes of various properties
+ - "Publish Mod" tool
+   - Compresses mod into archive wherever you tell it to
+   - Prompt for new version number?
+   - Save with CustomManifest property of "release": true
 
  # Property Operations
 

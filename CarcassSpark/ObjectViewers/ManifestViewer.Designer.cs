@@ -240,6 +240,7 @@
             this.MaximizeBox = false;
             this.Name = "ManifestViewer";
             this.Text = "ManifestViewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManifestViewer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

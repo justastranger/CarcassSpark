@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectTypes\ContentSource.cs" />
     <Compile Include="ObjectTypes\Expulsion.cs" />
     <Compile Include="ObjectTypes\Induces.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
@@ -111,6 +112,18 @@
     </Compile>
     <Compile Include="ObjectViewers\AspectViewer.Designer.cs">
       <DependentUpon>AspectViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectViewers\TabbedModViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectViewers\TabbedModViewer.Designer.cs">
+      <DependentUpon>TabbedModViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectViewers\ModViewerTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectViewers\ModViewerTabControl.Designer.cs">
+      <DependentUpon>ModViewerTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectViewers\XTriggerViewer.cs">
       <SubType>Form</SubType>
@@ -269,6 +282,12 @@
     </Compile>
     <EmbeddedResource Include="ObjectViewers\AspectViewer.resx">
       <DependentUpon>AspectViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectViewers\TabbedModViewer.resx">
+      <DependentUpon>TabbedModViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectViewers\ModViewerTabControl.resx">
+      <DependentUpon>ModViewerTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\XTriggerViewer.resx">
       <DependentUpon>XTriggerViewer.cs</DependentUpon>

@@ -1,64 +1,51 @@
 ﻿extern alias CultistSimulator;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CarcassSpark.ObjectTypes;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 using CarcassSpark.DictionaryViewers;
 using CarcassSpark.Flowchart;
 using CarcassSpark.Tools;
-using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Collections;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class ModViewer : Form
+    public partial class ModViewerTabControl : UserControl
     {
         public bool isVanilla, editMode = false;
 
         public ContentSource Content = new ContentSource();
         
-        public ModViewer(string location, bool isVanilla)
+        public ModViewerTabControl(string location, bool isVanilla, bool newMod)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             Content.currentDirectory = location;
-            this.isVanilla = isVanilla;
-            setEditingMode(!isVanilla);
             saveFileDialog.InitialDirectory = location;
             openFileDialog.InitialDirectory = location;
-            refreshContent();
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
-        }
-
-        public ModViewer(bool newMod, string location)
-        {
-            InitializeComponent();
-            Content.currentDirectory = location;
-            if (newMod)
+            this.isVanilla = isVanilla;
+            if (!isVanilla && newMod)
             {
                 createManifest();
-                editMode = true;
             }
             refreshContent();
+            setEditingMode(Content.getCustomManifestBool("EditMode").HasValue ? Content.getCustomManifestBool("EditMode").Value : !isVanilla);
             Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
         }
 
-        public ModViewer(string location)
-        {
-            InitializeComponent();
-            Content.currentDirectory = location;
-            refreshContent();
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
-        }
-
-        void setEditingMode(bool editing)
+        public void setEditingMode(bool editing)
         {
             editMode = editing;
-            toggleEditModeToolStripMenuItem.Checked = editing;
-            toolStrip1.Visible = editing;
             deleteSelectedAspectToolStripMenuItem.Visible = editing;
             deleteSelectedDeckToolStripMenuItem.Visible = editing;
             deleteSelectedElementToolStripMenuItem.Visible = editing;
@@ -73,10 +60,9 @@ namespace CarcassSpark.ObjectViewers
             duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
             duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
             duplicateSelectedVerbToolStripMenuItem.Visible = editing;
-            toggleEditModeToolStripMenuItem.Checked = editing;
         }
 
-        void refreshContent()
+        public void refreshContent()
         {
             aspectsListBox.Items.Clear();
             Content.Aspects.Clear();
@@ -92,25 +78,31 @@ namespace CarcassSpark.ObjectViewers
             Content.Endings.Clear();
             verbsListBox.Items.Clear();
             Content.Verbs.Clear();
-            toolStripProgressBar.Value = 0;
-            toolStripProgressBar.Visible = true;
-            toolStripProgressBar.Maximum = 1;
-            if (!isVanilla) checkForManifest();
-            if (isVanilla) foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
+            if (!isVanilla)
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open))
+                checkForManifest();
+                if (Directory.Exists(Content.currentDirectory + "\\content\\"))
                 {
-                    loadFile(fs, file);
+                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+                    {
+                        using (FileStream fs = new FileStream(file, FileMode.Open))
+                        {
+                            loadFile(fs, file);
+                        }
+                    }
                 }
             }
-            else if (Directory.Exists(Content.currentDirectory + "\\content\\")) foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+            else
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open))
+                Content.manifest = new Manifest("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
                 {
-                    loadFile(fs, file);
+                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    {
+                        loadFile(fs, file);
+                    }
                 }
             }
-            toolStripProgressBar.Visible = false;
         }
 
         public void createManifest()
@@ -119,16 +111,15 @@ namespace CarcassSpark.ObjectViewers
             if (mv.ShowDialog() == DialogResult.OK)
             {
                 Content.manifest = mv.displayedManifest;
-                saveMod(Content.currentDirectory);
+                saveMod();
             }
         }
 
         public void checkForManifest()
         {
-            string manifestPath = Content.currentDirectory + "/manifest.json";
             if (File.Exists(Content.currentDirectory + "/manifest.json"))
             {
-                using (FileStream fs = new FileStream(manifestPath, FileMode.Open))
+                using (FileStream fs = new FileStream(Content.currentDirectory + "/manifest.json", FileMode.Open))
                 {
                     loadManifest(fs);
                 }
@@ -138,6 +129,13 @@ namespace CarcassSpark.ObjectViewers
                 DialogResult dr = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 createManifest();
             }
+            if (File.Exists(Content.currentDirectory + "/CarcassSpark.Manifest.json"))
+            {
+                using (FileStream fs = new FileStream(Content.currentDirectory + "/CarcassSpark.Manifest.json", FileMode.Open))
+                {
+                    loadCustomManifest(fs);
+                }
+            }
         }
 
         public void loadManifest(FileStream file)
@@ -146,6 +144,13 @@ namespace CarcassSpark.ObjectViewers
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
             Content.manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));
             Text = Content.manifest.name;
+        }
+
+        public void loadCustomManifest(FileStream file)
+        {
+            string fileText = new StreamReader(file).ReadToEnd();
+            Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
+            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(ht));
         }
 
         public void loadFile(FileStream file, string filePath)
@@ -169,7 +174,6 @@ namespace CarcassSpark.ObjectViewers
             switch (fileType)
             {
                 case "elements":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken element in parsedJToken.First.ToArray())
                     {
                         if (element["xtriggers"] != null)
@@ -188,7 +192,6 @@ namespace CarcassSpark.ObjectViewers
                             Aspect deserializedAspect = element.ToObject<Aspect>();
                             if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                             {
-                                toolStripProgressBar.PerformStep();
                                 Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
                                 aspectsListBox.Items.Add(deserializedAspect.id);
                             }
@@ -198,7 +201,6 @@ namespace CarcassSpark.ObjectViewers
                             Aspect deserializedAspect = element.ToObject<Aspect>();
                             if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                             {
-                                toolStripProgressBar.PerformStep();
                                 Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
                                 aspectsListBox.Items.Add(deserializedAspect.id);
                             }
@@ -208,7 +210,6 @@ namespace CarcassSpark.ObjectViewers
                             Element deserializedElement = element.ToObject<Element>();
                             if (!Content.Elements.ContainsKey(deserializedElement.id))
                             {
-                                toolStripProgressBar.PerformStep();
                                 Content.Elements.Add(deserializedElement.id, deserializedElement);
                                 elementsListBox.Items.Add(deserializedElement.id);
                             }
@@ -216,65 +217,55 @@ namespace CarcassSpark.ObjectViewers
                     }
                     return;
                 case "recipes":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken recipe in parsedJToken.First.ToArray())
                     {
                         Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                         if (!Content.Recipes.ContainsKey(deserializedRecipe.id))
                         {
-                            toolStripProgressBar.PerformStep();
                             Content.Recipes.Add(deserializedRecipe.id, deserializedRecipe);
                             recipesListBox.Items.Add(deserializedRecipe.id);
                         }
                     }
                     return;
                 case "decks":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken deck in parsedJToken.First.ToArray())
                     {
                         Deck deserializedDeck = deck.ToObject<Deck>();
                         if (!Content.Decks.ContainsKey(deserializedDeck.id))
                         {
-                            toolStripProgressBar.PerformStep();
                             Content.Decks.Add(deserializedDeck.id, deserializedDeck);
                             decksListBox.Items.Add(deserializedDeck.id);
                         }
                     }
                     return;
                 case "legacies":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken legacy in parsedJToken.First.ToArray())
                     {
                         Legacy deserializedLegacy = legacy.ToObject<Legacy>();
                         if (!Content.Legacies.ContainsKey(deserializedLegacy.id))
                         {
-                            toolStripProgressBar.PerformStep();
                             Content.Legacies.Add(deserializedLegacy.id, deserializedLegacy);
                             legaciesListBox.Items.Add(deserializedLegacy.id);
                         }
                     }
                     return;
                 case "endings":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken ending in parsedJToken.First.ToArray())
                     {
                         Ending deserializedEnding = ending.ToObject<Ending>();
                         if (!Content.Endings.ContainsKey(deserializedEnding.id))
                         {
-                            toolStripProgressBar.PerformStep();
                             Content.Endings.Add(deserializedEnding.id, deserializedEnding);
                             endingsListBox.Items.Add(deserializedEnding.id);
                         }
                     }
                     return;
                 case "verbs":
-                    toolStripProgressBar.Maximum += parsedJToken.First.Count();
                     foreach (JToken verb in parsedJToken.First.ToArray())
                     {
                         Verb deserializedVerb = verb.ToObject<Verb>();
                         if (!Content.Verbs.ContainsKey(deserializedVerb.id))
                         {
-                            toolStripProgressBar.PerformStep();
                             Content.Verbs.Add(deserializedVerb.id, deserializedVerb);
                             verbsListBox.Items.Add(deserializedVerb.id);
                         }
@@ -283,245 +274,6 @@ namespace CarcassSpark.ObjectViewers
                 default:
                     break;
             }
-        }
-        
-        public Element getElement(string id)
-        {
-            if (elementExists(id)) return Content.Elements[id];
-            else return null;
-        }
-
-        public bool elementExists(string id)
-        {
-            return Content.Elements.ContainsKey(id);
-        }
-
-        public Deck getDeck(string id)
-        {
-            if (deckExists(id)) return Content.Decks[id];
-            else return null;
-        }
-
-        public bool deckExists(string id)
-        {
-            return Content.Decks.ContainsKey(id);
-        }
-        public Aspect getAspect(string id)
-        {
-            if (aspectExists(id)) return Content.Aspects[id];
-            else return null;
-        }
-
-        public bool aspectExists(string id)
-        {
-            return Content.Aspects.ContainsKey(id);
-        }
-
-        public Legacy getLegacy(string id)
-        {
-            if (legacyExists(id)) return Content.Legacies[id];
-            else return null;
-        }
-
-        public bool legacyExists(string id)
-        {
-            return Content.Legacies.ContainsKey(id);
-        }
-
-        public Recipe getRecipe(string id)
-        {
-            if (recipeExists(id)) return Content.Recipes[id];
-            else return null;
-        }
-
-        public bool recipeExists(string id)
-        {
-            return Content.Recipes.ContainsKey(id);
-        }
-        
-        public Ending getEnding(string id)
-        {
-            if (endingExists(id)) return Content.Endings[id];
-            else return null;
-        }
-
-        public bool endingExists(string id)
-        {
-            return Content.Endings.ContainsKey(id);
-        }
-
-        public Verb getVerb(string id)
-        {
-            if (verbExists(id)) return Content.Verbs[id];
-            else return null;
-        }
-
-        public bool verbExists(string id)
-        {
-            return Content.Verbs.ContainsKey(id);
-        }
-
-        private void aspectListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (aspectsListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), aspectsList_Assign);
-                av.Show();
-            }
-            else
-            {
-                AspectViewer av = new AspectViewer(getAspect(aspectsListBox.SelectedItem.ToString()), null);
-                av.Show();
-            }
-        }
-
-        private void aspectsList_Assign(object sender, Aspect result)
-        {
-            Content.Aspects[result.id] = result;
-            aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
-            // aspectsListBox.SelectedItem = result.id;
-        }
-
-        private void decksListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (decksListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), decksList_Assign);
-                dv.Show();
-            }
-            else
-            {
-                DeckViewer dv = new DeckViewer(getDeck(decksListBox.SelectedItem.ToString()), null);
-                dv.Show();
-            }
-        }
-
-        private void decksList_Assign(object sender, Deck result)
-        {
-            Content.Decks[result.id] = result;
-            decksListBox.Items[decksListBox.SelectedIndex] = result.id;
-        }
-
-        private void elementsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (elementsListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), elementsList_Assign);
-                ev.Show();
-            }
-            else
-            {
-                ElementViewer ev = new ElementViewer(getElement(elementsListBox.SelectedItem.ToString()), null);
-                ev.Show();
-            }
-        }
-
-        private void elementsList_Assign(object sender, Element result)
-        {
-            Content.Elements[result.id] = result;
-            elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
-        }
-
-        private void endingsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (endingsListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), endingsList_Assign);
-                ev.Show();
-            }
-            else
-            {
-                EndingViewer ev = new EndingViewer(getEnding(endingsListBox.SelectedItem.ToString()), null);
-                ev.Show();
-            }
-        }
-
-        private void endingsList_Assign(object sender, Ending result)
-        {
-            Content.Endings[result.id] = result;
-            endingsListBox.Items[endingsListBox.SelectedIndex] = result.id;
-        }
-
-        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (legaciesListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), legaciesList_Assign);
-                lv.Show();
-            }
-            else
-            {
-                LegacyViewer lv = new LegacyViewer(getLegacy(legaciesListBox.SelectedItem.ToString()), null);
-                lv.Show();
-            }
-        }
-
-        private void legaciesList_Assign(object sender, Legacy result)
-        {
-            Content.Legacies[result.id] = result;
-            legaciesListBox.Items[legaciesListBox.SelectedIndex] = result.id;
-        }
-
-        private void recipesListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (recipesListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), recipesList_Assign);
-                rv.Show();
-            }
-            else
-            {
-                RecipeViewer rv = new RecipeViewer(getRecipe(recipesListBox.SelectedItem.ToString()), null);
-                rv.Show();
-            }
-        }
-
-        private void recipesList_Assign(object sender, Recipe result)
-        {
-            Content.Recipes[result.id] = result;
-            recipesListBox.Items[recipesListBox.SelectedIndex] = result.id;
-        }
-
-        private void verbsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (verbsListBox.SelectedItem == null) return;
-            if (editMode)
-            {
-                VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), verbsList_Assign);
-                vv.Show();
-            }
-            else
-            {
-                VerbViewer vv = new VerbViewer(getVerb(verbsListBox.SelectedItem.ToString()), null);
-                vv.Show();
-            }
-        }
-
-        private void verbsList_Assign(object sender, Verb result)
-        {
-            Content.Verbs[result.id] = result;
-            verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
-        }
-
-        private void editManifestToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ManifestViewer mv = new ManifestViewer(Content.manifest);
-            if (mv.ShowDialog() == DialogResult.OK)
-            {
-                Content.manifest = mv.displayedManifest;
-                saveMod(Content.currentDirectory);
-            }
-        }
-        
-        private void saveMod(object sender, EventArgs e)
-        {
-            saveMod(Content.currentDirectory);
         }
 
         private void createDirectories(string modLocation)
@@ -556,11 +308,13 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void saveMod(string location)
+        public void saveMod()
         {
-            toolStripProgressBar.Value = 0;
-            toolStripProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
-            toolStripProgressBar.Visible = true;
+            saveMod(Content.currentDirectory);
+        }
+
+        public void saveMod(string location)
+        {
             createDirectories(location);
             if (aspectsListBox.Items.Count > 0)
             {
@@ -571,7 +325,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(aspectsJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -589,7 +342,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(elementsJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -607,7 +359,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(recipesJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -625,7 +376,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(decksJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -643,7 +393,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(legaciesJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -661,7 +410,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(endingsJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -679,7 +427,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     jtw.WriteRaw(verbsJson);
                 }
-                toolStripProgressBar.PerformStep();
             }
             else
             {
@@ -693,121 +440,166 @@ namespace CarcassSpark.ObjectViewers
             {
                 jtw.WriteRaw(manifestJson);
             }
-            toolStripProgressBar.PerformStep();
-            toolStripProgressBar.Visible = false;
+            if (Content.CustomManifest.Count > 0)
+            {
+                string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/CarcassSpark.Manifest.json", FileMode.Create))))
+                {
+                    jtw.WriteRaw(CustomManifestJson);
+                }
+            }
+            else if (File.Exists(location + "/CarcassSpark.Manifest.json"))
+            {
+                File.Delete(location + "/CarcassSpark.Manifest.json");
+            }
         }
 
-        private void ModViewer_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void aspectListBox_DoubleClick(object sender, EventArgs e)
         {
-            Utilities.ContentSources.Remove(Content.getName());
+            if (aspectsListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                AspectViewer av = new AspectViewer(Content.getAspect(aspectsListBox.SelectedItem.ToString()), aspectsList_Assign);
+                av.Show();
+            }
+            else
+            {
+                AspectViewer av = new AspectViewer(Content.getAspect(aspectsListBox.SelectedItem.ToString()), null);
+                av.Show();
+            }
         }
 
-        private void aspectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AspectViewer av = new AspectViewer(new Aspect(), aspectsList_Add);
-            av.Show();
-        }
-
-        private void aspectsList_Add(object sender, Aspect result)
+        private void aspectsList_Assign(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result;
-            aspectsListBox.Items.Add(result.id);
+            aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
         }
 
-        private void deckToolStripMenuItem_Click(object sender, EventArgs e)
+        private void decksListBox_DoubleClick(object sender, EventArgs e)
         {
-            DeckViewer dv = new DeckViewer(new Deck(), decksList_Add);
-            dv.Show();
+            if (decksListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                DeckViewer dv = new DeckViewer(Content.getDeck(decksListBox.SelectedItem.ToString()), decksList_Assign);
+                dv.Show();
+            }
+            else
+            {
+                DeckViewer dv = new DeckViewer(Content.getDeck(decksListBox.SelectedItem.ToString()), null);
+                dv.Show();
+            }
         }
 
-        private void decksList_Add(object sender, Deck result)
+        private void decksList_Assign(object sender, Deck result)
         {
             Content.Decks[result.id] = result;
-            decksListBox.Items.Add(result.id);
+            decksListBox.Items[decksListBox.SelectedIndex] = result.id;
         }
 
-        private void elementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void elementsListBox_DoubleClick(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(new Element(), elementsList_Add);
-            ev.Show();
+            if (elementsListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                ElementViewer ev = new ElementViewer(Content.getElement(elementsListBox.SelectedItem.ToString()), elementsList_Assign);
+                ev.Show();
+            }
+            else
+            {
+                ElementViewer ev = new ElementViewer(Content.getElement(elementsListBox.SelectedItem.ToString()), null);
+                ev.Show();
+            }
         }
 
-        private void elementsList_Add(object sender, Element result)
+        private void elementsList_Assign(object sender, Element result)
         {
             Content.Elements[result.id] = result;
-            elementsListBox.Items.Add(result.id);
+            elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
         }
 
-        private void endingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void endingsListBox_DoubleClick(object sender, EventArgs e)
         {
-            EndingViewer ev = new EndingViewer(new Ending(), endingsList_Add);
-            ev.Show();
+            if (endingsListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                EndingViewer ev = new EndingViewer(Content.getEnding(endingsListBox.SelectedItem.ToString()), endingsList_Assign);
+                ev.Show();
+            }
+            else
+            {
+                EndingViewer ev = new EndingViewer(Content.getEnding(endingsListBox.SelectedItem.ToString()), null);
+                ev.Show();
+            }
         }
 
-        private void endingsList_Add(object sender, Ending result)
+        private void endingsList_Assign(object sender, Ending result)
         {
             Content.Endings[result.id] = result;
-            endingsListBox.Items.Add(result.id);
+            endingsListBox.Items[endingsListBox.SelectedIndex] = result.id;
         }
 
-        private void legacyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void legaciesListBox_DoubleClick(object sender, EventArgs e)
         {
-            LegacyViewer lv = new LegacyViewer(new Legacy(), legaciesList_Add);
-            lv.Show();
+            if (legaciesListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                LegacyViewer lv = new LegacyViewer(Content.getLegacy(legaciesListBox.SelectedItem.ToString()), legaciesList_Assign);
+                lv.Show();
+            }
+            else
+            {
+                LegacyViewer lv = new LegacyViewer(Content.getLegacy(legaciesListBox.SelectedItem.ToString()), null);
+                lv.Show();
+            }
         }
 
-        private void legaciesList_Add(object sender, Legacy result)
+        private void legaciesList_Assign(object sender, Legacy result)
         {
             Content.Legacies[result.id] = result;
-            legaciesListBox.Items.Add(result.id);
+            legaciesListBox.Items[legaciesListBox.SelectedIndex] = result.id;
         }
 
-        private void recipeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void recipesListBox_DoubleClick(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(new Recipe(), recipesList_Add);
-            rv.Show();
+            if (recipesListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                RecipeViewer rv = new RecipeViewer(Content.getRecipe(recipesListBox.SelectedItem.ToString()), recipesList_Assign);
+                rv.Show();
+            }
+            else
+            {
+                RecipeViewer rv = new RecipeViewer(Content.getRecipe(recipesListBox.SelectedItem.ToString()), null);
+                rv.Show();
+            }
         }
 
-        private void recipesList_Add(object sender, Recipe result)
+        private void recipesList_Assign(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result;
-            recipesListBox.Items.Add(result.id);
+            recipesListBox.Items[recipesListBox.SelectedIndex] = result.id;
         }
 
-        private void verbToolStripMenuItem_Click(object sender, EventArgs e)
+        private void verbsListBox_DoubleClick(object sender, EventArgs e)
         {
-            VerbViewer vv = new VerbViewer(new Verb(), verbsList_Add);
-            vv.Show();
+            if (verbsListBox.SelectedItem == null) return;
+            if (editMode)
+            {
+                VerbViewer vv = new VerbViewer(Content.getVerb(verbsListBox.SelectedItem.ToString()), verbsList_Assign);
+                vv.Show();
+            }
+            else
+            {
+                VerbViewer vv = new VerbViewer(Content.getVerb(verbsListBox.SelectedItem.ToString()), null);
+                vv.Show();
+            }
         }
 
-        private void verbsList_Add(object sender, Verb result)
+        private void verbsList_Assign(object sender, Verb result)
         {
             Content.Verbs[result.id] = result;
-            verbsListBox.Items.Add(result.id);
-        }
-
-        private void reloadContentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            refreshContent();
-        }
-
-        private void summonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SummonCreator sc = new SummonCreator();
-            if (sc.ShowDialog() == DialogResult.OK)
-            {
-                elementsListBox.Items.Add(sc.baseSummon.id);
-                Content.Elements.Add(sc.baseSummon.id, sc.baseSummon);
-
-                elementsListBox.Items.Add(sc.preSummon.id);
-                Content.Elements.Add(sc.preSummon.id, sc.preSummon);
-
-                recipesListBox.Items.Add(sc.startSummon.id);
-                Content.Recipes.Add(sc.startSummon.id, sc.startSummon);
-
-                recipesListBox.Items.Add(sc.succeedSummon.id);
-                Content.Recipes.Add(sc.succeedSummon.id, sc.succeedSummon);
-            }
+            verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
         }
 
         private void aspectsSearchTextBox_TextChanged(object sender, EventArgs e)
@@ -915,7 +707,7 @@ namespace CarcassSpark.ObjectViewers
                     where regex.IsMatch(id)
                     select id).ToArray();
         }
-        
+
         private void elementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
@@ -988,7 +780,7 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.aspects != null &&(recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0))
+                if (recipe.aspects != null && (recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -996,6 +788,21 @@ namespace CarcassSpark.ObjectViewers
                 {
                     tmp.Add(recipe.id, recipe);
                 }
+            }
+            if (tmp.Count > 0)
+            {
+                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
+                rdr.Show();
+            }
+        }
+        
+        private void slotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListBox.SelectedItem == null) return;
+            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            foreach (Element element in Content.Elements.Values)
+            {
+                // TODO foreach (slot in element.slots) if (slot.requirements.contains(id)) tmp.add(element.id, element)
             }
             if (tmp.Count > 0)
             {
@@ -1140,19 +947,19 @@ namespace CarcassSpark.ObjectViewers
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.linked != null) foreach (RecipeLink link in recipe.linked)
-                {
-                    if (link.id == recipesListBox.SelectedItem.ToString())
                     {
-                        tmp.Add(recipe.id, recipe);
+                        if (link.id == recipesListBox.SelectedItem.ToString())
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
                     }
-                }
                 if (recipe.alternativerecipes != null) foreach (RecipeLink link in recipe.alternativerecipes)
-                {
-                    if (link.id == recipesListBox.SelectedItem.ToString())
                     {
-                        tmp.Add(recipe.id, recipe);
+                        if (link.id == recipesListBox.SelectedItem.ToString())
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
                     }
-                }
             }
             if (tmp.Count > 0)
             {
@@ -1222,9 +1029,9 @@ namespace CarcassSpark.ObjectViewers
             foreach (Element element in Content.Elements.Values)
             {
                 if (element.slots != null) foreach (Slot slot in element.slots)
-                {
-                    if (slot.actionId == verbsListBox.SelectedItem.ToString() && !tmp.ContainsKey(element.id)) tmp.Add(element.id, element);
-                }
+                    {
+                        if (slot.actionId == verbsListBox.SelectedItem.ToString() && !tmp.ContainsKey(element.id)) tmp.Add(element.id, element);
+                    }
             }
             if (tmp.Count > 0)
             {
@@ -1236,7 +1043,7 @@ namespace CarcassSpark.ObjectViewers
         private void viewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            Recipe selectedRecipe = Utilities.getRecipe(recipesListBox.SelectedItem.ToString());
+            Recipe selectedRecipe = Content.getRecipe(recipesListBox.SelectedItem.ToString());
             RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(selectedRecipe);
             rfv.Show();
         }
@@ -1250,17 +1057,11 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void toggleAutosaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toggleAutosaveToolStripMenuItem.Checked = !toggleAutosaveToolStripMenuItem.Checked;
-            autosaveTimer.Enabled = toggleAutosaveToolStripMenuItem.Enabled;
-        }
-
         private void autosaveTimer_Tick(object sender, EventArgs e)
         {
-            saveMod(Content.currentDirectory);
+            saveMod();
         }
-        
+
         private void deleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
@@ -1335,13 +1136,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ModViewer_Shown(object sender, EventArgs e)
+        public DialogResult confirmDelete(string id)
         {
-            if (isVanilla) return;
-            else if (Content.manifest != null) return;
-            else Close();
+            if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
+            return MessageBox.Show("Are you sure you'd like to delete " + id + "?", "Delete Item", MessageBoxButtons.YesNo);
         }
-        
+
         public void deleted(string id)
         {
             MessageBox.Show(id + "has been deleted.");
@@ -1431,10 +1231,88 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void toggleEditModeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toggleEditModeToolStripMenuItem.Checked = !toggleEditModeToolStripMenuItem.Checked;
-            editMode = toggleEditModeToolStripMenuItem.Checked;
+            Aspect aspectToEdit = Content.getAspect(aspectsListBox.SelectedItem as string);
+            if (aspectToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
+                Content.Aspects[aspectsListBox.SelectedItem as string] = deserializedAspect;
+            }
+        }
+
+        private void openSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element elementToEdit = Content.getElement(elementsListBox.SelectedItem as string);
+            if (elementToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
+                Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
+            }
+        }
+
+        private void openSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe recipeToEdit = Content.getRecipe(recipesListBox.SelectedItem as string);
+            if (recipeToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
+                Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
+            }
+        }
+
+        private void openSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck deckToEdit = Content.getDeck(decksListBox.SelectedItem as string);
+            if (deckToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
+                Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
+            }
+        }
+
+        private void openSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy legacyToEdit = Content.getLegacy(legaciesListBox.SelectedItem as string);
+            if (legacyToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
+                Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
+            }
+        }
+
+        private void openSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending endingToEdit = Content.getEnding(endingsListBox.SelectedItem as string);
+            if (endingToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
+                Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
+            }
+        }
+
+        private void openSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb verbToEdit = Content.getVerb(verbsListBox.SelectedItem as string);
+            if (verbToEdit == null) return;
+            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), true, !editMode);
+            if (je.ShowDialog() == DialogResult.OK)
+            {
+                Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
+                Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
+            }
         }
 
         private void duplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1445,7 +1323,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 id += "_";
                 int tmp = 1;
-                while (aspectsListBox.Items.Contains(id+tmp.ToString()))
+                while (aspectsListBox.Items.Contains(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -1458,8 +1336,6 @@ namespace CarcassSpark.ObjectViewers
             newAspect.id = id;
             aspectsListBox.Items.Add(newAspect.id);
             Content.Aspects.Add(newAspect.id, newAspect);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1483,8 +1359,6 @@ namespace CarcassSpark.ObjectViewers
             newElement.id = id;
             elementsListBox.Items.Add(newElement.id);
             Content.Elements.Add(newElement.id, newElement);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1508,8 +1382,6 @@ namespace CarcassSpark.ObjectViewers
             newRecipe.id = id;
             recipesListBox.Items.Add(newRecipe.id);
             Content.Recipes.Add(newRecipe.id, newRecipe);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1533,8 +1405,6 @@ namespace CarcassSpark.ObjectViewers
             newDeck.id = id;
             decksListBox.Items.Add(newDeck.id);
             Content.Decks.Add(newDeck.id, newDeck);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1558,8 +1428,6 @@ namespace CarcassSpark.ObjectViewers
             newLegacy.id = id;
             legaciesListBox.Items.Add(newLegacy.id);
             Content.Legacies.Add(newLegacy.id, newLegacy);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1583,8 +1451,6 @@ namespace CarcassSpark.ObjectViewers
             newEnding.id = id;
             endingsListBox.Items.Add(newEnding.id);
             Content.Endings.Add(newEnding.id, newEnding);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
         private void duplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1608,83 +1474,55 @@ namespace CarcassSpark.ObjectViewers
             newVerb.id = id;
             verbsListBox.Items.Add(newVerb.id);
             Content.Verbs.Add(newVerb.id, newVerb);
-            // saveMod(currentDirectory);
-            // refreshContent();
         }
 
-        private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ImageImporter ii = new ImageImporter();
-            if (ii.ShowDialog() == DialogResult.OK)
-            {
-                switch (ii.displayedImageType.ToLower())
-                {
-                    case "aspect":
-                        File.Copy(ii.displayedImagePath, Content.currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName, true);
-                        break;
-                    case "element":
-                        File.Copy(ii.displayedImagePath, Content.currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName, true);
-                        break;
-                    case "ending":
-                        File.Copy(ii.displayedImagePath, Content.currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName, true);
-                        break;
-                    case "legacy":
-                        File.Copy(ii.displayedImagePath, Content.currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName, true);
-                        break;
-                    case "verb":
-                        File.Copy(ii.displayedImagePath, Content.currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName, true);
-                        break;
-                }
-                MessageBox.Show("Imported " + ii.displayedImageType + " image.");
-            }
-        }
 
         private void exportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            Aspect exportedAspect = Content.getAspect(aspectsListBox.SelectedItem as string);
             if (exportedAspect == null) return;
             exportObject(exportedAspect, exportedAspect.id);
         }
 
         private void exportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            Element exportedElement = Content.getElement(elementsListBox.SelectedItem as string);
             if (exportedElement == null) return;
             exportObject(exportedElement, exportedElement.id);
         }
 
         private void exportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            Recipe exportedRecipe = Content.getRecipe(recipesListBox.SelectedItem as string);
             if (exportedRecipe == null) return;
             exportObject(exportedRecipe, exportedRecipe.id);
         }
 
         private void exportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            Deck exportedDeck = Content.getDeck(decksListBox.SelectedItem as string);
             if (exportedDeck == null) return;
             exportObject(exportedDeck, exportedDeck.id);
         }
 
         private void exportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            Legacy exportedLegacy = Content.getLegacy(legaciesListBox.SelectedItem as string);
             if (exportedLegacy == null) return;
             exportObject(exportedLegacy, exportedLegacy.id);
         }
 
         private void exportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            Ending exportedEnding = Content.getEnding(endingsListBox.SelectedItem as string);
             if (exportedEnding == null) return;
             exportObject(exportedEnding, exportedEnding.id);
         }
 
         private void exportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (getVerb(verbsListBox.SelectedItem as string) == null) return;
-            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            if (Content.getVerb(verbsListBox.SelectedItem as string) == null) return;
+            Verb exportedVerb = Content.getVerb(verbsListBox.SelectedItem as string);
             exportObject(exportedVerb, exportedVerb.id);
         }
 
@@ -1700,175 +1538,7 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
         }
-
-        private void aspectToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (aspectsListBox.Items.Contains(deserializedAspect.id))
-                    {
-                        MessageBox.Show("Aspect already exists, overwriting.");
-                    }
-                    else
-                    {
-                        aspectsListBox.Items.Add(deserializedAspect.id);
-                    }
-                    Content.Aspects[deserializedAspect.id] = deserializedAspect;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Aspect");
-                }
-            }
-        }
-
-        private void elementToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (elementsListBox.Items.Contains(deserializedElement.id))
-                    {
-                        MessageBox.Show("Element already exists, overwriting.");
-                    }
-                    else
-                    {
-                        elementsListBox.Items.Add(deserializedElement.id);
-                    }
-                    Content.Elements[deserializedElement.id] = deserializedElement;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Element");
-                }
-            }
-        }
-
-        private void recipeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (recipesListBox.Items.Contains(deserializedRecipe.id))
-                    {
-                        MessageBox.Show("Recipe already exists, overwriting.");
-                    }
-                    else
-                    {
-                        recipesListBox.Items.Add(deserializedRecipe.id);
-                    }
-                    Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Recipe");
-                }
-            }
-        }
-
-        private void deckToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (decksListBox.Items.Contains(deserializedDeck.id))
-                    {
-                        MessageBox.Show("Deck already exists, overwriting.");
-                    }
-                    else
-                    {
-                        decksListBox.Items.Add(deserializedDeck.id);
-                    }
-                    Content.Decks[deserializedDeck.id] = deserializedDeck;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Deck");
-                }
-            }
-        }
-
-        private void legacyToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (legaciesListBox.Items.Contains(deserializedLegacy.id))
-                    {
-                        MessageBox.Show("Legacy already exists, overwriting.");
-                    }
-                    else
-                    {
-                        legaciesListBox.Items.Add(deserializedLegacy.id);
-                    }
-                    Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Legacy");
-                }
-            }
-        }
-
-        private void endingToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (endingsListBox.Items.Contains(deserializedEnding.id))
-                    {
-                        MessageBox.Show("Ending already exists, overwriting.");
-                    }
-                    else
-                    {
-                        endingsListBox.Items.Add(deserializedEnding.id);
-                    }
-                    Content.Endings[deserializedEnding.id] = deserializedEnding;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Ending");
-                }
-            }
-        }
-
-        private void verbToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (verbsListBox.Items.Contains(deserializedVerb.id))
-                    {
-                        MessageBox.Show("Verb already exists, overwriting.");
-                    }
-                    else
-                    {
-                        verbsListBox.Items.Add(deserializedVerb.id);
-                    }
-                    Content.Verbs[deserializedVerb.id] = deserializedVerb;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Verb");
-                }
-            }
-        }
-
+        
         public void copyObjectJSONToClipboard(object objectToExport)
         {
             string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
@@ -1878,7 +1548,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListBox.SelectedItem == null) return;
-            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            Aspect exportedAspect = Content.getAspect(aspectsListBox.SelectedItem as string);
             if (exportedAspect == null) return;
             copyObjectJSONToClipboard(exportedAspect);
         }
@@ -1886,7 +1556,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListBox.SelectedItem == null) return;
-            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            Element exportedElement = Content.getElement(elementsListBox.SelectedItem as string);
             if (exportedElement == null) return;
             copyObjectJSONToClipboard(exportedElement);
         }
@@ -1894,7 +1564,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListBox.SelectedItem == null) return;
-            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            Recipe exportedRecipe = Content.getRecipe(recipesListBox.SelectedItem as string);
             if (exportedRecipe == null) return;
             copyObjectJSONToClipboard(exportedRecipe);
         }
@@ -1902,7 +1572,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListBox.SelectedItem == null) return;
-            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            Deck exportedDeck = Content.getDeck(decksListBox.SelectedItem as string);
             if (exportedDeck == null) return;
             copyObjectJSONToClipboard(exportedDeck);
         }
@@ -1910,7 +1580,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListBox.SelectedItem == null) return;
-            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            Legacy exportedLegacy = Content.getLegacy(legaciesListBox.SelectedItem as string);
             if (exportedLegacy == null) return;
             copyObjectJSONToClipboard(exportedLegacy);
         }
@@ -1918,7 +1588,7 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListBox.SelectedItem == null) return;
-            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            Ending exportedEnding = Content.getEnding(endingsListBox.SelectedItem as string);
             if (exportedEnding == null) return;
             copyObjectJSONToClipboard(exportedEnding);
         }
@@ -1926,175 +1596,51 @@ namespace CarcassSpark.ObjectViewers
         private void copySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListBox.SelectedItem == null) return;
-            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            Verb exportedVerb = Content.getVerb(verbsListBox.SelectedItem as string);
             if (exportedVerb == null) return;
             copyObjectJSONToClipboard(exportedVerb);
         }
-
-        private void fromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        public void aspectsList_Add(object sender, Aspect result)
         {
-            if (!Clipboard.ContainsText()) return;
-            JsonEditor je = new JsonEditor(Clipboard.GetText());
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                switch (je.objectType)
-                {
-                    case "Aspect":
-                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                        Content.Aspects[deserializedAspect.id] = deserializedAspect;
-                        if (!aspectsListBox.Items.Contains(deserializedAspect.id))
-                        {
-                            aspectsListBox.Items.Add(deserializedAspect.id);
-                        }
-                        break;
-                    case "Element":
-                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                        Content.Elements[deserializedElement.id] = deserializedElement;
-                        if (!elementsListBox.Items.Contains(deserializedElement.id))
-                        {
-                            elementsListBox.Items.Add(deserializedElement.id);
-                        }
-                        break;
-                    case "Recipe":
-                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                        Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
-                        if (!recipesListBox.Items.Contains(deserializedRecipe.id))
-                        {
-                            recipesListBox.Items.Add(deserializedRecipe.id);
-                        }
-                        break;
-                    case "Deck":
-                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                        Content.Decks[deserializedDeck.id] = deserializedDeck;
-                        if (!decksListBox.Items.Contains(deserializedDeck.id))
-                        {
-                            decksListBox.Items.Add(deserializedDeck.id);
-                        }
-                        break;
-                    case "Legacy":
-                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                        Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
-                        if (!legaciesListBox.Items.Contains(deserializedLegacy.id))
-                        {
-                            legaciesListBox.Items.Add(deserializedLegacy.id);
-                        }
-                        break;
-                    case "Ending":
-                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                        Content.Endings[deserializedEnding.id] = deserializedEnding;
-                        if (!endingsListBox.Items.Contains(deserializedEnding.id))
-                        {
-                            endingsListBox.Items.Add(deserializedEnding.id);
-                        }
-                        break;
-                    case "Verb":
-                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                        Content.Verbs[deserializedVerb.id] = deserializedVerb;
-                        if (!verbsListBox.Items.Contains(deserializedVerb.id))
-                        {
-                            verbsListBox.Items.Add(deserializedVerb.id);
-                        }
-                        break;
-                    default:
-                        MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
-                }
-            }
+            Content.Aspects[result.id] = result;
+            aspectsListBox.Items.Add(result.id);
         }
 
-        private void editSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void decksList_Add(object sender, Deck result)
         {
-            Aspect aspectToEdit = getAspect(aspectsListBox.SelectedItem as string);
-            if (aspectToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                Content.Aspects[aspectsListBox.SelectedItem as string] = deserializedAspect;
-            }
+            Content.Decks[result.id] = result;
+            decksListBox.Items.Add(result.id);
         }
 
-        private void editSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void elementsList_Add(object sender, Element result)
         {
-            Element elementToEdit = getElement(elementsListBox.SelectedItem as string);
-            if (elementToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
-            }
+            Content.Elements[result.id] = result;
+            elementsListBox.Items.Add(result.id);
         }
 
-        private void editSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void endingsList_Add(object sender, Ending result)
         {
-            Recipe recipeToEdit = getRecipe(recipesListBox.SelectedItem as string);
-            if (recipeToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
-            }
+            Content.Endings[result.id] = result;
+            endingsListBox.Items.Add(result.id);
         }
 
-        private void editSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void legaciesList_Add(object sender, Legacy result)
         {
-            Deck deckToEdit = getDeck(decksListBox.SelectedItem as string);
-            if (deckToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
-            }
+            Content.Legacies[result.id] = result;
+            legaciesListBox.Items.Add(result.id);
         }
 
-        private void editSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void recipesList_Add(object sender, Recipe result)
         {
-            Legacy legacyToEdit = getLegacy(legaciesListBox.SelectedItem as string);
-            if (legacyToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
-            }
+            Content.Recipes[result.id] = result;
+            recipesListBox.Items.Add(result.id);
         }
 
-        private void editSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        public void verbsList_Add(object sender, Verb result)
         {
-            Ending endingToEdit = getEnding(endingsListBox.SelectedItem as string);
-            if (endingToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
-            }
-        }
-
-        private void editSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Verb verbToEdit = getVerb(verbsListBox.SelectedItem as string);
-            if (verbToEdit == null) return;
-            JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
-            }
-        }
-
-        private void slotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public DialogResult confirmDelete(string id)
-        {
-            if (id == null) return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
-            return MessageBox.Show("Are you sure you'd like to delete " + id + "?", "Delete Item", MessageBoxButtons.YesNo);
+            Content.Verbs[result.id] = result;
+            verbsListBox.Items.Add(result.id);
         }
     }
 }

@@ -87,11 +87,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (displayedManifest.name == null || displayedManifest.name == "")
-            {
-                MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             if (!(new Regex("^([a-zA-Z_]+)$").IsMatch(displayedManifest.name)))
             {
                 MessageBox.Show("Mod name should only consist of letters (upper and lowercase) and underscores or else the game will never say that the mod is present when used as a dependency.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -117,6 +112,15 @@ namespace CarcassSpark.ObjectViewers
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ManifestViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (displayedManifest.name == null || displayedManifest.name == "")
+            {
+                MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true;
+            }
         }
     }
 }

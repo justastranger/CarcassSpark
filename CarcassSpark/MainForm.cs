@@ -31,13 +31,13 @@ namespace CarcassSpark
             if (Settings.settings["openWithVanilla"] != null && Settings.settings["openWithVanilla"].ToObject<bool>())
             {
                 ModViewer mv = new ModViewer(directoryToVanillaContent, true);
-                Utilities.currentMods.Add(mv);
+                // Utilities.currentMods.Add(mv);
                 mv.Show();
             }
             if (Settings.settings["rememberPreviousMod"] != null && Settings.settings["rememberPreviousMod"].ToObject<bool>())
             {
                 ModViewer mv = new ModViewer(Settings.settings["previousMod"].ToString(), false);
-                Utilities.currentMods.Add(mv);
+                // Utilities.currentMods.Add(mv);
                 mv.Show();
             }
         }
@@ -45,7 +45,7 @@ namespace CarcassSpark
         private void loadVanillaButton_Click(object sender, EventArgs e)
         {
             ModViewer mv = new ModViewer(directoryToVanillaContent, true);
-            Utilities.currentMods.Add(mv);
+            // Utilities.currentMods.Add(mv);
             mv.Show();
         }
 
@@ -57,8 +57,7 @@ namespace CarcassSpark
             {
                 string location = modFolderBrowserDialog.SelectedPath;
                 ModViewer mv = new ModViewer(location, false);
-                Utilities.currentMods.Add(mv);
-                Settings.settings["previousMod"] = mv.currentDirectory;
+                Settings.settings["previousMod"] = location;
                 mv.Show();
                 Settings.saveSettings();
             }
@@ -77,11 +76,16 @@ namespace CarcassSpark
             {
                 string location = modFolderBrowserDialog.SelectedPath;
                 ModViewer mv = new ModViewer(true, location);
-                Utilities.currentMods.Add(mv);
-                Settings.settings["previousMod"] = mv.currentDirectory;
+                Settings.settings["previousMod"] = location;
                 mv.Show();
                 Settings.saveSettings();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TabbedModViewer tmv = new TabbedModViewer();
+            tmv.Show();
         }
     }
 }

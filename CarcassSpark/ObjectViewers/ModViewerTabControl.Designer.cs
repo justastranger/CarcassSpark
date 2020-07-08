@@ -1,13 +1,13 @@
 ﻿namespace CarcassSpark.ObjectViewers
 {
-    partial class ModViewer
+    partial class ModViewerTabControl
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,16 +20,16 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModViewer));
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.aspectsListBox = new System.Windows.Forms.ListBox();
             this.aspectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,8 +43,6 @@
             this.exportSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyAspectJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedAspectsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspectsLabel = new System.Windows.Forms.Label();
-            this.elementsLabel = new System.Windows.Forms.Label();
             this.elementsListBox = new System.Windows.Forms.ListBox();
             this.elementContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +58,6 @@
             this.exportSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyElementJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedElementsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesLabel = new System.Windows.Forms.Label();
             this.recipesListBox = new System.Windows.Forms.ListBox();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +68,6 @@
             this.exportSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyRecipeJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedRecipesJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.decksLabel = new System.Windows.Forms.Label();
             this.decksListBox = new System.Windows.Forms.ListBox();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +77,6 @@
             this.exportSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyDeckJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedDecksJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.legaciesLabel = new System.Windows.Forms.Label();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +93,6 @@
             this.exportSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedEndingsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,49 +103,25 @@
             this.exportSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySelectedVerbJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedVerbsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verbsLabel = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toggleAutosaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newItemToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.aspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.elementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.fromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.elementToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.deckToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.legacyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.endingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.verbToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspectsSearchTextBox = new System.Windows.Forms.TextBox();
-            this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
-            this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
-            this.decksSearchTextBox = new System.Windows.Forms.TextBox();
-            this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
-            this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.legaciesLabel = new System.Windows.Forms.Label();
+            this.endingsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.decksLabel = new System.Windows.Forms.Label();
+            this.legaciesSearchTextBox = new System.Windows.Forms.TextBox();
+            this.recipesLabel = new System.Windows.Forms.Label();
+            this.elementsLabel = new System.Windows.Forms.Label();
+            this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
+            this.aspectsLabel = new System.Windows.Forms.Label();
+            this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.aspectsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.decksSearchTextBox = new System.Windows.Forms.TextBox();
+            this.verbsLabel = new System.Windows.Forms.Label();
             this.autosaveTimer = new System.Windows.Forms.Timer(this.components);
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.tableLayoutPanel1.SuspendLayout();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -159,10 +129,49 @@
             this.legacyContextMenuStrip.SuspendLayout();
             this.endingContextMenuStrip.SuspendLayout();
             this.verbContextMenuStrip.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28652F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28081F));
+            this.tableLayoutPanel1.Controls.Add(this.aspectsListBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.elementsListBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.recipesListBox, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.decksListBox, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.legaciesListBox, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.endingsListBox, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.verbsListBox, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.endingsLabel, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.verbsSearchTextBox, 6, 2);
+            this.tableLayoutPanel1.Controls.Add(this.legaciesLabel, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.endingsSearchTextBox, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.decksLabel, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.legaciesSearchTextBox, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.recipesLabel, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.elementsLabel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.recipesSearchTextBox, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.elementsSearchTextBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.aspectsSearchTextBox, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.decksSearchTextBox, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.verbsLabel, 6, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(853, 422);
+            this.tableLayoutPanel1.TabIndex = 27;
             // 
             // aspectsListBox
             // 
@@ -172,7 +181,7 @@
             this.aspectsListBox.Location = new System.Drawing.Point(3, 16);
             this.aspectsListBox.Name = "aspectsListBox";
             this.aspectsListBox.ScrollAlwaysVisible = true;
-            this.aspectsListBox.Size = new System.Drawing.Size(125, 274);
+            this.aspectsListBox.Size = new System.Drawing.Size(115, 377);
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
             this.aspectsListBox.DoubleClick += new System.EventHandler(this.aspectListBox_DoubleClick);
@@ -280,37 +289,17 @@
             this.openSelectedAspectsJSONToolStripMenuItem.Name = "openSelectedAspectsJSONToolStripMenuItem";
             this.openSelectedAspectsJSONToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.openSelectedAspectsJSONToolStripMenuItem.Text = "Open Selected Aspect\'s JSON";
-            this.openSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedAspectsJSONToolStripMenuItem_Click);
-            // 
-            // aspectsLabel
-            // 
-            this.aspectsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aspectsLabel.Location = new System.Drawing.Point(3, 0);
-            this.aspectsLabel.Name = "aspectsLabel";
-            this.aspectsLabel.Size = new System.Drawing.Size(125, 13);
-            this.aspectsLabel.TabIndex = 2;
-            this.aspectsLabel.Text = "Aspects";
-            this.aspectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // elementsLabel
-            // 
-            this.elementsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementsLabel.Location = new System.Drawing.Point(134, 0);
-            this.elementsLabel.Name = "elementsLabel";
-            this.elementsLabel.Size = new System.Drawing.Size(125, 13);
-            this.elementsLabel.TabIndex = 3;
-            this.elementsLabel.Text = "Elements";
-            this.elementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedAspectsJSONToolStripMenuItem_Click);
             // 
             // elementsListBox
             // 
             this.elementsListBox.ContextMenuStrip = this.elementContextMenuStrip;
             this.elementsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementsListBox.FormattingEnabled = true;
-            this.elementsListBox.Location = new System.Drawing.Point(134, 16);
+            this.elementsListBox.Location = new System.Drawing.Point(124, 16);
             this.elementsListBox.Name = "elementsListBox";
             this.elementsListBox.ScrollAlwaysVisible = true;
-            this.elementsListBox.Size = new System.Drawing.Size(125, 274);
+            this.elementsListBox.Size = new System.Drawing.Size(115, 377);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             this.elementsListBox.DoubleClick += new System.EventHandler(this.elementsListBox_DoubleClick);
@@ -390,6 +379,7 @@
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Name = "elementsWithSlotsThatRequireThisElementToolStripMenuItem";
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Text = "Elements with Slots that require this element";
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.slotsRequiringThisAspectToolStripMenuItem_Click);
             // 
             // deleteSelectedElementToolStripMenuItem
             // 
@@ -427,27 +417,17 @@
             this.openSelectedElementsJSONToolStripMenuItem.Name = "openSelectedElementsJSONToolStripMenuItem";
             this.openSelectedElementsJSONToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.openSelectedElementsJSONToolStripMenuItem.Text = "Open Selected Element\'s JSON";
-            this.openSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedElementsJSONToolStripMenuItem_Click);
-            // 
-            // recipesLabel
-            // 
-            this.recipesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recipesLabel.Location = new System.Drawing.Point(265, 0);
-            this.recipesLabel.Name = "recipesLabel";
-            this.recipesLabel.Size = new System.Drawing.Size(125, 13);
-            this.recipesLabel.TabIndex = 5;
-            this.recipesLabel.Text = "Recipes";
-            this.recipesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedElementsJSONToolStripMenuItem_Click);
             // 
             // recipesListBox
             // 
             this.recipesListBox.ContextMenuStrip = this.recipeContextMenuStrip;
             this.recipesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recipesListBox.FormattingEnabled = true;
-            this.recipesListBox.Location = new System.Drawing.Point(265, 16);
+            this.recipesListBox.Location = new System.Drawing.Point(245, 16);
             this.recipesListBox.Name = "recipesListBox";
             this.recipesListBox.ScrollAlwaysVisible = true;
-            this.recipesListBox.Size = new System.Drawing.Size(125, 274);
+            this.recipesListBox.Size = new System.Drawing.Size(115, 377);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
@@ -525,27 +505,17 @@
             this.openSelectedRecipesJSONToolStripMenuItem.Name = "openSelectedRecipesJSONToolStripMenuItem";
             this.openSelectedRecipesJSONToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.openSelectedRecipesJSONToolStripMenuItem.Text = "Open Selected Recipe\'s JSON";
-            this.openSelectedRecipesJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedRecipesJSONToolStripMenuItem_Click);
-            // 
-            // decksLabel
-            // 
-            this.decksLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.decksLabel.Location = new System.Drawing.Point(396, 0);
-            this.decksLabel.Name = "decksLabel";
-            this.decksLabel.Size = new System.Drawing.Size(125, 13);
-            this.decksLabel.TabIndex = 7;
-            this.decksLabel.Text = "Decks";
-            this.decksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openSelectedRecipesJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedRecipesJSONToolStripMenuItem_Click);
             // 
             // decksListBox
             // 
             this.decksListBox.ContextMenuStrip = this.deckContextMenuStrip;
             this.decksListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.decksListBox.FormattingEnabled = true;
-            this.decksListBox.Location = new System.Drawing.Point(396, 16);
+            this.decksListBox.Location = new System.Drawing.Point(366, 16);
             this.decksListBox.Name = "decksListBox";
             this.decksListBox.ScrollAlwaysVisible = true;
-            this.decksListBox.Size = new System.Drawing.Size(125, 274);
+            this.decksListBox.Size = new System.Drawing.Size(115, 377);
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
@@ -615,27 +585,17 @@
             this.openSelectedDecksJSONToolStripMenuItem.Name = "openSelectedDecksJSONToolStripMenuItem";
             this.openSelectedDecksJSONToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.openSelectedDecksJSONToolStripMenuItem.Text = "Open Selected Deck\'s JSON";
-            this.openSelectedDecksJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedDecksJSONToolStripMenuItem_Click);
-            // 
-            // legaciesLabel
-            // 
-            this.legaciesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.legaciesLabel.Location = new System.Drawing.Point(527, 0);
-            this.legaciesLabel.Name = "legaciesLabel";
-            this.legaciesLabel.Size = new System.Drawing.Size(125, 13);
-            this.legaciesLabel.TabIndex = 9;
-            this.legaciesLabel.Text = "Legacies";
-            this.legaciesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openSelectedDecksJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedDecksJSONToolStripMenuItem_Click);
             // 
             // legaciesListBox
             // 
             this.legaciesListBox.ContextMenuStrip = this.legacyContextMenuStrip;
             this.legaciesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.legaciesListBox.FormattingEnabled = true;
-            this.legaciesListBox.Location = new System.Drawing.Point(527, 16);
+            this.legaciesListBox.Location = new System.Drawing.Point(487, 16);
             this.legaciesListBox.Name = "legaciesListBox";
             this.legaciesListBox.ScrollAlwaysVisible = true;
-            this.legaciesListBox.Size = new System.Drawing.Size(125, 274);
+            this.legaciesListBox.Size = new System.Drawing.Size(115, 377);
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
@@ -688,17 +648,17 @@
             this.openSelectedLegacysJSONToolStripMenuItem.Name = "openSelectedLegacysJSONToolStripMenuItem";
             this.openSelectedLegacysJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.openSelectedLegacysJSONToolStripMenuItem.Text = "Open Selected Legacy\'s JSON";
-            this.openSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedLegacysJSONToolStripMenuItem_Click);
+            this.openSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedLegacysJSONToolStripMenuItem_Click);
             // 
             // endingsListBox
             // 
             this.endingsListBox.ContextMenuStrip = this.endingContextMenuStrip;
             this.endingsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.endingsListBox.FormattingEnabled = true;
-            this.endingsListBox.Location = new System.Drawing.Point(658, 16);
+            this.endingsListBox.Location = new System.Drawing.Point(608, 16);
             this.endingsListBox.Name = "endingsListBox";
             this.endingsListBox.ScrollAlwaysVisible = true;
-            this.endingsListBox.Size = new System.Drawing.Size(125, 274);
+            this.endingsListBox.Size = new System.Drawing.Size(115, 377);
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
@@ -767,27 +727,17 @@
             this.openSelectedEndingsJSONToolStripMenuItem.Name = "openSelectedEndingsJSONToolStripMenuItem";
             this.openSelectedEndingsJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.openSelectedEndingsJSONToolStripMenuItem.Text = "Open Selected Ending\'s JSON";
-            this.openSelectedEndingsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedEndingsJSONToolStripMenuItem_Click);
-            // 
-            // endingsLabel
-            // 
-            this.endingsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endingsLabel.Location = new System.Drawing.Point(658, 0);
-            this.endingsLabel.Name = "endingsLabel";
-            this.endingsLabel.Size = new System.Drawing.Size(125, 13);
-            this.endingsLabel.TabIndex = 12;
-            this.endingsLabel.Text = "Endings";
-            this.endingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openSelectedEndingsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedEndingsJSONToolStripMenuItem_Click);
             // 
             // verbsListBox
             // 
             this.verbsListBox.ContextMenuStrip = this.verbContextMenuStrip;
             this.verbsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.verbsListBox.FormattingEnabled = true;
-            this.verbsListBox.Location = new System.Drawing.Point(789, 16);
+            this.verbsListBox.Location = new System.Drawing.Point(729, 16);
             this.verbsListBox.Name = "verbsListBox";
             this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(125, 274);
+            this.verbsListBox.Size = new System.Drawing.Size(121, 377);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
@@ -864,378 +814,152 @@
             this.openSelectedVerbsJSONToolStripMenuItem.Name = "openSelectedVerbsJSONToolStripMenuItem";
             this.openSelectedVerbsJSONToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.openSelectedVerbsJSONToolStripMenuItem.Text = "Open Selected Verb\'s JSON";
-            this.openSelectedVerbsJSONToolStripMenuItem.Click += new System.EventHandler(this.editSelectedVerbsJSONToolStripMenuItem_Click);
-            // 
-            // verbsLabel
-            // 
-            this.verbsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.verbsLabel.Location = new System.Drawing.Point(789, 0);
-            this.verbsLabel.Name = "verbsLabel";
-            this.verbsLabel.Size = new System.Drawing.Size(125, 13);
-            this.verbsLabel.TabIndex = 14;
-            this.verbsLabel.Text = "Verbs";
-            this.verbsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripDropDownButton,
-            this.newItemToolStripButton,
-            this.importToolStripButton,
-            this.toolsToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(935, 25);
-            this.toolStrip1.TabIndex = 15;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // fileToolStripDropDownButton
-            // 
-            this.fileToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveModToolStripMenuItem,
-            this.saveToToolStripMenuItem,
-            this.editManifestToolStripMenuItem,
-            this.reloadContentToolStripMenuItem,
-            this.toggleAutosaveToolStripMenuItem,
-            this.toggleEditModeToolStripMenuItem});
-            this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
-            this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
-            this.fileToolStripDropDownButton.Size = new System.Drawing.Size(38, 22);
-            this.fileToolStripDropDownButton.Text = "File";
-            // 
-            // saveModToolStripMenuItem
-            // 
-            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.saveModToolStripMenuItem.Text = "Save Mod";
-            this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveMod);
-            // 
-            // saveToToolStripMenuItem
-            // 
-            this.saveToToolStripMenuItem.Name = "saveToToolStripMenuItem";
-            this.saveToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.saveToToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.saveToToolStripMenuItem.Text = "Save To...";
-            this.saveToToolStripMenuItem.Click += new System.EventHandler(this.saveToToolStripMenuItem_Click);
-            // 
-            // editManifestToolStripMenuItem
-            // 
-            this.editManifestToolStripMenuItem.Name = "editManifestToolStripMenuItem";
-            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.editManifestToolStripMenuItem.Text = "Edit Manifest";
-            this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.editManifestToolStripMenuItem_Click);
-            // 
-            // reloadContentToolStripMenuItem
-            // 
-            this.reloadContentToolStripMenuItem.Name = "reloadContentToolStripMenuItem";
-            this.reloadContentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.reloadContentToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.reloadContentToolStripMenuItem.Text = "Reload Content";
-            this.reloadContentToolStripMenuItem.Click += new System.EventHandler(this.reloadContentToolStripMenuItem_Click);
-            // 
-            // toggleAutosaveToolStripMenuItem
-            // 
-            this.toggleAutosaveToolStripMenuItem.Name = "toggleAutosaveToolStripMenuItem";
-            this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.toggleAutosaveToolStripMenuItem.Text = "Toggle Autosave";
-            this.toggleAutosaveToolStripMenuItem.Click += new System.EventHandler(this.toggleAutosaveToolStripMenuItem_Click);
-            // 
-            // toggleEditModeToolStripMenuItem
-            // 
-            this.toggleEditModeToolStripMenuItem.Name = "toggleEditModeToolStripMenuItem";
-            this.toggleEditModeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.toggleEditModeToolStripMenuItem.Text = "Toggle Edit Mode";
-            this.toggleEditModeToolStripMenuItem.Click += new System.EventHandler(this.toggleEditModeToolStripMenuItem_Click);
-            // 
-            // newItemToolStripButton
-            // 
-            this.newItemToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newItemToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aspectToolStripMenuItem,
-            this.elementToolStripMenuItem,
-            this.recipeToolStripMenuItem,
-            this.deckToolStripMenuItem,
-            this.legacyToolStripMenuItem,
-            this.endingToolStripMenuItem,
-            this.verbToolStripMenuItem});
-            this.newItemToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newItemToolStripButton.Image")));
-            this.newItemToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newItemToolStripButton.Name = "newItemToolStripButton";
-            this.newItemToolStripButton.Size = new System.Drawing.Size(44, 22);
-            this.newItemToolStripButton.Text = "New";
-            // 
-            // aspectToolStripMenuItem
-            // 
-            this.aspectToolStripMenuItem.Name = "aspectToolStripMenuItem";
-            this.aspectToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.aspectToolStripMenuItem.Text = "Aspect";
-            this.aspectToolStripMenuItem.Click += new System.EventHandler(this.aspectToolStripMenuItem_Click);
-            // 
-            // elementToolStripMenuItem
-            // 
-            this.elementToolStripMenuItem.Name = "elementToolStripMenuItem";
-            this.elementToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.elementToolStripMenuItem.Text = "Element";
-            this.elementToolStripMenuItem.Click += new System.EventHandler(this.elementToolStripMenuItem_Click);
-            // 
-            // recipeToolStripMenuItem
-            // 
-            this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
-            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.recipeToolStripMenuItem.Text = "Recipe";
-            this.recipeToolStripMenuItem.Click += new System.EventHandler(this.recipeToolStripMenuItem_Click);
-            // 
-            // deckToolStripMenuItem
-            // 
-            this.deckToolStripMenuItem.Name = "deckToolStripMenuItem";
-            this.deckToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.deckToolStripMenuItem.Text = "Deck";
-            this.deckToolStripMenuItem.Click += new System.EventHandler(this.deckToolStripMenuItem_Click);
-            // 
-            // legacyToolStripMenuItem
-            // 
-            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
-            this.legacyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.legacyToolStripMenuItem.Text = "Legacy";
-            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.legacyToolStripMenuItem_Click);
-            // 
-            // endingToolStripMenuItem
-            // 
-            this.endingToolStripMenuItem.Name = "endingToolStripMenuItem";
-            this.endingToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.endingToolStripMenuItem.Text = "Ending";
-            this.endingToolStripMenuItem.Click += new System.EventHandler(this.endingToolStripMenuItem_Click);
-            // 
-            // verbToolStripMenuItem
-            // 
-            this.verbToolStripMenuItem.Name = "verbToolStripMenuItem";
-            this.verbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.verbToolStripMenuItem.Text = "Verb";
-            this.verbToolStripMenuItem.Click += new System.EventHandler(this.verbToolStripMenuItem_Click);
-            // 
-            // importToolStripButton
-            // 
-            this.importToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.importToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fromClipboardToolStripMenuItem,
-            this.aspectToolStripMenuItem1,
-            this.elementToolStripMenuItem1,
-            this.recipeToolStripMenuItem1,
-            this.deckToolStripMenuItem1,
-            this.legacyToolStripMenuItem1,
-            this.endingToolStripMenuItem1,
-            this.verbToolStripMenuItem1});
-            this.importToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("importToolStripButton.Image")));
-            this.importToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.importToolStripButton.Name = "importToolStripButton";
-            this.importToolStripButton.Size = new System.Drawing.Size(56, 22);
-            this.importToolStripButton.Text = "Import";
-            // 
-            // fromClipboardToolStripMenuItem
-            // 
-            this.fromClipboardToolStripMenuItem.Name = "fromClipboardToolStripMenuItem";
-            this.fromClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.fromClipboardToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.fromClipboardToolStripMenuItem.Text = "From Clipboard";
-            this.fromClipboardToolStripMenuItem.Click += new System.EventHandler(this.fromClipboardToolStripMenuItem_Click);
-            // 
-            // aspectToolStripMenuItem1
-            // 
-            this.aspectToolStripMenuItem1.Name = "aspectToolStripMenuItem1";
-            this.aspectToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.aspectToolStripMenuItem1.Text = "Aspect";
-            this.aspectToolStripMenuItem1.Click += new System.EventHandler(this.aspectToolStripMenuItem1_Click);
-            // 
-            // elementToolStripMenuItem1
-            // 
-            this.elementToolStripMenuItem1.Name = "elementToolStripMenuItem1";
-            this.elementToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.elementToolStripMenuItem1.Text = "Element";
-            this.elementToolStripMenuItem1.Click += new System.EventHandler(this.elementToolStripMenuItem1_Click);
-            // 
-            // recipeToolStripMenuItem1
-            // 
-            this.recipeToolStripMenuItem1.Name = "recipeToolStripMenuItem1";
-            this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.recipeToolStripMenuItem1.Text = "Recipe";
-            this.recipeToolStripMenuItem1.Click += new System.EventHandler(this.recipeToolStripMenuItem1_Click);
-            // 
-            // deckToolStripMenuItem1
-            // 
-            this.deckToolStripMenuItem1.Name = "deckToolStripMenuItem1";
-            this.deckToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.deckToolStripMenuItem1.Text = "Deck";
-            this.deckToolStripMenuItem1.Click += new System.EventHandler(this.deckToolStripMenuItem1_Click);
-            // 
-            // legacyToolStripMenuItem1
-            // 
-            this.legacyToolStripMenuItem1.Name = "legacyToolStripMenuItem1";
-            this.legacyToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.legacyToolStripMenuItem1.Text = "Legacy";
-            this.legacyToolStripMenuItem1.Click += new System.EventHandler(this.legacyToolStripMenuItem1_Click);
-            // 
-            // endingToolStripMenuItem1
-            // 
-            this.endingToolStripMenuItem1.Name = "endingToolStripMenuItem1";
-            this.endingToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.endingToolStripMenuItem1.Text = "Ending";
-            this.endingToolStripMenuItem1.Click += new System.EventHandler(this.endingToolStripMenuItem1_Click);
-            // 
-            // verbToolStripMenuItem1
-            // 
-            this.verbToolStripMenuItem1.Name = "verbToolStripMenuItem1";
-            this.verbToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.verbToolStripMenuItem1.Text = "Verb";
-            this.verbToolStripMenuItem1.Click += new System.EventHandler(this.verbToolStripMenuItem1_Click);
-            // 
-            // toolsToolStripButton
-            // 
-            this.toolsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolsToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.summonGeneratorToolStripMenuItem,
-            this.imageImporterToolStripMenuItem});
-            this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
-            this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolsToolStripButton.Name = "toolsToolStripButton";
-            this.toolsToolStripButton.Size = new System.Drawing.Size(47, 22);
-            this.toolsToolStripButton.Text = "Tools";
-            // 
-            // summonGeneratorToolStripMenuItem
-            // 
-            this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
-            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
-            this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
-            // 
-            // imageImporterToolStripMenuItem
-            // 
-            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.imageImporterToolStripMenuItem.Text = "Image Importer";
-            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
-            // 
-            // aspectsSearchTextBox
-            // 
-            this.aspectsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspectsSearchTextBox.Location = new System.Drawing.Point(3, 296);
-            this.aspectsSearchTextBox.Name = "aspectsSearchTextBox";
-            this.aspectsSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.aspectsSearchTextBox.TabIndex = 17;
-            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspectsSearchTextBox_TextChanged);
-            // 
-            // elementsSearchTextBox
-            // 
-            this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.elementsSearchTextBox.Location = new System.Drawing.Point(134, 296);
-            this.elementsSearchTextBox.Name = "elementsSearchTextBox";
-            this.elementsSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.elementsSearchTextBox.TabIndex = 18;
-            this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.elementsSearchTextBox_TextChanged);
-            // 
-            // recipesSearchTextBox
-            // 
-            this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.recipesSearchTextBox.Location = new System.Drawing.Point(265, 296);
-            this.recipesSearchTextBox.Name = "recipesSearchTextBox";
-            this.recipesSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.recipesSearchTextBox.TabIndex = 19;
-            this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.recipesSearchTextBox_TextChanged);
-            // 
-            // decksSearchTextBox
-            // 
-            this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.decksSearchTextBox.Location = new System.Drawing.Point(396, 296);
-            this.decksSearchTextBox.Name = "decksSearchTextBox";
-            this.decksSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.decksSearchTextBox.TabIndex = 20;
-            this.decksSearchTextBox.TextChanged += new System.EventHandler(this.decksSearchTextBox_TextChanged);
-            // 
-            // legaciesSearchTextBox
-            // 
-            this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.legaciesSearchTextBox.Location = new System.Drawing.Point(527, 296);
-            this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
-            this.legaciesSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.legaciesSearchTextBox.TabIndex = 21;
-            this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.legaciesSearchTextBox_TextChanged);
-            // 
-            // endingsSearchTextBox
-            // 
-            this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.endingsSearchTextBox.Location = new System.Drawing.Point(658, 296);
-            this.endingsSearchTextBox.Name = "endingsSearchTextBox";
-            this.endingsSearchTextBox.Size = new System.Drawing.Size(125, 20);
-            this.endingsSearchTextBox.TabIndex = 22;
-            this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.endingsSearchTextBox_TextChanged);
+            this.openSelectedVerbsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedVerbsJSONToolStripMenuItem_Click);
+            // 
+            // endingsLabel
+            // 
+            this.endingsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endingsLabel.Location = new System.Drawing.Point(608, 0);
+            this.endingsLabel.Name = "endingsLabel";
+            this.endingsLabel.Size = new System.Drawing.Size(115, 13);
+            this.endingsLabel.TabIndex = 12;
+            this.endingsLabel.Text = "Endings";
+            this.endingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // verbsSearchTextBox
             // 
             this.verbsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.verbsSearchTextBox.Location = new System.Drawing.Point(789, 296);
+            this.verbsSearchTextBox.Location = new System.Drawing.Point(729, 399);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
-            this.verbsSearchTextBox.Size = new System.Drawing.Size(125, 20);
+            this.verbsSearchTextBox.Size = new System.Drawing.Size(121, 20);
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
+            // 
+            // legaciesLabel
+            // 
+            this.legaciesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.legaciesLabel.Location = new System.Drawing.Point(487, 0);
+            this.legaciesLabel.Name = "legaciesLabel";
+            this.legaciesLabel.Size = new System.Drawing.Size(115, 13);
+            this.legaciesLabel.TabIndex = 9;
+            this.legaciesLabel.Text = "Legacies";
+            this.legaciesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // endingsSearchTextBox
+            // 
+            this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.endingsSearchTextBox.Location = new System.Drawing.Point(608, 399);
+            this.endingsSearchTextBox.Name = "endingsSearchTextBox";
+            this.endingsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.endingsSearchTextBox.TabIndex = 22;
+            this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.endingsSearchTextBox_TextChanged);
+            // 
+            // decksLabel
+            // 
+            this.decksLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.decksLabel.Location = new System.Drawing.Point(366, 0);
+            this.decksLabel.Name = "decksLabel";
+            this.decksLabel.Size = new System.Drawing.Size(115, 13);
+            this.decksLabel.TabIndex = 7;
+            this.decksLabel.Text = "Decks";
+            this.decksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // legaciesSearchTextBox
+            // 
+            this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.legaciesSearchTextBox.Location = new System.Drawing.Point(487, 399);
+            this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
+            this.legaciesSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.legaciesSearchTextBox.TabIndex = 21;
+            this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.legaciesSearchTextBox_TextChanged);
+            // 
+            // recipesLabel
+            // 
+            this.recipesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recipesLabel.Location = new System.Drawing.Point(245, 0);
+            this.recipesLabel.Name = "recipesLabel";
+            this.recipesLabel.Size = new System.Drawing.Size(115, 13);
+            this.recipesLabel.TabIndex = 5;
+            this.recipesLabel.Text = "Recipes";
+            this.recipesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elementsLabel
+            // 
+            this.elementsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementsLabel.Location = new System.Drawing.Point(124, 0);
+            this.elementsLabel.Name = "elementsLabel";
+            this.elementsLabel.Size = new System.Drawing.Size(115, 13);
+            this.elementsLabel.TabIndex = 3;
+            this.elementsLabel.Text = "Elements";
+            this.elementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // recipesSearchTextBox
+            // 
+            this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.recipesSearchTextBox.Location = new System.Drawing.Point(245, 399);
+            this.recipesSearchTextBox.Name = "recipesSearchTextBox";
+            this.recipesSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.recipesSearchTextBox.TabIndex = 19;
+            this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.recipesSearchTextBox_TextChanged);
+            // 
+            // aspectsLabel
+            // 
+            this.aspectsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aspectsLabel.Location = new System.Drawing.Point(3, 0);
+            this.aspectsLabel.Name = "aspectsLabel";
+            this.aspectsLabel.Size = new System.Drawing.Size(115, 13);
+            this.aspectsLabel.TabIndex = 2;
+            this.aspectsLabel.Text = "Aspects";
+            this.aspectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elementsSearchTextBox
+            // 
+            this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.elementsSearchTextBox.Location = new System.Drawing.Point(124, 399);
+            this.elementsSearchTextBox.Name = "elementsSearchTextBox";
+            this.elementsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.elementsSearchTextBox.TabIndex = 18;
+            this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.elementsSearchTextBox_TextChanged);
+            // 
+            // aspectsSearchTextBox
+            // 
+            this.aspectsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspectsSearchTextBox.Location = new System.Drawing.Point(3, 399);
+            this.aspectsSearchTextBox.Name = "aspectsSearchTextBox";
+            this.aspectsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.aspectsSearchTextBox.TabIndex = 17;
+            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspectsSearchTextBox_TextChanged);
+            // 
+            // decksSearchTextBox
+            // 
+            this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.decksSearchTextBox.Location = new System.Drawing.Point(366, 399);
+            this.decksSearchTextBox.Name = "decksSearchTextBox";
+            this.decksSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.decksSearchTextBox.TabIndex = 20;
+            this.decksSearchTextBox.TextChanged += new System.EventHandler(this.decksSearchTextBox_TextChanged);
+            // 
+            // verbsLabel
+            // 
+            this.verbsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.verbsLabel.Location = new System.Drawing.Point(729, 0);
+            this.verbsLabel.Name = "verbsLabel";
+            this.verbsLabel.Size = new System.Drawing.Size(121, 13);
+            this.verbsLabel.TabIndex = 14;
+            this.verbsLabel.Text = "Verbs";
+            this.verbsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // autosaveTimer
             // 
             this.autosaveTimer.Interval = 30000;
             this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28652F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28081F));
-            this.tableLayoutPanel1.Controls.Add(this.aspectsListBox, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.elementsListBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.recipesListBox, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.decksListBox, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesListBox, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.endingsListBox, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.verbsListBox, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.endingsLabel, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.verbsSearchTextBox, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesLabel, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.endingsSearchTextBox, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.decksLabel, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesSearchTextBox, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.recipesLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.elementsLabel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.recipesSearchTextBox, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.elementsSearchTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.aspectsSearchTextBox, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.decksSearchTextBox, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.verbsLabel, 6, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 28);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 319);
-            this.tableLayoutPanel1.TabIndex = 25;
             // 
             // saveFileDialog
             // 
@@ -1245,34 +969,16 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 347);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(935, 22);
-            this.statusStrip1.TabIndex = 26;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(921, 16);
-            // 
-            // ModViewer
+            // ModViewerTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 369);
-            this.Controls.Add(this.statusStrip1);
+            this.AutoSize = true;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.toolStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ModViewer";
-            this.Text = "Carcass Spark";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModViewer_FormClosed);
-            this.Shown += new System.EventHandler(this.ModViewer_Shown);
+            this.Name = "ModViewerTabControl";
+            this.Size = new System.Drawing.Size(853, 422);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.aspectContextMenuStrip.ResumeLayout(false);
             this.elementContextMenuStrip.ResumeLayout(false);
             this.recipeContextMenuStrip.ResumeLayout(false);
@@ -1280,52 +986,39 @@
             this.legacyContextMenuStrip.ResumeLayout(false);
             this.endingContextMenuStrip.ResumeLayout(false);
             this.verbContextMenuStrip.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ListBox aspectsListBox;
-        private System.Windows.Forms.Label aspectsLabel;
-        private System.Windows.Forms.Label elementsLabel;
-        private System.Windows.Forms.ListBox elementsListBox;
-        private System.Windows.Forms.Label recipesLabel;
-        private System.Windows.Forms.ListBox recipesListBox;
-        private System.Windows.Forms.Label decksLabel;
-        private System.Windows.Forms.ListBox decksListBox;
-        private System.Windows.Forms.Label legaciesLabel;
-        private System.Windows.Forms.ListBox legaciesListBox;
-        private System.Windows.Forms.ListBox endingsListBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label endingsLabel;
-        private System.Windows.Forms.ListBox verbsListBox;
-        private System.Windows.Forms.Label verbsLabel;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton fileToolStripDropDownButton;
-        private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
-        private System.Windows.Forms.TextBox aspectsSearchTextBox;
-        private System.Windows.Forms.TextBox elementsSearchTextBox;
-        private System.Windows.Forms.TextBox recipesSearchTextBox;
-        private System.Windows.Forms.TextBox decksSearchTextBox;
-        private System.Windows.Forms.TextBox legaciesSearchTextBox;
-        private System.Windows.Forms.TextBox endingsSearchTextBox;
         private System.Windows.Forms.TextBox verbsSearchTextBox;
+        private System.Windows.Forms.Label legaciesLabel;
+        private System.Windows.Forms.TextBox endingsSearchTextBox;
+        private System.Windows.Forms.Label decksLabel;
+        private System.Windows.Forms.TextBox legaciesSearchTextBox;
+        private System.Windows.Forms.Label recipesLabel;
+        private System.Windows.Forms.Label elementsLabel;
+        private System.Windows.Forms.TextBox recipesSearchTextBox;
+        private System.Windows.Forms.Label aspectsLabel;
+        private System.Windows.Forms.TextBox elementsSearchTextBox;
+        private System.Windows.Forms.TextBox aspectsSearchTextBox;
+        private System.Windows.Forms.TextBox decksSearchTextBox;
+        private System.Windows.Forms.Label verbsLabel;
         private System.Windows.Forms.ContextMenuStrip aspectContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsWithThisAspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recipesRequiringThisAspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem slotsRequiringThisAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsThatReactWithThisAspectToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip elementContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem recipesRequiringThisAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recipesThatProduceThisAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem slotsRequiringThisAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyAspectJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedAspectsJSONToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip elementContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem elementsThatDecayIntoThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsThatXtriggerIntoThisToolStripMenuItem;
@@ -1333,87 +1026,62 @@
         private System.Windows.Forms.ToolStripMenuItem recipesThatProduceThisElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decksThatContainThisElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem legaciesThatStartWithThisElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsThatRequireThisElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyElementJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedElementsJSONToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip recipeContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchForToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recipesThatLinkToThisRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAsFlowchartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyRecipeJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedRecipesJSONToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip deckContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchForToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem recipesThatDrawFromThisDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyDeckJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedDecksJSONToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip legacyContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedLegacyJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedLegacysJSONToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip endingContextMenuStrip;
-        private System.Windows.Forms.ContextMenuStrip verbContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchForToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem recipesThatCauseThisEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedEndingJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedEndingsJSONToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip verbContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchForToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem recipesThatUseThisVerbToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsThatRequireThisElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementsWithSlotsForThisVerbToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewAsFlowchartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toggleAutosaveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedVerbJSONToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedVerbsJSONToolStripMenuItem;
         private System.Windows.Forms.Timer autosaveTimer;
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
-        private System.Windows.Forms.ToolStripDropDownButton newItemToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem aspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem elementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem endingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton toolsToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem summonGeneratorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedAspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedElementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedRecipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedDeckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedLegacyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedEndingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toggleEditModeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedAspectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedElementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedRecipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedDeckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedLegacyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedEndingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStripMenuItem imageImporterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedAspectToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedElementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedRecipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedDeckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedLegacyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedEndingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSelectedVerbToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton importToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem aspectToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem elementToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem deckToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem endingToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem verbToolStripMenuItem1;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem copyAspectJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyElementJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyRecipeJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyDeckJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copySelectedLegacyJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copySelectedEndingJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copySelectedVerbJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fromClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedAspectsJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedElementsJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedRecipesJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedDecksJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedLegacysJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedEndingsJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedVerbsJSONToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        public System.Windows.Forms.ListBox aspectsListBox;
+        public System.Windows.Forms.ListBox elementsListBox;
+        public System.Windows.Forms.ListBox recipesListBox;
+        public System.Windows.Forms.ListBox decksListBox;
+        public System.Windows.Forms.ListBox legaciesListBox;
+        public System.Windows.Forms.ListBox endingsListBox;
+        public System.Windows.Forms.ListBox verbsListBox;
     }
 }
-

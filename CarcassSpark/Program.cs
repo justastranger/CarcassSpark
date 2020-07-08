@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarcassSpark.ObjectViewers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,11 @@ namespace CarcassSpark
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+                if (File.Exists(currentDirectory + "csmt.settings.json"))
+                {
+                    Settings.loadSettings(currentDirectory + "csmt.settings.json");
+                }
+                Application.Run(new TabbedModViewer());
             } else {
                 MessageBox.Show("Please install me your Cultist Simulator installation folder.", "I'm lost :(", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

@@ -14,11 +14,11 @@ namespace CarcassSpark
 {
     public class Utilities
     {
-        public static List<ModViewer> currentMods = new List<ModViewer>();
+        public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
 
 
         public static string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
+        public static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
         private static string directoryToVanillaAssets = "./cultistsimulator_Data/globalgamemanagers";
@@ -53,9 +53,9 @@ namespace CarcassSpark
 
         public static Image getAspectImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/icons40/aspects/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/icons40/aspects/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -67,9 +67,9 @@ namespace CarcassSpark
 
         public static Image getElementImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/elementArt/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/elementArt/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -81,9 +81,9 @@ namespace CarcassSpark
 
         public static Image getEndingImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/endingArt/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/endingArt/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -95,9 +95,9 @@ namespace CarcassSpark
 
         public static Image getLegacyImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/icons100/legacies/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/icons100/legacies/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -109,9 +109,9 @@ namespace CarcassSpark
 
         public static Image getVerbImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/icons100/verbs/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/icons100/verbs/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -123,9 +123,9 @@ namespace CarcassSpark
 
         public static Image getCardBackImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/cardBacks/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/cardBacks/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -137,9 +137,9 @@ namespace CarcassSpark
 
         public static Image getBurnImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/burnImages/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/burnImages/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
@@ -150,20 +150,20 @@ namespace CarcassSpark
 
         public static bool aspectExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.aspectExists(id)) return true;
+                if (source.aspectExists(id)) return true;
             }
             return false;
         }
 
         public static Aspect getAspect(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getAspect(id) != null)
+                if (source.getAspect(id) != null)
                 {
-                    return mv.getAspect(id);
+                    return source.getAspect(id);
                 }
             }
             return null;
@@ -171,20 +171,20 @@ namespace CarcassSpark
 
         public static bool elementExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.elementExists(id)) return true;
+                if (source.elementExists(id)) return true;
             }
             return false;
         }
 
         public static Element getElement(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getElement(id) != null)
+                if (source.getElement(id) != null)
                 {
-                    return mv.getElement(id);
+                    return source.getElement(id);
                 }
             }
             return null;
@@ -192,20 +192,20 @@ namespace CarcassSpark
 
         public static bool recipeExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.recipeExists(id)) return true;
+                if (source.recipeExists(id)) return true;
             }
             return false;
         }
 
         public static Recipe getRecipe(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getRecipe(id) != null)
+                if (source.getRecipe(id) != null)
                 {
-                    return mv.getRecipe(id);
+                    return source.getRecipe(id);
                 }
             }
             return null;
@@ -213,20 +213,20 @@ namespace CarcassSpark
 
         public static bool deckExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.recipeExists(id)) return true;
+                if (source.recipeExists(id)) return true;
             }
             return false;
         }
 
         public static Deck getDeck(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getDeck(id) != null)
+                if (source.getDeck(id) != null)
                 {
-                    return mv.getDeck(id);
+                    return source.getDeck(id);
                 }
             }
             return null;
@@ -234,20 +234,20 @@ namespace CarcassSpark
 
         public static bool legacyExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.legacyExists(id)) return true;
+                if (source.legacyExists(id)) return true;
             }
             return false;
         }
 
         public static Legacy getLegacy(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getLegacy(id) != null)
+                if (source.getLegacy(id) != null)
                 {
-                    return mv.getLegacy(id);
+                    return source.getLegacy(id);
                 }
             }
             return null;
@@ -255,20 +255,20 @@ namespace CarcassSpark
 
         public static bool endingExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.endingExists(id)) return true;
+                if (source.endingExists(id)) return true;
             }
             return false;
         }
 
         public static Ending getEnding(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getEnding(id) != null)
+                if (source.getEnding(id) != null)
                 {
-                    return mv.getEnding(id);
+                    return source.getEnding(id);
                 }
             }
             return null;
@@ -276,20 +276,20 @@ namespace CarcassSpark
 
         public static bool verbExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.verbExists(id)) return true;
+                if (source.verbExists(id)) return true;
             }
             return false;
         }
 
         public static Verb getVerb(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getVerb(id) != null)
+                if (source.getVerb(id) != null)
                 {
-                    return mv.getVerb(id);
+                    return source.getVerb(id);
                 }
             }
             return null;
@@ -299,9 +299,9 @@ namespace CarcassSpark
         public static List<Aspect> getAspects()
         {
             Dictionary<string, Aspect> tmp = new Dictionary<string, Aspect>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Aspect> AspectEntry in mv.aspectsList)
+                foreach (KeyValuePair<string, Aspect> AspectEntry in source.Aspects)
                 {
                     if (!tmp.ContainsKey(AspectEntry.Key)) tmp.Add(AspectEntry.Key, AspectEntry.Value);
                     else tmp[AspectEntry.Key] = AspectEntry.Value;
@@ -314,9 +314,9 @@ namespace CarcassSpark
         public static List<Element> getElements()
         {
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Element> ElementEntry in mv.elementsList)
+                foreach (KeyValuePair<string, Element> ElementEntry in source.Elements)
                 {
                     if (!tmp.ContainsKey(ElementEntry.Key)) tmp.Add(ElementEntry.Key, ElementEntry.Value);
                     else tmp[ElementEntry.Key] = ElementEntry.Value;
@@ -329,9 +329,9 @@ namespace CarcassSpark
         public static List<Recipe> getRecipes()
         {
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Recipe> RecipeEntry in mv.recipesList)
+                foreach (KeyValuePair<string, Recipe> RecipeEntry in source.Recipes)
                 {
                     if (!tmp.ContainsKey(RecipeEntry.Key)) tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
                     else tmp[RecipeEntry.Key] = RecipeEntry.Value;
@@ -344,9 +344,9 @@ namespace CarcassSpark
         public static List<Deck> getDecks()
         {
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Deck> DeckEntry in mv.decksList)
+                foreach (KeyValuePair<string, Deck> DeckEntry in source.Decks)
                 {
                     if (!tmp.ContainsKey(DeckEntry.Key)) tmp.Add(DeckEntry.Key, DeckEntry.Value);
                     else tmp[DeckEntry.Key] = DeckEntry.Value;
@@ -359,9 +359,9 @@ namespace CarcassSpark
         public static List<Legacy> getLegacies()
         {
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Legacy> LegacyEntry in mv.legaciesList)
+                foreach (KeyValuePair<string, Legacy> LegacyEntry in source.Legacies)
                 {
                     if (!tmp.ContainsKey(LegacyEntry.Key)) tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
                     else tmp[LegacyEntry.Key] = LegacyEntry.Value;
@@ -374,9 +374,9 @@ namespace CarcassSpark
         public static List<Ending> getEndings()
         {
             Dictionary<string, Ending> tmp = new Dictionary<string, Ending>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Ending> EndingEntry in mv.endingsList)
+                foreach (KeyValuePair<string, Ending> EndingEntry in source.Endings)
                 {
                     if (!tmp.ContainsKey(EndingEntry.Key)) tmp.Add(EndingEntry.Key, EndingEntry.Value);
                     else tmp[EndingEntry.Key] = EndingEntry.Value;
@@ -389,9 +389,9 @@ namespace CarcassSpark
         public static List<Verb> getVerbs()
         {
             Dictionary<string, Verb> tmp = new Dictionary<string, Verb>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Verb> VerbEntry in mv.verbsList)
+                foreach (KeyValuePair<string, Verb> VerbEntry in source.Verbs)
                 {
                     if (!tmp.ContainsKey(VerbEntry.Key)) tmp.Add(VerbEntry.Key, VerbEntry.Value);
                     else tmp[VerbEntry.Key] = VerbEntry.Value;
