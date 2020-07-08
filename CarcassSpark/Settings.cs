@@ -17,8 +17,8 @@ namespace CarcassSpark
     {
         public static JObject settings = new JObject();
         // settings["openWithVanilla"]
-        // settings["rememberPreviousMod"]
-        // settings["previousMod"]
+        // settings["loadPreviousMods"]
+        // settings["previousMods"]
         // settings["saveCleanedVanillaContent"]
         // settings["loadAllFlowchartNodes"]
         static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -49,9 +49,10 @@ namespace CarcassSpark
         void populateSettings()
         {
             if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
-            if (settings["rememberPreviousMod"] != null) rememberPreviousModCheckBox.Checked = settings["rememberPreviousMod"].ToObject<bool>();
-            if (settings["previousMod"] != null) previousModTextBox.Text = settings["previousMod"].ToString();
+            if (settings["loadPreviousMods"] != null) loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
+            if (settings["previousMods"] != null) previousModsTextBox.Text = String.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
             if (settings["saveCleanedVanillaContent"] != null) saveCleanedVanillaContentCheckBox.Checked = settings["saveCleanedVanillaContent"].ToObject<bool>();
+            if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
         }
 
         private void openWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -60,10 +61,15 @@ namespace CarcassSpark
             saveSettings();
         }
 
-        private void rememberPreviousModCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void loadPreviousModsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            settings["rememberPreviousMod"] = rememberPreviousModCheckBox.Checked;
+            settings["loadPreviousMods"] = loadPreviousModsCheckBox.Checked;
             saveSettings();
+        }
+
+        public static List<string> GetPreviousMods()
+        {
+            return settings["previousMods"].ToObject<List<string>>();
         }
 
         private void saveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -74,14 +80,16 @@ namespace CarcassSpark
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(previousModTextBox.Text))
+
+            List<string> modPaths = previousModsTextBox.Text.Split("\r\n".ToCharArray()).ToList();
+            List<string> validatedPaths = new List<string>();
+            foreach (string path in modPaths)
             {
-                settings["previousMod"] = previousModTextBox.Text;
+                if (Directory.Exists(path) && File.Exists(path + "\\manifest.json")) validatedPaths.Add(path);
             }
-            else
-            {
-                MessageBox.Show("Directory does not exist for \"Previously Loaded Mod\" Text Box value, resetting to previous value.");
-            }
+            settings["previousMods"] = JArray.FromObject(validatedPaths);
+            
+            saveSettings();
             Close();
         }
 
@@ -93,6 +101,12 @@ namespace CarcassSpark
         private void loadAllFlowchartNodesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["loadAllFlowchartNodes"] = loadAllFlowchartNodesCheckBox.Checked;
+            saveSettings();
+        }
+
+        private void previousModsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

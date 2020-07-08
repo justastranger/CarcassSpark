@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.openWithVanillaCheckBox = new System.Windows.Forms.CheckBox();
-            this.rememberPreviousModCheckBox = new System.Windows.Forms.CheckBox();
-            this.previousModTextBox = new System.Windows.Forms.TextBox();
+            this.loadPreviousModsCheckBox = new System.Windows.Forms.CheckBox();
+            this.previousModsTextBox = new System.Windows.Forms.TextBox();
             this.previousModLabel = new System.Windows.Forms.Label();
             this.saveCleanedVanillaContentCheckBox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
@@ -52,30 +52,33 @@
             // 
             // rememberPreviousModCheckBox
             // 
-            this.rememberPreviousModCheckBox.AutoSize = true;
-            this.rememberPreviousModCheckBox.Location = new System.Drawing.Point(12, 58);
-            this.rememberPreviousModCheckBox.Name = "rememberPreviousModCheckBox";
-            this.rememberPreviousModCheckBox.Size = new System.Drawing.Size(314, 17);
-            this.rememberPreviousModCheckBox.TabIndex = 1;
-            this.rememberPreviousModCheckBox.Text = "Remember and Load Previously Opened Mod When Opened";
-            this.rememberPreviousModCheckBox.UseVisualStyleBackColor = true;
-            this.rememberPreviousModCheckBox.CheckedChanged += new System.EventHandler(this.rememberPreviousModCheckBox_CheckedChanged);
+            this.loadPreviousModsCheckBox.AutoSize = true;
+            this.loadPreviousModsCheckBox.Location = new System.Drawing.Point(12, 81);
+            this.loadPreviousModsCheckBox.Name = "rememberPreviousModCheckBox";
+            this.loadPreviousModsCheckBox.Size = new System.Drawing.Size(218, 17);
+            this.loadPreviousModsCheckBox.TabIndex = 1;
+            this.loadPreviousModsCheckBox.Text = "Load Remembered Mods When Opened";
+            this.loadPreviousModsCheckBox.UseVisualStyleBackColor = true;
+            this.loadPreviousModsCheckBox.CheckedChanged += new System.EventHandler(this.loadPreviousModsCheckBox_CheckedChanged);
             // 
             // previousModTextBox
             // 
-            this.previousModTextBox.Location = new System.Drawing.Point(12, 94);
-            this.previousModTextBox.Name = "previousModTextBox";
-            this.previousModTextBox.Size = new System.Drawing.Size(370, 20);
-            this.previousModTextBox.TabIndex = 2;
+            this.previousModsTextBox.Location = new System.Drawing.Point(12, 117);
+            this.previousModsTextBox.Multiline = true;
+            this.previousModsTextBox.Name = "previousModTextBox";
+            this.previousModsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.previousModsTextBox.Size = new System.Drawing.Size(370, 225);
+            this.previousModsTextBox.TabIndex = 2;
+            this.previousModsTextBox.TextChanged += new System.EventHandler(this.previousModsTextBox_TextChanged);
             // 
             // previousModLabel
             // 
             this.previousModLabel.AutoSize = true;
-            this.previousModLabel.Location = new System.Drawing.Point(9, 78);
+            this.previousModLabel.Location = new System.Drawing.Point(12, 101);
             this.previousModLabel.Name = "previousModLabel";
-            this.previousModLabel.Size = new System.Drawing.Size(118, 13);
+            this.previousModLabel.Size = new System.Drawing.Size(123, 13);
             this.previousModLabel.TabIndex = 3;
-            this.previousModLabel.Text = "Previously Loaded Mod";
+            this.previousModLabel.Text = "Previously Loaded Mods";
             // 
             // saveCleanedVanillaContentCheckBox
             // 
@@ -91,7 +94,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 226);
+            this.okButton.Location = new System.Drawing.Point(12, 348);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -102,7 +105,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(307, 226);
+            this.cancelButton.Location = new System.Drawing.Point(307, 348);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
@@ -113,7 +116,7 @@
             // loadAllFlowchartNodesCheckBox
             // 
             this.loadAllFlowchartNodesCheckBox.AutoSize = true;
-            this.loadAllFlowchartNodesCheckBox.Location = new System.Drawing.Point(12, 120);
+            this.loadAllFlowchartNodesCheckBox.Location = new System.Drawing.Point(12, 58);
             this.loadAllFlowchartNodesCheckBox.Name = "loadAllFlowchartNodesCheckBox";
             this.loadAllFlowchartNodesCheckBox.Size = new System.Drawing.Size(189, 17);
             this.loadAllFlowchartNodesCheckBox.TabIndex = 7;
@@ -127,14 +130,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(394, 261);
+            this.ClientSize = new System.Drawing.Size(394, 383);
             this.Controls.Add(this.loadAllFlowchartNodesCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.saveCleanedVanillaContentCheckBox);
             this.Controls.Add(this.previousModLabel);
-            this.Controls.Add(this.previousModTextBox);
-            this.Controls.Add(this.rememberPreviousModCheckBox);
+            this.Controls.Add(this.previousModsTextBox);
+            this.Controls.Add(this.loadPreviousModsCheckBox);
             this.Controls.Add(this.openWithVanillaCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -149,8 +152,8 @@
         #endregion
 
         private System.Windows.Forms.CheckBox openWithVanillaCheckBox;
-        private System.Windows.Forms.CheckBox rememberPreviousModCheckBox;
-        private System.Windows.Forms.TextBox previousModTextBox;
+        private System.Windows.Forms.CheckBox loadPreviousModsCheckBox;
+        private System.Windows.Forms.TextBox previousModsTextBox;
         private System.Windows.Forms.Label previousModLabel;
         private System.Windows.Forms.CheckBox saveCleanedVanillaContentCheckBox;
         private System.Windows.Forms.Button okButton;

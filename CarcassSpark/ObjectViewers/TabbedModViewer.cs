@@ -23,6 +23,14 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             CreateNewModViewerTab(Utilities.directoryToVanillaContent, true, false);
+            if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
+            {
+                if (((JArray)Settings.settings["previousMods"]).Count() > 0)
+                foreach (string path in Settings.GetPreviousMods())
+                {
+                    CreateNewModViewerTab(path, false, false);
+                }
+            }
         }
 
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
@@ -45,7 +53,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void openModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMod"] != null) ? Settings.settings["previousMod"].ToString() : AppDomain.CurrentDomain.BaseDirectory;
+            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
             if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = modFolderBrowserDialog.SelectedPath;
@@ -61,7 +69,8 @@ namespace CarcassSpark.ObjectViewers
                 if (mvtc != null)
                 {
                     CreateNewModViewerTab(mvtc);
-                    Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
+                    if (Settings.settings["previousMods"] is JArray) ((JArray)Settings.settings["previousMods"]).Add(JToken.FromObject(mvtc.Content.currentDirectory));
+                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
                     Settings.saveSettings();
                 }
             }
@@ -85,7 +94,8 @@ namespace CarcassSpark.ObjectViewers
                 if (mvtc != null)
                 {
                     CreateNewModViewerTab(mvtc);
-                    Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
+                    if (Settings.settings["previousMods"] is JArray) ((JArray)Settings.settings["previousMods"]).Add(JToken.FromObject(mvtc.Content.currentDirectory));
+                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
                     Settings.saveSettings();
                 }
             }
