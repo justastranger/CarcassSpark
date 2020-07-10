@@ -61,7 +61,7 @@ namespace CarcassSpark.ObjectViewers
                 foreach (XTrigger xTrigger in displayedXTriggers)
                 {
                     DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance.HasValue ? xTrigger.chance.Value.ToString() : null, xTrigger.level.HasValue ? xTrigger.level.Value.ToString() : null, xTrigger.morphEffect != null ? xTrigger.morphEffect.ToLower() : null);
+                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance.HasValue ? xTrigger.chance.Value.ToString() : null, xTrigger.level.HasValue ? xTrigger.level.Value.ToString() : null, xTrigger.morpheffect != null ? xTrigger.morpheffect.ToLower() : null);
                     xtriggersDataGridView.Rows.Add(row);
                 }
             }
@@ -88,9 +88,9 @@ namespace CarcassSpark.ObjectViewers
                     XTrigger xtrigger = new XTrigger()
                     {
                         id = row.Cells[0].Value as string,
-                        chance = row.Cells[1].Value as int?,
-                        level = row.Cells[2].Value as int?,
-                        morphEffect = row.Cells[3].Value as string
+                        chance = (row.Cells[1].Value as int?).HasValue ? (row.Cells[2].Value as int?).Value : (int?)null,
+                        level = (row.Cells[2].Value as int?).HasValue ? (row.Cells[2].Value as int?).Value : (int?)null,
+                        morpheffect = row.Cells[3].Value as string
                     };
                     // row.Cells[0] -> id
                     // row.Cells[1] -> chance
