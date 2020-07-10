@@ -50,22 +50,23 @@
             this.openWithVanillaCheckBox.UseVisualStyleBackColor = true;
             this.openWithVanillaCheckBox.CheckedChanged += new System.EventHandler(this.openWithVanillaCheckBox_CheckedChanged);
             // 
-            // rememberPreviousModCheckBox
+            // loadPreviousModsCheckBox
             // 
             this.loadPreviousModsCheckBox.AutoSize = true;
             this.loadPreviousModsCheckBox.Location = new System.Drawing.Point(12, 81);
-            this.loadPreviousModsCheckBox.Name = "rememberPreviousModCheckBox";
+            this.loadPreviousModsCheckBox.Name = "loadPreviousModsCheckBox";
             this.loadPreviousModsCheckBox.Size = new System.Drawing.Size(218, 17);
             this.loadPreviousModsCheckBox.TabIndex = 1;
             this.loadPreviousModsCheckBox.Text = "Load Remembered Mods When Opened";
             this.loadPreviousModsCheckBox.UseVisualStyleBackColor = true;
             this.loadPreviousModsCheckBox.CheckedChanged += new System.EventHandler(this.loadPreviousModsCheckBox_CheckedChanged);
             // 
-            // previousModTextBox
+            // previousModsTextBox
             // 
+            this.previousModsTextBox.AcceptsReturn = true;
             this.previousModsTextBox.Location = new System.Drawing.Point(12, 117);
             this.previousModsTextBox.Multiline = true;
-            this.previousModsTextBox.Name = "previousModTextBox";
+            this.previousModsTextBox.Name = "previousModsTextBox";
             this.previousModsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.previousModsTextBox.Size = new System.Drawing.Size(370, 225);
             this.previousModsTextBox.TabIndex = 2;
