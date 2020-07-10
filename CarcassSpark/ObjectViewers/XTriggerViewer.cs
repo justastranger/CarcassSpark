@@ -88,8 +88,8 @@ namespace CarcassSpark.ObjectViewers
                     XTrigger xtrigger = new XTrigger()
                     {
                         id = row.Cells[0].Value as string,
-                        chance = (row.Cells[1].Value as int?).HasValue ? (row.Cells[2].Value as int?).Value : (int?)null,
-                        level = (row.Cells[2].Value as int?).HasValue ? (row.Cells[2].Value as int?).Value : (int?)null,
+                        chance = Convert.ToInt32(row.Cells[1].Value) > 0 ? Convert.ToInt32(row.Cells[1].Value) : (int?)null,
+                        level = Convert.ToInt32(row.Cells[2].Value) > 0 ? Convert.ToInt32(row.Cells[2].Value) : (int?)null,
                         morpheffect = row.Cells[3].Value as string
                     };
                     // row.Cells[0] -> id
