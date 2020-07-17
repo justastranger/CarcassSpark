@@ -359,7 +359,7 @@
             // toolStripProgressBar
             // 
             this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(921, 16);
+            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // ModViewerTabs
             // 
