@@ -130,7 +130,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.signalendingflavour != null) signalEndingFlavourDomainUpDown.Text = recipe.signalendingflavour;
             if (recipe.maxexecutions.HasValue) maxExecutionsNumericUpDown.Value = recipe.maxexecutions.Value;
             if (recipe.warmup.HasValue) warmupNumericUpDown.Value = recipe.warmup.Value;
-            if (recipe.internalDeck != null) showInternalDeckButton.Enabled = true;
+            if (recipe.internaldeck != null) showInternalDeckButton.Enabled = true;
             else showInternalDeckButton.Enabled = false;
             if (recipe.slots != null) showSlotButton.Enabled = true;
             else showSlotButton.Enabled = false;
@@ -451,20 +451,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void showInternalDeckButton_Click(object sender, EventArgs e)
         {
-            if (displayedRecipe.internalDeck == null && editing)
+            if (displayedRecipe.internaldeck == null && editing)
             {
                 DeckViewer dv = new DeckViewer(new Deck(), internalDeck_Assign, true);
                 dv.Show();
-            } else if (displayedRecipe.internalDeck != null)
+            } else if (displayedRecipe.internaldeck != null)
             {
-                DeckViewer dv = new DeckViewer(displayedRecipe.internalDeck, editing ? internalDeck_Assign : (EventHandler<Deck>)null, true);
+                DeckViewer dv = new DeckViewer(displayedRecipe.internaldeck, editing ? internalDeck_Assign : (EventHandler<Deck>)null, true);
                 dv.Show();
             }
         }
 
         private void internalDeck_Assign(object sender, Deck result)
         {
-            displayedRecipe.internalDeck = result;
+            displayedRecipe.internaldeck = result;
         }
 
         private void showSlotButton_Click(object sender, EventArgs e)

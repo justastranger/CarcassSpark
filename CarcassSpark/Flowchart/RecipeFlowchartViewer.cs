@@ -200,22 +200,22 @@ namespace CarcassSpark.Flowchart
             if (recipe.hintonly.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Hint Only: " + recipe.hintonly.Value.ToString()));
             if (recipe.maxexecutions.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Max Executions: " + recipe.maxexecutions.Value.ToString()));
             if (recipe.warmup.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Warmup: " + recipe.warmup.Value.ToString()));
-            if (recipe.internalDeck != null)
+            if (recipe.internaldeck != null)
             {
                 tempTVN.RootItems.Add(new TreeViewItem("Internal Deck: "));
-                if (recipe.internalDeck.label != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Label: " + recipe.internalDeck.label));
-                if (recipe.internalDeck.description != null)
+                if (recipe.internaldeck.label != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Label: " + recipe.internaldeck.label));
+                if (recipe.internaldeck.description != null)
                 {
                     tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Description: "));
-                    tempTVN.RootItems.Last().Children.Last().Children.Add(new TreeViewItem(recipe.internalDeck.description));
+                    tempTVN.RootItems.Last().Children.Last().Children.Add(new TreeViewItem(recipe.internaldeck.description));
                 }
-                if (recipe.internalDeck.draws.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Draws: " + recipe.internalDeck.draws.Value));
-                if (recipe.internalDeck.resetonexhaustion.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Reset on Exhaustion: " + recipe.internalDeck.resetonexhaustion.Value));
-                if (recipe.internalDeck.defaultcard != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Default Card: " + recipe.internalDeck.defaultcard));
-                if (recipe.internalDeck.spec != null)
+                if (recipe.internaldeck.draws.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Draws: " + recipe.internaldeck.draws.Value));
+                if (recipe.internaldeck.resetonexhaustion.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Reset on Exhaustion: " + recipe.internaldeck.resetonexhaustion.Value));
+                if (recipe.internaldeck.defaultcard != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Default Card: " + recipe.internaldeck.defaultcard));
+                if (recipe.internaldeck.spec != null)
                 {
                     tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Cards: "));
-                    foreach (string card in recipe.internalDeck.spec)
+                    foreach (string card in recipe.internaldeck.spec)
                     {
                         tempTVN.RootItems.Last().Children.Last().Children.Add(new TreeViewItem(card));
                     }
