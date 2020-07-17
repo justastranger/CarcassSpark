@@ -109,6 +109,7 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             Utilities.ContentSources.Remove(SelectedModViewer.Content.getName());
+            ((JArray)Settings.settings["previousMods"]).Remove(SelectedModViewer.Content.currentDirectory);
             ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
         }
 
