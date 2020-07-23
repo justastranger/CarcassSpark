@@ -32,7 +32,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }
