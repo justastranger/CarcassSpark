@@ -40,7 +40,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void modNameTextBox_TextChanged(object sender, EventArgs e)
+        private void ModNameTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.name = modNameTextBox.Text;
             if (displayedManifest.name == "")
@@ -49,7 +49,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void modAuthorTextBox_TextChanged(object sender, EventArgs e)
+        private void ModAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.author = modAuthorTextBox.Text;
             if (displayedManifest.author == "")
@@ -58,7 +58,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void modVersionTextBox_TextChanged(object sender, EventArgs e)
+        private void ModVersionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.version = modVersionTextBox.Text;
             if (displayedManifest.version == "")
@@ -67,7 +67,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void modDescriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void ModDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.description = modDescriptionTextBox.Text;
             if (displayedManifest.description == "")
@@ -76,7 +76,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void longDescriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void LongDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedManifest.description_long = longDescriptionTextBox.Text;
             if (displayedManifest.description_long == "")
@@ -85,7 +85,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (!(new Regex("^([a-zA-Z_]+)$").IsMatch(displayedManifest.name)))
             {
@@ -109,7 +109,7 @@ namespace CarcassSpark.ObjectViewers
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }

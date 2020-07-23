@@ -14,7 +14,7 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class ElementsDictionaryResults : Form
     {
-        Dictionary<string, Element> results;
+        private readonly Dictionary<string, Element> results;
 
         public ElementsDictionaryResults(Dictionary<string, Element> results)
         {
@@ -27,22 +27,22 @@ namespace CarcassSpark.DictionaryViewers
             }
         }
 
-        private void resultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            if (Utilities.elementExists(resultsListBox.SelectedItem.ToString()))
+            if (Utilities.ElementExists(resultsListBox.SelectedItem.ToString()))
             {
                 ElementViewer ev = new ElementViewer(results[resultsListBox.SelectedItem.ToString()], null);
                 ev.Show();
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }

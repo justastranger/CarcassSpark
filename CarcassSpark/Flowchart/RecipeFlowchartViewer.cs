@@ -17,39 +17,32 @@ namespace CarcassSpark.Flowchart
     public partial class RecipeFlowchartViewer : Form
     {
         bool skipYesNo = false;
-
-        Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
-
-        List<RecipeNode> recipeNodesThatNeedToBeProcessed = new List<RecipeNode>();
-
-        TreeViewNode RootNode;
-
-        CascadeLayout layout = new CascadeLayout();
-        OrthogonalLayout ol = new OrthogonalLayout();
+        readonly Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
+        private readonly List<RecipeNode> recipeNodesThatNeedToBeProcessed = new List<RecipeNode>();
+        private readonly CascadeLayout layout = new CascadeLayout();
 
         public RecipeFlowchartViewer(Recipe recipe)
         {
             InitializeComponent();
-            RecipeNode RootRecipeNode = createRecipeNode(recipe, 25, 25);
+            RecipeNode RootRecipeNode = CreateRecipeNode(recipe, 25, 25);
             recipeNodes.Add(recipe.id, RootRecipeNode);
             recipeNodesThatNeedToBeProcessed.Add(RootRecipeNode);
-            RootNode = RootRecipeNode.Node;
             //tl.KeepGroupLayout = true;
             //layout.Orientation = MindFusion.Diagramming.Layout.Orientation.Vertical;
             layout.EnableParallelism = true;
             if (Settings.settings["loadAllFlowchartNodes"] != null && Settings.settings["loadAllFlowchartNodes"].ToObject<bool>())
             {
                 loadLinkedRecipesButton.Visible = false;
-                processAllRecipes();
+                ProcessAllRecipes();
             }
         }
 
-        void arrangeNodes()
+        void ArrangeNodes()
         {
             layout.Arrange(diagram1);
         }
 
-        void processRecipes()
+        void ProcessRecipes()
         {
             List<RecipeNode> nodesInProgress = new List<RecipeNode>(recipeNodesThatNeedToBeProcessed);
             recipeNodesThatNeedToBeProcessed.Clear();
@@ -64,7 +57,7 @@ namespace CarcassSpark.Flowchart
                     // if a node for this recipe doesn't already exist, create it and link to it
                     if (!recipeNodes.ContainsKey(link))
                     {
-                        RecipeNode tmpNode = createRecipeNode(Utilities.getRecipe(link), 25, 25);
+                        RecipeNode tmpNode = CreateRecipeNode(Utilities.GetRecipe(link), 25, 25);
                         recipeNodes[link] = tmpNode;
                         
                         tmpNode.Node.AttachTo(currentNode.Node, AttachToNode.MiddleRight);
@@ -83,7 +76,7 @@ namespace CarcassSpark.Flowchart
                             {
                                 if (recipeChild.Label.Contains("Recipe ID: "))
                                 {
-                                    createLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ')+1)));
+                                    CreateLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ')+1)));
                                 }
                             }
                         }
@@ -91,12 +84,12 @@ namespace CarcassSpark.Flowchart
                 }
                 progressBar1.PerformStep();
             }
-            arrangeNodes();
+            ArrangeNodes();
             diagram1.RouteAllLinks();
             progressBar1.Visible = false;
         }
 
-        void processAllRecipes()
+        void ProcessAllRecipes()
         {
             progressBar1.Visible = true;
             progressBar1.Value = 0;
@@ -110,7 +103,7 @@ namespace CarcassSpark.Flowchart
                     // if a node for this recipe doesn't already exist, create it and link to it
                     if (!recipeNodes.ContainsKey(link))
                     {
-                        RecipeNode tmpNode = createRecipeNode(Utilities.getRecipe(link), 25, 25);
+                        RecipeNode tmpNode = CreateRecipeNode(Utilities.GetRecipe(link), 25, 25);
                         recipeNodes[link] = tmpNode;
 
                         tmpNode.Node.AttachTo(currentNode.Node, AttachToNode.MiddleRight);
@@ -129,7 +122,7 @@ namespace CarcassSpark.Flowchart
                             {
                                 if (recipeChild.Label.Contains("Recipe ID: "))
                                 {
-                                    createLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ') + 1)));
+                                    CreateLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ') + 1)));
                                 }
                             }
                         }
@@ -138,12 +131,12 @@ namespace CarcassSpark.Flowchart
                 recipeNodesThatNeedToBeProcessed.Remove(currentNode);
                 progressBar1.PerformStep();
             }
-            arrangeNodes();
+            ArrangeNodes();
             diagram1.RouteAllLinks();
             progressBar1.Visible = false;
         }
 
-        void createLink(TreeViewNode outgoing, TreeViewNode incoming)
+        void CreateLink(TreeViewNode outgoing, TreeViewNode incoming)
         {
             DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoing, incoming);
             tmp.AddLabel((string)incoming.Id);
@@ -152,7 +145,7 @@ namespace CarcassSpark.Flowchart
             tmp.AutoRoute = true;
         }
 
-        void createLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
+        void CreateLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
         {
             //DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoingNode, incoming);
             DiagramLink tmp = new DiagramLink(diagram1);
@@ -166,7 +159,7 @@ namespace CarcassSpark.Flowchart
             diagram1.Links.Add(tmp);
         }
 
-        RecipeNode createRecipeNode(Recipe recipe, float x, float y)
+        RecipeNode CreateRecipeNode(Recipe recipe, float x, float y)
         {
             //if (recipeNodes.ContainsKey(recipe.id))
             //{
@@ -406,19 +399,7 @@ namespace CarcassSpark.Flowchart
             
         }
 
-        public class RecipeNode
-        {
-            public TreeViewNode Node;
-            public List<string> linkedRecipes;
-
-            public RecipeNode(TreeViewNode Node, List<string> linkedRecipes)
-            {
-                this.Node = Node;
-                this.linkedRecipes = linkedRecipes;
-            }
-        }
-
-        private void loadLinkedRecipesButton_Click(object sender, EventArgs e)
+        private void LoadLinkedRecipesButton_Click(object sender, EventArgs e)
         {
             if (recipeNodesThatNeedToBeProcessed.Count == 0 || recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) == 0) return;
             if (!skipYesNo)
@@ -427,20 +408,20 @@ namespace CarcassSpark.Flowchart
                 {
                     case DialogResult.Cancel:
                         skipYesNo = true;
-                        processRecipes();
+                        ProcessRecipes();
                         break;
                     case DialogResult.Yes:
-                        processRecipes();
+                        ProcessRecipes();
                         break;
                 }
             }
             else
             {
-                processRecipes();
+                ProcessRecipes();
             }
         }
 
-        private void exportButton_Click(object sender, EventArgs e)
+        private void ExportButton_Click(object sender, EventArgs e)
         {
             saveFileDialog1.InitialDirectory = Utilities.baseDirectory;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -448,6 +429,18 @@ namespace CarcassSpark.Flowchart
                 Bitmap exportedImage = diagram1.CreateImage(diagram1.Bounds, 65f);
                 exportedImage.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
+        }
+    }
+
+    public class RecipeNode
+    {
+        public TreeViewNode Node;
+        public List<string> linkedRecipes;
+
+        public RecipeNode(TreeViewNode Node, List<string> linkedRecipes)
+        {
+            this.Node = Node;
+            this.linkedRecipes = linkedRecipes;
         }
     }
 }

@@ -55,7 +55,7 @@
             this.createBaseElementButton.TabIndex = 0;
             this.createBaseElementButton.Text = "Create Base Element";
             this.createBaseElementButton.UseVisualStyleBackColor = true;
-            this.createBaseElementButton.Click += new System.EventHandler(this.createBaseElementButton_click);
+            this.createBaseElementButton.Click += new System.EventHandler(this.CreateBaseElementButton_click);
             // 
             // baseIdTextBox
             // 
@@ -100,7 +100,7 @@
             this.inspectBaseButton.TabIndex = 5;
             this.inspectBaseButton.Text = "Inspect Element";
             this.inspectBaseButton.UseVisualStyleBackColor = true;
-            this.inspectBaseButton.Click += new System.EventHandler(this.inspectBaseButton_Click);
+            this.inspectBaseButton.Click += new System.EventHandler(this.InspectBaseButton_Click);
             // 
             // inspectPreButton
             // 
@@ -111,7 +111,7 @@
             this.inspectPreButton.TabIndex = 6;
             this.inspectPreButton.Text = "Inspect Element";
             this.inspectPreButton.UseVisualStyleBackColor = true;
-            this.inspectPreButton.Click += new System.EventHandler(this.inspectPreButton_Click);
+            this.inspectPreButton.Click += new System.EventHandler(this.InspectPreButton_Click);
             // 
             // createRecipeButton
             // 
@@ -122,7 +122,7 @@
             this.createRecipeButton.TabIndex = 7;
             this.createRecipeButton.Text = "Create Base Summon Recipe";
             this.createRecipeButton.UseVisualStyleBackColor = true;
-            this.createRecipeButton.Click += new System.EventHandler(this.createRecipeButton_Click);
+            this.createRecipeButton.Click += new System.EventHandler(this.CreateRecipeButton_Click);
             // 
             // label1
             // 
@@ -166,7 +166,7 @@
             this.okButton.TabIndex = 12;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -177,7 +177,7 @@
             this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // inspectBaseRecipeButton
             // 
@@ -188,7 +188,7 @@
             this.inspectBaseRecipeButton.TabIndex = 14;
             this.inspectBaseRecipeButton.Text = "Inspect Recipe";
             this.inspectBaseRecipeButton.UseVisualStyleBackColor = true;
-            this.inspectBaseRecipeButton.Click += new System.EventHandler(this.inspectBaseRecipeButton_Click);
+            this.inspectBaseRecipeButton.Click += new System.EventHandler(this.InspectBaseRecipeButton_Click);
             // 
             // inspectSuccessRecipeButton
             // 
@@ -199,7 +199,7 @@
             this.inspectSuccessRecipeButton.TabIndex = 15;
             this.inspectSuccessRecipeButton.Text = "Inspect Recipe";
             this.inspectSuccessRecipeButton.UseVisualStyleBackColor = true;
-            this.inspectSuccessRecipeButton.Click += new System.EventHandler(this.inspectSuccessRecipeButton_Click);
+            this.inspectSuccessRecipeButton.Click += new System.EventHandler(this.InspectSuccessRecipeButton_Click);
             // 
             // SummonCreator
             // 

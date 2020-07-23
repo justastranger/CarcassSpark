@@ -51,7 +51,7 @@ namespace CarcassSpark.ObjectTypes
             description_long = "";
         }
 
-        public string toString()
+        public string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }

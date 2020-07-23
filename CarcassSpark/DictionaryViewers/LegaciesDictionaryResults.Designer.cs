@@ -42,7 +42,7 @@
             this.okButton.TabIndex = 0;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click_1);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click_1);
             // 
             // cancelButton
             // 
@@ -53,7 +53,7 @@
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click_1);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click_1);
             // 
             // resultsListBox
             // 
@@ -62,7 +62,7 @@
             this.resultsListBox.Name = "resultsListBox";
             this.resultsListBox.Size = new System.Drawing.Size(260, 199);
             this.resultsListBox.TabIndex = 2;
-            this.resultsListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultsListBox_MouseDoubleClick_1);
+            this.resultsListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseDoubleClick_1);
             // 
             // LegaciesDictionaryResults
             // 

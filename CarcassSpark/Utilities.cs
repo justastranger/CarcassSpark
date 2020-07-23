@@ -34,24 +34,24 @@ namespace CarcassSpark
             DictionaryRemoveStyle.BackColor = Color.Maroon;
         }
 
-        public static string getIdType(string id)
+        public static string GetIdType(string id)
         {
-            if (aspectExists(id)) return "aspect";
-            if (elementExists(id)) return "element";
-            if (recipeExists(id)) return "recipe";
-            if (deckExists(id)) return "deck";
-            if (legacyExists(id)) return "legacy";
-            if (endingExists(id)) return "ending";
-            if (verbExists(id)) return "verb";
+            if (AspectExists(id)) return "aspect";
+            if (ElementExists(id)) return "element";
+            if (RecipeExists(id)) return "recipe";
+            if (DeckExists(id)) return "deck";
+            if (LegacyExists(id)) return "legacy";
+            if (EndingExists(id)) return "ending";
+            if (VerbExists(id)) return "verb";
             return "unknown";
         }
         
-        public static Image getVanillaAspect(string path)
+        public static Image GetVanillaAspect(string path)
         {
             throw new NotImplementedException("I still haven't figured out how to do this.");
         }
 
-        public static Image getAspectImage(string id)
+        public static Image GetAspectImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -65,7 +65,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getElementImage(string id)
+        public static Image GetElementImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -79,7 +79,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getEndingImage(string id)
+        public static Image GetEndingImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -93,7 +93,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getLegacyImage(string id)
+        public static Image GetLegacyImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -107,7 +107,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getVerbImage(string id)
+        public static Image GetVerbImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -121,7 +121,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getCardBackImage(string id)
+        public static Image GetCardBackImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -135,7 +135,7 @@ namespace CarcassSpark
             return null;
         }
 
-        public static Image getBurnImage(string id)
+        public static Image GetBurnImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
@@ -148,155 +148,155 @@ namespace CarcassSpark
             return null;
         }
 
-        public static bool aspectExists(string id)
+        public static bool AspectExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.aspectExists(id)) return true;
+                if (source.AspectExists(id)) return true;
             }
             return false;
         }
 
-        public static Aspect getAspect(string id)
+        public static Aspect GetAspect(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getAspect(id) != null)
+                if (source.GetAspect(id) != null)
                 {
-                    return source.getAspect(id);
+                    return source.GetAspect(id);
                 }
             }
             return null;
         }
 
-        public static bool elementExists(string id)
+        public static bool ElementExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.elementExists(id)) return true;
+                if (source.ElementExists(id)) return true;
             }
             return false;
         }
 
-        public static Element getElement(string id)
+        public static Element GetElement(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getElement(id) != null)
+                if (source.GetElement(id) != null)
                 {
-                    return source.getElement(id);
+                    return source.GetElement(id);
                 }
             }
             return null;
         }
 
-        public static bool recipeExists(string id)
+        public static bool RecipeExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.recipeExists(id)) return true;
+                if (source.RecipeExists(id)) return true;
             }
             return false;
         }
 
-        public static Recipe getRecipe(string id)
+        public static Recipe GetRecipe(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getRecipe(id) != null)
+                if (source.GetRecipe(id) != null)
                 {
-                    return source.getRecipe(id);
+                    return source.GetRecipe(id);
                 }
             }
             return null;
         }
 
-        public static bool deckExists(string id)
+        public static bool DeckExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.recipeExists(id)) return true;
+                if (source.RecipeExists(id)) return true;
             }
             return false;
         }
 
-        public static Deck getDeck(string id)
+        public static Deck GetDeck(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getDeck(id) != null)
+                if (source.GetDeck(id) != null)
                 {
-                    return source.getDeck(id);
+                    return source.GetDeck(id);
                 }
             }
             return null;
         }
 
-        public static bool legacyExists(string id)
+        public static bool LegacyExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.legacyExists(id)) return true;
+                if (source.LegacyExists(id)) return true;
             }
             return false;
         }
 
-        public static Legacy getLegacy(string id)
+        public static Legacy GetLegacy(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getLegacy(id) != null)
+                if (source.GetLegacy(id) != null)
                 {
-                    return source.getLegacy(id);
+                    return source.GetLegacy(id);
                 }
             }
             return null;
         }
 
-        public static bool endingExists(string id)
+        public static bool EndingExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.endingExists(id)) return true;
+                if (source.EndingExists(id)) return true;
             }
             return false;
         }
 
-        public static Ending getEnding(string id)
+        public static Ending GetEnding(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getEnding(id) != null)
+                if (source.GetEnding(id) != null)
                 {
-                    return source.getEnding(id);
+                    return source.GetEnding(id);
                 }
             }
             return null;
         }
 
-        public static bool verbExists(string id)
+        public static bool VerbExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.verbExists(id)) return true;
+                if (source.VerbExists(id)) return true;
             }
             return false;
         }
 
-        public static Verb getVerb(string id)
+        public static Verb GetVerb(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.getVerb(id) != null)
+                if (source.GetVerb(id) != null)
                 {
-                    return source.getVerb(id);
+                    return source.GetVerb(id);
                 }
             }
             return null;
         }
 
 
-        public static List<Aspect> getAspects()
+        public static List<Aspect> GetAspects()
         {
             Dictionary<string, Aspect> tmp = new Dictionary<string, Aspect>();
             foreach (ContentSource source in ContentSources.Values)
@@ -311,7 +311,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Element> getElements()
+        public static List<Element> GetElements()
         {
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (ContentSource source in ContentSources.Values)
@@ -326,7 +326,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Recipe> getRecipes()
+        public static List<Recipe> GetRecipes()
         {
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (ContentSource source in ContentSources.Values)
@@ -341,7 +341,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Deck> getDecks()
+        public static List<Deck> GetDecks()
         {
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
             foreach (ContentSource source in ContentSources.Values)
@@ -356,7 +356,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Legacy> getLegacies()
+        public static List<Legacy> GetLegacies()
         {
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
             foreach (ContentSource source in ContentSources.Values)
@@ -371,7 +371,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Ending> getEndings()
+        public static List<Ending> GetEndings()
         {
             Dictionary<string, Ending> tmp = new Dictionary<string, Ending>();
             foreach (ContentSource source in ContentSources.Values)
@@ -386,7 +386,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Verb> getVerbs()
+        public static List<Verb> GetVerbs()
         {
             Dictionary<string, Verb> tmp = new Dictionary<string, Verb>();
             foreach (ContentSource source in ContentSources.Values)

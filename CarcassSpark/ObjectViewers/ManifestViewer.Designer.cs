@@ -56,7 +56,7 @@
             this.modNameTextBox.Size = new System.Drawing.Size(357, 20);
             this.modNameTextBox.TabIndex = 0;
             this.modNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.modNameTextBox.TextChanged += new System.EventHandler(this.modNameTextBox_TextChanged);
+            this.modNameTextBox.TextChanged += new System.EventHandler(this.ModNameTextBox_TextChanged);
             // 
             // modAuthorTextBox
             // 
@@ -65,7 +65,7 @@
             this.modAuthorTextBox.Size = new System.Drawing.Size(357, 20);
             this.modAuthorTextBox.TabIndex = 1;
             this.modAuthorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.modAuthorTextBox.TextChanged += new System.EventHandler(this.modAuthorTextBox_TextChanged);
+            this.modAuthorTextBox.TextChanged += new System.EventHandler(this.ModAuthorTextBox_TextChanged);
             // 
             // modVersionTextBox
             // 
@@ -74,7 +74,7 @@
             this.modVersionTextBox.Size = new System.Drawing.Size(357, 20);
             this.modVersionTextBox.TabIndex = 2;
             this.modVersionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.modVersionTextBox.TextChanged += new System.EventHandler(this.modVersionTextBox_TextChanged);
+            this.modVersionTextBox.TextChanged += new System.EventHandler(this.ModVersionTextBox_TextChanged);
             // 
             // modDescriptionTextBox
             // 
@@ -85,7 +85,7 @@
             this.modDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.modDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.modDescriptionTextBox.TabIndex = 3;
-            this.modDescriptionTextBox.TextChanged += new System.EventHandler(this.modDescriptionTextBox_TextChanged);
+            this.modDescriptionTextBox.TextChanged += new System.EventHandler(this.ModDescriptionTextBox_TextChanged);
             // 
             // longDescriptionTextBox
             // 
@@ -96,7 +96,7 @@
             this.longDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.longDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.longDescriptionTextBox.TabIndex = 4;
-            this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.longDescriptionTextBox_TextChanged);
+            this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.LongDescriptionTextBox_TextChanged);
             // 
             // okButton
             // 
@@ -107,7 +107,7 @@
             this.okButton.TabIndex = 5;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -118,7 +118,7 @@
             this.cancelButton.TabIndex = 6;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // modNameLabel
             // 

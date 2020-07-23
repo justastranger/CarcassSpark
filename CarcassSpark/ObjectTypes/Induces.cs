@@ -27,7 +27,7 @@ namespace CarcassSpark.ObjectTypes
             this.expulsion = expulsion;
         }
 
-        public string toString()
+        public string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }

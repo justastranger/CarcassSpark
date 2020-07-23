@@ -60,7 +60,7 @@
             this.idTextBox.Size = new System.Drawing.Size(183, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -70,7 +70,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(185, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // imageTextBox
             // 
@@ -80,7 +80,7 @@
             this.imageTextBox.Size = new System.Drawing.Size(185, 20);
             this.imageTextBox.TabIndex = 3;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
+            this.imageTextBox.TextChanged += new System.EventHandler(this.ImageTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -92,7 +92,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(374, 153);
             this.descriptionTextBox.TabIndex = 6;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // idLabel
             // 
@@ -164,7 +164,7 @@
             this.okButton.TabIndex = 15;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -176,7 +176,7 @@
             this.cancelButton.TabIndex = 16;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // achievementTextBox
             // 
@@ -185,7 +185,7 @@
             this.achievementTextBox.Name = "achievementTextBox";
             this.achievementTextBox.Size = new System.Drawing.Size(183, 20);
             this.achievementTextBox.TabIndex = 17;
-            this.achievementTextBox.TextChanged += new System.EventHandler(this.achievementTextBox_TextChanged);
+            this.achievementTextBox.TextChanged += new System.EventHandler(this.AchievementTextBox_TextChanged);
             // 
             // achievementLabel
             // 
@@ -219,7 +219,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(372, 58);
             this.commentsTextBox.TabIndex = 19;
-            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // commentsLabel
             // 
@@ -241,7 +241,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // endindFlavourComboBox
             // 
@@ -256,7 +256,7 @@
             this.endindFlavourComboBox.Name = "endindFlavourComboBox";
             this.endindFlavourComboBox.Size = new System.Drawing.Size(185, 21);
             this.endindFlavourComboBox.TabIndex = 22;
-            this.endindFlavourComboBox.SelectedIndexChanged += new System.EventHandler(this.endindFlavourComboBox_SelectedIndexChanged);
+            this.endindFlavourComboBox.SelectedIndexChanged += new System.EventHandler(this.EndindFlavourComboBox_SelectedIndexChanged);
             // 
             // animComboBox
             // 
@@ -269,7 +269,7 @@
             this.animComboBox.Name = "animComboBox";
             this.animComboBox.Size = new System.Drawing.Size(181, 21);
             this.animComboBox.TabIndex = 23;
-            this.animComboBox.SelectedIndexChanged += new System.EventHandler(this.animComboBox_SelectedIndexChanged);
+            this.animComboBox.SelectedIndexChanged += new System.EventHandler(this.AnimComboBox_SelectedIndexChanged);
             // 
             // EndingViewer
             // 

@@ -26,10 +26,10 @@ namespace CarcassSpark
         public Settings()
         {
             InitializeComponent();
-            populateSettings();
+            PopulateSettings();
         }
 
-        public static void saveSettings()
+        public static void SaveSettings()
         {
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
             {
@@ -41,12 +41,12 @@ namespace CarcassSpark
             }
         }
 
-        public static void loadSettings(string settingsFilePath)
+        public static void LoadSettings(string settingsFilePath)
         {
             settings = JsonConvert.DeserializeObject<JObject>(new StreamReader(settingsFilePath).ReadToEnd());
         }
 
-        void populateSettings()
+        void PopulateSettings()
         {
             if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
             if (settings["loadPreviousMods"] != null) loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
@@ -55,16 +55,16 @@ namespace CarcassSpark
             if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
         }
 
-        private void openWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void OpenWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["openWithVanilla"] = openWithVanillaCheckBox.Checked;
-            saveSettings();
+            SaveSettings();
         }
 
-        private void loadPreviousModsCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void LoadPreviousModsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["loadPreviousMods"] = loadPreviousModsCheckBox.Checked;
-            saveSettings();
+            SaveSettings();
         }
 
         public static List<string> GetPreviousMods()
@@ -72,13 +72,13 @@ namespace CarcassSpark
             return settings["previousMods"].ToObject<List<string>>();
         }
 
-        private void saveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void SaveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["saveCleanedVanillaContent"] = saveCleanedVanillaContentCheckBox.Checked;
-            saveSettings();
+            SaveSettings();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
 
             List<string> modPaths = previousModsTextBox.Text.Split("\r\n".ToCharArray()).ToList();
@@ -89,22 +89,22 @@ namespace CarcassSpark
             }
             settings["previousMods"] = JArray.FromObject(validatedPaths);
             
-            saveSettings();
+            SaveSettings();
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void loadAllFlowchartNodesCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void LoadAllFlowchartNodesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["loadAllFlowchartNodes"] = loadAllFlowchartNodesCheckBox.Checked;
-            saveSettings();
+            SaveSettings();
         }
 
-        private void previousModsTextBox_TextChanged(object sender, EventArgs e)
+        private void PreviousModsTextBox_TextChanged(object sender, EventArgs e)
         {
             
         }

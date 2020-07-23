@@ -27,39 +27,39 @@ namespace CarcassSpark.DictionaryViewers
             }
         }
 
-        private void resultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            if (Utilities.legacyExists(resultsListBox.SelectedItem.ToString()))
+            if (Utilities.LegacyExists(resultsListBox.SelectedItem.ToString()))
             {
                 LegacyViewer ev = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
                 ev.Show();
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void okButton_Click_1(object sender, EventArgs e)
+        private void OkButton_Click_1(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void cancelButton_Click_1(object sender, EventArgs e)
+        private void CancelButton_Click_1(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void resultsListBox_MouseDoubleClick_1(object sender, MouseEventArgs e)
+        private void ResultsListBox_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
             LegacyViewer lv = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);

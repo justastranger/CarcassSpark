@@ -21,7 +21,7 @@ namespace CarcassSpark.Tools
             InitializeComponent();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (displayedImagePath == null || displayedImageType == null)
             {
@@ -31,12 +31,12 @@ namespace CarcassSpark.Tools
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void chooseButton_Click(object sender, EventArgs e)
+        private void ChooseButton_Click(object sender, EventArgs e)
         {
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -46,7 +46,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void typeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             displayedImageType = typeComboBox.Text;
         }

@@ -96,7 +96,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -105,7 +105,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // iconTextBox
             // 
@@ -114,7 +114,7 @@
             this.iconTextBox.Size = new System.Drawing.Size(100, 20);
             this.iconTextBox.TabIndex = 3;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.iconTextBox.TextChanged += new System.EventHandler(this.iconTextBox_TextChanged);
+            this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // decayToTextBox
             // 
@@ -123,7 +123,7 @@
             this.decayToTextBox.Size = new System.Drawing.Size(100, 20);
             this.decayToTextBox.TabIndex = 6;
             this.decayToTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.decayToTextBox.TextChanged += new System.EventHandler(this.decayToTextBox_TextChanged);
+            this.decayToTextBox.TextChanged += new System.EventHandler(this.DecayToTextBox_TextChanged);
             // 
             // uniqueCheckBox
             // 
@@ -136,7 +136,7 @@
             this.uniqueCheckBox.Text = "Unique";
             this.uniqueCheckBox.ThreeState = true;
             this.uniqueCheckBox.UseVisualStyleBackColor = true;
-            this.uniqueCheckBox.CheckStateChanged += new System.EventHandler(this.uniqueCheckBox_CheckStateChanged);
+            this.uniqueCheckBox.CheckStateChanged += new System.EventHandler(this.UniqueCheckBox_CheckStateChanged);
             // 
             // uniquenessgroupTextBox
             // 
@@ -145,7 +145,7 @@
             this.uniquenessgroupTextBox.Size = new System.Drawing.Size(100, 20);
             this.uniquenessgroupTextBox.TabIndex = 8;
             this.uniquenessgroupTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.uniquenessgroupTextBox.TextChanged += new System.EventHandler(this.uniquenessgroupTextBox_TextChanged);
+            this.uniquenessgroupTextBox.TextChanged += new System.EventHandler(this.UniquenessgroupTextBox_TextChanged);
             // 
             // xtriggersLabel
             // 
@@ -178,8 +178,8 @@
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
             this.aspectsDataGridView.TabIndex = 13;
-            this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aspectsDataGridView_CellDoubleClick);
-            this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.aspectsDataGridView_UserDeletedRow);
+            this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AspectsDataGridView_CellDoubleClick);
+            this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AspectsDataGridView_UserDeletedRow);
             // 
             // aspectId
             // 
@@ -207,14 +207,14 @@
             this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
             this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
-            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.SetAsExtendToolStripMenuItem_Click);
             // 
             // setAsRemoveToolStripMenuItem
             // 
             this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
             this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.SetAsRemoveToolStripMenuItem_Click);
             // 
             // extendsTextBox
             // 
@@ -223,7 +223,7 @@
             this.extendsTextBox.Size = new System.Drawing.Size(136, 20);
             this.extendsTextBox.TabIndex = 14;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -233,7 +233,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(491, 71);
             this.descriptionTextBox.TabIndex = 15;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // okButton
             // 
@@ -244,7 +244,7 @@
             this.okButton.TabIndex = 16;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -255,7 +255,7 @@
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // aspectsLabel
             // 
@@ -277,7 +277,7 @@
             this.lifetimeNumericUpDown.Name = "lifetimeNumericUpDown";
             this.lifetimeNumericUpDown.Size = new System.Drawing.Size(125, 20);
             this.lifetimeNumericUpDown.TabIndex = 19;
-            this.lifetimeNumericUpDown.ValueChanged += new System.EventHandler(this.lifetimeNumericUpDown_ValueChanged);
+            this.lifetimeNumericUpDown.ValueChanged += new System.EventHandler(this.LifetimeNumericUpDown_ValueChanged);
             // 
             // lifetimeLabel
             // 
@@ -299,7 +299,7 @@
             this.animFramesNumericUpDown.Name = "animFramesNumericUpDown";
             this.animFramesNumericUpDown.Size = new System.Drawing.Size(100, 20);
             this.animFramesNumericUpDown.TabIndex = 21;
-            this.animFramesNumericUpDown.ValueChanged += new System.EventHandler(this.animFramesNumericUpDown_ValueChanged);
+            this.animFramesNumericUpDown.ValueChanged += new System.EventHandler(this.AnimFramesNumericUpDown_ValueChanged);
             // 
             // animFramesLabel
             // 
@@ -381,7 +381,7 @@
             this.addSlotButton.TabIndex = 30;
             this.addSlotButton.Text = "Add Slot";
             this.addSlotButton.UseVisualStyleBackColor = true;
-            this.addSlotButton.Click += new System.EventHandler(this.addSlotButton_Click);
+            this.addSlotButton.Click += new System.EventHandler(this.AddSlotButton_Click);
             // 
             // removeSlotButton
             // 
@@ -402,7 +402,7 @@
             this.resaturateCheckBox.Text = "Resaturate";
             this.resaturateCheckBox.ThreeState = true;
             this.resaturateCheckBox.UseVisualStyleBackColor = true;
-            this.resaturateCheckBox.CheckStateChanged += new System.EventHandler(this.resaturateCheckBox_CheckStateChanged);
+            this.resaturateCheckBox.CheckStateChanged += new System.EventHandler(this.ResaturateCheckBox_CheckStateChanged);
             // 
             // slotsListView
             // 
@@ -413,7 +413,7 @@
             this.slotsListView.TabIndex = 33;
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
-            this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListView_DoubleClick);
+            this.slotsListView.DoubleClick += new System.EventHandler(this.SlotsListView_DoubleClick);
             // 
             // xtriggersListView
             // 
@@ -424,7 +424,7 @@
             this.xtriggersListView.TabIndex = 34;
             this.xtriggersListView.UseCompatibleStateImageBehavior = false;
             this.xtriggersListView.View = System.Windows.Forms.View.List;
-            this.xtriggersListView.DoubleClick += new System.EventHandler(this.xtriggersListView_DoubleClick);
+            this.xtriggersListView.DoubleClick += new System.EventHandler(this.XtriggersListView_DoubleClick);
             // 
             // newXTriggerButton
             // 
@@ -434,7 +434,7 @@
             this.newXTriggerButton.TabIndex = 35;
             this.newXTriggerButton.Text = "New XTrigger";
             this.newXTriggerButton.UseVisualStyleBackColor = true;
-            this.newXTriggerButton.Click += new System.EventHandler(this.newXTriggerButton_Click);
+            this.newXTriggerButton.Click += new System.EventHandler(this.NewXTriggerButton_Click);
             // 
             // deleteXTriggerButton
             // 
@@ -444,7 +444,7 @@
             this.deleteXTriggerButton.TabIndex = 36;
             this.deleteXTriggerButton.Text = "Delete XTrigger";
             this.deleteXTriggerButton.UseVisualStyleBackColor = true;
-            this.deleteXTriggerButton.Click += new System.EventHandler(this.deleteXTriggerButton_Click);
+            this.deleteXTriggerButton.Click += new System.EventHandler(this.DeleteXTriggerButton_Click);
             // 
             // commentsLabel
             // 
@@ -464,7 +464,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(491, 33);
             this.commentsTextBox.TabIndex = 38;
-            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // inheritsLabel
             // 
@@ -481,7 +481,7 @@
             this.inheritsTextBox.Name = "inheritsTextBox";
             this.inheritsTextBox.Size = new System.Drawing.Size(136, 20);
             this.inheritsTextBox.TabIndex = 40;
-            this.inheritsTextBox.TextChanged += new System.EventHandler(this.inheritsTextBox_TextChanged);
+            this.inheritsTextBox.TextChanged += new System.EventHandler(this.InheritsTextBox_TextChanged);
             // 
             // deletedCheckBox
             // 
@@ -493,7 +493,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // ElementViewer
             // 

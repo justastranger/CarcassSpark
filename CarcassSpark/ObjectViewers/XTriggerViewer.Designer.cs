@@ -48,7 +48,7 @@
             this.catalystTextBox.Name = "catalystTextBox";
             this.catalystTextBox.Size = new System.Drawing.Size(120, 20);
             this.catalystTextBox.TabIndex = 0;
-            this.catalystTextBox.TextChanged += new System.EventHandler(this.catalystTextBox_TextChanged);
+            this.catalystTextBox.TextChanged += new System.EventHandler(this.CatalystTextBox_TextChanged);
             // 
             // catalystLabel
             // 
@@ -68,7 +68,7 @@
             this.okButton.TabIndex = 10;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -79,7 +79,7 @@
             this.cancelButton.TabIndex = 11;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // xtriggersDataGridView
             // 

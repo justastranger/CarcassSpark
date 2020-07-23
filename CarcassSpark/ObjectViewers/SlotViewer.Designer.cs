@@ -60,7 +60,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -69,7 +69,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -80,7 +80,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(260, 75);
             this.descriptionTextBox.TabIndex = 2;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // actionIdTextBox
             // 
@@ -90,7 +90,7 @@
             this.actionIdTextBox.TabIndex = 3;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.actionIdTextBox.Visible = false;
-            this.actionIdTextBox.TextChanged += new System.EventHandler(this.actionIdTextBox_TextChanged);
+            this.actionIdTextBox.TextChanged += new System.EventHandler(this.ActionIdTextBox_TextChanged);
             // 
             // greedyCheckBox
             // 
@@ -102,7 +102,7 @@
             this.greedyCheckBox.Text = "Greedy";
             this.greedyCheckBox.UseVisualStyleBackColor = true;
             this.greedyCheckBox.Visible = false;
-            this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.greedyCheckBox_CheckedChanged);
+            this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.GreedyCheckBox_CheckedChanged);
             // 
             // requiredLabel
             // 
@@ -168,7 +168,7 @@
             this.okButton.TabIndex = 13;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -179,7 +179,7 @@
             this.cancelButton.TabIndex = 14;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // requiredDataGridView
             // 
@@ -193,8 +193,8 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
-            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requiredDataGridView_CellDoubleClick_1);
-            this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requiredDataGridView_UserDeletedRow);
+            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequiredDataGridView_CellDoubleClick_1);
+            this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequiredDataGridView_UserDeletedRow);
             // 
             // requiredId
             // 
@@ -220,8 +220,8 @@
             this.forbiddenDataGridView.Name = "forbiddenDataGridView";
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
             this.forbiddenDataGridView.TabIndex = 16;
-            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.forbiddenDataGridView_CellDoubleClick_1);
-            this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.forbiddenDataGridView_UserDeletedRow);
+            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForbiddenDataGridView_CellDoubleClick_1);
+            this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ForbiddenDataGridView_UserDeletedRow);
             // 
             // forbiddenId
             // 
@@ -245,7 +245,7 @@
             this.consumesCheckBox.Text = "Consumes";
             this.consumesCheckBox.UseVisualStyleBackColor = true;
             this.consumesCheckBox.Visible = false;
-            this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.consumesCheckBox_CheckedChanged);
+            this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.ConsumesCheckBox_CheckedChanged);
             // 
             // SlotViewer
             // 

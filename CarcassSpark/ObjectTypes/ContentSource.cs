@@ -30,106 +30,106 @@ namespace CarcassSpark.ObjectTypes
             
         }
         
-        public string getName()
+        public string GetName()
         {
             if (manifest != null) return manifest.name;
             else return null;
         }
 
-        public Element getElement(string id)
+        public Element GetElement(string id)
         {
-            if (elementExists(id)) return Elements[id];
+            if (ElementExists(id)) return Elements[id];
             else return null;
         }
 
-        public bool elementExists(string id)
+        public bool ElementExists(string id)
         {
             return Elements.ContainsKey(id);
         }
 
-        public Deck getDeck(string id)
+        public Deck GetDeck(string id)
         {
-            if (deckExists(id)) return Decks[id];
+            if (DeckExists(id)) return Decks[id];
             else return null;
         }
 
-        public bool deckExists(string id)
+        public bool DeckExists(string id)
         {
             return Decks.ContainsKey(id);
         }
-        public Aspect getAspect(string id)
+        public Aspect GetAspect(string id)
         {
-            if (aspectExists(id)) return Aspects[id];
+            if (AspectExists(id)) return Aspects[id];
             else return null;
         }
 
-        public bool aspectExists(string id)
+        public bool AspectExists(string id)
         {
             return Aspects.ContainsKey(id);
         }
 
-        public Legacy getLegacy(string id)
+        public Legacy GetLegacy(string id)
         {
-            if (legacyExists(id)) return Legacies[id];
+            if (LegacyExists(id)) return Legacies[id];
             else return null;
         }
 
-        public bool legacyExists(string id)
+        public bool LegacyExists(string id)
         {
             return Legacies.ContainsKey(id);
         }
 
-        public Recipe getRecipe(string id)
+        public Recipe GetRecipe(string id)
         {
-            if (recipeExists(id)) return Recipes[id];
+            if (RecipeExists(id)) return Recipes[id];
             else return null;
         }
 
-        public bool recipeExists(string id)
+        public bool RecipeExists(string id)
         {
             return Recipes.ContainsKey(id);
         }
 
-        public Ending getEnding(string id)
+        public Ending GetEnding(string id)
         {
-            if (endingExists(id)) return Endings[id];
+            if (EndingExists(id)) return Endings[id];
             else return null;
         }
 
-        public bool endingExists(string id)
+        public bool EndingExists(string id)
         {
             return Endings.ContainsKey(id);
         }
 
-        public Verb getVerb(string id)
+        public Verb GetVerb(string id)
         {
-            if (verbExists(id)) return Verbs[id];
+            if (VerbExists(id)) return Verbs[id];
             else return null;
         }
 
-        public bool verbExists(string id)
+        public bool VerbExists(string id)
         {
             return Verbs.ContainsKey(id);
         }
 
-        public void setCustomManifestProperty(string key, object value)
+        public void SetCustomManifestProperty(string key, object value)
         {
             CustomManifest[key] = JToken.FromObject(value);
         }
 
-        public string getCustomManifestString(string key)
+        public string GetCustomManifestString(string key)
         {
             if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToString();
             else return null;
         }
 
-        public bool? getCustomManifestBool(string key)
+        public bool? GetCustomManifestBool(string key)
         {
             if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<bool?>();
             else return null;
         }
 
-        public int? getCustomManifestInt(string key)
+        public int? GetCustomManifestInt(string key)
         {
             if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<int?>();
             else return null;

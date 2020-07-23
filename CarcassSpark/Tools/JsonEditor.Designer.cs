@@ -52,7 +52,7 @@
             this.contentTypeComboBox.Name = "contentTypeComboBox";
             this.contentTypeComboBox.Size = new System.Drawing.Size(401, 21);
             this.contentTypeComboBox.TabIndex = 1;
-            this.contentTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.contentTypeComboBox_SelectedIndexChanged);
+            this.contentTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ContentTypeComboBox_SelectedIndexChanged);
             // 
             // okButton
             // 
@@ -64,7 +64,7 @@
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -76,7 +76,7 @@
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // scintillaEditor
             // 
@@ -89,7 +89,7 @@
             this.scintillaEditor.Size = new System.Drawing.Size(563, 429);
             this.scintillaEditor.TabIndex = 4;
             this.scintillaEditor.UseTabs = true;
-            this.scintillaEditor.TextChanged += new System.EventHandler(this.scintillaEditor_TextChanged);
+            this.scintillaEditor.TextChanged += new System.EventHandler(this.ScintillaEditor_TextChanged);
             // 
             // JsonEditor
             // 

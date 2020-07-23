@@ -23,23 +23,23 @@ namespace CarcassSpark.ObjectViewers
             this.displayedAspect = aspect;
             if(aspect.extends != null)
             {
-                Aspect extendedAspect = Utilities.getAspect(aspect.extends[0]);
+                Aspect extendedAspect = Utilities.GetAspect(aspect.extends[0]);
                 extendsTextBox.Text = aspect.extends[0];
-                fillValues(extendedAspect);
+                FillValues(extendedAspect);
             }
-            fillValues(aspect);
+            FillValues(aspect);
             if (SuccessCallback != null)
             {
                 this.SuccessCallback += SuccessCallback;
-                setEditingMode(true);
+                SetEditingMode(true);
             }
             else
             {
-                setEditingMode(false);
+                SetEditingMode(false);
             }
         }
         
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
@@ -58,7 +58,7 @@ namespace CarcassSpark.ObjectViewers
             deletedCheckBox.Enabled = editing;
         }
 
-        public void fillValues(Aspect aspect)
+        public void FillValues(Aspect aspect)
         {
             if (aspect.id != null) idTextBox.Text = aspect.id;
             if (aspect.label != null) labelTextBox.Text = aspect.label;
@@ -67,11 +67,11 @@ namespace CarcassSpark.ObjectViewers
                 if (aspect.icon != null)
                 {
                     iconTextBox.Text = aspect.icon;
-                    pictureBox1.Image = Utilities.getAspectImage(aspect.icon);
+                    pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
                 }
                 else
                 {
-                    pictureBox1.Image = Utilities.getAspectImage(aspect.id);
+                    pictureBox1.Image = Utilities.GetAspectImage(aspect.id);
                 }
             }
             if (aspect.description != null) descriptionTextBox.Text = aspect.description;
@@ -128,15 +128,15 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void inducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = inducesDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
             if(id == null) return;
-            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(id), null);
+            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null);
             rv.Show();
         }
         
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -179,12 +179,12 @@ namespace CarcassSpark.ObjectViewers
             SuccessCallback?.Invoke(this, displayedAspect);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.id = idTextBox.Text;
             if (displayedAspect.id == "")
@@ -193,7 +193,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.label = labelTextBox.Text;
             if (displayedAspect.label == "")
@@ -202,12 +202,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void iconTextBox_TextChanged(object sender, EventArgs e)
+        private void IconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.icon = iconTextBox.Text;
-            if (Utilities.getAspectImage(iconTextBox.Text) != null)
+            if (Utilities.GetAspectImage(iconTextBox.Text) != null)
             {
-                pictureBox1.Image = Utilities.getAspectImage(iconTextBox.Text);
+                pictureBox1.Image = Utilities.GetAspectImage(iconTextBox.Text);
             }
             if (displayedAspect.icon == "")
             {
@@ -215,7 +215,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.extends = new List<string> { extendsTextBox.Text };
             if (displayedAspect.extends[0] == "")
@@ -224,7 +224,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.description = descriptionTextBox.Text;
             if (displayedAspect.description == "")
@@ -233,7 +233,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void InducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value as string : null;
             Induces induces = key != null ? inducesDictionary[key] : null;
@@ -263,7 +263,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsPrependToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsPrependToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -278,7 +278,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsAppendToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsAppendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -293,7 +293,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -308,33 +308,33 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void isHiddenCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void IsHiddenCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (isHiddenCheckBox.CheckState == CheckState.Checked) displayedAspect.isHidden = true;
             if (isHiddenCheckBox.CheckState == CheckState.Unchecked) displayedAspect.isHidden = false;
             if (isHiddenCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.isHidden = null;
         }
 
-        private void noartworkneededCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void NoartworkneededCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (noartworkneededCheckBox.CheckState == CheckState.Checked) displayedAspect.noartneeded = true;
             if (noartworkneededCheckBox.CheckState == CheckState.Unchecked) displayedAspect.noartneeded = false;
             if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.noartneeded = null;
         }
 
-        private void commentTextBox_TextChanged(object sender, EventArgs e)
+        private void CommentTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.comments = commentTextBox.Text;
             if (displayedAspect.comments == "") displayedAspect.comments = null;
         }
 
-        private void inheritsTextBox_TextChanged(object sender, EventArgs e)
+        private void InheritsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.inherits = inheritsTextBox.Text;
             if (displayedAspect.inherits == "") displayedAspect.inherits = null;
         }
 
-        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedAspect.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedAspect.deleted = false;

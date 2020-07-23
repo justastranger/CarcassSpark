@@ -17,27 +17,27 @@ namespace CarcassSpark.ObjectViewers
         bool editing;
         event EventHandler<Verb> SuccessCallback;
 
-        Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
+        private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
         public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback)
         {
             InitializeComponent();
             displayedVerb = verb;
-            fillValues(verb);
+            FillValues(verb);
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else setEditingMode(false);
+            else SetEditingMode(false);
         }
         
-        void fillValues(Verb verb)
+        void FillValues(Verb verb)
         {
             if (verb.id != null) idTextBox.Text = verb.id;
-            if (Utilities.getVerbImage(verb.id) != null)
+            if (Utilities.GetVerbImage(verb.id) != null)
             {
-                pictureBox1.Image = Utilities.getVerbImage(verb.id);
+                pictureBox1.Image = Utilities.GetVerbImage(verb.id);
             }
             if (verb.label != null) labelTextBox.Text = verb.label;
             if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
@@ -55,7 +55,7 @@ namespace CarcassSpark.ObjectViewers
             if (verb.extends != null && verb.extends.Count > 0) extendsTextBox.Text = verb.extends[0];
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -70,14 +70,14 @@ namespace CarcassSpark.ObjectViewers
             deletedCheckBox.Enabled = editing;
         }
 
-        private void slotsListBox_DoubleClick(object sender, EventArgs e)
+        private void SlotsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListView.SelectedItems == null) return;
             SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text], editing);
             sv.Show();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -88,7 +88,7 @@ namespace CarcassSpark.ObjectViewers
             SuccessCallback?.Invoke(this, displayedVerb);
         }
 
-        private void addSlotButton_Click(object sender, EventArgs e)
+        private void AddSlotButton_Click(object sender, EventArgs e)
         {
             if (slotsListView.Items.Count == 1)
             {
@@ -109,17 +109,17 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.id = idTextBox.Text;
-            if (Utilities.getVerbImage(idTextBox.Text) != null)
+            if (Utilities.GetVerbImage(idTextBox.Text) != null)
             {
-                pictureBox1.Image = Utilities.getVerbImage(idTextBox.Text);
+                pictureBox1.Image = Utilities.GetVerbImage(idTextBox.Text);
             }
             if (displayedVerb.id == "")
             {
@@ -127,7 +127,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.label = labelTextBox.Text;
             if (displayedVerb.label == "")
@@ -136,7 +136,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.description = descriptionTextBox.Text;
             if (displayedVerb.description == "")
@@ -145,7 +145,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void removeButton_Click(object sender, EventArgs e)
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (slots.ContainsKey(slotsListView.SelectedItems[0].Text.ToString()))
             {
@@ -155,14 +155,14 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void atStartCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void AtStartCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (atStartCheckBox.CheckState == CheckState.Checked) displayedVerb.atStart = true;
             if (atStartCheckBox.CheckState == CheckState.Unchecked) displayedVerb.atStart = false;
             if (atStartCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.atStart = null;
         }
 
-        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.comments = commentsTextBox.Text;
             if (displayedVerb.comments == "")
@@ -171,12 +171,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.extends = new List<string>() { extendsTextBox.Text };
         }
 
-        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedVerb.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedVerb.deleted = false;

@@ -21,37 +21,37 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             this.displayedDeck = deck;
-            fillValues(deck);
-            setEditingMode(false);
-            setInternal(false);
+            FillValues(deck);
+            SetEditingMode(false);
+            SetInternal(false);
         }
 
         public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback)
         {
             InitializeComponent();
             this.displayedDeck = deck;
-            fillValues(deck);
+            FillValues(deck);
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else setEditingMode(false);
-            setInternal(false);
+            else SetEditingMode(false);
+            SetInternal(false);
         }
 
         public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck)
         {
             InitializeComponent();
             this.displayedDeck = deck;
-            fillValues(deck);
-            if (SuccessCallback != null) setEditingMode(true);
-            else setEditingMode(false);
-            if (internalDeck.HasValue) setInternal(internalDeck.Value);
-            else setInternal(false);
+            FillValues(deck);
+            if (SuccessCallback != null) SetEditingMode(true);
+            else SetEditingMode(false);
+            if (internalDeck.HasValue) SetInternal(internalDeck.Value);
+            else SetInternal(false);
         }
 
-        void setInternal(bool internalDeck)
+        void SetInternal(bool internalDeck)
         {
             idTextBox.Visible = !internalDeck;
             idLabel.Visible = !internalDeck;
@@ -61,7 +61,7 @@ namespace CarcassSpark.ObjectViewers
             drawmessagesLlabel.Visible = !internalDeck;
         }
 
-        void fillValues(Deck deck)
+        void FillValues(Deck deck)
         {
             if (deck.id != null) idTextBox.Text = deck.id;
             if (deck.label != null) labelTextBox.Text = deck.label;
@@ -136,7 +136,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -161,7 +161,7 @@ namespace CarcassSpark.ObjectViewers
             deletedCheckBox.Enabled = editing;
         }
         
-        private void newCardButton_Click(object sender, EventArgs e)
+        private void NewCardButton_Click(object sender, EventArgs e)
         {
             if(newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
@@ -173,7 +173,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -206,12 +206,12 @@ namespace CarcassSpark.ObjectViewers
             SuccessCallback?.Invoke(this, displayedDeck);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.id = idTextBox.Text;
             if (displayedDeck.id == "")
@@ -220,7 +220,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.label = labelTextBox.Text;
             if (displayedDeck.label == "")
@@ -229,7 +229,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.description = descriptionTextBox.Text;
             if (displayedDeck.description == "")
@@ -238,7 +238,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.comments = commentsTextBox.Text;
             if (displayedDeck.comments == "")
@@ -247,7 +247,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void newCardTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void NewCardTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
@@ -262,7 +262,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void defaultCardTextBox_TextChanged(object sender, EventArgs e)
+        private void DefaultCardTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.defaultcard = defaultCardTextBox.Text;
             if (displayedDeck.defaultcard == "")
@@ -271,23 +271,23 @@ namespace CarcassSpark.ObjectViewers
             }
         }
         
-        private void specListView_DoubleClick(object sender, EventArgs e)
+        private void SpecListView_DoubleClick(object sender, EventArgs e)
         {
             if (specListView.SelectedItems == null) return;
             string id = specListView.SelectedItems[0].Text.ToString();
-            if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
+            if (id.Contains("deck:") && Utilities.DeckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id.Substring(id.IndexOf(":"))), null);
+                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null);
                 dv.Show();
             }
-            else if (Utilities.elementExists(id))
+            else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
         }
 
-        private void drawmessagesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void DrawmessagesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -312,7 +312,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void specPrependButton_Click(object sender, EventArgs e)
+        private void SpecPrependButton_Click(object sender, EventArgs e)
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
@@ -326,7 +326,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void specAppendButton_Click(object sender, EventArgs e)
+        private void SpecAppendButton_Click(object sender, EventArgs e)
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
@@ -340,7 +340,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedDeck.extends = new List<string> { extendsTextBox.Text };
             if (displayedDeck.extends[0] == "")
@@ -349,7 +349,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void specRemoveButton_Click(object sender, EventArgs e)
+        private void SpecRemoveButton_Click(object sender, EventArgs e)
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
@@ -363,7 +363,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListViewItem item = specListView.SelectedItems[0];
             specListView.Items.Remove(item);
@@ -389,7 +389,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void specListView_MouseDown(object sender, MouseEventArgs e)
+        private void SpecListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -401,14 +401,14 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void resetOnExhaustionCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void ResetOnExhaustionCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
         }
 
-        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;

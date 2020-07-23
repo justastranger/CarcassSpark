@@ -21,7 +21,7 @@ namespace CarcassSpark.ObjectTypes
             this.limit = limit;
         }
 
-        public string toString()
+        public string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }

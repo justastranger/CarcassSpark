@@ -184,8 +184,8 @@
             this.aspectsListBox.Size = new System.Drawing.Size(115, 377);
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
-            this.aspectsListBox.DoubleClick += new System.EventHandler(this.aspectListBox_DoubleClick);
-            this.aspectsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.aspectsListBox_MouseDown);
+            this.aspectsListBox.DoubleClick += new System.EventHandler(this.AspectListBox_DoubleClick);
+            this.aspectsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListBox_MouseDown);
             // 
             // aspectContextMenuStrip
             // 
@@ -219,7 +219,7 @@
             this.elementsWithThisAspectToolStripMenuItem.Name = "elementsWithThisAspectToolStripMenuItem";
             this.elementsWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.elementsWithThisAspectToolStripMenuItem.Text = "Elements with this aspect";
-            this.elementsWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.elementsWithThisAspectToolStripMenuItem_Click);
+            this.elementsWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.ElementsWithThisAspectToolStripMenuItem_Click);
             // 
             // elementsThatReactWithThisAspectToolStripMenuItem
             // 
@@ -227,7 +227,7 @@
             this.elementsThatReactWithThisAspectToolStripMenuItem.Name = "elementsThatReactWithThisAspectToolStripMenuItem";
             this.elementsThatReactWithThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.elementsThatReactWithThisAspectToolStripMenuItem.Text = "Elements that react with this aspect";
-            this.elementsThatReactWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.elementsThatReactWithThisAspectToolStripMenuItem_Click);
+            this.elementsThatReactWithThisAspectToolStripMenuItem.Click += new System.EventHandler(this.ElementsThatReactWithThisAspectToolStripMenuItem_Click);
             // 
             // recipesRequiringThisAspectToolStripMenuItem
             // 
@@ -235,7 +235,7 @@
             this.recipesRequiringThisAspectToolStripMenuItem.Name = "recipesRequiringThisAspectToolStripMenuItem";
             this.recipesRequiringThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.recipesRequiringThisAspectToolStripMenuItem.Text = "Recipes requiring this aspect";
-            this.recipesRequiringThisAspectToolStripMenuItem.Click += new System.EventHandler(this.recipesRequiringThisAspectToolStripMenuItem_Click);
+            this.recipesRequiringThisAspectToolStripMenuItem.Click += new System.EventHandler(this.RecipesRequiringThisAspectToolStripMenuItem_Click);
             // 
             // recipesThatProduceThisAspectToolStripMenuItem
             // 
@@ -243,7 +243,7 @@
             this.recipesThatProduceThisAspectToolStripMenuItem.Name = "recipesThatProduceThisAspectToolStripMenuItem";
             this.recipesThatProduceThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.recipesThatProduceThisAspectToolStripMenuItem.Text = "Recipes that produce this aspect";
-            this.recipesThatProduceThisAspectToolStripMenuItem.Click += new System.EventHandler(this.recipesThatProduceThisAspectToolStripMenuItem_Click);
+            this.recipesThatProduceThisAspectToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatProduceThisAspectToolStripMenuItem_Click);
             // 
             // slotsRequiringThisAspectToolStripMenuItem
             // 
@@ -251,7 +251,7 @@
             this.slotsRequiringThisAspectToolStripMenuItem.Name = "slotsRequiringThisAspectToolStripMenuItem";
             this.slotsRequiringThisAspectToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
             this.slotsRequiringThisAspectToolStripMenuItem.Text = "Elements with Slots requiring this aspect";
-            this.slotsRequiringThisAspectToolStripMenuItem.Click += new System.EventHandler(this.slotsRequiringThisAspectToolStripMenuItem_Click);
+            this.slotsRequiringThisAspectToolStripMenuItem.Click += new System.EventHandler(this.SlotsRequiringThisAspectToolStripMenuItem_Click);
             // 
             // deleteSelectedAspectToolStripMenuItem
             // 
@@ -259,7 +259,7 @@
             this.deleteSelectedAspectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.deleteSelectedAspectToolStripMenuItem.Text = "Delete Selected Aspect";
-            this.deleteSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedAspectToolStripMenuItem_Click);
+            this.deleteSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedAspectToolStripMenuItem_Click);
             // 
             // duplicateSelectedAspectToolStripMenuItem
             // 
@@ -267,14 +267,14 @@
             this.duplicateSelectedAspectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.duplicateSelectedAspectToolStripMenuItem.Text = "Duplicate Selected Aspect";
-            this.duplicateSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedAspectToolStripMenuItem_Click);
+            this.duplicateSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedAspectToolStripMenuItem_Click);
             // 
             // exportSelectedAspectToolStripMenuItem
             // 
             this.exportSelectedAspectToolStripMenuItem.Name = "exportSelectedAspectToolStripMenuItem";
             this.exportSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.exportSelectedAspectToolStripMenuItem.Text = "Export Selected Aspect";
-            this.exportSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedAspectToolStripMenuItem_Click);
+            this.exportSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedAspectToolStripMenuItem_Click);
             // 
             // copyAspectJSONToClipboardToolStripMenuItem
             // 
@@ -282,14 +282,14 @@
             this.copyAspectJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyAspectJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.copyAspectJSONToClipboardToolStripMenuItem.Text = "Copy Selected Aspect JSON to Clipboard";
-            this.copyAspectJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedAspectJSONToClipboardToolStripMenuItem_Click);
+            this.copyAspectJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedAspectJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedAspectsJSONToolStripMenuItem
             // 
             this.openSelectedAspectsJSONToolStripMenuItem.Name = "openSelectedAspectsJSONToolStripMenuItem";
             this.openSelectedAspectsJSONToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.openSelectedAspectsJSONToolStripMenuItem.Text = "Open Selected Aspect\'s JSON";
-            this.openSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedAspectsJSONToolStripMenuItem_Click);
+            this.openSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedAspectsJSONToolStripMenuItem_Click);
             // 
             // elementsListBox
             // 
@@ -302,8 +302,8 @@
             this.elementsListBox.Size = new System.Drawing.Size(115, 377);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
-            this.elementsListBox.DoubleClick += new System.EventHandler(this.elementsListBox_DoubleClick);
-            this.elementsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.elementsListBox_MouseDown);
+            this.elementsListBox.DoubleClick += new System.EventHandler(this.ElementsListBox_DoubleClick);
+            this.elementsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ElementsListBox_MouseDown);
             // 
             // elementContextMenuStrip
             // 
@@ -337,49 +337,49 @@
             this.elementsThatDecayIntoThisToolStripMenuItem.Name = "elementsThatDecayIntoThisToolStripMenuItem";
             this.elementsThatDecayIntoThisToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsThatDecayIntoThisToolStripMenuItem.Text = "Elements that decay into this element";
-            this.elementsThatDecayIntoThisToolStripMenuItem.Click += new System.EventHandler(this.elementsThatDecayIntoThisToolStripMenuItem_Click);
+            this.elementsThatDecayIntoThisToolStripMenuItem.Click += new System.EventHandler(this.ElementsThatDecayIntoThisToolStripMenuItem_Click);
             // 
             // elementsThatXtriggerIntoThisToolStripMenuItem
             // 
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Name = "elementsThatXtriggerIntoThisToolStripMenuItem";
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsThatXtriggerIntoThisToolStripMenuItem.Text = "Elements that xtrigger into this element";
-            this.elementsThatXtriggerIntoThisToolStripMenuItem.Click += new System.EventHandler(this.elementsThatXtriggerIntoThisToolStripMenuItem_Click);
+            this.elementsThatXtriggerIntoThisToolStripMenuItem.Click += new System.EventHandler(this.ElementsThatXtriggerIntoThisToolStripMenuItem_Click);
             // 
             // recipesThatRequireThisElementToolStripMenuItem
             // 
             this.recipesThatRequireThisElementToolStripMenuItem.Name = "recipesThatRequireThisElementToolStripMenuItem";
             this.recipesThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.recipesThatRequireThisElementToolStripMenuItem.Text = "Recipes that require this element";
-            this.recipesThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.recipesThatRequireThisElementToolStripMenuItem_Click);
+            this.recipesThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatRequireThisElementToolStripMenuItem_Click);
             // 
             // recipesThatProduceThisElementToolStripMenuItem
             // 
             this.recipesThatProduceThisElementToolStripMenuItem.Name = "recipesThatProduceThisElementToolStripMenuItem";
             this.recipesThatProduceThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.recipesThatProduceThisElementToolStripMenuItem.Text = "Recipes that produce this element";
-            this.recipesThatProduceThisElementToolStripMenuItem.Click += new System.EventHandler(this.recipesThatProduceThisElementToolStripMenuItem_Click);
+            this.recipesThatProduceThisElementToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatProduceThisElementToolStripMenuItem_Click);
             // 
             // decksThatContainThisElementToolStripMenuItem
             // 
             this.decksThatContainThisElementToolStripMenuItem.Name = "decksThatContainThisElementToolStripMenuItem";
             this.decksThatContainThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.decksThatContainThisElementToolStripMenuItem.Text = "Decks that contain this element";
-            this.decksThatContainThisElementToolStripMenuItem.Click += new System.EventHandler(this.decksThatContainThisElementToolStripMenuItem_Click);
+            this.decksThatContainThisElementToolStripMenuItem.Click += new System.EventHandler(this.DecksThatContainThisElementToolStripMenuItem_Click);
             // 
             // legaciesThatStartWithThisElementToolStripMenuItem
             // 
             this.legaciesThatStartWithThisElementToolStripMenuItem.Name = "legaciesThatStartWithThisElementToolStripMenuItem";
             this.legaciesThatStartWithThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.legaciesThatStartWithThisElementToolStripMenuItem.Text = "Legacies that start with this element";
-            this.legaciesThatStartWithThisElementToolStripMenuItem.Click += new System.EventHandler(this.legaciesThatStartWithThisElementToolStripMenuItem_Click);
+            this.legaciesThatStartWithThisElementToolStripMenuItem.Click += new System.EventHandler(this.LegaciesThatStartWithThisElementToolStripMenuItem_Click);
             // 
             // elementsWithSlotsThatRequireThisElementToolStripMenuItem
             // 
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Name = "elementsWithSlotsThatRequireThisElementToolStripMenuItem";
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Size = new System.Drawing.Size(308, 22);
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Text = "Elements with Slots that require this element";
-            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.slotsRequiringThisAspectToolStripMenuItem_Click);
+            this.elementsWithSlotsThatRequireThisElementToolStripMenuItem.Click += new System.EventHandler(this.SlotsRequiringThisAspectToolStripMenuItem_Click);
             // 
             // deleteSelectedElementToolStripMenuItem
             // 
@@ -387,7 +387,7 @@
             this.deleteSelectedElementToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.deleteSelectedElementToolStripMenuItem.Text = "Delete Selected Element";
-            this.deleteSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedElementToolStripMenuItem_Click);
+            this.deleteSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedElementToolStripMenuItem_Click);
             // 
             // duplicateSelectedElementToolStripMenuItem
             // 
@@ -395,14 +395,14 @@
             this.duplicateSelectedElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.duplicateSelectedElementToolStripMenuItem.Text = "Duplicate Selected Element";
-            this.duplicateSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedElementToolStripMenuItem_Click);
+            this.duplicateSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedElementToolStripMenuItem_Click);
             // 
             // exportSelectedElementToolStripMenuItem
             // 
             this.exportSelectedElementToolStripMenuItem.Name = "exportSelectedElementToolStripMenuItem";
             this.exportSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.exportSelectedElementToolStripMenuItem.Text = "Export Selected Element";
-            this.exportSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedElementToolStripMenuItem_Click);
+            this.exportSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedElementToolStripMenuItem_Click);
             // 
             // copyElementJSONToClipboardToolStripMenuItem
             // 
@@ -410,14 +410,14 @@
             this.copyElementJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyElementJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.copyElementJSONToClipboardToolStripMenuItem.Text = "Copy Selected Element JSON to Clipboard";
-            this.copyElementJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedElementJSONToClipboardToolStripMenuItem_Click);
+            this.copyElementJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedElementJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedElementsJSONToolStripMenuItem
             // 
             this.openSelectedElementsJSONToolStripMenuItem.Name = "openSelectedElementsJSONToolStripMenuItem";
             this.openSelectedElementsJSONToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.openSelectedElementsJSONToolStripMenuItem.Text = "Open Selected Element\'s JSON";
-            this.openSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedElementsJSONToolStripMenuItem_Click);
+            this.openSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedElementsJSONToolStripMenuItem_Click);
             // 
             // recipesListBox
             // 
@@ -430,8 +430,8 @@
             this.recipesListBox.Size = new System.Drawing.Size(115, 377);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
-            this.recipesListBox.DoubleClick += new System.EventHandler(this.recipesListBox_DoubleClick);
-            this.recipesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.recipesListBox_MouseDown);
+            this.recipesListBox.DoubleClick += new System.EventHandler(this.RecipesListBox_DoubleClick);
+            this.recipesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListBox_MouseDown);
             // 
             // recipeContextMenuStrip
             // 
@@ -460,14 +460,14 @@
             this.recipesThatLinkToThisRecipeToolStripMenuItem.Name = "recipesThatLinkToThisRecipeToolStripMenuItem";
             this.recipesThatLinkToThisRecipeToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.recipesThatLinkToThisRecipeToolStripMenuItem.Text = "Recipes that link to this recipe";
-            this.recipesThatLinkToThisRecipeToolStripMenuItem.Click += new System.EventHandler(this.recipesThatLinkToThisRecipeToolStripMenuItem_Click);
+            this.recipesThatLinkToThisRecipeToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatLinkToThisRecipeToolStripMenuItem_Click);
             // 
             // viewAsFlowchartToolStripMenuItem
             // 
             this.viewAsFlowchartToolStripMenuItem.Name = "viewAsFlowchartToolStripMenuItem";
             this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.viewAsFlowchartToolStripMenuItem.Text = "View As Flowchart";
-            this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.viewAsFlowchartToolStripMenuItem_Click);
+            this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.ViewAsFlowchartToolStripMenuItem_Click);
             // 
             // deleteSelectedRecipeToolStripMenuItem
             // 
@@ -475,7 +475,7 @@
             this.deleteSelectedRecipeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.deleteSelectedRecipeToolStripMenuItem.Text = "Delete Selected Recipe";
-            this.deleteSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedRecipeToolStripMenuItem_Click);
+            this.deleteSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedRecipeToolStripMenuItem_Click);
             // 
             // duplicateSelectedRecipeToolStripMenuItem
             // 
@@ -483,14 +483,14 @@
             this.duplicateSelectedRecipeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.duplicateSelectedRecipeToolStripMenuItem.Text = "Duplicate Selected Recipe";
-            this.duplicateSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedRecipeToolStripMenuItem_Click);
+            this.duplicateSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedRecipeToolStripMenuItem_Click);
             // 
             // exportSelectedRecipeToolStripMenuItem
             // 
             this.exportSelectedRecipeToolStripMenuItem.Name = "exportSelectedRecipeToolStripMenuItem";
             this.exportSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.exportSelectedRecipeToolStripMenuItem.Text = "Export Selected Recipe";
-            this.exportSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedRecipeToolStripMenuItem_Click);
+            this.exportSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedRecipeToolStripMenuItem_Click);
             // 
             // copyRecipeJSONToClipboardToolStripMenuItem
             // 
@@ -498,14 +498,14 @@
             this.copyRecipeJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyRecipeJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.copyRecipeJSONToClipboardToolStripMenuItem.Text = "Copy Recipe JSON to Clipboard";
-            this.copyRecipeJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedRecipeJSONToClipboardToolStripMenuItem_Click);
+            this.copyRecipeJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedRecipesJSONToolStripMenuItem
             // 
             this.openSelectedRecipesJSONToolStripMenuItem.Name = "openSelectedRecipesJSONToolStripMenuItem";
             this.openSelectedRecipesJSONToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.openSelectedRecipesJSONToolStripMenuItem.Text = "Open Selected Recipe\'s JSON";
-            this.openSelectedRecipesJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedRecipesJSONToolStripMenuItem_Click);
+            this.openSelectedRecipesJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedRecipesJSONToolStripMenuItem_Click);
             // 
             // decksListBox
             // 
@@ -518,8 +518,8 @@
             this.decksListBox.Size = new System.Drawing.Size(115, 377);
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
-            this.decksListBox.DoubleClick += new System.EventHandler(this.decksListBox_DoubleClick);
-            this.decksListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.decksListBox_MouseDown);
+            this.decksListBox.DoubleClick += new System.EventHandler(this.DecksListBox_DoubleClick);
+            this.decksListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListBox_MouseDown);
             // 
             // deckContextMenuStrip
             // 
@@ -547,7 +547,7 @@
             this.recipesThatDrawFromThisDeckToolStripMenuItem.Name = "recipesThatDrawFromThisDeckToolStripMenuItem";
             this.recipesThatDrawFromThisDeckToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.recipesThatDrawFromThisDeckToolStripMenuItem.Text = "Recipes that draw from this deck";
-            this.recipesThatDrawFromThisDeckToolStripMenuItem.Click += new System.EventHandler(this.recipesThatDrawFromThisDeckToolStripMenuItem_Click);
+            this.recipesThatDrawFromThisDeckToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatDrawFromThisDeckToolStripMenuItem_Click);
             // 
             // deleteSelectedDeckToolStripMenuItem
             // 
@@ -555,7 +555,7 @@
             this.deleteSelectedDeckToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.deleteSelectedDeckToolStripMenuItem.Text = "Delete Selected Deck";
-            this.deleteSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedDeckToolStripMenuItem_Click);
+            this.deleteSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedDeckToolStripMenuItem_Click);
             // 
             // duplicateSelectedDeckToolStripMenuItem
             // 
@@ -563,14 +563,14 @@
             this.duplicateSelectedDeckToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.duplicateSelectedDeckToolStripMenuItem.Text = "Duplicate Selected Deck";
-            this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeckToolStripMenuItem_Click);
+            this.duplicateSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedDeckToolStripMenuItem_Click);
             // 
             // exportSelectedDeckToolStripMenuItem
             // 
             this.exportSelectedDeckToolStripMenuItem.Name = "exportSelectedDeckToolStripMenuItem";
             this.exportSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.exportSelectedDeckToolStripMenuItem.Text = "Export Selected Deck";
-            this.exportSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedDeckToolStripMenuItem_Click);
+            this.exportSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedDeckToolStripMenuItem_Click);
             // 
             // copyDeckJSONToClipboardToolStripMenuItem
             // 
@@ -578,14 +578,14 @@
             this.copyDeckJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyDeckJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.copyDeckJSONToClipboardToolStripMenuItem.Text = "Copy Selected Deck JSON to Clipboard";
-            this.copyDeckJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedDeckJSONToClipboardToolStripMenuItem_Click);
+            this.copyDeckJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedDeckJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedDecksJSONToolStripMenuItem
             // 
             this.openSelectedDecksJSONToolStripMenuItem.Name = "openSelectedDecksJSONToolStripMenuItem";
             this.openSelectedDecksJSONToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.openSelectedDecksJSONToolStripMenuItem.Text = "Open Selected Deck\'s JSON";
-            this.openSelectedDecksJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedDecksJSONToolStripMenuItem_Click);
+            this.openSelectedDecksJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedDecksJSONToolStripMenuItem_Click);
             // 
             // legaciesListBox
             // 
@@ -598,8 +598,8 @@
             this.legaciesListBox.Size = new System.Drawing.Size(115, 377);
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
-            this.legaciesListBox.DoubleClick += new System.EventHandler(this.legaciesListBox_DoubleClick);
-            this.legaciesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.legaciesListBox_MouseDown);
+            this.legaciesListBox.DoubleClick += new System.EventHandler(this.LegaciesListBox_DoubleClick);
+            this.legaciesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListBox_MouseDown);
             // 
             // legacyContextMenuStrip
             // 
@@ -618,7 +618,7 @@
             this.deleteSelectedLegacyToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.deleteSelectedLegacyToolStripMenuItem.Text = "Delete Selected Legacy";
-            this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedLegacyToolStripMenuItem_Click);
+            this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedLegacyToolStripMenuItem_Click);
             // 
             // duplicateSelectedLegacyToolStripMenuItem
             // 
@@ -626,14 +626,14 @@
             this.duplicateSelectedLegacyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.duplicateSelectedLegacyToolStripMenuItem.Text = "Duplicate Selected Legacy";
-            this.duplicateSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedLegacyToolStripMenuItem_Click);
+            this.duplicateSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedLegacyToolStripMenuItem_Click);
             // 
             // exportSelectedLegacyToolStripMenuItem
             // 
             this.exportSelectedLegacyToolStripMenuItem.Name = "exportSelectedLegacyToolStripMenuItem";
             this.exportSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.exportSelectedLegacyToolStripMenuItem.Text = "Export Selected Legacy";
-            this.exportSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedLegacyToolStripMenuItem_Click);
+            this.exportSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedLegacyToolStripMenuItem_Click);
             // 
             // copySelectedLegacyJSONToClipboardToolStripMenuItem
             // 
@@ -641,14 +641,14 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Text = "Copy Selected Legacy JSON to Clipboard";
-            this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLegacyJSONToClipboardToolStripMenuItem_Click);
+            this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedLegacysJSONToolStripMenuItem
             // 
             this.openSelectedLegacysJSONToolStripMenuItem.Name = "openSelectedLegacysJSONToolStripMenuItem";
             this.openSelectedLegacysJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.openSelectedLegacysJSONToolStripMenuItem.Text = "Open Selected Legacy\'s JSON";
-            this.openSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedLegacysJSONToolStripMenuItem_Click);
+            this.openSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedLegacysJSONToolStripMenuItem_Click);
             // 
             // endingsListBox
             // 
@@ -661,8 +661,8 @@
             this.endingsListBox.Size = new System.Drawing.Size(115, 377);
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
-            this.endingsListBox.DoubleClick += new System.EventHandler(this.endingsListBox_DoubleClick);
-            this.endingsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.endingsListBox_MouseDown);
+            this.endingsListBox.DoubleClick += new System.EventHandler(this.EndingsListBox_DoubleClick);
+            this.endingsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListBox_MouseDown);
             // 
             // endingContextMenuStrip
             // 
@@ -689,7 +689,7 @@
             this.recipesThatCauseThisEndingToolStripMenuItem.Name = "recipesThatCauseThisEndingToolStripMenuItem";
             this.recipesThatCauseThisEndingToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.recipesThatCauseThisEndingToolStripMenuItem.Text = "Recipes that cause this ending";
-            this.recipesThatCauseThisEndingToolStripMenuItem.Click += new System.EventHandler(this.recipesThatCauseThisEndingToolStripMenuItem_Click);
+            this.recipesThatCauseThisEndingToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatCauseThisEndingToolStripMenuItem_Click);
             // 
             // deleteSelectedEndingToolStripMenuItem
             // 
@@ -697,7 +697,7 @@
             this.deleteSelectedEndingToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.deleteSelectedEndingToolStripMenuItem.Text = "Delete Selected Ending";
-            this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedEndingToolStripMenuItem_Click);
+            this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedEndingToolStripMenuItem_Click);
             // 
             // duplicateSelectedEndingToolStripMenuItem
             // 
@@ -705,14 +705,14 @@
             this.duplicateSelectedEndingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.duplicateSelectedEndingToolStripMenuItem.Text = "Duplicate Selected Ending";
-            this.duplicateSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedEndingToolStripMenuItem_Click);
+            this.duplicateSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedEndingToolStripMenuItem_Click);
             // 
             // exportSelectedEndingToolStripMenuItem
             // 
             this.exportSelectedEndingToolStripMenuItem.Name = "exportSelectedEndingToolStripMenuItem";
             this.exportSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.exportSelectedEndingToolStripMenuItem.Text = "Export Selected Ending";
-            this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedEndingToolStripMenuItem_Click);
+            this.exportSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedEndingToolStripMenuItem_Click);
             // 
             // copySelectedEndingJSONToClipboardToolStripMenuItem
             // 
@@ -720,14 +720,14 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copySelectedEndingJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.copySelectedEndingJSONToClipboardToolStripMenuItem.Text = "Copy Selected Ending JSON to Clipboard";
-            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedEndingJSONToClipboardToolStripMenuItem_Click);
+            this.copySelectedEndingJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedEndingJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedEndingsJSONToolStripMenuItem
             // 
             this.openSelectedEndingsJSONToolStripMenuItem.Name = "openSelectedEndingsJSONToolStripMenuItem";
             this.openSelectedEndingsJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.openSelectedEndingsJSONToolStripMenuItem.Text = "Open Selected Ending\'s JSON";
-            this.openSelectedEndingsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedEndingsJSONToolStripMenuItem_Click);
+            this.openSelectedEndingsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedEndingsJSONToolStripMenuItem_Click);
             // 
             // verbsListBox
             // 
@@ -740,8 +740,8 @@
             this.verbsListBox.Size = new System.Drawing.Size(121, 377);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
-            this.verbsListBox.DoubleClick += new System.EventHandler(this.verbsListBox_DoubleClick);
-            this.verbsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.verbsListBox_MouseDown);
+            this.verbsListBox.DoubleClick += new System.EventHandler(this.VerbsListBox_DoubleClick);
+            this.verbsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VerbsListBox_MouseDown);
             // 
             // verbContextMenuStrip
             // 
@@ -769,14 +769,14 @@
             this.recipesThatUseThisVerbToolStripMenuItem.Name = "recipesThatUseThisVerbToolStripMenuItem";
             this.recipesThatUseThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
             this.recipesThatUseThisVerbToolStripMenuItem.Text = "Recipes that use this verb";
-            this.recipesThatUseThisVerbToolStripMenuItem.Click += new System.EventHandler(this.recipesThatUseThisVerbToolStripMenuItem_Click);
+            this.recipesThatUseThisVerbToolStripMenuItem.Click += new System.EventHandler(this.RecipesThatUseThisVerbToolStripMenuItem_Click);
             // 
             // elementsWithSlotsForThisVerbToolStripMenuItem
             // 
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Name = "elementsWithSlotsForThisVerbToolStripMenuItem";
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
             this.elementsWithSlotsForThisVerbToolStripMenuItem.Text = "Elements with Slots for this verb";
-            this.elementsWithSlotsForThisVerbToolStripMenuItem.Click += new System.EventHandler(this.elementsWithSlotsForThisVerbToolStripMenuItem_Click);
+            this.elementsWithSlotsForThisVerbToolStripMenuItem.Click += new System.EventHandler(this.ElementsWithSlotsForThisVerbToolStripMenuItem_Click);
             // 
             // deleteSelectedVerbToolStripMenuItem
             // 
@@ -784,7 +784,7 @@
             this.deleteSelectedVerbToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
-            this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
+            this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedVerbToolStripMenuItem_Click);
             // 
             // duplicateSelectedVerbToolStripMenuItem
             // 
@@ -792,14 +792,14 @@
             this.duplicateSelectedVerbToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.duplicateSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.duplicateSelectedVerbToolStripMenuItem.Text = "Duplicate Selected Verb";
-            this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedVerbToolStripMenuItem_Click);
+            this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.DuplicateSelectedVerbToolStripMenuItem_Click);
             // 
             // exportSelectedVerbToolStripMenuItem
             // 
             this.exportSelectedVerbToolStripMenuItem.Name = "exportSelectedVerbToolStripMenuItem";
             this.exportSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.exportSelectedVerbToolStripMenuItem.Text = "Export Selected Verb";
-            this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedVerbToolStripMenuItem_Click);
+            this.exportSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedVerbToolStripMenuItem_Click);
             // 
             // copySelectedVerbJSONToClipboardToolStripMenuItem
             // 
@@ -807,14 +807,14 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copySelectedVerbJSONToClipboardToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.copySelectedVerbJSONToClipboardToolStripMenuItem.Text = "Copy Selected Verb JSON to Clipboard";
-            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedVerbJSONToClipboardToolStripMenuItem_Click);
+            this.copySelectedVerbJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedVerbJSONToClipboardToolStripMenuItem_Click);
             // 
             // openSelectedVerbsJSONToolStripMenuItem
             // 
             this.openSelectedVerbsJSONToolStripMenuItem.Name = "openSelectedVerbsJSONToolStripMenuItem";
             this.openSelectedVerbsJSONToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.openSelectedVerbsJSONToolStripMenuItem.Text = "Open Selected Verb\'s JSON";
-            this.openSelectedVerbsJSONToolStripMenuItem.Click += new System.EventHandler(this.openSelectedVerbsJSONToolStripMenuItem_Click);
+            this.openSelectedVerbsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedVerbsJSONToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
@@ -834,7 +834,7 @@
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
             this.verbsSearchTextBox.Size = new System.Drawing.Size(121, 20);
             this.verbsSearchTextBox.TabIndex = 23;
-            this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.verbsSearchTextBox_TextChanged);
+            this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.VerbsSearchTextBox_TextChanged);
             // 
             // legaciesLabel
             // 
@@ -854,7 +854,7 @@
             this.endingsSearchTextBox.Name = "endingsSearchTextBox";
             this.endingsSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.endingsSearchTextBox.TabIndex = 22;
-            this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.endingsSearchTextBox_TextChanged);
+            this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.EndingsSearchTextBox_TextChanged);
             // 
             // decksLabel
             // 
@@ -874,7 +874,7 @@
             this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
             this.legaciesSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.legaciesSearchTextBox.TabIndex = 21;
-            this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.legaciesSearchTextBox_TextChanged);
+            this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.LegaciesSearchTextBox_TextChanged);
             // 
             // recipesLabel
             // 
@@ -904,7 +904,7 @@
             this.recipesSearchTextBox.Name = "recipesSearchTextBox";
             this.recipesSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.recipesSearchTextBox.TabIndex = 19;
-            this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.recipesSearchTextBox_TextChanged);
+            this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.RecipesSearchTextBox_TextChanged);
             // 
             // aspectsLabel
             // 
@@ -924,7 +924,7 @@
             this.elementsSearchTextBox.Name = "elementsSearchTextBox";
             this.elementsSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.elementsSearchTextBox.TabIndex = 18;
-            this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.elementsSearchTextBox_TextChanged);
+            this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.ElementsSearchTextBox_TextChanged);
             // 
             // aspectsSearchTextBox
             // 
@@ -934,7 +934,7 @@
             this.aspectsSearchTextBox.Name = "aspectsSearchTextBox";
             this.aspectsSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.aspectsSearchTextBox.TabIndex = 17;
-            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.aspectsSearchTextBox_TextChanged);
+            this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.AspectsSearchTextBox_TextChanged);
             // 
             // decksSearchTextBox
             // 
@@ -944,7 +944,7 @@
             this.decksSearchTextBox.Name = "decksSearchTextBox";
             this.decksSearchTextBox.Size = new System.Drawing.Size(115, 20);
             this.decksSearchTextBox.TabIndex = 20;
-            this.decksSearchTextBox.TextChanged += new System.EventHandler(this.decksSearchTextBox_TextChanged);
+            this.decksSearchTextBox.TextChanged += new System.EventHandler(this.DecksSearchTextBox_TextChanged);
             // 
             // verbsLabel
             // 
@@ -959,7 +959,7 @@
             // autosaveTimer
             // 
             this.autosaveTimer.Interval = 30000;
-            this.autosaveTimer.Tick += new System.EventHandler(this.autosaveTimer_Tick);
+            this.autosaveTimer.Tick += new System.EventHandler(this.AutosaveTimer_Tick);
             // 
             // saveFileDialog
             // 

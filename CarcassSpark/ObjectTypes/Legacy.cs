@@ -77,7 +77,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public string toString()
+        public string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }

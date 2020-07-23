@@ -72,7 +72,7 @@
             this.idTextBox.Size = new System.Drawing.Size(125, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -81,7 +81,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(125, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // commentsTextBox
             // 
@@ -89,7 +89,7 @@
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.Size = new System.Drawing.Size(154, 20);
             this.commentsTextBox.TabIndex = 2;
-            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -100,7 +100,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(268, 30);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // drawmessagesDataGridView
             // 
@@ -114,7 +114,7 @@
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
             this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 150);
             this.drawmessagesDataGridView.TabIndex = 5;
-            this.drawmessagesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.drawmessagesDataGridView_UserDeletedRow);
+            this.drawmessagesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DrawmessagesDataGridView_UserDeletedRow);
             // 
             // elementId
             // 
@@ -138,7 +138,7 @@
             this.resetOnExhaustionCheckBox.Text = "resetOnExhaustion";
             this.resetOnExhaustionCheckBox.ThreeState = true;
             this.resetOnExhaustionCheckBox.UseVisualStyleBackColor = true;
-            this.resetOnExhaustionCheckBox.CheckStateChanged += new System.EventHandler(this.resetOnExhaustionCheckBox_CheckStateChanged);
+            this.resetOnExhaustionCheckBox.CheckStateChanged += new System.EventHandler(this.ResetOnExhaustionCheckBox_CheckStateChanged);
             // 
             // defaultCardTextBox
             // 
@@ -147,7 +147,7 @@
             this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
             this.defaultCardTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.defaultCardTextBox.TextChanged += new System.EventHandler(this.defaultCardTextBox_TextChanged);
+            this.defaultCardTextBox.TextChanged += new System.EventHandler(this.DefaultCardTextBox_TextChanged);
             // 
             // drawsNumericUpDown
             // 
@@ -171,7 +171,7 @@
             this.newCardTextBox.Name = "newCardTextBox";
             this.newCardTextBox.Size = new System.Drawing.Size(260, 20);
             this.newCardTextBox.TabIndex = 10;
-            this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.newCardTextBox_KeyDown);
+            this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewCardTextBox_KeyDown);
             // 
             // newCardButton
             // 
@@ -181,7 +181,7 @@
             this.newCardButton.TabIndex = 11;
             this.newCardButton.Text = "Insert";
             this.newCardButton.UseVisualStyleBackColor = true;
-            this.newCardButton.Click += new System.EventHandler(this.newCardButton_Click);
+            this.newCardButton.Click += new System.EventHandler(this.NewCardButton_Click);
             // 
             // okButton
             // 
@@ -192,7 +192,7 @@
             this.okButton.TabIndex = 12;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -203,7 +203,7 @@
             this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // idLabel
             // 
@@ -269,8 +269,8 @@
             this.specListView.TabIndex = 21;
             this.specListView.UseCompatibleStateImageBehavior = false;
             this.specListView.View = System.Windows.Forms.View.List;
-            this.specListView.DoubleClick += new System.EventHandler(this.specListView_DoubleClick);
-            this.specListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.specListView_MouseDown);
+            this.specListView.DoubleClick += new System.EventHandler(this.SpecListView_DoubleClick);
+            this.specListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SpecListView_MouseDown);
             // 
             // contextMenuStrip1
             // 
@@ -284,7 +284,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // specPrependButton
             // 
@@ -294,7 +294,7 @@
             this.specPrependButton.TabIndex = 22;
             this.specPrependButton.Text = "Prepend";
             this.specPrependButton.UseVisualStyleBackColor = true;
-            this.specPrependButton.Click += new System.EventHandler(this.specPrependButton_Click);
+            this.specPrependButton.Click += new System.EventHandler(this.SpecPrependButton_Click);
             // 
             // specAppendButton
             // 
@@ -304,7 +304,7 @@
             this.specAppendButton.TabIndex = 23;
             this.specAppendButton.Text = "Append";
             this.specAppendButton.UseVisualStyleBackColor = true;
-            this.specAppendButton.Click += new System.EventHandler(this.specAppendButton_Click);
+            this.specAppendButton.Click += new System.EventHandler(this.SpecAppendButton_Click);
             // 
             // extendsTextBox
             // 
@@ -312,7 +312,7 @@
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 24;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // extendsLabel
             // 
@@ -331,7 +331,7 @@
             this.specRemoveButton.TabIndex = 26;
             this.specRemoveButton.Text = "Remove";
             this.specRemoveButton.UseVisualStyleBackColor = true;
-            this.specRemoveButton.Click += new System.EventHandler(this.specRemoveButton_Click);
+            this.specRemoveButton.Click += new System.EventHandler(this.SpecRemoveButton_Click);
             // 
             // deletedCheckBox
             // 
@@ -343,7 +343,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // DeckViewer
             // 

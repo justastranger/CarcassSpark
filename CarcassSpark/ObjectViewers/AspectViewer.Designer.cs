@@ -71,7 +71,7 @@
             this.idTextBox.Size = new System.Drawing.Size(134, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -80,7 +80,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(134, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // iconTextBox
             // 
@@ -89,7 +89,7 @@
             this.iconTextBox.Size = new System.Drawing.Size(134, 20);
             this.iconTextBox.TabIndex = 2;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.iconTextBox.TextChanged += new System.EventHandler(this.iconTextBox_TextChanged);
+            this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // pictureBox1
             // 
@@ -109,7 +109,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(630, 105);
             this.descriptionTextBox.TabIndex = 4;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // inducesLabel
             // 
@@ -134,8 +134,8 @@
             this.inducesDataGridView.Name = "inducesDataGridView";
             this.inducesDataGridView.Size = new System.Drawing.Size(355, 169);
             this.inducesDataGridView.TabIndex = 6;
-            this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inducesDataGridView_CellDoubleClick);
-            this.inducesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.inducesDataGridView_UserDeletedRow);
+            this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InducesDataGridView_CellDoubleClick);
+            this.inducesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.InducesDataGridView_UserDeletedRow);
             // 
             // recipeId
             // 
@@ -170,21 +170,21 @@
             this.setAsPrependToolStripMenuItem.Name = "setAsPrependToolStripMenuItem";
             this.setAsPrependToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.setAsPrependToolStripMenuItem.Text = "Set as Prepend";
-            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.setAsPrependToolStripMenuItem_Click);
+            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.SetAsPrependToolStripMenuItem_Click);
             // 
             // setAsAppendToolStripMenuItem
             // 
             this.setAsAppendToolStripMenuItem.Name = "setAsAppendToolStripMenuItem";
             this.setAsAppendToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.setAsAppendToolStripMenuItem.Text = "Set as Append";
-            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.setAsAppendToolStripMenuItem_Click);
+            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.SetAsAppendToolStripMenuItem_Click);
             // 
             // setAsRemoveToolStripMenuItem
             // 
             this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
             this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.SetAsRemoveToolStripMenuItem_Click);
             // 
             // extendsTextBox
             // 
@@ -193,7 +193,7 @@
             this.extendsTextBox.Size = new System.Drawing.Size(134, 20);
             this.extendsTextBox.TabIndex = 7;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // okButton
             // 
@@ -204,7 +204,7 @@
             this.okButton.TabIndex = 8;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -215,7 +215,7 @@
             this.cancelButton.TabIndex = 9;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // isHiddenCheckBox
             // 
@@ -227,7 +227,7 @@
             this.isHiddenCheckBox.Text = "Hidden?";
             this.isHiddenCheckBox.ThreeState = true;
             this.isHiddenCheckBox.UseVisualStyleBackColor = true;
-            this.isHiddenCheckBox.CheckStateChanged += new System.EventHandler(this.isHiddenCheckBox_CheckStateChanged);
+            this.isHiddenCheckBox.CheckStateChanged += new System.EventHandler(this.IsHiddenCheckBox_CheckStateChanged);
             // 
             // noartworkneededCheckBox
             // 
@@ -239,7 +239,7 @@
             this.noartworkneededCheckBox.Text = "No Artwork Needed";
             this.noartworkneededCheckBox.ThreeState = true;
             this.noartworkneededCheckBox.UseVisualStyleBackColor = true;
-            this.noartworkneededCheckBox.CheckStateChanged += new System.EventHandler(this.noartworkneededCheckBox_CheckStateChanged);
+            this.noartworkneededCheckBox.CheckStateChanged += new System.EventHandler(this.NoartworkneededCheckBox_CheckStateChanged);
             // 
             // idLabel
             // 
@@ -304,7 +304,7 @@
             this.commentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentTextBox.Size = new System.Drawing.Size(418, 38);
             this.commentTextBox.TabIndex = 19;
-            this.commentTextBox.TextChanged += new System.EventHandler(this.commentTextBox_TextChanged);
+            this.commentTextBox.TextChanged += new System.EventHandler(this.CommentTextBox_TextChanged);
             // 
             // inheritsLabel
             // 
@@ -321,7 +321,7 @@
             this.inheritsTextBox.Name = "inheritsTextBox";
             this.inheritsTextBox.Size = new System.Drawing.Size(134, 20);
             this.inheritsTextBox.TabIndex = 21;
-            this.inheritsTextBox.TextChanged += new System.EventHandler(this.inheritsTextBox_TextChanged);
+            this.inheritsTextBox.TextChanged += new System.EventHandler(this.InheritsTextBox_TextChanged);
             // 
             // deletedCheckBox
             // 
@@ -333,7 +333,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // AspectViewer
             // 

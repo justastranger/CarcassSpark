@@ -58,7 +58,7 @@
             this.idTextBox.Size = new System.Drawing.Size(193, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -67,7 +67,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(193, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // atStartCheckBox
             // 
@@ -80,7 +80,7 @@
             this.atStartCheckBox.Text = "Start new game with this verb";
             this.atStartCheckBox.ThreeState = true;
             this.atStartCheckBox.UseVisualStyleBackColor = true;
-            this.atStartCheckBox.CheckStateChanged += new System.EventHandler(this.atStartCheckBox_CheckStateChanged);
+            this.atStartCheckBox.CheckStateChanged += new System.EventHandler(this.AtStartCheckBox_CheckStateChanged);
             // 
             // descriptionTextBox
             // 
@@ -90,7 +90,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // idLabel
             // 
@@ -137,7 +137,7 @@
             this.okButton.TabIndex = 9;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // addSlotButton
             // 
@@ -147,7 +147,7 @@
             this.addSlotButton.TabIndex = 10;
             this.addSlotButton.Text = "Add Slot";
             this.addSlotButton.UseVisualStyleBackColor = true;
-            this.addSlotButton.Click += new System.EventHandler(this.addSlotButton_Click);
+            this.addSlotButton.Click += new System.EventHandler(this.AddSlotButton_Click);
             // 
             // cancelButton
             // 
@@ -158,7 +158,7 @@
             this.cancelButton.TabIndex = 11;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // removeButton
             // 
@@ -168,7 +168,7 @@
             this.removeButton.TabIndex = 12;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // pictureBox1
             // 
@@ -188,7 +188,7 @@
             this.slotsListView.TabIndex = 14;
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
-            this.slotsListView.DoubleClick += new System.EventHandler(this.slotsListBox_DoubleClick);
+            this.slotsListView.DoubleClick += new System.EventHandler(this.SlotsListBox_DoubleClick);
             // 
             // commentsLabel
             // 
@@ -208,7 +208,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(330, 45);
             this.commentsTextBox.TabIndex = 16;
-            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // extendsTextBox
             // 
@@ -217,7 +217,7 @@
             this.extendsTextBox.Size = new System.Drawing.Size(193, 20);
             this.extendsTextBox.TabIndex = 17;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // extendsLabel
             // 
@@ -238,7 +238,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // VerbViewer
             // 

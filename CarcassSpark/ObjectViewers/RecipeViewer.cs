@@ -27,17 +27,17 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             displayedRecipe = recipe;
             
-            fillValues(recipe);
+            FillValues(recipe);
 
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else setEditingMode(false);
+            else SetEditingMode(false);
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -110,7 +110,7 @@ namespace CarcassSpark.ObjectViewers
             if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;
         }
 
-        private void fillValues(Recipe recipe)
+        private void FillValues(Recipe recipe)
         {
             if (recipe.extends != null)
             {
@@ -147,8 +147,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, string> kvp in recipe.requirements_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(requirementsDataGridView, kvp.Key, kvp.Value);
                     requirementsDataGridView.Rows.Add(row);
                 }
@@ -157,8 +159,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.requirements_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(requirementsDataGridView, removeId);
                     requirementsDataGridView.Rows.Add(row);
                 }
@@ -175,8 +179,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, string> kvp in recipe.extantreqs_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(extantreqsDataGridView, kvp.Key, kvp.Value);
                     extantreqsDataGridView.Rows.Add(row);
                 }
@@ -185,8 +191,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.extantreqs_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(extantreqsDataGridView, removeId);
                     extantreqsDataGridView.Rows.Add(row);
                 }
@@ -203,8 +211,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, string> kvp in recipe.tablereqs_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(tablereqsDataGridView, kvp.Key, kvp.Value);
                     tablereqsDataGridView.Rows.Add(row);
                 }
@@ -213,8 +223,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.tablereqs_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(tablereqsDataGridView, removeId);
                     tablereqsDataGridView.Rows.Add(row);
                 }
@@ -231,8 +243,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, string> kvp in recipe.effects_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(effectsDataGridView, kvp.Key, kvp.Value);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -241,8 +255,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.effects_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(effectsDataGridView, removeId);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -259,8 +275,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in recipe.aspects_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(aspectsDataGridView, kvp.Key, kvp.Value);
                     aspectsDataGridView.Rows.Add(row);
                 }
@@ -269,8 +287,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.aspects_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(aspectsDataGridView, removeId);
                     aspectsDataGridView.Rows.Add(row);
                 }
@@ -287,8 +307,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in recipe.deckeffect_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(deckeffectDataGridView, kvp.Key, kvp.Value);
                     deckeffectDataGridView.Rows.Add(row);
                 }
@@ -297,8 +319,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.deckeffect_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(deckeffectDataGridView, removeId);
                     deckeffectDataGridView.Rows.Add(row);
                 }
@@ -318,8 +342,10 @@ namespace CarcassSpark.ObjectViewers
                 foreach (RecipeLink rl in recipe.alternativerecipes_prepend)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
-                    ListViewItem item = new ListViewItem(rl.id);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     alternativeRecipesListView.Items.Insert(0, item);
                 }
             }
@@ -328,8 +354,10 @@ namespace CarcassSpark.ObjectViewers
                 foreach (RecipeLink rl in recipe.alternativerecipes_append)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
-                    ListViewItem item = new ListViewItem(rl.id);
-                    item.BackColor = Utilities.ListAppendColor;
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     alternativeRecipesListView.Items.Insert(0, item);
                 }
             }
@@ -337,8 +365,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string rl in recipe.alternativerecipes_remove)
                 {
-                    ListViewItem item = new ListViewItem(rl);
-                    item.BackColor = Utilities.ListRemoveColor;
+                    ListViewItem item = new ListViewItem(rl)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
                     alternativeRecipesListView.Items.Insert(0, item);
                 }
             }
@@ -375,8 +405,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in recipe.purge_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(purgeDataGridView, kvp.Key, kvp.Value);
                     purgeDataGridView.Rows.Add(row);
                 }
@@ -385,8 +417,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.purge_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(purgeDataGridView, removeId);
                     purgeDataGridView.Rows.Add(row);
                 }
@@ -403,8 +437,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in recipe.deleteverb_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(deleteVerbDataGridView, kvp.Key, kvp.Value);
                     deleteVerbDataGridView.Rows.Add(row);
                 }
@@ -413,8 +449,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.deleteverb_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(deleteVerbDataGridView, removeId);
                     deleteVerbDataGridView.Rows.Add(row);
                 }
@@ -431,8 +469,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in recipe.haltverb_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(haltVerbDataGridView, kvp.Key, kvp.Value);
                     haltVerbDataGridView.Rows.Add(row);
                 }
@@ -441,33 +481,35 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in recipe.haltverb_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(haltVerbDataGridView, removeId);
                     haltVerbDataGridView.Rows.Add(row);
                 }
             }
         }
 
-        private void showInternalDeckButton_Click(object sender, EventArgs e)
+        private void ShowInternalDeckButton_Click(object sender, EventArgs e)
         {
             if (displayedRecipe.internaldeck == null && editing)
             {
-                DeckViewer dv = new DeckViewer(new Deck(), internalDeck_Assign, true);
+                DeckViewer dv = new DeckViewer(new Deck(), InternalDeck_Assign, true);
                 dv.Show();
             } else if (displayedRecipe.internaldeck != null)
             {
-                DeckViewer dv = new DeckViewer(displayedRecipe.internaldeck, editing ? internalDeck_Assign : (EventHandler<Deck>)null, true);
+                DeckViewer dv = new DeckViewer(displayedRecipe.internaldeck, editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true);
                 dv.Show();
             }
         }
 
-        private void internalDeck_Assign(object sender, Deck result)
+        private void InternalDeck_Assign(object sender, Deck result)
         {
             displayedRecipe.internaldeck = result;
         }
 
-        private void showSlotButton_Click(object sender, EventArgs e)
+        private void ShowSlotButton_Click(object sender, EventArgs e)
         {
             if (displayedRecipe.slots == null && editing)
             {
@@ -489,7 +531,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void alternativerecipesListBox_DoubleClick(object sender, EventArgs e)
+        private void AlternativerecipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems == null) return;
             string oldId = alternativeRecipesListView.SelectedItems[0].Text;
@@ -503,12 +545,12 @@ namespace CarcassSpark.ObjectViewers
                 }
                 alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 alternativerecipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
-                saveAlternativeRecipes();
+                SaveAlternativeRecipes();
                 // displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
             }
         }
 
-        private void linkedListBox_DoubleClick(object sender, EventArgs e)
+        private void LinkedListBox_DoubleClick(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems == null) return;
             string oldId = linkedRecipesListView.SelectedItems[0].Text;
@@ -523,13 +565,13 @@ namespace CarcassSpark.ObjectViewers
                 recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
                 linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
-                saveLinkedRecipes();
+                SaveLinkedRecipes();
                 // displayedRecipe.linked[linkedRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
 
             }
         }
 
-        private void mutationsListBox_DoubleClick(object sender, EventArgs e)
+        private void MutationsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems == null) return;
             string oldId = mutationsListView.SelectedItems[0].Text;
@@ -543,108 +585,102 @@ namespace CarcassSpark.ObjectViewers
                 }
                 mutationsListView.Items[mutationsListView.SelectedIndices[0]].Text = mv.displayedMutation.mutateAspectId;
                 mutations[mv.displayedMutation.mutateAspectId] = mv.displayedMutation;
-                saveMutations();
+                SaveMutations();
                 // displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
             }
         }
 
-        private void requirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void RequirementsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects OR elements, don't allow editing these from a recipe
-            string id = requirementsDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.elementExists(id))
+            if (!(requirementsDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void extantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ExtantreqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can also be aspects or elements, don't allow editing these from a recipe
-            string id = extantreqsDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.elementExists(id))
+            if (!(extantreqsDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void tablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void TablereqsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
-            string id = tablereqsDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.elementExists(id))
+            if (!(tablereqsDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void EffectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be elements or aspects, don't allow editing these from a recipe
-            string id = effectsDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.elementExists(id))
+            if (!(effectsDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void AspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can be aspects, don't allow editing these from a recipe
-            string id = aspectsDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.aspectExists(id))
+            if (!(aspectsDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
-            else if (Utilities.elementExists(id))
+            else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
         }
 
-        private void deckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DeckeffectDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { // can only be decks, don't allow editing these from a recipe
-            string id = deckeffectDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.deckExists(id))
+            if (!(deckeffectDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.DeckExists(id))
             {
-                DeckViewer dv = new DeckViewer(Utilities.getDeck(id), null);
+                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id), null);
                 dv.Show();
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -894,14 +930,14 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            saveAlternativeRecipes();
-            saveLinkedRecipes();
-            saveMutations();
+            SaveAlternativeRecipes();
+            SaveLinkedRecipes();
+            SaveMutations();
             Close();
             SuccessCallback?.Invoke(this, displayedRecipe);
         }
 
-        private void addAlternativeRecipeButton_Click(object sender, EventArgs e)
+        private void AddAlternativeRecipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
@@ -912,48 +948,52 @@ namespace CarcassSpark.ObjectViewers
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     //if (displayedRecipe.alternativerecipes != null) displayedRecipe.alternativerecipes.Add(rlv.displayedRecipeLink);
                     //else displayedRecipe.alternativerecipes = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveAlternativeRecipes();
+                    SaveAlternativeRecipes();
                 }
             }
         }
         
-        private void prependAlternativeRecipeButton_Click(object sender, EventArgs e)
+        private void PrependAlternativeRecipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     alternativeRecipesListView.Items.Insert(0, item);
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     // if (displayedRecipe.alternativerecipes_prepend != null) displayedRecipe.alternativerecipes_prepend.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.alternativerecipes_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveAlternativeRecipes();
+                    SaveAlternativeRecipes();
                 }
             }
         }
 
-        private void appendAlternativeReipeButton_Click(object sender, EventArgs e)
+        private void AppendAlternativeReipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id);
-                    item.BackColor = Utilities.ListAppendColor;
+                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     alternativeRecipesListView.Items.Add(item);
                     alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     // if (displayedRecipe.alternativerecipes_append != null) displayedRecipe.alternativerecipes_append.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.alternativerecipes_append = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveAlternativeRecipes();
+                    SaveAlternativeRecipes();
                 }
             }
         }
 
-        private void addLinkedRecipeButton_Click(object sender, EventArgs e)
+        private void AddLinkedRecipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
@@ -964,48 +1004,52 @@ namespace CarcassSpark.ObjectViewers
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked != null) displayedRecipe.linked.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveLinkedRecipes();
+                    SaveLinkedRecipes();
                 }
             }
         }
 
-        private void prependLinkedRecipeButton_Click(object sender, EventArgs e)
+        private void PrependLinkedRecipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     linkedRecipesListView.Items.Insert(0, item);
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked_prepend != null) displayedRecipe.linked_prepend.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveLinkedRecipes();
+                    SaveLinkedRecipes();
                 }
             }
         }
 
-        private void appendLinkedRecipeButton_Click(object sender, EventArgs e)
+        private void AppendLinkedRecipeButton_Click(object sender, EventArgs e)
         {
             using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked_append != null) displayedRecipe.linked_append.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked_append = new List<RecipeLink> { rlv.displayedRecipeLink };
-                    saveLinkedRecipes();
+                    SaveLinkedRecipes();
                 }
             }
         }
 
-        private void addMutationButton_Click(object sender, EventArgs e)
+        private void AddMutationButton_Click(object sender, EventArgs e)
         {
             using (MutationViewer mv = new MutationViewer(new Mutation(), true))
             {
@@ -1016,12 +1060,12 @@ namespace CarcassSpark.ObjectViewers
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
                     // if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations = new List<Mutation> { mv.displayedMutation };
-                    saveMutations();
+                    SaveMutations();
                 }
             }
         }
 
-        private void prependMutationButton_Click(object sender, EventArgs e)
+        private void PrependMutationButton_Click(object sender, EventArgs e)
         {
             using (MutationViewer mv = new MutationViewer(new Mutation(), true))
             {
@@ -1032,12 +1076,12 @@ namespace CarcassSpark.ObjectViewers
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
                     // if (displayedRecipe.mutations_prepend != null) displayedRecipe.mutations_prepend.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations_prepend = new List<Mutation> { mv.displayedMutation };
-                    saveMutations();
+                    SaveMutations();
                 }
             }
         }
 
-        private void appendMutationButton_Click(object sender, EventArgs e)
+        private void AppendMutationButton_Click(object sender, EventArgs e)
         {
             using (MutationViewer mv = new MutationViewer(new Mutation(), true))
             {
@@ -1048,54 +1092,54 @@ namespace CarcassSpark.ObjectViewers
                     mutations.Add(mv.displayedMutation.mutateAspectId, mv.displayedMutation);
                     // if (displayedRecipe.mutations_append != null) displayedRecipe.mutations_append.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations_append = new List<Mutation> { mv.displayedMutation };
-                    saveMutations();
+                    SaveMutations();
                 }
             }
         }
 
-        private void maxExecutionsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void MaxExecutionsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipe.maxexecutions = Convert.ToInt32(maxExecutionsNumericUpDown.Value);
             if (maxExecutionsNumericUpDown.Value == 0) displayedRecipe.maxexecutions = null;
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             if (idTextBox.Text == "") displayedRecipe.id = null;
             else displayedRecipe.id = idTextBox.Text;
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             if (labelTextBox.Text == "") displayedRecipe.label = null;
             else displayedRecipe.label = labelTextBox.Text;
         }
 
-        private void actionIdTextBox_TextChanged(object sender, EventArgs e)
+        private void ActionIdTextBox_TextChanged(object sender, EventArgs e)
         {
             if (actionIdTextBox.Text == "") displayedRecipe.label = null;
             else displayedRecipe.actionId = actionIdTextBox.Text;
         }
 
-        private void endingTextBox_TextChanged(object sender, EventArgs e)
+        private void EndingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (endingTextBox.Text == "") displayedRecipe.label = null;
             else displayedRecipe.ending = endingTextBox.Text;
         }
 
-        private void burnimageTextBox_TextChanged(object sender, EventArgs e)
+        private void BurnimageTextBox_TextChanged(object sender, EventArgs e)
         {
             if (burnimageTextBox.Text == "") displayedRecipe.label = null;
             else displayedRecipe.burnimage = burnimageTextBox.Text;
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             if (extendsTextBox.Text == "") displayedRecipe.extends = null;
             else displayedRecipe.extends = new List<string> { extendsTextBox.Text };
         }
 
-        private void warmupNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void WarmupNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
             if (displayedRecipe.warmup == 0)
@@ -1104,7 +1148,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void startdescriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void StartdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.startdescription = startdescriptionTextBox.Text;
             if (displayedRecipe.startdescription == "")
@@ -1113,7 +1157,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.description = descriptionTextBox.Text;
             if (displayedRecipe.description == "")
@@ -1122,7 +1166,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void requirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void RequirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {   
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1147,7 +1191,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extantreqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void ExtantreqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1172,7 +1216,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void tablereqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void TablereqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1197,7 +1241,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void effectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void EffectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1222,7 +1266,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void AspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1247,7 +1291,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void deckeffectDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void DeckeffectDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1272,7 +1316,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void removeAlternativeRecipeButton_Click(object sender, EventArgs e)
+        private void RemoveAlternativeRecipeButton_Click(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems.Count > 0)
             {   // need to remove it from the right location now that there's 4 of them
@@ -1302,11 +1346,11 @@ namespace CarcassSpark.ObjectViewers
                     alternativerecipeLinks.Remove(value);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
                 }
-                saveAlternativeRecipes();
+                SaveAlternativeRecipes();
             }
         }
 
-        private void removeLinkedRecipeButton_Click(object sender, EventArgs e)
+        private void RemoveLinkedRecipeButton_Click(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems.Count > 0)
             {
@@ -1343,7 +1387,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void removeMutationButton_Click(object sender, EventArgs e)
+        private void RemoveMutationButton_Click(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems.Count > 0)
             {
@@ -1380,7 +1424,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -1395,7 +1439,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -1410,7 +1454,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void moveAltRecipeUpButton_Click(object sender, EventArgs e)
+        private void MoveAltRecipeUpButton_Click(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems.Count == 0) return;
             // check to see if first item is selected
@@ -1421,10 +1465,10 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = alternativeRecipesListView.SelectedItems[0];
             alternativeRecipesListView.Items.Remove(selectedItem);
             alternativeRecipesListView.Items.Insert(affectedIndex-1, selectedItem);
-            saveAlternativeRecipes();
+            SaveAlternativeRecipes();
         }
 
-        private void moveAltRecipeDownButton_Click(object sender, EventArgs e)
+        private void MoveAltRecipeDownButton_Click(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems.Count == 0) return;
             // check to see if last item is selected
@@ -1435,10 +1479,10 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = alternativeRecipesListView.SelectedItems[0];
             alternativeRecipesListView.Items.Remove(selectedItem);
             alternativeRecipesListView.Items.Insert(affectedIndex+1, selectedItem);
-            saveAlternativeRecipes();
+            SaveAlternativeRecipes();
         }
 
-        private void moveLinkedRecipeUpButton_Click(object sender, EventArgs e)
+        private void MoveLinkedRecipeUpButton_Click(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems.Count == 0) return;
             // check to see if first item is selected
@@ -1449,10 +1493,10 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = linkedRecipesListView.SelectedItems[0];
             linkedRecipesListView.Items.Remove(selectedItem);
             linkedRecipesListView.Items.Insert(affectedIndex-1, selectedItem);
-            saveAlternativeRecipes();
+            SaveAlternativeRecipes();
         }
 
-        private void moveLinkedRecipeDownButton_Click(object sender, EventArgs e)
+        private void MoveLinkedRecipeDownButton_Click(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems.Count == 0) return;
             // check to see if last item is selected
@@ -1463,10 +1507,10 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = linkedRecipesListView.SelectedItems[0];
             linkedRecipesListView.Items.Remove(selectedItem);
             linkedRecipesListView.Items.Insert(affectedIndex+1, selectedItem);
-            saveAlternativeRecipes();
+            SaveAlternativeRecipes();
         }
 
-        private void saveAlternativeRecipes()
+        private void SaveAlternativeRecipes()
         {
             displayedRecipe.alternativerecipes = null;
             displayedRecipe.alternativerecipes_prepend = null;
@@ -1497,7 +1541,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void saveLinkedRecipes()
+        private void SaveLinkedRecipes()
         {
             displayedRecipe.linked = null;
             displayedRecipe.linked_prepend = null;
@@ -1528,46 +1572,42 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void purgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void PurgeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (purgeDataGridView.SelectedCells[0].Value == null) return;
-            string id = purgeDataGridView.SelectedCells[0].Value as string;
-            if (id == null) return;
-            if (Utilities.aspectExists(id))
+            if (!(purgeDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
-            else if (Utilities.elementExists(id))
+            else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
         }
 
-        private void haltVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void HaltVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value == null) return;
-            string id = haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.verbExists(id))
+            if (!(haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
+            if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
                 vv.Show();
             }
         }
 
-        private void deleteVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DeleteVerbDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value == null) return;
-            string id = deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.verbExists(id))
+            if (!(deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
+            if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.getVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
                 vv.Show();
             }
         }
 
-        private void deleteVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void DeleteVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1592,7 +1632,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void haltVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void HaltVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1617,7 +1657,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void purgeDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void PurgeDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -1642,7 +1682,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void moveMutationUpButton_Click(object sender, EventArgs e)
+        private void MoveMutationUpButton_Click(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems.Count == 0) return;
             // check to see if first item is selected
@@ -1654,10 +1694,10 @@ namespace CarcassSpark.ObjectViewers
             mutationsListView.Items.Remove(selectedItem);
             mutationsListView.Items.Insert(affectedIndex - 1, selectedItem);
             // TODO refactor mutation storage/handling so I can save it like linked and alternate recipes
-            saveMutations();
+            SaveMutations();
         }
 
-        private void moveMutationDownButton_Click(object sender, EventArgs e)
+        private void MoveMutationDownButton_Click(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems.Count == 0) return;
             // check to see if last item is selected
@@ -1668,10 +1708,10 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem selectedItem = mutationsListView.SelectedItems[0];
             mutationsListView.Items.Remove(selectedItem);
             mutationsListView.Items.Insert(affectedIndex + 1, selectedItem);
-            saveMutations();
+            SaveMutations();
         }
 
-        private void saveMutations()
+        private void SaveMutations()
         {
             displayedRecipe.mutations = null;
             displayedRecipe.mutations_prepend = null;
@@ -1702,7 +1742,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void signalEndingFlavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
+        private void SignalEndingFlavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             displayedRecipe.signalendingflavour = signalEndingFlavourDomainUpDown.Text;
             if (displayedRecipe.signalendingflavour == "")
@@ -1711,7 +1751,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void portalEffectDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
+        private void PortalEffectDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             displayedRecipe.portaleffect = portalEffectDomainUpDown.Text;
             if (displayedRecipe.portaleffect == "")
@@ -1720,28 +1760,28 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void craftableCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void CraftableCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (craftableCheckBox.CheckState == CheckState.Checked) displayedRecipe.craftable = true;
             if (craftableCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.craftable = false;
             if (craftableCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.craftable = null;
         }
 
-        private void hintonlyCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void HintonlyCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (hintonlyCheckBox.CheckState == CheckState.Checked) displayedRecipe.hintonly = true;
             if (hintonlyCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.hintonly = false;
             if (hintonlyCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.hintonly = null;
         }
 
-        private void signalImportantLoopCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void SignalImportantLoopCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (signalImportantLoopCheckBox.CheckState == CheckState.Checked) displayedRecipe.signalimportantloop = true;
             if (signalImportantLoopCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.signalimportantloop = false;
             if (signalImportantLoopCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.signalimportantloop = null;
         }
 
-        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.comments = commentsTextBox.Text;
             if (displayedRecipe.comments == "")
@@ -1750,7 +1790,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedRecipe.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.deleted = false;

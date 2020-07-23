@@ -27,22 +27,22 @@ namespace CarcassSpark.DictionaryViewers
             }
         }
         
-        private void resultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            if (Utilities.recipeExists(resultsListBox.SelectedItem.ToString()))
+            if (Utilities.RecipeExists(resultsListBox.SelectedItem.ToString()))
             {
-                RecipeViewer ev = new RecipeViewer(Utilities.getRecipe(resultsListBox.SelectedItem.ToString()), null);
+                RecipeViewer ev = new RecipeViewer(Utilities.GetRecipe(resultsListBox.SelectedItem.ToString()), null);
                 ev.Show();
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -96,7 +96,7 @@
             this.loadLinkedRecipesButton.TabIndex = 3;
             this.loadLinkedRecipesButton.Text = "Load Linked Recipes";
             this.loadLinkedRecipesButton.UseVisualStyleBackColor = true;
-            this.loadLinkedRecipesButton.Click += new System.EventHandler(this.loadLinkedRecipesButton_Click);
+            this.loadLinkedRecipesButton.Click += new System.EventHandler(this.LoadLinkedRecipesButton_Click);
             // 
             // exportButton
             // 
@@ -107,7 +107,7 @@
             this.exportButton.TabIndex = 4;
             this.exportButton.Text = "Export to PNG";
             this.exportButton.UseVisualStyleBackColor = true;
-            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            this.exportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 
             // saveFileDialog1
             // 

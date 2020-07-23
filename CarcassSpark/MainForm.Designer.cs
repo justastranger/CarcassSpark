@@ -34,7 +34,6 @@
             this.modFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openSettingsButton = new System.Windows.Forms.Button();
             this.newModButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // loadVanillaButton
@@ -45,7 +44,7 @@
             this.loadVanillaButton.TabIndex = 0;
             this.loadVanillaButton.Text = "Open Vanilla Assets";
             this.loadVanillaButton.UseVisualStyleBackColor = true;
-            this.loadVanillaButton.Click += new System.EventHandler(this.loadVanillaButton_Click);
+            this.loadVanillaButton.Click += new System.EventHandler(this.LoadVanillaButton_Click);
             // 
             // openModButton
             // 
@@ -55,7 +54,7 @@
             this.openModButton.TabIndex = 1;
             this.openModButton.Text = "Open Mod";
             this.openModButton.UseVisualStyleBackColor = true;
-            this.openModButton.Click += new System.EventHandler(this.openModButton_Click);
+            this.openModButton.Click += new System.EventHandler(this.OpenModButton_Click);
             // 
             // modFolderBrowserDialog
             // 
@@ -69,7 +68,7 @@
             this.openSettingsButton.TabIndex = 2;
             this.openSettingsButton.Text = "Settings";
             this.openSettingsButton.UseVisualStyleBackColor = true;
-            this.openSettingsButton.Click += new System.EventHandler(this.openSettingsButton_Click);
+            this.openSettingsButton.Click += new System.EventHandler(this.OpenSettingsButton_Click);
             // 
             // newModButton
             // 
@@ -79,24 +78,13 @@
             this.newModButton.TabIndex = 3;
             this.newModButton.Text = "New Mod";
             this.newModButton.UseVisualStyleBackColor = true;
-            this.newModButton.Click += new System.EventHandler(this.newModButton_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(289, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 36);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Tabbed Editor";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.newModButton.Click += new System.EventHandler(this.NewModButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 261);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.newModButton);
             this.Controls.Add(this.openSettingsButton);
             this.Controls.Add(this.openModButton);
@@ -117,6 +105,5 @@
         private System.Windows.Forms.FolderBrowserDialog modFolderBrowserDialog;
         private System.Windows.Forms.Button openSettingsButton;
         private System.Windows.Forms.Button newModButton;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -18,34 +18,45 @@ namespace CarcassSpark.Tools
         public Element baseSummon, preSummon;
         public Recipe startSummon, succeedSummon;
 
-        private void inspectBaseButton_Click(object sender, EventArgs e)
+        public SummonCreator()
+        {
+            InitializeComponent();
+        }
+
+        private void InspectBaseButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(baseSummon, null);
             ev.Show();
         }
 
-        private void inspectPreButton_Click(object sender, EventArgs e)
+        private void InspectPreButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(preSummon, null);
             ev.Show();
         }
 
-        private void baseRecipe_Assign(object sender, Recipe result)
+        private void BaseRecipe_Assign(object sender, Recipe result)
         {
             startSummon = result;
-            startSummon.effects = new Dictionary<string, string>();
-            startSummon.effects.Add(baseSummon.id, "1");
-            startSummon.linked = new List<RecipeLink>();
-            startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string,string>)null, null));
+            startSummon.effects = new Dictionary<string, string>
+            {
+                { baseSummon.id, "1" }
+            };
+            startSummon.linked = new List<RecipeLink>
+            {
+                new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string, string>)null, null)
+            };
             startSummon.actionId = "work";
             startSummon.warmup = 180;
             startSummon.requirements["desire"] = "-1";
             startSummon.requirements["ritual"] = "1";
-            succeedSummon = new Recipe();
-            succeedSummon.id = startSummon.id + "_success";
-            succeedSummon.label = startSummon.label;
-            succeedSummon.actionId = startSummon.actionId;
-            succeedSummon.description = startSummon.description;
+            succeedSummon = new Recipe
+            {
+                id = startSummon.id + "_success",
+                label = startSummon.label,
+                actionId = startSummon.actionId,
+                description = startSummon.description
+            };
             startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, (Dictionary<string, string>)null, null));
             baseSummonIdTextBox.Text = baseSummon.id;
             successSummonTextBox.Text = succeedSummon.id;
@@ -53,43 +64,38 @@ namespace CarcassSpark.Tools
             inspectSuccessRecipeButton.Enabled = true;
         }
 
-        private void createRecipeButton_Click(object sender, EventArgs e)
+        private void CreateRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(new Recipe(), baseRecipe_Assign);
+            RecipeViewer rv = new RecipeViewer(new Recipe(), BaseRecipe_Assign);
             MessageBox.Show("You do not have to fill out the Warm Up, Verb ID, Linked Recipes or effects portion, just the: ID, Label, Start Description, Description, and Requirements. You do not need to include desire: -1 or ritual: 1 in Requirements.");
             rv.Show();
         }
 
-        private void inspectBaseRecipeButton_Click(object sender, EventArgs e)
+        private void InspectBaseRecipeButton_Click(object sender, EventArgs e)
         {
             RecipeViewer rv = new RecipeViewer(startSummon, null);
             rv.Show();
         }
 
-        private void inspectSuccessRecipeButton_Click(object sender, EventArgs e)
+        private void InspectSuccessRecipeButton_Click(object sender, EventArgs e)
         {
             RecipeViewer rv = new RecipeViewer(succeedSummon, null);
             rv.Show();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        public SummonCreator()
-        {
-            InitializeComponent();
-        }
-
-        private void baseElement_Assign(object sender, Element result)
+        private void BaseElement_Assign(object sender, Element result)
         {
             baseSummon = result;
             baseIdTextBox.Text = baseSummon.id;
@@ -133,9 +139,9 @@ namespace CarcassSpark.Tools
             inspectPreButton.Enabled = true;
         }
 
-        private void createBaseElementButton_click(object sender, EventArgs e)
+        private void CreateBaseElementButton_click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(new Element(), baseElement_Assign);
+            ElementViewer ev = new ElementViewer(new Element(), BaseElement_Assign);
             ev.Show();
         }
     }

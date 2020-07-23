@@ -26,7 +26,7 @@ namespace CarcassSpark
 
             if (File.Exists(currentDirectory + "csmt.settings.json"))
             {
-                Settings.loadSettings(currentDirectory + "csmt.settings.json");
+                Settings.LoadSettings(currentDirectory + "csmt.settings.json");
             }
             if (Settings.settings["openWithVanilla"] != null && Settings.settings["openWithVanilla"].ToObject<bool>())
             {
@@ -42,14 +42,14 @@ namespace CarcassSpark
             }
         }
 
-        private void loadVanillaButton_Click(object sender, EventArgs e)
+        private void LoadVanillaButton_Click(object sender, EventArgs e)
         {
             ModViewer mv = new ModViewer(directoryToVanillaContent, true);
             // Utilities.currentMods.Add(mv);
             mv.Show();
         }
 
-        private void openModButton_Click(object sender, EventArgs e)
+        private void OpenModButton_Click(object sender, EventArgs e)
         {
             modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMod"] != null) ? Settings.settings["previousMod"].ToString() : currentDirectory;
             DialogResult dr = modFolderBrowserDialog.ShowDialog();
@@ -59,16 +59,16 @@ namespace CarcassSpark
                 ModViewer mv = new ModViewer(location, false);
                 Settings.settings["previousMod"] = location;
                 mv.Show();
-                Settings.saveSettings();
+                Settings.SaveSettings();
             }
         }
 
-        private void openSettingsButton_Click(object sender, EventArgs e)
+        private void OpenSettingsButton_Click(object sender, EventArgs e)
         {
             new Settings().Show();
         }
 
-        private void newModButton_Click(object sender, EventArgs e)
+        private void NewModButton_Click(object sender, EventArgs e)
         {
             modFolderBrowserDialog.SelectedPath = currentDirectory;
             DialogResult dr = modFolderBrowserDialog.ShowDialog();
@@ -78,14 +78,8 @@ namespace CarcassSpark
                 ModViewer mv = new ModViewer(true, location);
                 Settings.settings["previousMod"] = location;
                 mv.Show();
-                Settings.saveSettings();
+                Settings.SaveSettings();
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TabbedModViewer tmv = new TabbedModViewer();
-            tmv.Show();
         }
     }
 }

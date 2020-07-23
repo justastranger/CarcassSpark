@@ -55,7 +55,7 @@
             this.okButton1.TabIndex = 1;
             this.okButton1.Text = "OK";
             this.okButton1.UseVisualStyleBackColor = true;
-            this.okButton1.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton1.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -66,7 +66,7 @@
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ChangeAspectQuantityForm
             // 

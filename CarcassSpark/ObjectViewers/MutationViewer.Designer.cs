@@ -48,7 +48,7 @@
             this.filterTextBox.Size = new System.Drawing.Size(120, 20);
             this.filterTextBox.TabIndex = 0;
             this.filterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
+            this.filterTextBox.TextChanged += new System.EventHandler(this.FilterTextBox_TextChanged);
             // 
             // mutateAspectIdTextBox
             // 
@@ -57,7 +57,7 @@
             this.mutateAspectIdTextBox.Size = new System.Drawing.Size(120, 20);
             this.mutateAspectIdTextBox.TabIndex = 1;
             this.mutateAspectIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mutateAspectIdTextBox.TextChanged += new System.EventHandler(this.mutateAspectIdTextBox_TextChanged);
+            this.mutateAspectIdTextBox.TextChanged += new System.EventHandler(this.MutateAspectIdTextBox_TextChanged);
             // 
             // levelNumericUpDown
             // 
@@ -70,7 +70,7 @@
             this.levelNumericUpDown.Name = "levelNumericUpDown";
             this.levelNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.levelNumericUpDown.TabIndex = 2;
-            this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.levelNumericUpDown_ValueChanged);
+            this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.LevelNumericUpDown_ValueChanged);
             // 
             // additiveCheckBox
             // 
@@ -81,7 +81,7 @@
             this.additiveCheckBox.TabIndex = 3;
             this.additiveCheckBox.Text = "Additive";
             this.additiveCheckBox.UseVisualStyleBackColor = true;
-            this.additiveCheckBox.CheckedChanged += new System.EventHandler(this.additiveCheckBox_CheckedChanged);
+            this.additiveCheckBox.CheckedChanged += new System.EventHandler(this.AdditiveCheckBox_CheckedChanged);
             // 
             // okButton
             // 
@@ -92,7 +92,7 @@
             this.okButton.TabIndex = 4;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -103,7 +103,7 @@
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // filterLabel
             // 

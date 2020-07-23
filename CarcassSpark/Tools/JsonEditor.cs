@@ -110,25 +110,25 @@ namespace CarcassSpark.Tools
             Text = readOnly ? "JSON Viewer" : "JSON Editor";
         }
 
-        private void contentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ContentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             objectType = contentTypeComboBox.Text;
             Settings.settings["jsonEditorLastContentType"] = objectType;
-            Settings.saveSettings();
+            Settings.SaveSettings();
         }
         
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void scintillaEditor_TextChanged(object sender, EventArgs e)
+        private void ScintillaEditor_TextChanged(object sender, EventArgs e)
         {
             objectText = scintillaEditor.Text;
         }

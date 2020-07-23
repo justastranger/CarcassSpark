@@ -93,7 +93,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
@@ -102,7 +102,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
@@ -113,7 +113,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(206, 86);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // imageTextBox
             // 
@@ -122,7 +122,7 @@
             this.imageTextBox.Size = new System.Drawing.Size(100, 20);
             this.imageTextBox.TabIndex = 4;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
+            this.imageTextBox.TextChanged += new System.EventHandler(this.ImageTextBox_TextChanged);
             // 
             // fromEndingTextBox
             // 
@@ -131,7 +131,7 @@
             this.fromEndingTextBox.Size = new System.Drawing.Size(100, 20);
             this.fromEndingTextBox.TabIndex = 5;
             this.fromEndingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.fromEndingTextBox.TextChanged += new System.EventHandler(this.fromEndingTextBox_TextChanged);
+            this.fromEndingTextBox.TextChanged += new System.EventHandler(this.FromEndingTextBox_TextChanged);
             // 
             // startdescriptionTextBox
             // 
@@ -142,7 +142,7 @@
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.startdescriptionTextBox.Size = new System.Drawing.Size(206, 87);
             this.startdescriptionTextBox.TabIndex = 6;
-            this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.startdescriptionTextBox_TextChanged);
+            this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
             // availableWithoutEndingMatchCheckBox
             // 
@@ -154,7 +154,7 @@
             this.availableWithoutEndingMatchCheckBox.Text = "Available Without Ending Match";
             this.availableWithoutEndingMatchCheckBox.ThreeState = true;
             this.availableWithoutEndingMatchCheckBox.UseVisualStyleBackColor = true;
-            this.availableWithoutEndingMatchCheckBox.CheckStateChanged += new System.EventHandler(this.availableWithoutEndingMatchCheckBox_CheckStateChanged);
+            this.availableWithoutEndingMatchCheckBox.CheckStateChanged += new System.EventHandler(this.AvailableWithoutEndingMatchCheckBox_CheckStateChanged);
             // 
             // effectsDataGridView
             // 
@@ -169,8 +169,8 @@
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.Size = new System.Drawing.Size(342, 194);
             this.effectsDataGridView.TabIndex = 8;
-            this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.effectsDataGridView_CellDoubleClick);
-            this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.effectsDataGridView_UserDeletedRow);
+            this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EffectsDataGridView_CellDoubleClick);
+            this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.EffectsDataGridView_UserDeletedRow);
             // 
             // effectId
             // 
@@ -197,14 +197,14 @@
             this.setAsExtendToolStripMenuItem.Name = "setAsExtendToolStripMenuItem";
             this.setAsExtendToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.setAsExtendToolStripMenuItem.Text = "Set as Extend";
-            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.setAsExtendToolStripMenuItem_Click);
+            this.setAsExtendToolStripMenuItem.Click += new System.EventHandler(this.SetAsExtendToolStripMenuItem_Click);
             // 
             // setAsRemoveToolStripMenuItem
             // 
             this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
             this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.SetAsRemoveToolStripMenuItem_Click);
             // 
             // startingVerbIdTextBox
             // 
@@ -213,7 +213,7 @@
             this.startingVerbIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.startingVerbIdTextBox.TabIndex = 10;
             this.startingVerbIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.startingVerbIdTextBox.TextChanged += new System.EventHandler(this.startingVerbIdTextBox_TextChanged);
+            this.startingVerbIdTextBox.TextChanged += new System.EventHandler(this.StartingVerbIdTextBox_TextChanged);
             // 
             // okButton
             // 
@@ -224,7 +224,7 @@
             this.okButton.TabIndex = 11;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // idLabel
             // 
@@ -307,7 +307,7 @@
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // startingVerbLabel
             // 
@@ -324,7 +324,7 @@
             this.addExcludesTextBox.Name = "addExcludesTextBox";
             this.addExcludesTextBox.Size = new System.Drawing.Size(115, 20);
             this.addExcludesTextBox.TabIndex = 22;
-            this.addExcludesTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addExcludesTextBox_KeyDown);
+            this.addExcludesTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddExcludesTextBox_KeyDown);
             // 
             // addExcludesButton
             // 
@@ -334,7 +334,7 @@
             this.addExcludesButton.TabIndex = 23;
             this.addExcludesButton.Text = "Add";
             this.addExcludesButton.UseVisualStyleBackColor = true;
-            this.addExcludesButton.Click += new System.EventHandler(this.addExcludesButton_Click);
+            this.addExcludesButton.Click += new System.EventHandler(this.AddExcludesButton_Click);
             // 
             // excludeAddLabel
             // 
@@ -353,7 +353,7 @@
             this.removeButton.TabIndex = 25;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // excludesOnEndingListView
             // 
@@ -364,7 +364,7 @@
             this.excludesOnEndingListView.TabIndex = 26;
             this.excludesOnEndingListView.UseCompatibleStateImageBehavior = false;
             this.excludesOnEndingListView.View = System.Windows.Forms.View.List;
-            this.excludesOnEndingListView.DoubleClick += new System.EventHandler(this.excludesOnEndingListView_DoubleClick);
+            this.excludesOnEndingListView.DoubleClick += new System.EventHandler(this.ExcludesOnEndingListView_DoubleClick);
             // 
             // statusBarElementsListView
             // 
@@ -389,7 +389,7 @@
             this.statusBarElementTextBox.Name = "statusBarElementTextBox";
             this.statusBarElementTextBox.Size = new System.Drawing.Size(115, 20);
             this.statusBarElementTextBox.TabIndex = 29;
-            this.statusBarElementTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.statusBarElementTextBox_KeyDown);
+            this.statusBarElementTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StatusBarElementTextBox_KeyDown);
             // 
             // statusBarElementsLabel2
             // 
@@ -408,7 +408,7 @@
             this.addStatusBarElementButton.TabIndex = 31;
             this.addStatusBarElementButton.Text = "Add";
             this.addStatusBarElementButton.UseVisualStyleBackColor = true;
-            this.addStatusBarElementButton.Click += new System.EventHandler(this.addStatusBarElementButton_Click);
+            this.addStatusBarElementButton.Click += new System.EventHandler(this.AddStatusBarElementButton_Click);
             // 
             // removeStatusBarElementButton
             // 
@@ -418,7 +418,7 @@
             this.removeStatusBarElementButton.TabIndex = 32;
             this.removeStatusBarElementButton.Text = "Remove";
             this.removeStatusBarElementButton.UseVisualStyleBackColor = true;
-            this.removeStatusBarElementButton.Click += new System.EventHandler(this.removeStatusBarElementButton_Click);
+            this.removeStatusBarElementButton.Click += new System.EventHandler(this.RemoveStatusBarElementButton_Click);
             // 
             // extendsLabel
             // 
@@ -435,7 +435,7 @@
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 35;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // commentsLabel
             // 
@@ -455,7 +455,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(227, 55);
             this.commentsTextBox.TabIndex = 37;
-            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // deletedCheckBox
             // 
@@ -467,7 +467,7 @@
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
             this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // LegacyViewer
             // 

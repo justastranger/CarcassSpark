@@ -60,7 +60,7 @@
             this.idTextBox.Size = new System.Drawing.Size(175, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // chanceNumericUpDown
             // 
@@ -68,7 +68,7 @@
             this.chanceNumericUpDown.Name = "chanceNumericUpDown";
             this.chanceNumericUpDown.Size = new System.Drawing.Size(175, 20);
             this.chanceNumericUpDown.TabIndex = 1;
-            this.chanceNumericUpDown.ValueChanged += new System.EventHandler(this.chanceNumericUpDown_ValueChanged);
+            this.chanceNumericUpDown.ValueChanged += new System.EventHandler(this.ChanceNumericUpDown_ValueChanged);
             // 
             // additionalCheckBox
             // 
@@ -79,7 +79,7 @@
             this.additionalCheckBox.TabIndex = 2;
             this.additionalCheckBox.Text = "Additional";
             this.additionalCheckBox.UseVisualStyleBackColor = true;
-            this.additionalCheckBox.CheckedChanged += new System.EventHandler(this.additionalCheckBox_CheckedChanged);
+            this.additionalCheckBox.CheckedChanged += new System.EventHandler(this.AdditionalCheckBox_CheckedChanged);
             // 
             // challengesDataGridView
             // 
@@ -93,8 +93,8 @@
             this.challengesDataGridView.Name = "challengesDataGridView";
             this.challengesDataGridView.Size = new System.Drawing.Size(356, 122);
             this.challengesDataGridView.TabIndex = 3;
-            this.challengesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.challengesDataGridView_CellDoubleClick);
-            this.challengesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.challengesDataGridView_UserDeletedRow);
+            this.challengesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChallengesDataGridView_CellDoubleClick);
+            this.challengesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ChallengesDataGridView_UserDeletedRow);
             // 
             // aspectId
             // 
@@ -116,7 +116,7 @@
             this.openRecipeButton.TabIndex = 4;
             this.openRecipeButton.Text = "Follow Recipe";
             this.openRecipeButton.UseVisualStyleBackColor = true;
-            this.openRecipeButton.Click += new System.EventHandler(this.openRecipeButton_Click);
+            this.openRecipeButton.Click += new System.EventHandler(this.OpenRecipeButton_Click);
             // 
             // challengesLabel
             // 
@@ -154,7 +154,7 @@
             this.okButton.TabIndex = 8;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -165,7 +165,7 @@
             this.cancelButton.TabIndex = 9;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // expulsionLabel
             // 
@@ -188,8 +188,8 @@
             this.expulsionDataGridView.Name = "expulsionDataGridView";
             this.expulsionDataGridView.Size = new System.Drawing.Size(356, 104);
             this.expulsionDataGridView.TabIndex = 11;
-            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expulsionsDataGridView_CellDoubleClick);
-            this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionDataGridView_UserDeletedRow);
+            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ExpulsionsDataGridView_CellDoubleClick);
+            this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ExpulsionDataGridView_UserDeletedRow);
             // 
             // expulsionFilter
             // 
@@ -223,7 +223,7 @@
             this.totalExpulsionLimitNumericUpDown.Name = "totalExpulsionLimitNumericUpDown";
             this.totalExpulsionLimitNumericUpDown.Size = new System.Drawing.Size(55, 20);
             this.totalExpulsionLimitNumericUpDown.TabIndex = 13;
-            this.totalExpulsionLimitNumericUpDown.ValueChanged += new System.EventHandler(this.totalExpulsionLimitNumericUpDown_ValueChanged);
+            this.totalExpulsionLimitNumericUpDown.ValueChanged += new System.EventHandler(this.TotalExpulsionLimitNumericUpDown_ValueChanged);
             // 
             // RecipeLinkViewer
             // 

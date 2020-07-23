@@ -15,16 +15,14 @@ namespace CarcassSpark.ObjectViewers
     {
         public List<XTrigger> displayedXTriggers;
         public string catalyst;
-        bool editing = false;
 
         public XTriggerViewer(string catalyst, List<XTrigger> xTriggers, bool editing)
         {
             InitializeComponent();
             displayedXTriggers = xTriggers;
             this.catalyst = catalyst;
-            fillValues();
-            this.editing = editing;
-            setEditingMode(editing);
+            FillValues();
+            SetEditingMode(editing);
         }
 
         public XTriggerViewer(string catalyst, List<XTrigger> xTriggers, bool editing, bool remove)
@@ -32,9 +30,8 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             displayedXTriggers = xTriggers;
             this.catalyst = catalyst;
-            fillValues();
-            this.editing = editing;
-            setEditingMode(editing);
+            FillValues();
+            SetEditingMode(editing);
             xtriggersDataGridView.ReadOnly = remove;
         }
 
@@ -43,17 +40,17 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             displayedXTriggers = xTriggers;
             this.catalyst = catalyst;
-            fillValues();
-            setEditingMode(false);
+            FillValues();
+            SetEditingMode(false);
         }
 
         public XTriggerViewer()
         {
             InitializeComponent();
-            setEditingMode(true);
+            SetEditingMode(true);
         }
 
-        public void fillValues()
+        public void FillValues()
         {
             catalystTextBox.Text = catalyst;
             if (displayedXTriggers != null && displayedXTriggers.Count > 0)
@@ -61,13 +58,13 @@ namespace CarcassSpark.ObjectViewers
                 foreach (XTrigger xTrigger in displayedXTriggers)
                 {
                     DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance.HasValue ? xTrigger.chance.Value.ToString() : null, xTrigger.level.HasValue ? xTrigger.level.Value.ToString() : null, xTrigger.morpheffect != null ? xTrigger.morpheffect.ToLower() : null);
+                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance.HasValue ? xTrigger.chance.Value.ToString() : null, xTrigger.level.HasValue ? xTrigger.level.Value.ToString() : null, xTrigger.morpheffect?.ToLower());
                     xtriggersDataGridView.Rows.Add(row);
                 }
             }
         }
 
-        public void setEditingMode(bool editing)
+        public void SetEditingMode(bool editing)
         {
             catalystTextBox.ReadOnly = !editing;
             xtriggersDataGridView.AllowUserToAddRows = editing;
@@ -77,7 +74,7 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (xtriggersDataGridView.Rows.Count > 1)
             {
@@ -102,12 +99,12 @@ namespace CarcassSpark.ObjectViewers
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void catalystTextBox_TextChanged(object sender, EventArgs e)
+        private void CatalystTextBox_TextChanged(object sender, EventArgs e)
         {
             catalyst = catalystTextBox.Text;
             if (catalyst == "")

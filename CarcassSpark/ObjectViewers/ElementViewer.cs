@@ -23,19 +23,19 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedElement = element;
-            fillValues(element);
+            FillValues(element);
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
             else
             {
-                setEditingMode(false);
+                SetEditingMode(false);
             }
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -68,18 +68,18 @@ namespace CarcassSpark.ObjectViewers
             deletedCheckBox.Enabled = editing;
         }
 
-        private void fillValues(Element element)
+        private void FillValues(Element element)
         {
             if (element.id != null)
             {
                 idTextBox.Text = element.id;
-                pictureBox1.Image = Utilities.getElementImage(element.id);
+                pictureBox1.Image = Utilities.GetElementImage(element.id);
             }
             if (element.label != null) labelTextBox.Text = element.label;
             if (element.icon != null)
             {
                 iconTextBox.Text = element.icon;
-                pictureBox1.Image = Utilities.getElementImage(element.icon);
+                pictureBox1.Image = Utilities.GetElementImage(element.icon);
             }
             if (element.animframes.HasValue) animFramesNumericUpDown.Value = element.animframes.Value;
             if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
@@ -186,7 +186,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void slotsListView_DoubleClick(object sender, EventArgs e)
+        private void SlotsListView_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListView.SelectedItems == null) return;
             string slotId = slotsListView.SelectedItems[0].Text.ToString();
@@ -194,18 +194,18 @@ namespace CarcassSpark.ObjectViewers
             sv.Show();
         }
 
-        private void aspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void AspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
             if(aspectID == null)
             {
                 return;
             }
-            AspectViewer av = new AspectViewer(Utilities.getAspect(aspectID), null);
+            AspectViewer av = new AspectViewer(Utilities.GetAspect(aspectID), null);
             av.Show();
         }
 
-        private void xtriggersListView_DoubleClick(object sender, EventArgs e)
+        private void XtriggersListView_DoubleClick(object sender, EventArgs e)
         {
             if (xtriggersListView.SelectedItems.Count != 1) return;
             string id = xtriggersListView.SelectedItems[0].Text;
@@ -238,7 +238,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -279,12 +279,12 @@ namespace CarcassSpark.ObjectViewers
             SuccessCallback?.Invoke(this, displayedElement);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.id = idTextBox.Text;
             if (displayedElement.id == "")
@@ -293,7 +293,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.extends = new List<string> { extendsTextBox.Text };
             if (displayedElement.extends[0] == "")
@@ -302,7 +302,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.label = labelTextBox.Text;
             if (displayedElement.label == "")
@@ -311,12 +311,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void iconTextBox_TextChanged(object sender, EventArgs e)
+        private void IconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.icon = iconTextBox.Text;
-            if (Utilities.getElementImage(iconTextBox.Text) != null)
+            if (Utilities.GetElementImage(iconTextBox.Text) != null)
             {
-                pictureBox1.Image = Utilities.getElementImage(iconTextBox.Text);
+                pictureBox1.Image = Utilities.GetElementImage(iconTextBox.Text);
             }
             if (displayedElement.icon == "")
             {
@@ -324,7 +324,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void uniquenessgroupTextBox_TextChanged(object sender, EventArgs e)
+        private void UniquenessgroupTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.uniquenessgroup = uniquenessgroupTextBox.Text;
             if (displayedElement.uniquenessgroup == "")
@@ -333,7 +333,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void decayToTextBox_TextChanged(object sender, EventArgs e)
+        private void DecayToTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.decayTo = decayToTextBox.Text;
             if (displayedElement.decayTo == "")
@@ -342,7 +342,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void lifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void LifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedElement.lifetime = Convert.ToInt32(lifetimeNumericUpDown.Value);
             if (displayedElement.lifetime == 0)
@@ -351,7 +351,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void animFramesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void AnimFramesNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedElement.animframes = Convert.ToInt32(animFramesNumericUpDown.Value);
             if (displayedElement.animframes == 0)
@@ -360,7 +360,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.description = descriptionTextBox.Text;
             if (displayedElement.description == "")
@@ -369,7 +369,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void addSlotButton_Click(object sender, EventArgs e)
+        private void AddSlotButton_Click(object sender, EventArgs e)
         {
             SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.ELEMENT);
             DialogResult dr = sv.ShowDialog();
@@ -382,7 +382,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void aspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void AspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -407,7 +407,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void xtriggersDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void XtriggersDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
@@ -432,7 +432,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void newXTriggerButton_Click(object sender, EventArgs e)
+        private void NewXTriggerButton_Click(object sender, EventArgs e)
         {
             XTriggerViewer xtv = new XTriggerViewer();
             if (xtv.ShowDialog() == DialogResult.OK)
@@ -443,7 +443,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void deleteXTriggerButton_Click(object sender, EventArgs e)
+        private void DeleteXTriggerButton_Click(object sender, EventArgs e)
         {
             if (xtriggersListView.SelectedItems.Count == 0) return;
             ListViewItem item = xtriggersListView.SelectedItems[0];
@@ -477,7 +477,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -492,7 +492,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -507,33 +507,33 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void uniqueCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void UniqueCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (uniqueCheckBox.CheckState == CheckState.Checked) displayedElement.unique = true;
             if (uniqueCheckBox.CheckState == CheckState.Unchecked) displayedElement.unique = false;
             if (uniqueCheckBox.CheckState == CheckState.Indeterminate) displayedElement.unique = null;
         }
 
-        private void resaturateCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void ResaturateCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (resaturateCheckBox.CheckState == CheckState.Checked) displayedElement.resaturate = true;
             if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
             if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
         }
 
-        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.comments = commentsTextBox.Text;
             if (displayedElement.comments == "") displayedElement.comments = null;
         }
 
-        private void inheritsTextBox_TextChanged(object sender, EventArgs e)
+        private void InheritsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.inherits = inheritsTextBox.Text;
             if (displayedElement.inherits == "") displayedElement.inherits = null;
         }
 
-        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedElement.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedElement.deleted = false;

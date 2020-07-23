@@ -16,7 +16,7 @@ namespace CarcassSpark.ObjectViewers
     {
         public Slot displayedSlot;
         public bool editing;
-        SlotType? slotType;
+        private readonly SlotType? slotType;
         
         public enum SlotType
         {
@@ -29,22 +29,22 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             this.displayedSlot = slot;
-            fillValues(slot);
+            FillValues(slot);
             if (slotType.HasValue) this.slotType = slotType.Value;
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
+            if (editing.HasValue) SetEditingMode(editing.Value);
+            else SetEditingMode(false);
         }
 
         public SlotViewer(Slot slot, bool? editing)
         {
             InitializeComponent();
             this.displayedSlot = slot;
-            fillValues(slot);
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
+            FillValues(slot);
+            if (editing.HasValue) SetEditingMode(editing.Value);
+            else SetEditingMode(false);
         }
 
-        void fillValues(Slot slot)
+        void FillValues(Slot slot)
         {
             idTextBox.Text = slot.id;
             labelTextBox.Text = slot.label;
@@ -68,7 +68,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
 
@@ -108,37 +108,37 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        private void requiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void RequiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.elementExists(id))
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if(Utilities.aspectExists(id))
+            else if(Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void forbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ForbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.elementExists(id))
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (requiredDataGridView.RowCount > 1)
             {
@@ -159,12 +159,12 @@ namespace CarcassSpark.ObjectViewers
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.id = idTextBox.Text;
             if (displayedSlot.id == "")
@@ -173,7 +173,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.label = labelTextBox.Text;
             if (displayedSlot.label == "")
@@ -182,7 +182,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.description = descriptionTextBox.Text;
             if (displayedSlot.description == "")
@@ -191,7 +191,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void actionIdTextBox_TextChanged(object sender, EventArgs e)
+        private void ActionIdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.actionId = actionIdTextBox.Text;
             if (displayedSlot.actionId == "")
@@ -200,7 +200,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void GreedyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.greedy = greedyCheckBox.Checked;
             if (!displayedSlot.greedy.Value)
@@ -209,13 +209,13 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void requiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void RequiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.required.Count == 0) displayedSlot.required = null;
         }
 
-        private void consumesCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ConsumesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.consumes = consumesCheckBox.Checked;
             if (!displayedSlot.consumes.Value)
@@ -224,42 +224,40 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void forbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void ForbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            string id = forbiddenDataGridView.SelectedCells[0].Value as String;
-            if (id == null)
+            if (!(forbiddenDataGridView.SelectedCells[0].Value is string id))
             {
                 return;
             }
-            if (Utilities.elementExists(id))
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void requiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void RequiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            string id = requiredDataGridView.SelectedCells[0].Value as String;
-            if (id == null) return;
-            if (Utilities.elementExists(id))
+            if (!(requiredDataGridView.SelectedCells[0].Value is string id)) return;
+            if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                 ev.Show();
             }
-            else if (Utilities.aspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                 av.Show();
             }
         }
 
-        private void forbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void ForbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
