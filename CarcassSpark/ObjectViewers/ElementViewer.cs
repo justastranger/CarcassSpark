@@ -539,5 +539,17 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedElement.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedElement.deleted = null;
         }
+
+        private void RemoveSlotButton_Click(object sender, EventArgs e)
+        {
+            if (slotsListView.SelectedItems.Count == 1)
+            {
+                slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select a slot to remove.");
+            }
+        }
     }
 }

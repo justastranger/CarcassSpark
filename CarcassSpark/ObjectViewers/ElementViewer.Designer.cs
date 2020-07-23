@@ -391,6 +391,7 @@
             this.removeSlotButton.TabIndex = 31;
             this.removeSlotButton.Text = "Remove Slot";
             this.removeSlotButton.UseVisualStyleBackColor = true;
+            this.removeSlotButton.Click += new System.EventHandler(this.RemoveSlotButton_Click);
             // 
             // resaturateCheckBox
             // 
@@ -406,6 +407,7 @@
             // 
             // slotsListView
             // 
+            this.slotsListView.HideSelection = false;
             this.slotsListView.Location = new System.Drawing.Point(509, 171);
             this.slotsListView.MultiSelect = false;
             this.slotsListView.Name = "slotsListView";
@@ -417,6 +419,7 @@
             // 
             // xtriggersListView
             // 
+            this.xtriggersListView.HideSelection = false;
             this.xtriggersListView.Location = new System.Drawing.Point(258, 26);
             this.xtriggersListView.MultiSelect = false;
             this.xtriggersListView.Name = "xtriggersListView";
