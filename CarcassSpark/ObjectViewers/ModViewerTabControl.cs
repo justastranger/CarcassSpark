@@ -1576,18 +1576,8 @@ namespace CarcassSpark.ObjectViewers
         
         public void CopyObjectJSONToClipboard(object objectToExport)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, objectToExport);
-            }
             // string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
-            Clipboard.SetText(stringBuilder.ToString());
+            Clipboard.SetText(Utilities.SerializeObject(objectToExport));
         }
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
