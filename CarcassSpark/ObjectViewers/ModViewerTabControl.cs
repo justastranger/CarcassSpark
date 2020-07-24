@@ -17,6 +17,7 @@ using CarcassSpark.Tools;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Collections;
+using MindFusion.Json;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -1554,8 +1555,18 @@ namespace CarcassSpark.ObjectViewers
         
         public void CopyObjectJSONToClipboard(object objectToExport)
         {
-            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
-            Clipboard.SetText(JSON);
+            StringBuilder stringBuilder = new StringBuilder();
+            StringWriter stringWriter = new StringWriter(stringBuilder);
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = '\t';
+                writer.Indentation = 1;
+                jsonSerializer.Serialize(writer, objectToExport);
+            }
+            // string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
+            Clipboard.SetText(stringBuilder.ToString());
         }
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
