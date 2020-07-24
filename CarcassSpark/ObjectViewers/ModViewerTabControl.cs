@@ -1251,17 +1251,7 @@ namespace CarcassSpark.ObjectViewers
             Aspect aspectToEdit = Content.GetAspect(aspectsListBox.SelectedItem as string);
             if (aspectToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, aspectToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1276,17 +1266,7 @@ namespace CarcassSpark.ObjectViewers
             Element elementToEdit = Content.GetElement(elementsListBox.SelectedItem as string);
             if (elementToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, elementToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(elementToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1301,17 +1281,7 @@ namespace CarcassSpark.ObjectViewers
             Recipe recipeToEdit = Content.GetRecipe(recipesListBox.SelectedItem as string);
             if (recipeToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, recipeToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1326,17 +1296,7 @@ namespace CarcassSpark.ObjectViewers
             Deck deckToEdit = Content.GetDeck(decksListBox.SelectedItem as string);
             if (deckToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, deckToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1351,17 +1311,7 @@ namespace CarcassSpark.ObjectViewers
             Legacy legacyToEdit = Content.GetLegacy(legaciesListBox.SelectedItem as string);
             if (legacyToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, legacyToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1376,17 +1326,7 @@ namespace CarcassSpark.ObjectViewers
             Ending endingToEdit = Content.GetEnding(endingsListBox.SelectedItem as string);
             if (endingToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, endingToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
@@ -1401,17 +1341,7 @@ namespace CarcassSpark.ObjectViewers
             Verb verbToEdit = Content.GetVerb(verbsListBox.SelectedItem as string);
             if (verbToEdit == null) return;
 
-            StringBuilder stringBuilder = new StringBuilder();
-            StringWriter stringWriter = new StringWriter(stringBuilder);
-            JsonSerializer jsonSerializer = new JsonSerializer();
-            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = '\t';
-                writer.Indentation = 1;
-                jsonSerializer.Serialize(writer, verbToEdit);
-            }
-            JsonEditor je = new JsonEditor(stringBuilder.ToString(), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
 
             //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)

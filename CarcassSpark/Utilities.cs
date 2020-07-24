@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CarcassSpark.ObjectViewers;
 using CarcassSpark.ObjectTypes;
+using Newtonsoft.Json;
 
 namespace CarcassSpark
 {
@@ -399,6 +400,21 @@ namespace CarcassSpark
             }
             if (tmp.Count > 0) return tmp.Values.ToList<Verb>();
             else return null;
+        }
+
+        public static string SerializeObject(object objectToSerialize)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            StringWriter stringWriter = new StringWriter(stringBuilder);
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = '\t';
+                writer.Indentation = 1;
+                jsonSerializer.Serialize(writer, objectToSerialize);
+            }
+            return stringBuilder.ToString();
         }
     }
 }
