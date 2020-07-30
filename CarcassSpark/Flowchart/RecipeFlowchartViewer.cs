@@ -462,7 +462,7 @@ namespace CarcassSpark.Flowchart
             saveFileDialog1.InitialDirectory = Utilities.baseDirectory;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Bitmap exportedImage = diagram1.CreateImage(diagram1.Bounds, 65f);
+                Bitmap exportedImage = diagram1.CreateImage(diagram1.Bounds, 100f);
                 exportedImage.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
         }
