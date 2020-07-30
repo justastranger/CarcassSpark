@@ -186,9 +186,18 @@ namespace CarcassSpark.Flowchart
                 tempTVN.RootItems.Add(new TreeViewItem("Recipe Description: "));
                 tempTVN.RootItems.Last().Children.Add(new TreeViewItem(recipe.description));
             }
-            if (recipe.ending != null) tempTVN.RootItems.Add(new TreeViewItem("Action ID: " + recipe.ending));
+            if (recipe.comments != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Recipe Comments: "));
+                tempTVN.RootItems.Last().Children.Add(new TreeViewItem(recipe.comments));
+            }
+            if (recipe.ending != null) tempTVN.RootItems.Add(new TreeViewItem("Ending: " + recipe.ending));
+            if (recipe.signalendingflavour != null) tempTVN.RootItems.Add(new TreeViewItem("Signal Ending Flavour: " + recipe.signalendingflavour));
+            if (recipe.signalimportantloop.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Signal Important Loop: " + recipe.signalimportantloop.Value));
+            if (recipe.portaleffect != null) tempTVN.RootItems.Add(new TreeViewItem("Portal Effect: " + recipe.portaleffect));
             if (recipe.burnimage != null) tempTVN.RootItems.Add(new TreeViewItem("Burn Image: " + recipe.burnimage));
-            if (recipe.extends != null) tempTVN.RootItems.Add(new TreeViewItem("Extends: " + recipe.extends));
+            if (recipe.extends != null && recipe.extends.Count > 0) tempTVN.RootItems.Add(new TreeViewItem("Extends: " + recipe.extends));
+            if (recipe.deleted.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Extends: " + recipe.deleted.Value));
             if (recipe.craftable.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Craftable: " + recipe.craftable.Value.ToString()));
             if (recipe.hintonly.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Hint Only: " + recipe.hintonly.Value.ToString()));
             if (recipe.maxexecutions.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Max Executions: " + recipe.maxexecutions.Value.ToString()));
@@ -308,6 +317,33 @@ namespace CarcassSpark.Flowchart
                     deckeffect.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
                 }
             }
+            if (recipe.haltverb != null)
+            {
+                TreeViewItem effects = new TreeViewItem("Halt Verb:");
+                tempTVN.RootItems.Add(effects);
+                foreach (KeyValuePair<string, string> kvp in recipe.effects)
+                {
+                    effects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
+                }
+            }
+            if (recipe.deleteverb != null)
+            {
+                TreeViewItem effects = new TreeViewItem("Delete Verb:");
+                tempTVN.RootItems.Add(effects);
+                foreach (KeyValuePair<string, string> kvp in recipe.effects)
+                {
+                    effects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
+                }
+            }
+            if (recipe.purge != null)
+            {
+                TreeViewItem effects = new TreeViewItem("Purge Cards:");
+                tempTVN.RootItems.Add(effects);
+                foreach (KeyValuePair<string, string> kvp in recipe.effects)
+                {
+                    effects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value));
+                }
+            }
             if (recipe.linked != null)
             {
                 TreeViewItem linked = new TreeViewItem("Linked Recipes:");
@@ -383,11 +419,11 @@ namespace CarcassSpark.Flowchart
                 foreach (Mutation mutation in recipe.mutations)
                 {
                     TreeViewItem mutationItem = new TreeViewItem("Mutation: ");
-                    mutationItem.Children.Add(mutations);
                     mutationItem.Children.Add(new TreeViewItem("Aspect Filter: " + mutation.filterOnAspectId));
                     mutationItem.Children.Add(new TreeViewItem("Aspect Affected: " + mutation.mutateAspectId));
                     mutationItem.Children.Add(new TreeViewItem("Mutation Level: " + mutation.mutationLevel.ToString()));
                     mutationItem.Children.Add(new TreeViewItem("Additive Mutation: " + mutation.additive.ToString()));
+                    mutations.Children.Add(mutationItem);
                 }
             }
             tempTVN.ResizeToFitText();
