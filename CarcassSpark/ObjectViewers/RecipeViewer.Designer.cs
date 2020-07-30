@@ -135,6 +135,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             this.recipeIDPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -145,7 +146,6 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -193,7 +193,7 @@
             this.labelTextBox.Location = new System.Drawing.Point(0, 22);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(123, 20);
-            this.labelTextBox.TabIndex = 1;
+            this.labelTextBox.TabIndex = 0;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
@@ -203,7 +203,7 @@
             this.actionIdTextBox.Location = new System.Drawing.Point(0, 22);
             this.actionIdTextBox.Name = "actionIdTextBox";
             this.actionIdTextBox.Size = new System.Drawing.Size(123, 20);
-            this.actionIdTextBox.TabIndex = 2;
+            this.actionIdTextBox.TabIndex = 0;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.actionIdTextBox.TextChanged += new System.EventHandler(this.ActionIdTextBox_TextChanged);
             // 
@@ -213,7 +213,7 @@
             this.endingTextBox.Location = new System.Drawing.Point(0, 22);
             this.endingTextBox.Name = "endingTextBox";
             this.endingTextBox.Size = new System.Drawing.Size(123, 20);
-            this.endingTextBox.TabIndex = 3;
+            this.endingTextBox.TabIndex = 0;
             this.endingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.endingTextBox.TextChanged += new System.EventHandler(this.EndingTextBox_TextChanged);
             // 
@@ -223,7 +223,7 @@
             this.burnimageTextBox.Location = new System.Drawing.Point(0, 22);
             this.burnimageTextBox.Name = "burnimageTextBox";
             this.burnimageTextBox.Size = new System.Drawing.Size(123, 20);
-            this.burnimageTextBox.TabIndex = 4;
+            this.burnimageTextBox.TabIndex = 0;
             this.burnimageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.burnimageTextBox.TextChanged += new System.EventHandler(this.BurnimageTextBox_TextChanged);
             // 
@@ -238,7 +238,7 @@
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.startdescriptionTextBox.Size = new System.Drawing.Size(252, 88);
-            this.startdescriptionTextBox.TabIndex = 5;
+            this.startdescriptionTextBox.TabIndex = 3;
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -252,7 +252,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(252, 88);
-            this.descriptionTextBox.TabIndex = 6;
+            this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // craftableCheckBox
@@ -265,7 +265,7 @@
             this.craftableCheckBox.Location = new System.Drawing.Point(3, 3);
             this.craftableCheckBox.Name = "craftableCheckBox";
             this.craftableCheckBox.Size = new System.Drawing.Size(252, 24);
-            this.craftableCheckBox.TabIndex = 7;
+            this.craftableCheckBox.TabIndex = 0;
             this.craftableCheckBox.Text = "Craftable";
             this.craftableCheckBox.ThreeState = true;
             this.craftableCheckBox.UseVisualStyleBackColor = true;
@@ -281,7 +281,7 @@
             this.hintonlyCheckBox.Location = new System.Drawing.Point(519, 3);
             this.hintonlyCheckBox.Name = "hintonlyCheckBox";
             this.hintonlyCheckBox.Size = new System.Drawing.Size(252, 24);
-            this.hintonlyCheckBox.TabIndex = 8;
+            this.hintonlyCheckBox.TabIndex = 2;
             this.hintonlyCheckBox.Text = "Hint Only";
             this.hintonlyCheckBox.ThreeState = true;
             this.hintonlyCheckBox.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.showInternalDeckButton.Location = new System.Drawing.Point(3, 47);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
             this.showInternalDeckButton.Size = new System.Drawing.Size(120, 38);
-            this.showInternalDeckButton.TabIndex = 10;
+            this.showInternalDeckButton.TabIndex = 0;
             this.showInternalDeckButton.Text = "Show";
             this.showInternalDeckButton.UseVisualStyleBackColor = true;
             this.showInternalDeckButton.Click += new System.EventHandler(this.ShowInternalDeckButton_Click);
@@ -344,7 +344,7 @@
             this.requirementsDataGridView.Name = "requirementsDataGridView";
             this.requirementsDataGridView.ReadOnly = true;
             this.requirementsDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.requirementsDataGridView.TabIndex = 12;
+            this.requirementsDataGridView.TabIndex = 6;
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequirementsDataGridView_CellDoubleClick);
             this.requirementsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequirementsDataGridView_UserDeletedRow);
             // 
@@ -402,7 +402,7 @@
             this.extantreqsDataGridView.Name = "extantreqsDataGridView";
             this.extantreqsDataGridView.ReadOnly = true;
             this.extantreqsDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.extantreqsDataGridView.TabIndex = 13;
+            this.extantreqsDataGridView.TabIndex = 7;
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ExtantreqsDataGridView_CellDoubleClick);
             this.extantreqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ExtantreqsDataGridView_UserDeletedRow);
             // 
@@ -449,7 +449,7 @@
             this.tablereqsDataGridView.Location = new System.Drawing.Point(519, 212);
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
             this.tablereqsDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.tablereqsDataGridView.TabIndex = 15;
+            this.tablereqsDataGridView.TabIndex = 8;
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablereqsDataGridView_CellDoubleClick);
             this.tablereqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TablereqsDataGridView_UserDeletedRow);
             // 
@@ -500,7 +500,7 @@
             this.showSlotButton.Location = new System.Drawing.Point(129, 47);
             this.showSlotButton.Name = "showSlotButton";
             this.showSlotButton.Size = new System.Drawing.Size(120, 38);
-            this.showSlotButton.TabIndex = 18;
+            this.showSlotButton.TabIndex = 1;
             this.showSlotButton.Text = "Show";
             this.showSlotButton.UseVisualStyleBackColor = true;
             this.showSlotButton.Click += new System.EventHandler(this.ShowSlotButton_Click);
@@ -521,7 +521,7 @@
             this.effectsDataGridView.Location = new System.Drawing.Point(3, 331);
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.effectsDataGridView.TabIndex = 19;
+            this.effectsDataGridView.TabIndex = 10;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EffectsDataGridView_CellDoubleClick);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.EffectsDataGridView_UserDeletedRow);
             // 
@@ -566,7 +566,7 @@
             this.aspectsDataGridView.Location = new System.Drawing.Point(261, 331);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.aspectsDataGridView.TabIndex = 21;
+            this.aspectsDataGridView.TabIndex = 11;
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AspectsDataGridView_CellDoubleClick);
             this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AspectsDataGridView_UserDeletedRow);
             // 
@@ -598,7 +598,7 @@
             this.deckeffectDataGridView.Location = new System.Drawing.Point(519, 331);
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
             this.deckeffectDataGridView.Size = new System.Drawing.Size(252, 88);
-            this.deckeffectDataGridView.TabIndex = 22;
+            this.deckeffectDataGridView.TabIndex = 12;
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DeckeffectDataGridView_CellDoubleClick);
             this.deckeffectDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DeckeffectDataGridView_UserDeletedRow);
             // 
@@ -685,7 +685,7 @@
             this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
-            this.extendsTextBox.TabIndex = 33;
+            this.extendsTextBox.TabIndex = 0;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
@@ -696,7 +696,7 @@
             this.okButton.Location = new System.Drawing.Point(3, 33);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(57, 25);
-            this.okButton.TabIndex = 36;
+            this.okButton.TabIndex = 6;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -708,7 +708,7 @@
             this.cancelButton.Location = new System.Drawing.Point(955, 582);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 37;
+            this.cancelButton.TabIndex = 21;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -719,7 +719,7 @@
             this.addAlternativeRecipeButton.Location = new System.Drawing.Point(3, 3);
             this.addAlternativeRecipeButton.Name = "addAlternativeRecipeButton";
             this.addAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.addAlternativeRecipeButton.TabIndex = 38;
+            this.addAlternativeRecipeButton.TabIndex = 0;
             this.addAlternativeRecipeButton.Text = "Add";
             this.addAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.addAlternativeRecipeButton.Click += new System.EventHandler(this.AddAlternativeRecipeButton_Click);
@@ -730,7 +730,7 @@
             this.addLinkedRecipeButton.Location = new System.Drawing.Point(3, 3);
             this.addLinkedRecipeButton.Name = "addLinkedRecipeButton";
             this.addLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.addLinkedRecipeButton.TabIndex = 39;
+            this.addLinkedRecipeButton.TabIndex = 0;
             this.addLinkedRecipeButton.Text = "Add";
             this.addLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.addLinkedRecipeButton.Click += new System.EventHandler(this.AddLinkedRecipeButton_Click);
@@ -741,7 +741,7 @@
             this.addMutationButton.Location = new System.Drawing.Point(3, 3);
             this.addMutationButton.Name = "addMutationButton";
             this.addMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.addMutationButton.TabIndex = 40;
+            this.addMutationButton.TabIndex = 0;
             this.addMutationButton.Text = "Add";
             this.addMutationButton.UseVisualStyleBackColor = true;
             this.addMutationButton.Click += new System.EventHandler(this.AddMutationButton_Click);
@@ -752,7 +752,7 @@
             this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(88, 0);
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
             this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(164, 20);
-            this.maxExecutionsNumericUpDown.TabIndex = 41;
+            this.maxExecutionsNumericUpDown.TabIndex = 0;
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.MaxExecutionsNumericUpDown_ValueChanged);
             // 
             // maxExecutionsLabel
@@ -771,7 +771,7 @@
             this.warmupNumericUpDown.Location = new System.Drawing.Point(53, 0);
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
             this.warmupNumericUpDown.Size = new System.Drawing.Size(199, 20);
-            this.warmupNumericUpDown.TabIndex = 43;
+            this.warmupNumericUpDown.TabIndex = 0;
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.WarmupNumericUpDown_ValueChanged);
             // 
             // warmupLabel
@@ -801,7 +801,7 @@
             this.idLabel.Location = new System.Drawing.Point(0, 0);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(55, 13);
-            this.idLabel.TabIndex = 46;
+            this.idLabel.TabIndex = 0;
             this.idLabel.Text = "Recipe ID";
             // 
             // labelLabel
@@ -811,7 +811,7 @@
             this.labelLabel.Location = new System.Drawing.Point(0, 0);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(33, 13);
-            this.labelLabel.TabIndex = 47;
+            this.labelLabel.TabIndex = 0;
             this.labelLabel.Text = "Label";
             // 
             // actionIdLabel
@@ -876,7 +876,7 @@
             this.removeAlternativeRecipeButton.Location = new System.Drawing.Point(192, 3);
             this.removeAlternativeRecipeButton.Name = "removeAlternativeRecipeButton";
             this.removeAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.removeAlternativeRecipeButton.TabIndex = 53;
+            this.removeAlternativeRecipeButton.TabIndex = 3;
             this.removeAlternativeRecipeButton.Text = "Delete";
             this.removeAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.removeAlternativeRecipeButton.Click += new System.EventHandler(this.RemoveAlternativeRecipeButton_Click);
@@ -887,7 +887,7 @@
             this.removeLinkedRecipeButton.Location = new System.Drawing.Point(192, 3);
             this.removeLinkedRecipeButton.Name = "removeLinkedRecipeButton";
             this.removeLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.removeLinkedRecipeButton.TabIndex = 54;
+            this.removeLinkedRecipeButton.TabIndex = 3;
             this.removeLinkedRecipeButton.Text = "Delete";
             this.removeLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.removeLinkedRecipeButton.Click += new System.EventHandler(this.RemoveLinkedRecipeButton_Click);
@@ -898,7 +898,7 @@
             this.removeMutationButton.Location = new System.Drawing.Point(192, 3);
             this.removeMutationButton.Name = "removeMutationButton";
             this.removeMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.removeMutationButton.TabIndex = 55;
+            this.removeMutationButton.TabIndex = 3;
             this.removeMutationButton.Text = "Delete";
             this.removeMutationButton.UseVisualStyleBackColor = true;
             this.removeMutationButton.Click += new System.EventHandler(this.RemoveMutationButton_Click);
@@ -909,7 +909,7 @@
             this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(66, 3);
             this.prependAlternativeRecipeButton.Name = "prependAlternativeRecipeButton";
             this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.prependAlternativeRecipeButton.TabIndex = 57;
+            this.prependAlternativeRecipeButton.TabIndex = 1;
             this.prependAlternativeRecipeButton.Text = "Prepend";
             this.prependAlternativeRecipeButton.UseVisualStyleBackColor = true;
             this.prependAlternativeRecipeButton.Click += new System.EventHandler(this.PrependAlternativeRecipeButton_Click);
@@ -920,7 +920,7 @@
             this.appendAlternativeReipeButton.Location = new System.Drawing.Point(129, 3);
             this.appendAlternativeReipeButton.Name = "appendAlternativeReipeButton";
             this.appendAlternativeReipeButton.Size = new System.Drawing.Size(57, 24);
-            this.appendAlternativeReipeButton.TabIndex = 58;
+            this.appendAlternativeReipeButton.TabIndex = 2;
             this.appendAlternativeReipeButton.Text = "Append";
             this.appendAlternativeReipeButton.UseVisualStyleBackColor = true;
             this.appendAlternativeReipeButton.Click += new System.EventHandler(this.AppendAlternativeReipeButton_Click);
@@ -931,7 +931,7 @@
             this.prependLinkedRecipeButton.Location = new System.Drawing.Point(66, 3);
             this.prependLinkedRecipeButton.Name = "prependLinkedRecipeButton";
             this.prependLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.prependLinkedRecipeButton.TabIndex = 59;
+            this.prependLinkedRecipeButton.TabIndex = 1;
             this.prependLinkedRecipeButton.Text = "Prepend";
             this.prependLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.prependLinkedRecipeButton.Click += new System.EventHandler(this.PrependLinkedRecipeButton_Click);
@@ -942,7 +942,7 @@
             this.appendLinkedRecipeButton.Location = new System.Drawing.Point(129, 3);
             this.appendLinkedRecipeButton.Name = "appendLinkedRecipeButton";
             this.appendLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.appendLinkedRecipeButton.TabIndex = 60;
+            this.appendLinkedRecipeButton.TabIndex = 2;
             this.appendLinkedRecipeButton.Text = "Append";
             this.appendLinkedRecipeButton.UseVisualStyleBackColor = true;
             this.appendLinkedRecipeButton.Click += new System.EventHandler(this.AppendLinkedRecipeButton_Click);
@@ -953,7 +953,7 @@
             this.prependMutationButton.Location = new System.Drawing.Point(66, 3);
             this.prependMutationButton.Name = "prependMutationButton";
             this.prependMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.prependMutationButton.TabIndex = 61;
+            this.prependMutationButton.TabIndex = 1;
             this.prependMutationButton.Text = "Prepend";
             this.prependMutationButton.UseVisualStyleBackColor = true;
             this.prependMutationButton.Click += new System.EventHandler(this.PrependMutationButton_Click);
@@ -964,7 +964,7 @@
             this.appendMutationButton.Location = new System.Drawing.Point(129, 3);
             this.appendMutationButton.Name = "appendMutationButton";
             this.appendMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.appendMutationButton.TabIndex = 62;
+            this.appendMutationButton.TabIndex = 2;
             this.appendMutationButton.Text = "Append";
             this.appendMutationButton.UseVisualStyleBackColor = true;
             this.appendMutationButton.Click += new System.EventHandler(this.AppendMutationButton_Click);
@@ -974,11 +974,12 @@
             this.alternativeRecipesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.alternativeRecipesListView.HideSelection = false;
             this.alternativeRecipesListView.Location = new System.Drawing.Point(3, 450);
             this.alternativeRecipesListView.MultiSelect = false;
             this.alternativeRecipesListView.Name = "alternativeRecipesListView";
             this.alternativeRecipesListView.Size = new System.Drawing.Size(252, 88);
-            this.alternativeRecipesListView.TabIndex = 63;
+            this.alternativeRecipesListView.TabIndex = 14;
             this.alternativeRecipesListView.UseCompatibleStateImageBehavior = false;
             this.alternativeRecipesListView.View = System.Windows.Forms.View.List;
             this.alternativeRecipesListView.DoubleClick += new System.EventHandler(this.AlternativerecipesListBox_DoubleClick);
@@ -988,11 +989,12 @@
             this.linkedRecipesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkedRecipesListView.HideSelection = false;
             this.linkedRecipesListView.Location = new System.Drawing.Point(261, 450);
             this.linkedRecipesListView.MultiSelect = false;
             this.linkedRecipesListView.Name = "linkedRecipesListView";
             this.linkedRecipesListView.Size = new System.Drawing.Size(252, 88);
-            this.linkedRecipesListView.TabIndex = 64;
+            this.linkedRecipesListView.TabIndex = 15;
             this.linkedRecipesListView.UseCompatibleStateImageBehavior = false;
             this.linkedRecipesListView.View = System.Windows.Forms.View.List;
             this.linkedRecipesListView.DoubleClick += new System.EventHandler(this.LinkedListBox_DoubleClick);
@@ -1002,11 +1004,12 @@
             this.mutationsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mutationsListView.HideSelection = false;
             this.mutationsListView.Location = new System.Drawing.Point(519, 450);
             this.mutationsListView.MultiSelect = false;
             this.mutationsListView.Name = "mutationsListView";
             this.mutationsListView.Size = new System.Drawing.Size(252, 88);
-            this.mutationsListView.TabIndex = 65;
+            this.mutationsListView.TabIndex = 16;
             this.mutationsListView.UseCompatibleStateImageBehavior = false;
             this.mutationsListView.View = System.Windows.Forms.View.List;
             this.mutationsListView.DoubleClick += new System.EventHandler(this.MutationsListBox_DoubleClick);
@@ -1034,7 +1037,7 @@
             this.portalEffectDomainUpDown.Location = new System.Drawing.Point(0, 22);
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
             this.portalEffectDomainUpDown.Size = new System.Drawing.Size(123, 20);
-            this.portalEffectDomainUpDown.TabIndex = 68;
+            this.portalEffectDomainUpDown.TabIndex = 0;
             this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.PortalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
@@ -1048,7 +1051,7 @@
             this.signalEndingFlavourDomainUpDown.Location = new System.Drawing.Point(0, 22);
             this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
             this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(123, 20);
-            this.signalEndingFlavourDomainUpDown.TabIndex = 69;
+            this.signalEndingFlavourDomainUpDown.TabIndex = 0;
             this.signalEndingFlavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.SignalEndingFlavourDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourLabel
@@ -1067,7 +1070,7 @@
             this.moveAltRecipeUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveAltRecipeUpButton.Name = "moveAltRecipeUpButton";
             this.moveAltRecipeUpButton.Size = new System.Drawing.Size(57, 25);
-            this.moveAltRecipeUpButton.TabIndex = 71;
+            this.moveAltRecipeUpButton.TabIndex = 4;
             this.moveAltRecipeUpButton.Text = "Up";
             this.moveAltRecipeUpButton.UseVisualStyleBackColor = true;
             this.moveAltRecipeUpButton.Click += new System.EventHandler(this.MoveAltRecipeUpButton_Click);
@@ -1078,7 +1081,7 @@
             this.moveAltRecipeDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveAltRecipeDownButton.Name = "moveAltRecipeDownButton";
             this.moveAltRecipeDownButton.Size = new System.Drawing.Size(57, 25);
-            this.moveAltRecipeDownButton.TabIndex = 72;
+            this.moveAltRecipeDownButton.TabIndex = 5;
             this.moveAltRecipeDownButton.Text = "Down";
             this.moveAltRecipeDownButton.UseVisualStyleBackColor = true;
             this.moveAltRecipeDownButton.Click += new System.EventHandler(this.MoveAltRecipeDownButton_Click);
@@ -1089,7 +1092,7 @@
             this.moveLinkedRecipeUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveLinkedRecipeUpButton.Name = "moveLinkedRecipeUpButton";
             this.moveLinkedRecipeUpButton.Size = new System.Drawing.Size(57, 25);
-            this.moveLinkedRecipeUpButton.TabIndex = 73;
+            this.moveLinkedRecipeUpButton.TabIndex = 4;
             this.moveLinkedRecipeUpButton.Text = "Up";
             this.moveLinkedRecipeUpButton.UseVisualStyleBackColor = true;
             this.moveLinkedRecipeUpButton.Click += new System.EventHandler(this.MoveLinkedRecipeUpButton_Click);
@@ -1100,7 +1103,7 @@
             this.moveLinkedRecipeDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveLinkedRecipeDownButton.Name = "moveLinkedRecipeDownButton";
             this.moveLinkedRecipeDownButton.Size = new System.Drawing.Size(57, 25);
-            this.moveLinkedRecipeDownButton.TabIndex = 74;
+            this.moveLinkedRecipeDownButton.TabIndex = 5;
             this.moveLinkedRecipeDownButton.Text = "Down";
             this.moveLinkedRecipeDownButton.UseVisualStyleBackColor = true;
             this.moveLinkedRecipeDownButton.Click += new System.EventHandler(this.MoveLinkedRecipeDownButton_Click);
@@ -1114,7 +1117,7 @@
             this.signalImportantLoopCheckBox.Location = new System.Drawing.Point(261, 3);
             this.signalImportantLoopCheckBox.Name = "signalImportantLoopCheckBox";
             this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(252, 24);
-            this.signalImportantLoopCheckBox.TabIndex = 75;
+            this.signalImportantLoopCheckBox.TabIndex = 1;
             this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
             this.signalImportantLoopCheckBox.ThreeState = true;
             this.signalImportantLoopCheckBox.UseVisualStyleBackColor = true;
@@ -1136,7 +1139,7 @@
             this.purgeDataGridView.Location = new System.Drawing.Point(777, 212);
             this.purgeDataGridView.Name = "purgeDataGridView";
             this.purgeDataGridView.Size = new System.Drawing.Size(253, 88);
-            this.purgeDataGridView.TabIndex = 76;
+            this.purgeDataGridView.TabIndex = 9;
             this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurgeDataGridView_CellDoubleClick);
             this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.PurgeDataGridView_UserDeletedRow);
             // 
@@ -1194,7 +1197,7 @@
             this.haltVerbDataGridView.Location = new System.Drawing.Point(777, 331);
             this.haltVerbDataGridView.Name = "haltVerbDataGridView";
             this.haltVerbDataGridView.Size = new System.Drawing.Size(253, 88);
-            this.haltVerbDataGridView.TabIndex = 78;
+            this.haltVerbDataGridView.TabIndex = 13;
             this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HaltVerbDataGridView_CellDoubleClick);
             this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.HaltVerbDataGridView_UserDeletedRow);
             // 
@@ -1239,7 +1242,7 @@
             this.deleteVerbDataGridView.Location = new System.Drawing.Point(777, 450);
             this.deleteVerbDataGridView.Name = "deleteVerbDataGridView";
             this.deleteVerbDataGridView.Size = new System.Drawing.Size(253, 88);
-            this.deleteVerbDataGridView.TabIndex = 80;
+            this.deleteVerbDataGridView.TabIndex = 17;
             this.deleteVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DeleteVerbDataGridView_CellDoubleClick);
             this.deleteVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DeleteVerbDataGridView_UserDeletedRow);
             // 
@@ -1261,7 +1264,7 @@
             this.moveMutationUpButton.Location = new System.Drawing.Point(66, 33);
             this.moveMutationUpButton.Name = "moveMutationUpButton";
             this.moveMutationUpButton.Size = new System.Drawing.Size(57, 25);
-            this.moveMutationUpButton.TabIndex = 82;
+            this.moveMutationUpButton.TabIndex = 4;
             this.moveMutationUpButton.Text = "Up";
             this.moveMutationUpButton.UseVisualStyleBackColor = true;
             this.moveMutationUpButton.Click += new System.EventHandler(this.MoveMutationUpButton_Click);
@@ -1272,7 +1275,7 @@
             this.moveMutationDownButton.Location = new System.Drawing.Point(129, 33);
             this.moveMutationDownButton.Name = "moveMutationDownButton";
             this.moveMutationDownButton.Size = new System.Drawing.Size(57, 25);
-            this.moveMutationDownButton.TabIndex = 83;
+            this.moveMutationDownButton.TabIndex = 5;
             this.moveMutationDownButton.Text = "Down";
             this.moveMutationDownButton.UseVisualStyleBackColor = true;
             this.moveMutationDownButton.Click += new System.EventHandler(this.MoveMutationDownButton_Click);
@@ -1288,7 +1291,7 @@
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(253, 88);
-            this.commentsTextBox.TabIndex = 84;
+            this.commentsTextBox.TabIndex = 5;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // commentsLabel
@@ -1368,7 +1371,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1033, 608);
-            this.tableLayoutPanel1.TabIndex = 86;
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel2
             // 
@@ -1378,7 +1381,7 @@
             this.panel2.Location = new System.Drawing.Point(261, 33);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(252, 24);
-            this.panel2.TabIndex = 88;
+            this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -1402,7 +1405,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(252, 61);
-            this.tableLayoutPanel2.TabIndex = 91;
+            this.tableLayoutPanel2.TabIndex = 20;
             // 
             // tableLayoutPanel3
             // 
@@ -1426,7 +1429,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(252, 61);
-            this.tableLayoutPanel3.TabIndex = 92;
+            this.tableLayoutPanel3.TabIndex = 19;
             // 
             // tableLayoutPanel4
             // 
@@ -1438,8 +1441,8 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.Controls.Add(this.addAlternativeRecipeButton, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.okButton, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.addAlternativeRecipeButton, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.prependAlternativeRecipeButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeDownButton, 2, 1);
             this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeUpButton, 1, 1);
@@ -1451,7 +1454,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(252, 61);
-            this.tableLayoutPanel4.TabIndex = 93;
+            this.tableLayoutPanel4.TabIndex = 18;
             // 
             // tableLayoutPanel7
             // 
@@ -1469,7 +1472,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(252, 88);
-            this.tableLayoutPanel7.TabIndex = 94;
+            this.tableLayoutPanel7.TabIndex = 2;
             // 
             // panel1
             // 
@@ -1479,7 +1482,20 @@
             this.panel1.Location = new System.Drawing.Point(3, 33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(252, 24);
-            this.panel1.TabIndex = 87;
+            this.panel1.TabIndex = 0;
+            // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deletedCheckBox.Location = new System.Drawing.Point(777, 3);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(253, 24);
+            this.deletedCheckBox.TabIndex = 3;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
             // recipeIDPanel
             // 
@@ -1499,7 +1515,7 @@
             this.panel6.Location = new System.Drawing.Point(132, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(123, 42);
-            this.panel6.TabIndex = 88;
+            this.panel6.TabIndex = 1;
             // 
             // panel7
             // 
@@ -1509,7 +1525,7 @@
             this.panel7.Location = new System.Drawing.Point(261, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(123, 42);
-            this.panel7.TabIndex = 89;
+            this.panel7.TabIndex = 2;
             // 
             // panel8
             // 
@@ -1519,7 +1535,7 @@
             this.panel8.Location = new System.Drawing.Point(390, 3);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(123, 42);
-            this.panel8.TabIndex = 90;
+            this.panel8.TabIndex = 3;
             // 
             // panel9
             // 
@@ -1529,7 +1545,7 @@
             this.panel9.Location = new System.Drawing.Point(519, 3);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(123, 42);
-            this.panel9.TabIndex = 91;
+            this.panel9.TabIndex = 4;
             // 
             // panel10
             // 
@@ -1539,7 +1555,7 @@
             this.panel10.Location = new System.Drawing.Point(648, 3);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(123, 42);
-            this.panel10.TabIndex = 92;
+            this.panel10.TabIndex = 5;
             // 
             // panel11
             // 
@@ -1549,7 +1565,7 @@
             this.panel11.Location = new System.Drawing.Point(777, 3);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(123, 42);
-            this.panel11.TabIndex = 93;
+            this.panel11.TabIndex = 6;
             // 
             // panel12
             // 
@@ -1559,7 +1575,7 @@
             this.panel12.Location = new System.Drawing.Point(906, 3);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(124, 42);
-            this.panel12.TabIndex = 94;
+            this.panel12.TabIndex = 7;
             // 
             // tableLayoutPanel5
             // 
@@ -1574,7 +1590,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1039, 668);
-            this.tableLayoutPanel5.TabIndex = 88;
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel6
             // 
@@ -1601,20 +1617,7 @@
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1033, 48);
-            this.tableLayoutPanel6.TabIndex = 87;
-            // 
-            // deletedCheckBox
-            // 
-            this.deletedCheckBox.AutoSize = true;
-            this.deletedCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deletedCheckBox.Location = new System.Drawing.Point(777, 3);
-            this.deletedCheckBox.Name = "deletedCheckBox";
-            this.deletedCheckBox.Size = new System.Drawing.Size(253, 24);
-            this.deletedCheckBox.TabIndex = 95;
-            this.deletedCheckBox.Text = "Deleted";
-            this.deletedCheckBox.ThreeState = true;
-            this.deletedCheckBox.UseVisualStyleBackColor = true;
-            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
+            this.tableLayoutPanel6.TabIndex = 0;
             // 
             // RecipeViewer
             // 
