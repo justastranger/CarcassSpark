@@ -21,18 +21,68 @@ namespace CarcassSpark.ObjectViewers
 
         public TabbedModViewer()
         {
+            // this should always be first before messing with any components like the Folder Browser Dialog
             InitializeComponent();
-            CreateNewModViewerTab(Utilities.directoryToVanillaContent, true, false);
-            if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
+            // This is necessary to ensure we have a reference point for the game and the game's assemblies
+            if (Settings.settings["GamePath"] == null)
             {
-                if (((JArray)Settings.settings["previousMods"]).Count() > 0)
-                foreach (string path in Settings.GetPreviousMods())
+                // If installed in the game's folder, save the user the hassle and just use that install
+                if (File.Exists("cultistsimulator.exe"))
                 {
-                    CreateNewModViewerTab(path, false, false);
+                    Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
+                    Settings.settings["portable"] = false;
+                    Settings.SaveSettings();
+                    InitializeTabs();
                 }
+                else
+                {
+                    // Otherwise, make them select the game's installation folder
+                    MessageBox.Show("Please select your Cultist Simulator game directory.");
+                    folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Check to see if the game's actually installed there
+                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
+                        {
+                            Settings.settings["portable"] = true;
+                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
+                            Settings.SaveSettings();
+                            InitializeTabs();
+                        }
+                        else
+                        {
+                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Application.Exit();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Didn't open the games folder
+                        MessageBox.Show("No directory selected, exiting.");
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                InitializeTabs();
             }
         }
 
+        private void InitializeTabs()
+        {
+            CreateNewModViewerTab(Settings.settings["GamePath"].ToString() + Utilities.directoryToVanillaContent, true, false);
+            if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
+            {
+                if (((JArray)Settings.settings["previousMods"]).Count() > 0)
+                    foreach (string path in Settings.GetPreviousMods())
+                    {
+                        CreateNewModViewerTab(path, false, false);
+                    }
+            }
+        }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
             SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
@@ -53,10 +103,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
-            if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            folderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                string location = modFolderBrowserDialog.SelectedPath;
+                string location = folderBrowserDialog.SelectedPath;
                 ModViewerTabControl mvtc = null;
                 try
                 {
@@ -78,10 +128,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-            if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                string location = modFolderBrowserDialog.SelectedPath;
+                string location = folderBrowserDialog.SelectedPath;
                 ModViewerTabControl mvtc = null;
                 try
                 {
@@ -141,10 +191,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void SaveModToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = SelectedModViewer.Content.currentDirectory;
-            if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            folderBrowserDialog.SelectedPath = SelectedModViewer.Content.currentDirectory;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.SaveMod(modFolderBrowserDialog.SelectedPath);
+                SelectedModViewer.SaveMod(folderBrowserDialog.SelectedPath);
             }
         }
 

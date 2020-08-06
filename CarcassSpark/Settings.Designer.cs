@@ -37,6 +37,9 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.loadAllFlowchartNodesCheckBox = new System.Windows.Forms.CheckBox();
+            this.portableCheckBox = new System.Windows.Forms.CheckBox();
+            this.GamePathTextBox = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // openWithVanillaCheckBox
@@ -68,7 +71,7 @@
             this.previousModsTextBox.Multiline = true;
             this.previousModsTextBox.Name = "previousModsTextBox";
             this.previousModsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.previousModsTextBox.Size = new System.Drawing.Size(370, 225);
+            this.previousModsTextBox.Size = new System.Drawing.Size(370, 81);
             this.previousModsTextBox.TabIndex = 2;
             this.previousModsTextBox.TextChanged += new System.EventHandler(this.PreviousModsTextBox_TextChanged);
             // 
@@ -125,6 +128,30 @@
             this.loadAllFlowchartNodesCheckBox.UseVisualStyleBackColor = true;
             this.loadAllFlowchartNodesCheckBox.CheckedChanged += new System.EventHandler(this.LoadAllFlowchartNodesCheckBox_CheckedChanged);
             // 
+            // portableCheckBox
+            // 
+            this.portableCheckBox.AutoSize = true;
+            this.portableCheckBox.Location = new System.Drawing.Point(12, 204);
+            this.portableCheckBox.Name = "portableCheckBox";
+            this.portableCheckBox.Size = new System.Drawing.Size(95, 17);
+            this.portableCheckBox.TabIndex = 8;
+            this.portableCheckBox.Text = "Portable Mode";
+            this.portableCheckBox.UseVisualStyleBackColor = true;
+            this.portableCheckBox.CheckedChanged += new System.EventHandler(this.PortableCheckBox_CheckedChanged);
+            // 
+            // GamePathTextBox
+            // 
+            this.GamePathTextBox.Location = new System.Drawing.Point(12, 227);
+            this.GamePathTextBox.Name = "GamePathTextBox";
+            this.GamePathTextBox.ReadOnly = true;
+            this.GamePathTextBox.Size = new System.Drawing.Size(370, 20);
+            this.GamePathTextBox.TabIndex = 9;
+            this.GamePathTextBox.DoubleClick += new System.EventHandler(this.GameAssemblyTextBox_DoubleClick);
+            // 
+            // folderBrowserDialog
+            // 
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.Recent;
+            // 
             // Settings
             // 
             this.AcceptButton = this.okButton;
@@ -132,6 +159,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(394, 383);
+            this.Controls.Add(this.GamePathTextBox);
+            this.Controls.Add(this.portableCheckBox);
             this.Controls.Add(this.loadAllFlowchartNodesCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -160,5 +189,8 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox loadAllFlowchartNodesCheckBox;
+        private System.Windows.Forms.CheckBox portableCheckBox;
+        private System.Windows.Forms.TextBox GamePathTextBox;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

@@ -16,12 +16,14 @@ namespace CarcassSpark
     public partial class Settings : Form
     {
         public static JObject settings = new JObject();
-        // settings["openWithVanilla"]
-        // settings["loadPreviousMods"]
-        // settings["previousMods"]
-        // settings["saveCleanedVanillaContent"]
-        // settings["loadAllFlowchartNodes"]
-        static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        // settings["openWithVanilla"] bool
+        // settings["loadPreviousMods"] bool
+        // settings["previousMods"] string[]
+        // settings["saveCleanedVanillaContent"] bool
+        // settings["loadAllFlowchartNodes"] bool
+        // settings["portable"] bool
+        // settings["GamePath"] string
+        static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
         {
@@ -61,6 +63,8 @@ namespace CarcassSpark
             if (settings["previousMods"] != null) previousModsTextBox.Text = String.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
             if (settings["saveCleanedVanillaContent"] != null) saveCleanedVanillaContentCheckBox.Checked = settings["saveCleanedVanillaContent"].ToObject<bool>();
             if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
+            if (settings["portable"] != null) portableCheckBox.Checked = settings["portable"].ToObject<bool>();
+            if (settings["GamePath"] != null) GamePathTextBox.Text = settings["GamePath"].ToString();
         }
 
         private void OpenWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -115,6 +119,17 @@ namespace CarcassSpark
         private void PreviousModsTextBox_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void GameAssemblyTextBox_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PortableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.settings["portable"] = portableCheckBox.Checked;
+            SaveSettings();
         }
     }
 }

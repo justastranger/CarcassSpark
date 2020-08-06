@@ -64,7 +64,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
-            this.modFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -375,7 +375,7 @@
             // 
             // modFolderBrowserDialog
             // 
-            this.modFolderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // openFileDialog
             // 
@@ -408,7 +408,7 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.TabControl ModViewerTabs;
         private System.Windows.Forms.ToolStripMenuItem openModToolStripMenuItem;
-        private System.Windows.Forms.FolderBrowserDialog modFolderBrowserDialog;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.ToolStripMenuItem closeModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
