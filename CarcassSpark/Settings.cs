@@ -43,7 +43,15 @@ namespace CarcassSpark
 
         public static void LoadSettings(string settingsFilePath)
         {
-            settings = JsonConvert.DeserializeObject<JObject>(new StreamReader(settingsFilePath).ReadToEnd());
+            try
+            {
+                settings = JsonConvert.DeserializeObject<JObject>(new StreamReader(settingsFilePath).ReadToEnd());
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Settings file in use by another process!", "IOException", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         void PopulateSettings()
