@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,6 +24,13 @@ namespace CarcassSpark
         {
             // Before we initialize, check to see if we're in the game folder at ./CSMT/
             if (File.Exists("./cultistsimulator.exe")) {
+
+                Mutex mutex = new Mutex(true, "CarcassSpark", out bool newInstance);
+                if (!newInstance)
+                {
+                    MessageBox.Show("Only one instance of Carcass Spark may be open at a time.");
+                    return;
+                }
 
                 //Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory + ";");
 
