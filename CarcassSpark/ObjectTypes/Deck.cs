@@ -24,14 +24,6 @@ namespace CarcassSpark.ObjectTypes
         public bool? resetonexhaustion, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? draws, defaultdraws;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "draws$add")]
-        public int? draws_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "draws$minus")]
-        public int? draws_minus;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdraws$add")]
-        public int? defaultdraws_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdraws$minus")]
-        public int? defaultdraws_minus;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> drawmessages, defaultdrawmessages;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "drawmessages$add")]
@@ -46,7 +38,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> extends;
 
         [JsonConstructor]
-        public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
+        public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
                     string defaultcard, Dictionary<string, string> drawmessages, List<string> extends,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
                     Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
@@ -63,11 +55,7 @@ namespace CarcassSpark.ObjectTypes
             this.resetonexhaustion = resetonexhaustion;
             this.deleted = deleted;
             this.defaultdraws = defaultdraws;
-            this.defaultdraws_add = defaultdraws_add;
-            this.defaultdraws_minus = defaultdraws_minus;
             this.draws = draws;
-            this.draws_add = draws_add;
-            this.draws_minus = draws_minus;
             this.drawmessages = drawmessages;
             this.drawmessages_extend = drawmessages_extend;
             this.drawmessages_remove = drawmessages_remove;
@@ -89,7 +77,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Deck Copy()
         {
-            return new Deck(spec != null ? new List<string>(spec) : null, defaultdraws, defaultdraws_add, defaultdraws_minus, draws, draws_add, draws_minus, resetonexhaustion, deleted, id, label, description, comments, defaultcard, drawmessages != null ? new Dictionary<string, string>(drawmessages) : null, extends != null ? new List<string>(extends) : null, defaultdrawmessages != null ? new Dictionary<string, string>(defaultdrawmessages) : null, spec_append != null ? new List<string>(spec_append) : null, spec_prepend != null ? new List<string>(spec_prepend) : null, spec_remove != null ? new List<string>(spec_remove) : null, drawmessages_extend != null ? new Dictionary<string, string>(drawmessages_extend) : null, drawmessages_remove != null ? new List<string>(drawmessages_remove) : null, defaultdrawmessages_extend != null ? new Dictionary<string, string>(defaultdrawmessages_extend) : null, defaultdrawmessages_remove != null ? new List<string>(defaultdrawmessages_remove) : null);
+            return new Deck(spec != null ? new List<string>(spec) : null, defaultdraws, draws, resetonexhaustion, deleted, id, label, description, comments, defaultcard, drawmessages != null ? new Dictionary<string, string>(drawmessages) : null, extends != null ? new List<string>(extends) : null, defaultdrawmessages != null ? new Dictionary<string, string>(defaultdrawmessages) : null, spec_append != null ? new List<string>(spec_append) : null, spec_prepend != null ? new List<string>(spec_prepend) : null, spec_remove != null ? new List<string>(spec_remove) : null, drawmessages_extend != null ? new Dictionary<string, string>(drawmessages_extend) : null, drawmessages_remove != null ? new List<string>(drawmessages_remove) : null, defaultdrawmessages_extend != null ? new Dictionary<string, string>(defaultdrawmessages_extend) : null, defaultdrawmessages_remove != null ? new List<string>(defaultdrawmessages_remove) : null);
         }
     }
 
