@@ -106,8 +106,10 @@ namespace CarcassSpark.ObjectViewers
                 foreach (Slot slot in element.slots_prepend)
                 {
                     slots[slot.id] = slot;
-                    ListViewItem item = new ListViewItem(slot.id);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(slot.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     slotsListView.Items.Insert(0, item);
                 }
             }
@@ -116,8 +118,10 @@ namespace CarcassSpark.ObjectViewers
                 foreach (Slot slot in element.slots_append)
                 {
                     slots[slot.id] = slot;
-                    ListViewItem item = new ListViewItem(slot.id);
-                    item.BackColor = Utilities.ListAppendColor;
+                    ListViewItem item = new ListViewItem(slot.id)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     slotsListView.Items.Add(item);
                 }
             }
@@ -125,8 +129,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string slot in element.slots_remove)
                 {
-                    ListViewItem item = new ListViewItem(slot);
-                    item.BackColor = Utilities.ListRemoveColor;
+                    ListViewItem item = new ListViewItem(slot)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
                     slotsListView.Items.Add(item);
                 }
             }
@@ -142,8 +148,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, List<XTrigger>> kvp in element.xtriggers_extend)
                 {
-                    ListViewItem item = new ListViewItem(kvp.Key);
-                    item.BackColor = Utilities.DictionaryExtendStyle.BackColor;
+                    ListViewItem item = new ListViewItem(kvp.Key)
+                    {
+                        BackColor = Utilities.DictionaryExtendStyle.BackColor
+                    };
                     xtriggersListView.Items.Add(item);
                 }
             }
@@ -151,8 +159,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in element.xtriggers_remove)
                 {
-                    ListViewItem item = new ListViewItem(removeId);
-                    item.BackColor = Utilities.DictionaryRemoveStyle.BackColor;
+                    ListViewItem item = new ListViewItem(removeId)
+                    {
+                        BackColor = Utilities.DictionaryRemoveStyle.BackColor
+                    };
                     xtriggersListView.Items.Add(item);
                 }
             }
@@ -167,9 +177,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in element.aspects_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(aspectsDataGridView, kvp.Key, Convert.ToString(kvp.Value));
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     aspectsDataGridView.Rows.Add(row);
                     //aspectsDataGridView.Rows.Add(kvp.Key, Convert.ToString(kvp.Value));
                 }
@@ -178,9 +190,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in element.aspects_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(aspectsDataGridView, removeId );
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     aspectsDataGridView.Rows.Add(row);
                 }
             }
@@ -196,8 +210,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string aspectID = aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
-            if(aspectID == null)
+            if (!(aspectsDataGridView.Rows[e.RowIndex].Cells[0].Value is string aspectID))
             {
                 return;
             }

@@ -84,8 +84,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string id in deck.spec_append)
                 {
-                    ListViewItem lvi = new ListViewItem(id);
-                    lvi.BackColor = Utilities.ListAppendColor;
+                    ListViewItem lvi = new ListViewItem(id)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     specListView.Items.Add(lvi);
                 }
             }
@@ -93,8 +95,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string id in deck.spec_prepend)
                 {
-                    ListViewItem lvi = new ListViewItem(id);
-                    lvi.BackColor = Utilities.ListPrependColor;
+                    ListViewItem lvi = new ListViewItem(id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     specListView.Items.Add(lvi);
                 }
             }
@@ -102,8 +106,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string id in deck.spec_remove)
                 {
-                    ListViewItem lvi = new ListViewItem(id);
-                    lvi.BackColor = Utilities.ListRemoveColor;
+                    ListViewItem lvi = new ListViewItem(id)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
                     specListView.Items.Add(lvi);
                 }
             }
@@ -118,9 +124,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, string> kvp in deck.drawmessages_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(drawmessagesDataGridView, kvp.Key, kvp.Value);
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     drawmessagesDataGridView.Rows.Add(row);
                 }
             }
@@ -128,9 +136,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in deck.drawmessages_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(drawmessagesDataGridView, removeId);
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     drawmessagesDataGridView.Rows.Add(row);
                 }
             }
@@ -316,8 +326,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
-                ListViewItem item = new ListViewItem(newCardTextBox.Text);
-                item.BackColor = Utilities.ListPrependColor;
+                ListViewItem item = new ListViewItem(newCardTextBox.Text)
+                {
+                    BackColor = Utilities.ListPrependColor
+                };
                 specListView.Items.Add(item);
                 if (displayedDeck.spec_prepend == null) displayedDeck.spec_prepend = new List<string>();
                 displayedDeck.spec_prepend.Add(newCardTextBox.Text);
@@ -330,8 +342,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
-                ListViewItem item = new ListViewItem(newCardTextBox.Text);
-                item.BackColor = Utilities.ListAppendColor;
+                ListViewItem item = new ListViewItem(newCardTextBox.Text)
+                {
+                    BackColor = Utilities.ListAppendColor
+                };
                 specListView.Items.Add(item);
                 if (displayedDeck.spec_append == null) displayedDeck.spec_append = new List<string>();
                 displayedDeck.spec_append.Add(newCardTextBox.Text);
@@ -353,8 +367,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
-                ListViewItem item = new ListViewItem(newCardTextBox.Text);
-                item.BackColor = Utilities.ListRemoveColor;
+                ListViewItem item = new ListViewItem(newCardTextBox.Text)
+                {
+                    BackColor = Utilities.ListRemoveColor
+                };
                 specListView.Items.Add(item);
                 if (displayedDeck.spec_remove == null) displayedDeck.spec_remove = new List<string>();
                 displayedDeck.spec_remove.Add(newCardTextBox.Text);

@@ -88,30 +88,28 @@ namespace CarcassSpark.ObjectViewers
                 {
                     inducesDictionary.Add(induces.id, induces);
                     DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
                     inducesDataGridView.Rows.Add(newRow);
                 }
             }
             if (aspect.induces_prepend != null)
             {
-                Dictionary<string, Induces> tmpDictionary = new Dictionary<string, Induces>();
                 foreach (Induces induces in aspect.induces_prepend)
                 {
                     inducesDictionary.Add(induces.id, induces);
                     DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
                     newRow.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
                     inducesDataGridView.Rows.Insert(0, newRow);
                 }
             }
             if (aspect.induces_append != null)
             {
-                Dictionary<string, Induces> tmpDictionary = new Dictionary<string, Induces>();
                 foreach (Induces induces in aspect.induces_append)
                 {
                     inducesDictionary.Add(induces.id, induces);
                     DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional.HasValue ? induces.additional.Value : false);
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
                     newRow.DefaultCellStyle.BackColor = Utilities.ListAppendColor;
                     inducesDataGridView.Rows.Add(newRow);
                 }
@@ -130,8 +128,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = inducesDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
-            if(id == null) return;
+            if (!(inducesDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null);
             rv.Show();
         }
