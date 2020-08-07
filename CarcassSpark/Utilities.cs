@@ -104,7 +104,7 @@ namespace CarcassSpark
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
+            if (File.Exists(directoryToVanillaContent + "/images/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/legacies/ritual.png");
             return null;
         }
 
@@ -118,7 +118,7 @@ namespace CarcassSpark
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/verbs/_x.png");
             return null;
         }
 

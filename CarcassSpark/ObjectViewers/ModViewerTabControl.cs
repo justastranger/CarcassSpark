@@ -336,25 +336,33 @@ namespace CarcassSpark.ObjectViewers
             {
                 Directory.CreateDirectory(modLocation + "/content/");
             }
-            if (!Directory.Exists(modLocation + "/images/elementart/"))
+            if (!Directory.Exists(modLocation + "/images/elements/"))
             {
-                Directory.CreateDirectory(modLocation + "/images/elementart/");
+                Directory.CreateDirectory(modLocation + "/images/elements/");
             }
-            if (!Directory.Exists(modLocation + "/images/endingart/"))
+            if (!Directory.Exists(modLocation + "/images/elements/anim/"))
             {
-                Directory.CreateDirectory(modLocation + "/images/endingart/");
+                Directory.CreateDirectory(modLocation + "/images/elements/anim/");
             }
-            if (!Directory.Exists(modLocation + "/images/icons40/aspects/"))
+            if (!Directory.Exists(modLocation + "/images/endings/"))
             {
-                Directory.CreateDirectory(modLocation + "/images/icons40/aspects/");
+                Directory.CreateDirectory(modLocation + "/images/endings/");
             }
-            if (!Directory.Exists(modLocation + "/images/icons100/legacies/"))
+            if (!Directory.Exists(modLocation + "/images/aspects/"))
             {
-                Directory.CreateDirectory(modLocation + "/images/icons100/legacies/");
+                Directory.CreateDirectory(modLocation + "/images/aspects/");
             }
-            if (!Directory.Exists(modLocation + "/images/icons100/verbs/"))
+            if (!Directory.Exists(modLocation + "/images/legacies/"))
             {
-                Directory.CreateDirectory(modLocation + "/images/icons100/verbs/");
+                Directory.CreateDirectory(modLocation + "/images/legacies/");
+            }
+            if (!Directory.Exists(modLocation + "/images/verbs/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/verbs/");
+            }
+            if (!Directory.Exists(modLocation + "/images/verbs/anim/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/verbs/anim/");
             }
             if (!Directory.Exists(modLocation + "/images/statusbaricons/"))
             {
