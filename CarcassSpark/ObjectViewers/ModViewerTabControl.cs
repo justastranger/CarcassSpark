@@ -23,7 +23,7 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class ModViewerTabControl : UserControl
     {
-        public bool isVanilla, editMode = false;
+        public bool isVanilla, editMode, valid = false;
 
         public ContentSource Content = new ContentSource();
         
@@ -37,11 +37,24 @@ namespace CarcassSpark.ObjectViewers
             this.isVanilla = isVanilla;
             if (!isVanilla && newMod)
             {
-                CreateSynopsis();
+                // if the user cancels the synopsis creation for a new mod, invalidate the control and abort loading.
+                if (!CreateSynopsis())
+                {
+                    valid = false;
+                    return;
+                }
             }
-            RefreshContent();
-            SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
+            // if loading content is successful
+            if (LoadContent())
+            {
+                SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
+                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
+                valid = true;
+            }
+            else
+            {
+                valid = false;
+            }
         }
 
         public void SetEditingMode(bool editing)
@@ -63,46 +76,62 @@ namespace CarcassSpark.ObjectViewers
             duplicateSelectedVerbToolStripMenuItem.Visible = editing;
         }
 
-        public void RefreshContent()
+        public bool LoadContent()
         {
-            aspectsListBox.Items.Clear();
-            Content.Aspects.Clear();
-            elementsListBox.Items.Clear();
-            Content.Elements.Clear();
-            recipesListBox.Items.Clear();
-            Content.Recipes.Clear();
-            decksListBox.Items.Clear();
-            Content.Decks.Clear();
-            legaciesListBox.Items.Clear();
-            Content.Legacies.Clear();
-            endingsListBox.Items.Clear();
-            Content.Endings.Clear();
-            verbsListBox.Items.Clear();
-            Content.Verbs.Clear();
-            if (!isVanilla)
+            try
             {
-                CheckForSynopsis();
-                if (Directory.Exists(Content.currentDirectory + "\\content\\"))
+                aspectsListBox.Items.Clear();
+                Content.Aspects.Clear();
+                elementsListBox.Items.Clear();
+                Content.Elements.Clear();
+                recipesListBox.Items.Clear();
+                Content.Recipes.Clear();
+                decksListBox.Items.Clear();
+                Content.Decks.Clear();
+                legaciesListBox.Items.Clear();
+                Content.Legacies.Clear();
+                endingsListBox.Items.Clear();
+                Content.Endings.Clear();
+                verbsListBox.Items.Clear();
+                Content.Verbs.Clear();
+                if (!isVanilla)
                 {
-                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+                    // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
+                    if (!CheckForSynopsis())
+                    {
+                        return false;
+                    }
+                    if (Directory.Exists(Content.currentDirectory + "\\content\\"))
+                    {
+                        foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+                        {
+                            using (FileStream fs = new FileStream(file, FileMode.Open))
+                            {
+                                LoadFile(fs, file);
+                            }
+                        }
+                        // mod loaded successfully
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                {
+                    Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
                     {
                         using (FileStream fs = new FileStream(file, FileMode.Open))
                         {
                             LoadFile(fs, file);
                         }
                     }
+                    return true;
                 }
             }
-            else
+            // mod failed to load catastrophically
+            catch (Exception)
             {
-                Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
-                foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
-                {
-                    using (FileStream fs = new FileStream(file, FileMode.Open))
-                    {
-                        LoadFile(fs, file);
-                    }
-                }
+                return false;
             }
         }
 
@@ -151,10 +180,13 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
+                // no manifest so we'll try to make one
                 if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    CreateSynopsis();
-                    return true;
+                    // return true if everything's going good
+                    if (CreateSynopsis()) return true;
+                    // otherwise return false so I can abort the creation of the tab
+                    else return false;
                 }
                 return false;
             }

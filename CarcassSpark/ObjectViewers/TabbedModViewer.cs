@@ -86,10 +86,17 @@ namespace CarcassSpark.ObjectViewers
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
             SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-            TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
-            newPage.Controls.Add(SelectedModViewer);
-            ModViewerTabs.TabPages.Add(newPage);
-            ModViewerTabs.SelectTab(newPage);
+            if (SelectedModViewer.valid)
+            {
+                TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
+                newPage.Controls.Add(SelectedModViewer);
+                ModViewerTabs.TabPages.Add(newPage);
+                ModViewerTabs.SelectTab(newPage);
+            } 
+            else
+            {
+                SelectedModViewer.Dispose();
+            }
         }
 
         private void CreateNewModViewerTab(ModViewerTabControl mvtc)
@@ -116,7 +123,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     MessageBox.Show("Error Opening Mod");
                 }
-                if (mvtc != null)
+                if (mvtc != null && mvtc.valid)
                 {
                     CreateNewModViewerTab(mvtc);
                     if (Settings.settings["previousMods"] is JArray array) array.Add(JToken.FromObject(mvtc.Content.currentDirectory));
@@ -141,7 +148,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     MessageBox.Show("Error Creating Mod");
                 }
-                if (mvtc != null)
+                if (mvtc != null && mvtc.valid)
                 {
                     CreateNewModViewerTab(mvtc);
                     if (Settings.settings["previousMods"] is JArray array) array.Add(JToken.FromObject(mvtc.Content.currentDirectory));
@@ -211,7 +218,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ReloadContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.RefreshContent();
+            SelectedModViewer.LoadContent();
         }
 
         private void ToggleEditModeToolStripMenuItem_Click(object sender, EventArgs e)
