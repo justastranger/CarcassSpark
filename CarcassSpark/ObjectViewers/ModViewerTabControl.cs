@@ -158,7 +158,6 @@ namespace CarcassSpark.ObjectViewers
                 }
                 return false;
             }
-            return false;
         }
 
         public void LoadSynopsis(FileStream file)
