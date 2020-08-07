@@ -56,13 +56,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/icons40/aspects/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/aspects/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if(File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            if(File.Exists(directoryToVanillaContent + "/images/elements/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elements/_x.png");
             return null;
         }
 
@@ -70,13 +70,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/elementArt/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/elements/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/elements/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elements/_x.png");
             return null;
         }
 
@@ -84,13 +84,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/endingArt/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/endings/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/endingArt/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endingArt/despair.png");
+            if (File.Exists(directoryToVanillaContent + "/images/endings/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endings/despair.png");
             return null;
         }
 
@@ -98,13 +98,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/icons100/legacies/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/legacies/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/icons100/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
+            if (File.Exists(directoryToVanillaContent + "/images/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
             return null;
         }
 
@@ -112,13 +112,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/icons100/verbs/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/verbs/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/icons100/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
             return null;
         }
 
@@ -126,13 +126,13 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/cardBacks/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/cardbacks/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
                 }
             }
-            if (File.Exists(directoryToVanillaContent + "/images/cardBacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
+            if (File.Exists(directoryToVanillaContent + "/images/cardbacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
             return null;
         }
 
@@ -140,7 +140,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/burnImages/" + id + ".png";
+                string pathToImage = source.currentDirectory + "/images/burns/" + id + ".png";
                 if (File.Exists(pathToImage))
                 {
                     return Image.FromFile(pathToImage);
