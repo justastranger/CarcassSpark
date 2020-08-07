@@ -430,5 +430,12 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.deleted = null;
         }
+
+        private void NewStartCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (newStartCheckBox.CheckState == CheckState.Checked) displayedLegacy.newstart = true;
+            if (newStartCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.newstart = false;
+            if (newStartCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.newstart = null;
+        }
     }
 }

@@ -198,13 +198,13 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void OpenManifestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (SelectedModViewer.isVanilla) return;
-            ManifestViewer mv = new ManifestViewer(SelectedModViewer.Content.manifest);
+            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis);
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.manifest = mv.displayedManifest;
+                SelectedModViewer.Content.synopsis = mv.displayedSynopsis;
                 SelectedModViewer.SaveMod();
             }
         }

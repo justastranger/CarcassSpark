@@ -1,6 +1,6 @@
 ﻿namespace CarcassSpark.ObjectViewers
 {
-    partial class ManifestViewer
+    partial class SynopsisViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManifestViewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SynopsisViewer));
             this.modNameTextBox = new System.Windows.Forms.TextBox();
             this.modAuthorTextBox = new System.Windows.Forms.TextBox();
             this.modVersionTextBox = new System.Windows.Forms.TextBox();
@@ -214,7 +214,7 @@
             this.dependencyVersion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dependencyVersion.Width = 105;
             // 
-            // ManifestViewer
+            // SynopsisViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,9 +238,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "ManifestViewer";
-            this.Text = "ManifestViewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManifestViewer_FormClosing);
+            this.Name = "SynopsisViewer";
+            this.Text = "Synopsis Viewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SynopsisViewer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

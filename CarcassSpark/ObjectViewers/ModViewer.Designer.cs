@@ -114,7 +114,7 @@
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSynopsisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleAutosaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -895,7 +895,7 @@
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveModToolStripMenuItem,
             this.saveToToolStripMenuItem,
-            this.editManifestToolStripMenuItem,
+            this.editSynopsisToolStripMenuItem,
             this.reloadContentToolStripMenuItem,
             this.toggleAutosaveToolStripMenuItem,
             this.toggleEditModeToolStripMenuItem});
@@ -922,12 +922,12 @@
             this.saveToToolStripMenuItem.Text = "Save To...";
             this.saveToToolStripMenuItem.Click += new System.EventHandler(this.SaveToToolStripMenuItem_Click);
             // 
-            // editManifestToolStripMenuItem
+            // editSynopsisToolStripMenuItem
             // 
-            this.editManifestToolStripMenuItem.Name = "editManifestToolStripMenuItem";
-            this.editManifestToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.editManifestToolStripMenuItem.Text = "Edit Manifest";
-            this.editManifestToolStripMenuItem.Click += new System.EventHandler(this.EditManifestToolStripMenuItem_Click);
+            this.editSynopsisToolStripMenuItem.Name = "editSynopsisToolStripMenuItem";
+            this.editSynopsisToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.editSynopsisToolStripMenuItem.Text = "Edit Synopsis";
+            this.editSynopsisToolStripMenuItem.Click += new System.EventHandler(this.EditSynopsisToolStripMenuItem_Click);
             // 
             // reloadContentToolStripMenuItem
             // 
@@ -1308,7 +1308,7 @@
         private System.Windows.Forms.Label verbsLabel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton fileToolStripDropDownButton;
-        private System.Windows.Forms.ToolStripMenuItem editManifestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editSynopsisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadContentToolStripMenuItem;
         private System.Windows.Forms.TextBox aspectsSearchTextBox;

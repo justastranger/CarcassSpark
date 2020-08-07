@@ -37,11 +37,11 @@ namespace CarcassSpark.ObjectViewers
             this.isVanilla = isVanilla;
             if (!isVanilla && newMod)
             {
-                CreateManifest();
+                CreateSynopsis();
             }
             RefreshContent();
             SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
+            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
         }
 
         public void SetEditingMode(bool editing)
@@ -81,7 +81,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Verbs.Clear();
             if (!isVanilla)
             {
-                CheckForManifest();
+                CheckForSynopsis();
                 if (Directory.Exists(Content.currentDirectory + "\\content\\"))
                 {
                     foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
@@ -95,7 +95,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                Content.manifest = new Manifest("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
                 foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
                 {
                     using (FileStream fs = new FileStream(file, FileMode.Open))
@@ -106,30 +106,20 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public void CreateManifest()
+        public bool CreateSynopsis()
         {
-            ManifestViewer mv = new ManifestViewer(new Manifest());
+            SynopsisViewer mv = new SynopsisViewer(new Synopsis());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                Content.manifest = mv.displayedManifest;
+                Content.synopsis = mv.displayedSynopsis;
                 SaveMod();
+                return true;
             }
+            return false;
         }
 
-        public void CheckForManifest()
+        public bool CheckForSynopsis()
         {
-            if (File.Exists(Content.currentDirectory + "/manifest.json"))
-            {
-                using (FileStream fs = new FileStream(Content.currentDirectory + "/manifest.json", FileMode.Open))
-                {
-                    LoadManifest(fs);
-                }
-            }
-            else
-            {
-                _ = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                CreateManifest();
-            }
             if (File.Exists(Content.currentDirectory + "/CarcassSpark.Manifest.json"))
             {
                 using (FileStream fs = new FileStream(Content.currentDirectory + "/CarcassSpark.Manifest.json", FileMode.Open))
@@ -137,14 +127,46 @@ namespace CarcassSpark.ObjectViewers
                     LoadCustomManifest(fs);
                 }
             }
+            string manifestPath = Content.currentDirectory + "/manifest.json";
+            string synopsisPath = Content.currentDirectory + "/synopsis.json";
+            // if manifest.json still exists, load it, save it as synopsis.json, then delete manifest.json
+            if (File.Exists(manifestPath))
+            {
+                using (FileStream fs = new FileStream(manifestPath, FileMode.Open))
+                {
+                    LoadSynopsis(fs);
+                }
+                SaveManifests(Content.currentDirectory);
+                File.Delete(manifestPath);
+                return true;
+            }
+            // otherwise if we have synopsis.json, load that
+            else if (File.Exists(synopsisPath))
+            {
+                using (FileStream fs = new FileStream(synopsisPath, FileMode.Open))
+                {
+                    LoadSynopsis(fs);
+                }
+                return true;
+            }
+            else
+            {
+                if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    CreateSynopsis();
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
 
-        public void LoadManifest(FileStream file)
+        public void LoadSynopsis(FileStream file)
         {
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));
-            Text = Content.manifest.name;
+            Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(JsonConvert.SerializeObject(ht));
+            Text = Content.synopsis.name;
         }
 
         public void LoadCustomManifest(FileStream file)
@@ -450,10 +472,15 @@ namespace CarcassSpark.ObjectViewers
                     File.Delete(location + "/content/verbs.json");
                 }
             }
-            string manifestJson = JsonConvert.SerializeObject(Content.manifest, Formatting.Indented);
-            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.Create))))
+            SaveManifests(location);
+        }
+
+        private void SaveManifests(string location)
+        {
+            string synopsisJson = JsonConvert.SerializeObject(Content.synopsis, Formatting.Indented);
+            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/synopsis.json", FileMode.Create))))
             {
-                jtw.WriteRaw(manifestJson);
+                jtw.WriteRaw(synopsisJson);
             }
             if (Content.CustomManifest.Count > 0)
             {
@@ -468,7 +495,6 @@ namespace CarcassSpark.ObjectViewers
                 File.Delete(location + "/CarcassSpark.Manifest.json");
             }
         }
-
 
         private void AspectListBox_DoubleClick(object sender, EventArgs e)
         {

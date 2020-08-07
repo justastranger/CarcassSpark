@@ -13,7 +13,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? availableWithoutEndingMatch, deleted;
+        public bool? availableWithoutEndingMatch, deleted, newstart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> excludesOnEnding;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$append")]
@@ -41,7 +41,7 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription, string comments,
-                      Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch,
+                      Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
                       string startingVerbId, List<string> excludesOnEnding,
                       List<string> excludesOnEnding_prepend, List<string> excludesOnEnding_append, List<string> excludesOnEnding_remove,
                       Dictionary<string, int> effects_extend, List<string> effects_remove, List<string> statusbarelements,
@@ -70,6 +70,7 @@ namespace CarcassSpark.ObjectTypes
             this.statusbarelements_append = statusbarelements_append;
             this.statusbarelements_remove = statusbarelements_remove;
             this.deleted = deleted;
+            this.newstart = newstart;
         }
 
         public Legacy()
@@ -84,7 +85,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Legacy Copy()
         {
-            return new Legacy(id, label, description, startdescription, comments, effects != null ? new Dictionary<string, int>(effects) : null, image, fromEnding, availableWithoutEndingMatch, startingVerbId, excludesOnEnding != null ? new List<string>(excludesOnEnding) : null, excludesOnEnding_prepend != null ? new List<string>(excludesOnEnding_prepend) : null, excludesOnEnding_append != null ? new List<string>(excludesOnEnding_append) : null, excludesOnEnding_remove != null ? new List<string>(excludesOnEnding_remove) : null, effects_extend != null ? new Dictionary<string, int>(effects_extend) : null, effects_remove != null ? new List<string>(effects_remove) : null, statusbarelements != null ? new List<string>(statusbarelements) : null, statusbarelements_prepend != null ? new List<string>(statusbarelements_prepend) : null, statusbarelements_append != null ? new List<string>(statusbarelements_append) : null, statusbarelements_remove != null ? new List<string>(statusbarelements_remove) : null, extends != null ? new List<string>(extends) : null, deleted);
+            return new Legacy(id, label, description, startdescription, comments, effects != null ? new Dictionary<string, int>(effects) : null, image, fromEnding, availableWithoutEndingMatch, newstart, startingVerbId, excludesOnEnding != null ? new List<string>(excludesOnEnding) : null, excludesOnEnding_prepend != null ? new List<string>(excludesOnEnding_prepend) : null, excludesOnEnding_append != null ? new List<string>(excludesOnEnding_append) : null, excludesOnEnding_remove != null ? new List<string>(excludesOnEnding_remove) : null, effects_extend != null ? new Dictionary<string, int>(effects_extend) : null, effects_remove != null ? new List<string>(effects_remove) : null, statusbarelements != null ? new List<string>(statusbarelements) : null, statusbarelements_prepend != null ? new List<string>(statusbarelements_prepend) : null, statusbarelements_append != null ? new List<string>(statusbarelements_append) : null, statusbarelements_remove != null ? new List<string>(statusbarelements_remove) : null, extends != null ? new List<string>(extends) : null, deleted);
         }
     }
 }

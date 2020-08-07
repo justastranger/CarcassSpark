@@ -11,7 +11,7 @@ namespace CarcassSpark.ObjectTypes
     {
 
         public string currentDirectory;
-        public Manifest manifest;
+        public Synopsis synopsis;
 
         public JObject CustomManifest = new JObject();
         // CustomManifest["EditMode"]
@@ -32,7 +32,7 @@ namespace CarcassSpark.ObjectTypes
         
         public string GetName()
         {
-            if (manifest != null) return manifest.name;
+            if (synopsis != null) return synopsis.name;
             else return null;
         }
 

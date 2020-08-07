@@ -30,7 +30,7 @@ namespace CarcassSpark.ObjectViewers
             saveFileDialog.InitialDirectory = location;
             openFileDialog.InitialDirectory = location;
             RefreshContent();
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
+            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
         }
 
         public ModViewer(bool newMod, string location)
@@ -39,11 +39,11 @@ namespace CarcassSpark.ObjectViewers
             Content.currentDirectory = location;
             if (newMod)
             {
-                CreateManifest();
+                CreateSynopsis();
                 editMode = true;
             }
             RefreshContent();
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
+            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
         }
 
         public ModViewer(string location)
@@ -51,7 +51,7 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             Content.currentDirectory = location;
             RefreshContent();
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
+            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
         }
 
         void SetEditingMode(bool editing)
@@ -95,7 +95,7 @@ namespace CarcassSpark.ObjectViewers
             toolStripProgressBar.Value = 0;
             toolStripProgressBar.Visible = true;
             toolStripProgressBar.Maximum = 1;
-            if (!isVanilla) CheckForManifest();
+            if (!isVanilla) CheckForSynopsis();
             if (isVanilla) foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
             {
                 using (FileStream fs = new FileStream(file, FileMode.Open))
@@ -113,39 +113,47 @@ namespace CarcassSpark.ObjectViewers
             toolStripProgressBar.Visible = false;
         }
 
-        public void CreateManifest()
+        public void CreateSynopsis()
         {
-            ManifestViewer mv = new ManifestViewer(new Manifest());
+            SynopsisViewer mv = new SynopsisViewer(new Synopsis());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                Content.manifest = mv.displayedManifest;
+                Content.synopsis = mv.displayedSynopsis;
                 SaveMod(Content.currentDirectory);
             }
         }
 
-        public void CheckForManifest()
+        public void CheckForSynopsis()
         {
             string manifestPath = Content.currentDirectory + "/manifest.json";
-            if (File.Exists(Content.currentDirectory + "/manifest.json"))
+            string synopsisPath = Content.currentDirectory + "/synopsis.json";
+            if (File.Exists(manifestPath))
             {
                 using (FileStream fs = new FileStream(manifestPath, FileMode.Open))
                 {
-                    LoadManifest(fs);
+                    LoadSynopsis(fs);
+                }
+            }
+            else if (File.Exists(synopsisPath))
+            {
+                using (FileStream fs = new FileStream(synopsisPath, FileMode.Open))
+                {
+                    LoadSynopsis(fs);
                 }
             }
             else
             {
                 _ = MessageBox.Show("manifest.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                CreateManifest();
+                CreateSynopsis();
             }
         }
 
-        public void LoadManifest(FileStream file)
+        public void LoadSynopsis(FileStream file)
         {
             string fileText = new StreamReader(file).ReadToEnd();
             Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.manifest = JsonConvert.DeserializeObject<Manifest>(JsonConvert.SerializeObject(ht));
-            Text = Content.manifest.name;
+            Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(JsonConvert.SerializeObject(ht));
+            Text = Content.synopsis.name;
         }
 
         public void LoadFile(FileStream file, string filePath)
@@ -509,12 +517,12 @@ namespace CarcassSpark.ObjectViewers
             verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
         }
 
-        private void EditManifestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManifestViewer mv = new ManifestViewer(Content.manifest);
-            if (mv.ShowDialog() == DialogResult.OK)
+            SynopsisViewer sv = new SynopsisViewer(Content.synopsis);
+            if (sv.ShowDialog() == DialogResult.OK)
             {
-                Content.manifest = mv.displayedManifest;
+                Content.synopsis = sv.displayedSynopsis;
                 SaveMod(Content.currentDirectory);
             }
         }
@@ -702,10 +710,11 @@ namespace CarcassSpark.ObjectViewers
                     File.Delete(location + "/content/verbs.json");
                 }
             }
-            string manifestJson = JsonConvert.SerializeObject(Content.manifest, Formatting.Indented);
-            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.Create))))
+            // Save the mod's synopsis
+            string synopsisJson = JsonConvert.SerializeObject(Content.synopsis, Formatting.Indented);
+            using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/synopsis.json", FileMode.Create))))
             {
-                jtw.WriteRaw(manifestJson);
+                jtw.WriteRaw(synopsisJson);
             }
             toolStripProgressBar.PerformStep();
             toolStripProgressBar.Visible = false;
@@ -1352,7 +1361,7 @@ namespace CarcassSpark.ObjectViewers
         private void ModViewer_Shown(object sender, EventArgs e)
         {
             if (isVanilla) return;
-            else if (Content.manifest != null) return;
+            else if (Content.synopsis != null) return;
             else Close();
         }
         

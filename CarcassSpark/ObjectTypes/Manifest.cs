@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Manifest
+    public class Synopsis
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string name;
@@ -22,7 +22,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> dependencies;
 
-        public Manifest(string name, string author, string version, string description, string description_long)
+        public Synopsis(string name, string author, string version, string description, string description_long)
         {
             this.name = name;
             this.author = author;
@@ -31,7 +31,7 @@ namespace CarcassSpark.ObjectTypes
             this.description_long = description_long;
         }
 
-        public Manifest(string name, string author, string version, string description, string description_long, List<string> dependencies)
+        public Synopsis(string name, string author, string version, string description, string description_long, List<string> dependencies)
         {
             this.name = name;
             this.author = author;
@@ -42,7 +42,7 @@ namespace CarcassSpark.ObjectTypes
         }
 
 
-        public Manifest()
+        public Synopsis()
         {
             name = "";
             author = "";
@@ -56,9 +56,9 @@ namespace CarcassSpark.ObjectTypes
             return JsonConvert.SerializeObject(this);
         }
 
-        public Manifest Copy()
+        public Synopsis Copy()
         {
-            return new Manifest(name, author, version, description, description_long, dependencies != null ? new List<string>(dependencies) : null);
+            return new Synopsis(name, author, version, description, description_long, dependencies != null ? new List<string>(dependencies) : null);
         }
 
         public class Dependency

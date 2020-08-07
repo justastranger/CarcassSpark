@@ -72,6 +72,7 @@
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
+            this.newStartCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -147,7 +148,7 @@
             // availableWithoutEndingMatchCheckBox
             // 
             this.availableWithoutEndingMatchCheckBox.AutoSize = true;
-            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(360, 90);
+            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(363, 90);
             this.availableWithoutEndingMatchCheckBox.Name = "availableWithoutEndingMatchCheckBox";
             this.availableWithoutEndingMatchCheckBox.Size = new System.Drawing.Size(178, 17);
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
@@ -357,6 +358,7 @@
             // 
             // excludesOnEndingListView
             // 
+            this.excludesOnEndingListView.HideSelection = false;
             this.excludesOnEndingListView.Location = new System.Drawing.Point(360, 205);
             this.excludesOnEndingListView.MultiSelect = false;
             this.excludesOnEndingListView.Name = "excludesOnEndingListView";
@@ -368,6 +370,7 @@
             // 
             // statusBarElementsListView
             // 
+            this.statusBarElementsListView.HideSelection = false;
             this.statusBarElementsListView.Location = new System.Drawing.Point(360, 340);
             this.statusBarElementsListView.Name = "statusBarElementsListView";
             this.statusBarElementsListView.Size = new System.Drawing.Size(227, 77);
@@ -469,6 +472,18 @@
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
+            // newStartCheckBox
+            // 
+            this.newStartCheckBox.AutoSize = true;
+            this.newStartCheckBox.Location = new System.Drawing.Point(12, 171);
+            this.newStartCheckBox.Name = "newStartCheckBox";
+            this.newStartCheckBox.Size = new System.Drawing.Size(73, 17);
+            this.newStartCheckBox.TabIndex = 39;
+            this.newStartCheckBox.Text = "New Start";
+            this.newStartCheckBox.ThreeState = true;
+            this.newStartCheckBox.UseVisualStyleBackColor = true;
+            this.newStartCheckBox.CheckStateChanged += new System.EventHandler(this.NewStartCheckBox_CheckStateChanged);
+            // 
             // LegacyViewer
             // 
             this.AcceptButton = this.okButton;
@@ -476,6 +491,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(599, 499);
+            this.Controls.Add(this.newStartCheckBox);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.commentsLabel);
@@ -570,5 +586,6 @@
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.CheckBox deletedCheckBox;
+        private System.Windows.Forms.CheckBox newStartCheckBox;
     }
 }

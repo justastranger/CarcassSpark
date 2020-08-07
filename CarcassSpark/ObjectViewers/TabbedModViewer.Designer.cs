@@ -123,7 +123,7 @@
             this.openManifestToolStripMenuItem.Name = "openManifestToolStripMenuItem";
             this.openManifestToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.openManifestToolStripMenuItem.Text = "Open Manifest";
-            this.openManifestToolStripMenuItem.Click += new System.EventHandler(this.OpenManifestToolStripMenuItem_Click);
+            this.openManifestToolStripMenuItem.Click += new System.EventHandler(this.OpenSynopsisToolStripMenuItem_Click);
             // 
             // reloadContentToolStripMenuItem
             // 

@@ -196,11 +196,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectTypes\Manifest.cs" />
-    <Compile Include="ObjectViewers\ManifestViewer.cs">
+    <Compile Include="ObjectViewers\SynopsisViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObjectViewers\ManifestViewer.Designer.cs">
-      <DependentUpon>ManifestViewer.cs</DependentUpon>
+    <Compile Include="ObjectViewers\SynopsisViewer.Designer.cs">
+      <DependentUpon>SynopsisViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectViewers\ModViewer.cs">
       <SubType>Form</SubType>
@@ -319,8 +319,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectViewers\ManifestViewer.resx">
-      <DependentUpon>ManifestViewer.cs</DependentUpon>
+    <EmbeddedResource Include="ObjectViewers\SynopsisViewer.resx">
+      <DependentUpon>SynopsisViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\ModViewer.resx">
       <DependentUpon>ModViewer.cs</DependentUpon>

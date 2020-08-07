@@ -12,22 +12,22 @@ using System.Text.RegularExpressions;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class ManifestViewer : Form
+    public partial class SynopsisViewer : Form
     {
-        public Manifest displayedManifest;
+        public Synopsis displayedSynopsis;
 
-        public ManifestViewer(Manifest manifest)
+        public SynopsisViewer(Synopsis synopsis)
         {
             InitializeComponent();
-            this.displayedManifest = manifest;
-            modNameTextBox.Text = manifest.name;
-            modAuthorTextBox.Text = manifest.author;
-            modVersionTextBox.Text = manifest.version;
-            modDescriptionTextBox.Text = manifest.description;
-            longDescriptionTextBox.Text = manifest.description_long;
-            if (manifest.dependencies != null)
+            this.displayedSynopsis = synopsis;
+            modNameTextBox.Text = synopsis.name;
+            modAuthorTextBox.Text = synopsis.author;
+            modVersionTextBox.Text = synopsis.version;
+            modDescriptionTextBox.Text = synopsis.description;
+            longDescriptionTextBox.Text = synopsis.description_long;
+            if (synopsis.dependencies != null)
             {
-                foreach (string dep in manifest.dependencies)
+                foreach (string dep in synopsis.dependencies)
                 {
                     string[] depPieces = dep.Split(' ');
                     if (depPieces.Count() > 0)
@@ -42,67 +42,67 @@ namespace CarcassSpark.ObjectViewers
 
         private void ModNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedManifest.name = modNameTextBox.Text;
-            if (displayedManifest.name == "")
+            displayedSynopsis.name = modNameTextBox.Text;
+            if (displayedSynopsis.name == "")
             {
-                displayedManifest.name = null;
+                displayedSynopsis.name = null;
             }
         }
 
         private void ModAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedManifest.author = modAuthorTextBox.Text;
-            if (displayedManifest.author == "")
+            displayedSynopsis.author = modAuthorTextBox.Text;
+            if (displayedSynopsis.author == "")
             {
-                displayedManifest.author = null;
+                displayedSynopsis.author = null;
             }
         }
 
         private void ModVersionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedManifest.version = modVersionTextBox.Text;
-            if (displayedManifest.version == "")
+            displayedSynopsis.version = modVersionTextBox.Text;
+            if (displayedSynopsis.version == "")
             {
-                displayedManifest.version = null;
+                displayedSynopsis.version = null;
             }
         }
 
         private void ModDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedManifest.description = modDescriptionTextBox.Text;
-            if (displayedManifest.description == "")
+            displayedSynopsis.description = modDescriptionTextBox.Text;
+            if (displayedSynopsis.description == "")
             {
-                displayedManifest.description = null;
+                displayedSynopsis.description = null;
             }
         }
 
         private void LongDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedManifest.description_long = longDescriptionTextBox.Text;
-            if (displayedManifest.description_long == "")
+            displayedSynopsis.description_long = longDescriptionTextBox.Text;
+            if (displayedSynopsis.description_long == "")
             {
-                displayedManifest.description_long = null;
+                displayedSynopsis.description_long = null;
             }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (!(new Regex("^([a-zA-Z_]+)$").IsMatch(displayedManifest.name)))
+            if (!(new Regex("^([a-zA-Z_]+)$").IsMatch(displayedSynopsis.name)))
             {
                 MessageBox.Show("Mod name should only consist of letters (upper and lowercase) and underscores or else the game will never say that the mod is present when used as a dependency.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (dependeniesDataGridView.RowCount > 1)
             {
-                displayedManifest.dependencies = new List<string>();
+                displayedSynopsis.dependencies = new List<string>();
                 foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
                 {
-                    Manifest.Dependency dep = new Manifest.Dependency();
+                    Synopsis.Dependency dep = new Synopsis.Dependency();
                     if (row.Cells[0].Value != null) dep.modId = row.Cells[0].Value.ToString();
                     if (row.Cells[1].Value != null) dep.VersionOperator = row.Cells[1].Value.ToString();
                     if (row.Cells[2].Value != null) dep.version = row.Cells[2].Value.ToString();
                     if (dep.modId != null)
                     {
-                        displayedManifest.dependencies.Add(dep.ToString());
+                        displayedSynopsis.dependencies.Add(dep.ToString());
                     }
                 }
             }
@@ -114,9 +114,9 @@ namespace CarcassSpark.ObjectViewers
             Close();
         }
 
-        private void ManifestViewer_FormClosing(object sender, FormClosingEventArgs e)
+        private void SynopsisViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (displayedManifest.name == null || displayedManifest.name == "")
+            if (displayedSynopsis.name == null || displayedSynopsis.name == "")
             {
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
