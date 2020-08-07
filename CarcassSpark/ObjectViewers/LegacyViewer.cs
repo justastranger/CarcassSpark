@@ -57,8 +57,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in legacy.effects_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(effectsDataGridView, kvp.Key, kvp.Value);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -67,8 +69,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in legacy.effects_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(effectsDataGridView, removeId);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -84,8 +88,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_prepend)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -93,8 +99,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_append)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListAppendColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -102,8 +110,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_remove)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListRemoveColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -142,8 +152,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void EffectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value as String;
-            if(id == null) return;
+            if (!(effectsDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
             ev.Show();
         }
@@ -164,10 +173,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
-                    string key = row.Cells[0].Value != null ? row.Cells[0].Value.ToString() : null;
+                    string key = row.Cells[0].Value?.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (key != null)
                     {
@@ -380,8 +388,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void EffectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            string key = e.Row.Cells[0].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            int? value = e.Row.Cells[1].Value != null ? Convert.ToInt32(e.Row.Cells[1].Value) : (int?)null;
+            string key = e.Row.Cells[0].Value?.ToString();
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
                 if (displayedLegacy.effects_extend.ContainsKey(key)) displayedLegacy.effects_extend.Remove(key);
