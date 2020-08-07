@@ -14,7 +14,7 @@ namespace CarcassSpark.ObjectTypes
         public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits, verbicon;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$add")]
         public Dictionary<string, int> aspects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$remove")]
         public List<string> aspects_remove;
@@ -28,7 +28,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> slots_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, List<XTrigger>> xtriggers;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$add")]
         public Dictionary<string, List<XTrigger>> xtriggers_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$remove")]
         public List<string> xtriggers_remove;

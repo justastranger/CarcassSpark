@@ -23,53 +23,45 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? maxexecutions, warmup;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "maxexecutions$add")]
-        public int? maxexecutions_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "maxexecutions$minus")]
-        public int? maxexecutions_minus;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "warmup$add")]
-        public int? warmup_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "warmup$minus")]
-        public int? warmup_minus;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> effects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$add")]
         public Dictionary<string, string> effects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
         public List<string> effects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$add")]
         public Dictionary<string, int> aspects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$remove")]
         public List<string> aspects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deckeffects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffects$add")]
         public Dictionary<string, int> deckeffects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffects$remove")]
         public List<string> deckeffects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> requirements;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$add")]
         public Dictionary<string, string> requirements_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$remove")]
         public List<string> requirements_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> extantreqs;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$add")]
         public Dictionary<string, string> extantreqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$remove")]
         public List<string> extantreqs_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> tablereqs;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$add")]
         public Dictionary<string, string> tablereqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$remove")]
         public List<string> tablereqs_remove;
@@ -106,21 +98,21 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> purge;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$add")]
         public Dictionary<string, int> purge_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$remove")]
         public List<string> purge_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> haltverb;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$add")]
         public Dictionary<string, int> haltverb_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$remove")]
         public List<string> haltverb_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deleteverb;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$add")]
         public Dictionary<string, int> deleteverb_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$remove")]
         public List<string> deleteverb_remove;

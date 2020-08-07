@@ -24,7 +24,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> excludesOnEnding_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> effects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$add")]
         public Dictionary<string, int> effects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
         public List<string> effects_remove;

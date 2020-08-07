@@ -34,11 +34,11 @@ namespace CarcassSpark.ObjectTypes
         public int? defaultdraws_minus;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> drawmessages, defaultdrawmessages;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "drawmessages$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "drawmessages$add")]
         public Dictionary<string, string> drawmessages_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "drawmessages$remove")]
         public List<string> drawmessages_remove;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$add")]
         public Dictionary<string, string> defaultdrawmessages_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$remove")]
         public List<string> defaultdrawmessages_remove;
