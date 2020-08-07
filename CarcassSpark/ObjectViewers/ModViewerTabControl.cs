@@ -968,7 +968,7 @@ namespace CarcassSpark.ObjectViewers
                             tmp.Add(recipe.id, recipe);
                         }
                     }
-                if (recipe.alternativerecipes != null) foreach (RecipeLink link in recipe.alternativerecipes)
+                if (recipe.alt != null) foreach (RecipeLink link in recipe.alt)
                     {
                         if (link.id == recipesListBox.SelectedItem.ToString())
                         {
@@ -989,7 +989,7 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.deckeffect != null && recipe.deckeffect.ContainsKey(decksListBox.SelectedItem.ToString()) && recipe.deckeffect[decksListBox.SelectedItem.ToString()] > 0)
+                if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(decksListBox.SelectedItem.ToString()) && recipe.deckeffects[decksListBox.SelectedItem.ToString()] > 0)
                 {
                     tmp.Add(recipe.id, recipe);
                 }

@@ -28,9 +28,9 @@ namespace CarcassSpark.ObjectViewers
 
         void FillValues(Mutation mutation)
         {
-            if (mutation.filterOnAspectId != null) filterTextBox.Text = mutation.filterOnAspectId;
-            if (mutation.mutateAspectId != null) mutateAspectIdTextBox.Text = mutation.mutateAspectId;
-            if (mutation.mutationLevel.HasValue) levelNumericUpDown.Value = mutation.mutationLevel.Value;
+            if (mutation.filter != null) filterTextBox.Text = mutation.filter;
+            if (mutation.mutate != null) mutateAspectIdTextBox.Text = mutation.mutate;
+            if (mutation.level.HasValue) levelNumericUpDown.Value = mutation.level.Value;
             if (mutation.additive.HasValue) additiveCheckBox.Checked = mutation.additive.Value;
         }
 
@@ -57,28 +57,28 @@ namespace CarcassSpark.ObjectViewers
 
         private void FilterTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedMutation.filterOnAspectId = filterTextBox.Text;
-            if (displayedMutation.filterOnAspectId == "")
+            displayedMutation.filter = filterTextBox.Text;
+            if (displayedMutation.filter == "")
             {
-                displayedMutation.filterOnAspectId = null;
+                displayedMutation.filter = null;
             }
         }
 
         private void MutateAspectIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedMutation.mutateAspectId = mutateAspectIdTextBox.Text;
-            if (displayedMutation.mutateAspectId == "")
+            displayedMutation.mutate = mutateAspectIdTextBox.Text;
+            if (displayedMutation.mutate == "")
             {
-                displayedMutation.mutateAspectId = null;
+                displayedMutation.mutate = null;
             }
         }
 
         private void LevelNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedMutation.mutationLevel = Convert.ToInt32(levelNumericUpDown.Value);
-            if (displayedMutation.mutationLevel == 0)
+            displayedMutation.level = Convert.ToInt32(levelNumericUpDown.Value);
+            if (displayedMutation.level == 0)
             {
-                displayedMutation.mutationLevel = null;
+                displayedMutation.level = null;
             }
         }
 

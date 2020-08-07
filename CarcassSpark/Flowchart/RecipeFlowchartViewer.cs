@@ -308,11 +308,11 @@ namespace CarcassSpark.Flowchart
                     aspects.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
                 }
             }
-            if (recipe.deckeffect != null)
+            if (recipe.deckeffects != null)
             {
                 TreeViewItem deckeffect = new TreeViewItem("Deck Effects:");
                 tempTVN.RootItems.Add(deckeffect);
-                foreach (KeyValuePair<string, int> kvp in recipe.deckeffect)
+                foreach (KeyValuePair<string, int> kvp in recipe.deckeffects)
                 {
                     deckeffect.Children.Add(new TreeViewItem(kvp.Key + ": " + kvp.Value.ToString()));
                 }
@@ -378,11 +378,11 @@ namespace CarcassSpark.Flowchart
                     }
                 }
             }
-            if (recipe.alternativerecipes != null)
+            if (recipe.alt != null)
             {
                 TreeViewItem linked = new TreeViewItem("Alternative Recipes:");
                 tempTVN.RootItems.Add(linked);
-                foreach (RecipeLink link in recipe.alternativerecipes)
+                foreach (RecipeLink link in recipe.alt)
                 {
                     TreeViewItem recipeTree = new TreeViewItem("Linked Recipe:");
                     linked.Children.Add(recipeTree);
@@ -419,9 +419,9 @@ namespace CarcassSpark.Flowchart
                 foreach (Mutation mutation in recipe.mutations)
                 {
                     TreeViewItem mutationItem = new TreeViewItem("Mutation: ");
-                    mutationItem.Children.Add(new TreeViewItem("Aspect Filter: " + mutation.filterOnAspectId));
-                    mutationItem.Children.Add(new TreeViewItem("Aspect Affected: " + mutation.mutateAspectId));
-                    mutationItem.Children.Add(new TreeViewItem("Mutation Level: " + mutation.mutationLevel.ToString()));
+                    mutationItem.Children.Add(new TreeViewItem("Aspect Filter: " + mutation.filter));
+                    mutationItem.Children.Add(new TreeViewItem("Aspect Affected: " + mutation.mutate));
+                    mutationItem.Children.Add(new TreeViewItem("Mutation Level: " + mutation.level.ToString()));
                     mutationItem.Children.Add(new TreeViewItem("Additive Mutation: " + mutation.additive.ToString()));
                     mutations.Children.Add(mutationItem);
                 }
