@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace CarcassSpark
 {
@@ -121,9 +122,20 @@ namespace CarcassSpark
             
         }
 
-        private void GameAssemblyTextBox_DoubleClick(object sender, EventArgs e)
+        private void GamePathTextBox_DoubleClick(object sender, EventArgs e)
         {
-
+            folderBrowserDialog.SelectedPath = currentDirectory;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(folderBrowserDialog.SelectedPath + "\\cultistsimulator.exe"))
+                {
+                    GamePathTextBox.Text = folderBrowserDialog.SelectedPath;
+                }
+                else
+                {
+                    MessageBox.Show("Please select your game's installation folder.");
+                }
+            }
         }
 
         private void PortableCheckBox_CheckedChanged(object sender, EventArgs e)

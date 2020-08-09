@@ -40,6 +40,7 @@
             this.portableCheckBox = new System.Windows.Forms.CheckBox();
             this.GamePathTextBox = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // openWithVanillaCheckBox
@@ -73,7 +74,6 @@
             this.previousModsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.previousModsTextBox.Size = new System.Drawing.Size(370, 81);
             this.previousModsTextBox.TabIndex = 2;
-            this.previousModsTextBox.TextChanged += new System.EventHandler(this.PreviousModsTextBox_TextChanged);
             // 
             // previousModLabel
             // 
@@ -146,11 +146,16 @@
             this.GamePathTextBox.ReadOnly = true;
             this.GamePathTextBox.Size = new System.Drawing.Size(370, 20);
             this.GamePathTextBox.TabIndex = 9;
-            this.GamePathTextBox.DoubleClick += new System.EventHandler(this.GameAssemblyTextBox_DoubleClick);
+            this.GamePathTextBox.DoubleClick += new System.EventHandler(this.GamePathTextBox_DoubleClick);
             // 
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.Recent;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "Assembly-CSharp.dll";
+            this.openFileDialog.Filter = "Assembly-CSharp.dll|Assembly-CSharp.dll";
             // 
             // Settings
             // 
@@ -192,5 +197,6 @@
         private System.Windows.Forms.CheckBox portableCheckBox;
         private System.Windows.Forms.TextBox GamePathTextBox;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
