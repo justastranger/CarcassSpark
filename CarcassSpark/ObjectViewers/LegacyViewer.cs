@@ -171,6 +171,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
+                displayedLegacy.effects = new Dictionary<string, int>();
+                displayedLegacy.effects_extend = new Dictionary<string, int>();
+                displayedLegacy.effects_remove = new List<string>();
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     string key = row.Cells[0].Value?.ToString();
@@ -193,6 +196,9 @@ namespace CarcassSpark.ObjectViewers
                             displayedLegacy.effects[key] = value.Value;
                         }
                     }
+                    if (displayedLegacy.effects.Count == 0) displayedLegacy.effects = null;
+                    if (displayedLegacy.effects_extend.Count == 0) displayedLegacy.effects_extend = null;
+                    if (displayedLegacy.effects_remove.Count == 0) displayedLegacy.effects_remove = null;
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
