@@ -95,6 +95,7 @@ namespace CarcassSpark.ObjectViewers
             } 
             else
             {
+                MessageBox.Show("Failed to load content source.");
                 SelectedModViewer.Dispose();
             }
         }
