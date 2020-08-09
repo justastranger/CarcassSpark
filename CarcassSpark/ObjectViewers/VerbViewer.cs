@@ -17,7 +17,7 @@ namespace CarcassSpark.ObjectViewers
         bool editing;
         event EventHandler<Verb> SuccessCallback;
 
-        private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
+        // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
         public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback)
         {
@@ -43,14 +43,10 @@ namespace CarcassSpark.ObjectViewers
             if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
             if (verb.description != null) descriptionTextBox.Text = verb.description;
             if (verb.deleted.HasValue) deletedCheckBox.Checked = verb.deleted.Value;
-            if (verb.slots != null && verb.slots.Count > 0)
+            if (verb.slot != null)
             {
-                if (verb.slots.Count > 1) MessageBox.Show("Cultist Simulator does not currently support Verbs with more than one Starting Slot. Carcass Spark will add them, but only so you can remove them. The game will not as long as there is more than one slot.", "Error: Too Many Slots", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                foreach (Slot slot in verb.slots)
-                {
-                    slotsListView.Items.Add(slot.id);
-                    slots.Add(slot.id, slot);
-                }
+                slotsListView.Items.Add(verb.slot.id);
+                // slots.Add(verb.slot.id, verb.slot);
             }
             if (verb.extends != null && verb.extends.Count > 0) extendsTextBox.Text = verb.extends[0];
         }
@@ -73,8 +69,11 @@ namespace CarcassSpark.ObjectViewers
         private void SlotsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (slotsListView.SelectedItems == null) return;
-            SlotViewer sv = new SlotViewer(slots[slotsListView.SelectedItems[0].Text], editing);
-            sv.Show();
+            SlotViewer sv = new SlotViewer(displayedVerb.slot, editing);
+            if (sv.ShowDialog() == DialogResult.OK)
+            {
+                displayedVerb.slot = sv.displayedSlot;
+            }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -99,12 +98,8 @@ namespace CarcassSpark.ObjectViewers
             sv.ShowDialog();
             if(sv.DialogResult == DialogResult.OK)
             {
-                if (displayedVerb.slots == null)
-                {
-                    displayedVerb.slots = new List<Slot>();
-                }
-                displayedVerb.slots.Add(sv.displayedSlot);
-                slots.Add(sv.displayedSlot.id, sv.displayedSlot);
+                displayedVerb.slot = sv.displayedSlot;
+                // slots.Add(sv.displayedSlot.id, sv.displayedSlot);
                 slotsListView.Items.Add(sv.displayedSlot.id);
             }
         }
@@ -147,12 +142,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (slots.ContainsKey(slotsListView.SelectedItems[0].Text.ToString()))
-            {
-                displayedVerb.slots.Remove(slots[slotsListView.SelectedItems[0].Text.ToString()]);
-                slots.Remove(slotsListView.SelectedItems[0].Text.ToString());
-                slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
-            }
+            displayedVerb.slot = null;
+            slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
         }
 
         private void AtStartCheckBox_CheckStateChanged(object sender, EventArgs e)
