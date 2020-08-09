@@ -121,17 +121,19 @@ namespace CarcassSpark.Tools
             }
             Dictionary<string, List<XTrigger>> tempXTriggers = baseSummon.xtriggers;
             tempXTriggers.Add("killmanifesting", new List<XTrigger> { new XTrigger(baseSummon.decayTo) });
-            preSummon = new Element();
-            preSummon.id = "pre." + baseSummon.id;
-            preSummon.label = baseSummon.label;
-            preSummon.description = baseSummon.description;
-            preSummon.unique = baseSummon.unique;
-            preSummon.icon = baseSummon.icon;
-            preSummon.comments = baseSummon.comments;
-            preSummon.aspects = tmpAspects;
-            preSummon.xtriggers = tempXTriggers;
-            preSummon.decayTo = baseSummon.id;
-            preSummon.lifetime = 1;
+            preSummon = new Element
+            {
+                id = "pre." + baseSummon.id,
+                label = baseSummon.label,
+                description = baseSummon.description,
+                unique = baseSummon.unique,
+                icon = baseSummon.icon,
+                comments = baseSummon.comments,
+                aspects = tmpAspects,
+                xtriggers = tempXTriggers,
+                decayTo = baseSummon.id,
+                lifetime = 1
+            };
             preSummonIdTextBox.Text = preSummon.id;
 
             createRecipeButton.Enabled = true;
