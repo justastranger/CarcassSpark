@@ -15,19 +15,19 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? atStart, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Slot> slots;
+        public List<Slot> slot;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$append")]
-        public List<Slot> slots_append;
+        public List<Slot> slot_append;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
-        public List<Slot> slots_prepend;
+        public List<Slot> slot_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
-        public List<Slot> slots_remove;
+        public List<Slot> slot_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, string comments, List<string> extends, bool? atStart, bool? deleted, List<Slot> slots,
-                    List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
+        public Verb(string id, string label, string description, string comments, List<string> extends, bool? atStart, bool? deleted, List<Slot> slot,
+                    List<Slot> slot_prepend, List<Slot> slot_append, List<Slot> slot_remove)
         {
             this.id = id;
             this.label = label;
@@ -35,10 +35,10 @@ namespace CarcassSpark.ObjectTypes
             this.comments = comments;
             this.extends = extends;
             this.atStart = atStart;
-            this.slots = slots;
-            this.slots_prepend = slots_prepend;
-            this.slots_append = slots_append;
-            this.slots_remove = slots_remove;
+            this.slot = slot;
+            this.slot_prepend = slot_prepend;
+            this.slot_append = slot_append;
+            this.slot_remove = slot_remove;
             this.deleted = deleted;
         }
 
