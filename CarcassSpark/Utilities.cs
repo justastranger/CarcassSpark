@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CarcassSpark.ObjectViewers;
 using CarcassSpark.ObjectTypes;
 using Newtonsoft.Json;
+using MindFusion.Layout;
 
 namespace CarcassSpark
 {
@@ -52,6 +53,17 @@ namespace CarcassSpark
             throw new NotImplementedException("I still haven't figured out how to do this.");
         }
 
+        public static bool AspectImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static Image GetAspectImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -64,6 +76,18 @@ namespace CarcassSpark
             }
             if(File.Exists(directoryToVanillaContent + "/images/elements/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elements/_x.png");
             return null;
+        }
+
+        public static bool ElementImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static Image GetElementImage(string id)
@@ -80,6 +104,18 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool EndingImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static Image GetEndingImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -92,6 +128,18 @@ namespace CarcassSpark
             }
             if (File.Exists(directoryToVanillaContent + "/images/endings/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endings/despair.png");
             return null;
+        }
+
+        public static bool LegacyImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static Image GetLegacyImage(string id)
@@ -108,6 +156,18 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool VerbImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static Image GetVerbImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -122,6 +182,18 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool CardBackImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/cardbacks/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static Image GetCardBackImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -134,6 +206,18 @@ namespace CarcassSpark
             }
             if (File.Exists(directoryToVanillaContent + "/images/cardbacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
             return null;
+        }
+
+        public static bool BurnImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/burns/" + id + ".png"))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static Image GetBurnImage(string id)
