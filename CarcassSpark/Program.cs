@@ -22,8 +22,8 @@ namespace CarcassSpark
         [STAThread]
         static void Main()
         {
-            Mutex mutex = new Mutex(true, "CarcassSpark", out bool newInstance);
-            if (!newInstance)
+            Mutex mutex = new Mutex(true, "CarcassSpark");
+            if (!mutex.WaitOne(0, false))
             {
                 MessageBox.Show("Only one instance of Carcass Spark may be open at a time.");
                 return;
