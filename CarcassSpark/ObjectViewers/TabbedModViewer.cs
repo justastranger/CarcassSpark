@@ -80,13 +80,6 @@ namespace CarcassSpark.ObjectViewers
                     foreach (string path in Settings.GetPreviousMods())
                     { 
                         CreateNewModViewerTab(path, false, false);
-                        // this would have prevented duplicates, but I came up with something better elsewhere
-                        // bool alreadyExists = false;
-                        // foreach (ContentSource source in Utilities.ContentSources.Values)
-                        // {
-                        //     if (source.currentDirectory == path) alreadyExists = true;
-                        // }
-                        // if (!alreadyExists) CreateNewModViewerTab(path, false, false);
                     }
             }
         }
