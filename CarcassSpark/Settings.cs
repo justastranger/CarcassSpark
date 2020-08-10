@@ -34,13 +34,8 @@ namespace CarcassSpark
 
         public static void SaveSettings()
         {
-            List<string> previousMods = GetPreviousMods().Distinct() as List<string>;
-            List<string> validatedPaths = new List<string>();
-            foreach (string path in previousMods)
-            {
-                if (Directory.Exists(path) && File.Exists(path + "\\manifest.json")) validatedPaths.Add(path);
-            }
-            settings["previousMods"] = JArray.FromObject(validatedPaths);
+            // Takes the contents of the previousMods setting, validates it to remove duplicates and paths without a synopsis file
+            settings["previousMods"] = JArray.FromObject(ValidatePreviousMods(GetPreviousMods()));
 
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
             {
@@ -101,15 +96,10 @@ namespace CarcassSpark
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-
+            // take the contents of the previous mods text box and store it
             List<string> modPaths = previousModsTextBox.Text.Split("\r\n".ToCharArray()).ToList();
-            List<string> validatedPaths = new List<string>();
-            foreach (string path in modPaths)
-            {
-                if (Directory.Exists(path) && File.Exists(path + "\\manifest.json")) validatedPaths.Add(path);
-            }
-            settings["previousMods"] = JArray.FromObject(validatedPaths.Distinct());
-            
+            settings["previousMods"] = JArray.FromObject(modPaths);
+            // then we validate them in this function
             SaveSettings();
             Close();
         }
@@ -144,6 +134,17 @@ namespace CarcassSpark
                     MessageBox.Show("Please select your game's installation folder.");
                 }
             }
+        }
+
+        private static List<string> ValidatePreviousMods(List<string> previousMods)
+        {
+            List<string> validatedPaths = new List<string>();
+            foreach (string path in previousMods.Distinct())
+            {
+                if (Directory.Exists(path) && File.Exists(path + "\\synopsis.json")) validatedPaths.Add(path);
+            }
+            // settings["previousMods"] = JArray.FromObject(validatedPaths.Distinct());
+            return validatedPaths;
         }
 
         private void PortableCheckBox_CheckedChanged(object sender, EventArgs e)
