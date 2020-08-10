@@ -34,6 +34,14 @@ namespace CarcassSpark
 
         public static void SaveSettings()
         {
+            List<string> previousMods = GetPreviousMods().Distinct() as List<string>;
+            List<string> validatedPaths = new List<string>();
+            foreach (string path in previousMods)
+            {
+                if (Directory.Exists(path) && File.Exists(path + "\\manifest.json")) validatedPaths.Add(path);
+            }
+            settings["previousMods"] = JArray.FromObject(validatedPaths);
+
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
             {
                 string settingsJson = JsonConvert.SerializeObject(settings, Formatting.Indented);
@@ -100,7 +108,7 @@ namespace CarcassSpark
             {
                 if (Directory.Exists(path) && File.Exists(path + "\\manifest.json")) validatedPaths.Add(path);
             }
-            settings["previousMods"] = JArray.FromObject(validatedPaths);
+            settings["previousMods"] = JArray.FromObject(validatedPaths.Distinct());
             
             SaveSettings();
             Close();
