@@ -54,6 +54,7 @@ namespace CarcassSpark.ObjectViewers
             else
             {
                 valid = false;
+                MessageBox.Show("Failed to load content source.");
             }
         }
 
