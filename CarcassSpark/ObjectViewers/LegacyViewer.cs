@@ -37,9 +37,12 @@ namespace CarcassSpark.ObjectViewers
             if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
             if (legacy.comments != null) commentsTextBox.Text = legacy.comments;
             if (legacy.extends != null && legacy.extends.Count > 0) extendsTextBox.Text = legacy.extends[0];
-            if (legacy.image != null) imageTextBox.Text = legacy.image;
+            if (legacy.image != null)
+            {
+                imageTextBox.Text = legacy.image;
+                if (Utilities.LegacyImageExists(legacy.image)) pictureBox1.Image = Utilities.GetLegacyImage(legacy.image);
+            }
             if (legacy.deleted.HasValue) deletedCheckBox.CheckState = legacy.deleted.Value ? CheckState.Checked : CheckState.Unchecked;
-            if (Utilities.LegacyImageExists(legacy.image)) pictureBox1.Image = Utilities.GetLegacyImage(legacy.image);
             if (legacy.fromEnding != null) fromEndingTextBox.Text = legacy.fromEnding;
             if (legacy.availableWithoutEndingMatch.HasValue) availableWithoutEndingMatchCheckBox.CheckState = legacy.availableWithoutEndingMatch.Value ? CheckState.Checked : CheckState.Unchecked;
             if (legacy.startingVerbId != null) startingVerbIdTextBox.Text = legacy.startingVerbId;

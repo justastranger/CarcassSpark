@@ -35,7 +35,7 @@ namespace CarcassSpark.ObjectViewers
         void FillValues(Verb verb)
         {
             if (verb.id != null) idTextBox.Text = verb.id;
-            if (Utilities.GetVerbImage(verb.id) != null)
+            if (Utilities.VerbImageExists(verb.id))
             {
                 pictureBox1.Image = Utilities.GetVerbImage(verb.id);
             }
@@ -112,7 +112,7 @@ namespace CarcassSpark.ObjectViewers
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.id = idTextBox.Text;
-            if (Utilities.GetVerbImage(idTextBox.Text) != null)
+            if (Utilities.VerbImageExists(idTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetVerbImage(idTextBox.Text);
             }

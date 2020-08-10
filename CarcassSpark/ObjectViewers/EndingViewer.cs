@@ -35,9 +35,18 @@ namespace CarcassSpark.ObjectViewers
         {
             if (ending.id != null) idTextBox.Text = ending.id;
             if (ending.label != null) labelTextBox.Text = ending.label;
-            if (ending.image != null) imageTextBox.Text = ending.image;
-            if (ending.id != null && ending.image == null) pictureBox1.Image = Utilities.GetEndingImage(ending.id);
-            else if (ending.image != null) pictureBox1.Image = Utilities.GetEndingImage(ending.image);
+            if (ending.image != null)
+            {
+                imageTextBox.Text = ending.image;
+                if (Utilities.EndingImageExists(ending.image))
+                {
+                    pictureBox1.Image = Utilities.GetEndingImage(ending.image);
+                }
+            }
+            else if (Utilities.EndingImageExists(ending.id))
+            {
+                pictureBox1.Image = Utilities.GetEndingImage(ending.id);
+            }
             if (ending.flavour != null) endindFlavourComboBox.Text = ending.flavour;
             if (ending.anim != null) animComboBox.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
@@ -83,7 +92,7 @@ namespace CarcassSpark.ObjectViewers
         private void ImageTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.image = imageTextBox.Text;
-            if (Utilities.GetEndingImage(imageTextBox.Text) != null)
+            if (Utilities.EndingImageExists(imageTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetEndingImage(imageTextBox.Text);
             }

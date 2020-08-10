@@ -64,12 +64,12 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.label != null) labelTextBox.Text = aspect.label;
             if (!aspect.noartneeded.HasValue || aspect.noartneeded.Value == false)
             {
-                if (aspect.icon != null)
+                if (aspect.icon != null && Utilities.AspectImageExists(aspect.icon))
                 {
                     iconTextBox.Text = aspect.icon;
                     pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
                 }
-                else
+                else if (Utilities.AspectImageExists(aspect.id))
                 {
                     pictureBox1.Image = Utilities.GetAspectImage(aspect.id);
                 }
@@ -202,7 +202,7 @@ namespace CarcassSpark.ObjectViewers
         private void IconTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.icon = iconTextBox.Text;
-            if (Utilities.GetAspectImage(iconTextBox.Text) != null)
+            if (Utilities.AspectImageExists(iconTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetAspectImage(iconTextBox.Text);
             }
