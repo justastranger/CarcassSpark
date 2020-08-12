@@ -73,6 +73,12 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             this.newStartCheckBox = new System.Windows.Forms.CheckBox();
+            this.tableCoverImageTextBox = new System.Windows.Forms.TextBox();
+            this.tableCoverImageLabel = new System.Windows.Forms.Label();
+            this.tableSurfaceImageLabel = new System.Windows.Forms.Label();
+            this.tableSurfaceImageTextBox = new System.Windows.Forms.TextBox();
+            this.tableEdgeImageLabel = new System.Windows.Forms.Label();
+            this.tableEdgeImageTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -112,7 +118,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(206, 86);
+            this.descriptionTextBox.Size = new System.Drawing.Size(200, 86);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -127,7 +133,7 @@
             // 
             // fromEndingTextBox
             // 
-            this.fromEndingTextBox.Location = new System.Drawing.Point(360, 64);
+            this.fromEndingTextBox.Location = new System.Drawing.Point(572, 25);
             this.fromEndingTextBox.Name = "fromEndingTextBox";
             this.fromEndingTextBox.Size = new System.Drawing.Size(100, 20);
             this.fromEndingTextBox.TabIndex = 5;
@@ -137,18 +143,18 @@
             // startdescriptionTextBox
             // 
             this.startdescriptionTextBox.AcceptsReturn = true;
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(148, 169);
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(354, 64);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.startdescriptionTextBox.Size = new System.Drawing.Size(206, 87);
+            this.startdescriptionTextBox.Size = new System.Drawing.Size(200, 86);
             this.startdescriptionTextBox.TabIndex = 6;
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
             // availableWithoutEndingMatchCheckBox
             // 
             this.availableWithoutEndingMatchCheckBox.AutoSize = true;
-            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(363, 90);
+            this.availableWithoutEndingMatchCheckBox.Location = new System.Drawing.Point(12, 194);
             this.availableWithoutEndingMatchCheckBox.Name = "availableWithoutEndingMatchCheckBox";
             this.availableWithoutEndingMatchCheckBox.Size = new System.Drawing.Size(178, 17);
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
@@ -168,7 +174,7 @@
             this.effectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.effectsDataGridView.Location = new System.Drawing.Point(12, 262);
             this.effectsDataGridView.Name = "effectsDataGridView";
-            this.effectsDataGridView.Size = new System.Drawing.Size(342, 194);
+            this.effectsDataGridView.Size = new System.Drawing.Size(333, 194);
             this.effectsDataGridView.TabIndex = 8;
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EffectsDataGridView_CellDoubleClick);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.EffectsDataGridView_UserDeletedRow);
@@ -177,13 +183,13 @@
             // 
             this.effectId.HeaderText = "Element ID";
             this.effectId.Name = "effectId";
-            this.effectId.Width = 150;
+            this.effectId.Width = 145;
             // 
             // effectsAmount
             // 
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.Width = 149;
+            this.effectsAmount.Width = 145;
             // 
             // propertyOperationContextMenuStrip
             // 
@@ -257,7 +263,7 @@
             // startDescriptionLabel
             // 
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(145, 153);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(351, 48);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
             this.startDescriptionLabel.Size = new System.Drawing.Size(85, 13);
             this.startDescriptionLabel.TabIndex = 15;
@@ -275,7 +281,7 @@
             // fromEndingLabel
             // 
             this.fromEndingLabel.AutoSize = true;
-            this.fromEndingLabel.Location = new System.Drawing.Point(357, 48);
+            this.fromEndingLabel.Location = new System.Drawing.Point(569, 9);
             this.fromEndingLabel.Name = "fromEndingLabel";
             this.fromEndingLabel.Size = new System.Drawing.Size(66, 13);
             this.fromEndingLabel.TabIndex = 17;
@@ -293,7 +299,7 @@
             // excludesOnEndingLabel
             // 
             this.excludesOnEndingLabel.AutoSize = true;
-            this.excludesOnEndingLabel.Location = new System.Drawing.Point(357, 184);
+            this.excludesOnEndingLabel.Location = new System.Drawing.Point(587, 153);
             this.excludesOnEndingLabel.Name = "excludesOnEndingLabel";
             this.excludesOnEndingLabel.Size = new System.Drawing.Size(159, 13);
             this.excludesOnEndingLabel.TabIndex = 19;
@@ -321,7 +327,7 @@
             // 
             // addExcludesTextBox
             // 
-            this.addExcludesTextBox.Location = new System.Drawing.Point(360, 301);
+            this.addExcludesTextBox.Location = new System.Drawing.Point(590, 265);
             this.addExcludesTextBox.Name = "addExcludesTextBox";
             this.addExcludesTextBox.Size = new System.Drawing.Size(115, 20);
             this.addExcludesTextBox.TabIndex = 22;
@@ -329,7 +335,7 @@
             // 
             // addExcludesButton
             // 
-            this.addExcludesButton.Location = new System.Drawing.Point(481, 301);
+            this.addExcludesButton.Location = new System.Drawing.Point(711, 265);
             this.addExcludesButton.Name = "addExcludesButton";
             this.addExcludesButton.Size = new System.Drawing.Size(38, 20);
             this.addExcludesButton.TabIndex = 23;
@@ -340,7 +346,7 @@
             // excludeAddLabel
             // 
             this.excludeAddLabel.AutoSize = true;
-            this.excludeAddLabel.Location = new System.Drawing.Point(357, 285);
+            this.excludeAddLabel.Location = new System.Drawing.Point(587, 249);
             this.excludeAddLabel.Name = "excludeAddLabel";
             this.excludeAddLabel.Size = new System.Drawing.Size(109, 13);
             this.excludeAddLabel.TabIndex = 24;
@@ -348,7 +354,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(525, 301);
+            this.removeButton.Location = new System.Drawing.Point(755, 264);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(62, 20);
             this.removeButton.TabIndex = 25;
@@ -359,7 +365,7 @@
             // excludesOnEndingListView
             // 
             this.excludesOnEndingListView.HideSelection = false;
-            this.excludesOnEndingListView.Location = new System.Drawing.Point(360, 205);
+            this.excludesOnEndingListView.Location = new System.Drawing.Point(590, 169);
             this.excludesOnEndingListView.MultiSelect = false;
             this.excludesOnEndingListView.Name = "excludesOnEndingListView";
             this.excludesOnEndingListView.Size = new System.Drawing.Size(227, 77);
@@ -371,7 +377,7 @@
             // statusBarElementsListView
             // 
             this.statusBarElementsListView.HideSelection = false;
-            this.statusBarElementsListView.Location = new System.Drawing.Point(360, 340);
+            this.statusBarElementsListView.Location = new System.Drawing.Point(354, 169);
             this.statusBarElementsListView.Name = "statusBarElementsListView";
             this.statusBarElementsListView.Size = new System.Drawing.Size(227, 77);
             this.statusBarElementsListView.TabIndex = 27;
@@ -380,7 +386,7 @@
             // statusBarElementsLabel
             // 
             this.statusBarElementsLabel.AutoSize = true;
-            this.statusBarElementsLabel.Location = new System.Drawing.Point(357, 324);
+            this.statusBarElementsLabel.Location = new System.Drawing.Point(351, 153);
             this.statusBarElementsLabel.Name = "statusBarElementsLabel";
             this.statusBarElementsLabel.Size = new System.Drawing.Size(102, 13);
             this.statusBarElementsLabel.TabIndex = 28;
@@ -388,7 +394,7 @@
             // 
             // statusBarElementTextBox
             // 
-            this.statusBarElementTextBox.Location = new System.Drawing.Point(360, 439);
+            this.statusBarElementTextBox.Location = new System.Drawing.Point(354, 268);
             this.statusBarElementTextBox.Name = "statusBarElementTextBox";
             this.statusBarElementTextBox.Size = new System.Drawing.Size(115, 20);
             this.statusBarElementTextBox.TabIndex = 29;
@@ -397,7 +403,7 @@
             // statusBarElementsLabel2
             // 
             this.statusBarElementsLabel2.AutoSize = true;
-            this.statusBarElementsLabel2.Location = new System.Drawing.Point(357, 422);
+            this.statusBarElementsLabel2.Location = new System.Drawing.Point(351, 251);
             this.statusBarElementsLabel2.Name = "statusBarElementsLabel2";
             this.statusBarElementsLabel2.Size = new System.Drawing.Size(157, 13);
             this.statusBarElementsLabel2.TabIndex = 30;
@@ -405,7 +411,7 @@
             // 
             // addStatusBarElementButton
             // 
-            this.addStatusBarElementButton.Location = new System.Drawing.Point(481, 438);
+            this.addStatusBarElementButton.Location = new System.Drawing.Point(475, 267);
             this.addStatusBarElementButton.Name = "addStatusBarElementButton";
             this.addStatusBarElementButton.Size = new System.Drawing.Size(38, 20);
             this.addStatusBarElementButton.TabIndex = 31;
@@ -415,7 +421,7 @@
             // 
             // removeStatusBarElementButton
             // 
-            this.removeStatusBarElementButton.Location = new System.Drawing.Point(525, 437);
+            this.removeStatusBarElementButton.Location = new System.Drawing.Point(519, 266);
             this.removeStatusBarElementButton.Name = "removeStatusBarElementButton";
             this.removeStatusBarElementButton.Size = new System.Drawing.Size(62, 20);
             this.removeStatusBarElementButton.TabIndex = 32;
@@ -426,7 +432,7 @@
             // extendsLabel
             // 
             this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(463, 48);
+            this.extendsLabel.Location = new System.Drawing.Point(675, 9);
             this.extendsLabel.Name = "extendsLabel";
             this.extendsLabel.Size = new System.Drawing.Size(45, 13);
             this.extendsLabel.TabIndex = 34;
@@ -434,7 +440,7 @@
             // 
             // extendsTextBox
             // 
-            this.extendsTextBox.Location = new System.Drawing.Point(466, 64);
+            this.extendsTextBox.Location = new System.Drawing.Point(678, 25);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
             this.extendsTextBox.TabIndex = 35;
@@ -443,7 +449,7 @@
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(360, 110);
+            this.commentsLabel.Location = new System.Drawing.Point(560, 48);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 36;
@@ -452,11 +458,11 @@
             // commentsTextBox
             // 
             this.commentsTextBox.AcceptsReturn = true;
-            this.commentsTextBox.Location = new System.Drawing.Point(360, 126);
+            this.commentsTextBox.Location = new System.Drawing.Point(560, 64);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(227, 55);
+            this.commentsTextBox.Size = new System.Drawing.Size(200, 86);
             this.commentsTextBox.TabIndex = 37;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
@@ -484,13 +490,70 @@
             this.newStartCheckBox.UseVisualStyleBackColor = true;
             this.newStartCheckBox.CheckStateChanged += new System.EventHandler(this.NewStartCheckBox_CheckStateChanged);
             // 
+            // tableCoverImageTextBox
+            // 
+            this.tableCoverImageTextBox.Location = new System.Drawing.Point(354, 307);
+            this.tableCoverImageTextBox.Name = "tableCoverImageTextBox";
+            this.tableCoverImageTextBox.Size = new System.Drawing.Size(233, 20);
+            this.tableCoverImageTextBox.TabIndex = 40;
+            this.tableCoverImageTextBox.TextChanged += new System.EventHandler(this.TableCoverImageTextBox_TextChanged);
+            // 
+            // tableCoverImageLabel
+            // 
+            this.tableCoverImageLabel.AutoSize = true;
+            this.tableCoverImageLabel.Location = new System.Drawing.Point(351, 291);
+            this.tableCoverImageLabel.Name = "tableCoverImageLabel";
+            this.tableCoverImageLabel.Size = new System.Drawing.Size(97, 13);
+            this.tableCoverImageLabel.TabIndex = 41;
+            this.tableCoverImageLabel.Text = "Table Cover Image";
+            // 
+            // tableSurfaceImageLabel
+            // 
+            this.tableSurfaceImageLabel.AutoSize = true;
+            this.tableSurfaceImageLabel.Location = new System.Drawing.Point(351, 330);
+            this.tableSurfaceImageLabel.Name = "tableSurfaceImageLabel";
+            this.tableSurfaceImageLabel.Size = new System.Drawing.Size(106, 13);
+            this.tableSurfaceImageLabel.TabIndex = 43;
+            this.tableSurfaceImageLabel.Text = "Table Surface Image";
+            // 
+            // tableSurfaceImageTextBox
+            // 
+            this.tableSurfaceImageTextBox.Location = new System.Drawing.Point(354, 346);
+            this.tableSurfaceImageTextBox.Name = "tableSurfaceImageTextBox";
+            this.tableSurfaceImageTextBox.Size = new System.Drawing.Size(233, 20);
+            this.tableSurfaceImageTextBox.TabIndex = 42;
+            this.tableSurfaceImageTextBox.TextChanged += new System.EventHandler(this.TableSurfaceImageTextBox_TextChanged);
+            // 
+            // tableEdgeImageLabel
+            // 
+            this.tableEdgeImageLabel.AutoSize = true;
+            this.tableEdgeImageLabel.Location = new System.Drawing.Point(351, 369);
+            this.tableEdgeImageLabel.Name = "tableEdgeImageLabel";
+            this.tableEdgeImageLabel.Size = new System.Drawing.Size(94, 13);
+            this.tableEdgeImageLabel.TabIndex = 45;
+            this.tableEdgeImageLabel.Text = "Table Edge Image";
+            // 
+            // tableEdgeImageTextBox
+            // 
+            this.tableEdgeImageTextBox.Location = new System.Drawing.Point(354, 385);
+            this.tableEdgeImageTextBox.Name = "tableEdgeImageTextBox";
+            this.tableEdgeImageTextBox.Size = new System.Drawing.Size(233, 20);
+            this.tableEdgeImageTextBox.TabIndex = 44;
+            this.tableEdgeImageTextBox.TextChanged += new System.EventHandler(this.TableEdgeImageTextBox_TextChanged);
+            // 
             // LegacyViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(599, 499);
+            this.ClientSize = new System.Drawing.Size(877, 499);
+            this.Controls.Add(this.tableEdgeImageLabel);
+            this.Controls.Add(this.tableEdgeImageTextBox);
+            this.Controls.Add(this.tableSurfaceImageLabel);
+            this.Controls.Add(this.tableSurfaceImageTextBox);
+            this.Controls.Add(this.tableCoverImageLabel);
+            this.Controls.Add(this.tableCoverImageTextBox);
             this.Controls.Add(this.newStartCheckBox);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.commentsTextBox);
@@ -587,5 +650,11 @@
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.CheckBox deletedCheckBox;
         private System.Windows.Forms.CheckBox newStartCheckBox;
+        private System.Windows.Forms.TextBox tableCoverImageTextBox;
+        private System.Windows.Forms.Label tableCoverImageLabel;
+        private System.Windows.Forms.Label tableSurfaceImageLabel;
+        private System.Windows.Forms.TextBox tableSurfaceImageTextBox;
+        private System.Windows.Forms.Label tableEdgeImageLabel;
+        private System.Windows.Forms.TextBox tableEdgeImageTextBox;
     }
 }

@@ -369,6 +369,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 Directory.CreateDirectory(modLocation + "/images/statusbaricons/");
             }
+            if (!Directory.Exists(modLocation + "/images/ui/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/ui/");
+            }
         }
 
         public void SaveMod()

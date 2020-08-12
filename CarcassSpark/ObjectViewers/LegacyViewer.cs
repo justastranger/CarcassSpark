@@ -451,5 +451,40 @@ namespace CarcassSpark.ObjectViewers
             if (newStartCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.newstart = false;
             if (newStartCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.newstart = null;
         }
+
+        private void TableCoverImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableCoverImageTextBox.Text != "")
+            {
+                displayedLegacy.tablecoverimage = tableCoverImageTextBox.Text;
+            } else
+            {
+                displayedLegacy.tablecoverimage = null;
+            }
+        }
+
+        private void TableSurfaceImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableSurfaceImageTextBox.Text != "")
+            {
+                displayedLegacy.tablesurfaceimage = tableSurfaceImageTextBox.Text;
+            }
+            else
+            {
+                displayedLegacy.tablesurfaceimage = null;
+            }
+        }
+
+        private void TableEdgeImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableEdgeImageTextBox.Text != "")
+            {
+                displayedLegacy.tableedgeimage = tableEdgeImageTextBox.Text;
+            }
+            else
+            {
+                displayedLegacy.tableedgeimage = null;
+            }
+        }
     }
 }
