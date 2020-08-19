@@ -196,8 +196,7 @@ namespace CarcassSpark.Flowchart
             if (recipe.signalimportantloop.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Signal Important Loop: " + recipe.signalimportantloop.Value));
             if (recipe.portaleffect != null) tempTVN.RootItems.Add(new TreeViewItem("Portal Effect: " + recipe.portaleffect));
             if (recipe.burnimage != null) tempTVN.RootItems.Add(new TreeViewItem("Burn Image: " + recipe.burnimage));
-            if (recipe.extends != null && recipe.extends.Count > 0) tempTVN.RootItems.Add(new TreeViewItem("Extends: " + recipe.extends));
-            if (recipe.deleted.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Extends: " + recipe.deleted.Value));
+            if (recipe.deleted.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Deleted: " + recipe.deleted.Value));
             if (recipe.craftable.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Craftable: " + recipe.craftable.Value.ToString()));
             if (recipe.hintonly.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Hint Only: " + recipe.hintonly.Value.ToString()));
             if (recipe.maxexecutions.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Max Executions: " + recipe.maxexecutions.Value.ToString()));

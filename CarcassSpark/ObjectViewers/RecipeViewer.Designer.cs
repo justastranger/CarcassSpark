@@ -73,7 +73,6 @@
             this.alternativerecipesLabel = new System.Windows.Forms.Label();
             this.linkedLabel = new System.Windows.Forms.Label();
             this.mutationsLabel = new System.Windows.Forms.Label();
-            this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.addAlternativeRecipeButton = new System.Windows.Forms.Button();
@@ -83,7 +82,6 @@
             this.maxExecutionsLabel = new System.Windows.Forms.Label();
             this.warmupNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.warmupLabel = new System.Windows.Forms.Label();
-            this.extendsLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
             this.actionIdLabel = new System.Windows.Forms.Label();
@@ -172,7 +170,6 @@
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
@@ -679,16 +676,6 @@
             this.mutationsLabel.Text = "Mutations";
             this.mutationsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
-            this.extendsTextBox.TabIndex = 0;
-            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
-            // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -783,16 +770,6 @@
             this.warmupLabel.Size = new System.Drawing.Size(47, 13);
             this.warmupLabel.TabIndex = 44;
             this.warmupLabel.Text = "Warmup";
-            // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.extendsLabel.Location = new System.Drawing.Point(0, 0);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 45;
-            this.extendsLabel.Text = "Extends";
             // 
             // idLabel
             // 
@@ -1569,8 +1546,6 @@
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.extendsLabel);
-            this.panel12.Controls.Add(this.extendsTextBox);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(906, 3);
             this.panel12.Name = "panel12";
@@ -1668,8 +1643,6 @@
             this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1718,7 +1691,6 @@
         private System.Windows.Forms.Label alternativerecipesLabel;
         private System.Windows.Forms.Label linkedLabel;
         private System.Windows.Forms.Label mutationsLabel;
-        private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button addAlternativeRecipeButton;
@@ -1728,7 +1700,6 @@
         private System.Windows.Forms.Label maxExecutionsLabel;
         private System.Windows.Forms.NumericUpDown warmupNumericUpDown;
         private System.Windows.Forms.Label warmupLabel;
-        private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;
         private System.Windows.Forms.Label actionIdLabel;

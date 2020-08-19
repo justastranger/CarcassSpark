@@ -45,7 +45,6 @@ namespace CarcassSpark.ObjectViewers
             actionIdTextBox.ReadOnly = !editing;
             endingTextBox.ReadOnly = !editing;
             burnimageTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
             startdescriptionTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
@@ -112,10 +111,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Recipe recipe)
         {
-            if (recipe.extends != null)
-            {
-                extendsTextBox.Text = recipe.extends[0];
-            }
             if (recipe.id != null) idTextBox.Text = recipe.id;
             if (recipe.label != null) labelTextBox.Text = recipe.label;
             if (recipe.actionId != null) actionIdTextBox.Text = recipe.actionId;
@@ -1135,8 +1130,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (extendsTextBox.Text == "") displayedRecipe.extends = null;
-            else displayedRecipe.extends = new List<string> { extendsTextBox.Text };
+            
         }
 
         private void WarmupNumericUpDown_ValueChanged(object sender, EventArgs e)

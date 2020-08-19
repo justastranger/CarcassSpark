@@ -44,7 +44,6 @@
             this.setAsPrependToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsAppendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.isHiddenCheckBox = new System.Windows.Forms.CheckBox();
@@ -52,7 +51,6 @@
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
             this.iconLabel = new System.Windows.Forms.Label();
-            this.extendsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentTextBox = new System.Windows.Forms.TextBox();
@@ -186,15 +184,6 @@
             this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
             this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.SetAsRemoveToolStripMenuItem_Click);
             // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Location = new System.Drawing.Point(146, 141);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(134, 20);
-            this.extendsTextBox.TabIndex = 7;
-            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
-            // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -268,15 +257,6 @@
             this.iconLabel.TabIndex = 15;
             this.iconLabel.Text = "Icon";
             // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(143, 126);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 16;
-            this.extendsLabel.Text = "Extends";
-            // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
@@ -348,7 +328,6 @@
             this.Controls.Add(this.commentTextBox);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.iconLabel);
             this.Controls.Add(this.labelLabel);
             this.Controls.Add(this.idLabel);
@@ -356,7 +335,6 @@
             this.Controls.Add(this.isHiddenCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.inducesDataGridView);
             this.Controls.Add(this.inducesLabel);
             this.Controls.Add(this.descriptionTextBox);
@@ -388,7 +366,6 @@
         private System.Windows.Forms.DataGridView inducesDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn recipeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn chance;
-        private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox isHiddenCheckBox;
@@ -396,7 +373,6 @@
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;
         private System.Windows.Forms.Label iconLabel;
-        private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inducesAdditional;
         private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;

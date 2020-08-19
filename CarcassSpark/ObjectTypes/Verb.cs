@@ -16,17 +16,14 @@ namespace CarcassSpark.ObjectTypes
         public bool? atStart, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Slot slot;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, string comments, List<string> extends, bool? atStart, bool? deleted, Slot slot)
+        public Verb(string id, string label, string description, string comments, bool? atStart, bool? deleted, Slot slot)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.comments = comments;
-            this.extends = extends;
             this.atStart = atStart;
             this.slot = slot;
             this.deleted = deleted;
@@ -44,7 +41,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Verb Copy()
         {
-            return new Verb(id, label, description, comments, extends != null ? new List<string>(extends) : null, atStart, deleted, slot);
+            return new Verb(id, label, description, comments, atStart, deleted, slot);
         }
     }
 }

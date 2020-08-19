@@ -36,8 +36,6 @@ namespace CarcassSpark.ObjectTypes
         public int? animframes, lifetime;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? unique, resaturate, deleted;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Induces> induces;
@@ -53,7 +51,7 @@ namespace CarcassSpark.ObjectTypes
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
                        Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes,
-                       int? lifetime, string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate)
+                       int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate)
         {
             // necessary
             this.id = id;
@@ -92,15 +90,13 @@ namespace CarcassSpark.ObjectTypes
             this.resaturate = resaturate;
             // not necessary, always null when lifetime is
             this.decayTo = decayTo;
-            // This is only present in modded elements
-            this.extends = extends;
             // This is how element templating is done
             this.inherits = inherits;
         }
         
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
-                       List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers, List<string> extends,
+                       List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers,
                        string decayTo, int? lifetime, bool? unique, int? animframes,
                        string uniquenessgroup, string inherits)
         {
@@ -112,7 +108,6 @@ namespace CarcassSpark.ObjectTypes
             this.aspects = aspects;
             this.slots = slots;
             this.xtriggers = xtriggers;
-            this.extends = extends;
             this.decayTo = decayTo;
             this.lifetime = lifetime;
             this.unique = unique;
@@ -133,7 +128,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Element Copy()
         {
-            return new Element(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, lifetime, decayTo, uniquenessgroup, extends != null ? new List<string>(extends) : null, resaturate);
+            return new Element(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, lifetime, decayTo, uniquenessgroup, resaturate);
         }
     }
     

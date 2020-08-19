@@ -36,7 +36,6 @@ namespace CarcassSpark.ObjectViewers
             if (legacy.description != null) descriptionTextBox.Text = legacy.description;
             if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
             if (legacy.comments != null) commentsTextBox.Text = legacy.comments;
-            if (legacy.extends != null && legacy.extends.Count > 0) extendsTextBox.Text = legacy.extends[0];
             if (legacy.image != null)
             {
                 imageTextBox.Text = legacy.image;
@@ -136,7 +135,6 @@ namespace CarcassSpark.ObjectViewers
             commentsTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             fromEndingTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
             startingVerbIdTextBox.ReadOnly = !editing;
             effectsDataGridView.ReadOnly = !editing;
@@ -410,15 +408,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (displayedLegacy.effects.ContainsKey(key)) displayedLegacy.effects.Remove(key);
                 if (displayedLegacy.effects.Count == 0) displayedLegacy.effects = null;
-            }
-        }
-
-        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            displayedLegacy.extends = new List<string> { extendsTextBox.Text };
-            if (displayedLegacy.extends[0] == "")
-            {
-                displayedLegacy.extends = null;
             }
         }
 

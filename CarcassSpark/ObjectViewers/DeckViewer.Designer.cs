@@ -56,8 +56,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.specPrependButton = new System.Windows.Forms.Button();
             this.specAppendButton = new System.Windows.Forms.Button();
-            this.extendsTextBox = new System.Windows.Forms.TextBox();
-            this.extendsLabel = new System.Windows.Forms.Label();
             this.specRemoveButton = new System.Windows.Forms.Button();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
@@ -262,6 +260,7 @@
             // specListView
             // 
             this.specListView.ContextMenuStrip = this.contextMenuStrip1;
+            this.specListView.HideSelection = false;
             this.specListView.Location = new System.Drawing.Point(286, 64);
             this.specListView.MultiSelect = false;
             this.specListView.Name = "specListView";
@@ -306,23 +305,6 @@
             this.specAppendButton.UseVisualStyleBackColor = true;
             this.specAppendButton.Click += new System.EventHandler(this.SpecAppendButton_Click);
             // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Location = new System.Drawing.Point(446, 25);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.extendsTextBox.TabIndex = 24;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
-            // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(443, 9);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 25;
-            this.extendsLabel.Text = "Extends";
-            // 
             // specRemoveButton
             // 
             this.specRemoveButton.Location = new System.Drawing.Point(480, 348);
@@ -354,8 +336,6 @@
             this.ClientSize = new System.Drawing.Size(558, 412);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.specRemoveButton);
-            this.Controls.Add(this.extendsLabel);
-            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.specAppendButton);
             this.Controls.Add(this.specPrependButton);
             this.Controls.Add(this.specListView);
@@ -417,8 +397,6 @@
         private System.Windows.Forms.ListView specListView;
         private System.Windows.Forms.Button specPrependButton;
         private System.Windows.Forms.Button specAppendButton;
-        private System.Windows.Forms.TextBox extendsTextBox;
-        private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Button specRemoveButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;

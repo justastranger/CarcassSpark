@@ -45,7 +45,6 @@
             this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setAsExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -59,7 +58,6 @@
             this.iconLabel = new System.Windows.Forms.Label();
             this.uniquenessgroupLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
-            this.extendsLabel = new System.Windows.Forms.Label();
             this.decayToLabel = new System.Windows.Forms.Label();
             this.addSlotButton = new System.Windows.Forms.Button();
             this.removeSlotButton = new System.Windows.Forms.Button();
@@ -216,15 +214,6 @@
             this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
             this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.SetAsRemoveToolStripMenuItem_Click);
             // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Location = new System.Drawing.Point(367, 171);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(136, 20);
-            this.extendsTextBox.TabIndex = 14;
-            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
-            // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
@@ -354,15 +343,6 @@
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 27;
             this.descriptionLabel.Text = "Description";
-            // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(364, 154);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 28;
-            this.extendsLabel.Text = "Extends";
             // 
             // decayToLabel
             // 
@@ -518,7 +498,6 @@
             this.Controls.Add(this.removeSlotButton);
             this.Controls.Add(this.addSlotButton);
             this.Controls.Add(this.decayToLabel);
-            this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.uniquenessgroupLabel);
             this.Controls.Add(this.iconLabel);
@@ -532,7 +511,6 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.descriptionTextBox);
-            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.aspectsDataGridView);
             this.Controls.Add(this.slotsLabel);
             this.Controls.Add(this.xtriggersLabel);
@@ -572,7 +550,6 @@
         private System.Windows.Forms.DataGridView aspectsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
-        private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
@@ -586,7 +563,6 @@
         private System.Windows.Forms.Label iconLabel;
         private System.Windows.Forms.Label uniquenessgroupLabel;
         private System.Windows.Forms.Label descriptionLabel;
-        private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.Label decayToLabel;
         private System.Windows.Forms.Button addSlotButton;
         private System.Windows.Forms.Button removeSlotButton;

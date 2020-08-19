@@ -21,12 +21,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             this.displayedAspect = aspect;
-            if(aspect.extends != null)
-            {
-                Aspect extendedAspect = Utilities.GetAspect(aspect.extends[0]);
-                extendsTextBox.Text = aspect.extends[0];
-                FillValues(extendedAspect);
-            }
             FillValues(aspect);
             if (SuccessCallback != null)
             {
@@ -45,7 +39,6 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly = !editing;
             iconTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
             commentTextBox.ReadOnly = !editing;
             isHiddenCheckBox.Enabled = editing;
             noartworkneededCheckBox.Enabled = editing;
@@ -79,7 +72,6 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
             if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
             if (aspect.comments != null) commentTextBox.Text = aspect.comments;
-            if (aspect.extends != null && aspect.extends.Count > 0) extendsTextBox.Text = aspect.extends[0];
             if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
             if (aspect.induces != null)
             {
@@ -209,15 +201,6 @@ namespace CarcassSpark.ObjectViewers
             if (displayedAspect.icon == "")
             {
                 displayedAspect.icon = null;
-            }
-        }
-
-        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            displayedAspect.extends = new List<string> { extendsTextBox.Text };
-            if (displayedAspect.extends[0] == "")
-            {
-                displayedAspect.label = null;
             }
         }
 

@@ -48,7 +48,6 @@ namespace CarcassSpark.ObjectViewers
                 slotsListView.Items.Add(verb.slot.id);
                 // slots.Add(verb.slot.id, verb.slot);
             }
-            if (verb.extends != null && verb.extends.Count > 0) extendsTextBox.Text = verb.extends[0];
         }
 
         void SetEditingMode(bool editing)
@@ -160,11 +159,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedVerb.comments = null;
             }
-        }
-
-        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            displayedVerb.extends = new List<string>() { extendsTextBox.Text };
         }
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)

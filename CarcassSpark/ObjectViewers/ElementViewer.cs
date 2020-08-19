@@ -48,7 +48,6 @@ namespace CarcassSpark.ObjectViewers
             resaturateCheckBox.Enabled = editing;
             uniquenessgroupTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
             inheritsTextBox.ReadOnly = !editing;
             // xtriggersDataGridView.AllowUserToAddRows = editing;
@@ -90,7 +89,6 @@ namespace CarcassSpark.ObjectViewers
             if (element.description != null) descriptionTextBox.Text = element.description;
             if (element.comments != null) commentsTextBox.Text = element.comments;
             if (element.inherits != null) inheritsTextBox.Text = element.inherits;
-            if (element.extends != null && element.extends.Count > 0) extendsTextBox.Text = element.extends[0];
             if (element.deleted.HasValue) deletedCheckBox.Checked = element.deleted.Value;
             if (element.slots != null)
             {
@@ -303,15 +301,6 @@ namespace CarcassSpark.ObjectViewers
             if (displayedElement.id == "")
             {
                 displayedElement.id = null;
-            }
-        }
-
-        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            displayedElement.extends = new List<string> { extendsTextBox.Text };
-            if (displayedElement.extends[0] == "")
-            {
-                displayedElement.extends = null;
             }
         }
 

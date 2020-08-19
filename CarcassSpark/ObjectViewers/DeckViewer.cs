@@ -70,7 +70,6 @@ namespace CarcassSpark.ObjectViewers
             if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
             if (deck.defaultcard != null) defaultCardTextBox.Text = deck.defaultcard;
             if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
-            if (deck.extends != null && deck.extends.Count > 0) extendsTextBox.Text = deck.extends[0];
             if (deck.deleted.HasValue) deletedCheckBox.Checked = deck.deleted.Value;
             if (deck.spec != null)
             {
@@ -156,7 +155,6 @@ namespace CarcassSpark.ObjectViewers
             commentsTextBox.ReadOnly = !editing;
             resetOnExhaustionCheckBox.Enabled = editing;
             defaultCardTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
             drawsNumericUpDown.Enabled = editing;
             drawmessagesDataGridView.ReadOnly = !editing;
             drawmessagesDataGridView.AllowUserToAddRows = editing;
@@ -351,15 +349,6 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.spec_append.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
-            }
-        }
-
-        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            displayedDeck.extends = new List<string> { extendsTextBox.Text };
-            if (displayedDeck.extends[0] == "")
-            {
-                displayedDeck.extends = null;
             }
         }
 

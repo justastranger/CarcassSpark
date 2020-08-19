@@ -67,8 +67,6 @@
             this.statusBarElementsLabel2 = new System.Windows.Forms.Label();
             this.addStatusBarElementButton = new System.Windows.Forms.Button();
             this.removeStatusBarElementButton = new System.Windows.Forms.Button();
-            this.extendsLabel = new System.Windows.Forms.Label();
-            this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
@@ -429,23 +427,6 @@
             this.removeStatusBarElementButton.UseVisualStyleBackColor = true;
             this.removeStatusBarElementButton.Click += new System.EventHandler(this.RemoveStatusBarElementButton_Click);
             // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Location = new System.Drawing.Point(675, 9);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 34;
-            this.extendsLabel.Text = "Extends";
-            // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Location = new System.Drawing.Point(678, 25);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.extendsTextBox.TabIndex = 35;
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
-            // 
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
@@ -558,8 +539,6 @@
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.commentsLabel);
-            this.Controls.Add(this.extendsTextBox);
-            this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.removeStatusBarElementButton);
             this.Controls.Add(this.addStatusBarElementButton);
             this.Controls.Add(this.statusBarElementsLabel2);
@@ -644,8 +623,6 @@
         private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
-        private System.Windows.Forms.Label extendsLabel;
-        private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.CheckBox deletedCheckBox;

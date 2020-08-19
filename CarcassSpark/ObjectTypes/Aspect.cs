@@ -26,14 +26,14 @@ namespace CarcassSpark.ObjectTypes
                       Dictionary<string, List<XTrigger>> xtriggers,
                       Dictionary<string, List<XTrigger>> xtriggers_extend,
                       List<string> xtriggers_remove, int? animframes, int? lifetime,
-                      string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate,
+                      string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
                       List<Induces> induces_prepend, List<Induces> induces_append,
                       List<string> induces_remove, bool? isAspect) : base(id, label, description,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
                           aspects_remove, slots, slots_prepend, slots_append, slots_remove,
                           xtriggers, xtriggers_extend, xtriggers_remove, animframes, lifetime,
-                          decayTo, uniquenessgroup, extends, resaturate)
+                          decayTo, uniquenessgroup, resaturate)
         {
             // optional
             this.isAspect = isAspect;
@@ -55,7 +55,7 @@ namespace CarcassSpark.ObjectTypes
         
         new public Aspect Copy()
         {
-            return new Aspect(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, lifetime, decayTo, uniquenessgroup, extends != null ? new List<string>(extends) : null, resaturate, isHidden, noartneeded, induces != null ? new List<Induces>(induces) : null, induces_prepend != null ? new List<Induces>(induces_prepend) : null, induces_append != null ? new List<Induces>(induces_append) : null, induces_remove != null ? new List<string>(induces_remove) : null, isAspect);
+            return new Aspect(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, lifetime, decayTo, uniquenessgroup, resaturate, isHidden, noartneeded, induces != null ? new List<Induces>(induces) : null, induces_prepend != null ? new List<Induces>(induces_prepend) : null, induces_append != null ? new List<Induces>(induces_append) : null, induces_remove != null ? new List<string>(induces_remove) : null, isAspect);
         }
     }
 }
