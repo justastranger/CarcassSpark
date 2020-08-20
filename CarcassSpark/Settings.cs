@@ -88,6 +88,17 @@ namespace CarcassSpark
             return settings["previousMods"].ToObject<List<string>>();
         }
 
+        public static void RemovePreviousMod(string path)
+        {
+            List<string> tmp = settings["previousMods"].ToObject<List<string>>();
+            if (tmp.Contains(path))
+            {
+                tmp.RemoveAll(str => str == path);
+                settings["previousMods"] = JArray.FromObject(tmp);
+                SaveSettings();
+            }
+        }
+
         private void SaveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings["saveCleanedVanillaContent"] = saveCleanedVanillaContentCheckBox.Checked;
