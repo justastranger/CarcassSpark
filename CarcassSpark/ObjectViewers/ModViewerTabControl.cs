@@ -797,10 +797,10 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from aspect in aspectsList
-                    where regex.IsMatch(aspect.id)
-                       || regex.IsMatch(aspect.label)
-                       || regex.IsMatch(aspect.description)
-                       || regex.IsMatch(aspect.comments)
+                    where (aspect.id != null && regex.IsMatch(aspect.id))
+                       || (aspect.label != null && regex.IsMatch(aspect.label))
+                       || (aspect.description != null && regex.IsMatch(aspect.description))
+                       || (aspect.comments != null && regex.IsMatch(aspect.comments))
                     select aspect).ToArray();
         }
 
@@ -808,10 +808,10 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from element in elementsList
-                    where regex.IsMatch(element.id)
-                       || regex.IsMatch(element.label)
-                       || regex.IsMatch(element.description)
-                       || regex.IsMatch(element.comments)
+                    where (element.id != null && regex.IsMatch(element.id))
+                       || (element.label != null && regex.IsMatch(element.label))
+                       || (element.id != null && regex.IsMatch(element.id))
+                       || (element.comments != null && regex.IsMatch(element.comments))
                     select element).ToArray();
         }
 
@@ -819,11 +819,11 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from recipe in recipesList
-                    where regex.IsMatch(recipe.id) 
-                       || regex.IsMatch(recipe.label) 
-                       || regex.IsMatch(recipe.description)
-                       || regex.IsMatch(recipe.startdescription)
-                       || regex.IsMatch(recipe.comments)
+                    where (recipe.id != null && regex.IsMatch(recipe.id))
+                       || (recipe.label != null && regex.IsMatch(recipe.label)) 
+                       || (recipe.description != null && regex.IsMatch(recipe.description))
+                       || (recipe.startdescription != null && regex.IsMatch(recipe.startdescription))
+                       || (recipe.comments != null && regex.IsMatch(recipe.comments))
                     select recipe).ToArray();
         }
 
@@ -831,10 +831,10 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from deck in decksList
-                    where regex.IsMatch(deck.id)
-                       || regex.IsMatch(deck.label)
-                       || regex.IsMatch(deck.description)
-                       || regex.IsMatch(deck.comments)
+                    where (deck.id != null && regex.IsMatch(deck.id))
+                       || (deck.label != null && regex.IsMatch(deck.label))
+                       || (deck.description != null && regex.IsMatch(deck.description))
+                       || (deck.comments != null && regex.IsMatch(deck.comments))
                     select deck).ToArray();
         }
 
@@ -842,11 +842,11 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from legacy in recipesList
-                    where regex.IsMatch(legacy.id)
-                       || regex.IsMatch(legacy.label)
-                       || regex.IsMatch(legacy.description)
-                       || regex.IsMatch(legacy.startdescription)
-                       || regex.IsMatch(legacy.comments)
+                    where (legacy.id != null && regex.IsMatch(legacy.id))
+                       || (legacy.label != null && regex.IsMatch(legacy.label))
+                       || (legacy.description != null && regex.IsMatch(legacy.description))
+                       || (legacy.startdescription != null && regex.IsMatch(legacy.startdescription))
+                       || (legacy.comments != null && regex.IsMatch(legacy.comments))
                     select legacy).ToArray();
         }
 
@@ -854,10 +854,10 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from ending in recipesList
-                    where regex.IsMatch(ending.id)
-                       || regex.IsMatch(ending.label)
-                       || regex.IsMatch(ending.description)
-                       || regex.IsMatch(ending.comments)
+                    where (ending.id != null && regex.IsMatch(ending.id))
+                       || (ending.label != null && regex.IsMatch(ending.label))
+                       || (ending.description != null && regex.IsMatch(ending.description))
+                       || (ending.comments != null && regex.IsMatch(ending.comments))
                     select ending).ToArray();
         }
 
@@ -865,10 +865,10 @@ namespace CarcassSpark.ObjectViewers
         {
             Regex regex = new Regex(searchPattern);
             return (from verb in recipesList
-                    where regex.IsMatch(verb.id)
-                       || regex.IsMatch(verb.label)
-                       || regex.IsMatch(verb.description)
-                       || regex.IsMatch(verb.comments)
+                    where (verb.id != null && regex.IsMatch(verb.id))
+                       || (verb.label != null && regex.IsMatch(verb.label))
+                       || (verb.description != null && regex.IsMatch(verb.description))
+                       || (verb.comments != null && regex.IsMatch(verb.comments))
                     select verb).ToArray();
         }
 
