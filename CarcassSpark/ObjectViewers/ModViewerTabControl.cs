@@ -542,15 +542,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
+            if (!(aspectsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(aspectsListBox.SelectedItem.ToString()), AspectsList_Assign);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id), AspectsList_Assign);
                 av.Show();
             }
             else
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(aspectsListBox.SelectedItem.ToString()), null);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id), null);
                 av.Show();
             }
         }
@@ -563,15 +563,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (decksListBox.SelectedItem == null) return;
+            if (!(decksListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(decksListBox.SelectedItem.ToString()), DecksList_Assign);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id), DecksList_Assign);
                 dv.Show();
             }
             else
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(decksListBox.SelectedItem.ToString()), null);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id), null);
                 dv.Show();
             }
         }
@@ -584,15 +584,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(elementsListBox.SelectedItem.ToString()), ElementsList_Assign);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id), ElementsList_Assign);
                 ev.Show();
             }
             else
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(elementsListBox.SelectedItem.ToString()), null);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id), null);
                 ev.Show();
             }
         }
@@ -605,15 +605,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (endingsListBox.SelectedItem == null) return;
+            if (!(endingsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(endingsListBox.SelectedItem.ToString()), EndingsList_Assign);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id), EndingsList_Assign);
                 ev.Show();
             }
             else
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(endingsListBox.SelectedItem.ToString()), null);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id), null);
                 ev.Show();
             }
         }
@@ -626,15 +626,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (legaciesListBox.SelectedItem == null) return;
+            if (!(legaciesListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(legaciesListBox.SelectedItem.ToString()), LegaciesList_Assign);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id), LegaciesList_Assign);
                 lv.Show();
             }
             else
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(legaciesListBox.SelectedItem.ToString()), null);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id), null);
                 lv.Show();
             }
         }
@@ -647,15 +647,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (recipesListBox.SelectedItem == null) return;
+            if (!(recipesListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(recipesListBox.SelectedItem.ToString()), RecipesList_Assign);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id), RecipesList_Assign);
                 rv.Show();
             }
             else
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(recipesListBox.SelectedItem.ToString()), null);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id), null);
                 rv.Show();
             }
         }
@@ -668,15 +668,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbsListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (verbsListBox.SelectedItem == null) return;
+            if (!(verbsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(verbsListBox.SelectedItem.ToString()), VerbsList_Assign);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id), VerbsList_Assign);
                 vv.Show();
             }
             else
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(verbsListBox.SelectedItem.ToString()), null);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id), null);
                 vv.Show();
             }
         }
@@ -692,8 +692,8 @@ namespace CarcassSpark.ObjectViewers
             aspectsListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Aspects.Keys.ToList(), aspectsSearchTextBox.Text);
-                aspectsListBox.Items.AddRange(keysToAdd);
+                Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
+                aspectsListBox.Items.AddRange(aspectsToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -706,8 +706,8 @@ namespace CarcassSpark.ObjectViewers
             elementsListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Elements.Keys.ToList(), elementsSearchTextBox.Text);
-                elementsListBox.Items.AddRange(keysToAdd);
+                Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
+                elementsListBox.Items.AddRange(elementsToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -720,8 +720,8 @@ namespace CarcassSpark.ObjectViewers
             recipesListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Recipes.Keys.ToList(), recipesSearchTextBox.Text);
-                recipesListBox.Items.AddRange(keysToAdd);
+                Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
+                recipesListBox.Items.AddRange(recipesToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -734,8 +734,8 @@ namespace CarcassSpark.ObjectViewers
             decksListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Decks.Keys.ToList(), decksSearchTextBox.Text);
-                decksListBox.Items.AddRange(keysToAdd);
+                Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
+                decksListBox.Items.AddRange(decksToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -748,8 +748,8 @@ namespace CarcassSpark.ObjectViewers
             legaciesListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Legacies.Keys.ToList(), legaciesSearchTextBox.Text);
-                legaciesListBox.Items.AddRange(keysToAdd);
+                Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
+                legaciesListBox.Items.AddRange(legaciesToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -762,8 +762,8 @@ namespace CarcassSpark.ObjectViewers
             endingsListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Endings.Keys.ToList(), endingsSearchTextBox.Text);
-                endingsListBox.Items.AddRange(keysToAdd);
+                Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
+                endingsListBox.Items.AddRange(endingsToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -776,8 +776,8 @@ namespace CarcassSpark.ObjectViewers
             verbsListBox.Items.Clear();
             try
             {
-                string[] keysToAdd = SearchKeys(Content.Verbs.Keys.ToList(), verbsSearchTextBox.Text);
-                verbsListBox.Items.AddRange(keysToAdd);
+                Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
+                verbsListBox.Items.AddRange(verbsToAdd.Select(a => a.id).ToArray());
             }
             catch (Exception)
             {
@@ -793,13 +793,92 @@ namespace CarcassSpark.ObjectViewers
                     select id).ToArray();
         }
 
+        private Aspect[] SearchAspects(List<Aspect> aspectsList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from aspect in aspectsList
+                    where regex.IsMatch(aspect.id)
+                       || regex.IsMatch(aspect.label)
+                       || regex.IsMatch(aspect.description)
+                       || regex.IsMatch(aspect.comments)
+                    select aspect).ToArray();
+        }
+
+        private Element[] SearchElements(List<Element> elementsList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from element in elementsList
+                    where regex.IsMatch(element.id)
+                       || regex.IsMatch(element.label)
+                       || regex.IsMatch(element.description)
+                       || regex.IsMatch(element.comments)
+                    select element).ToArray();
+        }
+
+        private Recipe[] SearchRecipes(List<Recipe> recipesList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from recipe in recipesList
+                    where regex.IsMatch(recipe.id) 
+                       || regex.IsMatch(recipe.label) 
+                       || regex.IsMatch(recipe.description)
+                       || regex.IsMatch(recipe.startdescription)
+                       || regex.IsMatch(recipe.comments)
+                    select recipe).ToArray();
+        }
+
+        private Deck[] SearchDecks(List<Deck> decksList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from deck in decksList
+                    where regex.IsMatch(deck.id)
+                       || regex.IsMatch(deck.label)
+                       || regex.IsMatch(deck.description)
+                       || regex.IsMatch(deck.comments)
+                    select deck).ToArray();
+        }
+
+        private Legacy[] SearchLegacies(List<Legacy> recipesList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from legacy in recipesList
+                    where regex.IsMatch(legacy.id)
+                       || regex.IsMatch(legacy.label)
+                       || regex.IsMatch(legacy.description)
+                       || regex.IsMatch(legacy.startdescription)
+                       || regex.IsMatch(legacy.comments)
+                    select legacy).ToArray();
+        }
+
+        private Ending[] SearchEndings(List<Ending> recipesList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from ending in recipesList
+                    where regex.IsMatch(ending.id)
+                       || regex.IsMatch(ending.label)
+                       || regex.IsMatch(ending.description)
+                       || regex.IsMatch(ending.comments)
+                    select ending).ToArray();
+        }
+
+        private Verb[] SearchVerbs(List<Verb> recipesList, string searchPattern)
+        {
+            Regex regex = new Regex(searchPattern);
+            return (from verb in recipesList
+                    where regex.IsMatch(verb.id)
+                       || regex.IsMatch(verb.label)
+                       || regex.IsMatch(verb.description)
+                       || regex.IsMatch(verb.comments)
+                    select verb).ToArray();
+        }
+
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
+            if (!(aspectsListBox.SelectedItem is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                if (element.aspects != null && element.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()))
+                if (element.aspects != null && element.aspects.ContainsKey(id))
                 {
                     tmp.Add(element.id, element);
                 }
@@ -813,11 +892,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
+            if (!(aspectsListBox.SelectedItem is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                if (element.xtriggers != null && element.xtriggers.ContainsKey(aspectsListBox.SelectedItem.ToString()))
+                if (element.xtriggers != null && element.xtriggers.ContainsKey(id))
                 {
                     tmp.Add(element.id, element);
                 }
@@ -831,9 +910,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
+            if (!(aspectsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
-            string id = aspectsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.requirements != null)
@@ -861,15 +939,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
+            if (!(aspectsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.aspects != null && (recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0))
+                if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
-                else if (recipe.effects != null && (recipe.effects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && Convert.ToInt32(recipe.effects[aspectsListBox.SelectedItem.ToString()]) > 0))
+                else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -883,26 +961,30 @@ namespace CarcassSpark.ObjectViewers
         
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
-            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            if (!(aspectsListBox.SelectedItem is string id)) return;
+            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
                 // TODO foreach (Slot slot in element.slots) if (slot.requirements.contains(id)) tmp.add(element.id, element)
+                foreach (Slot slot in element.slots)
+                {
+                    if (slot.required.ContainsKey(id)) tmp.Add(element.id, element);
+                }
             }
             if (tmp.Count > 0)
             {
-                RecipesDictionaryResults rdr = new RecipesDictionaryResults(tmp);
-                rdr.Show();
+                ElementsDictionaryResults edr = new ElementsDictionaryResults(tmp);
+                edr.Show();
             }
         }
 
         private void ElementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                if (element.decayTo != null && element.decayTo == elementsListBox.SelectedItem.ToString())
+                if (element.decayTo == id)
                 {
                     tmp.Add(element.id, element);
                 }
@@ -916,9 +998,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatXtriggerIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
-            string id = elementsListBox.SelectedItem.ToString();
             foreach (Element element in Content.Elements.Values)
             {
                 if (element.xtriggers != null)
@@ -941,9 +1022,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
-            string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.requirements != null)
@@ -968,9 +1048,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
-            string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.effects != null && (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id)))
@@ -991,11 +1070,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
-                if (deck.spec != null && deck.spec.Contains(elementsListBox.SelectedItem.ToString()))
+                if (deck.spec != null && deck.spec.Contains(id))
                 {
                     tmp.Add(deck.id, deck);
                 }
@@ -1009,11 +1088,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
+            if (!(elementsListBox.SelectedItem is string id)) return;
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
-                if (legacy.effects != null && legacy.effects.ContainsKey(elementsListBox.SelectedItem.ToString()))
+                if (legacy.effects != null && legacy.effects.ContainsKey(id))
                 {
                     tmp.Add(legacy.id, legacy);
                 }
@@ -1027,20 +1106,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatLinkToThisRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListBox.SelectedItem == null) return;
+            if (!(recipesListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.linked != null) foreach (RecipeLink link in recipe.linked)
                     {
-                        if (link.id == recipesListBox.SelectedItem.ToString())
+                        if (link.id == id)
                         {
                             tmp.Add(recipe.id, recipe);
                         }
                     }
                 if (recipe.alt != null) foreach (RecipeLink link in recipe.alt)
                     {
-                        if (link.id == recipesListBox.SelectedItem.ToString())
+                        if (link.id == id)
                         {
                             tmp.Add(recipe.id, recipe);
                         }
@@ -1055,11 +1134,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListBox.SelectedItem == null) return;
+            if (!(decksListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(decksListBox.SelectedItem.ToString()) && recipe.deckeffects[decksListBox.SelectedItem.ToString()] > 0)
+                if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(id) && recipe.deckeffects[id] > 0)
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1073,11 +1152,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatCauseThisEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListBox.SelectedItem == null) return;
+            if (!(endingsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.ending != null && recipe.ending == endingsListBox.SelectedItem.ToString())
+                if (recipe.ending != null && recipe.ending == id)
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1091,11 +1170,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListBox.SelectedItem == null) return;
+            if (!(verbsListBox.SelectedItem is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.actionId != null && recipe.actionId == verbsListBox.SelectedItem.ToString())
+                if (recipe.actionId != null && recipe.actionId == id)
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1109,13 +1188,13 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListBox.SelectedItem == null) return;
+            if (!(verbsListBox.SelectedItem is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
                 if (element.slots != null) foreach (Slot slot in element.slots)
                     {
-                        if (slot.actionId == verbsListBox.SelectedItem.ToString() && !tmp.ContainsKey(element.id)) tmp.Add(element.id, element);
+                        if (slot.actionId == id) tmp[element.id] = element;
                     }
             }
             if (tmp.Count > 0)
@@ -1127,9 +1206,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListBox.SelectedItem == null) return;
-            Recipe selectedRecipe = Content.GetRecipe(recipesListBox.SelectedItem.ToString());
-            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(selectedRecipe);
+            if (!(recipesListBox.SelectedItem is string id)) return;
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id));
             rfv.Show();
         }
 
@@ -1149,75 +1227,71 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
-            string selected = (string)aspectsListBox.SelectedItem;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                aspectsListBox.Items.Remove(selected);
-                Content.Aspects.Remove(selected);
+                aspectsListBox.Items.Remove(id);
+                Content.Aspects.Remove(id);
             }
         }
 
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
-            string selected = (string)elementsListBox.SelectedItem;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                elementsListBox.Items.Remove(selected);
-                Content.Elements.Remove(selected);
+                elementsListBox.Items.Remove(id);
+                Content.Elements.Remove(id);
             }
         }
 
         private void DeleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListBox.SelectedItem == null) return;
-            string selected = (string)recipesListBox.SelectedItem;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(recipesListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                recipesListBox.Items.Remove(selected);
-                Content.Recipes.Remove(selected);
+                recipesListBox.Items.Remove(id);
+                Content.Recipes.Remove(id);
             }
         }
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListBox.SelectedItem == null) return;
-            string selected = (string)decksListBox.SelectedItem;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(decksListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                decksListBox.Items.Remove(selected);
-                Content.Decks.Remove(selected);
+                decksListBox.Items.Remove(id);
+                Content.Decks.Remove(id);
             }
         }
 
         private void DeleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selected = legaciesListBox.SelectedItem as string;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(legaciesListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                legaciesListBox.Items.Remove(selected);
-                Content.Legacies.Remove(selected);
+                legaciesListBox.Items.Remove(id);
+                Content.Legacies.Remove(id);
             }
         }
 
         private void DeleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selected = endingsListBox.SelectedItem as string;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(endingsListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                endingsListBox.Items.Remove(selected);
-                Content.Endings.Remove(selected);
+                endingsListBox.Items.Remove(id);
+                Content.Endings.Remove(id);
             }
         }
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selected = verbsListBox.SelectedItem as string;
-            if (ConfirmDelete(selected) == DialogResult.Yes)
+            if (!(verbsListBox.SelectedItem is string id)) return;
+            if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                verbsListBox.Items.Remove(selected);
-                Content.Verbs.Remove(selected);
+                verbsListBox.Items.Remove(id);
+                Content.Verbs.Remove(id);
             }
         }
 
