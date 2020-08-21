@@ -112,5 +112,14 @@ namespace CarcassSpark.ObjectViewers
                 catalyst = null;
             }
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("This will delete this entire entry, are you sure you want to do this?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                displayedXTriggers = null;
+                Close();
+            }
+        }
     }
 }

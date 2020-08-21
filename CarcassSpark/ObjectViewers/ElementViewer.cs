@@ -218,33 +218,72 @@ namespace CarcassSpark.ObjectViewers
 
         private void XtriggersListView_DoubleClick(object sender, EventArgs e)
         {
-            if (xtriggersListView.SelectedItems.Count != 1) return;
+            // multiselect is false, so SelectedItems.Count can only ever be 0 or 1
+            if (xtriggersListView.SelectedItems.Count == 0) return;
             string id = xtriggersListView.SelectedItems[0].Text;
-            List<XTrigger> xTriggers = new List<XTrigger>();
-            if (xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryExtendStyle.BackColor)
+            Color backColor = xtriggersListView.SelectedItems[0].BackColor;
+            XTriggerViewer xtv;
+            // you know, I'd be really upset if the way I handed off the xtrigger entry back and forth was actually passing a reference back and forth, this whole section of code would be pointless if it was
+            if (backColor == Utilities.DictionaryExtendStyle.BackColor)
             {
-                xTriggers = displayedElement.xtriggers_extend[id];
+                xtv = new XTriggerViewer(id, displayedElement.xtriggers_extend[id], editing, backColor == Utilities.DictionaryRemoveStyle.BackColor);
+                if (xtv.ShowDialog() == DialogResult.OK)
+                {
+                    // if it returns null, we're deleting it from the xtrigger viewer
+                    if (xtv != null)
+                    {
+                        // otherwise, check to see if the catalyst id has been changed
+                        if (xtv.catalyst != xtriggersListView.SelectedItems[0].Text)
+                        {
+                            // if so, remove the copy under the old name
+                            displayedElement.xtriggers_extend.Remove(id);
+                            // change the displayed name in the listview
+                            xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
+                            // and add the xtrigger entry under the new id
+                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
+                        }
+                        else
+                        {
+                            // otherwise just swap out the entry
+                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
+                        }
+                    }
+                    else
+                    {
+                        // just remove everything, C# will clean up after us
+                        displayedElement.xtriggers_extend.Remove(id);
+                        xtriggersListView.Items.Remove(xtriggersListView.SelectedItems[0]);
+                    }
+                }
             }
-            else if (xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryRemoveStyle.BackColor)
+            else if (backColor == Utilities.DictionaryRemoveStyle.BackColor)
             {
                 // There isn't a List<XTrigger> here, so display nothing
             }
             else
             {
-                xTriggers = displayedElement.xtriggers[id];
-            }
-            XTriggerViewer xtv = new XTriggerViewer(id, xTriggers, editing, xtriggersListView.SelectedItems[0].BackColor == Utilities.DictionaryRemoveStyle.BackColor);
-            if (xtv.ShowDialog() == DialogResult.OK)
-            {
-                if (xtv.catalyst != xtriggersListView.SelectedItems[0].Text)
+                // pretend the above comments were in their respective places here
+                xtv = new XTriggerViewer(id, displayedElement.xtriggers[id], editing, backColor == Utilities.DictionaryRemoveStyle.BackColor);
+                if (xtv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedElement.xtriggers.Remove(xtriggersListView.SelectedItems[0].Text);
-                    xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
-                    displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
-                }
-                else
-                {
-                    displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                    if (xtv != null)
+                    {
+                        if (xtv.catalyst != xtriggersListView.SelectedItems[0].Text)
+                        {
+                            displayedElement.xtriggers.Remove(xtriggersListView.SelectedItems[0].Text);
+                            xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
+                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                        }
+                        else
+                        {
+                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                        }
+                    }
+                    else
+                    {
+                        displayedElement.xtriggers_extend.Remove(id);
+                        xtriggersListView.Items.Remove(xtriggersListView.SelectedItems[0]);
+                    }
                 }
             }
         }

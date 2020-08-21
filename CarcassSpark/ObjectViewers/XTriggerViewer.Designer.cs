@@ -39,6 +39,7 @@
             this.xtriggersLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersMorphEffect = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.xTriggersLabel = new System.Windows.Forms.Label();
+            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +63,9 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 270);
+            this.okButton.Location = new System.Drawing.Point(12, 267);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(33, 23);
+            this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 10;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -73,9 +74,9 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(405, 270);
+            this.cancelButton.Location = new System.Drawing.Point(379, 267);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(49, 23);
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 11;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -93,7 +94,7 @@
             this.xtriggersMorphEffect});
             this.xtriggersDataGridView.Location = new System.Drawing.Point(12, 51);
             this.xtriggersDataGridView.Name = "xtriggersDataGridView";
-            this.xtriggersDataGridView.Size = new System.Drawing.Size(442, 213);
+            this.xtriggersDataGridView.Size = new System.Drawing.Size(442, 210);
             this.xtriggersDataGridView.TabIndex = 12;
             // 
             // xtriggersResult
@@ -126,11 +127,22 @@
             // xTriggersLabel
             // 
             this.xTriggersLabel.AutoSize = true;
-            this.xTriggersLabel.Location = new System.Drawing.Point(194, 35);
+            this.xTriggersLabel.Location = new System.Drawing.Point(207, 35);
             this.xTriggersLabel.Name = "xTriggersLabel";
             this.xTriggersLabel.Size = new System.Drawing.Size(52, 13);
             this.xTriggersLabel.TabIndex = 13;
             this.xTriggersLabel.Text = "XTriggers";
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.deleteButton.Location = new System.Drawing.Point(197, 267);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 14;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // XTriggerViewer
             // 
@@ -139,6 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(466, 302);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.xTriggersLabel);
             this.Controls.Add(this.xtriggersDataGridView);
             this.Controls.Add(this.cancelButton);
@@ -167,5 +180,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn xtriggersChance;
         private System.Windows.Forms.DataGridViewTextBoxColumn xtriggersLevel;
         private System.Windows.Forms.DataGridViewComboBoxColumn xtriggersMorphEffect;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
