@@ -545,7 +545,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(aspectsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id), AspectsList_Assign);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
                 av.Show();
             }
             else
@@ -566,7 +566,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(decksListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id), DecksList_Assign);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
                 dv.Show();
             }
             else
@@ -587,7 +587,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(elementsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id), ElementsList_Assign);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
                 ev.Show();
             }
             else
@@ -608,7 +608,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(endingsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id), EndingsList_Assign);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
                 ev.Show();
             }
             else
@@ -629,7 +629,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(legaciesListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id), LegaciesList_Assign);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign);
                 lv.Show();
             }
             else
@@ -650,7 +650,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(recipesListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id), RecipesList_Assign);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
                 rv.Show();
             }
             else
@@ -671,7 +671,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(verbsListBox.SelectedItem is string id)) return;
             if (editMode)
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id), VerbsList_Assign);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
                 vv.Show();
             }
             else
