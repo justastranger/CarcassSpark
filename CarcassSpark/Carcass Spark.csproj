@@ -195,7 +195,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectTypes\Manifest.cs" />
+    <Compile Include="ObjectTypes\Synopsis.cs" />
     <Compile Include="ObjectViewers\SynopsisViewer.cs">
       <SubType>Form</SubType>
     </Compile>
