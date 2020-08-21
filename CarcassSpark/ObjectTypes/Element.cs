@@ -35,7 +35,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? animframes, lifetime;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? unique, resaturate, deleted;
+        public bool? unique, resaturate, deleted, isAspect, isHidden, noartneeded;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Induces> induces;
@@ -128,7 +128,18 @@ namespace CarcassSpark.ObjectTypes
 
         public Element Copy()
         {
-            return new Element(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, lifetime, decayTo, uniquenessgroup, resaturate);
+            return new Element(id, label, description, inherits, unique, deleted, icon, comments,
+                               aspects != null ? new Dictionary<string, int>(aspects) : null,
+                               aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null,
+                               aspects_remove != null ? new List<string>(aspects_remove) : null,
+                               slots != null ? new List<Slot>(slots) : null,
+                               slots_prepend != null ? new List<Slot>(slots_prepend) : null,
+                               slots_append != null ? new List<Slot>(slots_append) : null,
+                               slots_remove != null ? new List<string>(slots_remove) : null,
+                               xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null,
+                               xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null,
+                               xtriggers_remove != null ? new List<string>(xtriggers_remove) : null,
+                               animframes, lifetime, decayTo, uniquenessgroup, resaturate);
         }
     }
     

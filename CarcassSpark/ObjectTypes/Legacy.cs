@@ -85,7 +85,20 @@ namespace CarcassSpark.ObjectTypes
 
         public Legacy Copy()
         {
-            return new Legacy(id, label, description, startdescription, comments, tablecoverimage, tablesurfaceimage, tableedgeimage, effects != null ? new Dictionary<string, int>(effects) : null, image, fromEnding, availableWithoutEndingMatch, newstart, startingVerbId, excludesOnEnding != null ? new List<string>(excludesOnEnding) : null, excludesOnEnding_prepend != null ? new List<string>(excludesOnEnding_prepend) : null, excludesOnEnding_append != null ? new List<string>(excludesOnEnding_append) : null, excludesOnEnding_remove != null ? new List<string>(excludesOnEnding_remove) : null, effects_extend != null ? new Dictionary<string, int>(effects_extend) : null, effects_remove != null ? new List<string>(effects_remove) : null, statusbarelements != null ? new List<string>(statusbarelements) : null, statusbarelements_prepend != null ? new List<string>(statusbarelements_prepend) : null, statusbarelements_append != null ? new List<string>(statusbarelements_append) : null, statusbarelements_remove != null ? new List<string>(statusbarelements_remove) : null, deleted);
+            return new Legacy(id, label, description, startdescription, comments, tablecoverimage, tablesurfaceimage,
+                              tableedgeimage, effects != null ? new Dictionary<string, int>(effects) : null, image,
+                              fromEnding, availableWithoutEndingMatch, newstart, startingVerbId,
+                              excludesOnEnding != null ? new List<string>(excludesOnEnding) : null,
+                              excludesOnEnding_prepend != null ? new List<string>(excludesOnEnding_prepend) : null,
+                              excludesOnEnding_append != null ? new List<string>(excludesOnEnding_append) : null,
+                              excludesOnEnding_remove != null ? new List<string>(excludesOnEnding_remove) : null,
+                              effects_extend != null ? new Dictionary<string, int>(effects_extend) : null,
+                              effects_remove != null ? new List<string>(effects_remove) : null,
+                              statusbarelements != null ? new List<string>(statusbarelements) : null,
+                              statusbarelements_prepend != null ? new List<string>(statusbarelements_prepend) : null,
+                              statusbarelements_append != null ? new List<string>(statusbarelements_append) : null,
+                              statusbarelements_remove != null ? new List<string>(statusbarelements_remove) : null,
+                              deleted);
         }
     }
 }
