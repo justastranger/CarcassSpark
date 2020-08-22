@@ -35,7 +35,14 @@ namespace CarcassSpark
         public static void SaveSettings()
         {
             // Takes the contents of the previousMods setting, validates it to remove duplicates and paths without a synopsis file
-            settings["previousMods"] = HasPreviousMods() ? JArray.FromObject(ValidatePreviousMods(GetPreviousMods())) : null;
+            if (HasPreviousMods())
+            {
+                settings["previousMods"] = JArray.FromObject(ValidatePreviousMods(GetPreviousMods()));
+            }
+            else
+            {
+                if (settings.ContainsKey("previousMods")) settings.Remove("previousMods");
+            }
 
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
             {
@@ -85,7 +92,7 @@ namespace CarcassSpark
 
         public static bool HasPreviousMods()
         {
-            return settings["previousMods"] != null;
+            return settings["previousMods"] != null && settings["previousMods"].Count() > 0;
         }
 
         public static List<string> GetPreviousMods()
