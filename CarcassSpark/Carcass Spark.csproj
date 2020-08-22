@@ -202,12 +202,6 @@
     <Compile Include="ObjectViewers\SynopsisViewer.Designer.cs">
       <DependentUpon>SynopsisViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectViewers\ModViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ObjectViewers\ModViewer.Designer.cs">
-      <DependentUpon>ModViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="ObjectViewers\MutationViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,9 +315,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\SynopsisViewer.resx">
       <DependentUpon>SynopsisViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ObjectViewers\ModViewer.resx">
-      <DependentUpon>ModViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\MutationViewer.resx">
       <DependentUpon>MutationViewer.cs</DependentUpon>
