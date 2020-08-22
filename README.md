@@ -1,7 +1,7 @@
 # Installation
 Acquire the binaries (by any means necessary) and place them in your Cultist Simulator installation Folder.
 
-The latest release can be found [here](https://github.com/justastranger/CarcassSpark/releases/new).
+The latest release can be found [here](https://github.com/justastranger/CarcassSpark/releases/).
 
 If you downloaded it through Steam like I did, the correct folder will be in `steamapps/common/Cultist Simulator`.
 
@@ -23,36 +23,45 @@ Currently Supported:
        - Induces$append
    - Elements
      - Aspects
-       - Aspects$extend
+       - Aspects$add
        - Aspects$remove
      - XTriggers (aka Cross Triggers)
-       - XTriggers$extend
+       - XTriggers$add
        - XTriggers$remove
      - Slots
        - Slots$prepend
        - Slots$append
    - Recipes
      - Requirements
-       - Requirements$extend
+       - Requirements$add
        - Requirements$remove
      - Table Requirements
-       - tablereqs$extend
+       - tablereqs$add
        - tablereqs$remove
      - Extant Requirements
-       - extantreqs$extend
+       - extantreqs$add
        - extantreqs$remove
      - Effects
-       - Effects$extend
+       - Effects$add
        - Effects$remove
      - Aspect Effects
-       - Aspects$extend
+       - Aspects$add
        - Aspects$remove
      - Deck Effects
-       - deckeffect$extend
-       - deckeffect$remove
+       - deckeffects$add
+       - deckeffects$remove
+     - Purge
+       - Purge$add
+       - Purge$remove
+     - Halt Verb
+       - HaltVerb$add
+       - HaltVerb$remove
+     - Delete Verb
+       - DeleteVerb$add
+       - DeleteVerb$remove
      - Alternative Recipe Links
-       - alternativerecipes$prepend
-       - alternativerecipes$append
+       - alt$prepend
+       - alt$append
      - Linked Recipe Links
        - linked$prepend
        - linked$prepend
@@ -63,7 +72,7 @@ Currently Supported:
      - Internal Decks
    - Decks
      - DrawMessages
-       - drawmessages$extend
+       - drawmessages$add
        - drawmessages$remove
      - Spec (The actual Deck)
        - spec$prepend
@@ -71,15 +80,17 @@ Currently Supported:
        - spec$remove
    - Legacies
      - Effects
-       - effects$extend
+       - effects$add
        - effects$remove
      - Exclude on Ending
        - excludeonending$prepend
        - excludeonending$append
        - excludeonending$remove
+     - Table Images
+     - New Start
    - Endings
    - Verbs
-     - Slots
+     - Slot
    - Manifests
      - Dependencies
 
@@ -101,12 +112,12 @@ In order to display the vanilla images, you will need to extract and sort them y
 I've found that uTinyRipper works wonderfully for this purpose. It takes a bit of time to export everything and exports all the resources and metadata, but everything is pre-sorted and it's fairly easy to delete everything that's not a .png file.
 
 The toolkit will look for these images in `Cultist Simulator/cultistsimulator_Data/StreamingAssets/content/core/images/`
- - Aspect icons in `images/icons40/aspects`
- - Element icons in `images/elementart`
- - Legacy icons in `images/icons100/legacies`
- - Verb icons in `images/icons100/verbs`
- - Ending art in `images/endingart`
- - Burn images in `images/burnimages`
+ - Aspect icons in `images/aspects`
+ - Element icons in `images/elements`
+ - Legacy icons in `images/legacies`
+ - Verb icons in `images/verbs`
+ - Ending art in `images/endings`
+ - Burn images in `images/burns`
 
 # Mod Folder Structure
  - Your Mod Folder
