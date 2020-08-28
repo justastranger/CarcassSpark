@@ -115,11 +115,13 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$remove")]
         public List<string> deleteverb_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? maxexecutions,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
-                      Deck internalDeck, string ending, string burnimage, string comments,
+                      Deck internaldeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
@@ -131,7 +133,7 @@ namespace CarcassSpark.ObjectTypes
                       Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove,
                       Dictionary<string, int> purge, Dictionary<string, int> purge_extend, List<string> purge_remove,
                       Dictionary<string, int> haltverb, Dictionary<string, int> haltverb_extend, List<string> haltverb_remove,
-                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove)
+                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -178,7 +180,7 @@ namespace CarcassSpark.ObjectTypes
             this.deckeffects_extend = deckeffects_extend;
             this.deckeffects_remove = deckeffects_remove;
             this.hintonly = hintonly;
-            this.internaldeck = internalDeck;
+            this.internaldeck = internaldeck;
             this.purge = purge;
             this.purge_extend = purge_extend;
             this.purge_remove = purge_remove;
@@ -191,6 +193,7 @@ namespace CarcassSpark.ObjectTypes
             this.portaleffect = portaleffect;
             this.signalendingflavour = signalendingflavour;
             this.signalimportantloop = signalimportantloop;
+            this.extends = extends;
         }
 
         public Recipe()
@@ -249,7 +252,7 @@ namespace CarcassSpark.ObjectTypes
                               haltverb_remove != null ? new List<string>(haltverb_remove) : null,
                               deleteverb != null ? new Dictionary<string, int>(deleteverb) : null,
                               deleteverb_extend != null ? new Dictionary<string, int>(deleteverb_extend) : null,
-                              deleteverb_remove != null ? new List<string>(deleteverb_remove) : null);
+                              deleteverb_remove != null ? new List<string>(deleteverb_remove) : null, extends);
         }
     }
 }

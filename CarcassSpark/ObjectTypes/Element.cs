@@ -46,12 +46,15 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$remove")]
         public List<string> induces_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
+
         [JsonConstructor]
         public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
                        Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes,
-                       int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate)
+                       int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate, List<string> extends)
         {
             // necessary
             this.id = id;
@@ -92,6 +95,8 @@ namespace CarcassSpark.ObjectTypes
             this.decayTo = decayTo;
             // This is how element templating is done
             this.inherits = inherits;
+            // extends has been transformed into a proper inheritance/templating system, making the above possibly obsolete
+            this.extends = extends;
         }
         
         public Element(string id, string label, string description,
@@ -139,7 +144,7 @@ namespace CarcassSpark.ObjectTypes
                                xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null,
                                xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null,
                                xtriggers_remove != null ? new List<string>(xtriggers_remove) : null,
-                               animframes, lifetime, decayTo, uniquenessgroup, resaturate);
+                               animframes, lifetime, decayTo, uniquenessgroup, resaturate, extends);
         }
     }
     

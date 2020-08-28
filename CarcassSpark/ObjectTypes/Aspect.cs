@@ -30,11 +30,11 @@ namespace CarcassSpark.ObjectTypes
                       string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
                       List<Induces> induces_prepend, List<Induces> induces_append,
-                      List<string> induces_remove, bool? isAspect) : base(id, label, description,
+                      List<string> induces_remove, bool? isAspect, List<string> extends) : base(id, label, description,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
                           aspects_remove, slots, slots_prepend, slots_append, slots_remove,
                           xtriggers, xtriggers_extend, xtriggers_remove, animframes, lifetime,
-                          decayTo, uniquenessgroup, resaturate)
+                          decayTo, uniquenessgroup, resaturate, extends)
         {
             // optional
             this.isAspect = isAspect;
@@ -71,7 +71,7 @@ namespace CarcassSpark.ObjectTypes
                               induces != null ? new List<Induces>(induces) : null,
                               induces_prepend != null ? new List<Induces>(induces_prepend) : null,
                               induces_append != null ? new List<Induces>(induces_append) : null,
-                              induces_remove != null ? new List<string>(induces_remove) : null, isAspect);
+                              induces_remove != null ? new List<string>(induces_remove) : null, isAspect, extends);
         }
     }
 }

@@ -35,11 +35,14 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$remove")]
         public List<string> defaultdrawmessages_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
+
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
                     string defaultcard, Dictionary<string, string> drawmessages,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
-                    Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
+                    Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -60,6 +63,7 @@ namespace CarcassSpark.ObjectTypes
             this.defaultdrawmessages = defaultdrawmessages;
             this.defaultdrawmessages_extend = defaultdrawmessages_extend;
             this.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            this.extends = extends;
         }
         
         public Deck()
@@ -84,7 +88,7 @@ namespace CarcassSpark.ObjectTypes
                             drawmessages_extend != null ? new Dictionary<string, string>(drawmessages_extend) : null,
                             drawmessages_remove != null ? new List<string>(drawmessages_remove) : null,
                             defaultdrawmessages_extend != null ? new Dictionary<string, string>(defaultdrawmessages_extend) : null,
-                            defaultdrawmessages_remove != null ? new List<string>(defaultdrawmessages_remove) : null);
+                            defaultdrawmessages_remove != null ? new List<string>(defaultdrawmessages_remove) : null, extends);
         }
     }
 

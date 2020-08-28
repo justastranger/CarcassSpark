@@ -37,6 +37,9 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&remove")]
         public List<string> statusbarelements_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
+
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
                       Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
@@ -44,7 +47,7 @@ namespace CarcassSpark.ObjectTypes
                       List<string> excludesOnEnding_prepend, List<string> excludesOnEnding_append, List<string> excludesOnEnding_remove,
                       Dictionary<string, int> effects_extend, List<string> effects_remove, List<string> statusbarelements,
                       List<string> statusbarelements_prepend, List<string> statusbarelements_append, List<string> statusbarelements_remove,
-                      bool? deleted)
+                      bool? deleted, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -71,6 +74,7 @@ namespace CarcassSpark.ObjectTypes
             this.statusbarelements_remove = statusbarelements_remove;
             this.deleted = deleted;
             this.newstart = newstart;
+            this.extends = extends;
         }
 
         public Legacy()
@@ -98,7 +102,7 @@ namespace CarcassSpark.ObjectTypes
                               statusbarelements_prepend != null ? new List<string>(statusbarelements_prepend) : null,
                               statusbarelements_append != null ? new List<string>(statusbarelements_append) : null,
                               statusbarelements_remove != null ? new List<string>(statusbarelements_remove) : null,
-                              deleted);
+                              deleted, extends);
         }
     }
 }
