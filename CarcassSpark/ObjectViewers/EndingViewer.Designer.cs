@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EndingViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             this.animComboBox = new System.Windows.Forms.ComboBox();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +64,7 @@
             this.idTextBox.Size = new System.Drawing.Size(183, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name for the ending");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -72,6 +75,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(185, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Name of the ending as displayed on the ending screen");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // imageTextBox
@@ -82,6 +86,7 @@
             this.imageTextBox.Size = new System.Drawing.Size(185, 20);
             this.imageTextBox.TabIndex = 3;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.imageTextBox, "Image from \"images/endings\" to be displayed on the ending screen");
             this.imageTextBox.TextChanged += new System.EventHandler(this.ImageTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -94,6 +99,8 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(374, 109);
             this.descriptionTextBox.TabIndex = 6;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description to be displayed on the ending screen. Supports Cultist Simulator\'s te" +
+        "xt parsing.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // idLabel
@@ -187,6 +194,7 @@
             this.achievementTextBox.Name = "achievementTextBox";
             this.achievementTextBox.Size = new System.Drawing.Size(183, 20);
             this.achievementTextBox.TabIndex = 17;
+            this.ToolTip.SetToolTip(this.achievementTextBox, resources.GetString("achievementTextBox.ToolTip"));
             this.achievementTextBox.TextChanged += new System.EventHandler(this.AchievementTextBox_TextChanged);
             // 
             // achievementLabel
@@ -221,6 +229,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(372, 58);
             this.commentsTextBox.TabIndex = 19;
+            this.ToolTip.SetToolTip(this.commentsTextBox, "Comments are not displayed anywhere ingame.");
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // commentsLabel
@@ -242,6 +251,8 @@
             this.deletedCheckBox.TabIndex = 21;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "When true, any ending with the ID specified above will be completely removed from" +
+        " the game");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
@@ -258,6 +269,7 @@
             this.endindFlavourComboBox.Name = "endindFlavourComboBox";
             this.endindFlavourComboBox.Size = new System.Drawing.Size(185, 21);
             this.endindFlavourComboBox.TabIndex = 22;
+            this.ToolTip.SetToolTip(this.endindFlavourComboBox, "Determines the music and effects played on the ending screen");
             this.endindFlavourComboBox.SelectedIndexChanged += new System.EventHandler(this.EndindFlavourComboBox_SelectedIndexChanged);
             // 
             // animComboBox
@@ -271,6 +283,7 @@
             this.animComboBox.Name = "animComboBox";
             this.animComboBox.Size = new System.Drawing.Size(181, 21);
             this.animComboBox.TabIndex = 23;
+            this.ToolTip.SetToolTip(this.animComboBox, "Determines the animation played during the ending sequence");
             this.animComboBox.SelectedIndexChanged += new System.EventHandler(this.AnimComboBox_SelectedIndexChanged);
             // 
             // extendsLabel
@@ -288,6 +301,7 @@
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(372, 20);
             this.extendsTextBox.TabIndex = 25;
+            this.ToolTip.SetToolTip(this.extendsTextBox, "Comma separated list, \"example1,example2,example3\", for use in ending templates.");
             this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // EndingViewer
@@ -354,5 +368,6 @@
         private System.Windows.Forms.ComboBox animComboBox;
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
