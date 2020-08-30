@@ -92,8 +92,9 @@
             this.iconTextBox.Size = new System.Drawing.Size(134, 20);
             this.iconTextBox.TabIndex = 2;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ToolTip.SetToolTip(this.iconTextBox, "File name, minus extension, of the aspect icon you want displayed.\r\nAspect icons " +
-        "are to be located in \"images/aspects\".");
+            this.ToolTip.SetToolTip(this.iconTextBox, "File name, minus extension, of the aspect icon from\"imaged/aspects\" you want disp" +
+        "layed for this aspect.\r\nIf this property is not present, the ID will be used ins" +
+        "tead.");
             this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // pictureBox1

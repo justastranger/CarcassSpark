@@ -86,7 +86,8 @@
             this.imageTextBox.Size = new System.Drawing.Size(185, 20);
             this.imageTextBox.TabIndex = 3;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ToolTip.SetToolTip(this.imageTextBox, "Image from \"images/endings\" to be displayed on the ending screen");
+            this.ToolTip.SetToolTip(this.imageTextBox, "Image\'s filename, minus extension, from \"images/endings\" to be displayed on the e" +
+        "nding screen. When not present the game uses the ID to find this image.");
             this.imageTextBox.TextChanged += new System.EventHandler(this.ImageTextBox_TextChanged);
             // 
             // descriptionTextBox

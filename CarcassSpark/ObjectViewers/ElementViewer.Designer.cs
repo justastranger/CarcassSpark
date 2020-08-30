@@ -117,8 +117,8 @@
             this.iconTextBox.Size = new System.Drawing.Size(100, 20);
             this.iconTextBox.TabIndex = 3;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ToolTip.SetToolTip(this.iconTextBox, "Filename, minus extension, of the image to be displayed for this element.\r\nImage " +
-        "must be located in \"images/elements\"");
+            this.ToolTip.SetToolTip(this.iconTextBox, "Filename, minus extension, of the image from \"images/elements\" to be displayed fo" +
+        "r this element.\r\nWhen not present, the ID is used instead.");
             this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // decayToTextBox
