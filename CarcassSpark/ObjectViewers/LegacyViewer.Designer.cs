@@ -77,6 +77,8 @@
             this.tableSurfaceImageTextBox = new System.Windows.Forms.TextBox();
             this.tableEdgeImageLabel = new System.Windows.Forms.Label();
             this.tableEdgeImageTextBox = new System.Windows.Forms.TextBox();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -116,7 +118,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(200, 86);
+            this.descriptionTextBox.Size = new System.Drawing.Size(235, 86);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -141,11 +143,11 @@
             // startdescriptionTextBox
             // 
             this.startdescriptionTextBox.AcceptsReturn = true;
-            this.startdescriptionTextBox.Location = new System.Drawing.Point(354, 64);
+            this.startdescriptionTextBox.Location = new System.Drawing.Point(389, 64);
             this.startdescriptionTextBox.Multiline = true;
             this.startdescriptionTextBox.Name = "startdescriptionTextBox";
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.startdescriptionTextBox.Size = new System.Drawing.Size(200, 86);
+            this.startdescriptionTextBox.Size = new System.Drawing.Size(235, 86);
             this.startdescriptionTextBox.TabIndex = 6;
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
@@ -261,7 +263,7 @@
             // startDescriptionLabel
             // 
             this.startDescriptionLabel.AutoSize = true;
-            this.startDescriptionLabel.Location = new System.Drawing.Point(351, 48);
+            this.startDescriptionLabel.Location = new System.Drawing.Point(386, 48);
             this.startDescriptionLabel.Name = "startDescriptionLabel";
             this.startDescriptionLabel.Size = new System.Drawing.Size(85, 13);
             this.startDescriptionLabel.TabIndex = 15;
@@ -335,7 +337,7 @@
             // 
             this.addExcludesButton.Location = new System.Drawing.Point(711, 265);
             this.addExcludesButton.Name = "addExcludesButton";
-            this.addExcludesButton.Size = new System.Drawing.Size(38, 20);
+            this.addExcludesButton.Size = new System.Drawing.Size(75, 20);
             this.addExcludesButton.TabIndex = 23;
             this.addExcludesButton.Text = "Add";
             this.addExcludesButton.UseVisualStyleBackColor = true;
@@ -352,9 +354,9 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(755, 264);
+            this.removeButton.Location = new System.Drawing.Point(790, 265);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(62, 20);
+            this.removeButton.Size = new System.Drawing.Size(75, 20);
             this.removeButton.TabIndex = 25;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -366,7 +368,7 @@
             this.excludesOnEndingListView.Location = new System.Drawing.Point(590, 169);
             this.excludesOnEndingListView.MultiSelect = false;
             this.excludesOnEndingListView.Name = "excludesOnEndingListView";
-            this.excludesOnEndingListView.Size = new System.Drawing.Size(227, 77);
+            this.excludesOnEndingListView.Size = new System.Drawing.Size(275, 77);
             this.excludesOnEndingListView.TabIndex = 26;
             this.excludesOnEndingListView.UseCompatibleStateImageBehavior = false;
             this.excludesOnEndingListView.View = System.Windows.Forms.View.List;
@@ -375,9 +377,9 @@
             // statusBarElementsListView
             // 
             this.statusBarElementsListView.HideSelection = false;
-            this.statusBarElementsListView.Location = new System.Drawing.Point(354, 169);
+            this.statusBarElementsListView.Location = new System.Drawing.Point(257, 169);
             this.statusBarElementsListView.Name = "statusBarElementsListView";
-            this.statusBarElementsListView.Size = new System.Drawing.Size(227, 77);
+            this.statusBarElementsListView.Size = new System.Drawing.Size(324, 77);
             this.statusBarElementsListView.TabIndex = 27;
             this.statusBarElementsListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -430,7 +432,7 @@
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(560, 48);
+            this.commentsLabel.Location = new System.Drawing.Point(627, 48);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 36;
@@ -439,11 +441,11 @@
             // commentsTextBox
             // 
             this.commentsTextBox.AcceptsReturn = true;
-            this.commentsTextBox.Location = new System.Drawing.Point(560, 64);
+            this.commentsTextBox.Location = new System.Drawing.Point(630, 64);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(200, 86);
+            this.commentsTextBox.Size = new System.Drawing.Size(235, 86);
             this.commentsTextBox.TabIndex = 37;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
@@ -522,6 +524,23 @@
             this.tableEdgeImageTextBox.TabIndex = 44;
             this.tableEdgeImageTextBox.TextChanged += new System.EventHandler(this.TableEdgeImageTextBox_TextChanged);
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(678, 25);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(187, 20);
+            this.extendsTextBox.TabIndex = 46;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(675, 9);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 47;
+            this.extendsLabel.Text = "Extends";
+            // 
             // LegacyViewer
             // 
             this.AcceptButton = this.okButton;
@@ -529,6 +548,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(877, 499);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.tableEdgeImageLabel);
             this.Controls.Add(this.tableEdgeImageTextBox);
             this.Controls.Add(this.tableSurfaceImageLabel);
@@ -633,5 +654,7 @@
         private System.Windows.Forms.TextBox tableSurfaceImageTextBox;
         private System.Windows.Forms.Label tableEdgeImageLabel;
         private System.Windows.Forms.TextBox tableEdgeImageTextBox;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
     }
 }

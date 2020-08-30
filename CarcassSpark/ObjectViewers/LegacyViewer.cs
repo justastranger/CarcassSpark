@@ -124,6 +124,14 @@ namespace CarcassSpark.ObjectViewers
                     statusBarElementsListView.Items.Add(element);
                 }
             }
+            if (legacy.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", legacy.extends);
+            }
+            else if (legacy.extends?.Count == 1)
+            {
+                extendsTextBox.Text = legacy.extends[0];
+            }
         }
 
         void SetEditingMode(bool editing)
@@ -473,6 +481,18 @@ namespace CarcassSpark.ObjectViewers
             else
             {
                 displayedLegacy.tableedgeimage = null;
+            }
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedLegacy.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedLegacy.extends = new List<string> { extendsTextBox.Text };
             }
         }
     }
