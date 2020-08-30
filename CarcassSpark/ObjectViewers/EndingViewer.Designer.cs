@@ -49,6 +49,8 @@
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             this.endindFlavourComboBox = new System.Windows.Forms.ComboBox();
             this.animComboBox = new System.Windows.Forms.ComboBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,11 +88,11 @@
             // 
             this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(271, 103);
+            this.descriptionTextBox.Location = new System.Drawing.Point(271, 147);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(374, 153);
+            this.descriptionTextBox.Size = new System.Drawing.Size(374, 109);
             this.descriptionTextBox.TabIndex = 6;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -148,7 +150,7 @@
             // 
             this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(585, 87);
+            this.descriptionLabel.Location = new System.Drawing.Point(270, 131);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 14;
@@ -234,7 +236,7 @@
             // deletedCheckBox
             // 
             this.deletedCheckBox.AutoSize = true;
-            this.deletedCheckBox.Location = new System.Drawing.Point(273, 86);
+            this.deletedCheckBox.Location = new System.Drawing.Point(582, 91);
             this.deletedCheckBox.Name = "deletedCheckBox";
             this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
             this.deletedCheckBox.TabIndex = 21;
@@ -271,6 +273,23 @@
             this.animComboBox.TabIndex = 23;
             this.animComboBox.SelectedIndexChanged += new System.EventHandler(this.AnimComboBox_SelectedIndexChanged);
             // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(270, 92);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 24;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(271, 108);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(372, 20);
+            this.extendsTextBox.TabIndex = 25;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
+            // 
             // EndingViewer
             // 
             this.AcceptButton = this.okButton;
@@ -278,6 +297,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(657, 420);
+            this.Controls.Add(this.extendsTextBox);
+            this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.animComboBox);
             this.Controls.Add(this.endindFlavourComboBox);
             this.Controls.Add(this.deletedCheckBox);
@@ -331,5 +352,7 @@
         private System.Windows.Forms.CheckBox deletedCheckBox;
         private System.Windows.Forms.ComboBox endindFlavourComboBox;
         private System.Windows.Forms.ComboBox animComboBox;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.TextBox extendsTextBox;
     }
 }

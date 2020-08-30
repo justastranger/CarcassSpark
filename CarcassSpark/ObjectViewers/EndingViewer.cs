@@ -53,6 +53,14 @@ namespace CarcassSpark.ObjectViewers
             if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
             if (ending.deleted.HasValue) deletedCheckBox.Checked = ending.deleted.Value;
+            if (ending.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", ending.extends);
+            }
+            else if (ending.extends?.Count == 1)
+            {
+                extendsTextBox.Text = ending.extends[0];
+            }
         }
 
         void SetEditingMode(bool editing)
@@ -167,6 +175,18 @@ namespace CarcassSpark.ObjectViewers
             if (displayedEnding.anim == "")
             {
                 displayedEnding.anim = null;
+            }
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedEnding.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedEnding.extends = new List<string> { extendsTextBox.Text };
             }
         }
     }
