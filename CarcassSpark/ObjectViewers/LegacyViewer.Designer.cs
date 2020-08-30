@@ -79,6 +79,7 @@
             this.tableEdgeImageTextBox = new System.Windows.Forms.TextBox();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -100,6 +101,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name of legacy");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -109,6 +111,8 @@
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Name of legacy as displayed during legacy selection, under the player\'s name, and" +
+        " in verbs.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -120,6 +124,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(235, 86);
             this.descriptionTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description of legacy to be displayed during legacy selection");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // imageTextBox
@@ -129,6 +134,8 @@
             this.imageTextBox.Size = new System.Drawing.Size(100, 20);
             this.imageTextBox.TabIndex = 4;
             this.imageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.imageTextBox, "Image\'s filename, minus extension, from \"images/legacies\" to be displayed during " +
+        "legacy selection and, when New Start is true, in the Mods & DLC menu.");
             this.imageTextBox.TextChanged += new System.EventHandler(this.ImageTextBox_TextChanged);
             // 
             // fromEndingTextBox
@@ -138,6 +145,8 @@
             this.fromEndingTextBox.Size = new System.Drawing.Size(100, 20);
             this.fromEndingTextBox.TabIndex = 5;
             this.fromEndingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.fromEndingTextBox, "ID of ending to either require to be available or be more frequent after getting," +
+        " depending on other properties.");
             this.fromEndingTextBox.TextChanged += new System.EventHandler(this.FromEndingTextBox_TextChanged);
             // 
             // startdescriptionTextBox
@@ -149,6 +158,7 @@
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.startdescriptionTextBox.Size = new System.Drawing.Size(235, 86);
             this.startdescriptionTextBox.TabIndex = 6;
+            this.ToolTip.SetToolTip(this.startdescriptionTextBox, "Description of legacy to be displayed upon beginning the descent");
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
             // availableWithoutEndingMatchCheckBox
@@ -160,6 +170,9 @@
             this.availableWithoutEndingMatchCheckBox.TabIndex = 7;
             this.availableWithoutEndingMatchCheckBox.Text = "Available Without Ending Match";
             this.availableWithoutEndingMatchCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.availableWithoutEndingMatchCheckBox, "When true, the legacy does not strictly require the specified ending to be availa" +
+        "ble, but is produced as an option at a reduced rate when you get a different end" +
+        "ing.");
             this.availableWithoutEndingMatchCheckBox.UseVisualStyleBackColor = true;
             this.availableWithoutEndingMatchCheckBox.CheckStateChanged += new System.EventHandler(this.AvailableWithoutEndingMatchCheckBox_CheckStateChanged);
             // 
@@ -176,6 +189,7 @@
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.Size = new System.Drawing.Size(333, 194);
             this.effectsDataGridView.TabIndex = 8;
+            this.ToolTip.SetToolTip(this.effectsDataGridView, "Elements to give the player at the beginning of the game.");
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EffectsDataGridView_CellDoubleClick);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.EffectsDataGridView_UserDeletedRow);
             // 
@@ -220,6 +234,8 @@
             this.startingVerbIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.startingVerbIdTextBox.TabIndex = 10;
             this.startingVerbIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.startingVerbIdTextBox, "ID of the verb you want the legacy to start the game with.\r\nIf not present, \"work" +
+        "\" is used by default.");
             this.startingVerbIdTextBox.TextChanged += new System.EventHandler(this.StartingVerbIdTextBox_TextChanged);
             // 
             // okButton
@@ -308,9 +324,9 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(487, 464);
+            this.cancelButton.Location = new System.Drawing.Point(765, 462);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(100, 23);
+            this.cancelButton.Size = new System.Drawing.Size(100, 25);
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -370,6 +386,7 @@
             this.excludesOnEndingListView.Name = "excludesOnEndingListView";
             this.excludesOnEndingListView.Size = new System.Drawing.Size(275, 77);
             this.excludesOnEndingListView.TabIndex = 26;
+            this.ToolTip.SetToolTip(this.excludesOnEndingListView, "Endings to disallow this legacy from being available after");
             this.excludesOnEndingListView.UseCompatibleStateImageBehavior = false;
             this.excludesOnEndingListView.View = System.Windows.Forms.View.List;
             this.excludesOnEndingListView.DoubleClick += new System.EventHandler(this.ExcludesOnEndingListView_DoubleClick);
@@ -381,6 +398,8 @@
             this.statusBarElementsListView.Name = "statusBarElementsListView";
             this.statusBarElementsListView.Size = new System.Drawing.Size(324, 77);
             this.statusBarElementsListView.TabIndex = 27;
+            this.ToolTip.SetToolTip(this.statusBarElementsListView, "Used to specify which 4 aspects or elements will be tracked in the status bar. Wh" +
+        "en not present, the default 4 (health, passion, reason, funds) will be used.");
             this.statusBarElementsListView.UseCompatibleStateImageBehavior = false;
             // 
             // statusBarElementsLabel
@@ -458,6 +477,8 @@
             this.deletedCheckBox.TabIndex = 38;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "When true, any legacy with the same ID as this ending will be completely removed " +
+        "from the game.");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
@@ -470,6 +491,8 @@
             this.newStartCheckBox.TabIndex = 39;
             this.newStartCheckBox.Text = "New Start";
             this.newStartCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.newStartCheckBox, "When true, the legacy will be displayed in the mods and DLC menu, allowing you to" +
+        " start a new descent with this legacy.");
             this.newStartCheckBox.UseVisualStyleBackColor = true;
             this.newStartCheckBox.CheckStateChanged += new System.EventHandler(this.NewStartCheckBox_CheckStateChanged);
             // 
@@ -479,6 +502,8 @@
             this.tableCoverImageTextBox.Name = "tableCoverImageTextBox";
             this.tableCoverImageTextBox.Size = new System.Drawing.Size(233, 20);
             this.tableCoverImageTextBox.TabIndex = 40;
+            this.ToolTip.SetToolTip(this.tableCoverImageTextBox, "Image\'s filename, minus extension, from \"images/ui\" to be used as the centerpiece" +
+        " texture for the table.");
             this.tableCoverImageTextBox.TextChanged += new System.EventHandler(this.TableCoverImageTextBox_TextChanged);
             // 
             // tableCoverImageLabel
@@ -505,6 +530,8 @@
             this.tableSurfaceImageTextBox.Name = "tableSurfaceImageTextBox";
             this.tableSurfaceImageTextBox.Size = new System.Drawing.Size(233, 20);
             this.tableSurfaceImageTextBox.TabIndex = 42;
+            this.ToolTip.SetToolTip(this.tableSurfaceImageTextBox, "Image\'s filename, minus extension, from \"images/ui\" to be used as the wood surfac" +
+        "e texture for the table.");
             this.tableSurfaceImageTextBox.TextChanged += new System.EventHandler(this.TableSurfaceImageTextBox_TextChanged);
             // 
             // tableEdgeImageLabel
@@ -522,6 +549,8 @@
             this.tableEdgeImageTextBox.Name = "tableEdgeImageTextBox";
             this.tableEdgeImageTextBox.Size = new System.Drawing.Size(233, 20);
             this.tableEdgeImageTextBox.TabIndex = 44;
+            this.ToolTip.SetToolTip(this.tableEdgeImageTextBox, "Image\'s filename, minus extension, from \"images/ui\" to be used as the edge textur" +
+        "e for the table.");
             this.tableEdgeImageTextBox.TextChanged += new System.EventHandler(this.TableEdgeImageTextBox_TextChanged);
             // 
             // extendsTextBox
@@ -656,5 +685,6 @@
         private System.Windows.Forms.TextBox tableEdgeImageTextBox;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
