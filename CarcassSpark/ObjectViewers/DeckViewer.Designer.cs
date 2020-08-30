@@ -73,6 +73,7 @@
             this.idTextBox.Size = new System.Drawing.Size(125, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name of the deck");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -82,6 +83,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(137, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Name of deck to be displayed when a recipe is teasing the deck draw.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // commentsTextBox
@@ -90,6 +92,7 @@
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
             this.commentsTextBox.TabIndex = 2;
+            this.ToolTip.SetToolTip(this.commentsTextBox, "Comments are not shown ingame.");
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -101,6 +104,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(268, 30);
             this.descriptionTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description of deck to be displayed when recipe is teasing a deck draw.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // drawmessagesDataGridView
@@ -115,6 +119,7 @@
             this.drawmessagesDataGridView.Name = "drawmessagesDataGridView";
             this.drawmessagesDataGridView.Size = new System.Drawing.Size(268, 150);
             this.drawmessagesDataGridView.TabIndex = 5;
+            this.ToolTip.SetToolTip(this.drawmessagesDataGridView, "Flavor text to be added to the recipe journal when drawing from a Mansus deck.");
             this.drawmessagesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DrawmessagesDataGridView_UserDeletedRow);
             // 
             // elementId
@@ -138,6 +143,7 @@
             this.resetOnExhaustionCheckBox.TabIndex = 6;
             this.resetOnExhaustionCheckBox.Text = "resetOnExhaustion";
             this.resetOnExhaustionCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.resetOnExhaustionCheckBox, "When true, the deck will be refilled and reshuffled when it runs out of cards.");
             this.resetOnExhaustionCheckBox.UseVisualStyleBackColor = true;
             this.resetOnExhaustionCheckBox.CheckStateChanged += new System.EventHandler(this.ResetOnExhaustionCheckBox_CheckStateChanged);
             // 
@@ -148,6 +154,8 @@
             this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
             this.defaultCardTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.defaultCardTextBox, "When resetOnExhaustion is false, this card will be the only card given once the d" +
+        "eck runs out.\r\nThis value must be filled if resetOnExhaustion is false.");
             this.defaultCardTextBox.TextChanged += new System.EventHandler(this.DefaultCardTextBox_TextChanged);
             // 
             // drawsNumericUpDown
@@ -156,6 +164,8 @@
             this.drawsNumericUpDown.Name = "drawsNumericUpDown";
             this.drawsNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.drawsNumericUpDown.TabIndex = 8;
+            this.ToolTip.SetToolTip(this.drawsNumericUpDown, "The number of times the deck will be drawn from when this deck is an internal dec" +
+        "k for a recipe.");
             // 
             // drawsLabel
             // 
@@ -172,6 +182,7 @@
             this.newCardTextBox.Name = "newCardTextBox";
             this.newCardTextBox.Size = new System.Drawing.Size(260, 20);
             this.newCardTextBox.TabIndex = 10;
+            this.ToolTip.SetToolTip(this.newCardTextBox, "Name of entity to be added to the deck.");
             this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewCardTextBox_KeyDown);
             // 
             // newCardButton
@@ -269,6 +280,7 @@
             this.specListView.Name = "specListView";
             this.specListView.Size = new System.Drawing.Size(260, 252);
             this.specListView.TabIndex = 21;
+            this.ToolTip.SetToolTip(this.specListView, "This is the contents of the deck.");
             this.specListView.UseCompatibleStateImageBehavior = false;
             this.specListView.View = System.Windows.Forms.View.List;
             this.specListView.DoubleClick += new System.EventHandler(this.SpecListView_DoubleClick);
@@ -327,6 +339,8 @@
             this.deletedCheckBox.TabIndex = 27;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "When you\'re modifying an existing deck through the merge-overwrite system, having" +
+        " this as  true will delete it instead of extend it.");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 

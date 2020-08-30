@@ -97,6 +97,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name of element.");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -106,6 +107,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(100, 20);
             this.labelTextBox.TabIndex = 2;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Name of element to be displayed to player.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // iconTextBox
@@ -115,6 +117,8 @@
             this.iconTextBox.Size = new System.Drawing.Size(100, 20);
             this.iconTextBox.TabIndex = 3;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.iconTextBox, "Filename, minus extension, of the image to be displayed for this element.\r\nImage " +
+        "must be located in \"images/elements\"");
             this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // decayToTextBox
@@ -124,6 +128,8 @@
             this.decayToTextBox.Size = new System.Drawing.Size(100, 20);
             this.decayToTextBox.TabIndex = 6;
             this.decayToTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.decayToTextBox, "ID of element to transform into once lifetime timer hits 0. If blank, the card is" +
+        " destroyed when it decays.");
             this.decayToTextBox.TextChanged += new System.EventHandler(this.DecayToTextBox_TextChanged);
             // 
             // uniqueCheckBox
@@ -136,6 +142,8 @@
             this.uniqueCheckBox.TabIndex = 7;
             this.uniqueCheckBox.Text = "Unique";
             this.uniqueCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.uniqueCheckBox, "When true, only one copy of the card is allowed at a time. Spawning or receiving " +
+        "a new copy will purge the old copy.");
             this.uniqueCheckBox.UseVisualStyleBackColor = true;
             this.uniqueCheckBox.CheckStateChanged += new System.EventHandler(this.UniqueCheckBox_CheckStateChanged);
             // 
@@ -146,6 +154,7 @@
             this.uniquenessgroupTextBox.Size = new System.Drawing.Size(100, 20);
             this.uniquenessgroupTextBox.TabIndex = 8;
             this.uniquenessgroupTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.uniquenessgroupTextBox, resources.GetString("uniquenessgroupTextBox.ToolTip"));
             this.uniquenessgroupTextBox.TextChanged += new System.EventHandler(this.UniquenessgroupTextBox_TextChanged);
             // 
             // xtriggersLabel
@@ -179,6 +188,8 @@
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
             this.aspectsDataGridView.TabIndex = 13;
+            this.ToolTip.SetToolTip(this.aspectsDataGridView, "The aspects of the element. Can be the ID of either an aspect or another element." +
+        "");
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AspectsDataGridView_CellDoubleClick);
             this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AspectsDataGridView_UserDeletedRow);
             // 
@@ -225,6 +236,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(491, 71);
             this.descriptionTextBox.TabIndex = 15;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description shown in the element\'s details panel.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // okButton
@@ -269,6 +281,7 @@
             this.lifetimeNumericUpDown.Name = "lifetimeNumericUpDown";
             this.lifetimeNumericUpDown.Size = new System.Drawing.Size(125, 20);
             this.lifetimeNumericUpDown.TabIndex = 19;
+            this.ToolTip.SetToolTip(this.lifetimeNumericUpDown, "How long, in seconds, until the card containing this element should decay.");
             this.lifetimeNumericUpDown.ValueChanged += new System.EventHandler(this.LifetimeNumericUpDown_ValueChanged);
             // 
             // lifetimeLabel
@@ -291,6 +304,7 @@
             this.animFramesNumericUpDown.Name = "animFramesNumericUpDown";
             this.animFramesNumericUpDown.Size = new System.Drawing.Size(100, 20);
             this.animFramesNumericUpDown.TabIndex = 21;
+            this.ToolTip.SetToolTip(this.animFramesNumericUpDown, "DEPRECATED");
             this.animFramesNumericUpDown.ValueChanged += new System.EventHandler(this.AnimFramesNumericUpDown_ValueChanged);
             // 
             // animFramesLabel
@@ -385,6 +399,8 @@
             this.resaturateCheckBox.TabIndex = 32;
             this.resaturateCheckBox.Text = "Resaturate";
             this.resaturateCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.resaturateCheckBox, "Inverts the grayscale mechanic from turning grayer the closer it is to decaying t" +
+        "o gaining more color the closer it gets to decaying.");
             this.resaturateCheckBox.UseVisualStyleBackColor = true;
             this.resaturateCheckBox.CheckStateChanged += new System.EventHandler(this.ResaturateCheckBox_CheckStateChanged);
             // 
@@ -396,6 +412,7 @@
             this.slotsListView.Name = "slotsListView";
             this.slotsListView.Size = new System.Drawing.Size(248, 133);
             this.slotsListView.TabIndex = 33;
+            this.ToolTip.SetToolTip(this.slotsListView, "Specifies the slots that appear when you add the element to various verbs.");
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
             this.slotsListView.DoubleClick += new System.EventHandler(this.SlotsListView_DoubleClick);
@@ -408,6 +425,7 @@
             this.xtriggersListView.Name = "xtriggersListView";
             this.xtriggersListView.Size = new System.Drawing.Size(248, 97);
             this.xtriggersListView.TabIndex = 34;
+            this.ToolTip.SetToolTip(this.xtriggersListView, resources.GetString("xtriggersListView.ToolTip"));
             this.xtriggersListView.UseCompatibleStateImageBehavior = false;
             this.xtriggersListView.View = System.Windows.Forms.View.List;
             this.xtriggersListView.DoubleClick += new System.EventHandler(this.XtriggersListView_DoubleClick);
@@ -467,6 +485,8 @@
             this.inheritsTextBox.Name = "inheritsTextBox";
             this.inheritsTextBox.Size = new System.Drawing.Size(100, 20);
             this.inheritsTextBox.TabIndex = 40;
+            this.ToolTip.SetToolTip(this.inheritsTextBox, "ID of an element to inherit properties from.\r\nFunctionality is being replaced by " +
+        "the new way that the Extends property is being handled.");
             this.inheritsTextBox.TextChanged += new System.EventHandler(this.InheritsTextBox_TextChanged);
             // 
             // deletedCheckBox

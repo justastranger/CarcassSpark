@@ -72,6 +72,7 @@
             this.idTextBox.Size = new System.Drawing.Size(134, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "The internal name of the aspect.");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -81,6 +82,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(134, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "The name of the aspect when shown to the player.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // iconTextBox
@@ -90,6 +92,8 @@
             this.iconTextBox.Size = new System.Drawing.Size(134, 20);
             this.iconTextBox.TabIndex = 2;
             this.iconTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.iconTextBox, "File name, minus extension, of the aspect icon you want displayed.\r\nAspect icons " +
+        "are to be located in \"images/aspects\".");
             this.iconTextBox.TextChanged += new System.EventHandler(this.IconTextBox_TextChanged);
             // 
             // pictureBox1
@@ -135,6 +139,7 @@
             this.inducesDataGridView.Name = "inducesDataGridView";
             this.inducesDataGridView.Size = new System.Drawing.Size(355, 169);
             this.inducesDataGridView.TabIndex = 6;
+            this.ToolTip.SetToolTip(this.inducesDataGridView, resources.GetString("inducesDataGridView.ToolTip"));
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InducesDataGridView_CellDoubleClick);
             this.inducesDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.InducesDataGridView_UserDeletedRow);
             // 
@@ -218,6 +223,7 @@
             this.isHiddenCheckBox.TabIndex = 10;
             this.isHiddenCheckBox.Text = "Hidden?";
             this.isHiddenCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.isHiddenCheckBox, "Hides the aspect from the aspect list of an element.");
             this.isHiddenCheckBox.UseVisualStyleBackColor = true;
             this.isHiddenCheckBox.CheckStateChanged += new System.EventHandler(this.IsHiddenCheckBox_CheckStateChanged);
             // 
@@ -230,6 +236,8 @@
             this.noartworkneededCheckBox.TabIndex = 12;
             this.noartworkneededCheckBox.Text = "No Artwork Needed";
             this.noartworkneededCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.noartworkneededCheckBox, "Used in combination with isHidden, prevents the game from looking for artwork for" +
+        " this asset.");
             this.noartworkneededCheckBox.UseVisualStyleBackColor = true;
             this.noartworkneededCheckBox.CheckStateChanged += new System.EventHandler(this.NoartworkneededCheckBox_CheckStateChanged);
             // 
@@ -287,6 +295,7 @@
             this.commentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentTextBox.Size = new System.Drawing.Size(418, 38);
             this.commentTextBox.TabIndex = 19;
+            this.ToolTip.SetToolTip(this.commentTextBox, "Comments are not shown ingame.");
             this.commentTextBox.TextChanged += new System.EventHandler(this.CommentTextBox_TextChanged);
             // 
             // inheritsLabel
@@ -304,6 +313,8 @@
             this.inheritsTextBox.Name = "inheritsTextBox";
             this.inheritsTextBox.Size = new System.Drawing.Size(134, 20);
             this.inheritsTextBox.TabIndex = 21;
+            this.ToolTip.SetToolTip(this.inheritsTextBox, "Used to inherit properties from a single element/aspect.\r\nFunctionality has been " +
+        "replaced by the new way that Extends is handled.");
             this.inheritsTextBox.TextChanged += new System.EventHandler(this.InheritsTextBox_TextChanged);
             // 
             // deletedCheckBox
@@ -315,6 +326,7 @@
             this.deletedCheckBox.TabIndex = 22;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "This deletes the aspect if you\'re modifying an existing aspect.");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
