@@ -484,6 +484,14 @@ namespace CarcassSpark.ObjectViewers
                     haltVerbDataGridView.Rows.Add(row);
                 }
             }
+            if (recipe.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", recipe.extends);
+            }
+            else if (recipe.extends?.Count == 1)
+            {
+                extendsTextBox.Text = recipe.extends[0];
+            }
         }
 
         private void ShowInternalDeckButton_Click(object sender, EventArgs e)
@@ -1789,6 +1797,18 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedRecipe.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.deleted = null;
+        }
+
+        private void extendsTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedRecipe.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedRecipe.extends = new List<string> { extendsTextBox.Text };
+            }
         }
     }
 }

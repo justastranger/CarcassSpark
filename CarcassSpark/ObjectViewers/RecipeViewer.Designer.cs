@@ -144,6 +144,8 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -170,6 +172,7 @@
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
@@ -1546,6 +1549,8 @@
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.extendsTextBox);
+            this.panel12.Controls.Add(this.extendsLabel);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(906, 3);
             this.panel12.Name = "panel12";
@@ -1593,6 +1598,26 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1033, 48);
             this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
+            this.extendsTextBox.TabIndex = 51;
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.extendsLabel.Location = new System.Drawing.Point(0, 0);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 52;
+            this.extendsLabel.Text = "Extends";
             // 
             // RecipeViewer
             // 
@@ -1643,6 +1668,8 @@
             this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1765,5 +1792,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.CheckBox deletedCheckBox;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
     }
 }
