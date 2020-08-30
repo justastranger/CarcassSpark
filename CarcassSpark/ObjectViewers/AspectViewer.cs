@@ -116,6 +116,14 @@ namespace CarcassSpark.ObjectViewers
                     inducesDataGridView.Rows.Add(newRow);
                 }
             }
+            if (aspect.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", aspect.extends);
+            } 
+            else if (aspect.extends?.Count == 1)
+            {
+                extendsTextBox.Text = aspect.extends[0];
+            }
         }
 
         private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -319,6 +327,18 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedAspect.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedAspect.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.deleted = null;
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedAspect.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedAspect.extends = new List<string> { extendsTextBox.Text };
+            }
         }
     }
 }

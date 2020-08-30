@@ -143,6 +143,14 @@ namespace CarcassSpark.ObjectViewers
                     drawmessagesDataGridView.Rows.Add(row);
                 }
             }
+            if (deck.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", deck.extends);
+            }
+            else if (deck.extends?.Count == 1)
+            {
+                extendsTextBox.Text = deck.extends[0];
+            }
         }
 
         void SetEditingMode(bool editing)
@@ -418,6 +426,18 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedDeck.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedDeck.extends = new List<string> { extendsTextBox.Text };
+            }
         }
     }
 }

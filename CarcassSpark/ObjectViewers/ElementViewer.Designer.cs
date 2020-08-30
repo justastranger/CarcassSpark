@@ -71,6 +71,9 @@
             this.inheritsLabel = new System.Windows.Forms.Label();
             this.inheritsTextBox = new System.Windows.Forms.TextBox();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -452,7 +455,7 @@
             // inheritsLabel
             // 
             this.inheritsLabel.AutoSize = true;
-            this.inheritsLabel.Location = new System.Drawing.Point(364, 194);
+            this.inheritsLabel.Location = new System.Drawing.Point(146, 204);
             this.inheritsLabel.Name = "inheritsLabel";
             this.inheritsLabel.Size = new System.Drawing.Size(41, 13);
             this.inheritsLabel.TabIndex = 39;
@@ -460,9 +463,9 @@
             // 
             // inheritsTextBox
             // 
-            this.inheritsTextBox.Location = new System.Drawing.Point(367, 212);
+            this.inheritsTextBox.Location = new System.Drawing.Point(149, 220);
             this.inheritsTextBox.Name = "inheritsTextBox";
-            this.inheritsTextBox.Size = new System.Drawing.Size(136, 20);
+            this.inheritsTextBox.Size = new System.Drawing.Size(100, 20);
             this.inheritsTextBox.TabIndex = 40;
             this.inheritsTextBox.TextChanged += new System.EventHandler(this.InheritsTextBox_TextChanged);
             // 
@@ -478,6 +481,25 @@
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(258, 220);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(245, 20);
+            this.extendsTextBox.TabIndex = 42;
+            this.ToolTip.SetToolTip(this.extendsTextBox, "Comma separated list of elements to inherit properties from.\r\n\"example1,example2," +
+        "example3\"");
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(255, 204);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 43;
+            this.extendsLabel.Text = "Extends";
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
@@ -485,6 +507,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(769, 412);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.inheritsTextBox);
             this.Controls.Add(this.inheritsLabel);
@@ -579,5 +603,8 @@
         private System.Windows.Forms.Label inheritsLabel;
         private System.Windows.Forms.TextBox inheritsTextBox;
         private System.Windows.Forms.CheckBox deletedCheckBox;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

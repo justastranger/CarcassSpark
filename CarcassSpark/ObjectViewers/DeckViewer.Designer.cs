@@ -58,6 +58,9 @@
             this.specAppendButton = new System.Windows.Forms.Button();
             this.specRemoveButton = new System.Windows.Forms.Button();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -74,9 +77,9 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(155, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(143, 25);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(125, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(137, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
@@ -85,7 +88,7 @@
             // 
             this.commentsTextBox.Location = new System.Drawing.Point(286, 25);
             this.commentsTextBox.Name = "commentsTextBox";
-            this.commentsTextBox.Size = new System.Drawing.Size(154, 20);
+            this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
             this.commentsTextBox.TabIndex = 2;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
@@ -215,7 +218,7 @@
             // deckLabelLabel
             // 
             this.deckLabelLabel.AutoSize = true;
-            this.deckLabelLabel.Location = new System.Drawing.Point(152, 9);
+            this.deckLabelLabel.Location = new System.Drawing.Point(140, 9);
             this.deckLabelLabel.Name = "deckLabelLabel";
             this.deckLabelLabel.Size = new System.Drawing.Size(62, 13);
             this.deckLabelLabel.TabIndex = 15;
@@ -327,6 +330,25 @@
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(152, 178);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 28;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(101, 195);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(179, 20);
+            this.extendsTextBox.TabIndex = 29;
+            this.ToolTip.SetToolTip(this.extendsTextBox, "Comma separated list of deck IDs to inherit properties from.\r\n\"example1,example2," +
+        "example3\"");
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
+            // 
             // DeckViewer
             // 
             this.AcceptButton = this.okButton;
@@ -334,6 +356,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(558, 412);
+            this.Controls.Add(this.extendsTextBox);
+            this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.specRemoveButton);
             this.Controls.Add(this.specAppendButton);
@@ -401,5 +425,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.CheckBox deletedCheckBox;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

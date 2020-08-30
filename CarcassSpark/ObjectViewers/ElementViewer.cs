@@ -196,6 +196,14 @@ namespace CarcassSpark.ObjectViewers
                     aspectsDataGridView.Rows.Add(row);
                 }
             }
+            if (element.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", element.extends);
+            }
+            else if (element.extends?.Count == 1)
+            {
+                extendsTextBox.Text = element.extends[0];
+            }
         }
 
         private void SlotsListView_DoubleClick(object sender, EventArgs e)
@@ -590,6 +598,18 @@ namespace CarcassSpark.ObjectViewers
             else
             {
                 MessageBox.Show("Please select a slot to remove.");
+            }
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedElement.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedElement.extends = new List<string> { extendsTextBox.Text };
             }
         }
     }
