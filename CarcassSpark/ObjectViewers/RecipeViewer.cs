@@ -105,8 +105,14 @@ namespace CarcassSpark.ObjectViewers
             setAsRemoveToolStripMenuItem.Visible = editing;
             deletedCheckBox.Enabled = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
-            if (showSlotButton.Text == "New Slot") showSlotButton.Enabled = editing;
-            if (showInternalDeckButton.Text == "New Deck") showInternalDeckButton.Enabled = editing;
+            if (showSlotButton.Text == "New Slot")
+            {
+                showSlotButton.Enabled = editing;
+            }
+            if (showInternalDeckButton.Text == "New Deck")
+            {
+                showInternalDeckButton.Enabled = editing;
+            }
         }
 
         private void FillValues(Recipe recipe)

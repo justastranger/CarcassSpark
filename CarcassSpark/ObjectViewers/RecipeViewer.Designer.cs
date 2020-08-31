@@ -322,7 +322,6 @@
             this.showInternalDeckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.showInternalDeckButton.Enabled = false;
             this.showInternalDeckButton.Location = new System.Drawing.Point(3, 47);
             this.showInternalDeckButton.Name = "showInternalDeckButton";
             this.showInternalDeckButton.Size = new System.Drawing.Size(120, 38);
@@ -517,7 +516,6 @@
             this.showSlotButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.showSlotButton.Enabled = false;
             this.showSlotButton.Location = new System.Drawing.Point(129, 47);
             this.showSlotButton.Name = "showSlotButton";
             this.showSlotButton.Size = new System.Drawing.Size(120, 38);
