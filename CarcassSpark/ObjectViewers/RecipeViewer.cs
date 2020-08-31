@@ -105,8 +105,8 @@ namespace CarcassSpark.ObjectViewers
             setAsRemoveToolStripMenuItem.Visible = editing;
             deletedCheckBox.Enabled = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
-            if (!showSlotButton.Enabled) showSlotButton.Enabled = editing;
-            if (!showInternalDeckButton.Enabled) showInternalDeckButton.Enabled = editing;
+            if (showSlotButton.Text == "New Slot") showSlotButton.Enabled = editing;
+            if (showInternalDeckButton.Text == "New Deck") showInternalDeckButton.Enabled = editing;
         }
 
         private void FillValues(Recipe recipe)
@@ -125,10 +125,22 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.signalendingflavour != null) signalEndingFlavourDomainUpDown.Text = recipe.signalendingflavour;
             if (recipe.maxexecutions.HasValue) maxExecutionsNumericUpDown.Value = recipe.maxexecutions.Value;
             if (recipe.warmup.HasValue) warmupNumericUpDown.Value = recipe.warmup.Value;
-            if (recipe.internaldeck != null) showInternalDeckButton.Enabled = true;
-            else showInternalDeckButton.Enabled = false;
-            if (recipe.slots != null) showSlotButton.Enabled = true;
-            else showSlotButton.Enabled = false;
+            if (recipe.internaldeck != null)
+            {
+                showInternalDeckButton.Text = "Show Deck";
+            }
+            else
+            {
+                showInternalDeckButton.Text = "New Deck";
+            }
+            if (recipe.slots?.Count > 0)
+            {
+                showSlotButton.Text = "Show Slot";
+            }
+            else
+            {
+                showSlotButton.Text = "New Slot";
+            }
             if (recipe.deleted.HasValue) deletedCheckBox.Checked = recipe.deleted.Value;
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
@@ -521,11 +533,12 @@ namespace CarcassSpark.ObjectViewers
                 if (sv.DialogResult == DialogResult.OK)
                 {
                     displayedRecipe.slots = new List<Slot> { sv.displayedSlot };
+                    showSlotButton.Text = "Show Slot";
                 }
             }
             else if (displayedRecipe.slots != null)
             {
-                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0], editing, SlotViewer.SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0].Copy(), editing, SlotViewer.SlotType.RECIPE);
                 sv.ShowDialog();
                 if (sv.DialogResult == DialogResult.OK)
                 {

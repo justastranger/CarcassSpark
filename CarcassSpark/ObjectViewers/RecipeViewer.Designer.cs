@@ -142,10 +142,10 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -1608,6 +1608,27 @@
             this.panel12.Size = new System.Drawing.Size(124, 42);
             this.panel12.TabIndex = 7;
             // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
+            this.extendsTextBox.TabIndex = 51;
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.extendsLabel.Location = new System.Drawing.Point(0, 0);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 52;
+            this.extendsLabel.Text = "Extends";
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -1649,27 +1670,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1033, 48);
             this.tableLayoutPanel6.TabIndex = 0;
-            // 
-            // extendsTextBox
-            // 
-            this.extendsTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.extendsTextBox.Location = new System.Drawing.Point(0, 22);
-            this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
-            this.extendsTextBox.TabIndex = 51;
-            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
-            // 
-            // extendsLabel
-            // 
-            this.extendsLabel.AutoSize = true;
-            this.extendsLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.extendsLabel.Location = new System.Drawing.Point(0, 0);
-            this.extendsLabel.Name = "extendsLabel";
-            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
-            this.extendsLabel.TabIndex = 52;
-            this.extendsLabel.Text = "Extends";
             // 
             // RecipeViewer
             // 
