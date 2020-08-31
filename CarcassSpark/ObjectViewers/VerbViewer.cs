@@ -66,7 +66,7 @@ namespace CarcassSpark.ObjectViewers
             descriptionTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
-            addSlotButton.Visible = editing;
+            // addSlotButton.Visible = editing;
             removeButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
@@ -96,7 +96,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), true, SlotViewer.SlotType.VERB);
+                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), editing, SlotViewer.SlotType.VERB);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedVerb.slot = sv.displayedSlot;

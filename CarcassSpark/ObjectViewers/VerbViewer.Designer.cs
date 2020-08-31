@@ -147,7 +147,7 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(93, 329);
+            this.addSlotButton.Location = new System.Drawing.Point(137, 329);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(81, 31);
             this.addSlotButton.TabIndex = 10;
@@ -168,7 +168,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(180, 329);
+            this.removeButton.Location = new System.Drawing.Point(137, 366);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(81, 31);
             this.removeButton.TabIndex = 12;
