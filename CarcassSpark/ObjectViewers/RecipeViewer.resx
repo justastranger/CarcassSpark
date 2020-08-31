@@ -117,6 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
+  </metadata>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
+  </metadata>
+  <data name="actionIdTextBox.ToolTip" xml:space="preserve">
+    <value>ID of the verb to use. This value is required. This dictates the image shown on the verb token, taken from "images/verbs".
+If the ID of the verb is not a defined verb, a temporary verb token will be used that will disappear after the conclusion of the recipe.</value>
+  </data>
   <metadata name="elementId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -126,18 +136,33 @@
   <metadata name="propertyOperationContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="requirementsDataGridView.ToolTip" xml:space="preserve">
+    <value>All of the following requirements must be fulfilled in order to execute this recipe.
+Negative numbers function as a "less than" operator.
+An element or aspect ID may be used as an amount, allowing for requirements based on the number of the specified entity currently inside the verb.</value>
+  </data>
   <metadata name="extantElementId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="extantAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="extantreqsDataGridView.ToolTip" xml:space="preserve">
+    <value>All of the following requirements must be fulfilled in order to execute this recipe.
+Negative numbers function as a "less than" operator.
+An element or aspect ID may be used as an amount, allowing for requirements based on the number of the specified entity currently in play.</value>
+  </data>
   <metadata name="tableElementId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="tableAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="tablereqsDataGridView.ToolTip" xml:space="preserve">
+    <value>All of the following requirements must be fulfilled in order to execute this recipe.
+Negative numbers function as a "less than" operator.
+An element or aspect ID may be used as an amount, allowing for requirements based on the number of the specified entity currently on the table.</value>
+  </data>
   <metadata name="effectsElementId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -156,6 +181,12 @@
   <metadata name="deckDraws.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="alternativeRecipesListView.ToolTip" xml:space="preserve">
+    <value>At the beginning of the recipe and whenever a card changes in the recipe's slot, this list is checked to see if any alternative recipes' requirements are satisfied.
+If an alternative recipe's requirements are satisfied, the current recipe will change to it.
+The effects and linked recipes of the original recipe are ignored unless the new recipe's requirements stop being satisfied, in which case the original recipe takes back over.
+If the alternative recipe is allowed to finish, its effects and recipe links will be executed instead.</value>
+  </data>
   <metadata name="purgeIdDataGridViewTextBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -174,6 +205,10 @@
   <metadata name="deleteVerbAmountDataGridViewTextBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="extendsTextBox.ToolTip" xml:space="preserve">
+    <value>A comma separated list ("example1,example2,example3") of recipes to inherit properties from.
+Properties are inherited from left to right, overriding the properties of previous recipes, and then the current recipe is applied on top.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

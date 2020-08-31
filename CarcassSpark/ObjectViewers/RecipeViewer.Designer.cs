@@ -146,6 +146,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).BeginInit();
@@ -185,6 +186,7 @@
             this.idTextBox.Size = new System.Drawing.Size(123, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name of recipe");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -195,6 +197,8 @@
             this.labelTextBox.Size = new System.Drawing.Size(123, 20);
             this.labelTextBox.TabIndex = 0;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Text to show at top of verb menu during this recipe.\r\nIf blank, a placeholder wil" +
+        "l be used.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // actionIdTextBox
@@ -205,6 +209,7 @@
             this.actionIdTextBox.Size = new System.Drawing.Size(123, 20);
             this.actionIdTextBox.TabIndex = 0;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.actionIdTextBox, resources.GetString("actionIdTextBox.ToolTip"));
             this.actionIdTextBox.TextChanged += new System.EventHandler(this.ActionIdTextBox_TextChanged);
             // 
             // endingTextBox
@@ -215,6 +220,8 @@
             this.endingTextBox.Size = new System.Drawing.Size(123, 20);
             this.endingTextBox.TabIndex = 0;
             this.endingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.endingTextBox, "When this has a value, initiating this recipe will begin the ending animation and" +
+        " cause the specified ending.");
             this.endingTextBox.TextChanged += new System.EventHandler(this.EndingTextBox_TextChanged);
             // 
             // burnimageTextBox
@@ -225,6 +232,7 @@
             this.burnimageTextBox.Size = new System.Drawing.Size(123, 20);
             this.burnimageTextBox.TabIndex = 0;
             this.burnimageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.burnimageTextBox, "Image to be temporarily burned into the table at the start of this recipe.");
             this.burnimageTextBox.TextChanged += new System.EventHandler(this.BurnimageTextBox_TextChanged);
             // 
             // startdescriptionTextBox
@@ -239,6 +247,8 @@
             this.startdescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.startdescriptionTextBox.Size = new System.Drawing.Size(252, 88);
             this.startdescriptionTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.startdescriptionTextBox, "This is the description that is displayed before you hit the start button and whe" +
+        "n an alternative recipe is selected.");
             this.startdescriptionTextBox.TextChanged += new System.EventHandler(this.StartdescriptionTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -253,6 +263,8 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(252, 88);
             this.descriptionTextBox.TabIndex = 4;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "This is the description that is displayed once this recipe concludes.\r\nThis descr" +
+        "iption is not displayed if an alternative recipe takes over.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // craftableCheckBox
@@ -268,6 +280,9 @@
             this.craftableCheckBox.TabIndex = 0;
             this.craftableCheckBox.Text = "Craftable";
             this.craftableCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.craftableCheckBox, "When true, the start button is enabled when this recipe is shown, allowing it to " +
+        "be initiated.\r\nIf neither craftable or hintonly are true, a recipe can only be r" +
+        "eferenced by linking to it.");
             this.craftableCheckBox.UseVisualStyleBackColor = true;
             this.craftableCheckBox.CheckStateChanged += new System.EventHandler(this.CraftableCheckBox_CheckStateChanged);
             // 
@@ -284,6 +299,8 @@
             this.hintonlyCheckBox.TabIndex = 2;
             this.hintonlyCheckBox.Text = "Hint Only";
             this.hintonlyCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.hintonlyCheckBox, "Allows the recipe to be displayed, but not started. Used to display hints and pre" +
+        "vents it from being craftable.\r\nCan not be true when craftable is true.");
             this.hintonlyCheckBox.UseVisualStyleBackColor = true;
             this.hintonlyCheckBox.CheckStateChanged += new System.EventHandler(this.HintonlyCheckBox_CheckStateChanged);
             // 
@@ -311,6 +328,7 @@
             this.showInternalDeckButton.Size = new System.Drawing.Size(120, 38);
             this.showInternalDeckButton.TabIndex = 0;
             this.showInternalDeckButton.Text = "Show";
+            this.ToolTip.SetToolTip(this.showInternalDeckButton, "A deck to be drawn from every time this recipe is executed.");
             this.showInternalDeckButton.UseVisualStyleBackColor = true;
             this.showInternalDeckButton.Click += new System.EventHandler(this.ShowInternalDeckButton_Click);
             // 
@@ -345,6 +363,7 @@
             this.requirementsDataGridView.ReadOnly = true;
             this.requirementsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.requirementsDataGridView.TabIndex = 6;
+            this.ToolTip.SetToolTip(this.requirementsDataGridView, resources.GetString("requirementsDataGridView.ToolTip"));
             this.requirementsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequirementsDataGridView_CellDoubleClick);
             this.requirementsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequirementsDataGridView_UserDeletedRow);
             // 
@@ -403,6 +422,7 @@
             this.extantreqsDataGridView.ReadOnly = true;
             this.extantreqsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.extantreqsDataGridView.TabIndex = 7;
+            this.ToolTip.SetToolTip(this.extantreqsDataGridView, resources.GetString("extantreqsDataGridView.ToolTip"));
             this.extantreqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ExtantreqsDataGridView_CellDoubleClick);
             this.extantreqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ExtantreqsDataGridView_UserDeletedRow);
             // 
@@ -450,6 +470,7 @@
             this.tablereqsDataGridView.Name = "tablereqsDataGridView";
             this.tablereqsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.tablereqsDataGridView.TabIndex = 8;
+            this.ToolTip.SetToolTip(this.tablereqsDataGridView, resources.GetString("tablereqsDataGridView.ToolTip"));
             this.tablereqsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablereqsDataGridView_CellDoubleClick);
             this.tablereqsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TablereqsDataGridView_UserDeletedRow);
             // 
@@ -502,6 +523,7 @@
             this.showSlotButton.Size = new System.Drawing.Size(120, 38);
             this.showSlotButton.TabIndex = 1;
             this.showSlotButton.Text = "Show";
+            this.ToolTip.SetToolTip(this.showSlotButton, "Slot to be shown during the warmup of this recipe.");
             this.showSlotButton.UseVisualStyleBackColor = true;
             this.showSlotButton.Click += new System.EventHandler(this.ShowSlotButton_Click);
             // 
@@ -522,6 +544,9 @@
             this.effectsDataGridView.Name = "effectsDataGridView";
             this.effectsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.effectsDataGridView.TabIndex = 10;
+            this.ToolTip.SetToolTip(this.effectsDataGridView, "Adds or removes cards from the verb\'s stack with the specified ID.\r\nPositive amou" +
+        "nts add cards, negative amounts remove them.\r\nOnly affects cards inside the verb" +
+        ".");
             this.effectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EffectsDataGridView_CellDoubleClick);
             this.effectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.EffectsDataGridView_UserDeletedRow);
             // 
@@ -567,6 +592,9 @@
             this.aspectsDataGridView.Name = "aspectsDataGridView";
             this.aspectsDataGridView.Size = new System.Drawing.Size(252, 88);
             this.aspectsDataGridView.TabIndex = 11;
+            this.ToolTip.SetToolTip(this.aspectsDataGridView, "Adds or removes aspects to the verb\'s temporary aspect stack.\r\nThese aspects are " +
+        "used to trigger XTriggers.\r\nAll aspects added this way are lost when the verb re" +
+        "turns to its empty state.");
             this.aspectsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AspectsDataGridView_CellDoubleClick);
             this.aspectsDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AspectsDataGridView_UserDeletedRow);
             // 
@@ -599,6 +627,7 @@
             this.deckeffectDataGridView.Name = "deckeffectDataGridView";
             this.deckeffectDataGridView.Size = new System.Drawing.Size(252, 88);
             this.deckeffectDataGridView.TabIndex = 12;
+            this.ToolTip.SetToolTip(this.deckeffectDataGridView, "Draws from the specified deck ID. Only accepts positive amounts.");
             this.deckeffectDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DeckeffectDataGridView_CellDoubleClick);
             this.deckeffectDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DeckeffectDataGridView_UserDeletedRow);
             // 
@@ -743,6 +772,8 @@
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
             this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(164, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 0;
+            this.ToolTip.SetToolTip(this.maxExecutionsNumericUpDown, "When this is a value above 0, the game will prevent it from being chosen or execu" +
+        "ted once it has been executed more than this number of times.");
             this.maxExecutionsNumericUpDown.ValueChanged += new System.EventHandler(this.MaxExecutionsNumericUpDown_ValueChanged);
             // 
             // maxExecutionsLabel
@@ -762,6 +793,8 @@
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
             this.warmupNumericUpDown.Size = new System.Drawing.Size(199, 20);
             this.warmupNumericUpDown.TabIndex = 0;
+            this.ToolTip.SetToolTip(this.warmupNumericUpDown, "This is the timer for the recipe. Determines how long, in seconds, it takes to co" +
+        "mplete.\r\nAny slots in the recipe will be visible for this period of time.");
             this.warmupNumericUpDown.ValueChanged += new System.EventHandler(this.WarmupNumericUpDown_ValueChanged);
             // 
             // warmupLabel
@@ -960,6 +993,7 @@
             this.alternativeRecipesListView.Name = "alternativeRecipesListView";
             this.alternativeRecipesListView.Size = new System.Drawing.Size(252, 88);
             this.alternativeRecipesListView.TabIndex = 14;
+            this.ToolTip.SetToolTip(this.alternativeRecipesListView, resources.GetString("alternativeRecipesListView.ToolTip"));
             this.alternativeRecipesListView.UseCompatibleStateImageBehavior = false;
             this.alternativeRecipesListView.View = System.Windows.Forms.View.List;
             this.alternativeRecipesListView.DoubleClick += new System.EventHandler(this.AlternativerecipesListBox_DoubleClick);
@@ -975,6 +1009,9 @@
             this.linkedRecipesListView.Name = "linkedRecipesListView";
             this.linkedRecipesListView.Size = new System.Drawing.Size(252, 88);
             this.linkedRecipesListView.TabIndex = 15;
+            this.ToolTip.SetToolTip(this.linkedRecipesListView, "The first recipe whose requirements are satisfied (including an RNG check if the " +
+        "chance is between 0-100 exclusively) is executed after this recipe ends, unless " +
+        "an alternate recipe is satisfied first.");
             this.linkedRecipesListView.UseCompatibleStateImageBehavior = false;
             this.linkedRecipesListView.View = System.Windows.Forms.View.List;
             this.linkedRecipesListView.DoubleClick += new System.EventHandler(this.LinkedListBox_DoubleClick);
@@ -990,6 +1027,8 @@
             this.mutationsListView.Name = "mutationsListView";
             this.mutationsListView.Size = new System.Drawing.Size(252, 88);
             this.mutationsListView.TabIndex = 16;
+            this.ToolTip.SetToolTip(this.mutationsListView, "These are used to add or remove aspects from elements permanently.\r\nMutations per" +
+        "sist between transformations from XTriggers and decaying.");
             this.mutationsListView.UseCompatibleStateImageBehavior = false;
             this.mutationsListView.View = System.Windows.Forms.View.List;
             this.mutationsListView.DoubleClick += new System.EventHandler(this.MutationsListBox_DoubleClick);
@@ -1018,6 +1057,7 @@
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
             this.portalEffectDomainUpDown.Size = new System.Drawing.Size(123, 20);
             this.portalEffectDomainUpDown.TabIndex = 0;
+            this.ToolTip.SetToolTip(this.portalEffectDomainUpDown, "Determines which door of the Mansus is opened.");
             this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.PortalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
@@ -1032,6 +1072,8 @@
             this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
             this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(123, 20);
             this.signalEndingFlavourDomainUpDown.TabIndex = 0;
+            this.ToolTip.SetToolTip(this.signalEndingFlavourDomainUpDown, "Determines the ambience to be played during this recipe to signal an upcoming end" +
+        "ing.");
             this.signalEndingFlavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.SignalEndingFlavourDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourLabel
@@ -1100,6 +1142,7 @@
             this.signalImportantLoopCheckBox.TabIndex = 1;
             this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
             this.signalImportantLoopCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.signalImportantLoopCheckBox, "Replaces the normal timer with an \"important\" timer with golden colouring.");
             this.signalImportantLoopCheckBox.UseVisualStyleBackColor = true;
             this.signalImportantLoopCheckBox.CheckStateChanged += new System.EventHandler(this.SignalImportantLoopCheckBox_CheckStateChanged);
             // 
@@ -1120,6 +1163,8 @@
             this.purgeDataGridView.Name = "purgeDataGridView";
             this.purgeDataGridView.Size = new System.Drawing.Size(253, 88);
             this.purgeDataGridView.TabIndex = 9;
+            this.ToolTip.SetToolTip(this.purgeDataGridView, "Removes the specified number of cards from the board.\r\nUsing a really large numbe" +
+        "r like 999 is an easy way to remove ALL cards of that ID.");
             this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurgeDataGridView_CellDoubleClick);
             this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.PurgeDataGridView_UserDeletedRow);
             // 
@@ -1178,6 +1223,7 @@
             this.haltVerbDataGridView.Name = "haltVerbDataGridView";
             this.haltVerbDataGridView.Size = new System.Drawing.Size(253, 88);
             this.haltVerbDataGridView.TabIndex = 13;
+            this.ToolTip.SetToolTip(this.haltVerbDataGridView, "Cancels the recipe of as many verbs with the same ID as you tell it to.");
             this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HaltVerbDataGridView_CellDoubleClick);
             this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.HaltVerbDataGridView_UserDeletedRow);
             // 
@@ -1223,6 +1269,8 @@
             this.deleteVerbDataGridView.Name = "deleteVerbDataGridView";
             this.deleteVerbDataGridView.Size = new System.Drawing.Size(253, 88);
             this.deleteVerbDataGridView.TabIndex = 17;
+            this.ToolTip.SetToolTip(this.deleteVerbDataGridView, "Completely removes verbs of the specified ID.\r\nTemporary verbs are the only ones " +
+        "that can exist in multiples.");
             this.deleteVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DeleteVerbDataGridView_CellDoubleClick);
             this.deleteVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DeleteVerbDataGridView_UserDeletedRow);
             // 
@@ -1272,6 +1320,8 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(253, 88);
             this.commentsTextBox.TabIndex = 5;
+            this.ToolTip.SetToolTip(this.commentsTextBox, "This tidbit is just for people looking at the source and is not displayed anywher" +
+        "e ingame");
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // commentsLabel
@@ -1474,6 +1524,7 @@
             this.deletedCheckBox.TabIndex = 3;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "When true, any recipes with the same ID as this one will be completely removed.");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
@@ -1607,6 +1658,7 @@
             this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
             this.extendsTextBox.TabIndex = 51;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
             this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
             // 
             // extendsLabel
@@ -1794,5 +1846,6 @@
         private System.Windows.Forms.CheckBox deletedCheckBox;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

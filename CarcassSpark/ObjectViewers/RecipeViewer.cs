@@ -690,6 +690,11 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All Recipes must have an ID");
                 return;
             }
+            if (actionIdTextBox.Text == null || actionIdTextBox.Text == "")
+            {
+                MessageBox.Show("All Recipes must have an Action/Verb ID");
+                return;
+            }
             if (requirementsDataGridView.RowCount > 1)
             {
                 displayedRecipe.requirements = null;
