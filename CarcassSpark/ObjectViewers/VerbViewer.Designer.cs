@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerbViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -48,6 +49,7 @@
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,6 +60,7 @@
             this.idTextBox.Size = new System.Drawing.Size(193, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name for the permanent verb");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
@@ -67,6 +70,7 @@
             this.labelTextBox.Size = new System.Drawing.Size(193, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Label to be displayed in the verb form when it\'s in its default state.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // atStartCheckBox
@@ -79,6 +83,8 @@
             this.atStartCheckBox.TabIndex = 2;
             this.atStartCheckBox.Text = "Start new game with this verb";
             this.atStartCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.atStartCheckBox, "When true, this verb shows up at the beginning of every legacy, regardless of whe" +
+        "ther or not it\'s that legacy\'s starting verb.");
             this.atStartCheckBox.UseVisualStyleBackColor = true;
             this.atStartCheckBox.CheckStateChanged += new System.EventHandler(this.AtStartCheckBox_CheckStateChanged);
             // 
@@ -90,6 +96,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
             this.descriptionTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description for the verb to be displayed in its form when empty.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // idLabel
@@ -187,6 +194,7 @@
             this.slotsListView.Name = "slotsListView";
             this.slotsListView.Size = new System.Drawing.Size(330, 42);
             this.slotsListView.TabIndex = 14;
+            this.ToolTip.SetToolTip(this.slotsListView, "Default slot specification");
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
             this.slotsListView.DoubleClick += new System.EventHandler(this.SlotsListBox_DoubleClick);
@@ -209,6 +217,7 @@
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentsTextBox.Size = new System.Drawing.Size(330, 29);
             this.commentsTextBox.TabIndex = 16;
+            this.ToolTip.SetToolTip(this.commentsTextBox, "Comments are only visible in the source.");
             this.commentsTextBox.TextChanged += new System.EventHandler(this.CommentsTextBox_TextChanged);
             // 
             // deletedCheckBox
@@ -220,6 +229,7 @@
             this.deletedCheckBox.TabIndex = 19;
             this.deletedCheckBox.Text = "Deleted";
             this.deletedCheckBox.ThreeState = true;
+            this.ToolTip.SetToolTip(this.deletedCheckBox, "When true, any verb with the specified  ID will be deleted.");
             this.deletedCheckBox.UseVisualStyleBackColor = true;
             this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.DeletedCheckBox_CheckStateChanged);
             // 
@@ -229,6 +239,7 @@
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(268, 20);
             this.extendsTextBox.TabIndex = 20;
+            this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
             this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
             // extendsLabel
@@ -298,5 +309,6 @@
         private System.Windows.Forms.CheckBox deletedCheckBox;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
