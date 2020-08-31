@@ -48,6 +48,14 @@ namespace CarcassSpark.ObjectViewers
                 slotsListView.Items.Add(verb.slot.id);
                 // slots.Add(verb.slot.id, verb.slot);
             }
+            if (verb.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", verb.extends);
+            }
+            else if (verb.extends?.Count == 1)
+            {
+                extendsTextBox.Text = verb.extends[0];
+            }
         }
 
         void SetEditingMode(bool editing)
@@ -166,6 +174,18 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedVerb.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedVerb.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.deleted = null;
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedVerb.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedVerb.extends = new List<string> { extendsTextBox.Text };
+            }
         }
     }
 }
