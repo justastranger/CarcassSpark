@@ -45,8 +45,7 @@ namespace CarcassSpark.ObjectViewers
             if (verb.deleted.HasValue) deletedCheckBox.Checked = verb.deleted.Value;
             if (verb.slot != null)
             {
-                slotsListView.Items.Add(verb.slot.id);
-                // slots.Add(verb.slot.id, verb.slot);
+                addSlotButton.Text = "Open Slot";
             }
             if (verb.extends?.Count > 1)
             {
@@ -73,16 +72,6 @@ namespace CarcassSpark.ObjectViewers
             deletedCheckBox.Enabled = editing;
         }
 
-        private void SlotsListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (slotsListView.SelectedItems == null) return;
-            SlotViewer sv = new SlotViewer(displayedVerb.slot, editing);
-            if (sv.ShowDialog() == DialogResult.OK)
-            {
-                displayedVerb.slot = sv.displayedSlot;
-            }
-        }
-
         private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
@@ -96,18 +85,22 @@ namespace CarcassSpark.ObjectViewers
 
         private void AddSlotButton_Click(object sender, EventArgs e)
         {
-            if (slotsListView.Items.Count == 1)
+            if (displayedVerb.slot == null)
             {
-                MessageBox.Show("Currently, only one slot is supported by Verbs at this time.");
-                return;
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.VERB);
+                if (sv.ShowDialog() == DialogResult.OK)
+                {
+                    displayedVerb.slot = sv.displayedSlot;
+                    addSlotButton.Text = "Open Slot";
+                }
             }
-            SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.VERB);
-            sv.ShowDialog();
-            if(sv.DialogResult == DialogResult.OK)
+            else
             {
-                displayedVerb.slot = sv.displayedSlot;
-                // slots.Add(sv.displayedSlot.id, sv.displayedSlot);
-                slotsListView.Items.Add(sv.displayedSlot.id);
+                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), true, SlotViewer.SlotType.VERB);
+                if (sv.ShowDialog() == DialogResult.OK)
+                {
+                    displayedVerb.slot = sv.displayedSlot;
+                }
             }
         }
 
@@ -149,8 +142,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            displayedVerb.slot = null;
-            slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
+            if (displayedVerb.slot != null)
+            {
+                displayedVerb.slot = null;
+                addSlotButton.Text = "Add Slot";
+            }
+            else
+            {
+                MessageBox.Show("There is no slot");
+            }
         }
 
         private void AtStartCheckBox_CheckStateChanged(object sender, EventArgs e)

@@ -43,7 +43,6 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.slotsListView = new System.Windows.Forms.ListView();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
@@ -129,11 +128,11 @@
             // slotsLabel
             // 
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(9, 313);
+            this.slotsLabel.Location = new System.Drawing.Point(166, 313);
             this.slotsLabel.Name = "slotsLabel";
-            this.slotsLabel.Size = new System.Drawing.Size(30, 13);
+            this.slotsLabel.Size = new System.Drawing.Size(25, 13);
             this.slotsLabel.TabIndex = 8;
-            this.slotsLabel.Text = "Slots";
+            this.slotsLabel.Text = "Slot";
             // 
             // okButton
             // 
@@ -148,7 +147,7 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(93, 377);
+            this.addSlotButton.Location = new System.Drawing.Point(93, 329);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(81, 31);
             this.addSlotButton.TabIndex = 10;
@@ -169,11 +168,11 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(180, 377);
+            this.removeButton.Location = new System.Drawing.Point(180, 329);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(81, 31);
             this.removeButton.TabIndex = 12;
-            this.removeButton.Text = "Remove";
+            this.removeButton.Text = "Remove Slot";
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
@@ -185,19 +184,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
-            // 
-            // slotsListView
-            // 
-            this.slotsListView.HideSelection = false;
-            this.slotsListView.Location = new System.Drawing.Point(12, 329);
-            this.slotsListView.MultiSelect = false;
-            this.slotsListView.Name = "slotsListView";
-            this.slotsListView.Size = new System.Drawing.Size(330, 42);
-            this.slotsListView.TabIndex = 14;
-            this.ToolTip.SetToolTip(this.slotsListView, "Default slot specification");
-            this.slotsListView.UseCompatibleStateImageBehavior = false;
-            this.slotsListView.View = System.Windows.Forms.View.List;
-            this.slotsListView.DoubleClick += new System.EventHandler(this.SlotsListBox_DoubleClick);
             // 
             // commentsLabel
             // 
@@ -263,7 +249,6 @@
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.commentsLabel);
-            this.Controls.Add(this.slotsListView);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cancelButton);
@@ -303,7 +288,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ListView slotsListView;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.CheckBox deletedCheckBox;
