@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MutationViewer));
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.mutateAspectIdTextBox = new System.Windows.Forms.TextBox();
@@ -38,30 +39,35 @@
             this.filterLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // filterTextBox
             // 
-            this.filterTextBox.Location = new System.Drawing.Point(48, 25);
+            this.filterTextBox.Location = new System.Drawing.Point(12, 25);
             this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(120, 20);
+            this.filterTextBox.Size = new System.Drawing.Size(194, 20);
             this.filterTextBox.TabIndex = 0;
             this.filterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.filterTextBox, resources.GetString("filterTextBox.ToolTip"));
             this.filterTextBox.TextChanged += new System.EventHandler(this.FilterTextBox_TextChanged);
             // 
             // mutateAspectIdTextBox
             // 
-            this.mutateAspectIdTextBox.Location = new System.Drawing.Point(48, 64);
+            this.mutateAspectIdTextBox.Location = new System.Drawing.Point(12, 64);
             this.mutateAspectIdTextBox.Name = "mutateAspectIdTextBox";
-            this.mutateAspectIdTextBox.Size = new System.Drawing.Size(120, 20);
+            this.mutateAspectIdTextBox.Size = new System.Drawing.Size(194, 20);
             this.mutateAspectIdTextBox.TabIndex = 1;
             this.mutateAspectIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.mutateAspectIdTextBox, "This is the aspect you want to modify on the element.\r\nMutations are stored separ" +
+        "ately to an element\'s base aspects, and will persist when the element is transfo" +
+        "rmed.");
             this.mutateAspectIdTextBox.TextChanged += new System.EventHandler(this.MutateAspectIdTextBox_TextChanged);
             // 
             // levelNumericUpDown
             // 
-            this.levelNumericUpDown.Location = new System.Drawing.Point(48, 103);
+            this.levelNumericUpDown.Location = new System.Drawing.Point(49, 103);
             this.levelNumericUpDown.Minimum = new decimal(new int[] {
             100,
             0,
@@ -70,6 +76,7 @@
             this.levelNumericUpDown.Name = "levelNumericUpDown";
             this.levelNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.levelNumericUpDown.TabIndex = 2;
+            this.ToolTip.SetToolTip(this.levelNumericUpDown, resources.GetString("levelNumericUpDown.ToolTip"));
             this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.LevelNumericUpDown_ValueChanged);
             // 
             // additiveCheckBox
@@ -80,6 +87,8 @@
             this.additiveCheckBox.Size = new System.Drawing.Size(64, 17);
             this.additiveCheckBox.TabIndex = 3;
             this.additiveCheckBox.Text = "Additive";
+            this.ToolTip.SetToolTip(this.additiveCheckBox, "When false, the aspect\'s mutation is set to the level specified.\r\nWhen true, the " +
+        "mutation level is added to the current level.");
             this.additiveCheckBox.UseVisualStyleBackColor = true;
             this.additiveCheckBox.CheckedChanged += new System.EventHandler(this.AdditiveCheckBox_CheckedChanged);
             // 
@@ -108,16 +117,16 @@
             // filterLabel
             // 
             this.filterLabel.AutoSize = true;
-            this.filterLabel.Location = new System.Drawing.Point(46, 9);
+            this.filterLabel.Location = new System.Drawing.Point(26, 9);
             this.filterLabel.Name = "filterLabel";
-            this.filterLabel.Size = new System.Drawing.Size(124, 13);
+            this.filterLabel.Size = new System.Drawing.Size(166, 13);
             this.filterLabel.TabIndex = 6;
-            this.filterLabel.Text = "Element ID to Filter using";
+            this.filterLabel.Text = "Element or Aspect ID to Filter with";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 48);
+            this.label1.Location = new System.Drawing.Point(65, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 7;
@@ -126,11 +135,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 87);
+            this.label2.Location = new System.Drawing.Point(71, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Amount to Mutate By";
+            this.label2.Text = "Mutation Level";
             // 
             // MutationViewer
             // 
@@ -170,5 +179,6 @@
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
