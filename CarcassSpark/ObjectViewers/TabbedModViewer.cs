@@ -571,5 +571,11 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Imported " + ii.displayedImageType + " image.");
             }
         }
+
+        private void JSONCleanerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JsonCleaner jc = new JsonCleaner();
+            jc.ShowDialog();
+        }
     }
 }

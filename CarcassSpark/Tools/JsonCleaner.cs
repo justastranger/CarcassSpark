@@ -1,0 +1,71 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CarcassSpark.Tools
+{
+    public partial class JsonCleaner : Form
+    {
+
+        private Dictionary<string, string> jsonFiles = new Dictionary<string, string>();
+
+        public JsonCleaner()
+        {
+            InitializeComponent();
+            inputBrowserDialog.SelectedPath = Utilities.baseDirectory;
+            outputBrowserDialog.SelectedPath = Utilities.baseDirectory;
+        }
+
+        private void SelectFolderButton_Click(object sender, EventArgs e)
+        {
+            if (inputBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                jsonFiles.Clear();
+                foreach (string file in Directory.EnumerateFiles(inputBrowserDialog.SelectedPath, "*.json", SearchOption.AllDirectories))
+                {
+                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    {
+                        JObject deserialized = JObject.Parse(new StreamReader(fs).ReadToEnd());
+                        string newText = Utilities.SerializeObject(deserialized);
+                        // isolates the file's path from the selected folder
+                        string path = file.Remove(file.IndexOf(inputBrowserDialog.SelectedPath), inputBrowserDialog.SelectedPath.Length);
+                        jsonFiles.Add(path, newText);
+                    }
+                }
+                MessageBox.Show("Loaded and cleaned " + jsonFiles.Count.ToString() + " files. Ready to save.");
+            }
+        }
+
+        private void SaveToFolderButton_Click(object sender, EventArgs e)
+        {
+            if (outputBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string file in jsonFiles.Keys)
+                {
+                    string newPath = outputBrowserDialog.SelectedPath + file;
+                    Directory.CreateDirectory(Path.GetDirectoryName(newPath));
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(newPath, FileMode.Create))))
+                    {
+                        jtw.WriteRaw(jsonFiles[file]);
+                    }
+                }
+                ProcessStartInfo startInfo = new ProcessStartInfo()
+                {
+                    FileName = "Explorer.exe",
+                    Arguments = outputBrowserDialog.SelectedPath
+                };
+                Process.Start(startInfo);
+            }
+        }
+    }
+}
