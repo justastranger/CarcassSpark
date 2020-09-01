@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlotViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -49,6 +50,7 @@
             this.forbiddenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forbiddenAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -60,15 +62,18 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name for the slot. Only used to differentiate the slots and is not refer" +
+        "enced anywhere.");
             this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(172, 25);
+            this.labelTextBox.Location = new System.Drawing.Point(123, 25);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(100, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(149, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.labelTextBox, "Label to display above the slot and in the details panel.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // descriptionTextBox
@@ -80,6 +85,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(260, 75);
             this.descriptionTextBox.TabIndex = 2;
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description for the slot to be displayed in its details panel.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // actionIdTextBox
@@ -89,6 +95,7 @@
             this.actionIdTextBox.Size = new System.Drawing.Size(127, 20);
             this.actionIdTextBox.TabIndex = 3;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.actionIdTextBox, "ID of the verb that this slot will only appear in.");
             this.actionIdTextBox.Visible = false;
             this.actionIdTextBox.TextChanged += new System.EventHandler(this.ActionIdTextBox_TextChanged);
             // 
@@ -100,6 +107,9 @@
             this.greedyCheckBox.Size = new System.Drawing.Size(60, 17);
             this.greedyCheckBox.TabIndex = 6;
             this.greedyCheckBox.Text = "Greedy";
+            this.ToolTip.SetToolTip(this.greedyCheckBox, "When true, this slot will suck in the first card that fits the slot criteria.\r\nPl" +
+        "ayers lose control of any cards grabbed by the greedy slot and can not choose wh" +
+        "ich card gets selected.");
             this.greedyCheckBox.UseVisualStyleBackColor = true;
             this.greedyCheckBox.Visible = false;
             this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.GreedyCheckBox_CheckedChanged);
@@ -193,6 +203,7 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
+            this.ToolTip.SetToolTip(this.requiredDataGridView, resources.GetString("requiredDataGridView.ToolTip"));
             this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequiredDataGridView_CellDoubleClick_1);
             this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequiredDataGridView_UserDeletedRow);
             // 
@@ -220,6 +231,8 @@
             this.forbiddenDataGridView.Name = "forbiddenDataGridView";
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
             this.forbiddenDataGridView.TabIndex = 16;
+            this.ToolTip.SetToolTip(this.forbiddenDataGridView, "Cards can not satisfy any of the conditions below.\r\nNegative values indicate a \"l" +
+        "ess than\" operator, allowing only cards with at least that much of an aspect.");
             this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForbiddenDataGridView_CellDoubleClick_1);
             this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ForbiddenDataGridView_UserDeletedRow);
             // 
@@ -243,6 +256,8 @@
             this.consumesCheckBox.Size = new System.Drawing.Size(75, 17);
             this.consumesCheckBox.TabIndex = 17;
             this.consumesCheckBox.Text = "Consumes";
+            this.ToolTip.SetToolTip(this.consumesCheckBox, "When true, any card placed in the slot will be deleted at the conclusion of the r" +
+        "ecipe.");
             this.consumesCheckBox.UseVisualStyleBackColor = true;
             this.consumesCheckBox.Visible = false;
             this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.ConsumesCheckBox_CheckedChanged);
@@ -304,5 +319,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenId;
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenAmount;
         private System.Windows.Forms.CheckBox consumesCheckBox;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
