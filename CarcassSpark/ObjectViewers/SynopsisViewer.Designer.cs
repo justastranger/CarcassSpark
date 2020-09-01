@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SynopsisViewer));
             this.modNameTextBox = new System.Windows.Forms.TextBox();
             this.modAuthorTextBox = new System.Windows.Forms.TextBox();
@@ -46,6 +47,7 @@
             this.dependencyModId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dependencyVersionOperator = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dependencyVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,8 @@
             this.modNameTextBox.Size = new System.Drawing.Size(357, 20);
             this.modNameTextBox.TabIndex = 0;
             this.modNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.modNameTextBox, "This is the name and (for the purpose of dependencies) the ID of the mod, as disp" +
+        "layed in the mod menu.");
             this.modNameTextBox.TextChanged += new System.EventHandler(this.ModNameTextBox_TextChanged);
             // 
             // modAuthorTextBox
@@ -65,6 +69,7 @@
             this.modAuthorTextBox.Size = new System.Drawing.Size(357, 20);
             this.modAuthorTextBox.TabIndex = 1;
             this.modAuthorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.modAuthorTextBox, "This is where the credits go, usually just you.");
             this.modAuthorTextBox.TextChanged += new System.EventHandler(this.ModAuthorTextBox_TextChanged);
             // 
             // modVersionTextBox
@@ -74,6 +79,7 @@
             this.modVersionTextBox.Size = new System.Drawing.Size(357, 20);
             this.modVersionTextBox.TabIndex = 2;
             this.modVersionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.modVersionTextBox, resources.GetString("modVersionTextBox.ToolTip"));
             this.modVersionTextBox.TextChanged += new System.EventHandler(this.ModVersionTextBox_TextChanged);
             // 
             // modDescriptionTextBox
@@ -85,6 +91,7 @@
             this.modDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.modDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.modDescriptionTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.modDescriptionTextBox, "This is the mod description shown in the mod menu and on the Steam Workshop.");
             this.modDescriptionTextBox.TextChanged += new System.EventHandler(this.ModDescriptionTextBox_TextChanged);
             // 
             // longDescriptionTextBox
@@ -96,6 +103,7 @@
             this.longDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.longDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
             this.longDescriptionTextBox.TabIndex = 4;
+            this.ToolTip.SetToolTip(this.longDescriptionTextBox, "This version is not currently shown anywhere ingame.");
             this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.LongDescriptionTextBox_TextChanged);
             // 
             // okButton
@@ -187,6 +195,8 @@
             this.dependeniesDataGridView.Name = "dependeniesDataGridView";
             this.dependeniesDataGridView.Size = new System.Drawing.Size(357, 108);
             this.dependeniesDataGridView.TabIndex = 13;
+            this.ToolTip.SetToolTip(this.dependeniesDataGridView, "If your mod depends on another mod, you can say so and prevent your mod from bein" +
+        "g used without its dependencies.");
             // 
             // dependencyModId
             // 
@@ -266,5 +276,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dependencyModId;
         private System.Windows.Forms.DataGridViewComboBoxColumn dependencyVersionOperator;
         private System.Windows.Forms.DataGridViewTextBoxColumn dependencyVersion;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
