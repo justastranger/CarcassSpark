@@ -39,9 +39,9 @@ namespace CarcassSpark
             {
                 settings["previousMods"] = JArray.FromObject(ValidatePreviousMods(GetPreviousMods()));
             }
-            else
+            else if (settings.ContainsKey("previousMods"))
             {
-                if (settings.ContainsKey("previousMods")) settings.Remove("previousMods");
+                settings.Remove("previousMods");
             }
 
             using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
@@ -111,6 +111,10 @@ namespace CarcassSpark
             if (modPaths.Count > 0)
             {
                 settings["previousMods"] = JArray.FromObject(modPaths);
+            }
+            else if (settings.ContainsKey("previousMods"))
+            {
+                settings.Remove("previousMods");
             }
             // then we validate them in this function
             SaveSettings();
