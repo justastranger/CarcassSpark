@@ -1,5 +1,4 @@
-﻿extern alias CultistSimulator;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -195,36 +194,22 @@ namespace CarcassSpark.ObjectViewers
 
         public void LoadSynopsis(FileStream file)
         {
-            string fileText = new StreamReader(file).ReadToEnd();
-            Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(JsonConvert.SerializeObject(ht));
+            // string fileText = new StreamReader(file).ReadToEnd();
+            // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
+            Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(new StreamReader(file).ReadToEnd());
             Text = Content.synopsis.name;
         }
 
         public void LoadCustomManifest(FileStream file)
         {
-            string fileText = new StreamReader(file).ReadToEnd();
-            Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(ht));
+            // string fileText = new StreamReader(file).ReadToEnd();
+            // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
+            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd());
         }
 
         public void LoadFile(FileStream file, string filePath)
         {
-            string fileText = new StreamReader(file).ReadToEnd();
-            Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            string newFileText = JsonConvert.SerializeObject(ht, Formatting.Indented);
-            if (Settings.settings["saveCleanedVanillaContent"] != null && Settings.settings["saveCleanedVanillaContent"].ToObject<bool>() && isVanilla)
-            {
-                if (!Directory.Exists("Cleaned Files\\" + filePath.Substring(0, filePath.LastIndexOf('\\'))))
-                {
-                    Directory.CreateDirectory("Cleaned Files\\" + filePath.Substring(0, filePath.LastIndexOf('\\')));
-                }
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open("Cleaned Files\\" + filePath, FileMode.Create))))
-                {
-                    jtw.WriteRaw(newFileText);
-                }
-            }
-            JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(newFileText).First;
+            JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()).First;
             string fileType = parsedJToken.Path;
             switch (fileType)
             {
