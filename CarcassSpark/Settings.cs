@@ -108,7 +108,10 @@ namespace CarcassSpark
         {
             // take the contents of the previous mods text box and store it
             List<string> modPaths = previousModsTextBox.Text.Split("\r\n".ToCharArray()).ToList();
-            settings["previousMods"] = JArray.FromObject(modPaths);
+            if (modPaths.Count > 0)
+            {
+                settings["previousMods"] = JArray.FromObject(modPaths);
+            }
             // then we validate them in this function
             SaveSettings();
             Close();
