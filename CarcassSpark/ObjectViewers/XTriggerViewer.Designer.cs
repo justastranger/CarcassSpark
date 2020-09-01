@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTriggerViewer));
             this.catalystTextBox = new System.Windows.Forms.TextBox();
             this.catalystLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.xtriggersDataGridView = new System.Windows.Forms.DataGridView();
+            this.xTriggersLabel = new System.Windows.Forms.Label();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.xtriggersResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersChance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersMorphEffect = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.xTriggersLabel = new System.Windows.Forms.Label();
-            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +51,8 @@
             this.catalystTextBox.Name = "catalystTextBox";
             this.catalystTextBox.Size = new System.Drawing.Size(120, 20);
             this.catalystTextBox.TabIndex = 0;
+            this.ToolTip.SetToolTip(this.catalystTextBox, "This is the element or aspect ID that will trigger the following XTriggers when a" +
+        " recipe concludes.");
             this.catalystTextBox.TextChanged += new System.EventHandler(this.CatalystTextBox_TextChanged);
             // 
             // catalystLabel
@@ -96,33 +100,8 @@
             this.xtriggersDataGridView.Name = "xtriggersDataGridView";
             this.xtriggersDataGridView.Size = new System.Drawing.Size(442, 210);
             this.xtriggersDataGridView.TabIndex = 12;
-            // 
-            // xtriggersResult
-            // 
-            this.xtriggersResult.HeaderText = "Result";
-            this.xtriggersResult.Name = "xtriggersResult";
-            // 
-            // xtriggersChance
-            // 
-            this.xtriggersChance.HeaderText = "Chance";
-            this.xtriggersChance.Name = "xtriggersChance";
-            // 
-            // xtriggersLevel
-            // 
-            this.xtriggersLevel.HeaderText = "Level";
-            this.xtriggersLevel.Name = "xtriggersLevel";
-            this.xtriggersLevel.Width = 99;
-            // 
-            // xtriggersMorphEffect
-            // 
-            this.xtriggersMorphEffect.HeaderText = "Morph Effect";
-            this.xtriggersMorphEffect.Items.AddRange(new object[] {
-            "transform",
-            "mutate",
-            "spawn"});
-            this.xtriggersMorphEffect.Name = "xtriggersMorphEffect";
-            this.xtriggersMorphEffect.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.xtriggersMorphEffect.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ToolTip.SetToolTip(this.xtriggersDataGridView, "These are the XTrigger effects that are triggered in response to exposure to the " +
+        "catalyst during the conclusion of a recipe.");
             // 
             // xTriggersLabel
             // 
@@ -143,6 +122,39 @@
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // xtriggersResult
+            // 
+            this.xtriggersResult.HeaderText = "Result";
+            this.xtriggersResult.Name = "xtriggersResult";
+            this.xtriggersResult.ToolTipText = "This is the element or aspect ID to target with this XTrigger";
+            // 
+            // xtriggersChance
+            // 
+            this.xtriggersChance.HeaderText = "Chance";
+            this.xtriggersChance.Name = "xtriggersChance";
+            this.xtriggersChance.ToolTipText = "This is the chance the XTrigger will be executed";
+            // 
+            // xtriggersLevel
+            // 
+            this.xtriggersLevel.HeaderText = "Level";
+            this.xtriggersLevel.Name = "xtriggersLevel";
+            this.xtriggersLevel.ToolTipText = "When spawning or mutating, this is the amount that it\'s done by.";
+            this.xtriggersLevel.Width = 99;
+            // 
+            // xtriggersMorphEffect
+            // 
+            this.xtriggersMorphEffect.HeaderText = "Morph Effect";
+            this.xtriggersMorphEffect.Items.AddRange(new object[] {
+            "transform",
+            "mutate",
+            "spawn"});
+            this.xtriggersMorphEffect.Name = "xtriggersMorphEffect";
+            this.xtriggersMorphEffect.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.xtriggersMorphEffect.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.xtriggersMorphEffect.ToolTipText = "Determines the type of XTrigger. Transform changes one card into another, preserv" +
+    "ing mutations, spawn creates new cards, and mutate allows for mutations to be ap" +
+    "plied.";
             // 
             // XTriggerViewer
             // 
@@ -176,10 +188,11 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.DataGridView xtriggersDataGridView;
         private System.Windows.Forms.Label xTriggersLabel;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.DataGridViewTextBoxColumn xtriggersResult;
         private System.Windows.Forms.DataGridViewTextBoxColumn xtriggersChance;
         private System.Windows.Forms.DataGridViewTextBoxColumn xtriggersLevel;
         private System.Windows.Forms.DataGridViewComboBoxColumn xtriggersMorphEffect;
-        private System.Windows.Forms.Button deleteButton;
     }
 }
