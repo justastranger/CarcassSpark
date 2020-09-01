@@ -117,12 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="aspectId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="isBaseOrNull.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="challengeType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="challengesDataGridView.ToolTip" xml:space="preserve">
+    <value>This is a challenge that replaces the chance property when it is present.
+Each aspect is challenged individually and all must pass for the recipe to execute.
+For "base" challenges, an aspect level of 0 grants a 0% chance, 1-4 grant a 30% chance, 5-9 grant a 70% chance, and 10+ grants a 90% chance.
+For "advanced" challenges, aspect levels of 0-4 grant a 0% chance, 5-9 grant a 10% chance, 10-14 grant a 30% chance, 15-19 grant a 70% chance, and 20+ grants a 90% chance.</value>
+  </data>
+  <metadata name="expulsionFilter.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="expulsionLimit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="expulsionDataGridView.ToolTip" xml:space="preserve">
+    <value>This is used with the additional property in order to move an element (or elements) into the newly created verb token.
+Filter can be any element, aspect, or uniqueness group ID and works just like the mutation filter.
+Limit is how many of that particular element you'd like to move.
+The total expulsion limit above can be used to limit how many elements are moved into the new verb token altogether.
+This allows you to try to take, for example, up to 4 of either summons and/or followers into a new verb, but only allow a max of 4 elements to move across. </value>
+  </data>
   <metadata name="expulsionFilter.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -65,8 +65,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(idTextBox.Text), null);
-            rv.Show();
+            if (Utilities.RecipeExists(idTextBox.Text))
+            {
+                RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(idTextBox.Text), null);
+                rv.Show();
+            }
+            else
+            {
+                MessageBox.Show("That recipe does not currently exist.");
+            }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
