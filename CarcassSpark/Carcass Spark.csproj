@@ -45,12 +45,6 @@
     <ApplicationIcon>Resources\toolforgef.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Assembly-CSharp.dll</HintPath>
-      <Aliases>CultistSimulator</Aliases>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="MindFusion.Common, Version=1.3.2.451, Culture=neutral, PublicKeyToken=dd7449df9ffcc455, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MindFusion.Pack.CarcassSpark\MindFusion.Common.dll</HintPath>
