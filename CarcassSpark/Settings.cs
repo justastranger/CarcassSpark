@@ -69,19 +69,11 @@ namespace CarcassSpark
 
         void PopulateSettings()
         {
-            if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
             if (settings["loadPreviousMods"] != null) loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
             if (settings["previousMods"]?.Count() > 0) previousModsTextBox.Text = string.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
-            if (settings["saveCleanedVanillaContent"] != null) saveCleanedVanillaContentCheckBox.Checked = settings["saveCleanedVanillaContent"].ToObject<bool>();
             if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
             if (settings["portable"] != null) portableCheckBox.Checked = settings["portable"].ToObject<bool>();
             if (settings["GamePath"] != null) GamePathTextBox.Text = settings["GamePath"].ToString();
-        }
-
-        private void OpenWithVanillaCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            settings["openWithVanilla"] = openWithVanillaCheckBox.Checked;
-            SaveSettings();
         }
 
         private void LoadPreviousModsCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -110,12 +102,6 @@ namespace CarcassSpark
                 settings["previousMods"] = JArray.FromObject(tmp);
                 SaveSettings();
             }
-        }
-
-        private void SaveCleanedVanillaContentCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            settings["saveCleanedVanillaContent"] = saveCleanedVanillaContentCheckBox.Checked;
-            SaveSettings();
         }
 
         private void OkButton_Click(object sender, EventArgs e)

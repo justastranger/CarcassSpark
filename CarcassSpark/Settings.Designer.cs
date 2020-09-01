@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.openWithVanillaCheckBox = new System.Windows.Forms.CheckBox();
             this.loadPreviousModsCheckBox = new System.Windows.Forms.CheckBox();
             this.previousModsTextBox = new System.Windows.Forms.TextBox();
             this.previousModLabel = new System.Windows.Forms.Label();
-            this.saveCleanedVanillaContentCheckBox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.loadAllFlowchartNodesCheckBox = new System.Windows.Forms.CheckBox();
@@ -42,17 +40,6 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            // 
-            // openWithVanillaCheckBox
-            // 
-            this.openWithVanillaCheckBox.AutoSize = true;
-            this.openWithVanillaCheckBox.Location = new System.Drawing.Point(12, 12);
-            this.openWithVanillaCheckBox.Name = "openWithVanillaCheckBox";
-            this.openWithVanillaCheckBox.Size = new System.Drawing.Size(197, 17);
-            this.openWithVanillaCheckBox.TabIndex = 0;
-            this.openWithVanillaCheckBox.Text = "Load Vanilla Content When Opened";
-            this.openWithVanillaCheckBox.UseVisualStyleBackColor = true;
-            this.openWithVanillaCheckBox.CheckedChanged += new System.EventHandler(this.OpenWithVanillaCheckBox_CheckedChanged);
             // 
             // loadPreviousModsCheckBox
             // 
@@ -83,17 +70,6 @@
             this.previousModLabel.Size = new System.Drawing.Size(123, 13);
             this.previousModLabel.TabIndex = 3;
             this.previousModLabel.Text = "Previously Loaded Mods";
-            // 
-            // saveCleanedVanillaContentCheckBox
-            // 
-            this.saveCleanedVanillaContentCheckBox.AutoSize = true;
-            this.saveCleanedVanillaContentCheckBox.Location = new System.Drawing.Point(12, 35);
-            this.saveCleanedVanillaContentCheckBox.Name = "saveCleanedVanillaContentCheckBox";
-            this.saveCleanedVanillaContentCheckBox.Size = new System.Drawing.Size(342, 17);
-            this.saveCleanedVanillaContentCheckBox.TabIndex = 4;
-            this.saveCleanedVanillaContentCheckBox.Text = "Save a cleaned copy of the vanilla content files when loading them";
-            this.saveCleanedVanillaContentCheckBox.UseVisualStyleBackColor = true;
-            this.saveCleanedVanillaContentCheckBox.CheckedChanged += new System.EventHandler(this.SaveCleanedVanillaContentCheckBox_CheckedChanged);
             // 
             // okButton
             // 
@@ -169,11 +145,9 @@
             this.Controls.Add(this.loadAllFlowchartNodesCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.saveCleanedVanillaContentCheckBox);
             this.Controls.Add(this.previousModLabel);
             this.Controls.Add(this.previousModsTextBox);
             this.Controls.Add(this.loadPreviousModsCheckBox);
-            this.Controls.Add(this.openWithVanillaCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -185,12 +159,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox openWithVanillaCheckBox;
         private System.Windows.Forms.CheckBox loadPreviousModsCheckBox;
         private System.Windows.Forms.TextBox previousModsTextBox;
         private System.Windows.Forms.Label previousModLabel;
-        private System.Windows.Forms.CheckBox saveCleanedVanillaContentCheckBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox loadAllFlowchartNodesCheckBox;
