@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerbViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
-            this.atStartCheckBox = new System.Windows.Forms.CheckBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
@@ -71,21 +70,6 @@
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.labelTextBox, "Label to be displayed in the verb form when it\'s in its default state.");
             this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
-            // 
-            // atStartCheckBox
-            // 
-            this.atStartCheckBox.AutoSize = true;
-            this.atStartCheckBox.Enabled = false;
-            this.atStartCheckBox.Location = new System.Drawing.Point(149, 90);
-            this.atStartCheckBox.Name = "atStartCheckBox";
-            this.atStartCheckBox.Size = new System.Drawing.Size(165, 17);
-            this.atStartCheckBox.TabIndex = 2;
-            this.atStartCheckBox.Text = "Start new game with this verb";
-            this.atStartCheckBox.ThreeState = true;
-            this.ToolTip.SetToolTip(this.atStartCheckBox, "When true, this verb shows up at the beginning of every legacy, regardless of whe" +
-        "ther or not it\'s that legacy\'s starting verb.");
-            this.atStartCheckBox.UseVisualStyleBackColor = true;
-            this.atStartCheckBox.CheckStateChanged += new System.EventHandler(this.AtStartCheckBox_CheckStateChanged);
             // 
             // descriptionTextBox
             // 
@@ -209,7 +193,7 @@
             // deletedCheckBox
             // 
             this.deletedCheckBox.AutoSize = true;
-            this.deletedCheckBox.Location = new System.Drawing.Point(149, 113);
+            this.deletedCheckBox.Location = new System.Drawing.Point(146, 90);
             this.deletedCheckBox.Name = "deletedCheckBox";
             this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
             this.deletedCheckBox.TabIndex = 19;
@@ -259,7 +243,6 @@
             this.Controls.Add(this.labelLabel);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.descriptionTextBox);
-            this.Controls.Add(this.atStartCheckBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -277,7 +260,6 @@
 
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox labelTextBox;
-        private System.Windows.Forms.CheckBox atStartCheckBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;

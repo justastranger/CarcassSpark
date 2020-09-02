@@ -40,7 +40,6 @@ namespace CarcassSpark.ObjectViewers
                 pictureBox1.Image = Utilities.GetVerbImage(verb.id);
             }
             if (verb.label != null) labelTextBox.Text = verb.label;
-            if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
             if (verb.description != null) descriptionTextBox.Text = verb.description;
             if (verb.deleted.HasValue) deletedCheckBox.Checked = verb.deleted.Value;
             if (verb.slot != null)
@@ -62,7 +61,6 @@ namespace CarcassSpark.ObjectViewers
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
-            atStartCheckBox.Enabled = editing;
             descriptionTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
@@ -151,13 +149,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 MessageBox.Show("There is no slot");
             }
-        }
-
-        private void AtStartCheckBox_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (atStartCheckBox.CheckState == CheckState.Checked) displayedVerb.atStart = true;
-            if (atStartCheckBox.CheckState == CheckState.Unchecked) displayedVerb.atStart = false;
-            if (atStartCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.atStart = null;
         }
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
