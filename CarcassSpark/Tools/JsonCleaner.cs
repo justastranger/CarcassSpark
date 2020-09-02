@@ -17,7 +17,8 @@ namespace CarcassSpark.Tools
     public partial class JsonCleaner : Form
     {
 
-        private Dictionary<string, string> jsonFiles = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> jsonFiles = new Dictionary<string, string>();
+        private string output;
 
         public JsonCleaner()
         {
@@ -26,11 +27,12 @@ namespace CarcassSpark.Tools
             outputBrowserDialog.SelectedPath = Utilities.baseDirectory;
         }
 
-        private void SelectFolderButton_Click(object sender, EventArgs e)
+        private void SelectInputFolderButton_Click(object sender, EventArgs e)
         {
             if (inputBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 jsonFiles.Clear();
+                inputTextBox.Text = inputBrowserDialog.SelectedPath;
                 foreach (string file in Directory.EnumerateFiles(inputBrowserDialog.SelectedPath, "*.json", SearchOption.AllDirectories))
                 {
                     using (FileStream fs = new FileStream(file, FileMode.Open))
@@ -43,29 +45,37 @@ namespace CarcassSpark.Tools
                     }
                 }
                 MessageBox.Show("Loaded and cleaned " + jsonFiles.Count.ToString() + " files. Ready to save.");
+                selectOutputFolderButton.Enabled = true;
             }
         }
 
-        private void SaveToFolderButton_Click(object sender, EventArgs e)
+        private void SelectOutputFolderButton_Click(object sender, EventArgs e)
         {
             if (outputBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                foreach (string file in jsonFiles.Keys)
-                {
-                    string newPath = outputBrowserDialog.SelectedPath + file;
-                    Directory.CreateDirectory(Path.GetDirectoryName(newPath));
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(newPath, FileMode.Create))))
-                    {
-                        jtw.WriteRaw(jsonFiles[file]);
-                    }
-                }
-                ProcessStartInfo startInfo = new ProcessStartInfo()
-                {
-                    FileName = "Explorer.exe",
-                    Arguments = outputBrowserDialog.SelectedPath
-                };
-                Process.Start(startInfo);
+                saveButton.Enabled = true;
+                output = outputBrowserDialog.SelectedPath;
+                outputTextBox.Text = output;
             }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            foreach (string file in jsonFiles.Keys)
+            {
+                string newPath = output + file;
+                Directory.CreateDirectory(Path.GetDirectoryName(newPath));
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(newPath, FileMode.Create))))
+                {
+                    jtw.WriteRaw(jsonFiles[file]);
+                }
+            }
+            ProcessStartInfo startInfo = new ProcessStartInfo()
+            {
+                FileName = "Explorer.exe",
+                Arguments = output
+            };
+            Process.Start(startInfo);
         }
     }
 }

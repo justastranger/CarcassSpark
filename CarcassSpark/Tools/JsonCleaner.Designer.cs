@@ -28,42 +28,109 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.inputBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.outputBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.selectFolderButton = new System.Windows.Forms.Button();
-            this.saveToFolderButton = new System.Windows.Forms.Button();
+            this.selectInputFolderButton = new System.Windows.Forms.Button();
+            this.selectOutputFolderButton = new System.Windows.Forms.Button();
+            this.inputTextBox = new System.Windows.Forms.TextBox();
+            this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.inputLabel = new System.Windows.Forms.Label();
+            this.outputLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // selectFolderButton
+            // selectInputFolderButton
             // 
-            this.selectFolderButton.Location = new System.Drawing.Point(12, 12);
-            this.selectFolderButton.Name = "selectFolderButton";
-            this.selectFolderButton.Size = new System.Drawing.Size(150, 50);
-            this.selectFolderButton.TabIndex = 0;
-            this.selectFolderButton.Text = "Select Folder to Clean";
-            this.selectFolderButton.UseVisualStyleBackColor = true;
-            this.selectFolderButton.Click += new System.EventHandler(this.SelectFolderButton_Click);
+            this.selectInputFolderButton.Location = new System.Drawing.Point(12, 12);
+            this.selectInputFolderButton.Name = "selectInputFolderButton";
+            this.selectInputFolderButton.Size = new System.Drawing.Size(150, 50);
+            this.selectInputFolderButton.TabIndex = 0;
+            this.selectInputFolderButton.Text = "Select Folder to Clean";
+            this.ToolTip.SetToolTip(this.selectInputFolderButton, "Select the root folder from which you\'d like to clean JSON files.\r\nAll files will" +
+        " be saved into the same folder structure that they were loaded from.");
+            this.selectInputFolderButton.UseVisualStyleBackColor = true;
+            this.selectInputFolderButton.Click += new System.EventHandler(this.SelectInputFolderButton_Click);
             // 
-            // saveToFolderButton
+            // selectOutputFolderButton
             // 
-            this.saveToFolderButton.Location = new System.Drawing.Point(12, 68);
-            this.saveToFolderButton.Name = "saveToFolderButton";
-            this.saveToFolderButton.Size = new System.Drawing.Size(150, 50);
-            this.saveToFolderButton.TabIndex = 1;
-            this.saveToFolderButton.Text = "Select Folder to Save to";
-            this.saveToFolderButton.UseVisualStyleBackColor = true;
-            this.saveToFolderButton.Click += new System.EventHandler(this.SaveToFolderButton_Click);
+            this.selectOutputFolderButton.Enabled = false;
+            this.selectOutputFolderButton.Location = new System.Drawing.Point(12, 68);
+            this.selectOutputFolderButton.Name = "selectOutputFolderButton";
+            this.selectOutputFolderButton.Size = new System.Drawing.Size(150, 50);
+            this.selectOutputFolderButton.TabIndex = 1;
+            this.selectOutputFolderButton.Text = "Select Folder to Save to";
+            this.ToolTip.SetToolTip(this.selectOutputFolderButton, "Select a folder to save the cleaned JSON to.\r\nAll files will be saved into the sa" +
+        "me folder structure that they were loaded from.");
+            this.selectOutputFolderButton.UseVisualStyleBackColor = true;
+            this.selectOutputFolderButton.Click += new System.EventHandler(this.SelectOutputFolderButton_Click);
+            // 
+            // inputTextBox
+            // 
+            this.inputTextBox.Location = new System.Drawing.Point(168, 28);
+            this.inputTextBox.Name = "inputTextBox";
+            this.inputTextBox.ReadOnly = true;
+            this.inputTextBox.Size = new System.Drawing.Size(279, 20);
+            this.inputTextBox.TabIndex = 2;
+            this.ToolTip.SetToolTip(this.inputTextBox, "This is the folder you\'ve selected to clean the JSON in.");
+            // 
+            // outputTextBox
+            // 
+            this.outputTextBox.Location = new System.Drawing.Point(168, 84);
+            this.outputTextBox.Name = "outputTextBox";
+            this.outputTextBox.ReadOnly = true;
+            this.outputTextBox.Size = new System.Drawing.Size(279, 20);
+            this.outputTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.outputTextBox, "This is the root directory that you\'re saving the JSON files into.");
+            // 
+            // saveButton
+            // 
+            this.saveButton.Enabled = false;
+            this.saveButton.Location = new System.Drawing.Point(12, 124);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(150, 50);
+            this.saveButton.TabIndex = 4;
+            this.saveButton.Text = "Save Cleaned JSON";
+            this.ToolTip.SetToolTip(this.saveButton, "This will save the cleaned files and open an instance of Explorer to the output f" +
+        "older.");
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // inputLabel
+            // 
+            this.inputLabel.AutoSize = true;
+            this.inputLabel.Location = new System.Drawing.Point(168, 12);
+            this.inputLabel.Name = "inputLabel";
+            this.inputLabel.Size = new System.Drawing.Size(63, 13);
+            this.inputLabel.TabIndex = 5;
+            this.inputLabel.Text = "Input Folder";
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Location = new System.Drawing.Point(168, 68);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(71, 13);
+            this.outputLabel.TabIndex = 6;
+            this.outputLabel.Text = "Output Folder";
             // 
             // JsonCleaner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(175, 131);
-            this.Controls.Add(this.saveToFolderButton);
-            this.Controls.Add(this.selectFolderButton);
+            this.ClientSize = new System.Drawing.Size(459, 184);
+            this.Controls.Add(this.outputLabel);
+            this.Controls.Add(this.inputLabel);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.outputTextBox);
+            this.Controls.Add(this.inputTextBox);
+            this.Controls.Add(this.selectOutputFolderButton);
+            this.Controls.Add(this.selectInputFolderButton);
             this.Name = "JsonCleaner";
             this.Text = "JsonCleaner";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -71,7 +138,13 @@
 
         private System.Windows.Forms.FolderBrowserDialog inputBrowserDialog;
         private System.Windows.Forms.FolderBrowserDialog outputBrowserDialog;
-        private System.Windows.Forms.Button selectFolderButton;
-        private System.Windows.Forms.Button saveToFolderButton;
+        private System.Windows.Forms.Button selectInputFolderButton;
+        private System.Windows.Forms.Button selectOutputFolderButton;
+        private System.Windows.Forms.TextBox inputTextBox;
+        private System.Windows.Forms.TextBox outputTextBox;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Label inputLabel;
+        private System.Windows.Forms.Label outputLabel;
     }
 }
