@@ -41,7 +41,6 @@ namespace CarcassSpark.ObjectViewers
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             iconTextBox.ReadOnly = !editing;
-            animFramesNumericUpDown.Enabled = editing;
             lifetimeNumericUpDown.Enabled = editing;
             decayToTextBox.ReadOnly = !editing;
             uniqueCheckBox.Enabled = editing;
@@ -80,7 +79,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.GetElementImage(element.id);
             }
-            if (element.animframes.HasValue) animFramesNumericUpDown.Value = element.animframes.Value;
             if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
             if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
@@ -397,15 +395,6 @@ namespace CarcassSpark.ObjectViewers
             if (displayedElement.lifetime == 0)
             {
                 displayedElement.lifetime = null;
-            }
-        }
-
-        private void AnimFramesNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            displayedElement.animframes = Convert.ToInt32(animFramesNumericUpDown.Value);
-            if (displayedElement.animframes == 0)
-            {
-                displayedElement.animframes = null;
             }
         }
 

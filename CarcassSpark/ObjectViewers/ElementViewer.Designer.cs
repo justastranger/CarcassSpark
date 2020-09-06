@@ -51,8 +51,6 @@
             this.aspectsLabel = new System.Windows.Forms.Label();
             this.lifetimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.lifetimeLabel = new System.Windows.Forms.Label();
-            this.animFramesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.animFramesLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
             this.iconLabel = new System.Windows.Forms.Label();
@@ -78,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -292,29 +289,6 @@
             this.lifetimeLabel.Size = new System.Drawing.Size(43, 13);
             this.lifetimeLabel.TabIndex = 20;
             this.lifetimeLabel.Text = "Lifetime";
-            // 
-            // animFramesNumericUpDown
-            // 
-            this.animFramesNumericUpDown.Location = new System.Drawing.Point(258, 171);
-            this.animFramesNumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.animFramesNumericUpDown.Name = "animFramesNumericUpDown";
-            this.animFramesNumericUpDown.Size = new System.Drawing.Size(100, 20);
-            this.animFramesNumericUpDown.TabIndex = 21;
-            this.ToolTip.SetToolTip(this.animFramesNumericUpDown, "DEPRECATED");
-            this.animFramesNumericUpDown.ValueChanged += new System.EventHandler(this.AnimFramesNumericUpDown_ValueChanged);
-            // 
-            // animFramesLabel
-            // 
-            this.animFramesLabel.AutoSize = true;
-            this.animFramesLabel.Location = new System.Drawing.Point(255, 154);
-            this.animFramesLabel.Name = "animFramesLabel";
-            this.animFramesLabel.Size = new System.Drawing.Size(90, 13);
-            this.animFramesLabel.TabIndex = 22;
-            this.animFramesLabel.Text = "Animation Frames";
             // 
             // idLabel
             // 
@@ -547,8 +521,6 @@
             this.Controls.Add(this.iconLabel);
             this.Controls.Add(this.labelLabel);
             this.Controls.Add(this.idLabel);
-            this.Controls.Add(this.animFramesLabel);
-            this.Controls.Add(this.animFramesNumericUpDown);
             this.Controls.Add(this.lifetimeLabel);
             this.Controls.Add(this.lifetimeNumericUpDown);
             this.Controls.Add(this.aspectsLabel);
@@ -574,7 +546,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animFramesNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,8 +571,6 @@
         private System.Windows.Forms.Label aspectsLabel;
         private System.Windows.Forms.NumericUpDown lifetimeNumericUpDown;
         private System.Windows.Forms.Label lifetimeLabel;
-        private System.Windows.Forms.NumericUpDown animFramesNumericUpDown;
-        private System.Windows.Forms.Label animFramesLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;
         private System.Windows.Forms.Label iconLabel;

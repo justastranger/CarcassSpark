@@ -33,7 +33,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "xtriggers$remove")]
         public List<string> xtriggers_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? animframes, lifetime;
+        public int? lifetime;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? unique, resaturate, deleted, isAspect, isHidden, noartneeded;
 
@@ -53,7 +53,7 @@ namespace CarcassSpark.ObjectTypes
         public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,
                        string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
-                       Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove, int? animframes,
+                       Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove,
                        int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate, List<string> extends)
         {
             // necessary
@@ -81,8 +81,6 @@ namespace CarcassSpark.ObjectTypes
             this.xtriggers_extend = xtriggers_extend;
             this.xtriggers_remove = xtriggers_remove;
             // not necessary
-            this.animframes = animframes;
-            // not necessary
             this.unique = unique;
             this.deleted = deleted;
             // not necessary
@@ -102,7 +100,7 @@ namespace CarcassSpark.ObjectTypes
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
                        List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers,
-                       string decayTo, int? lifetime, bool? unique, int? animframes,
+                       string decayTo, int? lifetime, bool? unique,
                        string uniquenessgroup, string inherits)
         {
             this.id = id;
@@ -116,7 +114,6 @@ namespace CarcassSpark.ObjectTypes
             this.decayTo = decayTo;
             this.lifetime = lifetime;
             this.unique = unique;
-            this.animframes = animframes;
             this.uniquenessgroup = uniquenessgroup;
             this.inherits = inherits;
         }
@@ -144,7 +141,7 @@ namespace CarcassSpark.ObjectTypes
                                xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null,
                                xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null,
                                xtriggers_remove != null ? new List<string>(xtriggers_remove) : null,
-                               animframes, lifetime, decayTo, uniquenessgroup, resaturate, extends);
+                               lifetime, decayTo, uniquenessgroup, resaturate, extends);
         }
     }
     

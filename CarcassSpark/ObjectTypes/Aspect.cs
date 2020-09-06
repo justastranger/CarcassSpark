@@ -26,14 +26,14 @@ namespace CarcassSpark.ObjectTypes
                       List<Slot> slots_append, List<string> slots_remove,
                       Dictionary<string, List<XTrigger>> xtriggers,
                       Dictionary<string, List<XTrigger>> xtriggers_extend,
-                      List<string> xtriggers_remove, int? animframes, int? lifetime,
+                      List<string> xtriggers_remove, int? lifetime,
                       string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
                       List<Induces> induces_prepend, List<Induces> induces_append,
                       List<string> induces_remove, bool? isAspect, List<string> extends) : base(id, label, description,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
                           aspects_remove, slots, slots_prepend, slots_append, slots_remove,
-                          xtriggers, xtriggers_extend, xtriggers_remove, animframes, lifetime,
+                          xtriggers, xtriggers_extend, xtriggers_remove, lifetime,
                           decayTo, uniquenessgroup, resaturate, extends)
         {
             // optional
@@ -67,7 +67,7 @@ namespace CarcassSpark.ObjectTypes
                               xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null,
                               xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null,
                               xtriggers_remove != null ? new List<string>(xtriggers_remove) : null,
-                              animframes, lifetime, decayTo, uniquenessgroup, resaturate, isHidden, noartneeded,
+                              lifetime, decayTo, uniquenessgroup, resaturate, isHidden, noartneeded,
                               induces != null ? new List<Induces>(induces) : null,
                               induces_prepend != null ? new List<Induces>(induces_prepend) : null,
                               induces_append != null ? new List<Induces>(induces_append) : null,
