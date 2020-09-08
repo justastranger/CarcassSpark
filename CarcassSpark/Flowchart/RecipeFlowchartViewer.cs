@@ -458,7 +458,7 @@ namespace CarcassSpark.Flowchart
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.InitialDirectory = Utilities.baseDirectory;
+            saveFileDialog1.InitialDirectory = Utilities.BaseDirectory;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Bitmap exportedImage = diagram1.CreateImage(diagram1.Bounds, 100f);

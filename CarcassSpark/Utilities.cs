@@ -18,11 +18,14 @@ namespace CarcassSpark
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
 
 
-        public static string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        public static string directoryToVanillaContent = "/cultistsimulator_Data/StreamingAssets/content/core/";
+        public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        public static string DirectoryToVanillaContent
+        {
+            get { return Settings.settings["GamePath"].ToString() != null ? Settings.settings["GamePath"].ToString() + "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\" : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\"; }
+        }
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
-        private static string directoryToVanillaAssets = "./cultistsimulator_Data/globalgamemanagers";
+        private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
@@ -67,13 +70,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/aspects/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.AspectImageExists(id)) return source.GetAspectImage(id);
             }
-            if(File.Exists(directoryToVanillaContent + "/images/elements/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elements/_x.png");
+            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -93,13 +94,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/elements/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.ElementImageExists(id)) return source.GetElementImage(id);
             }
-            if (File.Exists(directoryToVanillaContent + "/images/elements/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elements/_x.png");
+            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -119,13 +118,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/endings/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.EndingImageExists(id)) return source.GetEndingImage(id);
             }
-            if (File.Exists(directoryToVanillaContent + "/images/endings/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endings/despair.png");
+            string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -145,13 +142,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/legacies/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.LegacyImageExists(id)) return source.GetLegacyImage(id);
             }
-            if (File.Exists(directoryToVanillaContent + "/images/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/legacies/ritual.png");
+            string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -171,13 +166,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/verbs/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.VerbImageExists(id)) return source.GetVerbImage(id);
             }
-            if (File.Exists(directoryToVanillaContent + "/images/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/verbs/_x.png");
+            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -197,13 +190,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/cardbacks/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.CardBackImageExists(id)) return source.GetCardBackImage(id);
             }
-            if (File.Exists(directoryToVanillaContent + "/images/cardbacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
+            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/cardbacks/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
@@ -223,11 +214,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = source.currentDirectory + "/images/burns/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                if (source.BurnImageExists(id)) return source.GetBurnImage(id);
             }
             return null;
         }

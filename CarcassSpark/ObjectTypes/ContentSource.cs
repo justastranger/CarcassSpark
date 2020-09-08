@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,6 +135,118 @@ namespace CarcassSpark.ObjectTypes
         {
             if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<int?>();
             else return null;
+        }
+
+        public Image GetAspectImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetElementImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/elements/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetEndingImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/endings/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetLegacyImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/legacies/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetVerbImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/verbs/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetCardBackImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/cardbacks/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public Image GetBurnImage(string id)
+        {
+            string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
+            if (File.Exists(pathToImage))
+            {
+                return Image.FromFile(pathToImage);
+            }
+            return null;
+        }
+
+        public bool AspectImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool ElementImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/elements/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool EndingImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/endings/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool LegacyImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/legacies/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool VerbImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/verbs/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool CardBackImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/cardbacks/" + id + ".png";
+            return File.Exists(pathToImage);
+        }
+
+        public bool BurnImageExists(string id)
+        {
+            string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
+            return File.Exists(pathToImage);
         }
     }
 }

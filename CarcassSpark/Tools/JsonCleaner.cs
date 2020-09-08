@@ -23,8 +23,8 @@ namespace CarcassSpark.Tools
         public JsonCleaner()
         {
             InitializeComponent();
-            inputBrowserDialog.SelectedPath = Utilities.baseDirectory;
-            outputBrowserDialog.SelectedPath = Utilities.baseDirectory;
+            inputBrowserDialog.SelectedPath = Utilities.BaseDirectory;
+            outputBrowserDialog.SelectedPath = Utilities.BaseDirectory;
         }
 
         private void SelectInputFolderButton_Click(object sender, EventArgs e)

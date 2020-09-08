@@ -72,7 +72,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void InitializeTabs()
         {
-            CreateNewModViewerTab(Settings.settings["GamePath"].ToString() + Utilities.directoryToVanillaContent, true, false);
+            CreateNewModViewerTab(Settings.settings["GamePath"].ToString() + Utilities.DirectoryToVanillaContent, true, false);
             if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
             {
                 if (((JArray)Settings.settings["previousMods"]).Count() > 0)
