@@ -72,7 +72,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void InitializeTabs()
         {
-            CreateNewModViewerTab(Settings.settings["GamePath"].ToString() + Utilities.DirectoryToVanillaContent, true, false);
+            CreateNewModViewerTab(Utilities.DirectoryToVanillaContent, true, false);
             if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
             {
                 if (((JArray)Settings.settings["previousMods"]).Count() > 0)
@@ -94,7 +94,6 @@ namespace CarcassSpark.ObjectViewers
             } 
             else
             {
-                MessageBox.Show("Failed to load content source.");
                 SelectedModViewer.Dispose();
             }
         }

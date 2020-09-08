@@ -21,7 +21,7 @@ namespace CarcassSpark
         public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static string DirectoryToVanillaContent
         {
-            get { return Settings.settings["GamePath"].ToString() != null ? Settings.settings["GamePath"].ToString() + "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\" : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\"; }
+            get { return Settings.settings["GamePath"].ToString() != null ? Settings.settings["GamePath"].ToString() + "cultistsimulator_Data\\StreamingAssets\\content\\core\\" : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\"; }
         }
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first

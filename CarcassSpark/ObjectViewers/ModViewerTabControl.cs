@@ -53,7 +53,7 @@ namespace CarcassSpark.ObjectViewers
             else
             {
                 valid = false;
-                MessageBox.Show("Failed to load content source.");
+                // MessageBox.Show("Failed to load content source.");
             }
         }
 
@@ -129,8 +129,9 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
             // mod failed to load catastrophically
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message, "Content Source Loading Failed");
                 return false;
             }
         }
