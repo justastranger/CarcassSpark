@@ -120,9 +120,6 @@
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>270, 17</value>
   </metadata>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>270, 17</value>
-  </metadata>
   <data name="actionIdTextBox.ToolTip" xml:space="preserve">
     <value>ID of the verb to use. This value is required. This dictates the image shown on the verb token, taken from "images/verbs".
 If the ID of the verb is not a defined verb, a temporary verb token will be used that will disappear after the conclusion of the recipe.</value>

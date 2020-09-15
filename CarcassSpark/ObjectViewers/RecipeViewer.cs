@@ -150,7 +150,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.deleted.HasValue) deletedCheckBox.Checked = recipe.deleted.Value;
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
-                requirementsDataGridView.Rows.Clear();
+                // requirementsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.requirements)
                 {
                     requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -182,7 +182,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.extantreqs != null && recipe.extantreqs.Count > 0)
             {
-                extantreqsDataGridView.Rows.Clear();
+                // extantreqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.extantreqs)
                 {
                     extantreqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -214,7 +214,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.tablereqs != null && recipe.tablereqs.Count > 0)
             {
-                tablereqsDataGridView.Rows.Clear();
+                // tablereqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.tablereqs)
                 {
                     tablereqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -246,7 +246,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.effects != null && recipe.effects.Count > 0)
             {
-                effectsDataGridView.Rows.Clear();
+                // effectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.effects)
                 {
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -278,7 +278,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.aspects != null && recipe.aspects.Count > 0)
             {
-                aspectsDataGridView.Rows.Clear();
+                // aspectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.aspects)
                 {
                     aspectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -310,7 +310,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.deckeffects != null && recipe.deckeffects.Count > 0)
             {
-                deckeffectDataGridView.Rows.Clear();
+                // deckeffectDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.deckeffects)
                 {
                     deckeffectDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -342,8 +342,8 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.alt != null && recipe.alt.Count > 0)
             {
-                alternativerecipeLinks.Clear();
-                alternativeRecipesListView.Items.Clear();
+                // alternativerecipeLinks.Clear();
+                // alternativeRecipesListView.Items.Clear();
                 foreach (RecipeLink rl in recipe.alt)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
@@ -387,19 +387,62 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.linked != null && recipe.linked.Count > 0)
             {
-                recipeLinks.Clear();
-                linkedRecipesListView.Items.Clear();
+                // recipeLinks.Clear();
+                // linkedRecipesListView.Items.Clear();
                 foreach (RecipeLink rl in recipe.linked)
                 {
                     recipeLinks.Add(rl.id, rl);
                     linkedRecipesListView.Items.Add(rl.id);
                 }
             }
+            if (recipe.linked_prepend != null && recipe.linked_prepend.Count > 0)
+            {
+                // recipeLinks.Clear();
+                // linkedRecipesListView.Items.Clear();
+                // foreach (RecipeLink rl in recipe.linked)
+                // {
+                //     recipeLinks.Add(rl.id, rl);
+                //     linkedRecipesListView.Items.Add(rl.id);
+                // }
+                foreach (RecipeLink rl in recipe.linked_prepend)
+                {
+                    recipeLinks.Add(rl.id, rl);
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
+                    linkedRecipesListView.Items.Insert(0, item);
+                }
+            }
+            if (recipe.linked_append != null && recipe.linked_append.Count > 0)
+            {
+                foreach (RecipeLink rl in recipe.linked_append)
+                {
+                    recipeLinks.Add(rl.id, rl);
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
+                    linkedRecipesListView.Items.Insert(0, item);
+                }
+            }
+            if (recipe.linked_remove != null && recipe.linked_remove.Count > 0)
+            {
+                foreach (string rl in recipe.linked_remove)
+                {
+                    // recipeLinks.Add(rl.id, rl);
+                    ListViewItem item = new ListViewItem(rl)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
+                    linkedRecipesListView.Items.Insert(0, item);
+                }
+            }
             if (recipe.mutations != null && recipe.mutations.Count > 0)
             {
 
-                mutations.Clear();
-                mutationsListView.Items.Clear();
+                // mutations.Clear();
+                // mutationsListView.Items.Clear();
                 foreach (Mutation mutation in recipe.mutations)
                 {
                     mutations.Add(mutation.mutate, mutation);
@@ -408,7 +451,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.purge != null && recipe.purge.Count > 0)
             {
-                purgeDataGridView.Rows.Clear();
+                // purgeDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.purge)
                 {
                     purgeDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -440,7 +483,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.deleteverb != null && recipe.deleteverb.Count > 0)
             {
-                deleteVerbDataGridView.Rows.Clear();
+                // deleteVerbDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.deleteverb)
                 {
                     deleteVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -472,7 +515,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.haltverb != null && recipe.haltverb.Count > 0)
             {
-                haltVerbDataGridView.Rows.Clear();
+                // haltVerbDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.haltverb)
                 {
                     haltVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
