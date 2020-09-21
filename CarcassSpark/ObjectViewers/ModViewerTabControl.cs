@@ -1765,7 +1765,49 @@ namespace CarcassSpark.ObjectViewers
             if (exportedVerb == null) return;
             CopyObjectJSONToClipboard(exportedVerb);
         }
-        
+
+        private void NewAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AspectViewer av = new AspectViewer(new Aspect(), AspectsList_Add);
+            av.Show();
+        }
+
+        private void NewElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ElementViewer ev = new ElementViewer(new Element(), ElementsList_Add);
+            ev.Show();
+        }
+
+        private void NewRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecipeViewer rv = new RecipeViewer(new Recipe(), RecipesList_Add);
+            rv.Show();
+        }
+
+        private void NewDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeckViewer dv = new DeckViewer(new Deck(), DecksList_Add);
+            dv.Show();
+        }
+
+        private void NewLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LegacyViewer lv = new LegacyViewer(new Legacy(), LegaciesList_Add);
+            lv.Show();
+        }
+
+        private void NewEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EndingViewer ev = new EndingViewer(new Ending(), EndingsList_Add);
+            ev.Show();
+        }
+
+        private void NewVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VerbViewer vv = new VerbViewer(new Verb(), VerbsList_Add);
+            vv.Show();
+        }
+
         public void AspectsList_Add(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result;

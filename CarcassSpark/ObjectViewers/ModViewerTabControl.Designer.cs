@@ -43,6 +43,7 @@
             this.exportSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyAspectJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedAspectsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsListBox = new System.Windows.Forms.ListBox();
             this.elementContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +59,7 @@
             this.exportSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyElementJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedElementsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesListBox = new System.Windows.Forms.ListBox();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,6 +123,11 @@
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.newRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
@@ -195,10 +202,11 @@
             this.duplicateSelectedAspectToolStripMenuItem,
             this.exportSelectedAspectToolStripMenuItem,
             this.copyAspectJSONToClipboardToolStripMenuItem,
-            this.openSelectedAspectsJSONToolStripMenuItem});
+            this.openSelectedAspectsJSONToolStripMenuItem,
+            this.newAspectToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 136);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 158);
             // 
             // searchToolStripMenuItem
             // 
@@ -291,6 +299,13 @@
             this.openSelectedAspectsJSONToolStripMenuItem.Text = "Open Selected Aspect\'s JSON";
             this.openSelectedAspectsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedAspectsJSONToolStripMenuItem_Click);
             // 
+            // newAspectToolStripMenuItem
+            // 
+            this.newAspectToolStripMenuItem.Name = "newAspectToolStripMenuItem";
+            this.newAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.newAspectToolStripMenuItem.Text = "New Aspect";
+            this.newAspectToolStripMenuItem.Click += new System.EventHandler(this.NewAspectToolStripMenuItem_Click);
+            // 
             // elementsListBox
             // 
             this.elementsListBox.ContextMenuStrip = this.elementContextMenuStrip;
@@ -313,10 +328,11 @@
             this.duplicateSelectedElementToolStripMenuItem,
             this.exportSelectedElementToolStripMenuItem,
             this.copyElementJSONToClipboardToolStripMenuItem,
-            this.openSelectedElementsJSONToolStripMenuItem});
+            this.openSelectedElementsJSONToolStripMenuItem,
+            this.newElementToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 136);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 158);
             // 
             // searchToolStripMenuItem1
             // 
@@ -419,6 +435,13 @@
             this.openSelectedElementsJSONToolStripMenuItem.Text = "Open Selected Element\'s JSON";
             this.openSelectedElementsJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedElementsJSONToolStripMenuItem_Click);
             // 
+            // newElementToolStripMenuItem
+            // 
+            this.newElementToolStripMenuItem.Name = "newElementToolStripMenuItem";
+            this.newElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this.newElementToolStripMenuItem.Text = "New Element";
+            this.newElementToolStripMenuItem.Click += new System.EventHandler(this.NewElementToolStripMenuItem_Click);
+            // 
             // recipesListBox
             // 
             this.recipesListBox.ContextMenuStrip = this.recipeContextMenuStrip;
@@ -442,10 +465,11 @@
             this.duplicateSelectedRecipeToolStripMenuItem,
             this.exportSelectedRecipeToolStripMenuItem,
             this.copyRecipeJSONToClipboardToolStripMenuItem,
-            this.openSelectedRecipesJSONToolStripMenuItem});
+            this.openSelectedRecipesJSONToolStripMenuItem,
+            this.newRecipeToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 158);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 180);
             // 
             // searchForToolStripMenuItem
             // 
@@ -529,10 +553,11 @@
             this.duplicateSelectedDeckToolStripMenuItem,
             this.exportSelectedDeckToolStripMenuItem,
             this.copyDeckJSONToClipboardToolStripMenuItem,
-            this.openSelectedDecksJSONToolStripMenuItem});
+            this.openSelectedDecksJSONToolStripMenuItem,
+            this.newDeckToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 136);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 158);
             // 
             // searchForToolStripMenuItem1
             // 
@@ -608,9 +633,10 @@
             this.duplicateSelectedLegacyToolStripMenuItem,
             this.exportSelectedLegacyToolStripMenuItem,
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem,
-            this.openSelectedLegacysJSONToolStripMenuItem});
+            this.openSelectedLegacysJSONToolStripMenuItem,
+            this.newLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 114);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 136);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
@@ -672,9 +698,10 @@
             this.duplicateSelectedEndingToolStripMenuItem,
             this.exportSelectedEndingToolStripMenuItem,
             this.copySelectedEndingJSONToClipboardToolStripMenuItem,
-            this.openSelectedEndingsJSONToolStripMenuItem});
+            this.openSelectedEndingsJSONToolStripMenuItem,
+            this.newEndingToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 136);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 158);
             // 
             // searchForToolStripMenuItem2
             // 
@@ -751,9 +778,10 @@
             this.duplicateSelectedVerbToolStripMenuItem,
             this.exportSelectedVerbToolStripMenuItem,
             this.copySelectedVerbJSONToClipboardToolStripMenuItem,
-            this.openSelectedVerbsJSONToolStripMenuItem});
+            this.openSelectedVerbsJSONToolStripMenuItem,
+            this.newVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 136);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 180);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -969,6 +997,41 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // newRecipeToolStripMenuItem
+            // 
+            this.newRecipeToolStripMenuItem.Name = "newRecipeToolStripMenuItem";
+            this.newRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.newRecipeToolStripMenuItem.Text = "New Recipe";
+            this.newRecipeToolStripMenuItem.Click += new System.EventHandler(this.NewRecipeToolStripMenuItem_Click);
+            // 
+            // newDeckToolStripMenuItem
+            // 
+            this.newDeckToolStripMenuItem.Name = "newDeckToolStripMenuItem";
+            this.newDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
+            this.newDeckToolStripMenuItem.Text = "New Deck";
+            this.newDeckToolStripMenuItem.Click += new System.EventHandler(this.NewDeckToolStripMenuItem_Click);
+            // 
+            // newLegacyToolStripMenuItem
+            // 
+            this.newLegacyToolStripMenuItem.Name = "newLegacyToolStripMenuItem";
+            this.newLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
+            this.newLegacyToolStripMenuItem.Text = "New Legacy";
+            this.newLegacyToolStripMenuItem.Click += new System.EventHandler(this.NewLegacyToolStripMenuItem_Click);
+            // 
+            // newEndingToolStripMenuItem
+            // 
+            this.newEndingToolStripMenuItem.Name = "newEndingToolStripMenuItem";
+            this.newEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
+            this.newEndingToolStripMenuItem.Text = "New Ending";
+            this.newEndingToolStripMenuItem.Click += new System.EventHandler(this.NewEndingToolStripMenuItem_Click);
+            // 
+            // newVerbToolStripMenuItem
+            // 
+            this.newVerbToolStripMenuItem.Name = "newVerbToolStripMenuItem";
+            this.newVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
+            this.newVerbToolStripMenuItem.Text = "New Verb";
+            this.newVerbToolStripMenuItem.Click += new System.EventHandler(this.NewVerbToolStripMenuItem_Click);
+            // 
             // ModViewerTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1083,5 +1146,12 @@
         public System.Windows.Forms.ListBox legaciesListBox;
         public System.Windows.Forms.ListBox endingsListBox;
         public System.Windows.Forms.ListBox verbsListBox;
+        private System.Windows.Forms.ToolStripMenuItem newAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newVerbToolStripMenuItem;
     }
 }
