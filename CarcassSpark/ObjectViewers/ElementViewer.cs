@@ -70,10 +70,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (element.id != null) idTextBox.Text = element.id;
             if (element.label != null) labelTextBox.Text = element.label;
-            if (element.icon != null && Utilities.ElementImageExists(element.icon))
+            if (element.icon != null)
             {
                 iconTextBox.Text = element.icon;
-                pictureBox1.Image = Utilities.GetElementImage(element.icon);
+                if (Utilities.ElementImageExists(element.icon)) pictureBox1.Image = Utilities.GetElementImage(element.icon);
             }
             else if (Utilities.ElementImageExists(element.id))
             {

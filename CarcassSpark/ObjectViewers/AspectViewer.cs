@@ -20,7 +20,7 @@ namespace CarcassSpark.ObjectViewers
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
         {
             InitializeComponent();
-            this.displayedAspect = aspect;
+            displayedAspect = aspect;
             FillValues(aspect);
             if (SuccessCallback != null)
             {
@@ -55,12 +55,12 @@ namespace CarcassSpark.ObjectViewers
         {
             if (aspect.id != null) idTextBox.Text = aspect.id;
             if (aspect.label != null) labelTextBox.Text = aspect.label;
-            if (!aspect.noartneeded.HasValue || aspect.noartneeded.Value == false)
+            if ((!aspect.noartneeded.HasValue) || aspect.noartneeded.Value == false)
             {
-                if (aspect.icon != null && Utilities.AspectImageExists(aspect.icon))
+                if (aspect.icon != null)
                 {
                     iconTextBox.Text = aspect.icon;
-                    pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
+                    if (Utilities.AspectImageExists(aspect.icon)) pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
                 }
                 else if (Utilities.AspectImageExists(aspect.id))
                 {
