@@ -180,9 +180,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                displayedLegacy.effects = new Dictionary<string, int>();
-                displayedLegacy.effects_extend = new Dictionary<string, int>();
-                displayedLegacy.effects_remove = new List<string>();
+                displayedLegacy.effects = null;
+                displayedLegacy.effects_extend = null;
+                displayedLegacy.effects_remove = null;
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     string key = row.Cells[0].Value?.ToString();
@@ -192,7 +192,8 @@ namespace CarcassSpark.ObjectViewers
                         if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                         {
                             if (displayedLegacy.effects_extend == null) displayedLegacy.effects_extend = new Dictionary<string, int>();
-                            displayedLegacy.effects_extend[key] = value.Value;
+                            // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
+                            if (value.HasValue) displayedLegacy.effects_extend[key] = value.Value;
                         }
                         else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                         {
@@ -202,12 +203,13 @@ namespace CarcassSpark.ObjectViewers
                         else
                         {
                             if (displayedLegacy.effects == null) displayedLegacy.effects = new Dictionary<string, int>();
-                            displayedLegacy.effects[key] = value.Value;
+                            // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
+                            if (value.HasValue) displayedLegacy.effects[key] = value.Value;
                         }
                     }
-                    if (displayedLegacy.effects.Count == 0) displayedLegacy.effects = null;
-                    if (displayedLegacy.effects_extend.Count == 0) displayedLegacy.effects_extend = null;
-                    if (displayedLegacy.effects_remove.Count == 0) displayedLegacy.effects_remove = null;
+                    if (displayedLegacy.effects?.Count == 0) displayedLegacy.effects = null;
+                    if (displayedLegacy.effects_extend?.Count == 0) displayedLegacy.effects_extend = null;
+                    if (displayedLegacy.effects_remove?.Count == 0) displayedLegacy.effects_remove = null;
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
