@@ -16,6 +16,7 @@ namespace CarcassSpark.ObjectViewers
         public Deck displayedDeck;
         bool editing;
         event EventHandler<Deck> SuccessCallback;
+        bool internalDeck;
 
         public DeckViewer(Deck deck)
         {
@@ -59,6 +60,7 @@ namespace CarcassSpark.ObjectViewers
             drawsLabel.Visible = internalDeck;
             drawmessagesDataGridView.Visible = !internalDeck;
             drawmessagesLlabel.Visible = !internalDeck;
+            this.internalDeck = internalDeck;
         }
 
         void FillValues(Deck deck)
@@ -191,7 +193,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (!internalDeck && (idTextBox.Text == null || idTextBox.Text == ""))
             {
                 MessageBox.Show("All Standalone Decks must have an ID");
                 return;
