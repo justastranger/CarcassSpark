@@ -75,11 +75,11 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<RecipeLink> alt;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$append")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$append")]
         public List<RecipeLink> alt_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$prepend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$prepend")]
         public List<RecipeLink> alt_prepend;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$remove")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$remove")]
         public List<string> alt_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
