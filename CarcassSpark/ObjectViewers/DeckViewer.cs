@@ -46,7 +46,11 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             this.displayedDeck = deck;
             FillValues(deck);
-            if (SuccessCallback != null) SetEditingMode(true);
+            if (SuccessCallback != null)
+            {
+                SetEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
             else SetEditingMode(false);
             if (internalDeck.HasValue) SetInternal(internalDeck.Value);
             else SetInternal(false);
