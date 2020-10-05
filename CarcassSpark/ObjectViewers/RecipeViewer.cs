@@ -561,37 +561,45 @@ namespace CarcassSpark.ObjectViewers
             {
                 DeckViewer dv = new DeckViewer(new Deck(), InternalDeck_Assign, true);
                 dv.Show();
-            } else if (displayedRecipe.internaldeck != null)
+            }
+            else if (displayedRecipe.internaldeck is Deck deck)
             {
-                DeckViewer dv = new DeckViewer(displayedRecipe.internaldeck, editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true);
+                DeckViewer dv = new DeckViewer(deck.Copy(), editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true);
                 dv.Show();
             }
         }
 
         private void InternalDeck_Assign(object sender, Deck result)
         {
-            displayedRecipe.internaldeck = result;
+            if (result is Deck)
+            {
+                displayedRecipe.internaldeck = result.Copy();
+                showInternalDeckButton.Text = "Show Deck";
+            }
+            else
+            {
+                displayedRecipe.internaldeck = null;
+                showInternalDeckButton.Text = "New Deck";
+            }
         }
 
         private void ShowSlotButton_Click(object sender, EventArgs e)
         {
-            if (displayedRecipe.slots == null && editing)
+            if ((displayedRecipe.slots == null || displayedRecipe.slots.Count == 0) && editing)
             {
                 SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.RECIPE);
-                sv.ShowDialog();
-                if (sv.DialogResult == DialogResult.OK)
+                if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot };
+                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };
                     showSlotButton.Text = "Show Slot";
                 }
             }
-            else if (displayedRecipe.slots != null)
+            else if (displayedRecipe.slots?.Count == 1)
             {
                 SlotViewer sv = new SlotViewer(displayedRecipe.slots[0].Copy(), editing, SlotViewer.SlotType.RECIPE);
-                sv.ShowDialog();
-                if (sv.DialogResult == DialogResult.OK)
+                if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot };
+                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };
                 }
             }
         }
