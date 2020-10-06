@@ -31,10 +31,6 @@ namespace CarcassSpark
                 {
                     return "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
                 }
-
-                // return Settings.settings["GamePath"]?.ToString() != null 
-                //     ? Path.Combine(Settings.settings["GamePath"].ToString(),"\\cultistsimulator_Data\\StreamingAssets\\content\\core\\") 
-                //     : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
             }
         }
         // This is the root asset bundle that contains references to all the game's assets
