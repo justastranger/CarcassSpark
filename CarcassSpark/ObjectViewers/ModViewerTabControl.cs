@@ -543,8 +543,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            Content.Aspects[result.id] = result;
-            aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
+            Content.Aspects[result.id] = result.Copy();
+            if (aspectsListBox.Items[aspectsListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Aspects.Remove(aspectsListBox.Items[aspectsListBox.SelectedIndex].ToString());
+                aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void DecksListBox_DoubleClick(object sender, EventArgs e)
@@ -564,8 +568,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            Content.Decks[result.id] = result;
-            decksListBox.Items[decksListBox.SelectedIndex] = result.id;
+            Content.Decks[result.id] = result.Copy();
+            if (decksListBox.Items[decksListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Decks.Remove(decksListBox.Items[decksListBox.SelectedIndex].ToString());
+                decksListBox.Items[decksListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void ElementsListBox_DoubleClick(object sender, EventArgs e)
@@ -585,8 +593,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            Content.Elements[result.id] = result;
-            elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
+            Content.Elements[result.id] = result.Copy();
+            if (elementsListBox.Items[elementsListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Elements.Remove(elementsListBox.Items[elementsListBox.SelectedIndex].ToString());
+                elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void EndingsListBox_DoubleClick(object sender, EventArgs e)
@@ -606,8 +618,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            Content.Endings[result.id] = result;
-            endingsListBox.Items[endingsListBox.SelectedIndex] = result.id;
+            Content.Endings[result.id] = result.Copy();
+            if (endingsListBox.Items[endingsListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Endings.Remove(endingsListBox.Items[endingsListBox.SelectedIndex].ToString());
+                endingsListBox.Items[endingsListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void LegaciesListBox_DoubleClick(object sender, EventArgs e)
@@ -627,8 +643,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            Content.Legacies[result.id] = result;
-            legaciesListBox.Items[legaciesListBox.SelectedIndex] = result.id;
+            Content.Legacies[result.id] = result.Copy();
+            if (legaciesListBox.Items[legaciesListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Legacies.Remove(legaciesListBox.Items[legaciesListBox.SelectedIndex].ToString());
+                legaciesListBox.Items[legaciesListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void RecipesListBox_DoubleClick(object sender, EventArgs e)
@@ -648,8 +668,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            Content.Recipes[result.id] = result;
-            recipesListBox.Items[recipesListBox.SelectedIndex] = result.id;
+            Content.Recipes[result.id] = result.Copy();
+            if (recipesListBox.Items[recipesListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Recipes.Remove(recipesListBox.Items[recipesListBox.SelectedIndex].ToString());
+                recipesListBox.Items[recipesListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void VerbsListBox_DoubleClick(object sender, EventArgs e)
@@ -669,8 +693,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            Content.Verbs[result.id] = result;
-            verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
+            Content.Verbs[result.id] = result.Copy();
+            if (verbsListBox.Items[verbsListBox.SelectedIndex].ToString() != result.id)
+            {
+                Content.Verbs.Remove(verbsListBox.Items[verbsListBox.SelectedIndex].ToString());
+                verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
+            }
         }
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
