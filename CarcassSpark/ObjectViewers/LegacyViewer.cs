@@ -494,7 +494,8 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                displayedLegacy.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedLegacy.extends = new List<string> { extendsTextBox.Text };
+                else displayedLegacy.extends = null;
             }
         }
     }

@@ -1882,7 +1882,8 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                displayedRecipe.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedRecipe.extends = new List<string> { extendsTextBox.Text };
+                else displayedRecipe.extends = null;
             }
         }
     }

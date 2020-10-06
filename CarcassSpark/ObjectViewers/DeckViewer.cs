@@ -442,7 +442,8 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                displayedDeck.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedDeck.extends = new List<string> { extendsTextBox.Text };
+                else displayedDeck.extends = null;
             }
         }
     }

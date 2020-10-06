@@ -175,7 +175,8 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                displayedVerb.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedVerb.extends = new List<string> { extendsTextBox.Text };
+                else displayedVerb.extends = null;
             }
         }
     }

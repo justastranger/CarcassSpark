@@ -337,7 +337,8 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                displayedAspect.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedAspect.extends = new List<string> { extendsTextBox.Text };
+                else displayedAspect.extends = null;
             }
         }
     }

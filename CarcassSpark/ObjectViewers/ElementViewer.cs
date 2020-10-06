@@ -596,9 +596,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedElement.extends = extendsTextBox.Text.Split(',').ToList();
             }
-            else
+            else 
             {
-                displayedElement.extends = new List<string> { extendsTextBox.Text };
+                if (extendsTextBox.Text != "") displayedElement.extends = new List<string> { extendsTextBox.Text };
+                else displayedElement.extends = null;
             }
         }
     }
