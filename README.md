@@ -124,12 +124,10 @@ The toolkit will look for these images in `Cultist Simulator/cultistsimulator_Da
    - `content`
      - json files in folders or not, structured however you want as long as they have the `.json` extension. Carcass Spark will save aspects in `aspects.json`, elements in `elements.json`, recipes in `recipes.json`, etc.
    - `images`
-     - `burnimages`
-     - `elementart`
-     - `endingart`
-     - `icons40`
-       - `aspects`
-     - `icons100`
-       - `legacies`
-       - `verbs`
+     - `burns`
+     - `elements`
+     - `endings`
+     - `aspects`
+     - `legacies`
+     - `verbs`
      - `statusbarelements`
