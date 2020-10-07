@@ -44,6 +44,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     expulsionDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
+                if (recipeLink.expulsion.limit.HasValue) totalExpulsionLimitNumericUpDown.Value = recipeLink.expulsion.limit.Value;
             }
         }
         
