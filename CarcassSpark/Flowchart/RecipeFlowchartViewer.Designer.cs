@@ -124,6 +124,7 @@
             this.Controls.Add(this.zoomControl1);
             this.Controls.Add(this.diagramView1);
             this.Name = "RecipeFlowchartViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RecipeFlowchartViewer";
             this.Load += new System.EventHandler(this.RecipeFlowchartViewer_Load);
             this.ResumeLayout(false);
