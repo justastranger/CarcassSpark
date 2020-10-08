@@ -45,6 +45,8 @@
             // 
             // filterTextBox
             // 
+            this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.filterTextBox.Location = new System.Drawing.Point(12, 25);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(194, 20);
@@ -55,6 +57,8 @@
             // 
             // mutateAspectIdTextBox
             // 
+            this.mutateAspectIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mutateAspectIdTextBox.Location = new System.Drawing.Point(12, 64);
             this.mutateAspectIdTextBox.Name = "mutateAspectIdTextBox";
             this.mutateAspectIdTextBox.Size = new System.Drawing.Size(194, 20);
@@ -67,14 +71,16 @@
             // 
             // levelNumericUpDown
             // 
-            this.levelNumericUpDown.Location = new System.Drawing.Point(49, 103);
+            this.levelNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.levelNumericUpDown.Location = new System.Drawing.Point(12, 103);
             this.levelNumericUpDown.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
             this.levelNumericUpDown.Name = "levelNumericUpDown";
-            this.levelNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.levelNumericUpDown.Size = new System.Drawing.Size(194, 20);
             this.levelNumericUpDown.TabIndex = 2;
             this.ToolTip.SetToolTip(this.levelNumericUpDown, resources.GetString("levelNumericUpDown.ToolTip"));
             this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.LevelNumericUpDown_ValueChanged);
@@ -82,7 +88,7 @@
             // additiveCheckBox
             // 
             this.additiveCheckBox.AutoSize = true;
-            this.additiveCheckBox.Location = new System.Drawing.Point(77, 128);
+            this.additiveCheckBox.Location = new System.Drawing.Point(12, 128);
             this.additiveCheckBox.Name = "additiveCheckBox";
             this.additiveCheckBox.Size = new System.Drawing.Size(64, 17);
             this.additiveCheckBox.TabIndex = 3;
@@ -94,6 +100,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 151);
             this.okButton.Name = "okButton";
@@ -105,6 +112,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(131, 151);
             this.cancelButton.Name = "cancelButton";
@@ -117,7 +125,7 @@
             // filterLabel
             // 
             this.filterLabel.AutoSize = true;
-            this.filterLabel.Location = new System.Drawing.Point(26, 9);
+            this.filterLabel.Location = new System.Drawing.Point(12, 9);
             this.filterLabel.Name = "filterLabel";
             this.filterLabel.Size = new System.Drawing.Size(166, 13);
             this.filterLabel.TabIndex = 6;
@@ -126,7 +134,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 48);
+            this.label1.Location = new System.Drawing.Point(12, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 7;
@@ -135,7 +143,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 87);
+            this.label2.Location = new System.Drawing.Point(12, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 8;
@@ -157,10 +165,10 @@
             this.Controls.Add(this.levelNumericUpDown);
             this.Controls.Add(this.mutateAspectIdTextBox);
             this.Controls.Add(this.filterTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(234, 225);
             this.Name = "MutationViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MutationViewer";
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();
             this.ResumeLayout(false);
