@@ -68,6 +68,8 @@
             // 
             // labelTextBox
             // 
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTextBox.Location = new System.Drawing.Point(123, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(149, 20);
@@ -79,6 +81,9 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 64);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -90,9 +95,11 @@
             // 
             // actionIdTextBox
             // 
+            this.actionIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.actionIdTextBox.Location = new System.Drawing.Point(12, 158);
             this.actionIdTextBox.Name = "actionIdTextBox";
-            this.actionIdTextBox.Size = new System.Drawing.Size(127, 20);
+            this.actionIdTextBox.Size = new System.Drawing.Size(174, 20);
             this.actionIdTextBox.TabIndex = 3;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.actionIdTextBox, "ID of the verb that this slot will only appear in.");
@@ -101,8 +108,9 @@
             // 
             // greedyCheckBox
             // 
+            this.greedyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.greedyCheckBox.AutoSize = true;
-            this.greedyCheckBox.Location = new System.Drawing.Point(212, 168);
+            this.greedyCheckBox.Location = new System.Drawing.Point(192, 168);
             this.greedyCheckBox.Name = "greedyCheckBox";
             this.greedyCheckBox.Size = new System.Drawing.Size(60, 17);
             this.greedyCheckBox.TabIndex = 6;
@@ -116,6 +124,7 @@
             // 
             // requiredLabel
             // 
+            this.requiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.requiredLabel.AutoSize = true;
             this.requiredLabel.Location = new System.Drawing.Point(120, 181);
             this.requiredLabel.Name = "requiredLabel";
@@ -125,6 +134,7 @@
             // 
             // forbiddenLabel
             // 
+            this.forbiddenLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.forbiddenLabel.AutoSize = true;
             this.forbiddenLabel.Location = new System.Drawing.Point(120, 300);
             this.forbiddenLabel.Name = "forbiddenLabel";
@@ -134,8 +144,9 @@
             // 
             // actionIdLabel
             // 
+            this.actionIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.actionIdLabel.AutoSize = true;
-            this.actionIdLabel.Location = new System.Drawing.Point(52, 142);
+            this.actionIdLabel.Location = new System.Drawing.Point(12, 142);
             this.actionIdLabel.Name = "actionIdLabel";
             this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
             this.actionIdLabel.TabIndex = 9;
@@ -162,8 +173,9 @@
             // 
             // labelLabel
             // 
+            this.labelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(169, 9);
+            this.labelLabel.Location = new System.Drawing.Point(218, 9);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(54, 13);
             this.labelLabel.TabIndex = 12;
@@ -171,6 +183,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 431);
             this.okButton.Name = "okButton";
@@ -182,6 +195,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(197, 431);
             this.cancelButton.Name = "cancelButton";
@@ -195,6 +209,9 @@
             // 
             this.requiredDataGridView.AllowUserToResizeColumns = false;
             this.requiredDataGridView.AllowUserToResizeRows = false;
+            this.requiredDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requiredDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.requiredDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requiredDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.requiredId,
@@ -211,18 +228,19 @@
             // 
             this.requiredId.HeaderText = "Required ID";
             this.requiredId.Name = "requiredId";
-            this.requiredId.Width = 109;
             // 
             // requiredAmount
             // 
             this.requiredAmount.HeaderText = "Amount";
             this.requiredAmount.Name = "requiredAmount";
-            this.requiredAmount.Width = 108;
             // 
             // forbiddenDataGridView
             // 
             this.forbiddenDataGridView.AllowUserToResizeColumns = false;
             this.forbiddenDataGridView.AllowUserToResizeRows = false;
+            this.forbiddenDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.forbiddenDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.forbiddenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.forbiddenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.forbiddenId,
@@ -240,16 +258,15 @@
             // 
             this.forbiddenId.HeaderText = "Forbidden ID";
             this.forbiddenId.Name = "forbiddenId";
-            this.forbiddenId.Width = 109;
             // 
             // forbiddenAmount
             // 
             this.forbiddenAmount.HeaderText = "Amount";
             this.forbiddenAmount.Name = "forbiddenAmount";
-            this.forbiddenAmount.Width = 108;
             // 
             // consumesCheckBox
             // 
+            this.consumesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.consumesCheckBox.AutoSize = true;
             this.consumesCheckBox.Location = new System.Drawing.Point(192, 145);
             this.consumesCheckBox.Name = "consumesCheckBox";
@@ -285,10 +302,10 @@
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 505);
             this.Name = "SlotViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SlotViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).EndInit();
