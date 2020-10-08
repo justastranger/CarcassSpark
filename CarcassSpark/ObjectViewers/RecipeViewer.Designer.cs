@@ -351,7 +351,7 @@
             this.requirementsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.requirementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.requirementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.requirementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requirementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
@@ -371,14 +371,12 @@
             this.elementId.HeaderText = "Element ID";
             this.elementId.Name = "elementId";
             this.elementId.ReadOnly = true;
-            this.elementId.Width = 84;
             // 
             // amount
             // 
             this.amount.HeaderText = "Amount";
             this.amount.Name = "amount";
             this.amount.ReadOnly = true;
-            this.amount.Width = 68;
             // 
             // propertyOperationContextMenuStrip
             // 
@@ -410,7 +408,7 @@
             this.extantreqsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.extantreqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.extantreqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.extantreqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.extantreqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.extantElementId,
@@ -430,14 +428,12 @@
             this.extantElementId.HeaderText = "Element ID";
             this.extantElementId.Name = "extantElementId";
             this.extantElementId.ReadOnly = true;
-            this.extantElementId.Width = 84;
             // 
             // extantAmount
             // 
             this.extantAmount.HeaderText = "Amount";
             this.extantAmount.Name = "extantAmount";
             this.extantAmount.ReadOnly = true;
-            this.extantAmount.Width = 68;
             // 
             // extantrequirementsLabel
             // 
@@ -459,7 +455,7 @@
             this.tablereqsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tablereqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.tablereqsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tablereqsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablereqsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tableElementId,
@@ -477,13 +473,11 @@
             // 
             this.tableElementId.HeaderText = "Element ID";
             this.tableElementId.Name = "tableElementId";
-            this.tableElementId.Width = 84;
             // 
             // tableAmount
             // 
             this.tableAmount.HeaderText = "Amount";
             this.tableAmount.Name = "tableAmount";
-            this.tableAmount.Width = 68;
             // 
             // tablerequirementsLabel
             // 
@@ -532,7 +526,7 @@
             this.effectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.effectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.effectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.effectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.effectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.effectsElementId,
@@ -552,13 +546,11 @@
             // 
             this.effectsElementId.HeaderText = "Element ID";
             this.effectsElementId.Name = "effectsElementId";
-            this.effectsElementId.Width = 84;
             // 
             // effectsAmount
             // 
             this.effectsAmount.HeaderText = "Amount";
             this.effectsAmount.Name = "effectsAmount";
-            this.effectsAmount.Width = 68;
             // 
             // effectsLabel
             // 
@@ -580,7 +572,7 @@
             this.aspectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.aspectsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.aspectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
@@ -600,13 +592,11 @@
             // 
             this.aspectId.HeaderText = "Aspect ID";
             this.aspectId.Name = "aspectId";
-            this.aspectId.Width = 79;
             // 
             // aspectAmount
             // 
             this.aspectAmount.HeaderText = "Amount";
             this.aspectAmount.Name = "aspectAmount";
-            this.aspectAmount.Width = 68;
             // 
             // deckeffectDataGridView
             // 
@@ -615,7 +605,7 @@
             this.deckeffectDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deckeffectDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.deckeffectDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.deckeffectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.deckeffectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deckId,
@@ -633,13 +623,11 @@
             // 
             this.deckId.HeaderText = "Deck ID";
             this.deckId.Name = "deckId";
-            this.deckId.Width = 72;
             // 
             // deckDraws
             // 
             this.deckDraws.HeaderText = "Amount";
             this.deckDraws.Name = "deckDraws";
-            this.deckDraws.Width = 68;
             // 
             // deckeffectLabel
             // 
@@ -1151,7 +1139,7 @@
             this.purgeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.purgeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.purgeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.purgeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.purgeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.purgeIdDataGridViewTextBoxColumn,
@@ -1170,13 +1158,11 @@
             // 
             this.purgeIdDataGridViewTextBoxColumn.HeaderText = "Element ID";
             this.purgeIdDataGridViewTextBoxColumn.Name = "purgeIdDataGridViewTextBoxColumn";
-            this.purgeIdDataGridViewTextBoxColumn.Width = 84;
             // 
             // purgeAmountDataGridViewTextBoxColumn
             // 
             this.purgeAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.purgeAmountDataGridViewTextBoxColumn.Name = "purgeAmountDataGridViewTextBoxColumn";
-            this.purgeAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // purgeLabel
             // 
@@ -1211,7 +1197,7 @@
             this.haltVerbDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.haltVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.haltVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.haltVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.haltVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.haltVerbIdDataGridViewTextBoxColumn,
@@ -1229,13 +1215,11 @@
             // 
             this.haltVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
             this.haltVerbIdDataGridViewTextBoxColumn.Name = "haltVerbIdDataGridViewTextBoxColumn";
-            this.haltVerbIdDataGridViewTextBoxColumn.Width = 68;
             // 
             // haltVerbAmountDataGridViewTextBoxColumn
             // 
             this.haltVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.haltVerbAmountDataGridViewTextBoxColumn.Name = "haltVerbAmountDataGridViewTextBoxColumn";
-            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // deleteVerbLabel
             // 
@@ -1257,7 +1241,7 @@
             this.deleteVerbDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.deleteVerbDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.deleteVerbDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.deleteVerbDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deleteVerbIdDataGridViewTextBoxColumn,
@@ -1276,13 +1260,11 @@
             // 
             this.deleteVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
             this.deleteVerbIdDataGridViewTextBoxColumn.Name = "deleteVerbIdDataGridViewTextBoxColumn";
-            this.deleteVerbIdDataGridViewTextBoxColumn.Width = 68;
             // 
             // deleteVerbAmountDataGridViewTextBoxColumn
             // 
             this.deleteVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.deleteVerbAmountDataGridViewTextBoxColumn.Name = "deleteVerbAmountDataGridViewTextBoxColumn";
-            this.deleteVerbAmountDataGridViewTextBoxColumn.Width = 68;
             // 
             // moveMutationUpButton
             // 
@@ -1680,6 +1662,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1055, 707);
             this.Name = "RecipeViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RecipeViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
