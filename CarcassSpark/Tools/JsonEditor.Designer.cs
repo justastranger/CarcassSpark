@@ -100,6 +100,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.contentTypeComboBox);
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "JsonEditor";
             this.Text = "JSON Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JsonEditor_FormClosing);
