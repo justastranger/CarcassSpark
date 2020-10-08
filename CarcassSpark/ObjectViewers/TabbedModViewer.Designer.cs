@@ -400,6 +400,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TabbedModViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carcass Spark";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

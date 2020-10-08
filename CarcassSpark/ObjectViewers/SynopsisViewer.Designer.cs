@@ -261,6 +261,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(397, 488);
             this.Name = "SynopsisViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Synopsis Viewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SynopsisViewer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();
