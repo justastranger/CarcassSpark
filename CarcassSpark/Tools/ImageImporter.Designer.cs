@@ -40,6 +40,9 @@
             // 
             // displayPictureBox
             // 
+            this.displayPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.displayPictureBox.Location = new System.Drawing.Point(12, 12);
             this.displayPictureBox.Name = "displayPictureBox";
             this.displayPictureBox.Size = new System.Drawing.Size(256, 256);
@@ -48,6 +51,7 @@
             // 
             // typeLabel
             // 
+            this.typeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.typeLabel.AutoSize = true;
             this.typeLabel.Location = new System.Drawing.Point(12, 271);
             this.typeLabel.Name = "typeLabel";
@@ -57,6 +61,8 @@
             // 
             // typeComboBox
             // 
+            this.typeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FormattingEnabled = true;
             this.typeComboBox.Items.AddRange(new object[] {
@@ -73,6 +79,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 314);
             this.okButton.Name = "okButton";
@@ -84,6 +91,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(193, 314);
             this.cancelButton.Name = "cancelButton";
@@ -95,6 +103,8 @@
             // 
             // chooseButton
             // 
+            this.chooseButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chooseButton.Location = new System.Drawing.Point(93, 314);
             this.chooseButton.Name = "chooseButton";
             this.chooseButton.Size = new System.Drawing.Size(94, 23);
@@ -120,8 +130,9 @@
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.displayPictureBox);
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 388);
             this.Name = "ImageImporter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ImageImporter";
             ((System.ComponentModel.ISupportInitialize)(this.displayPictureBox)).EndInit();
             this.ResumeLayout(false);
