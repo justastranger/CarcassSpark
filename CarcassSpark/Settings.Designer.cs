@@ -60,11 +60,14 @@
             // previousModsTextBox
             // 
             this.previousModsTextBox.AcceptsReturn = true;
+            this.previousModsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.previousModsTextBox.Location = new System.Drawing.Point(12, 71);
             this.previousModsTextBox.Multiline = true;
             this.previousModsTextBox.Name = "previousModsTextBox";
             this.previousModsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.previousModsTextBox.Size = new System.Drawing.Size(370, 81);
+            this.previousModsTextBox.Size = new System.Drawing.Size(370, 50);
             this.previousModsTextBox.TabIndex = 2;
             this.ToolTip.SetToolTip(this.previousModsTextBox, resources.GetString("previousModsTextBox.ToolTip"));
             // 
@@ -79,8 +82,9 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 348);
+            this.okButton.Location = new System.Drawing.Point(12, 189);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -90,8 +94,9 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(307, 348);
+            this.cancelButton.Location = new System.Drawing.Point(307, 189);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
@@ -113,8 +118,9 @@
             // 
             // portableCheckBox
             // 
+            this.portableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.portableCheckBox.AutoSize = true;
-            this.portableCheckBox.Location = new System.Drawing.Point(12, 158);
+            this.portableCheckBox.Location = new System.Drawing.Point(12, 127);
             this.portableCheckBox.Name = "portableCheckBox";
             this.portableCheckBox.Size = new System.Drawing.Size(95, 17);
             this.portableCheckBox.TabIndex = 8;
@@ -126,7 +132,9 @@
             // 
             // GamePathTextBox
             // 
-            this.GamePathTextBox.Location = new System.Drawing.Point(12, 194);
+            this.GamePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamePathTextBox.Location = new System.Drawing.Point(12, 163);
             this.GamePathTextBox.Name = "GamePathTextBox";
             this.GamePathTextBox.ReadOnly = true;
             this.GamePathTextBox.Size = new System.Drawing.Size(370, 20);
@@ -146,8 +154,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 178);
+            this.label1.Location = new System.Drawing.Point(12, 147);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 10;
@@ -159,7 +168,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(394, 383);
+            this.ClientSize = new System.Drawing.Size(394, 224);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.GamePathTextBox);
             this.Controls.Add(this.portableCheckBox);
@@ -169,9 +178,8 @@
             this.Controls.Add(this.previousModLabel);
             this.Controls.Add(this.previousModsTextBox);
             this.Controls.Add(this.loadPreviousModsCheckBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(250, 263);
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);
