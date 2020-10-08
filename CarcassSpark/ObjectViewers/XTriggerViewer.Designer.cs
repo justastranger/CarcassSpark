@@ -35,13 +35,13 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.xtriggersDataGridView = new System.Windows.Forms.DataGridView();
-            this.xTriggersLabel = new System.Windows.Forms.Label();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.xtriggersResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersChance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xtriggersMorphEffect = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.xTriggersLabel = new System.Windows.Forms.Label();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +66,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 267);
             this.okButton.Name = "okButton";
@@ -77,6 +78,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(379, 267);
             this.cancelButton.Name = "cancelButton";
@@ -90,6 +92,10 @@
             // 
             this.xtriggersDataGridView.AllowUserToResizeColumns = false;
             this.xtriggersDataGridView.AllowUserToResizeRows = false;
+            this.xtriggersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xtriggersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.xtriggersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.xtriggersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.xtriggersResult,
@@ -102,26 +108,6 @@
             this.xtriggersDataGridView.TabIndex = 12;
             this.ToolTip.SetToolTip(this.xtriggersDataGridView, "These are the XTrigger effects that are triggered in response to exposure to the " +
         "catalyst during the conclusion of a recipe.");
-            // 
-            // xTriggersLabel
-            // 
-            this.xTriggersLabel.AutoSize = true;
-            this.xTriggersLabel.Location = new System.Drawing.Point(207, 35);
-            this.xTriggersLabel.Name = "xTriggersLabel";
-            this.xTriggersLabel.Size = new System.Drawing.Size(52, 13);
-            this.xTriggersLabel.TabIndex = 13;
-            this.xTriggersLabel.Text = "XTriggers";
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.deleteButton.Location = new System.Drawing.Point(197, 267);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(75, 23);
-            this.deleteButton.TabIndex = 14;
-            this.deleteButton.Text = "Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // xtriggersResult
             // 
@@ -140,7 +126,6 @@
             this.xtriggersLevel.HeaderText = "Level";
             this.xtriggersLevel.Name = "xtriggersLevel";
             this.xtriggersLevel.ToolTipText = "When spawning or mutating, this is the amount that it\'s done by.";
-            this.xtriggersLevel.Width = 99;
             // 
             // xtriggersMorphEffect
             // 
@@ -155,6 +140,28 @@
             this.xtriggersMorphEffect.ToolTipText = "Determines the type of XTrigger. Transform changes one card into another, preserv" +
     "ing mutations, spawn creates new cards, and mutate allows for mutations to be ap" +
     "plied.";
+            // 
+            // xTriggersLabel
+            // 
+            this.xTriggersLabel.AutoSize = true;
+            this.xTriggersLabel.Location = new System.Drawing.Point(207, 35);
+            this.xTriggersLabel.Name = "xTriggersLabel";
+            this.xTriggersLabel.Size = new System.Drawing.Size(52, 13);
+            this.xTriggersLabel.TabIndex = 13;
+            this.xTriggersLabel.Text = "XTriggers";
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.deleteButton.Location = new System.Drawing.Point(196, 267);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 14;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // XTriggerViewer
             // 
@@ -171,8 +178,9 @@
             this.Controls.Add(this.catalystLabel);
             this.Controls.Add(this.catalystTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(482, 341);
             this.Name = "XTriggerViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XTriggerViewer";
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
             this.ResumeLayout(false);
