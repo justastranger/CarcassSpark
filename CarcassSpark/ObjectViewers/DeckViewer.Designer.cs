@@ -88,6 +88,8 @@
             // 
             // commentsTextBox
             // 
+            this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsTextBox.Location = new System.Drawing.Point(286, 25);
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
@@ -111,6 +113,8 @@
             // 
             this.drawmessagesDataGridView.AllowUserToResizeColumns = false;
             this.drawmessagesDataGridView.AllowUserToResizeRows = false;
+            this.drawmessagesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.drawmessagesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.drawmessagesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.elementId,
@@ -178,6 +182,8 @@
             // 
             // newCardTextBox
             // 
+            this.newCardTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.newCardTextBox.Location = new System.Drawing.Point(286, 322);
             this.newCardTextBox.Name = "newCardTextBox";
             this.newCardTextBox.Size = new System.Drawing.Size(260, 20);
@@ -187,6 +193,7 @@
             // 
             // newCardButton
             // 
+            this.newCardButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newCardButton.Location = new System.Drawing.Point(286, 348);
             this.newCardButton.Name = "newCardButton";
             this.newCardButton.Size = new System.Drawing.Size(53, 23);
@@ -197,6 +204,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
@@ -208,6 +216,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(471, 377);
             this.cancelButton.Name = "cancelButton";
@@ -273,6 +282,9 @@
             // 
             // specListView
             // 
+            this.specListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.specListView.ContextMenuStrip = this.contextMenuStrip1;
             this.specListView.HideSelection = false;
             this.specListView.Location = new System.Drawing.Point(286, 64);
@@ -302,6 +314,7 @@
             // 
             // specPrependButton
             // 
+            this.specPrependButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.specPrependButton.Location = new System.Drawing.Point(345, 348);
             this.specPrependButton.Name = "specPrependButton";
             this.specPrependButton.Size = new System.Drawing.Size(57, 23);
@@ -312,6 +325,7 @@
             // 
             // specAppendButton
             // 
+            this.specAppendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.specAppendButton.Location = new System.Drawing.Point(408, 348);
             this.specAppendButton.Name = "specAppendButton";
             this.specAppendButton.Size = new System.Drawing.Size(66, 23);
@@ -322,6 +336,7 @@
             // 
             // specRemoveButton
             // 
+            this.specRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.specRemoveButton.Location = new System.Drawing.Point(480, 348);
             this.specRemoveButton.Name = "specRemoveButton";
             this.specRemoveButton.Size = new System.Drawing.Size(66, 23);
@@ -396,10 +411,10 @@
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(574, 451);
             this.Name = "DeckViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeckViewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
