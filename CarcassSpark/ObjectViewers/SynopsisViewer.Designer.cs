@@ -53,6 +53,8 @@
             // 
             // modNameTextBox
             // 
+            this.modNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.modNameTextBox.Location = new System.Drawing.Point(12, 25);
             this.modNameTextBox.Name = "modNameTextBox";
             this.modNameTextBox.Size = new System.Drawing.Size(357, 20);
@@ -64,6 +66,8 @@
             // 
             // modAuthorTextBox
             // 
+            this.modAuthorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.modAuthorTextBox.Location = new System.Drawing.Point(12, 64);
             this.modAuthorTextBox.Name = "modAuthorTextBox";
             this.modAuthorTextBox.Size = new System.Drawing.Size(357, 20);
@@ -74,6 +78,8 @@
             // 
             // modVersionTextBox
             // 
+            this.modVersionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.modVersionTextBox.Location = new System.Drawing.Point(12, 103);
             this.modVersionTextBox.Name = "modVersionTextBox";
             this.modVersionTextBox.Size = new System.Drawing.Size(357, 20);
@@ -85,6 +91,8 @@
             // modDescriptionTextBox
             // 
             this.modDescriptionTextBox.AcceptsReturn = true;
+            this.modDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.modDescriptionTextBox.Location = new System.Drawing.Point(12, 142);
             this.modDescriptionTextBox.Multiline = true;
             this.modDescriptionTextBox.Name = "modDescriptionTextBox";
@@ -97,6 +105,8 @@
             // longDescriptionTextBox
             // 
             this.longDescriptionTextBox.AcceptsReturn = true;
+            this.longDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.longDescriptionTextBox.Location = new System.Drawing.Point(12, 221);
             this.longDescriptionTextBox.Multiline = true;
             this.longDescriptionTextBox.Name = "longDescriptionTextBox";
@@ -108,6 +118,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 414);
             this.okButton.Name = "okButton";
@@ -119,6 +130,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(294, 414);
             this.cancelButton.Name = "cancelButton";
@@ -186,6 +198,10 @@
             // 
             this.dependeniesDataGridView.AllowUserToResizeColumns = false;
             this.dependeniesDataGridView.AllowUserToResizeRows = false;
+            this.dependeniesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dependeniesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dependeniesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dependeniesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dependencyModId,
@@ -202,7 +218,6 @@
             // 
             this.dependencyModId.HeaderText = "Mod Name/ID";
             this.dependencyModId.Name = "dependencyModId";
-            this.dependencyModId.Width = 105;
             // 
             // dependencyVersionOperator
             // 
@@ -214,7 +229,6 @@
             "<=",
             "<"});
             this.dependencyVersionOperator.Name = "dependencyVersionOperator";
-            this.dependencyVersionOperator.Width = 104;
             // 
             // dependencyVersion
             // 
@@ -222,7 +236,6 @@
             this.dependencyVersion.Name = "dependencyVersion";
             this.dependencyVersion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dependencyVersion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dependencyVersion.Width = 105;
             // 
             // SynopsisViewer
             // 
@@ -245,9 +258,8 @@
             this.Controls.Add(this.modVersionTextBox);
             this.Controls.Add(this.modAuthorTextBox);
             this.Controls.Add(this.modNameTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(397, 488);
             this.Name = "SynopsisViewer";
             this.Text = "Synopsis Viewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SynopsisViewer_FormClosing);
