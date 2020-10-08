@@ -58,7 +58,7 @@
             // 
             // idTextBox
             // 
-            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.idTextBox.Location = new System.Drawing.Point(462, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(183, 20);
@@ -69,7 +69,7 @@
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTextBox.Location = new System.Drawing.Point(271, 25);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(185, 20);
@@ -93,7 +93,8 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
-            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(271, 147);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -106,7 +107,7 @@
             // 
             // idLabel
             // 
-            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.idLabel.AutoSize = true;
             this.idLabel.Location = new System.Drawing.Point(589, 9);
             this.idLabel.Name = "idLabel";
@@ -116,7 +117,7 @@
             // 
             // labelLabel
             // 
-            this.labelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLabel.AutoSize = true;
             this.labelLabel.Location = new System.Drawing.Point(270, 9);
             this.labelLabel.Name = "labelLabel";
@@ -136,7 +137,7 @@
             // 
             // flavourLabel
             // 
-            this.flavourLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.flavourLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.flavourLabel.AutoSize = true;
             this.flavourLabel.Location = new System.Drawing.Point(270, 48);
             this.flavourLabel.Name = "flavourLabel";
@@ -146,7 +147,7 @@
             // 
             // animLabel
             // 
-            this.animLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.animLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.animLabel.AutoSize = true;
             this.animLabel.Location = new System.Drawing.Point(592, 48);
             this.animLabel.Name = "animLabel";
@@ -156,7 +157,7 @@
             // 
             // descriptionLabel
             // 
-            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Location = new System.Drawing.Point(270, 131);
             this.descriptionLabel.Name = "descriptionLabel";
@@ -245,6 +246,7 @@
             // 
             // deletedCheckBox
             // 
+            this.deletedCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deletedCheckBox.AutoSize = true;
             this.deletedCheckBox.Location = new System.Drawing.Point(582, 91);
             this.deletedCheckBox.Name = "deletedCheckBox";
@@ -259,6 +261,7 @@
             // 
             // endindFlavourComboBox
             // 
+            this.endindFlavourComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.endindFlavourComboBox.FormattingEnabled = true;
             this.endindFlavourComboBox.Items.AddRange(new object[] {
             "None",
@@ -275,6 +278,7 @@
             // 
             // animComboBox
             // 
+            this.animComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.animComboBox.FormattingEnabled = true;
             this.animComboBox.Items.AddRange(new object[] {
             "DramaticLight",
@@ -289,6 +293,7 @@
             // 
             // extendsLabel
             // 
+            this.extendsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.extendsLabel.AutoSize = true;
             this.extendsLabel.Location = new System.Drawing.Point(270, 92);
             this.extendsLabel.Name = "extendsLabel";
@@ -298,6 +303,7 @@
             // 
             // extendsTextBox
             // 
+            this.extendsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.extendsTextBox.Location = new System.Drawing.Point(271, 108);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(372, 20);
@@ -334,10 +340,10 @@
             this.Controls.Add(this.imageTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(673, 459);
             this.Name = "EndingViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EndingViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
