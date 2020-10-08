@@ -45,6 +45,11 @@ namespace CarcassSpark.ObjectViewers
             if (verb.slot != null)
             {
                 addSlotButton.Text = "Open Slot";
+                removeButton.Enabled = true;
+            }
+            else
+            {
+                removeButton.Enabled = false;
             }
             if (verb.extends?.Count > 1)
             {
@@ -90,6 +95,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     displayedVerb.slot = sv.displayedSlot;
                     addSlotButton.Text = "Open Slot";
+                    removeButton.Enabled = true;
                 }
             }
             else
@@ -98,6 +104,7 @@ namespace CarcassSpark.ObjectViewers
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedVerb.slot = sv.displayedSlot;
+                    removeButton.Enabled = true;
                 }
             }
         }
@@ -144,6 +151,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedVerb.slot = null;
                 addSlotButton.Text = "Add Slot";
+                removeButton.Enabled = false;
             }
             else
             {

@@ -53,6 +53,8 @@
             // 
             // idTextBox
             // 
+            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.idTextBox.Location = new System.Drawing.Point(149, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(193, 20);
@@ -63,6 +65,8 @@
             // 
             // labelTextBox
             // 
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTextBox.Location = new System.Drawing.Point(149, 64);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(193, 20);
@@ -74,10 +78,13 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 223);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
+            this.descriptionTextBox.Size = new System.Drawing.Size(330, 98);
             this.descriptionTextBox.TabIndex = 3;
             this.ToolTip.SetToolTip(this.descriptionTextBox, "Description for the verb to be displayed in its form when empty.");
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
@@ -111,8 +118,9 @@
             // 
             // slotsLabel
             // 
+            this.slotsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(166, 313);
+            this.slotsLabel.Location = new System.Drawing.Point(12, 324);
             this.slotsLabel.Name = "slotsLabel";
             this.slotsLabel.Size = new System.Drawing.Size(25, 13);
             this.slotsLabel.TabIndex = 8;
@@ -120,6 +128,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
@@ -131,7 +140,8 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(137, 329);
+            this.addSlotButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addSlotButton.Location = new System.Drawing.Point(12, 340);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(81, 31);
             this.addSlotButton.TabIndex = 10;
@@ -141,6 +151,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(267, 377);
             this.cancelButton.Name = "cancelButton";
@@ -152,7 +163,8 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(137, 366);
+            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeButton.Location = new System.Drawing.Point(99, 340);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(81, 31);
             this.removeButton.TabIndex = 12;
@@ -181,6 +193,8 @@
             // commentsTextBox
             // 
             this.commentsTextBox.AcceptsReturn = true;
+            this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsTextBox.Location = new System.Drawing.Point(12, 175);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
@@ -205,6 +219,8 @@
             // 
             // extendsTextBox
             // 
+            this.extendsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.extendsTextBox.Location = new System.Drawing.Point(74, 149);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(268, 20);
@@ -245,10 +261,10 @@
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(370, 459);
             this.Name = "VerbViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VerbViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
