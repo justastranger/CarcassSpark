@@ -39,6 +39,7 @@
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.inputLabel = new System.Windows.Forms.Label();
             this.outputLabel = new System.Windows.Forms.Label();
+            this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // selectInputFolderButton
@@ -68,6 +69,8 @@
             // 
             // inputTextBox
             // 
+            this.inputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inputTextBox.Location = new System.Drawing.Point(168, 28);
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.ReadOnly = true;
@@ -77,6 +80,8 @@
             // 
             // outputTextBox
             // 
+            this.outputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outputTextBox.Location = new System.Drawing.Point(168, 84);
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
@@ -86,6 +91,7 @@
             // 
             // saveButton
             // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.Enabled = false;
             this.saveButton.Location = new System.Drawing.Point(12, 124);
             this.saveButton.Name = "saveButton";
@@ -115,11 +121,24 @@
             this.outputLabel.TabIndex = 6;
             this.outputLabel.Text = "Output Folder";
             // 
+            // closeButton
+            // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeButton.Location = new System.Drawing.Point(372, 151);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 7;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            // 
             // JsonCleaner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(459, 184);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.inputLabel);
             this.Controls.Add(this.saveButton);
@@ -127,7 +146,9 @@
             this.Controls.Add(this.inputTextBox);
             this.Controls.Add(this.selectOutputFolderButton);
             this.Controls.Add(this.selectInputFolderButton);
+            this.MinimumSize = new System.Drawing.Size(475, 223);
             this.Name = "JsonCleaner";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JsonCleaner";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,5 +167,6 @@
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Label inputLabel;
         private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.Button closeButton;
     }
 }
