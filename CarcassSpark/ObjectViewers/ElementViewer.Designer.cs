@@ -165,8 +165,9 @@
             // 
             // slotsLabel
             // 
+            this.slotsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(612, 154);
+            this.slotsLabel.Location = new System.Drawing.Point(506, 204);
             this.slotsLabel.Name = "slotsLabel";
             this.slotsLabel.Size = new System.Drawing.Size(30, 13);
             this.slotsLabel.TabIndex = 11;
@@ -176,6 +177,9 @@
             // 
             this.aspectsDataGridView.AllowUserToResizeColumns = false;
             this.aspectsDataGridView.AllowUserToResizeRows = false;
+            this.aspectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.aspectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aspectsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
@@ -183,7 +187,7 @@
             this.aspectsDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
             this.aspectsDataGridView.Location = new System.Drawing.Point(509, 25);
             this.aspectsDataGridView.Name = "aspectsDataGridView";
-            this.aspectsDataGridView.Size = new System.Drawing.Size(248, 126);
+            this.aspectsDataGridView.Size = new System.Drawing.Size(248, 176);
             this.aspectsDataGridView.TabIndex = 13;
             this.ToolTip.SetToolTip(this.aspectsDataGridView, "The aspects of the element. Can be the ID of either an aspect or another element." +
         "");
@@ -228,6 +232,8 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 248);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -238,6 +244,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 377);
             this.okButton.Name = "okButton";
@@ -249,6 +256,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(682, 377);
             this.cancelButton.Name = "cancelButton";
@@ -346,7 +354,8 @@
             // 
             // addSlotButton
             // 
-            this.addSlotButton.Location = new System.Drawing.Point(509, 310);
+            this.addSlotButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addSlotButton.Location = new System.Drawing.Point(509, 377);
             this.addSlotButton.Name = "addSlotButton";
             this.addSlotButton.Size = new System.Drawing.Size(75, 23);
             this.addSlotButton.TabIndex = 30;
@@ -356,7 +365,8 @@
             // 
             // removeSlotButton
             // 
-            this.removeSlotButton.Location = new System.Drawing.Point(590, 310);
+            this.removeSlotButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeSlotButton.Location = new System.Drawing.Point(590, 377);
             this.removeSlotButton.Name = "removeSlotButton";
             this.removeSlotButton.Size = new System.Drawing.Size(86, 23);
             this.removeSlotButton.TabIndex = 31;
@@ -380,11 +390,13 @@
             // 
             // slotsListView
             // 
+            this.slotsListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.slotsListView.HideSelection = false;
-            this.slotsListView.Location = new System.Drawing.Point(509, 171);
+            this.slotsListView.Location = new System.Drawing.Point(509, 220);
             this.slotsListView.MultiSelect = false;
             this.slotsListView.Name = "slotsListView";
-            this.slotsListView.Size = new System.Drawing.Size(248, 133);
+            this.slotsListView.Size = new System.Drawing.Size(248, 151);
             this.slotsListView.TabIndex = 33;
             this.ToolTip.SetToolTip(this.slotsListView, "Specifies the slots that appear when you add the element to various verbs.");
             this.slotsListView.UseCompatibleStateImageBehavior = false;
@@ -426,6 +438,7 @@
             // 
             // commentsLabel
             // 
+            this.commentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.commentsLabel.AutoSize = true;
             this.commentsLabel.Location = new System.Drawing.Point(12, 322);
             this.commentsLabel.Name = "commentsLabel";
@@ -436,6 +449,7 @@
             // commentsTextBox
             // 
             this.commentsTextBox.AcceptsReturn = true;
+            this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.commentsTextBox.Location = new System.Drawing.Point(12, 338);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
@@ -537,10 +551,10 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(785, 451);
             this.Name = "ElementViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Element Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
