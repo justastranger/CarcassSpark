@@ -60,13 +60,13 @@
             this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jSONCleanerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.jSONCleanerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -123,7 +123,7 @@
             // 
             this.openManifestToolStripMenuItem.Name = "openManifestToolStripMenuItem";
             this.openManifestToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.openManifestToolStripMenuItem.Text = "Open Manifest";
+            this.openManifestToolStripMenuItem.Text = "Open Synopsis";
             this.openManifestToolStripMenuItem.Click += new System.EventHandler(this.OpenSynopsisToolStripMenuItem_Click);
             // 
             // reloadContentToolStripMenuItem
@@ -327,16 +327,23 @@
             // summonGeneratorToolStripMenuItem
             // 
             this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
-            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.SummonGeneratorToolStripMenuItem_Click);
             // 
             // imageImporterToolStripMenuItem
             // 
             this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.imageImporterToolStripMenuItem.Text = "Image Importer";
             this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.ImageImporterToolStripMenuItem_Click);
+            // 
+            // jSONCleanerToolStripMenuItem
+            // 
+            this.jSONCleanerToolStripMenuItem.Name = "jSONCleanerToolStripMenuItem";
+            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.jSONCleanerToolStripMenuItem.Text = "JSON Cleaner";
+            this.jSONCleanerToolStripMenuItem.Click += new System.EventHandler(this.JSONCleanerToolStripMenuItem_Click);
             // 
             // settingsToolStripButton
             // 
@@ -382,13 +389,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
-            // 
-            // jSONCleanerToolStripMenuItem
-            // 
-            this.jSONCleanerToolStripMenuItem.Name = "jSONCleanerToolStripMenuItem";
-            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.jSONCleanerToolStripMenuItem.Text = "JSON Cleaner";
-            this.jSONCleanerToolStripMenuItem.Click += new System.EventHandler(this.JSONCleanerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
