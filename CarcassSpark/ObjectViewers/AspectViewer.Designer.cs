@@ -67,6 +67,8 @@
             // 
             // idTextBox
             // 
+            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.idTextBox.Location = new System.Drawing.Point(146, 25);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(134, 20);
@@ -77,6 +79,8 @@
             // 
             // labelTextBox
             // 
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTextBox.Location = new System.Drawing.Point(146, 64);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(134, 20);
@@ -87,6 +91,8 @@
             // 
             // iconTextBox
             // 
+            this.iconTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.iconTextBox.Location = new System.Drawing.Point(146, 103);
             this.iconTextBox.Name = "iconTextBox";
             this.iconTextBox.Size = new System.Drawing.Size(134, 20);
@@ -109,6 +115,9 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 208);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -119,6 +128,7 @@
             // 
             // inducesLabel
             // 
+            this.inducesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inducesLabel.AutoSize = true;
             this.inducesLabel.Location = new System.Drawing.Point(364, 15);
             this.inducesLabel.Name = "inducesLabel";
@@ -130,6 +140,7 @@
             // 
             this.inducesDataGridView.AllowUserToResizeColumns = false;
             this.inducesDataGridView.AllowUserToResizeRows = false;
+            this.inducesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inducesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inducesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.recipeId,
@@ -195,6 +206,7 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 332);
             this.okButton.Name = "okButton";
@@ -206,6 +218,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(542, 332);
             this.cancelButton.Name = "cancelButton";
@@ -271,6 +284,9 @@
             // 
             // descriptionLabel
             // 
+            this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Location = new System.Drawing.Point(80, 192);
             this.descriptionLabel.Name = "descriptionLabel";
@@ -280,6 +296,8 @@
             // 
             // commentsLabel
             // 
+            this.commentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsLabel.AutoSize = true;
             this.commentsLabel.Location = new System.Drawing.Point(122, 316);
             this.commentsLabel.Name = "commentsLabel";
@@ -290,6 +308,8 @@
             // commentTextBox
             // 
             this.commentTextBox.AcceptsReturn = true;
+            this.commentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.commentTextBox.Location = new System.Drawing.Point(118, 332);
             this.commentTextBox.Multiline = true;
             this.commentTextBox.Name = "commentTextBox";
@@ -310,6 +330,8 @@
             // 
             // inheritsTextBox
             // 
+            this.inheritsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inheritsTextBox.Location = new System.Drawing.Point(146, 143);
             this.inheritsTextBox.Name = "inheritsTextBox";
             this.inheritsTextBox.Size = new System.Drawing.Size(134, 20);
@@ -333,6 +355,8 @@
             // 
             // extendsTextBox
             // 
+            this.extendsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.extendsTextBox.Location = new System.Drawing.Point(146, 182);
             this.extendsTextBox.Name = "extendsTextBox";
             this.extendsTextBox.Size = new System.Drawing.Size(134, 20);
@@ -378,10 +402,10 @@
             this.Controls.Add(this.iconTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(670, 421);
             this.Name = "AspectViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aspect Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).EndInit();

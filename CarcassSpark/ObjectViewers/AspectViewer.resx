@@ -132,6 +132,9 @@
   <metadata name="propertyOperationContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
+  </metadata>
   <data name="inducesDataGridView.ToolTip" xml:space="preserve">
     <value>Recipes to be executed when a recipe concludes whilst this aspect is present.
 Chance is an integer from 0-100
