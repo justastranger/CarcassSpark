@@ -102,6 +102,7 @@
             this.Controls.Add(this.contentTypeComboBox);
             this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "JsonEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JSON Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JsonEditor_FormClosing);
             this.ResumeLayout(false);
