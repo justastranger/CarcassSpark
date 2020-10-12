@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -247,6 +248,12 @@ namespace CarcassSpark.ObjectTypes
         {
             string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
             return File.Exists(pathToImage);
+        }
+
+        public ContentSource Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
         }
     }
 }

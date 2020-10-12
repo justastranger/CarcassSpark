@@ -34,7 +34,8 @@ namespace CarcassSpark.ObjectTypes
 
         public Induces Copy()
         {
-            return new Induces(id, chance, additional, expulsion != null ? expulsion.Copy() : null);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Induces>(serializedObject);
         }
     }
 }

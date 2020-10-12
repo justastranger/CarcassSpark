@@ -28,7 +28,8 @@ namespace CarcassSpark.ObjectTypes
 
         public Expulsion Copy()
         {
-            return new Expulsion(filter != null ? new Dictionary<string, int>(filter) : null, limit);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Expulsion>(serializedObject);
         }
 
         public Expulsion(int limit)

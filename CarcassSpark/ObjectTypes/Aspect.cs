@@ -54,24 +54,10 @@ namespace CarcassSpark.ObjectTypes
             isAspect = true;
         }
         
-        new public Aspect Copy()
+        public new Aspect Copy()
         {
-            return new Aspect(id, label, description, inherits, unique, deleted, icon, comments,
-                              aspects != null ? new Dictionary<string, int>(aspects) : null,
-                              aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null,
-                              aspects_remove != null ? new List<string>(aspects_remove) : null,
-                              slots != null ? new List<Slot>(slots) : null,
-                              slots_prepend != null ? new List<Slot>(slots_prepend) : null,
-                              slots_append != null ? new List<Slot>(slots_append) : null,
-                              slots_remove != null ? new List<string>(slots_remove) : null,
-                              xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null,
-                              xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null,
-                              xtriggers_remove != null ? new List<string>(xtriggers_remove) : null,
-                              lifetime, decayTo, uniquenessgroup, resaturate, isHidden, noartneeded,
-                              induces != null ? new List<Induces>(induces) : null,
-                              induces_prepend != null ? new List<Induces>(induces_prepend) : null,
-                              induces_append != null ? new List<Induces>(induces_append) : null,
-                              induces_remove != null ? new List<string>(induces_remove) : null, isAspect, extends);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Aspect>(serializedObject);
         }
     }
 }

@@ -44,7 +44,8 @@ namespace CarcassSpark.ObjectTypes
 
         public Verb Copy()
         {
-            return new Verb(id, label, description, comments, deleted, slot, extends);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Verb>(serializedObject);
         }
     }
 }

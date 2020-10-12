@@ -59,7 +59,8 @@ namespace CarcassSpark.ObjectTypes
 
         public RecipeLink Copy()
         {
-            return new RecipeLink(id, chance, additional, challenges != null ? new Dictionary<string, string>(challenges) : null, expulsion?.Copy());
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<RecipeLink>(serializedObject);
         }
     }
 }

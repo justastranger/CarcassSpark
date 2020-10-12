@@ -40,7 +40,8 @@ namespace CarcassSpark.ObjectTypes
 
         public XTrigger Copy()
         {
-            return new XTrigger(id, chance, morpheffect, level);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<XTrigger>(serializedObject);
         }
 
         public enum MorphEffectType

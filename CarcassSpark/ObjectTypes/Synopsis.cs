@@ -94,7 +94,8 @@ namespace CarcassSpark.ObjectTypes
 
             public Dependency Copy()
             {
-                return new Dependency(modId, version, VersionOperator);
+                string serializedObject = JsonConvert.SerializeObject(this);
+                return JsonConvert.DeserializeObject<Dependency>(serializedObject);
             }
         }
     }

@@ -44,7 +44,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Ending Copy()
         {
-            return new Ending(id, label, description, image, flavour, anim, achievement, comments, deleted, extends);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Ending>(serializedObject);
         }
-    }
 }

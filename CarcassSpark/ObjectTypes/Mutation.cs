@@ -39,7 +39,8 @@ namespace CarcassSpark.ObjectTypes
 
         public Mutation Copy()
         {
-            return new Mutation(filter, mutate, level, additive);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Mutation>(serializedObject);
         }
     }
 }

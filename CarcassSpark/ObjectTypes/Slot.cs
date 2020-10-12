@@ -71,9 +71,8 @@ namespace CarcassSpark.ObjectTypes
 
         public Slot Copy()
         {
-            return new Slot(id, label, description, greedy, consumes,
-                            required != null ? new Dictionary<string, int>(required) : null,
-                            actionId, forbidden != null ? new Dictionary<string, int>(forbidden) : null);
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Slot>(serializedObject);
         }
     }
 }
