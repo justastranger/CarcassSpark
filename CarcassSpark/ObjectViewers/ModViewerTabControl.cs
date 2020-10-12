@@ -1415,7 +1415,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                Content.Aspects[aspectsListBox.SelectedItem as string] = deserializedAspect;
+                if (deserializedAspect.id != aspectsListBox.SelectedItem.ToString())
+                {
+                    Content.Aspects.Remove(aspectsListBox.SelectedItem as string);
+                    Content.Aspects[deserializedAspect.id] = deserializedAspect;
+                    aspectsListBox.SelectedItem = deserializedAspect.id;
+                }
+                else
+                {
+                    Content.Aspects[aspectsListBox.SelectedItem as string] = deserializedAspect;
+                }
             }
         }
 
@@ -1430,7 +1439,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
+                // Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
+                if (deserializedElement.id != elementsListBox.SelectedItem.ToString())
+                {
+                    Content.Elements.Remove(elementsListBox.SelectedItem as string);
+                    Content.Elements[deserializedElement.id] = deserializedElement;
+                    elementsListBox.SelectedItem = deserializedElement.id;
+                }
+                else
+                {
+                    Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
+                }
             }
         }
 
@@ -1445,7 +1464,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
+                // Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
+                if (deserializedRecipe.id != recipesListBox.SelectedItem.ToString())
+                {
+                    Content.Recipes.Remove(recipesListBox.SelectedItem as string);
+                    Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
+                    recipesListBox.SelectedItem = deserializedRecipe.id;
+                }
+                else
+                {
+                    Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
+                }
             }
         }
 
@@ -1460,7 +1489,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
+                // Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
+                if (deserializedDeck.id != decksListBox.SelectedItem.ToString())
+                {
+                    Content.Decks.Remove(decksListBox.SelectedItem as string);
+                    Content.Decks[deserializedDeck.id] = deserializedDeck;
+                    decksListBox.SelectedItem = deserializedDeck.id;
+                }
+                else
+                {
+                    Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
+                }
             }
         }
 
@@ -1475,7 +1514,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
+                // Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
+                if (deserializedLegacy.id != legaciesListBox.SelectedItem.ToString())
+                {
+                    Content.Legacies.Remove(legaciesListBox.SelectedItem as string);
+                    Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
+                    legaciesListBox.SelectedItem = deserializedLegacy.id;
+                }
+                else
+                {
+                    Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
+                }
             }
         }
 
@@ -1490,7 +1539,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
+                // Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
+                if (deserializedEnding.id != endingsListBox.SelectedItem.ToString())
+                {
+                    Content.Endings.Remove(endingsListBox.SelectedItem as string);
+                    Content.Endings[deserializedEnding.id] = deserializedEnding;
+                    endingsListBox.SelectedItem = deserializedEnding.id;
+                }
+                else
+                {
+                    Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
+                }
             }
         }
 
@@ -1505,7 +1564,17 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
+                // Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
+                if (deserializedVerb.id != verbsListBox.SelectedItem.ToString())
+                {
+                    Content.Verbs.Remove(verbsListBox.SelectedItem as string);
+                    Content.Verbs[deserializedVerb.id] = deserializedVerb;
+                    verbsListBox.SelectedItem = deserializedVerb.id;
+                }
+                else
+                {
+                    Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
+                }
             }
         }
 
