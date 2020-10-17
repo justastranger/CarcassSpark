@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.aspectsListBox = new System.Windows.Forms.ListBox();
             this.aspectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,7 +127,20 @@
             this.saveToFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter4 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter5 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter6 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter7 = new System.Windows.Forms.Splitter();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -136,59 +148,24 @@
             this.legacyContextMenuStrip.SuspendLayout();
             this.endingContextMenuStrip.SuspendLayout();
             this.verbContextMenuStrip.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28652F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28081F));
-            this.tableLayoutPanel1.Controls.Add(this.aspectsListBox, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.elementsListBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.recipesListBox, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.decksListBox, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesListBox, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.endingsListBox, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.verbsListBox, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.endingsLabel, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.verbsSearchTextBox, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesLabel, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.endingsSearchTextBox, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.decksLabel, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.legaciesSearchTextBox, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.recipesLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.elementsLabel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.recipesSearchTextBox, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.aspectsLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.elementsSearchTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.aspectsSearchTextBox, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.decksSearchTextBox, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.verbsLabel, 6, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(853, 422);
-            this.tableLayoutPanel1.TabIndex = 27;
             // 
             // aspectsListBox
             // 
             this.aspectsListBox.ContextMenuStrip = this.aspectContextMenuStrip;
             this.aspectsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aspectsListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.aspectsListBox.Location = new System.Drawing.Point(3, 16);
+            this.aspectsListBox.Location = new System.Drawing.Point(3, 23);
             this.aspectsListBox.Name = "aspectsListBox";
             this.aspectsListBox.ScrollAlwaysVisible = true;
-            this.aspectsListBox.Size = new System.Drawing.Size(115, 377);
+            this.aspectsListBox.Size = new System.Drawing.Size(94, 370);
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
             this.aspectsListBox.DoubleClick += new System.EventHandler(this.AspectListBox_DoubleClick);
@@ -312,10 +289,10 @@
             this.elementsListBox.ContextMenuStrip = this.elementContextMenuStrip;
             this.elementsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementsListBox.FormattingEnabled = true;
-            this.elementsListBox.Location = new System.Drawing.Point(124, 16);
+            this.elementsListBox.Location = new System.Drawing.Point(3, 23);
             this.elementsListBox.Name = "elementsListBox";
             this.elementsListBox.ScrollAlwaysVisible = true;
-            this.elementsListBox.Size = new System.Drawing.Size(115, 377);
+            this.elementsListBox.Size = new System.Drawing.Size(94, 370);
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             this.elementsListBox.DoubleClick += new System.EventHandler(this.ElementsListBox_DoubleClick);
@@ -449,10 +426,10 @@
             this.recipesListBox.ContextMenuStrip = this.recipeContextMenuStrip;
             this.recipesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recipesListBox.FormattingEnabled = true;
-            this.recipesListBox.Location = new System.Drawing.Point(245, 16);
+            this.recipesListBox.Location = new System.Drawing.Point(3, 23);
             this.recipesListBox.Name = "recipesListBox";
             this.recipesListBox.ScrollAlwaysVisible = true;
-            this.recipesListBox.Size = new System.Drawing.Size(115, 377);
+            this.recipesListBox.Size = new System.Drawing.Size(94, 370);
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.RecipesListBox_DoubleClick);
@@ -546,10 +523,10 @@
             this.decksListBox.ContextMenuStrip = this.deckContextMenuStrip;
             this.decksListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.decksListBox.FormattingEnabled = true;
-            this.decksListBox.Location = new System.Drawing.Point(366, 16);
+            this.decksListBox.Location = new System.Drawing.Point(3, 23);
             this.decksListBox.Name = "decksListBox";
             this.decksListBox.ScrollAlwaysVisible = true;
-            this.decksListBox.Size = new System.Drawing.Size(115, 377);
+            this.decksListBox.Size = new System.Drawing.Size(94, 370);
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.DecksListBox_DoubleClick);
@@ -635,10 +612,10 @@
             this.legaciesListBox.ContextMenuStrip = this.legacyContextMenuStrip;
             this.legaciesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.legaciesListBox.FormattingEnabled = true;
-            this.legaciesListBox.Location = new System.Drawing.Point(487, 16);
+            this.legaciesListBox.Location = new System.Drawing.Point(3, 23);
             this.legaciesListBox.Name = "legaciesListBox";
             this.legaciesListBox.ScrollAlwaysVisible = true;
-            this.legaciesListBox.Size = new System.Drawing.Size(115, 377);
+            this.legaciesListBox.Size = new System.Drawing.Size(94, 370);
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.LegaciesListBox_DoubleClick);
@@ -707,10 +684,10 @@
             this.endingsListBox.ContextMenuStrip = this.endingContextMenuStrip;
             this.endingsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.endingsListBox.FormattingEnabled = true;
-            this.endingsListBox.Location = new System.Drawing.Point(608, 16);
+            this.endingsListBox.Location = new System.Drawing.Point(3, 23);
             this.endingsListBox.Name = "endingsListBox";
             this.endingsListBox.ScrollAlwaysVisible = true;
-            this.endingsListBox.Size = new System.Drawing.Size(115, 377);
+            this.endingsListBox.Size = new System.Drawing.Size(94, 370);
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.EndingsListBox_DoubleClick);
@@ -795,10 +772,10 @@
             this.verbsListBox.ContextMenuStrip = this.verbContextMenuStrip;
             this.verbsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.verbsListBox.FormattingEnabled = true;
-            this.verbsListBox.Location = new System.Drawing.Point(729, 16);
+            this.verbsListBox.Location = new System.Drawing.Point(3, 23);
             this.verbsListBox.Name = "verbsListBox";
             this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(121, 377);
+            this.verbsListBox.Size = new System.Drawing.Size(94, 370);
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.VerbsListBox_DoubleClick);
@@ -889,69 +866,66 @@
             // endingsLabel
             // 
             this.endingsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endingsLabel.Location = new System.Drawing.Point(608, 0);
+            this.endingsLabel.Location = new System.Drawing.Point(3, 0);
             this.endingsLabel.Name = "endingsLabel";
-            this.endingsLabel.Size = new System.Drawing.Size(115, 13);
+            this.endingsLabel.Size = new System.Drawing.Size(94, 20);
             this.endingsLabel.TabIndex = 12;
             this.endingsLabel.Text = "Endings";
             this.endingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // verbsSearchTextBox
             // 
-            this.verbsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.verbsSearchTextBox.Location = new System.Drawing.Point(729, 399);
+            this.verbsSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.verbsSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.verbsSearchTextBox.Name = "verbsSearchTextBox";
-            this.verbsSearchTextBox.Size = new System.Drawing.Size(121, 20);
+            this.verbsSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.verbsSearchTextBox.TabIndex = 23;
             this.verbsSearchTextBox.TextChanged += new System.EventHandler(this.VerbsSearchTextBox_TextChanged);
             // 
             // legaciesLabel
             // 
             this.legaciesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.legaciesLabel.Location = new System.Drawing.Point(487, 0);
+            this.legaciesLabel.Location = new System.Drawing.Point(3, 0);
             this.legaciesLabel.Name = "legaciesLabel";
-            this.legaciesLabel.Size = new System.Drawing.Size(115, 13);
+            this.legaciesLabel.Size = new System.Drawing.Size(94, 20);
             this.legaciesLabel.TabIndex = 9;
             this.legaciesLabel.Text = "Legacies";
             this.legaciesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // endingsSearchTextBox
             // 
-            this.endingsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.endingsSearchTextBox.Location = new System.Drawing.Point(608, 399);
+            this.endingsSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endingsSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.endingsSearchTextBox.Name = "endingsSearchTextBox";
-            this.endingsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.endingsSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.endingsSearchTextBox.TabIndex = 22;
             this.endingsSearchTextBox.TextChanged += new System.EventHandler(this.EndingsSearchTextBox_TextChanged);
             // 
             // decksLabel
             // 
             this.decksLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.decksLabel.Location = new System.Drawing.Point(366, 0);
+            this.decksLabel.Location = new System.Drawing.Point(3, 0);
             this.decksLabel.Name = "decksLabel";
-            this.decksLabel.Size = new System.Drawing.Size(115, 13);
+            this.decksLabel.Size = new System.Drawing.Size(94, 20);
             this.decksLabel.TabIndex = 7;
             this.decksLabel.Text = "Decks";
             this.decksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // legaciesSearchTextBox
             // 
-            this.legaciesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.legaciesSearchTextBox.Location = new System.Drawing.Point(487, 399);
+            this.legaciesSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.legaciesSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.legaciesSearchTextBox.Name = "legaciesSearchTextBox";
-            this.legaciesSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.legaciesSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.legaciesSearchTextBox.TabIndex = 21;
             this.legaciesSearchTextBox.TextChanged += new System.EventHandler(this.LegaciesSearchTextBox_TextChanged);
             // 
             // recipesLabel
             // 
             this.recipesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recipesLabel.Location = new System.Drawing.Point(245, 0);
+            this.recipesLabel.Location = new System.Drawing.Point(3, 0);
             this.recipesLabel.Name = "recipesLabel";
-            this.recipesLabel.Size = new System.Drawing.Size(115, 13);
+            this.recipesLabel.Size = new System.Drawing.Size(94, 20);
             this.recipesLabel.TabIndex = 5;
             this.recipesLabel.Text = "Recipes";
             this.recipesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -959,20 +933,19 @@
             // elementsLabel
             // 
             this.elementsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementsLabel.Location = new System.Drawing.Point(124, 0);
+            this.elementsLabel.Location = new System.Drawing.Point(3, 0);
             this.elementsLabel.Name = "elementsLabel";
-            this.elementsLabel.Size = new System.Drawing.Size(115, 13);
+            this.elementsLabel.Size = new System.Drawing.Size(94, 20);
             this.elementsLabel.TabIndex = 3;
             this.elementsLabel.Text = "Elements";
             this.elementsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // recipesSearchTextBox
             // 
-            this.recipesSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.recipesSearchTextBox.Location = new System.Drawing.Point(245, 399);
+            this.recipesSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recipesSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.recipesSearchTextBox.Name = "recipesSearchTextBox";
-            this.recipesSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.recipesSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.recipesSearchTextBox.TabIndex = 19;
             this.recipesSearchTextBox.TextChanged += new System.EventHandler(this.RecipesSearchTextBox_TextChanged);
             // 
@@ -981,47 +954,44 @@
             this.aspectsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aspectsLabel.Location = new System.Drawing.Point(3, 0);
             this.aspectsLabel.Name = "aspectsLabel";
-            this.aspectsLabel.Size = new System.Drawing.Size(115, 13);
+            this.aspectsLabel.Size = new System.Drawing.Size(94, 20);
             this.aspectsLabel.TabIndex = 2;
             this.aspectsLabel.Text = "Aspects";
             this.aspectsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // elementsSearchTextBox
             // 
-            this.elementsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.elementsSearchTextBox.Location = new System.Drawing.Point(124, 399);
+            this.elementsSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementsSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.elementsSearchTextBox.Name = "elementsSearchTextBox";
-            this.elementsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.elementsSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.elementsSearchTextBox.TabIndex = 18;
             this.elementsSearchTextBox.TextChanged += new System.EventHandler(this.ElementsSearchTextBox_TextChanged);
             // 
             // aspectsSearchTextBox
             // 
-            this.aspectsSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspectsSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aspectsSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.aspectsSearchTextBox.Name = "aspectsSearchTextBox";
-            this.aspectsSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.aspectsSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.aspectsSearchTextBox.TabIndex = 17;
             this.aspectsSearchTextBox.TextChanged += new System.EventHandler(this.AspectsSearchTextBox_TextChanged);
             // 
             // decksSearchTextBox
             // 
-            this.decksSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.decksSearchTextBox.Location = new System.Drawing.Point(366, 399);
+            this.decksSearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.decksSearchTextBox.Location = new System.Drawing.Point(3, 399);
             this.decksSearchTextBox.Name = "decksSearchTextBox";
-            this.decksSearchTextBox.Size = new System.Drawing.Size(115, 20);
+            this.decksSearchTextBox.Size = new System.Drawing.Size(94, 20);
             this.decksSearchTextBox.TabIndex = 20;
             this.decksSearchTextBox.TextChanged += new System.EventHandler(this.DecksSearchTextBox_TextChanged);
             // 
             // verbsLabel
             // 
             this.verbsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.verbsLabel.Location = new System.Drawing.Point(729, 0);
+            this.verbsLabel.Location = new System.Drawing.Point(3, 0);
             this.verbsLabel.Name = "verbsLabel";
-            this.verbsLabel.Size = new System.Drawing.Size(121, 13);
+            this.verbsLabel.Size = new System.Drawing.Size(94, 20);
             this.verbsLabel.TabIndex = 14;
             this.verbsLabel.Text = "Verbs";
             this.verbsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1039,16 +1009,209 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.aspectsListBox, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.aspectsLabel, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.aspectsSearchTextBox, 0, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel2.TabIndex = 28;
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter1.Location = new System.Drawing.Point(100, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(10, 422);
+            this.splitter1.TabIndex = 29;
+            this.splitter1.TabStop = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.elementsListBox, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.elementsLabel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.elementsSearchTextBox, 0, 2);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(110, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel3.TabIndex = 30;
+            // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter2.Location = new System.Drawing.Point(210, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(10, 422);
+            this.splitter2.TabIndex = 31;
+            this.splitter2.TabStop = false;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.recipesListBox, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.recipesLabel, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.recipesSearchTextBox, 0, 2);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(220, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel4.TabIndex = 32;
+            // 
+            // splitter3
+            // 
+            this.splitter3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter3.Location = new System.Drawing.Point(320, 0);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(10, 422);
+            this.splitter3.TabIndex = 33;
+            this.splitter3.TabStop = false;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.decksListBox, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.decksLabel, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.decksSearchTextBox, 0, 2);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(330, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel5.TabIndex = 34;
+            // 
+            // splitter4
+            // 
+            this.splitter4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter4.Location = new System.Drawing.Point(430, 0);
+            this.splitter4.Name = "splitter4";
+            this.splitter4.Size = new System.Drawing.Size(10, 422);
+            this.splitter4.TabIndex = 35;
+            this.splitter4.TabStop = false;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.legaciesListBox, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.legaciesLabel, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.legaciesSearchTextBox, 0, 2);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(440, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel6.TabIndex = 36;
+            // 
+            // splitter5
+            // 
+            this.splitter5.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter5.Location = new System.Drawing.Point(540, 0);
+            this.splitter5.Name = "splitter5";
+            this.splitter5.Size = new System.Drawing.Size(10, 422);
+            this.splitter5.TabIndex = 37;
+            this.splitter5.TabStop = false;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.endingsListBox, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.endingsLabel, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.endingsSearchTextBox, 0, 2);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(550, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel7.TabIndex = 38;
+            // 
+            // splitter6
+            // 
+            this.splitter6.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter6.Location = new System.Drawing.Point(650, 0);
+            this.splitter6.Name = "splitter6";
+            this.splitter6.Size = new System.Drawing.Size(10, 422);
+            this.splitter6.TabIndex = 39;
+            this.splitter6.TabStop = false;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.verbsSearchTextBox, 0, 2);
+            this.tableLayoutPanel8.Controls.Add(this.verbsListBox, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.verbsLabel, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(660, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 3;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(100, 422);
+            this.tableLayoutPanel8.TabIndex = 40;
+            // 
+            // splitter7
+            // 
+            this.splitter7.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter7.Location = new System.Drawing.Point(760, 0);
+            this.splitter7.Name = "splitter7";
+            this.splitter7.Size = new System.Drawing.Size(10, 422);
+            this.splitter7.TabIndex = 41;
+            this.splitter7.TabStop = false;
+            // 
             // ModViewerTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.splitter7);
+            this.Controls.Add(this.tableLayoutPanel8);
+            this.Controls.Add(this.splitter6);
+            this.Controls.Add(this.tableLayoutPanel7);
+            this.Controls.Add(this.splitter5);
+            this.Controls.Add(this.tableLayoutPanel6);
+            this.Controls.Add(this.splitter4);
+            this.Controls.Add(this.tableLayoutPanel5);
+            this.Controls.Add(this.splitter3);
+            this.Controls.Add(this.tableLayoutPanel4);
+            this.Controls.Add(this.splitter2);
+            this.Controls.Add(this.tableLayoutPanel3);
+            this.Controls.Add(this.splitter1);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "ModViewerTabControl";
-            this.Size = new System.Drawing.Size(853, 422);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.Size = new System.Drawing.Size(770, 422);
             this.aspectContextMenuStrip.ResumeLayout(false);
             this.elementContextMenuStrip.ResumeLayout(false);
             this.recipeContextMenuStrip.ResumeLayout(false);
@@ -1056,12 +1219,25 @@
             this.legacyContextMenuStrip.ResumeLayout(false);
             this.endingContextMenuStrip.ResumeLayout(false);
             this.verbContextMenuStrip.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label endingsLabel;
         private System.Windows.Forms.TextBox verbsSearchTextBox;
         private System.Windows.Forms.Label legaciesLabel;
@@ -1160,5 +1336,19 @@
         private System.Windows.Forms.ToolStripMenuItem newLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newVerbToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Splitter splitter2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Splitter splitter3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Splitter splitter4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Splitter splitter5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Splitter splitter6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.Splitter splitter7;
     }
 }
