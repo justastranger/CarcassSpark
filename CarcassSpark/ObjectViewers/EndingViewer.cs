@@ -121,9 +121,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null || displayedEnding.achievement == null)
+            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null)// || displayedEnding.achievement == null)
             {
-                MessageBox.Show("All values must be filled for the Ending to be valid.");
+                MessageBox.Show("All values (except achievement) must be filled for the Ending to be valid.");
                 return;
             }
             Close();
