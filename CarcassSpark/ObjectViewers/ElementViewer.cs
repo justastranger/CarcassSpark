@@ -229,14 +229,13 @@ namespace CarcassSpark.ObjectViewers
             string id = xtriggersListView.SelectedItems[0].Text;
             Color backColor = xtriggersListView.SelectedItems[0].BackColor;
             XTriggerViewer xtv;
-            // you know, I'd be really upset if the way I handed off the xtrigger entry back and forth was actually passing a reference back and forth, this whole section of code would be pointless if it was
             if (backColor == Utilities.DictionaryExtendStyle.BackColor)
             {
                 xtv = new XTriggerViewer(id, displayedElement.xtriggers_extend[id], editing, backColor == Utilities.DictionaryRemoveStyle.BackColor);
                 if (xtv.ShowDialog() == DialogResult.OK)
                 {
                     // if it returns null, we're deleting it from the xtrigger viewer
-                    if (xtv != null)
+                    if (xtv.displayedXTriggers != null)
                     {
                         // otherwise, check to see if the catalyst id has been changed
                         if (xtv.catalyst != xtriggersListView.SelectedItems[0].Text)
@@ -246,12 +245,12 @@ namespace CarcassSpark.ObjectViewers
                             // change the displayed name in the listview
                             xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
                             // and add the xtrigger entry under the new id
-                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
+                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers.ToList();
                         }
                         else
                         {
                             // otherwise just swap out the entry
-                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
+                            displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers.ToList();
                         }
                     }
                     else
@@ -265,11 +264,11 @@ namespace CarcassSpark.ObjectViewers
             else if (backColor == Utilities.DictionaryRemoveStyle.BackColor)
             {
                 // There isn't a List<XTrigger> here, so display nothing
+                // Until $remove is fixed, this won't even be supported anyways
             }
             else
             {
-                // pretend the above comments were in their respective places here
-                xtv = new XTriggerViewer(id, displayedElement.xtriggers[id], editing, backColor == Utilities.DictionaryRemoveStyle.BackColor);
+                xtv = new XTriggerViewer(id, displayedElement.xtriggers[id].ToList(), editing, false);
                 if (xtv.ShowDialog() == DialogResult.OK)
                 {
                     if (xtv != null)
@@ -278,11 +277,11 @@ namespace CarcassSpark.ObjectViewers
                         {
                             displayedElement.xtriggers.Remove(xtriggersListView.SelectedItems[0].Text);
                             xtriggersListView.SelectedItems[0].Text = xtv.catalyst;
-                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers.ToList();
                         }
                         else
                         {
-                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
+                            displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers.ToList();
                         }
                     }
                     else
@@ -600,6 +599,17 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (extendsTextBox.Text != "") displayedElement.extends = new List<string> { extendsTextBox.Text };
                 else displayedElement.extends = null;
+            }
+        }
+
+        private void ExtendXTriggerButton_Click(object sender, EventArgs e)
+        {
+            XTriggerViewer xtv = new XTriggerViewer();
+            if (xtv.ShowDialog() == DialogResult.OK)
+            {
+                if (displayedElement.xtriggers_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, List<XTrigger>>();
+                xtriggersListView.Items.Add(new ListViewItem(xtv.catalyst) { BackColor = Utilities.DictionaryExtendStyle.BackColor });
+                displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
             }
         }
     }

@@ -72,6 +72,7 @@
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.extendXTriggerButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -508,6 +509,16 @@
             this.extendsLabel.TabIndex = 43;
             this.extendsLabel.Text = "Extends";
             // 
+            // extendXTriggerButton
+            // 
+            this.extendXTriggerButton.Location = new System.Drawing.Point(258, 157);
+            this.extendXTriggerButton.Name = "extendXTriggerButton";
+            this.extendXTriggerButton.Size = new System.Drawing.Size(95, 23);
+            this.extendXTriggerButton.TabIndex = 44;
+            this.extendXTriggerButton.Text = "Append XTrigger";
+            this.extendXTriggerButton.UseVisualStyleBackColor = true;
+            this.extendXTriggerButton.Click += new System.EventHandler(this.ExtendXTriggerButton_Click);
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
@@ -515,6 +526,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(769, 412);
+            this.Controls.Add(this.extendXTriggerButton);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.deletedCheckBox);
@@ -609,5 +621,6 @@
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Button extendXTriggerButton;
     }
 }
