@@ -49,10 +49,12 @@
             this.expulsionTotalLimitLabel = new System.Windows.Forms.Label();
             this.totalExpulsionLimitNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.RecipeIDErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExpulsionLimitNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RecipeIDErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -61,7 +63,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.idTextBox.Location = new System.Drawing.Point(12, 25);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(260, 20);
+            this.idTextBox.Size = new System.Drawing.Size(244, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.idTextBox, "This is the recipe that is to be executed if all of its requirements are met and " +
@@ -257,6 +259,11 @@
         "you tried to move all of an element.");
             this.totalExpulsionLimitNumericUpDown.ValueChanged += new System.EventHandler(this.TotalExpulsionLimitNumericUpDown_ValueChanged);
             // 
+            // RecipeIDErrorProvider
+            // 
+            this.RecipeIDErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.RecipeIDErrorProvider.ContainerControl = this;
+            // 
             // RecipeLinkViewer
             // 
             this.AcceptButton = this.okButton;
@@ -287,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExpulsionLimitNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RecipeIDErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +321,6 @@
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewComboBoxColumn challengeType;
+        private System.Windows.Forms.ErrorProvider RecipeIDErrorProvider;
     }
 }

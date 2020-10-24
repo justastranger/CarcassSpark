@@ -115,17 +115,20 @@ namespace CarcassSpark.ObjectViewers
             if (displayedRecipeLink.id == "")
             {
                 displayedRecipeLink.id = null;
-                idTextBox.BackColor = Color.White;
+                // idTextBox.BackColor = Color.White;
+                RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
             }
             else
             {
                 if (Utilities.RecipeExists(displayedRecipeLink.id))
                 {
-                    idTextBox.BackColor = Color.Green;
+                    // idTextBox.BackColor = Color.Green;
+                    RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
                 }
                 else
                 {
-                    idTextBox.BackColor = Color.Red;
+                    // idTextBox.BackColor = Color.Red;
+                    RecipeIDErrorProvider.SetError(idTextBox, "Recipe ID Not Found");
                 }
             }
         }
