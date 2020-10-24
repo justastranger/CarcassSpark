@@ -346,32 +346,38 @@ namespace CarcassSpark.ObjectViewers
                 // alternativeRecipesListView.Items.Clear();
                 foreach (RecipeLink rl in recipe.alt)
                 {
-                    alternativerecipeLinks.Add(rl.id, rl);
-                    alternativeRecipesListView.Items.Add(rl.id);
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        Tag = rl.GetHashCode().ToString()
+                    };
+                    alternativerecipeLinks.Add(item.Tag as string, rl);
+                    alternativeRecipesListView.Items.Add(item);
                 }
             }
             if (recipe.alt_prepend != null && recipe.alt_prepend.Count > 0)
             {
                 foreach (RecipeLink rl in recipe.alt_prepend)
                 {
-                    alternativerecipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl.id)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = rl.GetHashCode().ToString()
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
+                    alternativerecipeLinks.Add(item.Tag as string, rl);
                 }
             }
             if (recipe.alt_append != null && recipe.alt_append.Count > 0)
             {
                 foreach (RecipeLink rl in recipe.alt_append)
                 {
-                    alternativerecipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl.id)
                     {
-                        BackColor = Utilities.ListAppendColor
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = rl.GetHashCode().ToString()
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
+                    alternativerecipeLinks.Add(item.Tag as string, rl);
                 }
             }
             if (recipe.alt_remove != null && recipe.alt_remove.Count > 0)
@@ -380,8 +386,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rl)
                     {
-                        BackColor = Utilities.ListRemoveColor
+                        BackColor = Utilities.ListRemoveColor,
+                        Tag = rl
                     };
+                    alternativerecipeLinks.Add(rl, new RecipeLink(rl));
                     alternativeRecipesListView.Items.Insert(0, item);
                 }
             }
@@ -391,8 +399,12 @@ namespace CarcassSpark.ObjectViewers
                 // linkedRecipesListView.Items.Clear();
                 foreach (RecipeLink rl in recipe.linked)
                 {
-                    recipeLinks.Add(rl.id, rl);
-                    linkedRecipesListView.Items.Add(rl.id);
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        Tag = rl.GetHashCode().ToString()
+                    };
+                    linkedRecipesListView.Items.Add(item);
+                    recipeLinks.Add(item.Tag as string, rl);
                 }
             }
             if (recipe.linked_prepend != null && recipe.linked_prepend.Count > 0)
@@ -406,24 +418,26 @@ namespace CarcassSpark.ObjectViewers
                 // }
                 foreach (RecipeLink rl in recipe.linked_prepend)
                 {
-                    recipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl.id)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = rl.GetHashCode().ToString()
                     };
                     linkedRecipesListView.Items.Insert(0, item);
+                    recipeLinks.Add(item.Tag as string, rl);
                 }
             }
             if (recipe.linked_append != null && recipe.linked_append.Count > 0)
             {
                 foreach (RecipeLink rl in recipe.linked_append)
                 {
-                    recipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl.id)
                     {
-                        BackColor = Utilities.ListAppendColor
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = rl.GetHashCode().ToString()
                     };
                     linkedRecipesListView.Items.Insert(0, item);
+                    recipeLinks.Add(item.Tag as string, rl);
                 }
             }
             if (recipe.linked_remove != null && recipe.linked_remove.Count > 0)
@@ -433,8 +447,10 @@ namespace CarcassSpark.ObjectViewers
                     // recipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl)
                     {
-                        BackColor = Utilities.ListRemoveColor
+                        BackColor = Utilities.ListRemoveColor,
+                        Tag = rl
                     };
+                    recipeLinks.Add(rl, new RecipeLink(rl));
                     linkedRecipesListView.Items.Insert(0, item);
                 }
             }
@@ -445,8 +461,58 @@ namespace CarcassSpark.ObjectViewers
                 // mutationsListView.Items.Clear();
                 foreach (Mutation mutation in recipe.mutations)
                 {
-                    mutations.Add(mutation.mutate, mutation);
-                    mutationsListView.Items.Add(mutation.mutate);
+                    ListViewItem item = new ListViewItem(mutation.mutate)
+                    {
+                        Tag = mutation.GetHashCode().ToString()
+                    };
+                    mutations.Add(mutation.GetHashCode().ToString(), mutation);
+                    mutationsListView.Items.Add(item);
+                }
+            }
+            if (recipe.mutations_prepend != null && recipe.mutations_prepend.Count > 0)
+            {
+
+                // mutations.Clear();
+                // mutationsListView.Items.Clear();
+                foreach (Mutation mutation in recipe.mutations_prepend)
+                {
+                    ListViewItem item = new ListViewItem(mutation.mutate)
+                    {
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = mutation.GetHashCode().ToString()
+                    };
+                    mutations.Add(mutation.GetHashCode().ToString(), mutation);
+                    mutationsListView.Items.Add(item);
+                }
+            }
+            if (recipe.mutations_append != null && recipe.mutations_append.Count > 0)
+            {
+
+                // mutations.Clear();
+                // mutationsListView.Items.Clear();
+                foreach (Mutation mutation in recipe.mutations_append)
+                {
+                    ListViewItem item = new ListViewItem(mutation.mutate)
+                    {
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = mutation.GetHashCode().ToString()
+                    };
+                    mutations.Add(mutation.GetHashCode().ToString(), mutation);
+                    mutationsListView.Items.Add(item);
+                }
+            }
+            if (recipe.mutations_remove != null && recipe.mutations_remove.Count > 0)
+            {
+                foreach (string mutation in recipe.mutations_remove)
+                {
+                    // recipeLinks.Add(rl.id, rl);
+                    ListViewItem item = new ListViewItem(mutation)
+                    {
+                        BackColor = Utilities.ListRemoveColor,
+                        Tag = mutation
+                    };
+                    mutations.Add(mutation, new Mutation(mutation));
+                    linkedRecipesListView.Items.Insert(0, item);
                 }
             }
             if (recipe.purge != null && recipe.purge.Count > 0)
@@ -607,17 +673,21 @@ namespace CarcassSpark.ObjectViewers
         private void AlternativerecipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems == null) return;
-            string oldId = alternativeRecipesListView.SelectedItems[0].Text;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Text], editing);
+            string oldId = alternativeRecipesListView.SelectedItems[0].Tag as string;
+            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Tag as string], editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
-                if (oldId != rlv.displayedRecipeLink.id)
+                if (oldId != rlv.displayedRecipeLink.GetHashCode().ToString())
                 {
-                    alternativerecipeLinks.Remove(alternativeRecipesListView.SelectedItems[0].Text);
+                    alternativerecipeLinks.Remove(oldId);
+                    alternativerecipeLinks[rlv.displayedRecipeLink.GetHashCode().ToString()] = rlv.displayedRecipeLink.Copy();
+                    alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 }
-                alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
-                alternativerecipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
+                else
+                {
+                    alternativerecipeLinks[oldId] = rlv.displayedRecipeLink.Copy();
+                }
                 SaveAlternativeRecipes();
                 // displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
             }
@@ -626,18 +696,21 @@ namespace CarcassSpark.ObjectViewers
         private void LinkedListBox_DoubleClick(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems == null) return;
-            string oldId = linkedRecipesListView.SelectedItems[0].Text;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedRecipesListView.SelectedItems[0].Text.ToString()], editing);
+            string oldId = linkedRecipesListView.SelectedItems[0].Tag as string;
+            RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedRecipesListView.SelectedItems[0].Tag as string], editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
-                if (oldId != rlv.displayedRecipeLink.id)
+                if (oldId != rlv.displayedRecipeLink.GetHashCode().ToString())
                 {
-                    recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
+                    recipeLinks.Remove(oldId);
+                    recipeLinks[rlv.displayedRecipeLink.GetHashCode().ToString()] = rlv.displayedRecipeLink.Copy();
+                    linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 }
-                recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
-                linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
-                recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
+                else
+                {
+                    recipeLinks[oldId] = rlv.displayedRecipeLink.Copy();
+                }
                 SaveLinkedRecipes();
                 // displayedRecipe.linked[linkedRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
 
@@ -1022,8 +1095,8 @@ namespace CarcassSpark.ObjectViewers
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    alternativeRecipesListView.Items.Add(rlv.displayedRecipeLink.id);
-                    alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    alternativeRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = rlv.displayedRecipeLink.GetHashCode().ToString() });
+                    alternativerecipeLinks.Add(rlv.displayedRecipeLink.GetHashCode().ToString(), rlv.displayedRecipeLink);
                     //if (displayedRecipe.alternativerecipes != null) displayedRecipe.alternativerecipes.Add(rlv.displayedRecipeLink);
                     //else displayedRecipe.alternativerecipes = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
@@ -1040,10 +1113,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = rlv.displayedRecipeLink.GetHashCode().ToString()
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
-                    alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    alternativerecipeLinks.Add(item.Tag.ToString(), rlv.displayedRecipeLink);
                     // if (displayedRecipe.alternativerecipes_prepend != null) displayedRecipe.alternativerecipes_prepend.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.alternativerecipes_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
@@ -1060,10 +1134,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
                     {
-                        BackColor = Utilities.ListAppendColor
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = rlv.displayedRecipeLink.GetHashCode().ToString()
                     };
                     alternativeRecipesListView.Items.Add(item);
-                    alternativerecipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    alternativerecipeLinks.Add(item.Tag.ToString(), rlv.displayedRecipeLink);
                     // if (displayedRecipe.alternativerecipes_append != null) displayedRecipe.alternativerecipes_append.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.alternativerecipes_append = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
@@ -1078,8 +1153,8 @@ namespace CarcassSpark.ObjectViewers
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
-                    linkedRecipesListView.Items.Add(rlv.displayedRecipeLink.id);
-                    recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    linkedRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = rlv.displayedRecipeLink.GetHashCode().ToString() });
+                    recipeLinks.Add(rlv.displayedRecipeLink.GetHashCode().ToString(), rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked != null) displayedRecipe.linked.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
@@ -1096,10 +1171,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = rlv.displayedRecipeLink.GetHashCode().ToString()
                     };
                     linkedRecipesListView.Items.Insert(0, item);
-                    recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    recipeLinks.Add(item.Tag.ToString(), rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked_prepend != null) displayedRecipe.linked_prepend.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
@@ -1116,10 +1192,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = rlv.displayedRecipeLink.GetHashCode().ToString()
                     };
                     linkedRecipesListView.Items.Add(item);
-                    recipeLinks.Add(rlv.displayedRecipeLink.id, rlv.displayedRecipeLink);
+                    recipeLinks.Add(item.Tag.ToString(), rlv.displayedRecipeLink);
                     // if (displayedRecipe.linked_append != null) displayedRecipe.linked_append.Add(rlv.displayedRecipeLink);
                     // else displayedRecipe.linked_append = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
@@ -1134,8 +1211,12 @@ namespace CarcassSpark.ObjectViewers
                 mv.ShowDialog();
                 if (mv.DialogResult == DialogResult.OK)
                 {
-                    mutationsListView.Items.Add(mv.displayedMutation.mutate);
-                    mutations.Add(mv.displayedMutation.mutate, mv.displayedMutation);
+                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    {
+                        Tag = mv.displayedMutation.GetHashCode().ToString()
+                    };
+                    mutationsListView.Items.Add(item);
+                    mutations.Add(item.Tag.ToString(), mv.displayedMutation);
                     // if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();
@@ -1150,8 +1231,13 @@ namespace CarcassSpark.ObjectViewers
                 mv.ShowDialog();
                 if (mv.DialogResult == DialogResult.OK)
                 {
-                    mutationsListView.Items.Add(mv.displayedMutation.mutate);
-                    mutations.Add(mv.displayedMutation.mutate, mv.displayedMutation);
+                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    {
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = mv.displayedMutation.GetHashCode().ToString()
+                    };
+                    mutationsListView.Items.Add(item);
+                    mutations.Add(item.Tag.ToString(), mv.displayedMutation);
                     // if (displayedRecipe.mutations_prepend != null) displayedRecipe.mutations_prepend.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations_prepend = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();
@@ -1166,8 +1252,13 @@ namespace CarcassSpark.ObjectViewers
                 mv.ShowDialog();
                 if (mv.DialogResult == DialogResult.OK)
                 {
-                    mutationsListView.Items.Add(mv.displayedMutation.mutate);
-                    mutations.Add(mv.displayedMutation.mutate, mv.displayedMutation);
+                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    {
+                        BackColor = Utilities.ListAppendColor,
+                        Tag = mv.displayedMutation.GetHashCode().ToString()
+                    };
+                    mutationsListView.Items.Add(item);
+                    mutations.Add(item.Tag.ToString(), mv.displayedMutation);
                     // if (displayedRecipe.mutations_append != null) displayedRecipe.mutations_append.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations_append = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();

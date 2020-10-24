@@ -27,6 +27,11 @@ namespace CarcassSpark.ObjectTypes
             this.additive = additive;
         }
 
+        public Mutation(string mutate)
+        {
+            this.mutate = mutate;
+        }
+
         public Mutation()
         {
 

@@ -47,6 +47,11 @@ namespace CarcassSpark.ObjectTypes
             this.expulsion = expulsion;
         }
 
+        public RecipeLink(string id)
+        {
+            this.id = id;
+        }
+
         public RecipeLink()
         {
 
