@@ -1689,22 +1689,22 @@ namespace CarcassSpark.ObjectViewers
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
                     if (displayedRecipe.alt_append == null) displayedRecipe.alt_append = new List<RecipeLink>();
-                    displayedRecipe.alt_append.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.alt_append.Add(alternativerecipeLinks[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
                     if (displayedRecipe.alt_prepend == null) displayedRecipe.alt_prepend = new List<RecipeLink>();
-                    displayedRecipe.alt_prepend.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.alt_prepend.Add(alternativerecipeLinks[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
                     if (displayedRecipe.alt_remove == null) displayedRecipe.alt_remove = new List<string>();
-                    displayedRecipe.alt_remove.Add(item.Text);
+                    displayedRecipe.alt_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
                     if (displayedRecipe.alt == null) displayedRecipe.alt = new List<RecipeLink>();
-                    displayedRecipe.alt.Add(alternativerecipeLinks[item.Text]);
+                    displayedRecipe.alt.Add(alternativerecipeLinks[item.Tag.ToString()]);
                 }
             }
         }
@@ -1720,22 +1720,22 @@ namespace CarcassSpark.ObjectViewers
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
                     if (displayedRecipe.linked_append == null) displayedRecipe.linked_append = new List<RecipeLink>();
-                    displayedRecipe.linked_append.Add(recipeLinks[item.Text]);
+                    displayedRecipe.linked_append.Add(recipeLinks[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
                     if (displayedRecipe.linked_prepend == null) displayedRecipe.linked_prepend = new List<RecipeLink>();
-                    displayedRecipe.linked_prepend.Add(recipeLinks[item.Text]);
+                    displayedRecipe.linked_prepend.Add(recipeLinks[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
                     if (displayedRecipe.linked_remove == null) displayedRecipe.linked_remove = new List<string>();
-                    displayedRecipe.linked_remove.Add(item.Text);
+                    displayedRecipe.linked_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
                     if (displayedRecipe.linked == null) displayedRecipe.linked = new List<RecipeLink>();
-                    displayedRecipe.linked.Add(recipeLinks[item.Text]);
+                    displayedRecipe.linked.Add(recipeLinks[item.Tag.ToString()]);
                 }
             }
         }
