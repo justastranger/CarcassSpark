@@ -629,12 +629,10 @@ namespace CarcassSpark.ObjectViewers
                 if (!SelectedModViewer.isVanilla)
                 {
                     SelectedModViewer.Content.CustomManifest.Remove("saveWidths");
-                    SelectedModViewer.Content.CustomManifest.Remove("widths");
                 }
                 else
                 {
                     Settings.settings.Remove("saveWidths");
-                    Settings.settings.Remove("widths");
                     Settings.SaveSettings();
                 }
             }
