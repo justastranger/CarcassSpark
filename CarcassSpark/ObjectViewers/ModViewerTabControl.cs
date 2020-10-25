@@ -208,6 +208,74 @@ namespace CarcassSpark.ObjectViewers
             Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd());
         }
 
+        public void LoadWidths()
+        {
+            if (!isVanilla)
+            {
+                if (Content.GetCustomManifestBool("saveWidths").HasValue && Content.GetCustomManifestBool("saveWidths").Value)
+                {
+                    List<int> widths = Content.GetCustomManifestListInt("widths");
+                    if (widths != null)
+                    {
+                        tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
+                        tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
+                        tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
+                        tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
+                        tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
+                        tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
+                        tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
+                    }
+                }
+            }
+            else
+            {   // This part looks way uglier than the part above because I didn't make getter functions for the Settings, only Custom Manifests :(
+                if (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>())
+                {
+                    List<int> widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
+                    if (widths != null)
+                    {
+                        tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
+                        tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
+                        tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
+                        tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
+                        tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
+                        tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
+                        tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
+                    }
+                }
+            }
+        }
+
+        public void SaveWidths()
+        {
+            if (!isVanilla)
+            {
+                Content.SetCustomManifestProperty("widths", new List<int>() {
+                        tableLayoutPanel2.Size.Width,
+                        tableLayoutPanel3.Size.Width,
+                        tableLayoutPanel4.Size.Width,
+                        tableLayoutPanel5.Size.Width,
+                        tableLayoutPanel6.Size.Width,
+                        tableLayoutPanel7.Size.Width,
+                        tableLayoutPanel8.Size.Width,
+                    });
+                SaveCustomManifest(Content.currentDirectory);
+            }
+            else
+            {
+                Settings.settings["widths"] = JToken.FromObject(new List<int>() {
+                        tableLayoutPanel2.Size.Width,
+                        tableLayoutPanel3.Size.Width,
+                        tableLayoutPanel4.Size.Width,
+                        tableLayoutPanel5.Size.Width,
+                        tableLayoutPanel6.Size.Width,
+                        tableLayoutPanel7.Size.Width,
+                        tableLayoutPanel8.Size.Width,
+                    });
+                Settings.SaveSettings();
+            }
+        }
+
         public void LoadFile(FileStream file, string filePath)
         {
             JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()).First;
@@ -505,13 +573,18 @@ namespace CarcassSpark.ObjectViewers
             SaveManifests(location);
         }
 
-        private void SaveManifests(string location)
+        public void SaveManifests(string location)
         {
             string synopsisJson = JsonConvert.SerializeObject(Content.synopsis, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/synopsis.json", FileMode.Create))))
             {
                 jtw.WriteRaw(synopsisJson);
             }
+            SaveCustomManifest(location);
+        }
+
+        private void SaveCustomManifest(string location)
+        {
             if (Content.CustomManifest.Count > 0)
             {
                 string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
@@ -1935,6 +2008,46 @@ namespace CarcassSpark.ObjectViewers
             legaciesListBox.Items.Add(result.id);
         }
 
+        private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
+        {
+            LoadWidths();
+        }
+
+        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter2_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter3_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter4_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter5_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter6_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
+        private void splitter7_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SaveWidths();
+        }
+
         public void RecipesList_Add(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result;
@@ -1946,5 +2059,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Verbs[result.id] = result;
             verbsListBox.Items.Add(result.id);
         }
+
+
     }
 }

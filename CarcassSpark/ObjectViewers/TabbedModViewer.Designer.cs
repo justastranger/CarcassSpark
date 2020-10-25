@@ -67,6 +67,7 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveSplitterLocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,7 +98,8 @@
             this.saveModToToolStripMenuItem,
             this.closeModToolStripMenuItem,
             this.toggleEditModeToolStripMenuItem,
-            this.toggleAutosaveToolStripMenuItem});
+            this.toggleAutosaveToolStripMenuItem,
+            this.saveSplitterLocationsToolStripMenuItem});
             this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
             this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
@@ -390,6 +392,13 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // saveSplitterLocationsToolStripMenuItem
+            // 
+            this.saveSplitterLocationsToolStripMenuItem.Name = "saveSplitterLocationsToolStripMenuItem";
+            this.saveSplitterLocationsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.saveSplitterLocationsToolStripMenuItem.Text = "Save Splitter Locations";
+            this.saveSplitterLocationsToolStripMenuItem.Click += new System.EventHandler(this.saveSplitterLocationsToolStripMenuItem_Click);
+            // 
             // TabbedModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +459,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripButton settingsToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem jSONCleanerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveSplitterLocationsToolStripMenuItem;
     }
 }
 

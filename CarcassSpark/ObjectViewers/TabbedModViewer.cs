@@ -81,6 +81,12 @@ namespace CarcassSpark.ObjectViewers
                         CreateNewModViewerTab(path, false, false);
                     }
             }
+            if (!SelectedModViewer.isVanilla)
+            {
+
+            }
+            toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
+            saveSplitterLocationsToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
         }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
@@ -193,7 +199,13 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             SelectedModViewer = (ModViewerTabControl)ModViewerTabs.SelectedTab.Controls[0];
-            toggleEditModeToolStripMenuItem.Checked = SelectedModViewer.editMode;
+            
+            toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
+            toggleAutosaveToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("AutoSave") ?? false);
+            saveSplitterLocationsToolStripMenuItem.Checked = SelectedModViewer.isVanilla ? (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>()) : (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
+
+            toggleEditModeToolStripMenuItem.Enabled = !SelectedModViewer.isVanilla;
+            toggleAutosaveToolStripMenuItem.Enabled = !SelectedModViewer.isVanilla;
         }
 
         private void SaveModToToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,7 +253,7 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             toggleAutosaveToolStripMenuItem.Checked = !toggleAutosaveToolStripMenuItem.Checked;
-            SelectedModViewer.Content.CustomManifest["AutoSave"] = toggleAutosaveToolStripMenuItem.Checked;
+            SelectedModViewer.Content.SetCustomManifestProperty("AutoSave", toggleAutosaveToolStripMenuItem.Checked);
         }
 
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -575,6 +587,58 @@ namespace CarcassSpark.ObjectViewers
         {
             JsonCleaner jc = new JsonCleaner();
             jc.ShowDialog();
+        }
+
+        private void saveSplitterLocationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool @checked = saveSplitterLocationsToolStripMenuItem.Checked;
+            saveSplitterLocationsToolStripMenuItem.Checked = !@checked;
+            if (!@checked)
+            {
+                if (!SelectedModViewer.isVanilla)
+                {
+                    SelectedModViewer.Content.SetCustomManifestProperty("saveWidths", !@checked);
+                    SelectedModViewer.Content.SetCustomManifestProperty("widths", new List<int>() {
+                        SelectedModViewer.tableLayoutPanel2.Size.Width,
+                        SelectedModViewer.tableLayoutPanel3.Size.Width,
+                        SelectedModViewer.tableLayoutPanel4.Size.Width,
+                        SelectedModViewer.tableLayoutPanel5.Size.Width,
+                        SelectedModViewer.tableLayoutPanel6.Size.Width,
+                        SelectedModViewer.tableLayoutPanel7.Size.Width,
+                        SelectedModViewer.tableLayoutPanel8.Size.Width,
+                    });
+                }
+                else
+                {
+                    Settings.settings["saveWidths"] = !@checked;
+                    Settings.settings["widths"] = JToken.FromObject(new List<int>() {
+                        SelectedModViewer.tableLayoutPanel2.Size.Width,
+                        SelectedModViewer.tableLayoutPanel3.Size.Width,
+                        SelectedModViewer.tableLayoutPanel4.Size.Width,
+                        SelectedModViewer.tableLayoutPanel5.Size.Width,
+                        SelectedModViewer.tableLayoutPanel6.Size.Width,
+                        SelectedModViewer.tableLayoutPanel7.Size.Width,
+                        SelectedModViewer.tableLayoutPanel8.Size.Width,
+                    });
+                    Settings.SaveSettings();
+                }
+                
+            }
+            else
+            {
+                if (!SelectedModViewer.isVanilla)
+                {
+                    SelectedModViewer.Content.CustomManifest.Remove("saveWidths");
+                    SelectedModViewer.Content.CustomManifest.Remove("widths");
+                }
+                else
+                {
+                    Settings.settings.Remove("saveWidths");
+                    Settings.settings.Remove("widths");
+                    Settings.SaveSettings();
+                }
+            }
+            SelectedModViewer.SaveManifests(SelectedModViewer.Content.currentDirectory);
         }
     }
 }

@@ -138,6 +138,12 @@ namespace CarcassSpark.ObjectTypes
             else return null;
         }
 
+        public List<int> GetCustomManifestListInt(string key)
+        {
+            if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<List<int>>();
+            else return null;
+        }
+
         public Image GetAspectImage(string id)
         {
             string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";

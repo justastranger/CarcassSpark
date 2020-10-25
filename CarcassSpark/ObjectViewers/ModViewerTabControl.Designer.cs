@@ -1034,6 +1034,7 @@
             this.splitter1.Size = new System.Drawing.Size(10, 422);
             this.splitter1.TabIndex = 29;
             this.splitter1.TabStop = false;
+            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
             // 
             // tableLayoutPanel3
             // 
@@ -1060,6 +1061,7 @@
             this.splitter2.Size = new System.Drawing.Size(10, 422);
             this.splitter2.TabIndex = 31;
             this.splitter2.TabStop = false;
+            this.splitter2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter2_SplitterMoved);
             // 
             // tableLayoutPanel4
             // 
@@ -1086,6 +1088,7 @@
             this.splitter3.Size = new System.Drawing.Size(10, 422);
             this.splitter3.TabIndex = 33;
             this.splitter3.TabStop = false;
+            this.splitter3.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter3_SplitterMoved);
             // 
             // tableLayoutPanel5
             // 
@@ -1112,6 +1115,7 @@
             this.splitter4.Size = new System.Drawing.Size(10, 422);
             this.splitter4.TabIndex = 35;
             this.splitter4.TabStop = false;
+            this.splitter4.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter4_SplitterMoved);
             // 
             // tableLayoutPanel6
             // 
@@ -1138,6 +1142,7 @@
             this.splitter5.Size = new System.Drawing.Size(10, 422);
             this.splitter5.TabIndex = 37;
             this.splitter5.TabStop = false;
+            this.splitter5.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter5_SplitterMoved);
             // 
             // tableLayoutPanel7
             // 
@@ -1164,6 +1169,7 @@
             this.splitter6.Size = new System.Drawing.Size(10, 422);
             this.splitter6.TabIndex = 39;
             this.splitter6.TabStop = false;
+            this.splitter6.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter6_SplitterMoved);
             // 
             // tableLayoutPanel8
             // 
@@ -1190,6 +1196,7 @@
             this.splitter7.Size = new System.Drawing.Size(10, 422);
             this.splitter7.TabIndex = 41;
             this.splitter7.TabStop = false;
+            this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter7_SplitterMoved);
             // 
             // ModViewerTabControl
             // 
@@ -1212,6 +1219,7 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "ModViewerTabControl";
             this.Size = new System.Drawing.Size(770, 422);
+            this.VisibleChanged += new System.EventHandler(this.ModViewerTabControl_VisibleChanged);
             this.aspectContextMenuStrip.ResumeLayout(false);
             this.elementContextMenuStrip.ResumeLayout(false);
             this.recipeContextMenuStrip.ResumeLayout(false);
@@ -1336,19 +1344,19 @@
         private System.Windows.Forms.ToolStripMenuItem newLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newVerbToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Splitter splitter3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Splitter splitter4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Splitter splitter5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.Splitter splitter6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Splitter splitter7;
+        public System.Windows.Forms.Splitter splitter1;
+        public System.Windows.Forms.Splitter splitter2;
+        public System.Windows.Forms.Splitter splitter3;
+        public System.Windows.Forms.Splitter splitter4;
+        public System.Windows.Forms.Splitter splitter5;
+        public System.Windows.Forms.Splitter splitter6;
+        public System.Windows.Forms.Splitter splitter7;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
     }
 }
