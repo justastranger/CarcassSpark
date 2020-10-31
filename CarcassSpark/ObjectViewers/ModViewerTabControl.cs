@@ -603,7 +603,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null);
                 av.Show();
             }
         }
@@ -628,7 +628,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id), null);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null);
                 dv.Show();
             }
         }
@@ -653,7 +653,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null);
                 ev.Show();
             }
         }
@@ -678,7 +678,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id), null);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null);
                 ev.Show();
             }
         }
@@ -703,7 +703,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id), null);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), null);
                 lv.Show();
             }
         }
@@ -728,7 +728,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id), null);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
                 rv.Show();
             }
         }
@@ -753,7 +753,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id), null);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null);
                 vv.Show();
             }
         }
@@ -1288,7 +1288,7 @@ namespace CarcassSpark.ObjectViewers
         private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!(recipesListBox.SelectedItem is string id)) return;
-            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id));
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id).Copy());
             rfv.Show();
         }
 
@@ -2040,6 +2040,132 @@ namespace CarcassSpark.ObjectViewers
         private void splitter7_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
+        }
+
+        private void AspectsListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(aspectsListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
+                    av.Show();
+                }
+                else
+                {
+                    AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null);
+                    av.Show();
+                }
+            }
+        }
+
+        private void ElementsListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(elementsListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
+                    ev.Show();
+                }
+                else
+                {
+                    ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null);
+                    ev.Show();
+                }
+            }
+        }
+
+        private void RecipesListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(recipesListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
+                    rv.Show();
+                }
+                else
+                {
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
+                    rv.Show();
+                }
+            }
+        }
+
+        private void DecksListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(decksListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
+                    dv.Show();
+                }
+                else
+                {
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null);
+                    dv.Show();
+                }
+            }
+        }
+
+        private void LegaciesListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(recipesListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
+                    rv.Show();
+                }
+                else
+                {
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
+                    rv.Show();
+                }
+            }
+        }
+
+        private void EndingsListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(endingsListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
+                    ev.Show();
+                }
+                else
+                {
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null);
+                    ev.Show();
+                }
+            }
+        }
+
+        private void VerbsListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!(verbsListBox.SelectedItem is string id)) return;
+                if (editMode)
+                {
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
+                    vv.Show();
+                }
+                else
+                {
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null);
+                    vv.Show();
+                }
+            }
         }
 
         public void RecipesList_Add(object sender, Recipe result)

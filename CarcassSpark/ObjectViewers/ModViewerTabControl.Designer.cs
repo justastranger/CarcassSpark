@@ -169,6 +169,7 @@
             this.aspectsListBox.Sorted = true;
             this.aspectsListBox.TabIndex = 1;
             this.aspectsListBox.DoubleClick += new System.EventHandler(this.AspectListBox_DoubleClick);
+            this.aspectsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListBox_KeyDown);
             this.aspectsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListBox_MouseDown);
             // 
             // aspectContextMenuStrip
@@ -296,6 +297,7 @@
             this.elementsListBox.Sorted = true;
             this.elementsListBox.TabIndex = 4;
             this.elementsListBox.DoubleClick += new System.EventHandler(this.ElementsListBox_DoubleClick);
+            this.elementsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsListBox_KeyDown);
             this.elementsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ElementsListBox_MouseDown);
             // 
             // elementContextMenuStrip
@@ -433,6 +435,7 @@
             this.recipesListBox.Sorted = true;
             this.recipesListBox.TabIndex = 6;
             this.recipesListBox.DoubleClick += new System.EventHandler(this.RecipesListBox_DoubleClick);
+            this.recipesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecipesListBox_KeyDown);
             this.recipesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListBox_MouseDown);
             // 
             // recipeContextMenuStrip
@@ -530,6 +533,7 @@
             this.decksListBox.Sorted = true;
             this.decksListBox.TabIndex = 8;
             this.decksListBox.DoubleClick += new System.EventHandler(this.DecksListBox_DoubleClick);
+            this.decksListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListBox_KeyDown);
             this.decksListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListBox_MouseDown);
             // 
             // deckContextMenuStrip
@@ -619,6 +623,7 @@
             this.legaciesListBox.Sorted = true;
             this.legaciesListBox.TabIndex = 10;
             this.legaciesListBox.DoubleClick += new System.EventHandler(this.LegaciesListBox_DoubleClick);
+            this.legaciesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LegaciesListBox_KeyDown);
             this.legaciesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListBox_MouseDown);
             // 
             // legacyContextMenuStrip
@@ -691,6 +696,7 @@
             this.endingsListBox.Sorted = true;
             this.endingsListBox.TabIndex = 11;
             this.endingsListBox.DoubleClick += new System.EventHandler(this.EndingsListBox_DoubleClick);
+            this.endingsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndingsListBox_KeyDown);
             this.endingsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListBox_MouseDown);
             // 
             // endingContextMenuStrip
@@ -779,6 +785,7 @@
             this.verbsListBox.Sorted = true;
             this.verbsListBox.TabIndex = 13;
             this.verbsListBox.DoubleClick += new System.EventHandler(this.VerbsListBox_DoubleClick);
+            this.verbsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VerbsListBox_KeyDown);
             this.verbsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VerbsListBox_MouseDown);
             // 
             // verbContextMenuStrip
