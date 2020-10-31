@@ -1560,32 +1560,32 @@ namespace CarcassSpark.ObjectViewers
             if (mutationsListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = mutationsListView.SelectedItems[0];
-                string value = mutationsListView.SelectedItems[0].Text.ToString();
+                string hashcode = mutationsListView.SelectedItems[0].Tag.ToString();
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    displayedRecipe.mutations_prepend.Remove(mutations[value]);
-                    mutations.Remove(value);
+                    displayedRecipe.mutations_prepend.Remove(mutations[hashcode]);
+                    mutations.Remove(hashcode);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
                     if (displayedRecipe.mutations_prepend.Count == 0) displayedRecipe.mutations_prepend = null;
                 }
                 else if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    displayedRecipe.mutations_append.Remove(mutations[value]);
-                    mutations.Remove(value);
+                    displayedRecipe.mutations_append.Remove(mutations[hashcode]);
+                    mutations.Remove(hashcode);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
                     if (displayedRecipe.mutations_append.Count == 0) displayedRecipe.mutations_append = null;
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    displayedRecipe.mutations_remove.Remove(value);
-                    mutations.Remove(value);
+                    displayedRecipe.mutations_remove.Remove(hashcode);
+                    mutations.Remove(hashcode);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
                     if (displayedRecipe.mutations_remove.Count == 0) displayedRecipe.mutations_remove = null;
                 }
                 else
                 {
-                    displayedRecipe.mutations.Remove(mutations[value]);
-                    mutations.Remove(value);
+                    displayedRecipe.mutations.Remove(mutations[hashcode]);
+                    mutations.Remove(hashcode);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
                     if (displayedRecipe.mutations.Count == 0) displayedRecipe.mutations = null;
                 }
@@ -1890,22 +1890,22 @@ namespace CarcassSpark.ObjectViewers
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
                     if (displayedRecipe.mutations_append == null) displayedRecipe.mutations_append = new List<Mutation>();
-                    displayedRecipe.mutations_append.Add(mutations[item.Text]);
+                    displayedRecipe.mutations_append.Add(mutations[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
                     if (displayedRecipe.mutations_prepend == null) displayedRecipe.mutations_prepend = new List<Mutation>();
-                    displayedRecipe.mutations_prepend.Add(mutations[item.Text]);
+                    displayedRecipe.mutations_prepend.Add(mutations[item.Tag.ToString()]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
                     if (displayedRecipe.mutations_remove == null) displayedRecipe.mutations_remove = new List<string>();
-                    displayedRecipe.mutations_remove.Add(item.Text);
+                    displayedRecipe.mutations_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
                     if (displayedRecipe.mutations == null) displayedRecipe.mutations = new List<Mutation>();
-                    displayedRecipe.mutations.Add(mutations[item.Text]);
+                    displayedRecipe.mutations.Add(mutations[item.Tag.ToString()]);
                 }
             }
         }
