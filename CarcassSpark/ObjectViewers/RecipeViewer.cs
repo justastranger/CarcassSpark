@@ -1148,7 +1148,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AddLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
@@ -1164,7 +1164,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void PrependLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
@@ -1185,7 +1185,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AppendLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)

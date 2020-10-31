@@ -26,6 +26,19 @@ namespace CarcassSpark.ObjectViewers
             else SetEditingMode(false);
         }
 
+        public RecipeLinkViewer(RecipeLink recipeLink, bool? editing, RecipeLinkType type)
+        {
+            InitializeComponent();
+            displayedRecipeLink = recipeLink;
+            FillValues(recipeLink);
+            if (editing.HasValue) SetEditingMode(editing.Value);
+            else SetEditingMode(false);
+            if (type == RecipeLinkType.LINKED)
+            {
+                SetLinked();
+            }
+        }
+
         void FillValues(RecipeLink recipeLink)
         {
             idTextBox.Text = recipeLink.id;
@@ -62,6 +75,20 @@ namespace CarcassSpark.ObjectViewers
             expulsionDataGridView.AllowUserToDeleteRows = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+        }
+
+        void SetAlt()
+        {
+
+        }
+
+        void SetLinked()
+        {
+            additionalCheckBox.Visible = false;
+            expulsionDataGridView.Visible = false;
+            expulsionLabel.Visible = false;
+            expulsionTotalLimitLabel.Visible = false;
+            totalExpulsionLimitNumericUpDown.Visible = false;
         }
 
         private void OpenRecipeButton_Click(object sender, EventArgs e)
@@ -192,5 +219,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedRecipeLink.expulsion != null) displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
         }
+    }
+
+    public enum RecipeLinkType
+    {
+        ALT,
+        LINKED
     }
 }
