@@ -482,6 +482,18 @@ namespace CarcassSpark
             else return null;
         }
 
+        public static ContentSource GetContentSource(string name)
+        {
+            if (ContentSources.ContainsKey(name))
+            {
+                return ContentSources[name];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static string SerializeObject(object objectToSerialize)
         {
             StringBuilder stringBuilder = new StringBuilder();
