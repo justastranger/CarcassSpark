@@ -377,6 +377,16 @@ namespace CarcassSpark.ObjectViewers
                             }
                         }
                         return;
+                    case "cultures":
+                        foreach (JToken culture in parsedJToken.First.ToArray())
+                        {
+                            Culture deserializedCulture = culture.ToObject<Culture>();
+                            if (!Content.Cultures.ContainsKey(deserializedCulture.id))
+                            {
+                                Content.Cultures.Add(deserializedCulture.id, deserializedCulture);
+                            }
+                        }
+                        return;
                     default:
                         break;
                 }
@@ -566,6 +576,25 @@ namespace CarcassSpark.ObjectViewers
                 if (File.Exists(location + "/content/verbs.json"))
                 {
                     File.Delete(location + "/content/verbs.json");
+                }
+            }
+            if (Content.Cultures.Count > 0)
+            {
+                JObject cultures = new JObject
+                {
+                    ["cultures"] = JArray.FromObject(Content.Cultures.Values)
+                };
+                string culturesJson = JsonConvert.SerializeObject(cultures, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/cultures.json", FileMode.Create))))
+                {
+                    jtw.WriteRaw(culturesJson);
+                }
+            }
+            else
+            {
+                if (File.Exists(location + "/content/cultures.json"))
+                {
+                    File.Delete(location + "/content/cultures.json");
                 }
             }
             SaveManifests(location);

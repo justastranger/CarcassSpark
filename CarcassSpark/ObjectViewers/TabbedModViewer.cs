@@ -638,5 +638,14 @@ namespace CarcassSpark.ObjectViewers
             }
             SelectedModViewer.SaveManifests(SelectedModViewer.Content.currentDirectory);
         }
+
+        private void culturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures, SelectedModViewer.editMode);
+            if (cv.ShowDialog() == DialogResult.OK)
+            {
+                SelectedModViewer.Content.Cultures = cv.displayedCultures.ToDictionary(entry => entry.Key, entry => entry.Value.Copy());
+            }
+        }
     }
 }

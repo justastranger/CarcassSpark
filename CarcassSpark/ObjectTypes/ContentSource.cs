@@ -27,6 +27,7 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, Legacy> Legacies = new Dictionary<string, Legacy>();
         public Dictionary<string, Ending> Endings = new Dictionary<string, Ending>();
         public Dictionary<string, Verb> Verbs = new Dictionary<string, Verb>();
+        public Dictionary<string, Culture> Cultures = new Dictionary<string, Culture>();
 
         public ContentSource()
         {
@@ -113,6 +114,17 @@ namespace CarcassSpark.ObjectTypes
         public bool VerbExists(string id)
         {
             return Verbs.ContainsKey(id);
+        }
+
+        public Culture GetCulture(string id)
+        {
+            if (CultureExists(id)) return Cultures[id];
+            else return null;
+        }
+
+        public bool CultureExists(string id)
+        {
+            return Cultures.ContainsKey(id);
         }
 
         public void SetCustomManifestProperty(string key, object value)

@@ -40,6 +40,7 @@
             this.closeModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleAutosaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSplitterLocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newItemToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.aspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveSplitterLocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.culturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -174,6 +175,13 @@
             this.toggleAutosaveToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.toggleAutosaveToolStripMenuItem.Text = "Toggle Autosave";
             this.toggleAutosaveToolStripMenuItem.Click += new System.EventHandler(this.ToggleAutosaveToolStripMenuItem_Click);
+            // 
+            // saveSplitterLocationsToolStripMenuItem
+            // 
+            this.saveSplitterLocationsToolStripMenuItem.Name = "saveSplitterLocationsToolStripMenuItem";
+            this.saveSplitterLocationsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.saveSplitterLocationsToolStripMenuItem.Text = "Save Splitter Locations";
+            this.saveSplitterLocationsToolStripMenuItem.Click += new System.EventHandler(this.saveSplitterLocationsToolStripMenuItem_Click);
             // 
             // newItemToolStripButton
             // 
@@ -319,7 +327,8 @@
             this.toolsToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.summonGeneratorToolStripMenuItem,
             this.imageImporterToolStripMenuItem,
-            this.jSONCleanerToolStripMenuItem});
+            this.jSONCleanerToolStripMenuItem,
+            this.culturesToolStripMenuItem});
             this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
             this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolsToolStripButton.Name = "toolsToolStripButton";
@@ -329,21 +338,21 @@
             // summonGeneratorToolStripMenuItem
             // 
             this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
-            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.SummonGeneratorToolStripMenuItem_Click);
             // 
             // imageImporterToolStripMenuItem
             // 
             this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.imageImporterToolStripMenuItem.Text = "Image Importer";
             this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.ImageImporterToolStripMenuItem_Click);
             // 
             // jSONCleanerToolStripMenuItem
             // 
             this.jSONCleanerToolStripMenuItem.Name = "jSONCleanerToolStripMenuItem";
-            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.jSONCleanerToolStripMenuItem.Text = "JSON Cleaner";
             this.jSONCleanerToolStripMenuItem.Click += new System.EventHandler(this.JSONCleanerToolStripMenuItem_Click);
             // 
@@ -392,12 +401,12 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
-            // saveSplitterLocationsToolStripMenuItem
+            // culturesToolStripMenuItem
             // 
-            this.saveSplitterLocationsToolStripMenuItem.Name = "saveSplitterLocationsToolStripMenuItem";
-            this.saveSplitterLocationsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.saveSplitterLocationsToolStripMenuItem.Text = "Save Splitter Locations";
-            this.saveSplitterLocationsToolStripMenuItem.Click += new System.EventHandler(this.saveSplitterLocationsToolStripMenuItem_Click);
+            this.culturesToolStripMenuItem.Name = "culturesToolStripMenuItem";
+            this.culturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.culturesToolStripMenuItem.Text = "Cultures";
+            this.culturesToolStripMenuItem.Click += new System.EventHandler(this.culturesToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
@@ -460,6 +469,7 @@
         private System.Windows.Forms.ToolStripButton settingsToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem jSONCleanerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSplitterLocationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem culturesToolStripMenuItem;
     }
 }
 
