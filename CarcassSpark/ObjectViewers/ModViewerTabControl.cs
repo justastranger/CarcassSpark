@@ -272,110 +272,114 @@ namespace CarcassSpark.ObjectViewers
 
         public void LoadFile(FileStream file, string filePath)
         {
-            JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()).First;
-            string fileType = parsedJToken.Path;
-            switch (fileType)
+            string fileText = new StreamReader(file).ReadToEnd();
+            if (fileText != "" && fileText != null)
             {
-                case "elements":
-                    foreach (JToken element in parsedJToken.First.ToArray())
-                    {
-                        if (element["xtriggers"] != null)
+                JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
+                string fileType = parsedJToken.Path;
+                switch (fileType)
+                {
+                    case "elements":
+                        foreach (JToken element in parsedJToken.First.ToArray())
                         {
-                            foreach (JProperty xtrigger in element["xtriggers"])
+                            if (element["xtriggers"] != null)
                             {
-                                _ = xtrigger.Name;
-                                if (xtrigger.Value as JArray != null) xtrigger.Value = xtrigger.Value as JArray;
-                                else if (xtrigger.Value as JObject != null) xtrigger.Value = new JArray(xtrigger.Value);
-                                else if (xtrigger.Value.Value<string>() != null) xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
+                                foreach (JProperty xtrigger in element["xtriggers"])
+                                {
+                                    _ = xtrigger.Name;
+                                    if (xtrigger.Value as JArray != null) xtrigger.Value = xtrigger.Value as JArray;
+                                    else if (xtrigger.Value as JObject != null) xtrigger.Value = new JArray(xtrigger.Value);
+                                    else if (xtrigger.Value.Value<string>() != null) xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
+                                }
                             }
-                        }
 
-                        if (element["isAspect"] != null)
-                        {
-                            Aspect deserializedAspect = element.ToObject<Aspect>();
-                            if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                            if (element["isAspect"] != null)
                             {
-                                Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
-                                aspectsListBox.Items.Add(deserializedAspect.id);
+                                Aspect deserializedAspect = element.ToObject<Aspect>();
+                                if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                                {
+                                    Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
+                                    aspectsListBox.Items.Add(deserializedAspect.id);
+                                }
+                            }
+                            else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
+                            {
+                                Aspect deserializedAspect = element.ToObject<Aspect>();
+                                if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                                {
+                                    Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
+                                    aspectsListBox.Items.Add(deserializedAspect.id);
+                                }
+                            }
+                            else
+                            {
+                                Element deserializedElement = element.ToObject<Element>();
+                                if (!Content.Elements.ContainsKey(deserializedElement.id))
+                                {
+                                    Content.Elements.Add(deserializedElement.id, deserializedElement);
+                                    elementsListBox.Items.Add(deserializedElement.id);
+                                }
                             }
                         }
-                        else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
+                        return;
+                    case "recipes":
+                        foreach (JToken recipe in parsedJToken.First.ToArray())
                         {
-                            Aspect deserializedAspect = element.ToObject<Aspect>();
-                            if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                            Recipe deserializedRecipe = recipe.ToObject<Recipe>();
+                            if (!Content.Recipes.ContainsKey(deserializedRecipe.id))
                             {
-                                Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
-                                aspectsListBox.Items.Add(deserializedAspect.id);
+                                Content.Recipes.Add(deserializedRecipe.id, deserializedRecipe);
+                                recipesListBox.Items.Add(deserializedRecipe.id);
                             }
                         }
-                        else
+                        return;
+                    case "decks":
+                        foreach (JToken deck in parsedJToken.First.ToArray())
                         {
-                            Element deserializedElement = element.ToObject<Element>();
-                            if (!Content.Elements.ContainsKey(deserializedElement.id))
+                            Deck deserializedDeck = deck.ToObject<Deck>();
+                            if (!Content.Decks.ContainsKey(deserializedDeck.id))
                             {
-                                Content.Elements.Add(deserializedElement.id, deserializedElement);
-                                elementsListBox.Items.Add(deserializedElement.id);
+                                Content.Decks.Add(deserializedDeck.id, deserializedDeck);
+                                decksListBox.Items.Add(deserializedDeck.id);
                             }
                         }
-                    }
-                    return;
-                case "recipes":
-                    foreach (JToken recipe in parsedJToken.First.ToArray())
-                    {
-                        Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                        if (!Content.Recipes.ContainsKey(deserializedRecipe.id))
+                        return;
+                    case "legacies":
+                        foreach (JToken legacy in parsedJToken.First.ToArray())
                         {
-                            Content.Recipes.Add(deserializedRecipe.id, deserializedRecipe);
-                            recipesListBox.Items.Add(deserializedRecipe.id);
+                            Legacy deserializedLegacy = legacy.ToObject<Legacy>();
+                            if (!Content.Legacies.ContainsKey(deserializedLegacy.id))
+                            {
+                                Content.Legacies.Add(deserializedLegacy.id, deserializedLegacy);
+                                legaciesListBox.Items.Add(deserializedLegacy.id);
+                            }
                         }
-                    }
-                    return;
-                case "decks":
-                    foreach (JToken deck in parsedJToken.First.ToArray())
-                    {
-                        Deck deserializedDeck = deck.ToObject<Deck>();
-                        if (!Content.Decks.ContainsKey(deserializedDeck.id))
+                        return;
+                    case "endings":
+                        foreach (JToken ending in parsedJToken.First.ToArray())
                         {
-                            Content.Decks.Add(deserializedDeck.id, deserializedDeck);
-                            decksListBox.Items.Add(deserializedDeck.id);
+                            Ending deserializedEnding = ending.ToObject<Ending>();
+                            if (!Content.Endings.ContainsKey(deserializedEnding.id))
+                            {
+                                Content.Endings.Add(deserializedEnding.id, deserializedEnding);
+                                endingsListBox.Items.Add(deserializedEnding.id);
+                            }
                         }
-                    }
-                    return;
-                case "legacies":
-                    foreach (JToken legacy in parsedJToken.First.ToArray())
-                    {
-                        Legacy deserializedLegacy = legacy.ToObject<Legacy>();
-                        if (!Content.Legacies.ContainsKey(deserializedLegacy.id))
+                        return;
+                    case "verbs":
+                        foreach (JToken verb in parsedJToken.First.ToArray())
                         {
-                            Content.Legacies.Add(deserializedLegacy.id, deserializedLegacy);
-                            legaciesListBox.Items.Add(deserializedLegacy.id);
+                            Verb deserializedVerb = verb.ToObject<Verb>();
+                            if (!Content.Verbs.ContainsKey(deserializedVerb.id))
+                            {
+                                Content.Verbs.Add(deserializedVerb.id, deserializedVerb);
+                                verbsListBox.Items.Add(deserializedVerb.id);
+                            }
                         }
-                    }
-                    return;
-                case "endings":
-                    foreach (JToken ending in parsedJToken.First.ToArray())
-                    {
-                        Ending deserializedEnding = ending.ToObject<Ending>();
-                        if (!Content.Endings.ContainsKey(deserializedEnding.id))
-                        {
-                            Content.Endings.Add(deserializedEnding.id, deserializedEnding);
-                            endingsListBox.Items.Add(deserializedEnding.id);
-                        }
-                    }
-                    return;
-                case "verbs":
-                    foreach (JToken verb in parsedJToken.First.ToArray())
-                    {
-                        Verb deserializedVerb = verb.ToObject<Verb>();
-                        if (!Content.Verbs.ContainsKey(deserializedVerb.id))
-                        {
-                            Content.Verbs.Add(deserializedVerb.id, deserializedVerb);
-                            verbsListBox.Items.Add(deserializedVerb.id);
-                        }
-                    }
-                    return;
-                default:
-                    break;
+                        return;
+                    default:
+                        break;
+                }
             }
         }
 
