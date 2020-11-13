@@ -602,6 +602,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void SaveManifests(string location)
         {
+            if (isVanilla) return;
             string synopsisJson = JsonConvert.SerializeObject(Content.synopsis, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/synopsis.json", FileMode.Create))))
             {
@@ -612,6 +613,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SaveCustomManifest(string location)
         {
+            if (isVanilla) return;
             if (Content.CustomManifest.Count > 0)
             {
                 string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
