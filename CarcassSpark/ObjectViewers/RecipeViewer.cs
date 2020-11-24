@@ -721,7 +721,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (mutationsListView.SelectedItems == null) return;
             string oldId = mutationsListView.SelectedItems[0].Text;
-            MutationViewer mv = new MutationViewer(mutations[mutationsListView.SelectedItems[0].Text.ToString()], editing);
+            MutationViewer mv = new MutationViewer(mutations[mutationsListView.SelectedItems[0].Tag.ToString()], editing);
             mv.ShowDialog();
             if (mv.DialogResult == DialogResult.OK)
             {
