@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.aspectsListBox = new System.Windows.Forms.ListBox();
             this.aspectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsWithThisAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,6 +140,7 @@
             this.splitter6 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.splitter7 = new System.Windows.Forms.Splitter();
+            this.aspectsListView = new System.Windows.Forms.ListView();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -156,21 +156,6 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // aspectsListBox
-            // 
-            this.aspectsListBox.ContextMenuStrip = this.aspectContextMenuStrip;
-            this.aspectsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aspectsListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.aspectsListBox.Location = new System.Drawing.Point(3, 23);
-            this.aspectsListBox.Name = "aspectsListBox";
-            this.aspectsListBox.ScrollAlwaysVisible = true;
-            this.aspectsListBox.Size = new System.Drawing.Size(94, 370);
-            this.aspectsListBox.Sorted = true;
-            this.aspectsListBox.TabIndex = 1;
-            this.aspectsListBox.DoubleClick += new System.EventHandler(this.AspectListBox_DoubleClick);
-            this.aspectsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListBox_KeyDown);
-            this.aspectsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListBox_MouseDown);
             // 
             // aspectContextMenuStrip
             // 
@@ -1020,9 +1005,9 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.aspectsListBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.aspectsLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.aspectsSearchTextBox, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.aspectsListView, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -1205,6 +1190,22 @@
             this.splitter7.TabStop = false;
             this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter7_SplitterMoved);
             // 
+            // aspectsListView
+            // 
+            this.aspectsListView.ContextMenuStrip = this.aspectContextMenuStrip;
+            this.aspectsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aspectsListView.HideSelection = false;
+            this.aspectsListView.Location = new System.Drawing.Point(3, 23);
+            this.aspectsListView.Name = "aspectsListView";
+            this.aspectsListView.Size = new System.Drawing.Size(94, 370);
+            this.aspectsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.aspectsListView.TabIndex = 18;
+            this.aspectsListView.UseCompatibleStateImageBehavior = false;
+            this.aspectsListView.View = System.Windows.Forms.View.List;
+            this.aspectsListView.DoubleClick += new System.EventHandler(this.AspectListView_DoubleClick);
+            this.aspectsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListView_KeyDown);
+            this.aspectsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListView_MouseDown);
+            // 
             // ModViewerTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1337,7 +1338,6 @@
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        public System.Windows.Forms.ListBox aspectsListBox;
         public System.Windows.Forms.ListBox elementsListBox;
         public System.Windows.Forms.ListBox recipesListBox;
         public System.Windows.Forms.ListBox decksListBox;
@@ -1365,5 +1365,6 @@
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        public System.Windows.Forms.ListView aspectsListView;
     }
 }

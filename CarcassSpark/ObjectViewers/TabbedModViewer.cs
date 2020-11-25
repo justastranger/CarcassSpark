@@ -305,13 +305,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.aspectsListBox.Items.Contains(deserializedAspect.id))
+                    if (SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                     {
                         MessageBox.Show("Aspect already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.aspectsListBox.Items.Add(deserializedAspect.id);
+                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect });
                     }
                     SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                 }
@@ -477,9 +477,9 @@ namespace CarcassSpark.ObjectViewers
                     case "Aspect":
                         Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
                         SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
-                        if (!SelectedModViewer.aspectsListBox.Items.Contains(deserializedAspect.id))
+                        if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                         {
-                            SelectedModViewer.aspectsListBox.Items.Add(deserializedAspect.id);
+                            SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect });
                         }
                         break;
                     case "Element":

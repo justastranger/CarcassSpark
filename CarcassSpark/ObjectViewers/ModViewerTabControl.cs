@@ -80,7 +80,7 @@ namespace CarcassSpark.ObjectViewers
         {
             try
             {
-                aspectsListBox.Items.Clear();
+                aspectsListView.Items.Clear();
                 Content.Aspects.Clear();
                 elementsListBox.Items.Clear();
                 Content.Elements.Clear();
@@ -286,7 +286,6 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 foreach (JProperty xtrigger in element["xtriggers"])
                                 {
-                                    _ = xtrigger.Name;
                                     if (xtrigger.Value as JArray != null) xtrigger.Value = xtrigger.Value as JArray;
                                     else if (xtrigger.Value as JObject != null) xtrigger.Value = new JArray(xtrigger.Value);
                                     else if (xtrigger.Value.Value<string>() != null) xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
@@ -299,7 +298,12 @@ namespace CarcassSpark.ObjectViewers
                                 if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                                 {
                                     Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
-                                    aspectsListBox.Items.Add(deserializedAspect.id);
+                                    ListViewItem aspect = new ListViewItem(deserializedAspect.id)
+                                    {
+                                        Tag = deserializedAspect
+                                    };
+                                    aspectsListView.Items.Add(aspect);
+                                    // aspectsListBox.Items.Add(deserializedAspect.id);
                                 }
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
@@ -308,7 +312,12 @@ namespace CarcassSpark.ObjectViewers
                                 if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                                 {
                                     Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
-                                    aspectsListBox.Items.Add(deserializedAspect.id);
+                                    ListViewItem aspect = new ListViewItem(deserializedAspect.id)
+                                    {
+                                        Tag = deserializedAspect
+                                    };
+                                    aspectsListView.Items.Add(aspect);
+                                    // aspectsListBox.Items.Add(deserializedAspect.id);
                                 }
                             }
                             else
@@ -445,7 +454,7 @@ namespace CarcassSpark.ObjectViewers
         public void SaveMod(string location)
         {
             CreateDirectories(location);
-            if (aspectsListBox.Items.Count > 0)
+            if (aspectsListView.Items.Count > 0)
             {
                 JObject aspects = new JObject
                 {
@@ -628,9 +637,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void AspectListBox_DoubleClick(object sender, EventArgs e)
+        private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             if (editMode)
             {
                 AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
@@ -646,10 +655,11 @@ namespace CarcassSpark.ObjectViewers
         private void AspectsList_Assign(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result.Copy();
-            if (aspectsListBox.Items[aspectsListBox.SelectedIndex].ToString() != result.id)
+            if (aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text.ToString() != result.id)
             {
-                Content.Aspects.Remove(aspectsListBox.Items[aspectsListBox.SelectedIndex].ToString());
-                aspectsListBox.Items[aspectsListBox.SelectedIndex] = result.id;
+                Content.Aspects.Remove(aspectsListView.Items[aspectsListView.SelectedIndices[0]].ToString());
+                aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text = result.id;
+                aspectsListView.Items[aspectsListView.SelectedIndices[0]].Tag = result.Copy();
             }
         }
 
@@ -805,15 +815,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            aspectsListBox.Items.Clear();
+            aspectsListView.Items.Clear();
             try
             {
                 Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
-                aspectsListBox.Items.AddRange(aspectsToAdd.Select(a => a.id).ToArray());
+                aspectsListView.Items.AddRange(aspectsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.Copy() }).ToArray());
             }
             catch (Exception)
             {
-                aspectsListBox.Items.AddRange(Content.Aspects.Keys.ToArray());
+                aspectsListView.Items.AddRange(Content.Aspects.Values.ToList().Select(a => new ListViewItem(a.id) { Tag = a.Copy() }).ToArray());
             }
         }
 
@@ -990,7 +1000,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1008,7 +1018,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1026,7 +1036,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1055,7 +1065,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1077,7 +1087,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
+            if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1343,11 +1353,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListBox.SelectedItem is string id)) return;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            if (!(aspectsListView.SelectedItems[0] is ListViewItem listViewItem)) return;
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                aspectsListBox.Items.Remove(id);
-                Content.Aspects.Remove(id);
+                aspectsListView.Items.Remove(listViewItem);
+                Content.Aspects.Remove(listViewItem.Text);
             }
         }
 
@@ -1422,14 +1432,16 @@ namespace CarcassSpark.ObjectViewers
             MessageBox.Show(id + "has been deleted.");
         }
 
-        private void AspectsListBox_MouseDown(object sender, MouseEventArgs e)
+        private void AspectsListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                aspectsListBox.SelectedIndex = -1;
-                if (aspectsListBox.IndexFromPoint(e.Location) >= 0)
+                aspectsListView.SelectedIndices.Clear();
+                Point point = aspectsListView.PointToClient(Cursor.Position);
+                if (aspectsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
-                    aspectsListBox.SelectedIndex = aspectsListBox.IndexFromPoint(e.Location);
+                    //aspectsListBox.SelectedIndex = aspectsListBox.IndexFromPoint(e.Location);
+                    listViewItem.Selected = true;
                 }
             }
         }
@@ -1508,7 +1520,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Aspect aspectToEdit = Content.GetAspect(aspectsListBox.SelectedItem as string);
+            Aspect aspectToEdit = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
             if (aspectToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
@@ -1517,15 +1529,15 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                if (deserializedAspect.id != aspectsListBox.SelectedItem.ToString())
+                if (deserializedAspect.id != aspectsListView.SelectedItems[0].Text.ToString())
                 {
-                    Content.Aspects.Remove(aspectsListBox.SelectedItem as string);
-                    Content.Aspects[deserializedAspect.id] = deserializedAspect;
-                    aspectsListBox.SelectedItem = deserializedAspect.id;
+                    Content.Aspects.Remove(aspectsListView.SelectedItems[0].Text);
+                    Content.Aspects[deserializedAspect.id] = deserializedAspect.Copy();
+                    aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
                 }
                 else
                 {
-                    Content.Aspects[aspectsListBox.SelectedItem as string] = deserializedAspect;
+                    Content.Aspects[aspectsListView.SelectedItems[0].Text] = deserializedAspect.Copy();
                 }
             }
         }
@@ -1682,13 +1694,13 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Aspect newAspect = Content.Aspects[aspectsListBox.SelectedItem as string].Copy();
+            Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Text].Copy();
             string id = newAspect.id;
-            if (aspectsListBox.Items.Contains(id + "_1"))
+            if (aspectsListView.Items.ContainsKey(id))
             {
                 id += "_";
                 int tmp = 1;
-                while (aspectsListBox.Items.Contains(id + tmp.ToString()))
+                while (aspectsListView.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -1699,8 +1711,8 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newAspect.id = id;
-            aspectsListBox.Items.Add(newAspect.id);
-            Content.Aspects.Add(newAspect.id, newAspect);
+            aspectsListView.Items.Add(new ListViewItem(newAspect.id) { Tag = newAspect.Copy() });
+            Content.Aspects.Add(newAspect.id, newAspect.Copy());
         }
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1843,7 +1855,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Aspect exportedAspect = Content.GetAspect(aspectsListBox.SelectedItem as string);
+            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
             if (exportedAspect == null) return;
             ExportObject(exportedAspect, exportedAspect.id);
         }
@@ -1911,8 +1923,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListBox.SelectedItem == null) return;
-            Aspect exportedAspect = Content.GetAspect(aspectsListBox.SelectedItem as string);
+            if (aspectsListView.SelectedItems == null) return;
+            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
             if (exportedAspect == null) return;
             CopyObjectJSONToClipboard(exportedAspect);
         }
@@ -2009,8 +2021,8 @@ namespace CarcassSpark.ObjectViewers
 
         public void AspectsList_Add(object sender, Aspect result)
         {
-            Content.Aspects[result.id] = result;
-            aspectsListBox.Items.Add(result.id);
+            Content.Aspects[result.id] = result.Copy();
+            aspectsListView.Items.Add(new ListViewItem(result.id) { Tag = result.Copy() });
         }
 
         public void DecksList_Add(object sender, Deck result)
@@ -2077,11 +2089,11 @@ namespace CarcassSpark.ObjectViewers
             SaveWidths();
         }
 
-        private void AspectsListBox_KeyDown(object sender, KeyEventArgs e)
+        private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!(aspectsListBox.SelectedItem is string id)) return;
+                if (!(aspectsListView.SelectedItems[0].Text is string id)) return;
                 if (editMode)
                 {
                     AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
