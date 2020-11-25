@@ -1000,7 +1000,7 @@
             // aspectIDColumnHeader
             // 
             this.aspectIDColumnHeader.Text = "Aspect ID";
-            this.aspectIDColumnHeader.Width = 200;
+            this.aspectIDColumnHeader.Width = 300;
             // 
             // splitter1
             // 
@@ -1033,6 +1033,7 @@
             // 
             this.elementsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.elementIDColumnHeader});
+            this.elementsListView.ContextMenuStrip = this.elementContextMenuStrip;
             this.elementsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.elementsListView.HideSelection = false;
@@ -1051,7 +1052,7 @@
             // elementIDColumnHeader
             // 
             this.elementIDColumnHeader.Text = "Element ID";
-            this.elementIDColumnHeader.Width = 200;
+            this.elementIDColumnHeader.Width = 300;
             // 
             // splitter2
             // 
@@ -1202,6 +1203,7 @@
             // 
             this.recipesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.recipeIDColumnHeader});
+            this.recipesListView.ContextMenuStrip = this.recipeContextMenuStrip;
             this.recipesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recipesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.recipesListView.HideSelection = false;
@@ -1220,12 +1222,13 @@
             // recipeIDColumnHeader
             // 
             this.recipeIDColumnHeader.Text = "Recipe ID";
-            this.recipeIDColumnHeader.Width = 200;
+            this.recipeIDColumnHeader.Width = 400;
             // 
             // decksListView
             // 
             this.decksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.deckIDColumnHeader});
+            this.decksListView.ContextMenuStrip = this.deckContextMenuStrip;
             this.decksListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.decksListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.decksListView.HideSelection = false;
@@ -1236,6 +1239,7 @@
             this.decksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.decksListView.TabIndex = 21;
             this.decksListView.UseCompatibleStateImageBehavior = false;
+            this.decksListView.View = System.Windows.Forms.View.Details;
             this.decksListView.DoubleClick += new System.EventHandler(this.DecksListView_DoubleClick);
             this.decksListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListView_KeyDown);
             this.decksListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListView_MouseDown);
@@ -1243,7 +1247,7 @@
             // deckIDColumnHeader
             // 
             this.deckIDColumnHeader.Text = "Deck ID";
-            this.deckIDColumnHeader.Width = 200;
+            this.deckIDColumnHeader.Width = 300;
             // 
             // ModViewerTabControl
             // 
