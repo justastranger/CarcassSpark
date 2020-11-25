@@ -1273,6 +1273,9 @@
             this.verbsListView.TabIndex = 24;
             this.verbsListView.UseCompatibleStateImageBehavior = false;
             this.verbsListView.View = System.Windows.Forms.View.Details;
+            this.verbsListView.DoubleClick += new System.EventHandler(this.VerbsListView_DoubleClick);
+            this.verbsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VerbsListView_KeyDown);
+            this.verbsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VerbsListView_MouseDown);
             // 
             // verbIDColumnHeader
             // 
