@@ -61,19 +61,26 @@ namespace CarcassSpark.ObjectViewers
         {
             editMode = editing;
             deleteSelectedAspectToolStripMenuItem.Visible = editing;
-            deleteSelectedDeckToolStripMenuItem.Visible = editing;
             deleteSelectedElementToolStripMenuItem.Visible = editing;
-            deleteSelectedEndingToolStripMenuItem.Visible = editing;
-            deleteSelectedLegacyToolStripMenuItem.Visible = editing;
             deleteSelectedRecipeToolStripMenuItem.Visible = editing;
+            deleteSelectedDeckToolStripMenuItem.Visible = editing;
+            deleteSelectedLegacyToolStripMenuItem.Visible = editing;
+            deleteSelectedEndingToolStripMenuItem.Visible = editing;
             deleteSelectedVerbToolStripMenuItem.Visible = editing;
             duplicateSelectedAspectToolStripMenuItem.Visible = editing;
-            duplicateSelectedDeckToolStripMenuItem.Visible = editing;
             duplicateSelectedElementToolStripMenuItem.Visible = editing;
-            duplicateSelectedEndingToolStripMenuItem.Visible = editing;
-            duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
             duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
+            duplicateSelectedDeckToolStripMenuItem.Visible = editing;
+            duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
+            duplicateSelectedEndingToolStripMenuItem.Visible = editing;
             duplicateSelectedVerbToolStripMenuItem.Visible = editing;
+            newAspectToolStripMenuItem.Visible = editing;
+            newElementToolStripMenuItem.Visible = editing;
+            newRecipeToolStripMenuItem.Visible = editing;
+            newDeckToolStripMenuItem.Visible = editing;
+            newLegacyToolStripMenuItem.Visible = editing;
+            newEndingToolStripMenuItem.Visible = editing;
+            newVerbToolStripMenuItem.Visible = editing;
         }
 
         public bool LoadContent()
