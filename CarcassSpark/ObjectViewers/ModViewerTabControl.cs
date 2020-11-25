@@ -86,7 +86,7 @@ namespace CarcassSpark.ObjectViewers
                 Content.Elements.Clear();
                 recipesListView.Items.Clear();
                 Content.Recipes.Clear();
-                decksListBox.Items.Clear();
+                decksListView.Items.Clear();
                 Content.Decks.Clear();
                 legaciesListBox.Items.Clear();
                 Content.Legacies.Clear();
@@ -355,7 +355,11 @@ namespace CarcassSpark.ObjectViewers
                             if (!Content.Decks.ContainsKey(deserializedDeck.id))
                             {
                                 Content.Decks.Add(deserializedDeck.id, deserializedDeck);
-                                decksListBox.Items.Add(deserializedDeck.id);
+                                ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
+                                {
+                                    Tag = deserializedDeck.GetHashCode()
+                                };
+                                decksListView.Items.Add(deckLVI);
                             }
                         }
                         return;
@@ -517,7 +521,7 @@ namespace CarcassSpark.ObjectViewers
                     File.Delete(location + "/content/recipes.json");
                 }
             }
-            if (decksListBox.Items.Count > 0)
+            if (decksListView.Items.Count > 0)
             {
                 JObject decks = new JObject
                 {
@@ -670,9 +674,10 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void DecksListBox_DoubleClick(object sender, EventArgs e)
+        private void DecksListView_DoubleClick(object sender, EventArgs e)
         {
-            if (!(decksListBox.SelectedItem is string id)) return;
+            if (decksListView.SelectedItems.Count < 1) return;
+            string id = decksListView.SelectedItems[0].Text;
             if (editMode)
             {
                 DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
@@ -688,10 +693,11 @@ namespace CarcassSpark.ObjectViewers
         private void DecksList_Assign(object sender, Deck result)
         {
             Content.Decks[result.id] = result.Copy();
-            if (decksListBox.Items[decksListBox.SelectedIndex].ToString() != result.id)
+            if (decksListView.Items[decksListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Decks.Remove(decksListBox.Items[decksListBox.SelectedIndex].ToString());
-                decksListBox.Items[decksListBox.SelectedIndex] = result.id;
+                Content.Decks.Remove(decksListView.Items[decksListView.SelectedIndices[0]].ToString());
+                decksListView.Items[decksListView.SelectedIndices[0]].Text = result.id;
+                decksListView.Items[decksListView.SelectedIndices[0]].Tag = result.GetHashCode();
             }
         }
 
@@ -868,15 +874,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            decksListBox.Items.Clear();
+            decksListView.Items.Clear();
             try
             {
                 Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
-                decksListBox.Items.AddRange(decksToAdd.Select(a => a.id).ToArray());
+                decksListView.Items.AddRange(decksToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
             }
             catch (Exception)
             {
-                decksListBox.Items.AddRange(Content.Decks.Keys.ToArray());
+                decksListView.Items.AddRange(Content.Decks.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
             }
         }
 
@@ -1283,7 +1289,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(decksListBox.SelectedItem is string id)) return;
+            if (decksListView.SelectedItems.Count < 1) return;
+            string id = decksListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1409,10 +1416,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(decksListBox.SelectedItem is string id)) return;
+            if (decksListView.SelectedItems.Count < 1) return;
+            string id = decksListView.SelectedItems[0].Text;
             if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                decksListBox.Items.Remove(id);
+                decksListView.Items.RemoveByKey(id);
                 Content.Decks.Remove(id);
             }
         }
@@ -1497,14 +1505,15 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void DecksListBox_MouseDown(object sender, MouseEventArgs e)
+        private void DecksListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                decksListBox.SelectedIndex = -1;
-                if (decksListBox.IndexFromPoint(e.Location) >= 0)
+                decksListView.SelectedIndices.Clear();
+                Point point = decksListView.PointToClient(Cursor.Position);
+                if (decksListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
-                    decksListBox.SelectedIndex = decksListBox.IndexFromPoint(e.Location);
+                    listViewItem.Selected = true;
                 }
             }
         }
@@ -1562,6 +1571,7 @@ namespace CarcassSpark.ObjectViewers
                     Content.Aspects.Remove(aspectsListView.SelectedItems[0].Text);
                     Content.Aspects[deserializedAspect.id] = deserializedAspect.Copy();
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
+                    aspectsListView.SelectedItems[0].Tag = deserializedAspect.GetHashCode();
                 }
                 else
                 {
@@ -1586,6 +1596,7 @@ namespace CarcassSpark.ObjectViewers
                     Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
                     Content.Elements[deserializedElement.id] = deserializedElement.Copy();
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
+                    elementsListView.SelectedItems[0].Tag = deserializedElement.GetHashCode();
                 }
                 else
                 {
@@ -1612,6 +1623,7 @@ namespace CarcassSpark.ObjectViewers
                     Content.Recipes.Remove(recipesListView.SelectedItems[0].Text);
                     Content.Recipes[deserializedRecipe.id] = deserializedRecipe.Copy();
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
+                    recipesListView.SelectedItems[0].Tag = deserializedRecipe.GetHashCode();
                 }
                 else
                 {
@@ -1622,7 +1634,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Deck deckToEdit = Content.GetDeck(decksListBox.SelectedItem as string);
+            if (decksListView.SelectedItems.Count < 1) return;
+            Deck deckToEdit = Content.GetDeck(decksListView.SelectedItems[0].Text);
             if (deckToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
@@ -1632,15 +1645,16 @@ namespace CarcassSpark.ObjectViewers
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                 // Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
-                if (deserializedDeck.id != decksListBox.SelectedItem.ToString())
+                if (deserializedDeck.id != decksListView.SelectedItems[0].Text)
                 {
-                    Content.Decks.Remove(decksListBox.SelectedItem as string);
-                    Content.Decks[deserializedDeck.id] = deserializedDeck;
-                    decksListBox.SelectedItem = deserializedDeck.id;
+                    Content.Decks.Remove(decksListView.SelectedItems[0].Text);
+                    Content.Decks[deserializedDeck.id] = deserializedDeck.Copy();
+                    decksListView.SelectedItems[0].Text = deserializedDeck.id;
+                    decksListView.SelectedItems[0].Tag = deserializedDeck.GetHashCode();
                 }
                 else
                 {
-                    Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
+                    Content.Decks[decksListView.SelectedItems[0].Text] = deserializedDeck.Copy();
                 }
             }
         }
@@ -1794,13 +1808,14 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Deck newDeck = Content.Decks[decksListBox.SelectedItem as string].Copy();
+            if (decksListView.SelectedItems.Count < 1) return;
+            Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Text].Copy();
             string id = newDeck.id;
-            if (decksListBox.Items.Contains(id + "_1"))
+            if (decksListView.Items.ContainsKey(id + "_1"))
             {
                 id += "_";
                 int tmp = 1;
-                while (decksListBox.Items.Contains(id + tmp.ToString()))
+                while (decksListView.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -1811,7 +1826,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newDeck.id = id;
-            decksListBox.Items.Add(newDeck.id);
+            decksListView.Items.Add(new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() });
             Content.Decks.Add(newDeck.id, newDeck);
         }
 
@@ -1910,7 +1925,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Deck exportedDeck = Content.GetDeck(decksListBox.SelectedItem as string);
+            if (decksListView.SelectedItems.Count < 1) return;
+            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Text);
             if (exportedDeck == null) return;
             ExportObject(exportedDeck, exportedDeck.id);
         }
@@ -1981,8 +1997,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListBox.SelectedItem == null) return;
-            Deck exportedDeck = Content.GetDeck(decksListBox.SelectedItem as string);
+            if (decksListView.SelectedItems.Count < 1) return;
+            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Text);
             if (exportedDeck == null) return;
             CopyObjectJSONToClipboard(exportedDeck);
         }
@@ -2074,7 +2090,7 @@ namespace CarcassSpark.ObjectViewers
         public void DecksList_Add(object sender, Deck result)
         {
             Content.Decks[result.id] = result;
-            decksListBox.Items.Add(result.id);
+            decksListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
@@ -2192,11 +2208,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void DecksListBox_KeyDown(object sender, KeyEventArgs e)
+        private void DecksListView_KeyDown(object sender, KeyEventArgs e)
         {
+            if (decksListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                if (!(decksListBox.SelectedItem is string id)) return;
+                string id = decksListView.SelectedItems[0].Text;
                 if (editMode)
                 {
                     DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);

@@ -67,7 +67,6 @@
             this.copyRecipeJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedRecipesJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.decksListBox = new System.Windows.Forms.ListBox();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,6 +143,8 @@
             this.splitter7 = new System.Windows.Forms.Splitter();
             this.recipesListView = new System.Windows.Forms.ListView();
             this.recipeIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.decksListView = new System.Windows.Forms.ListView();
+            this.deckIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -478,21 +479,6 @@
             this.newRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.newRecipeToolStripMenuItem.Text = "New Recipe";
             this.newRecipeToolStripMenuItem.Click += new System.EventHandler(this.NewRecipeToolStripMenuItem_Click);
-            // 
-            // decksListBox
-            // 
-            this.decksListBox.ContextMenuStrip = this.deckContextMenuStrip;
-            this.decksListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.decksListBox.FormattingEnabled = true;
-            this.decksListBox.Location = new System.Drawing.Point(3, 23);
-            this.decksListBox.Name = "decksListBox";
-            this.decksListBox.ScrollAlwaysVisible = true;
-            this.decksListBox.Size = new System.Drawing.Size(94, 370);
-            this.decksListBox.Sorted = true;
-            this.decksListBox.TabIndex = 8;
-            this.decksListBox.DoubleClick += new System.EventHandler(this.DecksListBox_DoubleClick);
-            this.decksListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListBox_KeyDown);
-            this.decksListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListBox_MouseDown);
             // 
             // deckContextMenuStrip
             // 
@@ -1108,9 +1094,9 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.decksListBox, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.decksLabel, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.decksSearchTextBox, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.decksListView, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(330, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -1220,8 +1206,10 @@
             this.recipesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.recipesListView.HideSelection = false;
             this.recipesListView.Location = new System.Drawing.Point(3, 23);
+            this.recipesListView.MultiSelect = false;
             this.recipesListView.Name = "recipesListView";
             this.recipesListView.Size = new System.Drawing.Size(94, 370);
+            this.recipesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.recipesListView.TabIndex = 20;
             this.recipesListView.UseCompatibleStateImageBehavior = false;
             this.recipesListView.View = System.Windows.Forms.View.Details;
@@ -1233,6 +1221,29 @@
             // 
             this.recipeIDColumnHeader.Text = "Recipe ID";
             this.recipeIDColumnHeader.Width = 200;
+            // 
+            // decksListView
+            // 
+            this.decksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.deckIDColumnHeader});
+            this.decksListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.decksListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.decksListView.HideSelection = false;
+            this.decksListView.Location = new System.Drawing.Point(3, 23);
+            this.decksListView.MultiSelect = false;
+            this.decksListView.Name = "decksListView";
+            this.decksListView.Size = new System.Drawing.Size(94, 370);
+            this.decksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.decksListView.TabIndex = 21;
+            this.decksListView.UseCompatibleStateImageBehavior = false;
+            this.decksListView.DoubleClick += new System.EventHandler(this.DecksListView_DoubleClick);
+            this.decksListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListView_KeyDown);
+            this.decksListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListView_MouseDown);
+            // 
+            // deckIDColumnHeader
+            // 
+            this.deckIDColumnHeader.Text = "Deck ID";
+            this.deckIDColumnHeader.Width = 200;
             // 
             // ModViewerTabControl
             // 
@@ -1366,7 +1377,6 @@
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        public System.Windows.Forms.ListBox decksListBox;
         public System.Windows.Forms.ListBox legaciesListBox;
         public System.Windows.Forms.ListBox endingsListBox;
         public System.Windows.Forms.ListBox verbsListBox;
@@ -1397,5 +1407,7 @@
         private System.Windows.Forms.ColumnHeader elementIDColumnHeader;
         private System.Windows.Forms.ColumnHeader recipeIDColumnHeader;
         public System.Windows.Forms.ListView recipesListView;
+        private System.Windows.Forms.ColumnHeader deckIDColumnHeader;
+        public System.Windows.Forms.ListView decksListView;
     }
 }

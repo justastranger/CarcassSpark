@@ -377,13 +377,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.decksListBox.Items.Contains(deserializedDeck.id))
+                    if (SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                     {
                         MessageBox.Show("Deck already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.decksListBox.Items.Add(deserializedDeck.id);
+                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode() });
                     }
                     SelectedModViewer.Content.Decks[deserializedDeck.id] = deserializedDeck;
                 }
@@ -501,9 +501,9 @@ namespace CarcassSpark.ObjectViewers
                     case "Deck":
                         Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                         SelectedModViewer.Content.Decks[deserializedDeck.id] = deserializedDeck;
-                        if (!SelectedModViewer.decksListBox.Items.Contains(deserializedDeck.id))
+                        if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                         {
-                            SelectedModViewer.decksListBox.Items.Add(deserializedDeck.id);
+                            SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode() });
                         }
                         break;
                     case "Legacy":
