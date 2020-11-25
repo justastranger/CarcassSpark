@@ -311,7 +311,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.Copy() });
+                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode() });
                     }
                     SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                 }
@@ -335,7 +335,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.Copy() });
+                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode() });
                     }
                     SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
                 }
@@ -353,13 +353,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.recipesListBox.Items.Contains(deserializedRecipe.id))
+                    if (SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                     {
                         MessageBox.Show("Recipe already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.recipesListBox.Items.Add(deserializedRecipe.id);
+                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode() });
                     }
                     SelectedModViewer.Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
                 }
@@ -479,7 +479,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                         if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                         {
-                            SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect });
+                            SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode() });
                         }
                         break;
                     case "Element":
@@ -487,15 +487,15 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
                         if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                         {
-                            SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement });
+                            SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode() });
                         }
                         break;
                     case "Recipe":
                         Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
                         SelectedModViewer.Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
-                        if (!SelectedModViewer.recipesListBox.Items.Contains(deserializedRecipe.id))
+                        if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                         {
-                            SelectedModViewer.recipesListBox.Items.Add(deserializedRecipe.id);
+                            SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode() });
                         }
                         break;
                     case "Deck":
@@ -542,17 +542,17 @@ namespace CarcassSpark.ObjectViewers
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.Copy() });
-                SelectedModViewer.Content.Elements.Add(sc.baseSummon.id, sc.baseSummon);
+                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.GetHashCode() });
+                SelectedModViewer.Content.Elements.Add(sc.baseSummon.id, sc.baseSummon.Copy());
 
-                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.Copy() });
-                SelectedModViewer.Content.Elements.Add(sc.preSummon.id, sc.preSummon);
+                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.GetHashCode() });
+                SelectedModViewer.Content.Elements.Add(sc.preSummon.id, sc.preSummon.Copy());
 
-                SelectedModViewer.recipesListBox.Items.Add(sc.startSummon.id);
-                SelectedModViewer.Content.Recipes.Add(sc.startSummon.id, sc.startSummon);
+                SelectedModViewer.recipesListView.Items.Add(new ListViewItem(sc.startSummon.id) { Tag = sc.startSummon.GetHashCode() });
+                SelectedModViewer.Content.Recipes.Add(sc.startSummon.id, sc.startSummon.Copy());
 
-                SelectedModViewer.recipesListBox.Items.Add(sc.succeedSummon.id);
-                SelectedModViewer.Content.Recipes.Add(sc.succeedSummon.id, sc.succeedSummon);
+                SelectedModViewer.recipesListView.Items.Add(new ListViewItem(sc.succeedSummon.id) { Tag = sc.succeedSummon.GetHashCode() });
+                SelectedModViewer.Content.Recipes.Add(sc.succeedSummon.id, sc.succeedSummon.Copy());
             }
         }
 

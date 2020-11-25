@@ -57,7 +57,6 @@
             this.copyElementJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedElementsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recipesListBox = new System.Windows.Forms.ListBox();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatLinkToThisRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,8 +125,12 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.aspectsListView = new System.Windows.Forms.ListView();
+            this.aspectIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.elementsListView = new System.Windows.Forms.ListView();
+            this.elementIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.splitter3 = new System.Windows.Forms.Splitter();
@@ -139,10 +142,8 @@
             this.splitter6 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.splitter7 = new System.Windows.Forms.Splitter();
-            this.aspectsListView = new System.Windows.Forms.ListView();
-            this.elementsListView = new System.Windows.Forms.ListView();
-            this.aspectIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.elementIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.recipesListView = new System.Windows.Forms.ListView();
+            this.recipeIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -394,21 +395,6 @@
             this.newElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.newElementToolStripMenuItem.Text = "New Element";
             this.newElementToolStripMenuItem.Click += new System.EventHandler(this.NewElementToolStripMenuItem_Click);
-            // 
-            // recipesListBox
-            // 
-            this.recipesListBox.ContextMenuStrip = this.recipeContextMenuStrip;
-            this.recipesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recipesListBox.FormattingEnabled = true;
-            this.recipesListBox.Location = new System.Drawing.Point(3, 23);
-            this.recipesListBox.Name = "recipesListBox";
-            this.recipesListBox.ScrollAlwaysVisible = true;
-            this.recipesListBox.Size = new System.Drawing.Size(94, 370);
-            this.recipesListBox.Sorted = true;
-            this.recipesListBox.TabIndex = 6;
-            this.recipesListBox.DoubleClick += new System.EventHandler(this.RecipesListBox_DoubleClick);
-            this.recipesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecipesListBox_KeyDown);
-            this.recipesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListBox_MouseDown);
             // 
             // recipeContextMenuStrip
             // 
@@ -1005,6 +991,31 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel2.TabIndex = 28;
             // 
+            // aspectsListView
+            // 
+            this.aspectsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.aspectIDColumnHeader});
+            this.aspectsListView.ContextMenuStrip = this.aspectContextMenuStrip;
+            this.aspectsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aspectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.aspectsListView.HideSelection = false;
+            this.aspectsListView.Location = new System.Drawing.Point(3, 23);
+            this.aspectsListView.MultiSelect = false;
+            this.aspectsListView.Name = "aspectsListView";
+            this.aspectsListView.Size = new System.Drawing.Size(94, 370);
+            this.aspectsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.aspectsListView.TabIndex = 18;
+            this.aspectsListView.UseCompatibleStateImageBehavior = false;
+            this.aspectsListView.View = System.Windows.Forms.View.Details;
+            this.aspectsListView.DoubleClick += new System.EventHandler(this.AspectListView_DoubleClick);
+            this.aspectsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListView_KeyDown);
+            this.aspectsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListView_MouseDown);
+            // 
+            // aspectIDColumnHeader
+            // 
+            this.aspectIDColumnHeader.Text = "Aspect ID";
+            this.aspectIDColumnHeader.Width = 200;
+            // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -1032,6 +1043,30 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel3.TabIndex = 30;
             // 
+            // elementsListView
+            // 
+            this.elementsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.elementIDColumnHeader});
+            this.elementsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.elementsListView.HideSelection = false;
+            this.elementsListView.Location = new System.Drawing.Point(3, 23);
+            this.elementsListView.MultiSelect = false;
+            this.elementsListView.Name = "elementsListView";
+            this.elementsListView.Size = new System.Drawing.Size(94, 370);
+            this.elementsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.elementsListView.TabIndex = 19;
+            this.elementsListView.UseCompatibleStateImageBehavior = false;
+            this.elementsListView.View = System.Windows.Forms.View.Details;
+            this.elementsListView.DoubleClick += new System.EventHandler(this.ElementsListView_DoubleClick);
+            this.elementsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsListView_KeyDown);
+            this.elementsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ElementsListView_MouseDown);
+            // 
+            // elementIDColumnHeader
+            // 
+            this.elementIDColumnHeader.Text = "Element ID";
+            this.elementIDColumnHeader.Width = 200;
+            // 
             // splitter2
             // 
             this.splitter2.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -1046,9 +1081,9 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.recipesListBox, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.recipesLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.recipesSearchTextBox, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.recipesListView, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(220, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -1177,54 +1212,27 @@
             this.splitter7.TabStop = false;
             this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
             // 
-            // aspectsListView
+            // recipesListView
             // 
-            this.aspectsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.aspectIDColumnHeader});
-            this.aspectsListView.ContextMenuStrip = this.aspectContextMenuStrip;
-            this.aspectsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aspectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.aspectsListView.HideSelection = false;
-            this.aspectsListView.Location = new System.Drawing.Point(3, 23);
-            this.aspectsListView.MultiSelect = false;
-            this.aspectsListView.Name = "aspectsListView";
-            this.aspectsListView.Size = new System.Drawing.Size(94, 370);
-            this.aspectsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.aspectsListView.TabIndex = 18;
-            this.aspectsListView.UseCompatibleStateImageBehavior = false;
-            this.aspectsListView.View = System.Windows.Forms.View.Details;
-            this.aspectsListView.DoubleClick += new System.EventHandler(this.AspectListView_DoubleClick);
-            this.aspectsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListView_KeyDown);
-            this.aspectsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListView_MouseDown);
+            this.recipesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.recipeIDColumnHeader});
+            this.recipesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recipesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.recipesListView.HideSelection = false;
+            this.recipesListView.Location = new System.Drawing.Point(3, 23);
+            this.recipesListView.Name = "recipesListView";
+            this.recipesListView.Size = new System.Drawing.Size(94, 370);
+            this.recipesListView.TabIndex = 20;
+            this.recipesListView.UseCompatibleStateImageBehavior = false;
+            this.recipesListView.View = System.Windows.Forms.View.Details;
+            this.recipesListView.DoubleClick += new System.EventHandler(this.RecipesListView_DoubleClick);
+            this.recipesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecipesListView_KeyDown);
+            this.recipesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListView_MouseDown);
             // 
-            // elementsListView
+            // recipeIDColumnHeader
             // 
-            this.elementsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.elementIDColumnHeader});
-            this.elementsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.elementsListView.HideSelection = false;
-            this.elementsListView.Location = new System.Drawing.Point(3, 23);
-            this.elementsListView.MultiSelect = false;
-            this.elementsListView.Name = "elementsListView";
-            this.elementsListView.Size = new System.Drawing.Size(94, 370);
-            this.elementsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.elementsListView.TabIndex = 19;
-            this.elementsListView.UseCompatibleStateImageBehavior = false;
-            this.elementsListView.View = System.Windows.Forms.View.Details;
-            this.elementsListView.DoubleClick += new System.EventHandler(this.ElementsListView_DoubleClick);
-            this.elementsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsListView_KeyDown);
-            this.elementsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ElementsListView_MouseDown);
-            // 
-            // aspectIDColumnHeader
-            // 
-            this.aspectIDColumnHeader.Text = "Aspect ID";
-            this.aspectIDColumnHeader.Width = 200;
-            // 
-            // elementIDColumnHeader
-            // 
-            this.elementIDColumnHeader.Text = "Element ID";
-            this.elementIDColumnHeader.Width = 200;
+            this.recipeIDColumnHeader.Text = "Recipe ID";
+            this.recipeIDColumnHeader.Width = 200;
             // 
             // ModViewerTabControl
             // 
@@ -1358,7 +1366,6 @@
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        public System.Windows.Forms.ListBox recipesListBox;
         public System.Windows.Forms.ListBox decksListBox;
         public System.Windows.Forms.ListBox legaciesListBox;
         public System.Windows.Forms.ListBox endingsListBox;
@@ -1388,5 +1395,7 @@
         public System.Windows.Forms.ListView elementsListView;
         private System.Windows.Forms.ColumnHeader aspectIDColumnHeader;
         private System.Windows.Forms.ColumnHeader elementIDColumnHeader;
+        private System.Windows.Forms.ColumnHeader recipeIDColumnHeader;
+        public System.Windows.Forms.ListView recipesListView;
     }
 }
