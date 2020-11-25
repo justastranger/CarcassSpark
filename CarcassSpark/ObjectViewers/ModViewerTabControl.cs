@@ -82,7 +82,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 aspectsListView.Items.Clear();
                 Content.Aspects.Clear();
-                elementsListBox.Items.Clear();
+                aspectsListView.Items.Clear();
                 Content.Elements.Clear();
                 recipesListBox.Items.Clear();
                 Content.Recipes.Clear();
@@ -303,7 +303,6 @@ namespace CarcassSpark.ObjectViewers
                                         Tag = deserializedAspect
                                     };
                                     aspectsListView.Items.Add(aspect);
-                                    // aspectsListBox.Items.Add(deserializedAspect.id);
                                 }
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
@@ -317,7 +316,6 @@ namespace CarcassSpark.ObjectViewers
                                         Tag = deserializedAspect
                                     };
                                     aspectsListView.Items.Add(aspect);
-                                    // aspectsListBox.Items.Add(deserializedAspect.id);
                                 }
                             }
                             else
@@ -326,7 +324,11 @@ namespace CarcassSpark.ObjectViewers
                                 if (!Content.Elements.ContainsKey(deserializedElement.id))
                                 {
                                     Content.Elements.Add(deserializedElement.id, deserializedElement);
-                                    elementsListBox.Items.Add(deserializedElement.id);
+                                    ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
+                                    {
+                                        Tag = deserializedElement
+                                    };
+                                    elementsListView.Items.Add(elementLVI);
                                 }
                             }
                         }
@@ -473,7 +475,7 @@ namespace CarcassSpark.ObjectViewers
                     File.Delete(location + "/content/aspects.json");
                 }
             }
-            if (elementsListBox.Items.Count > 0)
+            if (elementsListView.Items.Count > 0)
             {
                 JObject elements = new JObject
                 {
@@ -688,9 +690,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ElementsListBox_DoubleClick(object sender, EventArgs e)
+        private void ElementsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             if (editMode)
             {
                 ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
@@ -706,10 +708,11 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsList_Assign(object sender, Element result)
         {
             Content.Elements[result.id] = result.Copy();
-            if (elementsListBox.Items[elementsListBox.SelectedIndex].ToString() != result.id)
+            if (elementsListView.Items[elementsListView.SelectedIndices[0]].Text.ToString() != result.id)
             {
-                Content.Elements.Remove(elementsListBox.Items[elementsListBox.SelectedIndex].ToString());
-                elementsListBox.Items[elementsListBox.SelectedIndex] = result.id;
+                Content.Elements.Remove(elementsListView.Items[elementsListView.SelectedIndices[0]].ToString());
+                elementsListView.Items[elementsListView.SelectedIndices[0]].Text = result.id;
+                elementsListView.Items[elementsListView.SelectedIndices[0]].Tag = result.Copy();
             }
         }
 
@@ -829,15 +832,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            elementsListBox.Items.Clear();
+            elementsListView.Items.Clear();
             try
             {
                 Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
-                elementsListBox.Items.AddRange(elementsToAdd.Select(a => a.id).ToArray());
+                elementsListView.Items.AddRange(elementsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.Copy() }).ToArray());
             }
             catch (Exception)
             {
-                elementsListBox.Items.AddRange(Content.Elements.Keys.ToArray());
+                elementsListView.Items.AddRange(Content.Elements.Values.ToList().Select(a => new ListViewItem(a.id) { Tag = a.Copy() }).ToArray());
             }
         }
 
@@ -1106,7 +1109,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1124,7 +1127,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatXtriggerIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1148,7 +1151,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1174,7 +1177,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1196,7 +1199,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
@@ -1214,7 +1217,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
@@ -1363,10 +1366,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(elementsListBox.SelectedItem is string id)) return;
+            if (!(elementsListView.SelectedItems[0].Text is string id)) return;
             if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                elementsListBox.Items.Remove(id);
+                elementsListView.Items.RemoveByKey(id);
                 Content.Elements.Remove(id);
             }
         }
@@ -1446,14 +1449,16 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ElementsListBox_MouseDown(object sender, MouseEventArgs e)
+        private void ElementsListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                elementsListBox.SelectedIndex = -1;
-                if (elementsListBox.IndexFromPoint(e.Location) >= 0)
+                elementsListView.SelectedIndices.Clear();
+                Point point = elementsListView.PointToClient(Cursor.Position);
+                if (elementsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
-                    elementsListBox.SelectedIndex = elementsListBox.IndexFromPoint(e.Location);
+                    //elementsListBox.SelectedIndex = elementsListBox.IndexFromPoint(e.Location);
+                    listViewItem.Selected = true;
                 }
             }
         }
@@ -1544,7 +1549,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Element elementToEdit = Content.GetElement(elementsListBox.SelectedItem as string);
+            Element elementToEdit = Content.GetElement(elementsListView.SelectedItems[0].Text);
             if (elementToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
@@ -1554,15 +1559,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                 // Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
-                if (deserializedElement.id != elementsListBox.SelectedItem.ToString())
+                if (deserializedElement.id != elementsListView.SelectedItems[0].Text)
                 {
-                    Content.Elements.Remove(elementsListBox.SelectedItem as string);
-                    Content.Elements[deserializedElement.id] = deserializedElement;
-                    elementsListBox.SelectedItem = deserializedElement.id;
+                    Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
+                    Content.Elements[deserializedElement.id] = deserializedElement.Copy();
+                    elementsListView.SelectedItems[0].Text = deserializedElement.id;
                 }
                 else
                 {
-                    Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
+                    Content.Elements[elementsListView.SelectedItems[0].Text] = deserializedElement.Copy();
                 }
             }
         }
@@ -1717,13 +1722,13 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Element newElement = Content.Elements[elementsListBox.SelectedItem as string].Copy();
+            Element newElement = Content.Elements[elementsListView.SelectedItems[0].Text].Copy();
             string id = newElement.id;
-            if (elementsListBox.Items.Contains(id + "_1"))
+            if (elementsListView.Items.ContainsKey(id + "_1"))
             {
                 id += "_";
                 int tmp = 1;
-                while (elementsListBox.Items.Contains(id + tmp.ToString()))
+                while (elementsListView.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -1734,8 +1739,8 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newElement.id = id;
-            elementsListBox.Items.Add(newElement.id);
-            Content.Elements.Add(newElement.id, newElement);
+            elementsListView.Items.Add(new ListViewItem(newElement.id) { Tag = newElement.Copy() });
+            Content.Elements.Add(newElement.id, newElement.Copy());
         }
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1862,7 +1867,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Element exportedElement = Content.GetElement(elementsListBox.SelectedItem as string);
+            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Text);
             if (exportedElement == null) return;
             ExportObject(exportedElement, exportedElement.id);
         }
@@ -1931,8 +1936,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListBox.SelectedItem == null) return;
-            Element exportedElement = Content.GetElement(elementsListBox.SelectedItem as string);
+            if (elementsListView.SelectedItems[0] == null) return;
+            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Text);
             if (exportedElement == null) return;
             CopyObjectJSONToClipboard(exportedElement);
         }
@@ -2034,7 +2039,7 @@ namespace CarcassSpark.ObjectViewers
         public void ElementsList_Add(object sender, Element result)
         {
             Content.Elements[result.id] = result;
-            elementsListBox.Items.Add(result.id);
+            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.Copy() });
         }
 
         public void EndingsList_Add(object sender, Ending result)
@@ -2107,11 +2112,11 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ElementsListBox_KeyDown(object sender, KeyEventArgs e)
+        private void ElementsListView_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!(elementsListBox.SelectedItem is string id)) return;
+                if (!(elementsListView.SelectedItems[0].Text is string id)) return;
                 if (editMode)
                 {
                     ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);

@@ -311,7 +311,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect });
+                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.Copy() });
                     }
                     SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                 }
@@ -329,13 +329,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.elementsListBox.Items.Contains(deserializedElement.id))
+                    if (SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                     {
                         MessageBox.Show("Element already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.elementsListBox.Items.Add(deserializedElement.id);
+                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.Copy() });
                     }
                     SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
                 }
@@ -485,9 +485,9 @@ namespace CarcassSpark.ObjectViewers
                     case "Element":
                         Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                         SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
-                        if (!SelectedModViewer.elementsListBox.Items.Contains(deserializedElement.id))
+                        if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                         {
-                            SelectedModViewer.elementsListBox.Items.Add(deserializedElement.id);
+                            SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement });
                         }
                         break;
                     case "Recipe":
@@ -542,10 +542,10 @@ namespace CarcassSpark.ObjectViewers
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.elementsListBox.Items.Add(sc.baseSummon.id);
+                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.Copy() });
                 SelectedModViewer.Content.Elements.Add(sc.baseSummon.id, sc.baseSummon);
 
-                SelectedModViewer.elementsListBox.Items.Add(sc.preSummon.id);
+                SelectedModViewer.elementsListView.Items.Add(new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.Copy() });
                 SelectedModViewer.Content.Elements.Add(sc.preSummon.id, sc.preSummon);
 
                 SelectedModViewer.recipesListBox.Items.Add(sc.startSummon.id);
