@@ -1013,7 +1013,7 @@
             this.splitter1.Size = new System.Drawing.Size(10, 422);
             this.splitter1.TabIndex = 29;
             this.splitter1.TabStop = false;
-            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
+            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter1_SplitterMoved);
             // 
             // tableLayoutPanel3
             // 
@@ -1040,7 +1040,7 @@
             this.splitter2.Size = new System.Drawing.Size(10, 422);
             this.splitter2.TabIndex = 31;
             this.splitter2.TabStop = false;
-            this.splitter2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter2_SplitterMoved);
+            this.splitter2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter2_SplitterMoved);
             // 
             // tableLayoutPanel4
             // 
@@ -1067,7 +1067,7 @@
             this.splitter3.Size = new System.Drawing.Size(10, 422);
             this.splitter3.TabIndex = 33;
             this.splitter3.TabStop = false;
-            this.splitter3.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter3_SplitterMoved);
+            this.splitter3.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter3_SplitterMoved);
             // 
             // tableLayoutPanel5
             // 
@@ -1094,7 +1094,7 @@
             this.splitter4.Size = new System.Drawing.Size(10, 422);
             this.splitter4.TabIndex = 35;
             this.splitter4.TabStop = false;
-            this.splitter4.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter4_SplitterMoved);
+            this.splitter4.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter4_SplitterMoved);
             // 
             // tableLayoutPanel6
             // 
@@ -1121,7 +1121,7 @@
             this.splitter5.Size = new System.Drawing.Size(10, 422);
             this.splitter5.TabIndex = 37;
             this.splitter5.TabStop = false;
-            this.splitter5.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter5_SplitterMoved);
+            this.splitter5.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter5_SplitterMoved);
             // 
             // tableLayoutPanel7
             // 
@@ -1148,7 +1148,7 @@
             this.splitter6.Size = new System.Drawing.Size(10, 422);
             this.splitter6.TabIndex = 39;
             this.splitter6.TabStop = false;
-            this.splitter6.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter6_SplitterMoved);
+            this.splitter6.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter6_SplitterMoved);
             // 
             // tableLayoutPanel8
             // 
@@ -1175,7 +1175,7 @@
             this.splitter7.Size = new System.Drawing.Size(10, 422);
             this.splitter7.TabIndex = 41;
             this.splitter7.TabStop = false;
-            this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter7_SplitterMoved);
+            this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
             // 
             // aspectsListView
             // 

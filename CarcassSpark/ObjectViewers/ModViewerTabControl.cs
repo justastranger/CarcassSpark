@@ -2071,37 +2071,37 @@ namespace CarcassSpark.ObjectViewers
             LoadWidths();
         }
 
-        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter2_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter2_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter3_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter3_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter4_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter4_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter5_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter5_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter6_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter6_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
 
-        private void splitter7_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Splitter7_SplitterMoved(object sender, SplitterEventArgs e)
         {
             SaveWidths();
         }
