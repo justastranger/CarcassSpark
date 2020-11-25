@@ -92,7 +92,6 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedEndingsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,6 +146,8 @@
             this.legacyIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endingsListView = new System.Windows.Forms.ListView();
             this.endingIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.verbsListView = new System.Windows.Forms.ListView();
+            this.verbIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -689,21 +690,6 @@
             this.newEndingToolStripMenuItem.Text = "New Ending";
             this.newEndingToolStripMenuItem.Click += new System.EventHandler(this.NewEndingToolStripMenuItem_Click);
             // 
-            // verbsListBox
-            // 
-            this.verbsListBox.ContextMenuStrip = this.verbContextMenuStrip;
-            this.verbsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.verbsListBox.FormattingEnabled = true;
-            this.verbsListBox.Location = new System.Drawing.Point(3, 23);
-            this.verbsListBox.Name = "verbsListBox";
-            this.verbsListBox.ScrollAlwaysVisible = true;
-            this.verbsListBox.Size = new System.Drawing.Size(94, 370);
-            this.verbsListBox.Sorted = true;
-            this.verbsListBox.TabIndex = 13;
-            this.verbsListBox.DoubleClick += new System.EventHandler(this.VerbsListBox_DoubleClick);
-            this.verbsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VerbsListBox_KeyDown);
-            this.verbsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VerbsListBox_MouseDown);
-            // 
             // verbContextMenuStrip
             // 
             this.verbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1149,8 +1135,8 @@
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Controls.Add(this.verbsSearchTextBox, 0, 2);
-            this.tableLayoutPanel8.Controls.Add(this.verbsListBox, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.verbsLabel, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.verbsListView, 0, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(660, 0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -1270,6 +1256,28 @@
             // 
             this.endingIDColumnHeader.Text = "Ending ID";
             this.endingIDColumnHeader.Width = 300;
+            // 
+            // verbsListView
+            // 
+            this.verbsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.verbIDColumnHeader});
+            this.verbsListView.ContextMenuStrip = this.verbContextMenuStrip;
+            this.verbsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.verbsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.verbsListView.HideSelection = false;
+            this.verbsListView.Location = new System.Drawing.Point(3, 23);
+            this.verbsListView.MultiSelect = false;
+            this.verbsListView.Name = "verbsListView";
+            this.verbsListView.Size = new System.Drawing.Size(94, 370);
+            this.verbsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.verbsListView.TabIndex = 24;
+            this.verbsListView.UseCompatibleStateImageBehavior = false;
+            this.verbsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // verbIDColumnHeader
+            // 
+            this.verbIDColumnHeader.Text = "Verb ID";
+            this.verbIDColumnHeader.Width = 300;
             // 
             // ModViewerTabControl
             // 
@@ -1403,7 +1411,6 @@
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        public System.Windows.Forms.ListBox verbsListBox;
         private System.Windows.Forms.ToolStripMenuItem newAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newElementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newRecipeToolStripMenuItem;
@@ -1437,5 +1444,7 @@
         private System.Windows.Forms.ColumnHeader legacyIDColumnHeader;
         public System.Windows.Forms.ListView endingsListView;
         private System.Windows.Forms.ColumnHeader endingIDColumnHeader;
+        public System.Windows.Forms.ListView verbsListView;
+        private System.Windows.Forms.ColumnHeader verbIDColumnHeader;
     }
 }

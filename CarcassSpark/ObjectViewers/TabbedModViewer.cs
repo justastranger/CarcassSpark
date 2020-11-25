@@ -449,13 +449,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.verbsListBox.Items.Contains(deserializedVerb.id))
+                    if (SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                     {
                         MessageBox.Show("Verb already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.verbsListBox.Items.Add(deserializedVerb.id);
+                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode() });
                     }
                     SelectedModViewer.Content.Verbs[deserializedVerb.id] = deserializedVerb;
                 }
@@ -525,9 +525,9 @@ namespace CarcassSpark.ObjectViewers
                     case "Verb":
                         Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
                         SelectedModViewer.Content.Verbs[deserializedVerb.id] = deserializedVerb;
-                        if (!SelectedModViewer.verbsListBox.Items.Contains(deserializedVerb.id))
+                        if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                         {
-                            SelectedModViewer.verbsListBox.Items.Add(deserializedVerb.id);
+                            SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode() });
                         }
                         break;
                     default:

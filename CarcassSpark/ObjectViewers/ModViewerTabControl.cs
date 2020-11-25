@@ -99,7 +99,7 @@ namespace CarcassSpark.ObjectViewers
                 Content.Legacies.Clear();
                 endingsListView.Items.Clear();
                 Content.Endings.Clear();
-                verbsListBox.Items.Clear();
+                verbsListView.Items.Clear();
                 Content.Verbs.Clear();
                 if (!isVanilla)
                 {
@@ -407,7 +407,11 @@ namespace CarcassSpark.ObjectViewers
                             if (!Content.Verbs.ContainsKey(deserializedVerb.id))
                             {
                                 Content.Verbs.Add(deserializedVerb.id, deserializedVerb);
-                                verbsListBox.Items.Add(deserializedVerb.id);
+                                ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
+                                {
+                                    Tag = deserializedVerb.GetHashCode()
+                                };
+                                verbsListView.Items.Add(verbLVI);
                             }
                         }
                         return;
@@ -593,7 +597,7 @@ namespace CarcassSpark.ObjectViewers
                     File.Delete(location + "/content/endings.json");
                 }
             }
-            if (verbsListBox.Items.Count > 0)
+            if (verbsListView.Items.Count > 0)
             {
                 JObject verbs = new JObject
                 {
@@ -684,8 +688,8 @@ namespace CarcassSpark.ObjectViewers
             if (aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Aspects.Remove(aspectsListView.SelectedItems[0].Text);
-                aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text = result.id;
-                aspectsListView.Items[aspectsListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                aspectsListView.SelectedItems[0].Text = result.id;
+                aspectsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -711,8 +715,8 @@ namespace CarcassSpark.ObjectViewers
             if (decksListView.Items[decksListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Decks.Remove(decksListView.SelectedItems[0].Text);
-                decksListView.Items[decksListView.SelectedIndices[0]].Text = result.id;
-                decksListView.Items[decksListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                decksListView.SelectedItems[0].Text = result.id;
+                decksListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -738,8 +742,8 @@ namespace CarcassSpark.ObjectViewers
             if (elementsListView.Items[elementsListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
-                elementsListView.Items[elementsListView.SelectedIndices[0]].Text = result.id;
-                elementsListView.Items[elementsListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                elementsListView.SelectedItems[0].Text = result.id;
+                elementsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -765,8 +769,8 @@ namespace CarcassSpark.ObjectViewers
             if (endingsListView.Items[endingsListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Endings.Remove(endingsListView.SelectedItems[0].Text);
-                endingsListView.Items[endingsListView.SelectedIndices[0]].Text = result.id;
-                endingsListView.Items[endingsListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                endingsListView.SelectedItems[0].Text = result.id;
+                endingsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -792,8 +796,8 @@ namespace CarcassSpark.ObjectViewers
             if (legaciesListView.Items[legaciesListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Legacies.Remove(legaciesListView.SelectedItems[0].Text);
-                legaciesListView.Items[legaciesListView.SelectedIndices[0]].Text = result.id;
-                legaciesListView.Items[legaciesListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                legaciesListView.SelectedItems[0].Text = result.id;
+                legaciesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -819,14 +823,15 @@ namespace CarcassSpark.ObjectViewers
             if (recipesListView.Items[recipesListView.SelectedIndices[0]].Text != result.id)
             {
                 Content.Recipes.Remove(recipesListView.SelectedItems[0].Text);
-                recipesListView.Items[recipesListView.SelectedIndices[0]].Text = result.id;
-                recipesListView.Items[recipesListView.SelectedIndices[0]].Tag = result.GetHashCode();
+                recipesListView.SelectedItems[0].Text = result.id;
+                recipesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
-        private void VerbsListBox_DoubleClick(object sender, EventArgs e)
+        private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (!(verbsListBox.SelectedItem is string id)) return;
+            if (verbsListView.SelectedItems.Count < 1) return;
+            string id = verbsListView.SelectedItems[0].Text;
             if (editMode)
             {
                 VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
@@ -842,10 +847,11 @@ namespace CarcassSpark.ObjectViewers
         private void VerbsList_Assign(object sender, Verb result)
         {
             Content.Verbs[result.id] = result.Copy();
-            if (verbsListBox.Items[verbsListBox.SelectedIndex].ToString() != result.id)
+            if (verbsListView.Items[verbsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Verbs.Remove(verbsListBox.Items[verbsListBox.SelectedIndex].ToString());
-                verbsListBox.Items[verbsListBox.SelectedIndex] = result.id;
+                Content.Verbs.Remove(verbsListView.SelectedItems[0].Text);
+                verbsListView.SelectedItems[0].Text = result.id;
+                verbsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -935,15 +941,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            verbsListBox.Items.Clear();
+            verbsListView.Items.Clear();
             try
             {
                 Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
-                verbsListBox.Items.AddRange(verbsToAdd.Select(a => a.id).ToArray());
+                verbsListView.Items.AddRange(verbsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
             }
             catch (Exception)
             {
-                verbsListBox.Items.AddRange(Content.Verbs.Keys.ToArray());
+                verbsListView.Items.AddRange(Content.Verbs.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
             }
         }
 
@@ -1346,7 +1352,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(verbsListBox.SelectedItem is string id)) return;
+            if (verbsListView.SelectedItems.Count < 1) return;
+            string id = verbsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1364,7 +1371,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(verbsListBox.SelectedItem is string id)) return;
+            if (verbsListView.SelectedItems.Count < 1) return;
+            string id = verbsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1469,10 +1477,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(verbsListBox.SelectedItem is string id)) return;
+            if (verbsListView.SelectedItems.Count < 1) return;
+            string id = verbsListView.SelectedItems[0].Text;
             if (ConfirmDelete(id) == DialogResult.Yes)
             {
-                verbsListBox.Items.Remove(id);
+                verbsListView.Items.RemoveByKey(id);
                 Content.Verbs.Remove(id);
             }
         }
@@ -1572,14 +1581,16 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void VerbsListBox_MouseDown(object sender, MouseEventArgs e)
+        private void VerbsListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                verbsListBox.SelectedIndex = -1;
-                if (verbsListBox.IndexFromPoint(e.Location) >= 0)
+                verbsListView.SelectedIndices.Clear();
+                verbsListView.Select();
+                Point point = verbsListView.PointToClient(Cursor.Position);
+                if (verbsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
-                    verbsListBox.SelectedIndex = verbsListBox.IndexFromPoint(e.Location);
+                    listViewItem.Selected = true;
                 }
             }
         }
@@ -1591,8 +1602,6 @@ namespace CarcassSpark.ObjectViewers
             if (aspectToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(aspectToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
@@ -1620,7 +1629,6 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                // Content.Elements[elementsListBox.SelectedItem as string] = deserializedElement;
                 if (deserializedElement.id != elementsListView.SelectedItems[0].Text)
                 {
                     Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
@@ -1642,12 +1650,9 @@ namespace CarcassSpark.ObjectViewers
             if (recipeToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(recipeToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                // Content.Recipes[recipesListBox.SelectedItem as string] = deserializedRecipe;
                 if (deserializedRecipe.id != recipesListView.SelectedItems[0].Text)
                 {
                     Content.Recipes.Remove(recipesListView.SelectedItems[0].Text);
@@ -1669,12 +1674,9 @@ namespace CarcassSpark.ObjectViewers
             if (deckToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(deckToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                // Content.Decks[decksListBox.SelectedItem as string] = deserializedDeck;
                 if (deserializedDeck.id != decksListView.SelectedItems[0].Text)
                 {
                     Content.Decks.Remove(decksListView.SelectedItems[0].Text);
@@ -1696,12 +1698,9 @@ namespace CarcassSpark.ObjectViewers
             if (legacyToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(legacyToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                // Content.Legacies[legaciesListBox.SelectedItem as string] = deserializedLegacy;
                 if (deserializedLegacy.id != legaciesListView.SelectedItems[0].Text)
                 {
                     Content.Legacies.Remove(legaciesListView.SelectedItems[0].Text);
@@ -1723,12 +1722,9 @@ namespace CarcassSpark.ObjectViewers
             if (endingToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(endingToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                // Content.Endings[endingsListBox.SelectedItem as string] = deserializedEnding;
                 if (deserializedEnding.id != endingsListView.SelectedItems[0].Text)
                 {
                     Content.Endings.Remove(endingsListView.SelectedItems[0].Text);
@@ -1745,25 +1741,23 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Verb verbToEdit = Content.GetVerb(verbsListBox.SelectedItem as string);
+            if (verbsListView.SelectedItems.Count < 1) return;
+            Verb verbToEdit = Content.GetVerb(verbsListView.SelectedItems[0].Text);
             if (verbToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
-
-            //JsonEditor je = new JsonEditor(JsonConvert.SerializeObject(verbToEdit, Formatting.Indented), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                // Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
-                if (deserializedVerb.id != verbsListBox.SelectedItem.ToString())
+                if (deserializedVerb.id != verbsListView.SelectedItems[0].Text)
                 {
-                    Content.Verbs.Remove(verbsListBox.SelectedItem as string);
-                    Content.Verbs[deserializedVerb.id] = deserializedVerb;
-                    verbsListBox.SelectedItem = deserializedVerb.id;
+                    Content.Verbs.Remove(verbsListView.SelectedItems[0].Text);
+                    Content.Verbs[deserializedVerb.id] = deserializedVerb.Copy();
+                    verbsListView.SelectedItems[0].Text = deserializedVerb.id;
                 }
                 else
                 {
-                    Content.Verbs[verbsListBox.SelectedItem as string] = deserializedVerb;
+                    Content.Verbs[verbsListView.SelectedItems[0].Text] = deserializedVerb.Copy();
                 }
             }
         }
@@ -1914,13 +1908,13 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Verb newVerb = Content.Verbs[verbsListBox.SelectedItem as string].Copy();
+            Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Text].Copy();
             string id = newVerb.id;
-            if (verbsListBox.Items.Contains(id + "_1"))
+            if (verbsListView.Items.ContainsKey(id + "_1"))
             {
                 id += "_";
                 int tmp = 1;
-                while (verbsListBox.Items.Contains(id + tmp.ToString()))
+                while (verbsListView.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -1931,7 +1925,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newVerb.id = id;
-            verbsListBox.Items.Add(newVerb.id);
+            verbsListView.Items.Add(new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() });
             Content.Verbs.Add(newVerb.id, newVerb);
         }
 
@@ -1985,8 +1979,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Content.GetVerb(verbsListBox.SelectedItem as string) == null) return;
-            Verb exportedVerb = Content.GetVerb(verbsListBox.SelectedItem as string);
+            if (verbsListView.SelectedItems.Count < 1) return;
+            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Text);
             ExportObject(exportedVerb, exportedVerb.id);
         }
 
@@ -2005,7 +1999,6 @@ namespace CarcassSpark.ObjectViewers
         
         public void CopyObjectJSONToClipboard(object objectToExport)
         {
-            // string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
             Clipboard.SetText(Utilities.SerializeObject(objectToExport));
         }
 
@@ -2059,8 +2052,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListBox.SelectedItem == null) return;
-            Verb exportedVerb = Content.GetVerb(verbsListBox.SelectedItem as string);
+            if (verbsListView.SelectedItems.Count < 1) return;
+            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Text);
             if (exportedVerb == null) return;
             CopyObjectJSONToClipboard(exportedVerb);
         }
@@ -2146,7 +2139,7 @@ namespace CarcassSpark.ObjectViewers
         public void VerbsList_Add(object sender, Verb result)
         {
             Content.Verbs[result.id] = result.Copy();
-            verbsListBox.Items.Add(result.id);
+            verbsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
         }
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
@@ -2303,11 +2296,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void VerbsListBox_KeyDown(object sender, KeyEventArgs e)
+        private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
         {
+            if (verbsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                if (!(verbsListBox.SelectedItem is string id)) return;
+                string id = verbsListView.SelectedItems[0].Text;
                 if (editMode)
                 {
                     VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
