@@ -2030,16 +2030,28 @@ namespace CarcassSpark.ObjectViewers
             aspectsListView.Items.Add(new ListViewItem(result.id) { Tag = result.Copy() });
         }
 
+        public void ElementsList_Add(object sender, Element result)
+        {
+            Content.Elements[result.id] = result;
+            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.Copy() });
+        }
+
+        public void RecipesList_Add(object sender, Recipe result)
+        {
+            Content.Recipes[result.id] = result;
+            recipesListBox.Items.Add(result.id);
+        }
+
         public void DecksList_Add(object sender, Deck result)
         {
             Content.Decks[result.id] = result;
             decksListBox.Items.Add(result.id);
         }
 
-        public void ElementsList_Add(object sender, Element result)
+        public void LegaciesList_Add(object sender, Legacy result)
         {
-            Content.Elements[result.id] = result;
-            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.Copy() });
+            Content.Legacies[result.id] = result;
+            legaciesListBox.Items.Add(result.id);
         }
 
         public void EndingsList_Add(object sender, Ending result)
@@ -2048,10 +2060,10 @@ namespace CarcassSpark.ObjectViewers
             endingsListBox.Items.Add(result.id);
         }
 
-        public void LegaciesList_Add(object sender, Legacy result)
+        public void VerbsList_Add(object sender, Verb result)
         {
-            Content.Legacies[result.id] = result;
-            legaciesListBox.Items.Add(result.id);
+            Content.Verbs[result.id] = result;
+            verbsListBox.Items.Add(result.id);
         }
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
@@ -2218,18 +2230,6 @@ namespace CarcassSpark.ObjectViewers
                     vv.Show();
                 }
             }
-        }
-
-        public void RecipesList_Add(object sender, Recipe result)
-        {
-            Content.Recipes[result.id] = result;
-            recipesListBox.Items.Add(result.id);
-        }
-
-        public void VerbsList_Add(object sender, Verb result)
-        {
-            Content.Verbs[result.id] = result;
-            verbsListBox.Items.Add(result.id);
         }
 
 
