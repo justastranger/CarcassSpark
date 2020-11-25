@@ -76,7 +76,6 @@
             this.copyDeckJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedDecksJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +83,6 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedLegacysJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endingsListBox = new System.Windows.Forms.ListBox();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,6 +143,10 @@
             this.recipeIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.decksListView = new System.Windows.Forms.ListView();
             this.deckIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.legaciesListView = new System.Windows.Forms.ListView();
+            this.legacyIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.endingsListView = new System.Windows.Forms.ListView();
+            this.endingIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -555,21 +557,6 @@
             this.newDeckToolStripMenuItem.Text = "New Deck";
             this.newDeckToolStripMenuItem.Click += new System.EventHandler(this.NewDeckToolStripMenuItem_Click);
             // 
-            // legaciesListBox
-            // 
-            this.legaciesListBox.ContextMenuStrip = this.legacyContextMenuStrip;
-            this.legaciesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.legaciesListBox.FormattingEnabled = true;
-            this.legaciesListBox.Location = new System.Drawing.Point(3, 23);
-            this.legaciesListBox.Name = "legaciesListBox";
-            this.legaciesListBox.ScrollAlwaysVisible = true;
-            this.legaciesListBox.Size = new System.Drawing.Size(94, 370);
-            this.legaciesListBox.Sorted = true;
-            this.legaciesListBox.TabIndex = 10;
-            this.legaciesListBox.DoubleClick += new System.EventHandler(this.LegaciesListBox_DoubleClick);
-            this.legaciesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LegaciesListBox_KeyDown);
-            this.legaciesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListBox_MouseDown);
-            // 
             // legacyContextMenuStrip
             // 
             this.legacyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -627,21 +614,6 @@
             this.newLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.newLegacyToolStripMenuItem.Text = "New Legacy";
             this.newLegacyToolStripMenuItem.Click += new System.EventHandler(this.NewLegacyToolStripMenuItem_Click);
-            // 
-            // endingsListBox
-            // 
-            this.endingsListBox.ContextMenuStrip = this.endingContextMenuStrip;
-            this.endingsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endingsListBox.FormattingEnabled = true;
-            this.endingsListBox.Location = new System.Drawing.Point(3, 23);
-            this.endingsListBox.Name = "endingsListBox";
-            this.endingsListBox.ScrollAlwaysVisible = true;
-            this.endingsListBox.Size = new System.Drawing.Size(94, 370);
-            this.endingsListBox.Sorted = true;
-            this.endingsListBox.TabIndex = 11;
-            this.endingsListBox.DoubleClick += new System.EventHandler(this.EndingsListBox_DoubleClick);
-            this.endingsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndingsListBox_KeyDown);
-            this.endingsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListBox_MouseDown);
             // 
             // endingContextMenuStrip
             // 
@@ -1122,9 +1094,9 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.legaciesListBox, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.legaciesLabel, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.legaciesSearchTextBox, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.legaciesListView, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(440, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -1149,9 +1121,9 @@
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.endingsListBox, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.endingsLabel, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.endingsSearchTextBox, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.endingsListView, 0, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(550, 0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -1248,6 +1220,56 @@
             // 
             this.deckIDColumnHeader.Text = "Deck ID";
             this.deckIDColumnHeader.Width = 300;
+            // 
+            // legaciesListView
+            // 
+            this.legaciesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.legacyIDColumnHeader});
+            this.legaciesListView.ContextMenuStrip = this.legacyContextMenuStrip;
+            this.legaciesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.legaciesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.legaciesListView.HideSelection = false;
+            this.legaciesListView.Location = new System.Drawing.Point(3, 23);
+            this.legaciesListView.MultiSelect = false;
+            this.legaciesListView.Name = "legaciesListView";
+            this.legaciesListView.Size = new System.Drawing.Size(94, 370);
+            this.legaciesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.legaciesListView.TabIndex = 22;
+            this.legaciesListView.UseCompatibleStateImageBehavior = false;
+            this.legaciesListView.View = System.Windows.Forms.View.Details;
+            this.legaciesListView.DoubleClick += new System.EventHandler(this.LegaciesListView_DoubleClick);
+            this.legaciesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LegaciesListView_KeyDown);
+            this.legaciesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListView_MouseDown);
+            // 
+            // legacyIDColumnHeader
+            // 
+            this.legacyIDColumnHeader.Text = "Legacy ID";
+            this.legacyIDColumnHeader.Width = 300;
+            // 
+            // endingsListView
+            // 
+            this.endingsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.endingIDColumnHeader});
+            this.endingsListView.ContextMenuStrip = this.endingContextMenuStrip;
+            this.endingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endingsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.endingsListView.HideSelection = false;
+            this.endingsListView.Location = new System.Drawing.Point(3, 23);
+            this.endingsListView.MultiSelect = false;
+            this.endingsListView.Name = "endingsListView";
+            this.endingsListView.Size = new System.Drawing.Size(94, 370);
+            this.endingsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.endingsListView.TabIndex = 23;
+            this.endingsListView.UseCompatibleStateImageBehavior = false;
+            this.endingsListView.View = System.Windows.Forms.View.Details;
+            this.endingsListView.DoubleClick += new System.EventHandler(this.EndingsListView_DoubleClick);
+            this.endingsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndingsListView_KeyDown);
+            this.endingsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListView_MouseDown);
+            // 
+            // endingIDColumnHeader
+            // 
+            this.endingIDColumnHeader.Text = "Ending ID";
+            this.endingIDColumnHeader.Width = 300;
             // 
             // ModViewerTabControl
             // 
@@ -1381,8 +1403,6 @@
         private System.Windows.Forms.FolderBrowserDialog saveToFolderBrowserDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        public System.Windows.Forms.ListBox legaciesListBox;
-        public System.Windows.Forms.ListBox endingsListBox;
         public System.Windows.Forms.ListBox verbsListBox;
         private System.Windows.Forms.ToolStripMenuItem newAspectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newElementToolStripMenuItem;
@@ -1413,5 +1433,9 @@
         public System.Windows.Forms.ListView recipesListView;
         private System.Windows.Forms.ColumnHeader deckIDColumnHeader;
         public System.Windows.Forms.ListView decksListView;
+        public System.Windows.Forms.ListView legaciesListView;
+        private System.Windows.Forms.ColumnHeader legacyIDColumnHeader;
+        public System.Windows.Forms.ListView endingsListView;
+        private System.Windows.Forms.ColumnHeader endingIDColumnHeader;
     }
 }

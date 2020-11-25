@@ -401,13 +401,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.legaciesListBox.Items.Contains(deserializedLegacy.id))
+                    if (SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                     {
                         MessageBox.Show("Legacy already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.legaciesListBox.Items.Add(deserializedLegacy.id);
+                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode() });
                     }
                     SelectedModViewer.Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
                 }
@@ -425,13 +425,13 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.endingsListBox.Items.Contains(deserializedEnding.id))
+                    if (SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                     {
                         MessageBox.Show("Ending already exists, overwriting.");
                     }
                     else
                     {
-                        SelectedModViewer.endingsListBox.Items.Add(deserializedEnding.id);
+                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode() });
                     }
                     SelectedModViewer.Content.Endings[deserializedEnding.id] = deserializedEnding;
                 }
@@ -509,17 +509,17 @@ namespace CarcassSpark.ObjectViewers
                     case "Legacy":
                         Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
                         SelectedModViewer.Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
-                        if (!SelectedModViewer.legaciesListBox.Items.Contains(deserializedLegacy.id))
+                        if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                         {
-                            SelectedModViewer.legaciesListBox.Items.Add(deserializedLegacy.id);
+                            SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode() });
                         }
                         break;
                     case "Ending":
                         Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
                         SelectedModViewer.Content.Endings[deserializedEnding.id] = deserializedEnding;
-                        if (!SelectedModViewer.endingsListBox.Items.Contains(deserializedEnding.id))
+                        if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                         {
-                            SelectedModViewer.endingsListBox.Items.Add(deserializedEnding.id);
+                            SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode() });
                         }
                         break;
                     case "Verb":
