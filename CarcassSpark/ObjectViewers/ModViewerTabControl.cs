@@ -1471,6 +1471,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 aspectsListView.SelectedIndices.Clear();
+                aspectsListView.Select();
                 Point point = aspectsListView.PointToClient(Cursor.Position);
                 if (aspectsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
@@ -1484,6 +1485,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 elementsListView.SelectedIndices.Clear();
+                elementsListView.Select();
                 Point point = elementsListView.PointToClient(Cursor.Position);
                 if (elementsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
@@ -1497,6 +1499,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 recipesListView.SelectedIndices.Clear();
+                recipesListView.Select();
                 Point point = recipesListView.PointToClient(Cursor.Position);
                 if (recipesListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
@@ -1510,6 +1513,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.Button == MouseButtons.Right)
             {
                 decksListView.SelectedIndices.Clear();
+                decksListView.Select();
                 Point point = decksListView.PointToClient(Cursor.Position);
                 if (decksListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
