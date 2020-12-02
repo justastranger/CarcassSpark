@@ -129,25 +129,26 @@
             this.elementIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitter3 = new System.Windows.Forms.Splitter();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitter4 = new System.Windows.Forms.Splitter();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitter5 = new System.Windows.Forms.Splitter();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitter6 = new System.Windows.Forms.Splitter();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitter7 = new System.Windows.Forms.Splitter();
             this.recipesListView = new System.Windows.Forms.ListView();
             this.recipeIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.decksListView = new System.Windows.Forms.ListView();
             this.deckIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter4 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.legaciesListView = new System.Windows.Forms.ListView();
             this.legacyIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter5 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.endingsListView = new System.Windows.Forms.ListView();
             this.endingIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter6 = new System.Windows.Forms.Splitter();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.verbsListView = new System.Windows.Forms.ListView();
             this.verbIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter7 = new System.Windows.Forms.Splitter();
+            this.setGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -173,10 +174,11 @@
             this.exportSelectedAspectToolStripMenuItem,
             this.copyAspectJSONToClipboardToolStripMenuItem,
             this.openSelectedAspectsJSONToolStripMenuItem,
-            this.newAspectToolStripMenuItem});
+            this.newAspectToolStripMenuItem,
+            this.setGroupToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 158);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 202);
             // 
             // searchToolStripMenuItem
             // 
@@ -1039,6 +1041,31 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel4.TabIndex = 32;
             // 
+            // recipesListView
+            // 
+            this.recipesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.recipeIDColumnHeader});
+            this.recipesListView.ContextMenuStrip = this.recipeContextMenuStrip;
+            this.recipesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recipesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.recipesListView.HideSelection = false;
+            this.recipesListView.Location = new System.Drawing.Point(3, 23);
+            this.recipesListView.MultiSelect = false;
+            this.recipesListView.Name = "recipesListView";
+            this.recipesListView.Size = new System.Drawing.Size(94, 370);
+            this.recipesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.recipesListView.TabIndex = 20;
+            this.recipesListView.UseCompatibleStateImageBehavior = false;
+            this.recipesListView.View = System.Windows.Forms.View.Details;
+            this.recipesListView.DoubleClick += new System.EventHandler(this.RecipesListView_DoubleClick);
+            this.recipesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecipesListView_KeyDown);
+            this.recipesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListView_MouseDown);
+            // 
+            // recipeIDColumnHeader
+            // 
+            this.recipeIDColumnHeader.Text = "Recipe ID";
+            this.recipeIDColumnHeader.Width = 400;
+            // 
             // splitter3
             // 
             this.splitter3.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -1065,6 +1092,31 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel5.TabIndex = 34;
+            // 
+            // decksListView
+            // 
+            this.decksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.deckIDColumnHeader});
+            this.decksListView.ContextMenuStrip = this.deckContextMenuStrip;
+            this.decksListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.decksListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.decksListView.HideSelection = false;
+            this.decksListView.Location = new System.Drawing.Point(3, 23);
+            this.decksListView.MultiSelect = false;
+            this.decksListView.Name = "decksListView";
+            this.decksListView.Size = new System.Drawing.Size(94, 370);
+            this.decksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.decksListView.TabIndex = 21;
+            this.decksListView.UseCompatibleStateImageBehavior = false;
+            this.decksListView.View = System.Windows.Forms.View.Details;
+            this.decksListView.DoubleClick += new System.EventHandler(this.DecksListView_DoubleClick);
+            this.decksListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListView_KeyDown);
+            this.decksListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListView_MouseDown);
+            // 
+            // deckIDColumnHeader
+            // 
+            this.deckIDColumnHeader.Text = "Deck ID";
+            this.deckIDColumnHeader.Width = 300;
             // 
             // splitter4
             // 
@@ -1093,6 +1145,31 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel6.TabIndex = 36;
             // 
+            // legaciesListView
+            // 
+            this.legaciesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.legacyIDColumnHeader});
+            this.legaciesListView.ContextMenuStrip = this.legacyContextMenuStrip;
+            this.legaciesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.legaciesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.legaciesListView.HideSelection = false;
+            this.legaciesListView.Location = new System.Drawing.Point(3, 23);
+            this.legaciesListView.MultiSelect = false;
+            this.legaciesListView.Name = "legaciesListView";
+            this.legaciesListView.Size = new System.Drawing.Size(94, 370);
+            this.legaciesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.legaciesListView.TabIndex = 22;
+            this.legaciesListView.UseCompatibleStateImageBehavior = false;
+            this.legaciesListView.View = System.Windows.Forms.View.Details;
+            this.legaciesListView.DoubleClick += new System.EventHandler(this.LegaciesListView_DoubleClick);
+            this.legaciesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LegaciesListView_KeyDown);
+            this.legaciesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListView_MouseDown);
+            // 
+            // legacyIDColumnHeader
+            // 
+            this.legacyIDColumnHeader.Text = "Legacy ID";
+            this.legacyIDColumnHeader.Width = 300;
+            // 
             // splitter5
             // 
             this.splitter5.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -1119,6 +1196,31 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel7.TabIndex = 38;
+            // 
+            // endingsListView
+            // 
+            this.endingsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.endingIDColumnHeader});
+            this.endingsListView.ContextMenuStrip = this.endingContextMenuStrip;
+            this.endingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endingsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.endingsListView.HideSelection = false;
+            this.endingsListView.Location = new System.Drawing.Point(3, 23);
+            this.endingsListView.MultiSelect = false;
+            this.endingsListView.Name = "endingsListView";
+            this.endingsListView.Size = new System.Drawing.Size(94, 370);
+            this.endingsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.endingsListView.TabIndex = 23;
+            this.endingsListView.UseCompatibleStateImageBehavior = false;
+            this.endingsListView.View = System.Windows.Forms.View.Details;
+            this.endingsListView.DoubleClick += new System.EventHandler(this.EndingsListView_DoubleClick);
+            this.endingsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndingsListView_KeyDown);
+            this.endingsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListView_MouseDown);
+            // 
+            // endingIDColumnHeader
+            // 
+            this.endingIDColumnHeader.Text = "Ending ID";
+            this.endingIDColumnHeader.Width = 300;
             // 
             // splitter6
             // 
@@ -1147,116 +1249,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel8.TabIndex = 40;
             // 
-            // splitter7
-            // 
-            this.splitter7.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.splitter7.Location = new System.Drawing.Point(760, 0);
-            this.splitter7.Name = "splitter7";
-            this.splitter7.Size = new System.Drawing.Size(10, 422);
-            this.splitter7.TabIndex = 41;
-            this.splitter7.TabStop = false;
-            this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
-            // 
-            // recipesListView
-            // 
-            this.recipesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.recipeIDColumnHeader});
-            this.recipesListView.ContextMenuStrip = this.recipeContextMenuStrip;
-            this.recipesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recipesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.recipesListView.HideSelection = false;
-            this.recipesListView.Location = new System.Drawing.Point(3, 23);
-            this.recipesListView.MultiSelect = false;
-            this.recipesListView.Name = "recipesListView";
-            this.recipesListView.Size = new System.Drawing.Size(94, 370);
-            this.recipesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.recipesListView.TabIndex = 20;
-            this.recipesListView.UseCompatibleStateImageBehavior = false;
-            this.recipesListView.View = System.Windows.Forms.View.Details;
-            this.recipesListView.DoubleClick += new System.EventHandler(this.RecipesListView_DoubleClick);
-            this.recipesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecipesListView_KeyDown);
-            this.recipesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RecipesListView_MouseDown);
-            // 
-            // recipeIDColumnHeader
-            // 
-            this.recipeIDColumnHeader.Text = "Recipe ID";
-            this.recipeIDColumnHeader.Width = 400;
-            // 
-            // decksListView
-            // 
-            this.decksListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.deckIDColumnHeader});
-            this.decksListView.ContextMenuStrip = this.deckContextMenuStrip;
-            this.decksListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.decksListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.decksListView.HideSelection = false;
-            this.decksListView.Location = new System.Drawing.Point(3, 23);
-            this.decksListView.MultiSelect = false;
-            this.decksListView.Name = "decksListView";
-            this.decksListView.Size = new System.Drawing.Size(94, 370);
-            this.decksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.decksListView.TabIndex = 21;
-            this.decksListView.UseCompatibleStateImageBehavior = false;
-            this.decksListView.View = System.Windows.Forms.View.Details;
-            this.decksListView.DoubleClick += new System.EventHandler(this.DecksListView_DoubleClick);
-            this.decksListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DecksListView_KeyDown);
-            this.decksListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DecksListView_MouseDown);
-            // 
-            // deckIDColumnHeader
-            // 
-            this.deckIDColumnHeader.Text = "Deck ID";
-            this.deckIDColumnHeader.Width = 300;
-            // 
-            // legaciesListView
-            // 
-            this.legaciesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.legacyIDColumnHeader});
-            this.legaciesListView.ContextMenuStrip = this.legacyContextMenuStrip;
-            this.legaciesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.legaciesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.legaciesListView.HideSelection = false;
-            this.legaciesListView.Location = new System.Drawing.Point(3, 23);
-            this.legaciesListView.MultiSelect = false;
-            this.legaciesListView.Name = "legaciesListView";
-            this.legaciesListView.Size = new System.Drawing.Size(94, 370);
-            this.legaciesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.legaciesListView.TabIndex = 22;
-            this.legaciesListView.UseCompatibleStateImageBehavior = false;
-            this.legaciesListView.View = System.Windows.Forms.View.Details;
-            this.legaciesListView.DoubleClick += new System.EventHandler(this.LegaciesListView_DoubleClick);
-            this.legaciesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LegaciesListView_KeyDown);
-            this.legaciesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LegaciesListView_MouseDown);
-            // 
-            // legacyIDColumnHeader
-            // 
-            this.legacyIDColumnHeader.Text = "Legacy ID";
-            this.legacyIDColumnHeader.Width = 300;
-            // 
-            // endingsListView
-            // 
-            this.endingsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.endingIDColumnHeader});
-            this.endingsListView.ContextMenuStrip = this.endingContextMenuStrip;
-            this.endingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endingsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.endingsListView.HideSelection = false;
-            this.endingsListView.Location = new System.Drawing.Point(3, 23);
-            this.endingsListView.MultiSelect = false;
-            this.endingsListView.Name = "endingsListView";
-            this.endingsListView.Size = new System.Drawing.Size(94, 370);
-            this.endingsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.endingsListView.TabIndex = 23;
-            this.endingsListView.UseCompatibleStateImageBehavior = false;
-            this.endingsListView.View = System.Windows.Forms.View.Details;
-            this.endingsListView.DoubleClick += new System.EventHandler(this.EndingsListView_DoubleClick);
-            this.endingsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndingsListView_KeyDown);
-            this.endingsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EndingsListView_MouseDown);
-            // 
-            // endingIDColumnHeader
-            // 
-            this.endingIDColumnHeader.Text = "Ending ID";
-            this.endingIDColumnHeader.Width = 300;
-            // 
             // verbsListView
             // 
             this.verbsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1281,6 +1273,23 @@
             // 
             this.verbIDColumnHeader.Text = "Verb ID";
             this.verbIDColumnHeader.Width = 300;
+            // 
+            // splitter7
+            // 
+            this.splitter7.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter7.Location = new System.Drawing.Point(760, 0);
+            this.splitter7.Name = "splitter7";
+            this.splitter7.Size = new System.Drawing.Size(10, 422);
+            this.splitter7.TabIndex = 41;
+            this.splitter7.TabStop = false;
+            this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
+            // 
+            // setGroupToolStripMenuItem
+            // 
+            this.setGroupToolStripMenuItem.Name = "setGroupToolStripMenuItem";
+            this.setGroupToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.setGroupToolStripMenuItem.Text = "Set Group";
+            this.setGroupToolStripMenuItem.Click += new System.EventHandler(this.SetGroupToolStripMenuItem_Click);
             // 
             // ModViewerTabControl
             // 
@@ -1449,5 +1458,6 @@
         private System.Windows.Forms.ColumnHeader endingIDColumnHeader;
         public System.Windows.Forms.ListView verbsListView;
         private System.Windows.Forms.ColumnHeader verbIDColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem setGroupToolStripMenuItem;
     }
 }

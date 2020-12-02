@@ -280,6 +280,7 @@ namespace CarcassSpark.ObjectViewers
         public void LoadFile(FileStream file, string filePath)
         {
             string fileText = new StreamReader(file).ReadToEnd();
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
             if (fileText != "" && fileText != null)
             {
                 JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
@@ -310,6 +311,16 @@ namespace CarcassSpark.ObjectViewers
                                         Tag = deserializedAspect.GetHashCode()
                                     };
                                     aspectsListView.Items.Add(aspectLVI);
+                                    if (aspectsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        aspectsListView.Groups.Add(listViewGroup);
+                                        aspectLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        aspectLVI.Group = aspectsListView.Groups[fileName];
+                                    }
                                 }
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
@@ -323,6 +334,16 @@ namespace CarcassSpark.ObjectViewers
                                         Tag = deserializedAspect.GetHashCode()
                                     };
                                     aspectsListView.Items.Add(aspectLVI);
+                                    if (aspectsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        aspectsListView.Groups.Add(listViewGroup);
+                                        aspectLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        aspectLVI.Group = aspectsListView.Groups[fileName];
+                                    }
                                 }
                             }
                             else
@@ -336,6 +357,16 @@ namespace CarcassSpark.ObjectViewers
                                         Tag = deserializedElement.GetHashCode()
                                     };
                                     elementsListView.Items.Add(elementLVI);
+                                    if (elementsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        elementsListView.Groups.Add(listViewGroup);
+                                        elementLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        elementLVI.Group = elementsListView.Groups[fileName];
+                                    }
                                 }
                             }
                         }
@@ -352,6 +383,16 @@ namespace CarcassSpark.ObjectViewers
                                     Tag = deserializedRecipe.GetHashCode()
                                 };
                                 recipesListView.Items.Add(recipeLVI);
+                                if (recipesListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    recipesListView.Groups.Add(listViewGroup);
+                                    recipeLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    recipeLVI.Group = recipesListView.Groups[fileName];
+                                }
                             }
                         }
                         return;
@@ -367,6 +408,16 @@ namespace CarcassSpark.ObjectViewers
                                     Tag = deserializedDeck.GetHashCode()
                                 };
                                 decksListView.Items.Add(deckLVI);
+                                if (decksListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    decksListView.Groups.Add(listViewGroup);
+                                    deckLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    deckLVI.Group = decksListView.Groups[fileName];
+                                }
                             }
                         }
                         return;
@@ -382,6 +433,16 @@ namespace CarcassSpark.ObjectViewers
                                     Tag = deserializedLegacy.GetHashCode()
                                 };
                                 legaciesListView.Items.Add(legacyLVI);
+                                if (legaciesListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    legaciesListView.Groups.Add(listViewGroup);
+                                    legacyLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    legacyLVI.Group = legaciesListView.Groups[fileName];
+                                }
                             }
                         }
                         return;
@@ -397,6 +458,16 @@ namespace CarcassSpark.ObjectViewers
                                     Tag = deserializedEnding.GetHashCode()
                                 };
                                 endingsListView.Items.Add(endingLVI);
+                                if (endingsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    endingsListView.Groups.Add(listViewGroup);
+                                    endingLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    endingLVI.Group = endingsListView.Groups[fileName];
+                                }
                             }
                         }
                         return;
@@ -412,6 +483,16 @@ namespace CarcassSpark.ObjectViewers
                                     Tag = deserializedVerb.GetHashCode()
                                 };
                                 verbsListView.Items.Add(verbLVI);
+                                if (verbsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    verbsListView.Groups.Add(listViewGroup);
+                                    verbLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    verbLVI.Group = verbsListView.Groups[fileName];
+                                }
                             }
                         }
                         return;
@@ -2275,6 +2356,13 @@ namespace CarcassSpark.ObjectViewers
                     rv.Show();
                 }
             }
+        }
+
+        private void SetGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = aspectsListView.SelectedItems[0];
+            // string id = aspectsListView.SelectedItems[0].Text;
         }
 
         private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
