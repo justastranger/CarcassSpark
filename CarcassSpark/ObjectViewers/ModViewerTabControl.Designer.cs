@@ -423,7 +423,7 @@
             this.setGroupElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.setGroupElementToolStripMenuItem.Text = "Set Group";
-            this.setGroupElementToolStripMenuItem.Click += new System.EventHandler(this.setGroupElementToolStripMenuItem_Click);
+            this.setGroupElementToolStripMenuItem.Click += new System.EventHandler(this.SetGroupElementToolStripMenuItem_Click);
             // 
             // recipeContextMenuStrip
             // 
@@ -515,7 +515,7 @@
             this.setGroupRecipeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.setGroupRecipeToolStripMenuItem.Text = "Set Group";
-            this.setGroupRecipeToolStripMenuItem.Click += new System.EventHandler(this.setGroupRecipeToolStripMenuItem_Click);
+            this.setGroupRecipeToolStripMenuItem.Click += new System.EventHandler(this.SetGroupRecipeToolStripMenuItem_Click);
             // 
             // deckContextMenuStrip
             // 
@@ -599,7 +599,7 @@
             this.setGroupDeckToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.setGroupDeckToolStripMenuItem.Text = "Set Group";
-            this.setGroupDeckToolStripMenuItem.Click += new System.EventHandler(this.setGroupDeckToolStripMenuItem_Click);
+            this.setGroupDeckToolStripMenuItem.Click += new System.EventHandler(this.SetGroupDeckToolStripMenuItem_Click);
             // 
             // legacyContextMenuStrip
             // 
@@ -1334,7 +1334,7 @@
             this.setGroupLegacyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.setGroupLegacyToolStripMenuItem.Text = "Set Group";
-            this.setGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.setGroupLegacyToolStripMenuItem_Click);
+            this.setGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.SetGroupLegacyToolStripMenuItem_Click);
             // 
             // setGroupEndingToolStripMenuItem
             // 
@@ -1342,7 +1342,7 @@
             this.setGroupEndingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.setGroupEndingToolStripMenuItem.Text = "Set Group";
-            this.setGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.setGroupEndingToolStripMenuItem_Click);
+            this.setGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.SetGroupEndingToolStripMenuItem_Click);
             // 
             // setGroupVerbToolStripMenuItem
             // 
@@ -1350,7 +1350,7 @@
             this.setGroupVerbToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.setGroupVerbToolStripMenuItem.Text = "Set Group";
-            this.setGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.setGroupVerbToolStripMenuItem_Click);
+            this.setGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.SetGroupVerbToolStripMenuItem_Click);
             // 
             // ModViewerTabControl
             // 

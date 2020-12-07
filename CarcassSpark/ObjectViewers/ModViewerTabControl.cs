@@ -2483,7 +2483,7 @@ namespace CarcassSpark.ObjectViewers
             // string id = aspectsListView.SelectedItems[0].Text;
         }
 
-        private void setGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = elementsListView.SelectedItems[0];
@@ -2514,7 +2514,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = recipesListView.SelectedItems[0];
@@ -2545,7 +2545,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = decksListView.SelectedItems[0];
@@ -2576,7 +2576,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = legaciesListView.SelectedItems[0];
@@ -2607,7 +2607,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = endingsListView.SelectedItems[0];
@@ -2638,7 +2638,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = verbsListView.SelectedItems[0];
