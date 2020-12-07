@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,12 @@ namespace CarcassSpark.Tools
         {
             if (group == "" || group == null)
             {
+                MessageBox.Show("Group Name can not be blank.");
+                return;
+            }
+            if (group.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            {
+                MessageBox.Show("Invalid characters in group name.");
                 return;
             }
             DialogResult = DialogResult.OK;
