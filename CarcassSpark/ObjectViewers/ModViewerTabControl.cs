@@ -2196,7 +2196,7 @@ namespace CarcassSpark.ObjectViewers
         public void RecipesList_Add(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result.Copy();
-            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            recipesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
         }
 
         public void DecksList_Add(object sender, Deck result)
