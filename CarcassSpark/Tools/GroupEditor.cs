@@ -24,7 +24,7 @@ namespace CarcassSpark.Tools
 
         private void GroupComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            group = groupComboBox.SelectedValue as string;
+            group = groupComboBox.Text;
         }
 
         private void GroupComboBox_TextUpdate(object sender, EventArgs e)
@@ -34,6 +34,10 @@ namespace CarcassSpark.Tools
 
         private void okBbutton_Click(object sender, EventArgs e)
         {
+            if (group == "" || group == null)
+            {
+                return;
+            }
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -41,6 +45,11 @@ namespace CarcassSpark.Tools
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            group = groupComboBox.Text;
         }
     }
 }

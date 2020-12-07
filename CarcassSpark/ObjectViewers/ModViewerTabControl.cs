@@ -565,141 +565,233 @@ namespace CarcassSpark.ObjectViewers
         public void SaveMod(string location)
         {
             CreateDirectories(location);
-            if (aspectsListView.Items.Count > 0)
+            if (Content.Aspects.Count > 0)
             {
-                JObject aspects = new JObject
+                foreach (ListViewGroup group in aspectsListView.Groups)
                 {
-                    ["elements"] = JArray.FromObject(Content.Aspects.Values)
-                };
-                string aspectsJson = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/aspects.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(aspectsJson);
+                    string fileName = group.Name;
+                    List<Aspect> aspectsForGroup = new List<Aspect>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        aspectsForGroup.Add(Content.Aspects[item.Text]);
+                    }
+                    if (aspectsForGroup.Count > 0)
+                    {
+                        JObject aspects = new JObject
+                        {
+                            ["elements"] = JArray.FromObject(aspectsForGroup)
+                        };
+                        string serializedAspects = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedAspects);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
-            else
+            if (Content.Elements.Count > 0)
             {
-                if (File.Exists(location + "/content/aspects.json"))
+                foreach (ListViewGroup group in elementsListView.Groups)
                 {
-                    File.Delete(location + "/content/aspects.json");
+                    string fileName = group.Name;
+                    List<Element> elementsForGroup = new List<Element>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        elementsForGroup.Add(Content.Elements[item.Text]);
+                    }
+                    if (elementsForGroup.Count > 0)
+                    {
+                        JObject elements = new JObject
+                        {
+                            ["elements"] = JArray.FromObject(elementsForGroup)
+                        };
+                        string serializedElements = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedElements);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
-            if (elementsListView.Items.Count > 0)
+            if (Content.Recipes.Count > 0)
             {
-                JObject elements = new JObject
+                foreach (ListViewGroup group in recipesListView.Groups)
                 {
-                    ["elements"] = JArray.FromObject(Content.Elements.Values)
-                };
-                string elementsJson = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/elements.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(elementsJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/elements.json"))
-                {
-                    File.Delete(location + "/content/elements.json");
-                }
-            }
-            if (recipesListView.Items.Count > 0)
-            {
-                JObject recipes = new JObject
-                {
-                    ["recipes"] = JArray.FromObject(Content.Recipes.Values)
-                };
-                string recipesJson = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/recipes.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(recipesJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/recipes.json"))
-                {
-                    File.Delete(location + "/content/recipes.json");
+                    string fileName = group.Name;
+                    List<Recipe> recipesForGroup = new List<Recipe>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        recipesForGroup.Add(Content.Recipes[item.Text]);
+                    }
+                    if (recipesForGroup.Count > 0)
+                    {
+                        JObject recipes = new JObject
+                        {
+                            ["recipes"] = JArray.FromObject(recipesForGroup)
+                        };
+                        string serializedRecipes = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedRecipes);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
             if (decksListView.Items.Count > 0)
             {
-                JObject decks = new JObject
+                foreach (ListViewGroup group in decksListView.Groups)
                 {
-                    ["decks"] = JArray.FromObject(Content.Decks.Values)
-                };
-                string decksJson = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/decks.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(decksJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/decks.json"))
-                {
-                    File.Delete(location + "/content/decks.json");
+                    string fileName = group.Name;
+                    List<Deck> decksForGroup = new List<Deck>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        decksForGroup.Add(Content.Decks[item.Text]);
+                    }
+                    if (decksForGroup.Count > 0)
+                    {
+                        JObject decks = new JObject
+                        {
+                            ["decks"] = JArray.FromObject(decksForGroup)
+                        };
+                        string serializedDecks = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedDecks);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
             if (legaciesListView.Items.Count > 0)
             {
-                JObject legacies = new JObject
+                foreach (ListViewGroup group in legaciesListView.Groups)
                 {
-                    ["legacies"] = JArray.FromObject(Content.Legacies.Values)
-                };
-                string legaciesJson = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/legacies.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(legaciesJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/legacies.json"))
-                {
-                    File.Delete(location + "/content/legacies.json");
+                    string fileName = group.Name;
+                    List<Legacy> legaciesForGroup = new List<Legacy>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        legaciesForGroup.Add(Content.Legacies[item.Text]);
+                    }
+                    if (legaciesForGroup.Count > 0)
+                    {
+                        JObject legacies = new JObject
+                        {
+                            ["legacies"] = JArray.FromObject(legaciesForGroup)
+                        };
+                        string serializedLegacies = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedLegacies);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
             if (endingsListView.Items.Count > 0)
             {
-                JObject endings = new JObject
+                foreach (ListViewGroup group in endingsListView.Groups)
                 {
-                    ["endings"] = JArray.FromObject(Content.Endings.Values)
-                };
-                string endingsJson = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/endings.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(endingsJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/endings.json"))
-                {
-                    File.Delete(location + "/content/endings.json");
+                    string fileName = group.Name;
+                    List<Ending> endingsForGroup = new List<Ending>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        endingsForGroup.Add(Content.Endings[item.Text]);
+                    }
+                    if (endingsForGroup.Count > 0)
+                    {
+                        JObject endings = new JObject
+                        {
+                            ["endings"] = JArray.FromObject(endingsForGroup)
+                        };
+                        string serializedLegacies = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedLegacies);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
             if (verbsListView.Items.Count > 0)
             {
-                JObject verbs = new JObject
+                foreach (ListViewGroup group in verbsListView.Groups)
                 {
-                    ["verbs"] = JArray.FromObject(Content.Verbs.Values)
-                };
-                string verbsJson = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/verbs.json", FileMode.Create))))
-                {
-                    jtw.WriteRaw(verbsJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/verbs.json"))
-                {
-                    File.Delete(location + "/content/verbs.json");
+                    string fileName = group.Name;
+                    List<Verb> verbsForGroup = new List<Verb>();
+                    foreach (ListViewItem item in group.Items)
+                    {
+                        // TODO switch below to using Tags
+                        verbsForGroup.Add(Content.Verbs[item.Text]);
+                    }
+                    if (verbsForGroup.Count > 0)
+                    {
+                        JObject verbs = new JObject
+                        {
+                            ["verbs"] = JArray.FromObject(verbsForGroup)
+                        };
+                        string serializedLegacies = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
+                        {
+                            jtw.WriteRaw(serializedLegacies);
+                        }
+                    }
+                    else
+                    {
+                        if (File.Exists(location + "/content/" + fileName + ".json"))
+                        {
+                            File.Delete(location + "/content/" + fileName + ".json");
+                        }
+                    }
                 }
             }
             if (Content.Cultures.Count > 0)
             {
+                // TODO fix this, I'm *pretty* sure it doesn't save cultures correctly. It looks like they need to be saved individually, in subfolders, with a blank json file named after the culture's ID?
                 JObject cultures = new JObject
                 {
                     ["cultures"] = JArray.FromObject(Content.Cultures.Values)
@@ -2185,43 +2277,43 @@ namespace CarcassSpark.ObjectViewers
         public void AspectsList_Add(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result.Copy();
-            aspectsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            aspectsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() , Group = aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects") });
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
             Content.Elements[result.id] = result.Copy();
-            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements") });
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result.Copy();
-            recipesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            recipesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes") });
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
             Content.Decks[result.id] = result.Copy();
-            decksListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            decksListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks") });
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
             Content.Legacies[result.id] = result.Copy();
-            legaciesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            legaciesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies") });
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
             Content.Endings[result.id] = result.Copy();
-            endingsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            endingsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings") });
         }
 
         public void VerbsList_Add(object sender, Verb result)
         {
             Content.Verbs[result.id] = result.Copy();
-            verbsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() });
+            verbsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs") });
         }
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)

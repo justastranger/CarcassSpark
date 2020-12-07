@@ -40,6 +40,7 @@
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(426, 21);
             this.groupComboBox.TabIndex = 0;
+            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
             this.groupComboBox.TextUpdate += new System.EventHandler(this.GroupComboBox_TextUpdate);
             this.groupComboBox.SelectedValueChanged += new System.EventHandler(this.GroupComboBox_SelectedValueChanged);
             // 
