@@ -249,6 +249,12 @@
     <Compile Include="Tools\CulturesViewer.Designer.cs">
       <DependentUpon>CulturesViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\GroupEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\GroupEditor.Designer.cs">
+      <DependentUpon>GroupEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\JsonCleaner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\CulturesViewer.resx">
       <DependentUpon>CulturesViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\GroupEditor.resx">
+      <DependentUpon>GroupEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\JsonCleaner.resx">
       <DependentUpon>JsonCleaner.cs</DependentUpon>

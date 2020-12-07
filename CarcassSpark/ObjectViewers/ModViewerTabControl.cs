@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Collections;
 using MindFusion.Json;
+using System.Windows.Forms.VisualStyles;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -2358,11 +2359,222 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void SetGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = aspectsListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in aspectsListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (aspectsListView.Groups[newGroup] != null)
+                    {
+                        aspectsListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        aspectsListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
             // string id = aspectsListView.SelectedItems[0].Text;
+        }
+
+        private void setGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = elementsListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in elementsListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (elementsListView.Groups[newGroup] != null)
+                    {
+                        elementsListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        elementsListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void setGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = recipesListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in recipesListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (recipesListView.Groups[newGroup] != null)
+                    {
+                        recipesListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        recipesListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void setGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (decksListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = decksListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in decksListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    decksListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (decksListView.Groups[newGroup] != null)
+                    {
+                        decksListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        decksListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void setGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (legaciesListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = legaciesListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in legaciesListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (legaciesListView.Groups[newGroup] != null)
+                    {
+                        legaciesListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        legaciesListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void setGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (endingsListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = endingsListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in endingsListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (endingsListView.Groups[newGroup] != null)
+                    {
+                        endingsListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        endingsListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void setGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (verbsListView.SelectedItems.Count < 1) return;
+            ListViewItem selectedItem = verbsListView.SelectedItems[0];
+            string currentGroup = selectedItem.Group?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (ListViewGroup lvg in verbsListView.Groups)
+            {
+                groups.Add(lvg.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newGroup = ge.group;
+                if (newGroup != currentGroup)
+                {
+                    verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (verbsListView.Groups[newGroup] != null)
+                    {
+                        verbsListView.Groups[newGroup].Items.Add(selectedItem);
+                    }
+                    else
+                    {
+                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                        verbsListView.Groups.Add(listViewGroup);
+                        listViewGroup.Items.Add(selectedItem);
+                    }
+                }
+            }
         }
 
         private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
