@@ -90,7 +90,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 aspectsListView.Items.Clear();
                 Content.Aspects.Clear();
-                aspectsListView.Items.Clear();
+                elementsListView.Items.Clear();
                 Content.Elements.Clear();
                 recipesListView.Items.Clear();
                 Content.Recipes.Clear();
