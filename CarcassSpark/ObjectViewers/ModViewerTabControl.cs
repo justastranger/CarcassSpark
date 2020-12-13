@@ -1586,7 +1586,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!(aspectsListView.SelectedItems[0] is ListViewItem listViewItem)) return;
+            if (aspectsListView.SelectedItems.Count < 1) return;
+            ListViewItem listViewItem = aspectsListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 aspectsListView.Items.Remove(listViewItem);
@@ -1597,66 +1598,66 @@ namespace CarcassSpark.ObjectViewers
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            string id = elementsListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem listViewItem = elementsListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                elementsListView.Items.RemoveByKey(id);
-                Content.Elements.Remove(id);
+                elementsListView.Items.Remove(listViewItem);
+                Content.Elements.Remove(listViewItem.Text);
             }
         }
 
         private void DeleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            string id = recipesListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem listViewItem = recipesListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                recipesListView.Items.RemoveByKey(id);
-                Content.Recipes.Remove(id);
+                recipesListView.Items.Remove(listViewItem);
+                Content.Recipes.Remove(listViewItem.Text);
             }
         }
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            string id = decksListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem listViewItem = decksListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                decksListView.Items.RemoveByKey(id);
-                Content.Decks.Remove(id);
+                decksListView.Items.Remove(listViewItem);
+                Content.Decks.Remove(listViewItem.Text);
             }
         }
 
         private void DeleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            string id = legaciesListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem listViewItem = legaciesListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                legaciesListView.Items.RemoveByKey(id);
-                Content.Legacies.Remove(id);
+                legaciesListView.Items.Remove(listViewItem);
+                Content.Legacies.Remove(listViewItem.Text);
             }
         }
 
         private void DeleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            string id = endingsListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem ListViewItem = endingsListView.SelectedItems[0];
+            if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
             {
-                endingsListView.Items.RemoveByKey(id);
-                Content.Endings.Remove(id);
+                endingsListView.Items.Remove(ListViewItem);
+                Content.Endings.Remove(ListViewItem.Text);
             }
         }
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            string id = verbsListView.SelectedItems[0].Text;
-            if (ConfirmDelete(id) == DialogResult.Yes)
+            ListViewItem ListViewItem = verbsListView.SelectedItems[0];
+            if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
             {
-                verbsListView.Items.RemoveByKey(id);
-                Content.Verbs.Remove(id);
+                verbsListView.Items.Remove(ListViewItem);
+                Content.Verbs.Remove(ListViewItem.Text);
             }
         }
 
