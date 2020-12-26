@@ -545,9 +545,11 @@ namespace CarcassSpark.ObjectViewers
                 ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.GetHashCode(), Group = SelectedModViewer.elementsListView.Groups["elements"] };
                 SelectedModViewer.elementsListView.Items.Add(baseSummon);
                 SelectedModViewer.Content.Elements.Add(sc.baseSummon.id, sc.baseSummon.Copy());
+                
                 ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.GetHashCode(), Group = SelectedModViewer.elementsListView.Groups["elements"] };
                 SelectedModViewer.elementsListView.Items.Add(preSummon);
                 SelectedModViewer.Content.Elements.Add(sc.preSummon.id, sc.preSummon.Copy());
+                
                 if (SelectedModViewer.elementsListView.Groups["elements"] == null)
                 {
                     ListViewGroup elements = new ListViewGroup("elements", "elements");
@@ -558,9 +560,11 @@ namespace CarcassSpark.ObjectViewers
                 ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = sc.startSummon.GetHashCode(), Group = SelectedModViewer.recipesListView.Groups["recipes"] };
                 SelectedModViewer.recipesListView.Items.Add(startSummon);
                 SelectedModViewer.Content.Recipes.Add(sc.startSummon.id, sc.startSummon.Copy());
+
                 ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = sc.succeedSummon.GetHashCode() };
                 SelectedModViewer.recipesListView.Items.Add(succeedSummon);
                 SelectedModViewer.Content.Recipes.Add(sc.succeedSummon.id, sc.succeedSummon.Copy());
+                
                 if (SelectedModViewer.recipesListView.Groups["recipes"] == null)
                 {
                     ListViewGroup recipes = new ListViewGroup("recipes", "recipes");
