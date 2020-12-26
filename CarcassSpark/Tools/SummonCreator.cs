@@ -69,7 +69,8 @@ namespace CarcassSpark.Tools
                 linked = new List<RecipeLink>
                 {
                     new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string, string>)null, null)
-                }
+                },
+                craftable = true
             };
 
             RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.GENERATOR);
