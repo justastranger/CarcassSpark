@@ -12,15 +12,22 @@ using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
+    public enum RecipeType
+    {
+        DEFAULT,
+        NESTED,
+        GENERATOR
+    }
+
     public partial class RecipeViewer : Form
     {
         public Recipe displayedRecipe;
         bool editing;
         event EventHandler<Recipe> SuccessCallback;
 
-        Dictionary<string, RecipeLink> recipeLinks = new Dictionary<string, RecipeLink>();
-        Dictionary<string, RecipeLink> alternativerecipeLinks = new Dictionary<string, RecipeLink>();
-        Dictionary<string, Mutation> mutations = new Dictionary<string, Mutation>();
+        readonly Dictionary<string, RecipeLink> recipeLinks = new Dictionary<string, RecipeLink>();
+        readonly Dictionary<string, RecipeLink> alternativerecipeLinks = new Dictionary<string, RecipeLink>();
+        readonly Dictionary<string, Mutation> mutations = new Dictionary<string, Mutation>();
 
         public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback)
         {
@@ -35,6 +42,26 @@ namespace CarcassSpark.ObjectViewers
                 this.SuccessCallback += SuccessCallback;
             }
             else SetEditingMode(false);
+        }
+
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, RecipeType recipeViewerType)
+        {
+            InitializeComponent();
+            displayedRecipe = recipe;
+
+            FillValues(recipe);
+
+            if (SuccessCallback != null)
+            {
+                SetEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
+
+            SetViewerType(recipeViewerType);
         }
 
         void SetEditingMode(bool editing)
@@ -112,6 +139,24 @@ namespace CarcassSpark.ObjectViewers
             if (showInternalDeckButton.Text == "New Deck")
             {
                 showInternalDeckButton.Enabled = editing;
+            }
+        }
+
+        void SetViewerType(RecipeType recipeViewerType)
+        {
+            switch (recipeViewerType)
+            {
+                case RecipeType.GENERATOR:
+                    idLabel.ForeColor = Color.Red;
+                    labelLabel.ForeColor = Color.Red;
+                    startDescriptionLabel.ForeColor = Color.Red;
+                    descriptionLabel.ForeColor = Color.Red;
+                    requirementsLabel.ForeColor = Color.Red;
+                    break;
+                case RecipeType.NESTED:
+                    break;
+                case RecipeType.DEFAULT:
+                    break;
             }
         }
 
@@ -653,7 +698,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if ((displayedRecipe.slots == null || displayedRecipe.slots.Count == 0) && editing)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.RECIPE);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };
@@ -662,7 +707,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else if (displayedRecipe.slots?.Count == 1)
             {
-                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0].Copy(), editing, SlotViewer.SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0].Copy(), editing, SlotType.RECIPE);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };

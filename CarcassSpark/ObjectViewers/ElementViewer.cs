@@ -11,6 +11,12 @@ using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectViewers
 {
+    public enum ElementType
+    {
+        ELEMENT,
+        ASPECT,
+        GENERATOR
+    }
     public partial class ElementViewer : Form
     {
 
@@ -33,6 +39,23 @@ namespace CarcassSpark.ObjectViewers
             {
                 SetEditingMode(false);
             }
+        }
+
+        public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ElementType elementType)
+        {
+            InitializeComponent();
+            displayedElement = element;
+            FillValues(element);
+            if (SuccessCallback != null)
+            {
+                SetEditingMode(true);
+                this.SuccessCallback += SuccessCallback;
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
+            SetType(elementType);
         }
 
         void SetEditingMode(bool editing)
@@ -64,6 +87,24 @@ namespace CarcassSpark.ObjectViewers
             setAsRemoveToolStripMenuItem.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
+        }
+
+        void SetType(ElementType elementType)
+        {
+            switch (elementType)
+            {
+                case ElementType.ELEMENT:
+                    break;
+                case ElementType.GENERATOR:
+                    idLabel.ForeColor = Color.Red;
+                    labelLabel.ForeColor = Color.Red;
+                    descriptionLabel.ForeColor = Color.Red;
+                    decayToLabel.ForeColor = Color.Red;
+                    aspectsLabel.ForeColor = Color.Red;
+                    break;
+                case ElementType.ASPECT:
+                    break;
+            }
         }
 
         private void FillValues(Element element)
