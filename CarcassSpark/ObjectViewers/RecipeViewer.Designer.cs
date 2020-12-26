@@ -755,6 +755,11 @@
             // 
             this.maxExecutionsNumericUpDown.Dock = System.Windows.Forms.DockStyle.Right;
             this.maxExecutionsNumericUpDown.Location = new System.Drawing.Point(88, 0);
+            this.maxExecutionsNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.maxExecutionsNumericUpDown.Name = "maxExecutionsNumericUpDown";
             this.maxExecutionsNumericUpDown.Size = new System.Drawing.Size(164, 20);
             this.maxExecutionsNumericUpDown.TabIndex = 0;
@@ -776,6 +781,11 @@
             // 
             this.warmupNumericUpDown.Dock = System.Windows.Forms.DockStyle.Right;
             this.warmupNumericUpDown.Location = new System.Drawing.Point(53, 0);
+            this.warmupNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.warmupNumericUpDown.Name = "warmupNumericUpDown";
             this.warmupNumericUpDown.Size = new System.Drawing.Size(199, 20);
             this.warmupNumericUpDown.TabIndex = 0;
