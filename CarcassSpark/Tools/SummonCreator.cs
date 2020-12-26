@@ -142,7 +142,7 @@ namespace CarcassSpark.Tools
         private void CreateBaseElementButton_click(object sender, EventArgs e)
         {
             // Required to be filled are: A "summoned" aspect, a decayTo
-            MessageBox.Show("This generator makes some assumptions, like tat you've filled in the decayTo property and that the base summon has 1 'summoned' aspect.", "Required Values");
+            MessageBox.Show("This generator makes some assumptions, like that you've filled in the decayTo property and that the base summon has 1 'summoned' aspect.", "Required Values");
             ElementViewer ev = new ElementViewer(new Element(), BaseElement_Assign);
             ev.Show();
         }
