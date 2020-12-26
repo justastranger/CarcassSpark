@@ -2468,7 +2468,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (aspectsListView.Groups[newGroup] != null)
                     {
                         aspectsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2500,7 +2500,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (elementsListView.Groups[newGroup] != null)
                     {
                         elementsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2531,7 +2531,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (recipesListView.Groups[newGroup] != null)
                     {
                         recipesListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2562,7 +2562,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    decksListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") decksListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (decksListView.Groups[newGroup] != null)
                     {
                         decksListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2593,7 +2593,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (legaciesListView.Groups[newGroup] != null)
                     {
                         legaciesListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2624,7 +2624,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (endingsListView.Groups[newGroup] != null)
                     {
                         endingsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2655,7 +2655,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "") verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (verbsListView.Groups[newGroup] != null)
                     {
                         verbsListView.Groups[newGroup].Items.Add(selectedItem);
