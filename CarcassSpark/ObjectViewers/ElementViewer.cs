@@ -208,7 +208,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (slotsListView.SelectedItems == null) return;
             string slotId = slotsListView.SelectedItems[0].Text.ToString();
-            SlotViewer sv = new SlotViewer(slots[slotId], editing, SlotViewer.SlotType.ELEMENT);
+            SlotViewer sv = new SlotViewer(slots[slotId], editing, SlotType.ELEMENT);
             sv.Show();
         }
 
@@ -408,7 +408,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AddSlotButton_Click(object sender, EventArgs e)
         {
-            SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.ELEMENT);
+            SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.ELEMENT);
             DialogResult dr = sv.ShowDialog();
             if (dr == DialogResult.OK)
             {

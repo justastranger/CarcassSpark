@@ -90,7 +90,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedVerb.slot == null)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true, SlotViewer.SlotType.VERB);
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.VERB);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedVerb.slot = sv.displayedSlot;
@@ -100,7 +100,7 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), editing, SlotViewer.SlotType.VERB);
+                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), editing, SlotType.VERB);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
                     displayedVerb.slot = sv.displayedSlot;
