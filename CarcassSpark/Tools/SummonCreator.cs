@@ -106,12 +106,10 @@ namespace CarcassSpark.Tools
                 switch (kvp.Key)
                 {
                     case "summoned":
-                        //tmpAspects.Remove(kvp.Key);
                         newAspects.Add("manifesting", 1);
                         break;
 
                     case "follower":
-                        //tmpAspects.Remove(kvp.Key);
                         break;
 
                     default:
@@ -119,7 +117,7 @@ namespace CarcassSpark.Tools
                         break;
                 }
             }
-            Dictionary<string, List<XTrigger>> tempXTriggers = baseSummon.xtriggers;
+            Dictionary<string, List<XTrigger>> tempXTriggers = baseSummon.xtriggers ?? new Dictionary<string, List<XTrigger>>();
             tempXTriggers.Add("killmanifesting", new List<XTrigger> { new XTrigger(baseSummon.decayTo) });
             preSummon = new Element
             {
@@ -143,6 +141,8 @@ namespace CarcassSpark.Tools
 
         private void CreateBaseElementButton_click(object sender, EventArgs e)
         {
+            // Required to be filled are: A "summoned" aspect, a decayTo
+            MessageBox.Show("This generator makes some assumptions, like tat you've filled in the decayTo property and that the base summon has 1 'summoned' aspect.", "Required Values");
             ElementViewer ev = new ElementViewer(new Element(), BaseElement_Assign);
             ev.Show();
         }
