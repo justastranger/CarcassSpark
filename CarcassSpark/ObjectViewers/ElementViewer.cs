@@ -581,7 +581,25 @@ namespace CarcassSpark.ObjectViewers
         {
             if (slotsListView.SelectedItems.Count == 1)
             {
-                slotsListView.Items.Remove(slotsListView.SelectedItems[0]);
+                ListViewItem selectedItem = slotsListView.SelectedItems[0];
+                if (selectedItem.BackColor == Utilities.ListAppendColor)
+                {
+                    displayedElement.slots_append.Remove(slots[selectedItem.Text]);
+                }
+                else if (selectedItem.BackColor == Utilities.ListPrependColor)
+                {
+                    displayedElement.slots_prepend.Remove(slots[selectedItem.Text]);
+                }
+                else if (selectedItem.BackColor == Utilities.ListRemoveColor)
+                {
+                    displayedElement.slots_remove.Remove(selectedItem.Text);
+                }
+                else
+                {
+                    displayedElement.slots.Remove(slots[selectedItem.Text]);
+                }
+                slots.Remove(selectedItem.Text);
+                slotsListView.Items.Remove(selectedItem);
             }
             else
             {
