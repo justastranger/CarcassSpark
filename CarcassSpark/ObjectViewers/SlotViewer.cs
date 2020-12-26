@@ -12,18 +12,19 @@ using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
+    public enum SlotType
+    {
+        ELEMENT,
+        VERB,
+        RECIPE
+    }
+
     public partial class SlotViewer : Form
     {
         public Slot displayedSlot;
         public bool editing;
         private readonly SlotType? slotType;
         
-        public enum SlotType
-        {
-            ELEMENT,
-            VERB,
-            RECIPE
-        }
 
         public SlotViewer(Slot slot, bool? editing, SlotType? slotType)
         {
