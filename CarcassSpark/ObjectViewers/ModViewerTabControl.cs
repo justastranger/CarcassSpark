@@ -2278,43 +2278,64 @@ namespace CarcassSpark.ObjectViewers
         public void AspectsList_Add(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result.Copy();
-            aspectsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode() , Group = aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects") });
+            ListViewGroup defaultAspectsGroup = aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
+            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultAspectsGroup.Items.Add(newAspectEntry);
+            aspectsListView.Items.Add(newAspectEntry);
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
             Content.Elements[result.id] = result.Copy();
-            elementsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements") });
+            ListViewGroup defaultElementsGroup = elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
+            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultElementsGroup.Items.Add(newElementEntry);
+            elementsListView.Items.Add(newElementEntry);
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result.Copy();
-            recipesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes") });
+            ListViewGroup defaultRecipesGroup = recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
+            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultRecipesGroup.Items.Add(newRecipeEntry);
+            recipesListView.Items.Add(newRecipeEntry);
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
             Content.Decks[result.id] = result.Copy();
-            decksListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks") });
+            ListViewGroup defaultDecksGroup = decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
+            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultDecksGroup.Items.Add(newDeckEntry);
+            decksListView.Items.Add(newDeckEntry);
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
             Content.Legacies[result.id] = result.Copy();
-            legaciesListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies") });
+            ListViewGroup defaultLegaciesGroup = legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
+            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultLegaciesGroup.Items.Add(newLegacyEntry);
+            legaciesListView.Items.Add(newLegacyEntry);
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
             Content.Endings[result.id] = result.Copy();
-            endingsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings") });
+            ListViewGroup defaultEndingsGroup = endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
+            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultEndingsGroup.Items.Add(newEndingEntry);
+            endingsListView.Items.Add(newEndingEntry);
         }
 
         public void VerbsList_Add(object sender, Verb result)
         {
             Content.Verbs[result.id] = result.Copy();
-            verbsListView.Items.Add(new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs") });
+            ListViewGroup defaultVerbsGroup = verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
+            ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
+            defaultVerbsGroup.Items.Add(newVerbEntry);
+            verbsListView.Items.Add(newVerbEntry);
         }
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
