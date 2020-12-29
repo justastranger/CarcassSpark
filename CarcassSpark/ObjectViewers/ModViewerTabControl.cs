@@ -2278,7 +2278,16 @@ namespace CarcassSpark.ObjectViewers
         public void AspectsList_Add(object sender, Aspect result)
         {
             Content.Aspects[result.id] = result.Copy();
-            ListViewGroup defaultAspectsGroup = aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
+            ListViewGroup defaultAspectsGroup;
+            if (aspectsListView.Groups["aspects"] == null)
+            {
+                defaultAspectsGroup = new ListViewGroup("aspects", "aspects");
+                aspectsListView.Groups.Add(defaultAspectsGroup);
+            }
+            else
+            {
+                defaultAspectsGroup = aspectsListView.Groups["aspects"];
+            }
             ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultAspectsGroup.Items.Add(newAspectEntry);
             aspectsListView.Items.Add(newAspectEntry);
@@ -2287,7 +2296,16 @@ namespace CarcassSpark.ObjectViewers
         public void ElementsList_Add(object sender, Element result)
         {
             Content.Elements[result.id] = result.Copy();
-            ListViewGroup defaultElementsGroup = elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
+            ListViewGroup defaultElementsGroup;
+            if (elementsListView.Groups["elements"] == null)
+            {
+                defaultElementsGroup = new ListViewGroup("elements", "elements");
+                elementsListView.Groups.Add(defaultElementsGroup);
+            }
+            else
+            {
+                defaultElementsGroup = elementsListView.Groups["elements"];
+            }
             ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultElementsGroup.Items.Add(newElementEntry);
             elementsListView.Items.Add(newElementEntry);
@@ -2296,7 +2314,16 @@ namespace CarcassSpark.ObjectViewers
         public void RecipesList_Add(object sender, Recipe result)
         {
             Content.Recipes[result.id] = result.Copy();
-            ListViewGroup defaultRecipesGroup = recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
+            ListViewGroup defaultRecipesGroup;
+            if (recipesListView.Groups["recipes"] == null)
+            {
+                defaultRecipesGroup = new ListViewGroup("recipes", "recipes");
+                recipesListView.Groups.Add(defaultRecipesGroup);
+            }
+            else
+            {
+                defaultRecipesGroup = recipesListView.Groups["recipes"];
+            }
             ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultRecipesGroup.Items.Add(newRecipeEntry);
             recipesListView.Items.Add(newRecipeEntry);
@@ -2305,7 +2332,16 @@ namespace CarcassSpark.ObjectViewers
         public void DecksList_Add(object sender, Deck result)
         {
             Content.Decks[result.id] = result.Copy();
-            ListViewGroup defaultDecksGroup = decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
+            ListViewGroup defaultDecksGroup;
+            if (decksListView.Groups["decks"] == null)
+            {
+                defaultDecksGroup = new ListViewGroup("decks", "decks");
+                decksListView.Groups.Add(defaultDecksGroup);
+            }
+            else
+            {
+                defaultDecksGroup = decksListView.Groups["decks"];
+            }
             ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultDecksGroup.Items.Add(newDeckEntry);
             decksListView.Items.Add(newDeckEntry);
@@ -2314,7 +2350,16 @@ namespace CarcassSpark.ObjectViewers
         public void LegaciesList_Add(object sender, Legacy result)
         {
             Content.Legacies[result.id] = result.Copy();
-            ListViewGroup defaultLegaciesGroup = legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
+            ListViewGroup defaultLegaciesGroup;
+            if (legaciesListView.Groups["legacies"] == null)
+            {
+                defaultLegaciesGroup = new ListViewGroup("legacies", "legacies");
+                legaciesListView.Groups.Add(defaultLegaciesGroup);
+            }
+            else
+            {
+                defaultLegaciesGroup = legaciesListView.Groups["legacies"];
+            }
             ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultLegaciesGroup.Items.Add(newLegacyEntry);
             legaciesListView.Items.Add(newLegacyEntry);
@@ -2323,7 +2368,16 @@ namespace CarcassSpark.ObjectViewers
         public void EndingsList_Add(object sender, Ending result)
         {
             Content.Endings[result.id] = result.Copy();
-            ListViewGroup defaultEndingsGroup = endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
+            ListViewGroup defaultEndingsGroup;
+            if (endingsListView.Groups["endings"] == null)
+            {
+                defaultEndingsGroup = new ListViewGroup("endings", "endings");
+                endingsListView.Groups.Add(defaultEndingsGroup);
+            }
+            else
+            {
+                defaultEndingsGroup = endingsListView.Groups["endings"];
+            }
             ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultEndingsGroup.Items.Add(newEndingEntry);
             endingsListView.Items.Add(newEndingEntry);
@@ -2332,7 +2386,16 @@ namespace CarcassSpark.ObjectViewers
         public void VerbsList_Add(object sender, Verb result)
         {
             Content.Verbs[result.id] = result.Copy();
-            ListViewGroup defaultVerbsGroup = verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
+            ListViewGroup defaultVerbsGroup;
+            if (verbsListView.Groups["verbs"] == null)
+            {
+                defaultVerbsGroup = new ListViewGroup("verbs", "verbs");
+                verbsListView.Groups.Add(defaultVerbsGroup);
+            }
+            else
+            {
+                defaultVerbsGroup = verbsListView.Groups["verbs"];
+            }
             ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
             defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
