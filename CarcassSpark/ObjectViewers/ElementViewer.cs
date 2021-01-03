@@ -83,6 +83,7 @@ namespace CarcassSpark.ObjectViewers
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
             removeSlotButton.Visible = editing;
+            extendXTriggerButton.Visible = editing;
             setAsExtendToolStripMenuItem.Visible = editing;
             setAsRemoveToolStripMenuItem.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
