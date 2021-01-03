@@ -82,6 +82,13 @@ namespace CarcassSpark.ObjectViewers
             newLegacyToolStripMenuItem.Visible = editing;
             newEndingToolStripMenuItem.Visible = editing;
             newVerbToolStripMenuItem.Visible = editing;
+            setGroupAspectToolStripMenuItem.Visible = editing;
+            setGroupDeckToolStripMenuItem.Visible = editing;
+            setGroupElementToolStripMenuItem.Visible = editing;
+            setGroupEndingToolStripMenuItem.Visible = editing;
+            setGroupLegacyToolStripMenuItem.Visible = editing;
+            setGroupRecipeToolStripMenuItem.Visible = editing;
+            setGroupVerbToolStripMenuItem.Visible = editing;
         }
 
         public bool LoadContent()
