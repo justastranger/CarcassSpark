@@ -10,6 +10,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Element
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits, verbicon;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

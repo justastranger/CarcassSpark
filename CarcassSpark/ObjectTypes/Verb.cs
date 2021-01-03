@@ -10,6 +10,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Verb
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

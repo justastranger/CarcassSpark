@@ -10,6 +10,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Legacy
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments, tablecoverimage, tablesurfaceimage, tableedgeimage;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

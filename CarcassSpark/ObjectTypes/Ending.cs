@@ -9,6 +9,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Ending
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, image, flavour, anim, achievement, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
