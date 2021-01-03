@@ -329,6 +329,7 @@ namespace CarcassSpark.ObjectViewers
                                     {
                                         aspectLVI.Group = aspectsListView.Groups[fileName];
                                     }
+                                    deserializedAspect.filename = fileName;
                                 }
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
@@ -352,6 +353,7 @@ namespace CarcassSpark.ObjectViewers
                                     {
                                         aspectLVI.Group = aspectsListView.Groups[fileName];
                                     }
+                                    deserializedAspect.filename = fileName;
                                 }
                             }
                             else
@@ -375,6 +377,7 @@ namespace CarcassSpark.ObjectViewers
                                     {
                                         elementLVI.Group = elementsListView.Groups[fileName];
                                     }
+                                    deserializedElement.filename = fileName;
                                 }
                             }
                         }
@@ -401,6 +404,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     recipeLVI.Group = recipesListView.Groups[fileName];
                                 }
+                                deserializedRecipe.filename = fileName;
                             }
                         }
                         return;
@@ -426,6 +430,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     deckLVI.Group = decksListView.Groups[fileName];
                                 }
+                                deserializedDeck.filename = fileName;
                             }
                         }
                         return;
@@ -451,6 +456,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     legacyLVI.Group = legaciesListView.Groups[fileName];
                                 }
+                                deserializedLegacy.filename = fileName;
                             }
                         }
                         return;
@@ -476,6 +482,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     endingLVI.Group = endingsListView.Groups[fileName];
                                 }
+                                deserializedEnding.filename = fileName;
                             }
                         }
                         return;
@@ -501,6 +508,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     verbLVI.Group = verbsListView.Groups[fileName];
                                 }
+                                deserializedVerb.filename = fileName;
                             }
                         }
                         return;
@@ -1038,100 +1046,352 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            aspectsListView.Items.Clear();
-            try
+            aspectsListView.BeginUpdate();
+            if (aspectsSearchTextBox.Text != "")
             {
-                Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
-                aspectsListView.Items.AddRange(aspectsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (aspectsSearchTextBox.Text.Length >= 3)
+                {
+                    Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    aspectsListView.Items.Clear();
+                    foreach (Aspect aspect in aspectsToAdd)
+                    {
+                        ListViewGroup group;
+                        if (aspectsListView.Groups[aspect.filename] == null)
+                        {
+                            group = new ListViewGroup(aspect.filename, aspect.filename);
+                        }
+                        else
+                        {
+                            group = aspectsListView.Groups[aspect.filename];
+                        }
+                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode() };
+                        group.Items.Add(item);
+                        aspectsListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                aspectsListView.Items.AddRange(Content.Aspects.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                aspectsListView.Items.Clear();
+                foreach (Aspect aspect in Content.Aspects.Values)
+                {
+                    ListViewGroup group;
+                    if (aspectsListView.Groups[aspect.filename] == null)
+                    {
+                        group = new ListViewGroup(aspect.filename, aspect.filename);
+                    }
+                    else
+                    {
+                        group = aspectsListView.Groups[aspect.filename];
+                    }
+                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode() };
+                    group.Items.Add(item);
+                    aspectsListView.Items.Add(item);
+                }
             }
+            aspectsListView.EndUpdate();
         }
 
         private void ElementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            elementsListView.Items.Clear();
-            try
+            elementsListView.BeginUpdate();
+            if (elementsSearchTextBox.Text != "")
             {
-                Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
-                elementsListView.Items.AddRange(elementsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (elementsSearchTextBox.Text.Length >= 3)
+                {
+                    Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    elementsListView.Items.Clear();
+                    foreach (Element element in elementsToAdd)
+                    {
+                        ListViewGroup group;
+                        if (elementsListView.Groups[element.filename] == null)
+                        {
+                            group = new ListViewGroup(element.filename, element.filename);
+                        }
+                        else
+                        {
+                            group = elementsListView.Groups[element.filename];
+                        }
+                        ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode() };
+                        group.Items.Add(item);
+                        elementsListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                elementsListView.Items.AddRange(Content.Elements.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                elementsListView.Items.Clear();
+                foreach (Element element in Content.Elements.Values)
+                {
+                    ListViewGroup group;
+                    if (elementsListView.Groups[element.filename] == null)
+                    {
+                        group = new ListViewGroup(element.filename, element.filename);
+                    }
+                    else
+                    {
+                        group = elementsListView.Groups[element.filename];
+                    }
+                    ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode() };
+                    group.Items.Add(item);
+                    elementsListView.Items.Add(item);
+                }
             }
+            elementsListView.EndUpdate();
         }
 
         private void RecipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            recipesListView.Items.Clear();
-            try
+            recipesListView.BeginUpdate();
+            if (recipesSearchTextBox.Text != "")
             {
-                Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
-                recipesListView.Items.AddRange(recipesToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (recipesSearchTextBox.Text.Length >= 3)
+                {
+                    Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    recipesListView.Items.Clear();
+                    foreach (Recipe recipe in recipesToAdd)
+                    {
+                        ListViewGroup group;
+                        if (recipesListView.Groups[recipe.filename] == null)
+                        {
+                            group = new ListViewGroup(recipe.filename, recipe.filename);
+                        }
+                        else
+                        {
+                            group = recipesListView.Groups[recipe.filename];
+                        }
+                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode() };
+                        group.Items.Add(item);
+                        recipesListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                recipesListView.Items.AddRange(Content.Recipes.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                recipesListView.Items.Clear();
+                foreach (Recipe recipe in Content.Recipes.Values)
+                {
+                    ListViewGroup group;
+                    if (recipesListView.Groups[recipe.filename] == null)
+                    {
+                        group = new ListViewGroup(recipe.filename, recipe.filename);
+                    }
+                    else
+                    {
+                        group = recipesListView.Groups[recipe.filename];
+                    }
+                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode() };
+                    group.Items.Add(item);
+                    recipesListView.Items.Add(item);
+                }
             }
+            recipesListView.EndUpdate();
         }
 
         private void DecksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            decksListView.Items.Clear();
-            try
+            decksListView.BeginUpdate();
+            if (decksSearchTextBox.Text != "")
             {
-                Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
-                decksListView.Items.AddRange(decksToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (decksSearchTextBox.Text.Length >= 3)
+                {
+                    Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    decksListView.Items.Clear();
+                    foreach (Deck deck in decksToAdd)
+                    {
+                        ListViewGroup group;
+                        if (decksListView.Groups[deck.filename] == null)
+                        {
+                            group = new ListViewGroup(deck.filename, deck.filename);
+                        }
+                        else
+                        {
+                            group = decksListView.Groups[deck.filename];
+                        }
+                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode() };
+                        group.Items.Add(item);
+                        decksListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                decksListView.Items.AddRange(Content.Decks.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                decksListView.Items.Clear();
+                foreach (Deck deck in Content.Decks.Values)
+                {
+                    ListViewGroup group;
+                    if (decksListView.Groups[deck.filename] == null)
+                    {
+                        group = new ListViewGroup(deck.filename, deck.filename);
+                    }
+                    else
+                    {
+                        group = decksListView.Groups[deck.filename];
+                    }
+                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode() };
+                    group.Items.Add(item);
+                    decksListView.Items.Add(item);
+                }
             }
+            decksListView.EndUpdate();
         }
 
         private void LegaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            legaciesListView.Items.Clear();
-            try
+            legaciesListView.BeginUpdate();
+            if (legaciesSearchTextBox.Text != "")
             {
-                Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
-                legaciesListView.Items.AddRange(legaciesToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (legaciesSearchTextBox.Text.Length >= 3)
+                {
+                    Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    legaciesListView.Items.Clear();
+                    foreach (Legacy legacy in legaciesToAdd)
+                    {
+                        ListViewGroup group;
+                        if (legaciesListView.Groups[legacy.filename] == null)
+                        {
+                            group = new ListViewGroup(legacy.filename, legacy.filename);
+                        }
+                        else
+                        {
+                            group = legaciesListView.Groups[legacy.filename];
+                        }
+                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode() };
+                        group.Items.Add(item);
+                        legaciesListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                legaciesListView.Items.AddRange(Content.Legacies.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                legaciesListView.Items.Clear();
+                foreach (Legacy legacy in Content.Legacies.Values)
+                {
+                    ListViewGroup group;
+                    if (legaciesListView.Groups[legacy.filename] == null)
+                    {
+                        group = new ListViewGroup(legacy.filename, legacy.filename);
+                    }
+                    else
+                    {
+                        group = legaciesListView.Groups[legacy.filename];
+                    }
+                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode() };
+                    group.Items.Add(item);
+                    legaciesListView.Items.Add(item);
+                }
             }
+            legaciesListView.EndUpdate();
         }
 
         private void EndingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            endingsListView.Items.Clear();
-            try
+            endingsListView.BeginUpdate();
+            if (endingsSearchTextBox.Text != "")
             {
-                Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
-                endingsListView.Items.AddRange(endingsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (endingsSearchTextBox.Text.Length >= 3)
+                {
+                    Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    endingsListView.Items.Clear();
+                    foreach (Ending ending in endingsToAdd)
+                    {
+                        ListViewGroup group;
+                        if (endingsListView.Groups[ending.filename] == null)
+                        {
+                            group = new ListViewGroup(ending.filename, ending.filename);
+                        }
+                        else
+                        {
+                            group = endingsListView.Groups[ending.filename];
+                        }
+                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode() };
+                        group.Items.Add(item);
+                        endingsListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                endingsListView.Items.AddRange(Content.Endings.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                endingsListView.Items.Clear();
+                foreach (Ending ending in Content.Endings.Values)
+                {
+                    ListViewGroup group;
+                    if (endingsListView.Groups[ending.filename] == null)
+                    {
+                        group = new ListViewGroup(ending.filename, ending.filename);
+                    }
+                    else
+                    {
+                        group = endingsListView.Groups[ending.filename];
+                    }
+                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode() };
+                    group.Items.Add(item);
+                    endingsListView.Items.Add(item);
+                }
             }
+            endingsListView.EndUpdate();
         }
 
         private void VerbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            verbsListView.Items.Clear();
-            try
+            verbsListView.BeginUpdate();
+            if (verbsSearchTextBox.Text != "")
             {
-                Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
-                verbsListView.Items.AddRange(verbsToAdd.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                if (verbsSearchTextBox.Text.Length >= 3)
+                {
+                    Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
+                    List<ListViewItem> items = new List<ListViewItem>();
+                    verbsListView.Items.Clear();
+                    foreach (Verb verb in verbsToAdd)
+                    {
+                        ListViewGroup group;
+                        if (verbsListView.Groups[verb.filename] == null)
+                        {
+                            group = new ListViewGroup(verb.filename, verb.filename);
+                        }
+                        else
+                        {
+                            group = verbsListView.Groups[verb.filename];
+                        }
+                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode() };
+                        group.Items.Add(item);
+                        verbsListView.Items.Add(item);
+                    }
+                }
             }
-            catch (Exception)
+            else
             {
-                verbsListView.Items.AddRange(Content.Verbs.Values.Select(a => new ListViewItem(a.id) { Tag = a.GetHashCode() }).ToArray());
+                List<ListViewItem> items = new List<ListViewItem>();
+                verbsListView.Items.Clear();
+                foreach (Verb verb in Content.Verbs.Values)
+                {
+                    ListViewGroup group;
+                    if (verbsListView.Groups[verb.filename] == null)
+                    {
+                        group = new ListViewGroup(verb.filename, verb.filename);
+                    }
+                    else
+                    {
+                        group = verbsListView.Groups[verb.filename];
+                    }
+                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode() };
+                    group.Items.Add(item);
+                    verbsListView.Items.Add(item);
+                }
             }
+            verbsListView.EndUpdate();
         }
 
         private string[] SearchKeys(List<string> keysList, string searchPattern)
