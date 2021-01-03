@@ -1419,7 +1419,6 @@ namespace CarcassSpark.ObjectViewers
             return (from element in elementsList
                     where (element.id != null && regex.IsMatch(element.id))
                        || (element.label != null && regex.IsMatch(element.label))
-                       || (element.id != null && regex.IsMatch(element.id))
                        || (element.comments != null && regex.IsMatch(element.comments))
                     select element).ToArray();
         }
