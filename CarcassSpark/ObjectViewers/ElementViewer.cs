@@ -115,7 +115,7 @@ namespace CarcassSpark.ObjectViewers
             if (element.icon != null)
             {
                 iconTextBox.Text = element.icon;
-                if (Utilities.ElementImageExists(element.icon)) pictureBox1.Image = Utilities.GetElementImage(element.icon);
+                // if (Utilities.ElementImageExists(element.icon)) pictureBox1.Image = Utilities.GetElementImage(element.icon);
             }
             else if (Utilities.ElementImageExists(element.id))
             {
