@@ -665,5 +665,11 @@ namespace CarcassSpark.ObjectViewers
                 SelectedModViewer.Content.Cultures = cv.displayedCultures.ToDictionary(entry => entry.Key, entry => entry.Value.Copy());
             }
         }
+
+        private void assetBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssetBrowser ab = new AssetBrowser();
+            ab.Show();
+        }
     }
 }

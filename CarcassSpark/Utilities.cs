@@ -38,7 +38,8 @@ namespace CarcassSpark
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
         private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
         private static AssetsManager AssetsManager = new AssetsManager();
-        private static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
+        public static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
+        public static ImageList ImageList;
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();

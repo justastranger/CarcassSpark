@@ -169,6 +169,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Tools\AssetBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\AssetBrowser.Designer.cs">
+      <DependentUpon>AssetBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ChangeAspectQuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,12 @@
     <Compile Include="Tools\GroupEditor.Designer.cs">
       <DependentUpon>GroupEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ImageViewer.Designer.cs">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\JsonCleaner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -333,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\XTriggerViewer.resx">
       <DependentUpon>XTriggerViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\AssetBrowser.resx">
+      <DependentUpon>AssetBrowser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ChangeAspectQuantityForm.resx">
       <DependentUpon>ChangeAspectQuantityForm.cs</DependentUpon>
@@ -397,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\GroupEditor.resx">
       <DependentUpon>GroupEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ImageViewer.resx">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\JsonCleaner.resx">
       <DependentUpon>JsonCleaner.cs</DependentUpon>
