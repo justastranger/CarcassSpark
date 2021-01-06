@@ -163,6 +163,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 return Image.FromFile(pathToImage);
             }
+            else if (Utilities.VanillaAspectImageExists(id))
+            {
+                return Utilities.GetVanillaAspect(id);
+            }
             return null;
         }
 
@@ -172,6 +176,10 @@ namespace CarcassSpark.ObjectTypes
             if (File.Exists(pathToImage))
             {
                 return Image.FromFile(pathToImage);
+            }
+            else if (Utilities.VanillaElementImageExists(id))
+            {
+                return Utilities.GetVanillaElement(id);
             }
             return null;
         }
@@ -183,6 +191,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 return Image.FromFile(pathToImage);
             }
+            else if (Utilities.VanillaEndingImageExists(id))
+            {
+                return Utilities.GetVanillaEnding(id);
+            }
             return null;
         }
 
@@ -192,6 +204,10 @@ namespace CarcassSpark.ObjectTypes
             if (File.Exists(pathToImage))
             {
                 return Image.FromFile(pathToImage);
+            }
+            else if (Utilities.VanillaLegacyImageExists(id))
+            {
+                return Utilities.GetVanillaLegacy(id);
             }
             return null;
         }
@@ -203,6 +219,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 return Image.FromFile(pathToImage);
             }
+            else if (Utilities.VanillaVerbImageExists(id))
+            {
+                return Utilities.GetVanillaVerb(id);
+            }
             return null;
         }
 
@@ -213,6 +233,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 return Image.FromFile(pathToImage);
             }
+            else if (Utilities.VanillaCardBackImageExists(id))
+            {
+                return Utilities.GetVanillaCardBack(id);
+            }
             return null;
         }
 
@@ -222,6 +246,10 @@ namespace CarcassSpark.ObjectTypes
             if (File.Exists(pathToImage))
             {
                 return Image.FromFile(pathToImage);
+            }
+            else if (Utilities.VanillaBurnImageImageExists(id))
+            {
+                return Utilities.GetVanillaBurnImage(id);
             }
             return null;
         }

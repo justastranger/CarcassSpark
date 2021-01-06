@@ -149,7 +149,7 @@ namespace CarcassSpark
             }
             else
             {
-                return assets["images/legacies/ritual"].GetImage();
+                return assets["images/legacies/aspirant"].GetImage();
             }
         }
 
@@ -216,11 +216,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaAspectImageExists(id);
-                else if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
+                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return VanillaAspectImageExists(id);
             }
             return false;
         }
@@ -228,11 +228,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaAspect(id);
                 if (source.AspectImageExists(id))
                 {
                     return source.GetAspectImage(id);
                 }
+                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return GetVanillaAspect(id);
             }
             string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
             if (File.Exists(defaultImage))
@@ -244,11 +244,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaElementImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return VanillaElementImageExists(id);
             }
             return false;
         }
@@ -257,8 +257,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaElement(id);
                 if (source.ElementImageExists(id)) return source.GetElementImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return GetVanillaElement(id);
             }
             string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
             if (File.Exists(defaultImage))
@@ -270,11 +270,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaEndingImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return VanillaEndingImageExists(id);
             }
             return false;
         }
@@ -283,8 +283,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaEnding(id);
                 if (source.EndingImageExists(id)) return source.GetEndingImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return GetVanillaEnding(id);
             }
             string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
             if (File.Exists(defaultImage))
@@ -296,11 +296,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaLegacyImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return VanillaLegacyImageExists(id);
             }
             return false;
         }
@@ -309,8 +309,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaLegacy(id);
                 if (source.LegacyImageExists(id)) return source.GetLegacyImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return GetVanillaLegacy(id);
             }
             string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
             if (File.Exists(defaultImage))
@@ -322,11 +322,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaVerbImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return VanillaVerbImageExists(id);
             }
             return false;
         }
@@ -335,8 +335,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaVerb(id);
                 if (source.VerbImageExists(id)) return source.GetVerbImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return GetVanillaVerb(id);
             }
             string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
             if (File.Exists(defaultImage))
@@ -348,11 +348,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaCardBackImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/cardbacks/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id)) return VanillaCardBackImageExists(id);
             }
             return false;
         }
@@ -361,8 +361,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaCardBack(id);
                 if (source.CardBackImageExists(id)) return source.GetCardBackImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id)) return GetVanillaCardBack(id);
             }
             string defaultImage = Utilities.DirectoryToVanillaContent + "/images/cardbacks/_x.png";
             if (File.Exists(defaultImage))
@@ -374,11 +374,11 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return VanillaBurnImageImageExists(id);
                 if (File.Exists(source.currentDirectory + "/images/burns/" + id + ".png"))
                 {
                     return true;
                 }
+                else if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id)) return VanillaBurnImageImageExists(id);
             }
             return false;
         }
@@ -387,8 +387,8 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetName() == "Vanilla") return GetVanillaBurnImage(id);
                 if (source.BurnImageExists(id)) return source.GetBurnImage(id);
+                if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id)) return GetVanillaBurnImage(id);
             }
             return null;
         }
