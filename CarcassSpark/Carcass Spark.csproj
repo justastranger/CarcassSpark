@@ -9,9 +9,25 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CarcassSpark</RootNamespace>
     <AssemblyName>Carcass Spark</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,6 +61,18 @@
     <ApplicationIcon>Resources\toolforgef.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AssetStudio">
+      <HintPath>..\packages\AssetStudio.v0.15.24\AssetStudio.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetStudio.PInvoke">
+      <HintPath>..\packages\AssetStudio.v0.15.24\AssetStudio.PInvoke.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetStudioFBXWrapper">
+      <HintPath>..\packages\AssetStudio.v0.15.24\AssetStudioFBXWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetStudioUtility">
+      <HintPath>..\packages\AssetStudio.v0.15.24\AssetStudioUtility.dll</HintPath>
+    </Reference>
     <Reference Include="MindFusion.Common, Version=1.3.2.451, Culture=neutral, PublicKeyToken=dd7449df9ffcc455, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MindFusion.Pack.CarcassSpark\MindFusion.Common.dll</HintPath>
@@ -395,7 +423,41 @@
   <ItemGroup>
     <None Include="Resources\toolforgef.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE for AssetStudio.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\AssetStudioFBXNative.dll" />
+    <Content Include="x64\fmod.dll" />
+    <Content Include="x64\Texture2DDecoderNative.dll" />
+    <Content Include="x86\AssetStudioFBXNative.dll" />
+    <Content Include="x86\fmod.dll" />
+    <Content Include="x86\Texture2DDecoderNative.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "$(TargetDir)\x86"
+copy /Y "$(ProjectDir)x86\AssetStudioFBXNative.dll" "$(TargetDir)x86\AssetStudioFBXNative.dll"
+copy /Y "$(ProjectDir)x86\fmod.dll" "$(TargetDir)x86\fmod.dll"
+copy /Y "$(ProjectDir)x86\Texture2DDecoderNative.dll" "$(TargetDir)x86\Texture2DDecoderNative.dll"
+
+mkdir "$(TargetDir)\x64"
+copy /Y "$(ProjectDir)x64\AssetStudioFBXNative.dll" "$(TargetDir)x64\AssetStudioFBXNative.dll"
+copy /Y "$(ProjectDir)x64\fmod.dll" "$(TargetDir)x64\fmod.dll"
+copy /Y "$(ProjectDir)x64\Texture2DDecoderNative.dll" "$(TargetDir)x64\Texture2DDecoderNative.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
