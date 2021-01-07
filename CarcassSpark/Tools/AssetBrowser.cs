@@ -88,5 +88,15 @@ namespace CarcassSpark.Tools
                 iv.Show();
             }
         }
+
+        private void copyImageIDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (assetsListView.SelectedItems.Count == 1)
+            {
+                ListViewItem selectedItem = assetsListView.SelectedItems[0];
+                string selectedID = selectedItem.Text.Split('/').Last();
+                Clipboard.SetText(selectedID);
+            }
+        }
     }
 }
