@@ -1534,7 +1534,7 @@ namespace CarcassSpark.ObjectViewers
             if (alternativeRecipesListView.SelectedItems.Count > 0)
             {   // need to remove it from the right location now that there's 4 of them
                 ListViewItem item = alternativeRecipesListView.SelectedItems[0];
-                string value = alternativeRecipesListView.SelectedItems[0].Text.ToString();
+                string value = alternativeRecipesListView.SelectedItems[0].Tag.ToString();
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
                     // displayedRecipe.alternativerecipes_prepend.Remove(alternativerecipeLinks[value]);
@@ -1568,7 +1568,7 @@ namespace CarcassSpark.ObjectViewers
             if (linkedRecipesListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = linkedRecipesListView.SelectedItems[0];
-                string value = linkedRecipesListView.SelectedItems[0].Text.ToString();
+                string value = linkedRecipesListView.SelectedItems[0].Tag.ToString();
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
                     displayedRecipe.linked_prepend.Remove(recipeLinks[value]);
