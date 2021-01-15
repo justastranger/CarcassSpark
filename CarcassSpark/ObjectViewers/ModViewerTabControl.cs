@@ -1852,6 +1852,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedAspectToolStripMenuItem.Visible) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewItem listViewItem = aspectsListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
@@ -1863,6 +1864,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedElementToolStripMenuItem.Visible) return;
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewItem listViewItem = elementsListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
@@ -1874,6 +1876,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedRecipeToolStripMenuItem.Visible) return;
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewItem listViewItem = recipesListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
@@ -1885,6 +1888,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedDeckToolStripMenuItem.Visible) return;
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewItem listViewItem = decksListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
@@ -1896,6 +1900,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedLegacyToolStripMenuItem.Visible) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewItem listViewItem = legaciesListView.SelectedItems[0];
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
@@ -1907,6 +1912,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedEndingToolStripMenuItem.Visible) return;
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewItem ListViewItem = endingsListView.SelectedItems[0];
             if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
@@ -1918,6 +1924,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!deleteSelectedVerbToolStripMenuItem.Visible) return;
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewItem ListViewItem = verbsListView.SelectedItems[0];
             if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
@@ -2205,6 +2212,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedAspectToolStripMenuItem.Visible) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
             Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Text].Copy();
             string id = newAspect.id;
@@ -2229,6 +2237,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedElementToolStripMenuItem.Visible) return;
             if (elementsListView.SelectedItems.Count < 1) return;
             Element newElement = Content.Elements[elementsListView.SelectedItems[0].Text].Copy();
             string id = newElement.id;
@@ -2253,6 +2262,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedRecipeToolStripMenuItem.Visible) return;
             if (recipesListView.SelectedItems.Count < 1) return;
             Recipe newRecipe = Content.Recipes[recipesListView.SelectedItems[0].Text].Copy();
             string id = newRecipe.id;
@@ -2277,6 +2287,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedDeckToolStripMenuItem.Visible) return;
             if (decksListView.SelectedItems.Count < 1) return;
             Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Text].Copy();
             string id = newDeck.id;
@@ -2301,6 +2312,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedLegacyToolStripMenuItem.Visible) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
             Legacy newLegacy = Content.Legacies[legaciesListView.SelectedItems[0].Text].Copy();
             string id = newLegacy.id;
@@ -2325,6 +2337,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedEndingToolStripMenuItem.Visible) return;
             if (endingsListView.SelectedItems.Count < 1) return;
             Ending newEnding = Content.Endings[endingsListView.SelectedItems[0].Text].Copy();
             string id = newEnding.id;
@@ -2349,6 +2362,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!duplicateSelectedVerbToolStripMenuItem.Visible) return;
             Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Text].Copy();
             string id = newVerb.id;
             if (verbsListView.Items.ContainsKey(id + "_1"))
@@ -2804,6 +2818,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupAspectToolStripMenuItem.Visible) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = aspectsListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2836,6 +2851,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupElementToolStripMenuItem.Visible) return;
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = elementsListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2867,6 +2883,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupRecipeToolStripMenuItem.Visible) return;
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = recipesListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2898,6 +2915,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupDeckToolStripMenuItem.Visible) return;
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = decksListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2929,6 +2947,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupLegacyToolStripMenuItem.Visible) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = legaciesListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2960,6 +2979,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupEndingToolStripMenuItem.Visible) return;
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = endingsListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
@@ -2991,6 +3011,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!setGroupVerbToolStripMenuItem.Visible) return;
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = verbsListView.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
