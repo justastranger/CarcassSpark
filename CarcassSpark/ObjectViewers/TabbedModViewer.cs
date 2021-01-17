@@ -671,5 +671,11 @@ namespace CarcassSpark.ObjectViewers
             AssetBrowser ab = new AssetBrowser();
             ab.Show();
         }
+
+        private void templateManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TemplateManager templateManager = new TemplateManager();
+            templateManager.Show();
+        }
     }
 }

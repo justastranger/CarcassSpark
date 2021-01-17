@@ -63,13 +63,14 @@
             this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jSONCleanerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.culturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assetBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.assetBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.templateManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -330,7 +331,8 @@
             this.imageImporterToolStripMenuItem,
             this.jSONCleanerToolStripMenuItem,
             this.culturesToolStripMenuItem,
-            this.assetBrowserToolStripMenuItem});
+            this.assetBrowserToolStripMenuItem,
+            this.templateManagerToolStripMenuItem});
             this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
             this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolsToolStripButton.Name = "toolsToolStripButton";
@@ -364,6 +366,13 @@
             this.culturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.culturesToolStripMenuItem.Text = "Cultures";
             this.culturesToolStripMenuItem.Click += new System.EventHandler(this.culturesToolStripMenuItem_Click);
+            // 
+            // assetBrowserToolStripMenuItem
+            // 
+            this.assetBrowserToolStripMenuItem.Name = "assetBrowserToolStripMenuItem";
+            this.assetBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.assetBrowserToolStripMenuItem.Text = "Asset Browser";
+            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.assetBrowserToolStripMenuItem_Click);
             // 
             // settingsToolStripButton
             // 
@@ -410,12 +419,12 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
-            // assetBrowserToolStripMenuItem
+            // templateManagerToolStripMenuItem
             // 
-            this.assetBrowserToolStripMenuItem.Name = "assetBrowserToolStripMenuItem";
-            this.assetBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.assetBrowserToolStripMenuItem.Text = "Asset Browser";
-            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.assetBrowserToolStripMenuItem_Click);
+            this.templateManagerToolStripMenuItem.Name = "templateManagerToolStripMenuItem";
+            this.templateManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.templateManagerToolStripMenuItem.Text = "Template Manager";
+            this.templateManagerToolStripMenuItem.Click += new System.EventHandler(this.templateManagerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
@@ -480,6 +489,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveSplitterLocationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem culturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assetBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
     }
 }
 
