@@ -25,6 +25,7 @@ namespace CarcassSpark.Tools
     {
         readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
         bool unsavedChanged = false;
+        public ListViewItem selectedItem;
 
         public TemplateManager()
         {
@@ -33,7 +34,7 @@ namespace CarcassSpark.Tools
             EnumerateTemplates();
         }
 
-        public TemplateManager(TemplateManagerMode mode)
+        public TemplateManager(TemplateManagerMode mode, Type entityType)
         {
             InitializeComponent();
             SetScintillaStyle();
@@ -41,6 +42,16 @@ namespace CarcassSpark.Tools
             if (mode == TemplateManagerMode.SELECTING)
             {
                 SetSelectionMode();
+            }
+            if (entityType != null)
+            {
+                foreach(ListViewItem item in templatesListView.Items)
+                {
+                    if (!item.Text.Contains(entityType.Name))
+                    {
+                        item.Remove();
+                    }
+                }
             }
         }
 
@@ -81,7 +92,7 @@ namespace CarcassSpark.Tools
         private void TemplatesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (templatesListView.SelectedItems.Count != 1) return;
-
+            selectedItem = templatesListView.SelectedItems[0];
             scintilla1.Tag = templatesListView.SelectedItems[0].Text;
             scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
         }
@@ -250,6 +261,7 @@ namespace CarcassSpark.Tools
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
+            if (selectedItem == null) return;
             if (unsavedChanged)
             {
                 if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))

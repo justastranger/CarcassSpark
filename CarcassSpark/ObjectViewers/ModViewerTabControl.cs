@@ -3043,37 +3043,86 @@ namespace CarcassSpark.ObjectViewers
 
         private void useTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Aspect));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Aspect templateAspect = JsonConvert.DeserializeObject<Aspect>(templateJson);
+                AspectViewer av = new AspectViewer(templateAspect, AspectsList_Add);
+                av.Show();
+            }
         }
 
         private void useTemplateElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Element));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Element templateElement = JsonConvert.DeserializeObject<Element>(templateJson);
+                ElementViewer av = new ElementViewer(templateElement, ElementsList_Add);
+                av.Show();
+            }
         }
 
         private void useTemplateRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Recipe));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Recipe templateRecipe = JsonConvert.DeserializeObject<Recipe>(templateJson);
+                RecipeViewer av = new RecipeViewer(templateRecipe, RecipesList_Add);
+                av.Show();
+            }
         }
 
         private void useTemplateDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Deck));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Deck templateDeck = JsonConvert.DeserializeObject<Deck>(templateJson);
+                DeckViewer av = new DeckViewer(templateDeck, DecksList_Add);
+                av.Show();
+            }
         }
 
         private void useTemplateLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Legacy));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Legacy templateLegacy = JsonConvert.DeserializeObject<Legacy>(templateJson);
+                LegacyViewer av = new LegacyViewer(templateLegacy, LegaciesList_Add);
+                av.Show();
+            }
         }
 
         private void useTemplateEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Ending));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Ending templateEnding = JsonConvert.DeserializeObject<Ending>(templateJson);
+                EndingViewer av = new EndingViewer(templateEnding, EndingsList_Add);
+                av.Show();
+            }
         }
 
-        private void useTemplateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void useTemplateVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Verb));
+            if (templateManager.ShowDialog() == DialogResult.OK)
+            {
+                string templateJson = templateManager.selectedItem.Tag as string;
+                Verb templateVerb = JsonConvert.DeserializeObject<Verb>(templateJson);
+                VerbViewer av = new VerbViewer(templateVerb, VerbsList_Add);
+                av.Show();
+            }
         }
 
         private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
