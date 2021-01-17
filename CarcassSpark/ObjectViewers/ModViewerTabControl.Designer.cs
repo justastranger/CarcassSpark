@@ -42,6 +42,7 @@
             this.copyAspectJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedAspectsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +59,7 @@
             this.copyElementJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedElementsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +89,7 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedLegacysJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setGroupLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,6 +99,7 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedEndingsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setGroupEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,6 +110,7 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedVerbsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setGroupVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
             this.legaciesLabel = new System.Windows.Forms.Label();
@@ -152,9 +157,11 @@
             this.verbsListView = new System.Windows.Forms.ListView();
             this.verbIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter7 = new System.Windows.Forms.Splitter();
-            this.setGroupLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setGroupEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setGroupVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateRecipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -280,10 +287,19 @@
             // 
             // newAspectToolStripMenuItem
             // 
+            this.newAspectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateAspectToolStripMenuItem});
             this.newAspectToolStripMenuItem.Name = "newAspectToolStripMenuItem";
             this.newAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.newAspectToolStripMenuItem.Text = "New Aspect";
             this.newAspectToolStripMenuItem.Click += new System.EventHandler(this.NewAspectToolStripMenuItem_Click);
+            // 
+            // useTemplateAspectToolStripMenuItem
+            // 
+            this.useTemplateAspectToolStripMenuItem.Name = "useTemplateAspectToolStripMenuItem";
+            this.useTemplateAspectToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateAspectToolStripMenuItem.Text = "Use Template";
+            this.useTemplateAspectToolStripMenuItem.Click += new System.EventHandler(this.useTemplateAspectToolStripMenuItem_Click);
             // 
             // setGroupAspectToolStripMenuItem
             // 
@@ -412,10 +428,19 @@
             // 
             // newElementToolStripMenuItem
             // 
+            this.newElementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateElementToolStripMenuItem});
             this.newElementToolStripMenuItem.Name = "newElementToolStripMenuItem";
             this.newElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.newElementToolStripMenuItem.Text = "New Element";
             this.newElementToolStripMenuItem.Click += new System.EventHandler(this.NewElementToolStripMenuItem_Click);
+            // 
+            // useTemplateElementToolStripMenuItem
+            // 
+            this.useTemplateElementToolStripMenuItem.Name = "useTemplateElementToolStripMenuItem";
+            this.useTemplateElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateElementToolStripMenuItem.Text = "Use Template";
+            this.useTemplateElementToolStripMenuItem.Click += new System.EventHandler(this.useTemplateElementToolStripMenuItem_Click);
             // 
             // setGroupElementToolStripMenuItem
             // 
@@ -504,6 +529,8 @@
             // 
             // newRecipeToolStripMenuItem
             // 
+            this.newRecipeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateRecipeToolStripMenuItem1});
             this.newRecipeToolStripMenuItem.Name = "newRecipeToolStripMenuItem";
             this.newRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.newRecipeToolStripMenuItem.Text = "New Recipe";
@@ -588,6 +615,8 @@
             // 
             // newDeckToolStripMenuItem
             // 
+            this.newDeckToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateDeckToolStripMenuItem});
             this.newDeckToolStripMenuItem.Name = "newDeckToolStripMenuItem";
             this.newDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.newDeckToolStripMenuItem.Text = "New Deck";
@@ -655,10 +684,20 @@
             // 
             // newLegacyToolStripMenuItem
             // 
+            this.newLegacyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateLegacyToolStripMenuItem});
             this.newLegacyToolStripMenuItem.Name = "newLegacyToolStripMenuItem";
             this.newLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.newLegacyToolStripMenuItem.Text = "New Legacy";
             this.newLegacyToolStripMenuItem.Click += new System.EventHandler(this.NewLegacyToolStripMenuItem_Click);
+            // 
+            // setGroupLegacyToolStripMenuItem
+            // 
+            this.setGroupLegacyToolStripMenuItem.Name = "setGroupLegacyToolStripMenuItem";
+            this.setGroupLegacyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.setGroupLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
+            this.setGroupLegacyToolStripMenuItem.Text = "Set Group";
+            this.setGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.SetGroupLegacyToolStripMenuItem_Click);
             // 
             // endingContextMenuStrip
             // 
@@ -730,10 +769,20 @@
             // 
             // newEndingToolStripMenuItem
             // 
+            this.newEndingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateEndingToolStripMenuItem});
             this.newEndingToolStripMenuItem.Name = "newEndingToolStripMenuItem";
             this.newEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.newEndingToolStripMenuItem.Text = "New Ending";
             this.newEndingToolStripMenuItem.Click += new System.EventHandler(this.NewEndingToolStripMenuItem_Click);
+            // 
+            // setGroupEndingToolStripMenuItem
+            // 
+            this.setGroupEndingToolStripMenuItem.Name = "setGroupEndingToolStripMenuItem";
+            this.setGroupEndingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.setGroupEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
+            this.setGroupEndingToolStripMenuItem.Text = "Set Group";
+            this.setGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.SetGroupEndingToolStripMenuItem_Click);
             // 
             // verbContextMenuStrip
             // 
@@ -813,10 +862,20 @@
             // 
             // newVerbToolStripMenuItem
             // 
+            this.newVerbToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useTemplateToolStripMenuItem});
             this.newVerbToolStripMenuItem.Name = "newVerbToolStripMenuItem";
             this.newVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.newVerbToolStripMenuItem.Text = "New Verb";
             this.newVerbToolStripMenuItem.Click += new System.EventHandler(this.NewVerbToolStripMenuItem_Click);
+            // 
+            // setGroupVerbToolStripMenuItem
+            // 
+            this.setGroupVerbToolStripMenuItem.Name = "setGroupVerbToolStripMenuItem";
+            this.setGroupVerbToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.setGroupVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
+            this.setGroupVerbToolStripMenuItem.Text = "Set Group";
+            this.setGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.SetGroupVerbToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
@@ -1328,29 +1387,40 @@
             this.splitter7.TabStop = false;
             this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
             // 
-            // setGroupLegacyToolStripMenuItem
+            // useTemplateRecipeToolStripMenuItem1
             // 
-            this.setGroupLegacyToolStripMenuItem.Name = "setGroupLegacyToolStripMenuItem";
-            this.setGroupLegacyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.setGroupLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
-            this.setGroupLegacyToolStripMenuItem.Text = "Set Group";
-            this.setGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.SetGroupLegacyToolStripMenuItem_Click);
+            this.useTemplateRecipeToolStripMenuItem1.Name = "useTemplateRecipeToolStripMenuItem1";
+            this.useTemplateRecipeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateRecipeToolStripMenuItem1.Text = "Use Template";
+            this.useTemplateRecipeToolStripMenuItem1.Click += new System.EventHandler(this.useTemplateRecipeToolStripMenuItem1_Click);
             // 
-            // setGroupEndingToolStripMenuItem
+            // useTemplateDeckToolStripMenuItem
             // 
-            this.setGroupEndingToolStripMenuItem.Name = "setGroupEndingToolStripMenuItem";
-            this.setGroupEndingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.setGroupEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
-            this.setGroupEndingToolStripMenuItem.Text = "Set Group";
-            this.setGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.SetGroupEndingToolStripMenuItem_Click);
+            this.useTemplateDeckToolStripMenuItem.Name = "useTemplateDeckToolStripMenuItem";
+            this.useTemplateDeckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateDeckToolStripMenuItem.Text = "Use Template";
+            this.useTemplateDeckToolStripMenuItem.Click += new System.EventHandler(this.useTemplateDeckToolStripMenuItem_Click);
             // 
-            // setGroupVerbToolStripMenuItem
+            // useTemplateLegacyToolStripMenuItem
             // 
-            this.setGroupVerbToolStripMenuItem.Name = "setGroupVerbToolStripMenuItem";
-            this.setGroupVerbToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.setGroupVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
-            this.setGroupVerbToolStripMenuItem.Text = "Set Group";
-            this.setGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.SetGroupVerbToolStripMenuItem_Click);
+            this.useTemplateLegacyToolStripMenuItem.Name = "useTemplateLegacyToolStripMenuItem";
+            this.useTemplateLegacyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateLegacyToolStripMenuItem.Text = "Use Template";
+            this.useTemplateLegacyToolStripMenuItem.Click += new System.EventHandler(this.useTemplateLegacyToolStripMenuItem_Click);
+            // 
+            // useTemplateEndingToolStripMenuItem
+            // 
+            this.useTemplateEndingToolStripMenuItem.Name = "useTemplateEndingToolStripMenuItem";
+            this.useTemplateEndingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateEndingToolStripMenuItem.Text = "Use Template";
+            this.useTemplateEndingToolStripMenuItem.Click += new System.EventHandler(this.useTemplateEndingToolStripMenuItem_Click);
+            // 
+            // useTemplateToolStripMenuItem
+            // 
+            this.useTemplateToolStripMenuItem.Name = "useTemplateToolStripMenuItem";
+            this.useTemplateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateToolStripMenuItem.Text = "Use Template";
+            this.useTemplateToolStripMenuItem.Click += new System.EventHandler(this.useTemplateToolStripMenuItem_Click);
             // 
             // ModViewerTabControl
             // 
@@ -1526,5 +1596,12 @@
         private System.Windows.Forms.ToolStripMenuItem setGroupLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setGroupEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setGroupVerbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateRecipeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateDeckToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useTemplateToolStripMenuItem;
     }
 }

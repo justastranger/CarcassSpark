@@ -38,6 +38,7 @@ namespace CarcassSpark.Tools
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.selectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // templatesListView
@@ -108,11 +109,23 @@ namespace CarcassSpark.Tools
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // selectButton
+            // 
+            this.selectButton.Location = new System.Drawing.Point(613, 415);
+            this.selectButton.Name = "selectButton";
+            this.selectButton.Size = new System.Drawing.Size(94, 23);
+            this.selectButton.TabIndex = 6;
+            this.selectButton.Text = "Select Template";
+            this.selectButton.UseVisualStyleBackColor = true;
+            this.selectButton.Visible = false;
+            this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
+            // 
             // TemplateManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.selectButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.deleteButton);
@@ -128,11 +141,12 @@ namespace CarcassSpark.Tools
         #endregion
 
         private System.Windows.Forms.ListView templatesListView;
-        private ScintillaNET.Scintilla scintilla1;
         private System.Windows.Forms.Button newTemplateButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button selectButton;
+        public Scintilla scintilla1;
     }
 }

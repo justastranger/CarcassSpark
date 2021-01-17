@@ -14,6 +14,13 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
 {
+    public enum TemplateManagerMode
+    {
+        NORMAL,
+        SELECTING
+    }
+
+
     public partial class TemplateManager : Form
     {
         readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
@@ -22,6 +29,28 @@ namespace CarcassSpark.Tools
         public TemplateManager()
         {
             InitializeComponent();
+            SetScintillaStyle();
+            EnumerateTemplates();
+        }
+
+        public TemplateManager(TemplateManagerMode mode)
+        {
+            InitializeComponent();
+            SetScintillaStyle();
+            EnumerateTemplates();
+            if (mode == TemplateManagerMode.SELECTING)
+            {
+                SetSelectionMode();
+            }
+        }
+
+        private void SetSelectionMode()
+        {
+            selectButton.Visible = true;
+        }
+        
+        private void SetScintillaStyle()
+        {
             scintilla1.Styles[Style.Json.Default].ForeColor = Color.Silver;
             scintilla1.Styles[Style.Json.BlockComment].ForeColor = Color.Green;
             scintilla1.Styles[Style.Json.LineComment].ForeColor = Color.Green;
@@ -32,7 +61,6 @@ namespace CarcassSpark.Tools
             scintilla1.Styles[Style.Json.Operator].ForeColor = Color.Purple;
             scintilla1.Styles[Style.Json.Keyword].ForeColor = Color.SkyBlue;
             scintilla1.Styles[Style.Json.LdKeyword].ForeColor = Color.SkyBlue;
-            EnumerateTemplates();
         }
 
         public void EnumerateTemplates()
@@ -40,7 +68,7 @@ namespace CarcassSpark.Tools
             if (!Directory.Exists(templatesPath)) Directory.CreateDirectory(templatesPath);
             if (Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories).Count() > 0)
             {
-                foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json"))
+                foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories))
                 {
                     string templateJSON = File.ReadAllText(templateFile);
                     ListViewItem templateListViewItem = new ListViewItem(Path.GetFileName(templateFile)) { Tag = templateJSON, Name = Path.GetFileName(templateFile) };
@@ -58,9 +86,16 @@ namespace CarcassSpark.Tools
             scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
         }
 
-        public string CreateTemplateFile(string filepath, Type entityType)
+        public ListViewItem CreateTemplateFile(ListViewItem item, string filename, Type entityType)
         {
+            string newFileName = entityType.Name + "_" + filename + ".json";
             string entityJson = JsonConvert.SerializeObject(Activator.CreateInstance(entityType));
+            string filepath = Path.Combine(templatesPath, entityType.Name, newFileName);
+            if (!Directory.Exists(Path.Combine(templatesPath, entityType.Name))) Directory.CreateDirectory(Path.Combine(templatesPath, entityType.Name));
+            if (File.Exists(filepath) && MessageBox.Show("File already exists, do you want to overwrite it?", "File already exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return item;
+            }
             using (FileStream fileStream = File.Open(filepath, FileMode.CreateNew))
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
@@ -68,7 +103,10 @@ namespace CarcassSpark.Tools
                 jsonTextWriter.WriteRaw(entityJson);
                 jsonTextWriter.Flush();
             }
-            return entityJson;
+            item.Tag = entityJson;
+            item.Text = newFileName;
+            item.Name = newFileName;
+            return item;
         }
 
         private void NewTemplateButton_Click(object sender, EventArgs e)
@@ -77,43 +115,38 @@ namespace CarcassSpark.Tools
             if (templateSetup.ShowDialog() == DialogResult.OK)
             {
                 string filename = templateSetup.filenameTextBox.Text;
-                string filepath = Path.Combine(templatesPath, filename);
-                ListViewItem newListViewItem = new ListViewItem(filename) { Name = filename };
-                if (File.Exists(filepath) && MessageBox.Show("File already exists, do you want to overwrite it?", "File already exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                {
-                    return;
-                }
+                ListViewItem newListViewItem = new ListViewItem();
                 switch (templateSetup.comboBox1.Text)
                 {
                     case "Aspect":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Aspect));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Aspect));
                         break;
                     case "Element":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Element));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Element));
                         break;
                     case "Recipe":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Recipe));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Recipe));
                         break;
                     case "Deck":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Deck));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Deck));
                         break;
                     case "Legacy":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Legacy));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Legacy));
                         break;
                     case "Ending":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Ending));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Ending));
                         break;
                     case "Verb":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Verb));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Verb));
                         break;
                     case "Culture":
-                        newListViewItem.Tag = CreateTemplateFile(filepath, typeof(Culture));
+                        newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Culture));
                         break;
 
                     default:
                         break;
                 }
-                templatesListView.Items.Add(newListViewItem);
+                if (newListViewItem.Tag != null) templatesListView.Items.Add(newListViewItem);
             }
         }
 
@@ -137,7 +170,8 @@ namespace CarcassSpark.Tools
 
         private void SaveFile(string filename, string json)
         {
-            string filepath = Path.Combine(templatesPath, filename);
+            string type = filename.Split('_')[0];
+            string filepath = Path.Combine(templatesPath, type, filename);
             // File.Delete(filepath);
             using (FileStream fileStream = File.Open(filepath, FileMode.CreateNew))
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
@@ -184,11 +218,13 @@ namespace CarcassSpark.Tools
             {
                 if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
+                    DialogResult = DialogResult.Cancel;
                     Close();
                 }
             }
             else
             {
+                DialogResult = DialogResult.Cancel;
                 Close();
             }
         }
@@ -209,6 +245,23 @@ namespace CarcassSpark.Tools
             catch (NullReferenceException ex)
             {
                 // We just deleted the file being referenced, most likely.
+            }
+        }
+
+        private void SelectButton_Click(object sender, EventArgs e)
+        {
+            if (unsavedChanged)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
     }

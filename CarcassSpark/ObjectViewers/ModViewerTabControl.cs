@@ -3041,6 +3041,41 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void useTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useTemplateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
