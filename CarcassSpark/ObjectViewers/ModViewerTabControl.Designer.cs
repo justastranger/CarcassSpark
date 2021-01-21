@@ -71,6 +71,7 @@
             this.copyRecipeJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedRecipesJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateRecipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,6 +82,7 @@
             this.copyDeckJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedDecksJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,6 +91,7 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedLegacysJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +102,7 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedEndingsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +114,7 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectedVerbsJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useTemplateVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsSearchTextBox = new System.Windows.Forms.TextBox();
@@ -157,11 +162,6 @@
             this.verbsListView = new System.Windows.Forms.ListView();
             this.verbIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter7 = new System.Windows.Forms.Splitter();
-            this.useTemplateRecipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.useTemplateDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useTemplateLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useTemplateEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useTemplateVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -297,7 +297,7 @@
             // useTemplateAspectToolStripMenuItem
             // 
             this.useTemplateAspectToolStripMenuItem.Name = "useTemplateAspectToolStripMenuItem";
-            this.useTemplateAspectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateAspectToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateAspectToolStripMenuItem.Text = "Use Template";
             this.useTemplateAspectToolStripMenuItem.Click += new System.EventHandler(this.useTemplateAspectToolStripMenuItem_Click);
             // 
@@ -438,7 +438,7 @@
             // useTemplateElementToolStripMenuItem
             // 
             this.useTemplateElementToolStripMenuItem.Name = "useTemplateElementToolStripMenuItem";
-            this.useTemplateElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.useTemplateElementToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateElementToolStripMenuItem.Text = "Use Template";
             this.useTemplateElementToolStripMenuItem.Click += new System.EventHandler(this.useTemplateElementToolStripMenuItem_Click);
             // 
@@ -536,6 +536,13 @@
             this.newRecipeToolStripMenuItem.Text = "New Recipe";
             this.newRecipeToolStripMenuItem.Click += new System.EventHandler(this.NewRecipeToolStripMenuItem_Click);
             // 
+            // useTemplateRecipeToolStripMenuItem1
+            // 
+            this.useTemplateRecipeToolStripMenuItem1.Name = "useTemplateRecipeToolStripMenuItem1";
+            this.useTemplateRecipeToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateRecipeToolStripMenuItem1.Text = "Use Template";
+            this.useTemplateRecipeToolStripMenuItem1.Click += new System.EventHandler(this.useTemplateRecipeToolStripMenuItem1_Click);
+            // 
             // setGroupRecipeToolStripMenuItem
             // 
             this.setGroupRecipeToolStripMenuItem.Name = "setGroupRecipeToolStripMenuItem";
@@ -622,6 +629,13 @@
             this.newDeckToolStripMenuItem.Text = "New Deck";
             this.newDeckToolStripMenuItem.Click += new System.EventHandler(this.NewDeckToolStripMenuItem_Click);
             // 
+            // useTemplateDeckToolStripMenuItem
+            // 
+            this.useTemplateDeckToolStripMenuItem.Name = "useTemplateDeckToolStripMenuItem";
+            this.useTemplateDeckToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateDeckToolStripMenuItem.Text = "Use Template";
+            this.useTemplateDeckToolStripMenuItem.Click += new System.EventHandler(this.useTemplateDeckToolStripMenuItem_Click);
+            // 
             // setGroupDeckToolStripMenuItem
             // 
             this.setGroupDeckToolStripMenuItem.Name = "setGroupDeckToolStripMenuItem";
@@ -690,6 +704,13 @@
             this.newLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.newLegacyToolStripMenuItem.Text = "New Legacy";
             this.newLegacyToolStripMenuItem.Click += new System.EventHandler(this.NewLegacyToolStripMenuItem_Click);
+            // 
+            // useTemplateLegacyToolStripMenuItem
+            // 
+            this.useTemplateLegacyToolStripMenuItem.Name = "useTemplateLegacyToolStripMenuItem";
+            this.useTemplateLegacyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateLegacyToolStripMenuItem.Text = "Use Template";
+            this.useTemplateLegacyToolStripMenuItem.Click += new System.EventHandler(this.useTemplateLegacyToolStripMenuItem_Click);
             // 
             // setGroupLegacyToolStripMenuItem
             // 
@@ -776,6 +797,13 @@
             this.newEndingToolStripMenuItem.Text = "New Ending";
             this.newEndingToolStripMenuItem.Click += new System.EventHandler(this.NewEndingToolStripMenuItem_Click);
             // 
+            // useTemplateEndingToolStripMenuItem
+            // 
+            this.useTemplateEndingToolStripMenuItem.Name = "useTemplateEndingToolStripMenuItem";
+            this.useTemplateEndingToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateEndingToolStripMenuItem.Text = "Use Template";
+            this.useTemplateEndingToolStripMenuItem.Click += new System.EventHandler(this.useTemplateEndingToolStripMenuItem_Click);
+            // 
             // setGroupEndingToolStripMenuItem
             // 
             this.setGroupEndingToolStripMenuItem.Name = "setGroupEndingToolStripMenuItem";
@@ -796,7 +824,7 @@
             this.newVerbToolStripMenuItem,
             this.setGroupVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 202);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 180);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -868,6 +896,13 @@
             this.newVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.newVerbToolStripMenuItem.Text = "New Verb";
             this.newVerbToolStripMenuItem.Click += new System.EventHandler(this.NewVerbToolStripMenuItem_Click);
+            // 
+            // useTemplateVerbToolStripMenuItem
+            // 
+            this.useTemplateVerbToolStripMenuItem.Name = "useTemplateVerbToolStripMenuItem";
+            this.useTemplateVerbToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.useTemplateVerbToolStripMenuItem.Text = "Use Template";
+            this.useTemplateVerbToolStripMenuItem.Click += new System.EventHandler(this.useTemplateVerbToolStripMenuItem_Click);
             // 
             // setGroupVerbToolStripMenuItem
             // 
@@ -1386,41 +1421,6 @@
             this.splitter7.TabIndex = 41;
             this.splitter7.TabStop = false;
             this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
-            // 
-            // useTemplateRecipeToolStripMenuItem1
-            // 
-            this.useTemplateRecipeToolStripMenuItem1.Name = "useTemplateRecipeToolStripMenuItem1";
-            this.useTemplateRecipeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.useTemplateRecipeToolStripMenuItem1.Text = "Use Template";
-            this.useTemplateRecipeToolStripMenuItem1.Click += new System.EventHandler(this.useTemplateRecipeToolStripMenuItem1_Click);
-            // 
-            // useTemplateDeckToolStripMenuItem
-            // 
-            this.useTemplateDeckToolStripMenuItem.Name = "useTemplateDeckToolStripMenuItem";
-            this.useTemplateDeckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.useTemplateDeckToolStripMenuItem.Text = "Use Template";
-            this.useTemplateDeckToolStripMenuItem.Click += new System.EventHandler(this.useTemplateDeckToolStripMenuItem_Click);
-            // 
-            // useTemplateLegacyToolStripMenuItem
-            // 
-            this.useTemplateLegacyToolStripMenuItem.Name = "useTemplateLegacyToolStripMenuItem";
-            this.useTemplateLegacyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.useTemplateLegacyToolStripMenuItem.Text = "Use Template";
-            this.useTemplateLegacyToolStripMenuItem.Click += new System.EventHandler(this.useTemplateLegacyToolStripMenuItem_Click);
-            // 
-            // useTemplateEndingToolStripMenuItem
-            // 
-            this.useTemplateEndingToolStripMenuItem.Name = "useTemplateEndingToolStripMenuItem";
-            this.useTemplateEndingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.useTemplateEndingToolStripMenuItem.Text = "Use Template";
-            this.useTemplateEndingToolStripMenuItem.Click += new System.EventHandler(this.useTemplateEndingToolStripMenuItem_Click);
-            // 
-            // useTemplateVerbToolStripMenuItem
-            // 
-            this.useTemplateVerbToolStripMenuItem.Name = "useTemplateVerbToolStripMenuItem";
-            this.useTemplateVerbToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.useTemplateVerbToolStripMenuItem.Text = "Use Template";
-            this.useTemplateVerbToolStripMenuItem.Click += new System.EventHandler(this.useTemplateVerbToolStripMenuItem_Click);
             // 
             // ModViewerTabControl
             // 
