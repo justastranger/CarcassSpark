@@ -311,13 +311,18 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
+                        if (!SelectedModViewer.aspectsListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.aspectsListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error deserializing Aspect");
+                    MessageBox.Show("Error deserializing Aspect: " + ex.ToString());
                 }
             }
         }
@@ -335,7 +340,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
+                        if (!SelectedModViewer.elementsListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.elementsListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
                 }
@@ -359,7 +369,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
+                        if (!SelectedModViewer.recipesListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.recipesListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
                 }
@@ -383,7 +398,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
+                        if (!SelectedModViewer.decksListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.decksListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Decks[deserializedDeck.id] = deserializedDeck;
                 }
@@ -407,7 +427,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
+                        if (!SelectedModViewer.legaciesListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.legaciesListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
                 }
@@ -431,7 +456,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
+                        if (!SelectedModViewer.endingsListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.endingsListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Endings[deserializedEnding.id] = deserializedEnding;
                 }
@@ -455,7 +485,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
-                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode() });
+                        ListViewGroup group = SelectedModViewer.verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
+                        if (!SelectedModViewer.verbsListView.Groups.Contains(group))
+                        {
+                            SelectedModViewer.verbsListView.Groups.Add(group);
+                        }
+                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode(), Group = group });
                     }
                     SelectedModViewer.Content.Verbs[deserializedVerb.id] = deserializedVerb;
                 }
@@ -472,62 +507,140 @@ namespace CarcassSpark.ObjectViewers
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
+                ListViewGroup listViewGroup;
                 switch (je.objectType)
                 {
                     case "Aspect":
+                        if (SelectedModViewer.aspectsListView.Groups["aspects"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.aspectsListView.Groups["aspects"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("aspects", "aspects");
+                            SelectedModViewer.aspectsListView.Groups.Add(listViewGroup);
+                        }
                         Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
                         SelectedModViewer.Content.Aspects[deserializedAspect.id] = deserializedAspect;
                         if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                         {
-                            SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedAspect.id) { Tag = deserializedAspect.GetHashCode() };
+                            SelectedModViewer.aspectsListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Element":
+                        if (SelectedModViewer.elementsListView.Groups["elements"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.elementsListView.Groups["elements"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("elements", "elements");
+                            SelectedModViewer.elementsListView.Groups.Add(listViewGroup);
+                        }
                         Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                         SelectedModViewer.Content.Elements[deserializedElement.id] = deserializedElement;
                         if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                         {
-                            SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedElement.id) { Tag = deserializedElement.GetHashCode() };
+                            SelectedModViewer.elementsListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Recipe":
+                        if (SelectedModViewer.recipesListView.Groups["recipes"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.recipesListView.Groups["recipes"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("recipes", "recipes");
+                            SelectedModViewer.recipesListView.Groups.Add(listViewGroup);
+                        }
                         Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
                         SelectedModViewer.Content.Recipes[deserializedRecipe.id] = deserializedRecipe;
                         if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                         {
-                            SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedRecipe.id) { Tag = deserializedRecipe.GetHashCode() };
+                            SelectedModViewer.recipesListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Deck":
+                        if (SelectedModViewer.decksListView.Groups["decks"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.decksListView.Groups["decks"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("decks", "decks");
+                            SelectedModViewer.decksListView.Groups.Add(listViewGroup);
+                        }
                         Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                         SelectedModViewer.Content.Decks[deserializedDeck.id] = deserializedDeck;
                         if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                         {
-                            SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedDeck.id) { Tag = deserializedDeck.GetHashCode() };
+                            SelectedModViewer.decksListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Legacy":
+                        if (SelectedModViewer.legaciesListView.Groups["legacies"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.legaciesListView.Groups["legacies"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("legacies", "legacies");
+                            SelectedModViewer.legaciesListView.Groups.Add(listViewGroup);
+                        }
                         Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
                         SelectedModViewer.Content.Legacies[deserializedLegacy.id] = deserializedLegacy;
                         if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                         {
-                            SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedLegacy.id) { Tag = deserializedLegacy.GetHashCode() };
+                            SelectedModViewer.legaciesListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Ending":
+                        if (SelectedModViewer.endingsListView.Groups["endings"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.endingsListView.Groups["endings"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("endings", "endings");
+                            SelectedModViewer.endingsListView.Groups.Add(listViewGroup);
+                        }
                         Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
                         SelectedModViewer.Content.Endings[deserializedEnding.id] = deserializedEnding;
                         if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                         {
-                            SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedEnding.id) { Tag = deserializedEnding.GetHashCode() };
+                            SelectedModViewer.endingsListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     case "Verb":
+                        if (SelectedModViewer.verbsListView.Groups["verbs"] != null)
+                        {
+                            listViewGroup = SelectedModViewer.verbsListView.Groups["verbs"];
+                        }
+                        else
+                        {
+                            listViewGroup = new ListViewGroup("verbs", "verbs");
+                            SelectedModViewer.verbsListView.Groups.Add(listViewGroup);
+                        }
                         Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
                         SelectedModViewer.Content.Verbs[deserializedVerb.id] = deserializedVerb;
                         if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                         {
-                            SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode() });
+                            ListViewItem item = new ListViewItem(deserializedVerb.id) { Tag = deserializedVerb.GetHashCode() };
+                            SelectedModViewer.verbsListView.Items.Add(item);
+                            listViewGroup.Items.Add(item);
                         }
                         break;
                     default:
