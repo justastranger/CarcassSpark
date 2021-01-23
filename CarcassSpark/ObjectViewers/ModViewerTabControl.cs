@@ -2214,6 +2214,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedAspectToolStripMenuItem.Enabled) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = aspectsListView.SelectedItems[0].Group;
             Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Text].Copy();
             string id = newAspect.id;
             if (aspectsListView.Items.ContainsKey(id))
@@ -2231,7 +2232,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newAspect.id = id;
-            aspectsListView.Items.Add(new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode() };
+            aspectsListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Aspects.Add(newAspect.id, newAspect.Copy());
         }
 
@@ -2239,6 +2242,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedElementToolStripMenuItem.Enabled) return;
             if (elementsListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = elementsListView.SelectedItems[0].Group;
             Element newElement = Content.Elements[elementsListView.SelectedItems[0].Text].Copy();
             string id = newElement.id;
             if (elementsListView.Items.ContainsKey(id + "_1"))
@@ -2256,7 +2260,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newElement.id = id;
-            elementsListView.Items.Add(new ListViewItem(newElement.id) { Tag = newElement.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newElement.GetHashCode() };
+            elementsListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Elements.Add(newElement.id, newElement.Copy());
         }
 
@@ -2264,6 +2270,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedRecipeToolStripMenuItem.Enabled) return;
             if (recipesListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = recipesListView.SelectedItems[0].Group;
             Recipe newRecipe = Content.Recipes[recipesListView.SelectedItems[0].Text].Copy();
             string id = newRecipe.id;
             if (recipesListView.Items.ContainsKey(id + "_1"))
@@ -2281,7 +2288,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newRecipe.id = id;
-            recipesListView.Items.Add(new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode() };
+            recipesListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Recipes.Add(newRecipe.id, newRecipe);
         }
 
@@ -2289,6 +2298,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedDeckToolStripMenuItem.Enabled) return;
             if (decksListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = decksListView.SelectedItems[0].Group;
             Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Text].Copy();
             string id = newDeck.id;
             if (decksListView.Items.ContainsKey(id + "_1"))
@@ -2306,7 +2316,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newDeck.id = id;
-            decksListView.Items.Add(new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() };
+            decksListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Decks.Add(newDeck.id, newDeck);
         }
 
@@ -2314,6 +2326,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedLegacyToolStripMenuItem.Enabled) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = legaciesListView.SelectedItems[0].Group;
             Legacy newLegacy = Content.Legacies[legaciesListView.SelectedItems[0].Text].Copy();
             string id = newLegacy.id;
             if (legaciesListView.Items.ContainsKey(id + "_1"))
@@ -2331,7 +2344,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newLegacy.id = id;
-            legaciesListView.Items.Add(new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode() };
+            legaciesListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Legacies.Add(newLegacy.id, newLegacy);
         }
 
@@ -2339,6 +2354,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!duplicateSelectedEndingToolStripMenuItem.Enabled) return;
             if (endingsListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = endingsListView.SelectedItems[0].Group;
             Ending newEnding = Content.Endings[endingsListView.SelectedItems[0].Text].Copy();
             string id = newEnding.id;
             if (endingsListView.Items.ContainsKey(id + "_1"))
@@ -2356,13 +2372,17 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newEnding.id = id;
-            endingsListView.Items.Add(new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode() };
+            endingsListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Endings.Add(newEnding.id, newEnding);
         }
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!duplicateSelectedVerbToolStripMenuItem.Enabled) return;
+            if (verbsListView.SelectedItems.Count < 1) return;
+            ListViewGroup group = verbsListView.SelectedItems[0].Group;
             Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Text].Copy();
             string id = newVerb.id;
             if (verbsListView.Items.ContainsKey(id + "_1"))
@@ -2380,7 +2400,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newVerb.id = id;
-            verbsListView.Items.Add(new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() });
+            ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() };
+            verbsListView.Items.Add(newItem);
+            group.Items.Add(newItem);
             Content.Verbs.Add(newVerb.id, newVerb);
         }
 

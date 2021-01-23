@@ -655,35 +655,33 @@ namespace CarcassSpark.ObjectViewers
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
-                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.GetHashCode(), Group = SelectedModViewer.elementsListView.Groups["elements"] };
+                ListViewGroup defaultElementsGroup = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
+                if (!SelectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
+                {
+                    SelectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
+                }
+
+                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = sc.baseSummon.GetHashCode(), Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(baseSummon);
                 SelectedModViewer.Content.Elements.Add(sc.baseSummon.id, sc.baseSummon.Copy());
                 
-                ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.GetHashCode(), Group = SelectedModViewer.elementsListView.Groups["elements"] };
+                ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = sc.preSummon.GetHashCode(), Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(preSummon);
                 SelectedModViewer.Content.Elements.Add(sc.preSummon.id, sc.preSummon.Copy());
-                
-                if (SelectedModViewer.elementsListView.Groups["elements"] == null)
-                {
-                    ListViewGroup elements = new ListViewGroup("elements", "elements");
-                    SelectedModViewer.elementsListView.Groups.Add(elements);
-                }
-                SelectedModViewer.elementsListView.Groups["elements"].Items.AddRange(new ListViewItem[] { baseSummon, preSummon });
 
-                ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = sc.startSummon.GetHashCode(), Group = SelectedModViewer.recipesListView.Groups["recipes"] };
+                ListViewGroup defaultRecipesGroup = SelectedModViewer.elementsListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
+                if (!SelectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
+                {
+                    SelectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
+                }
+
+                ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = sc.startSummon.GetHashCode(), Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(startSummon);
                 SelectedModViewer.Content.Recipes.Add(sc.startSummon.id, sc.startSummon.Copy());
 
-                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = sc.succeedSummon.GetHashCode() };
+                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = sc.succeedSummon.GetHashCode(), Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(succeedSummon);
                 SelectedModViewer.Content.Recipes.Add(sc.succeedSummon.id, sc.succeedSummon.Copy());
-                
-                if (SelectedModViewer.recipesListView.Groups["recipes"] == null)
-                {
-                    ListViewGroup recipes = new ListViewGroup("recipes", "recipes");
-                    SelectedModViewer.recipesListView.Groups.Add(recipes);
-                }
-                SelectedModViewer.recipesListView.Groups["recipes"].Items.AddRange(new ListViewItem[] { startSummon, succeedSummon });
             }
         }
 
