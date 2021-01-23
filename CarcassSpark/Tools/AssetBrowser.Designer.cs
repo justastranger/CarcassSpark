@@ -52,7 +52,7 @@
             this.assetsListView.TabIndex = 0;
             this.assetsListView.UseCompatibleStateImageBehavior = false;
             this.assetsListView.View = System.Windows.Forms.View.Tile;
-            this.assetsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.assetsListView_MouseDoubleClick);
+            this.assetsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.AssetsListView_MouseDoubleClick);
             // 
             // cancelButton
             // 
@@ -64,7 +64,7 @@
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // okButton
             // 
@@ -75,7 +75,7 @@
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // assetsContextMenuStrip
             // 
@@ -89,7 +89,7 @@
             this.copyImageIDToolStripMenuItem.Name = "copyImageIDToolStripMenuItem";
             this.copyImageIDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.copyImageIDToolStripMenuItem.Text = "Copy Image ID";
-            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.copyImageIDToolStripMenuItem_Click);
+            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.CopyImageIDToolStripMenuItem_Click);
             // 
             // AssetBrowser
             // 
