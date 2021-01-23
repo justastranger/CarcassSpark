@@ -1065,8 +1065,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = aspectsListView.Groups[aspect.filename];
                         }
-                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         aspectsListView.Items.Add(item);
                     }
                 }
@@ -1086,8 +1086,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = aspectsListView.Groups[aspect.filename];
                     }
-                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     aspectsListView.Items.Add(item);
                 }
             }
@@ -1115,8 +1115,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = elementsListView.Groups[element.filename];
                         }
-                        ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         elementsListView.Items.Add(item);
                     }
                 }
@@ -1136,8 +1136,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = elementsListView.Groups[element.filename];
                     }
-                    ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(element.id) { Tag = element.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     elementsListView.Items.Add(item);
                 }
             }
@@ -1165,8 +1165,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = recipesListView.Groups[recipe.filename];
                         }
-                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         recipesListView.Items.Add(item);
                     }
                 }
@@ -1186,8 +1186,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = recipesListView.Groups[recipe.filename];
                     }
-                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     recipesListView.Items.Add(item);
                 }
             }
@@ -1215,8 +1215,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = decksListView.Groups[deck.filename];
                         }
-                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         decksListView.Items.Add(item);
                     }
                 }
@@ -1236,8 +1236,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = decksListView.Groups[deck.filename];
                     }
-                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     decksListView.Items.Add(item);
                 }
             }
@@ -1265,8 +1265,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = legaciesListView.Groups[legacy.filename];
                         }
-                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         legaciesListView.Items.Add(item);
                     }
                 }
@@ -1286,8 +1286,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = legaciesListView.Groups[legacy.filename];
                     }
-                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     legaciesListView.Items.Add(item);
                 }
             }
@@ -1315,8 +1315,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = endingsListView.Groups[ending.filename];
                         }
-                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         endingsListView.Items.Add(item);
                     }
                 }
@@ -1336,8 +1336,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = endingsListView.Groups[ending.filename];
                     }
-                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     endingsListView.Items.Add(item);
                 }
             }
@@ -1365,8 +1365,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = verbsListView.Groups[verb.filename];
                         }
-                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode() };
-                        group.Items.Add(item);
+                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode(), Group = group };
+                        // group.Items.Add(item);
                         verbsListView.Items.Add(item);
                     }
                 }
@@ -1386,8 +1386,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = verbsListView.Groups[verb.filename];
                     }
-                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode() };
-                    group.Items.Add(item);
+                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.GetHashCode(), Group = group };
+                    // group.Items.Add(item);
                     verbsListView.Items.Add(item);
                 }
             }
@@ -2232,9 +2232,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newAspect.id = id;
-            ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode(), Group = group };
             aspectsListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Aspects.Add(newAspect.id, newAspect.Copy());
         }
 
@@ -2260,9 +2260,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newElement.id = id;
-            ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newElement.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newElement.GetHashCode(), Group = group };
             elementsListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Elements.Add(newElement.id, newElement.Copy());
         }
 
@@ -2288,9 +2288,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newRecipe.id = id;
-            ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode(), Group = group };
             recipesListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Recipes.Add(newRecipe.id, newRecipe);
         }
 
@@ -2316,9 +2316,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newDeck.id = id;
-            ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode(), Group = group };
             decksListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Decks.Add(newDeck.id, newDeck);
         }
 
@@ -2344,9 +2344,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newLegacy.id = id;
-            ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode(), Group = group };
             legaciesListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Legacies.Add(newLegacy.id, newLegacy);
         }
 
@@ -2372,9 +2372,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newEnding.id = id;
-            ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode(), Group = group };
             endingsListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Endings.Add(newEnding.id, newEnding);
         }
 
@@ -2400,9 +2400,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newVerb.id = id;
-            ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() };
+            ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode(), Group = group };
             verbsListView.Items.Add(newItem);
-            group.Items.Add(newItem);
+            // group.Items.Add(newItem);
             Content.Verbs.Add(newVerb.id, newVerb);
         }
 
@@ -2590,8 +2590,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultAspectsGroup = aspectsListView.Groups["aspects"];
             }
-            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultAspectsGroup.Items.Add(newAspectEntry);
+            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultAspectsGroup };
+            // defaultAspectsGroup.Items.Add(newAspectEntry);
             aspectsListView.Items.Add(newAspectEntry);
         }
 
@@ -2608,8 +2608,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultElementsGroup = elementsListView.Groups["elements"];
             }
-            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultElementsGroup.Items.Add(newElementEntry);
+            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultElementsGroup };
+            // defaultElementsGroup.Items.Add(newElementEntry);
             elementsListView.Items.Add(newElementEntry);
         }
 
@@ -2626,8 +2626,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultRecipesGroup = recipesListView.Groups["recipes"];
             }
-            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultRecipesGroup.Items.Add(newRecipeEntry);
+            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultRecipesGroup };
+            // defaultRecipesGroup.Items.Add(newRecipeEntry);
             recipesListView.Items.Add(newRecipeEntry);
         }
 
@@ -2644,8 +2644,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultDecksGroup = decksListView.Groups["decks"];
             }
-            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultDecksGroup.Items.Add(newDeckEntry);
+            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultDecksGroup };
+            // defaultDecksGroup.Items.Add(newDeckEntry);
             decksListView.Items.Add(newDeckEntry);
         }
 
@@ -2662,8 +2662,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultLegaciesGroup = legaciesListView.Groups["legacies"];
             }
-            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultLegaciesGroup.Items.Add(newLegacyEntry);
+            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultLegaciesGroup };
+            // defaultLegaciesGroup.Items.Add(newLegacyEntry);
             legaciesListView.Items.Add(newLegacyEntry);
         }
 
@@ -2680,8 +2680,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultEndingsGroup = endingsListView.Groups["endings"];
             }
-            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultEndingsGroup.Items.Add(newEndingEntry);
+            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultEndingsGroup };
+            // defaultEndingsGroup.Items.Add(newEndingEntry);
             endingsListView.Items.Add(newEndingEntry);
         }
 
@@ -2698,8 +2698,8 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultVerbsGroup = verbsListView.Groups["verbs"];
             }
-            ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = result.GetHashCode() };
-            defaultVerbsGroup.Items.Add(newVerbEntry);
+            ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultVerbsGroup };
+            // defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
         }
 
@@ -2855,7 +2855,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (aspectsListView.Groups[newGroup] != null)
                     {
                         aspectsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2888,7 +2888,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (elementsListView.Groups[newGroup] != null)
                     {
                         elementsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2920,7 +2920,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (recipesListView.Groups[newGroup] != null)
                     {
                         recipesListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2952,7 +2952,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") decksListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) decksListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (decksListView.Groups[newGroup] != null)
                     {
                         decksListView.Groups[newGroup].Items.Add(selectedItem);
@@ -2984,7 +2984,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (legaciesListView.Groups[newGroup] != null)
                     {
                         legaciesListView.Groups[newGroup].Items.Add(selectedItem);
@@ -3016,7 +3016,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (endingsListView.Groups[newGroup] != null)
                     {
                         endingsListView.Groups[newGroup].Items.Add(selectedItem);
@@ -3048,7 +3048,7 @@ namespace CarcassSpark.ObjectViewers
                 string newGroup = ge.group;
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "") verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                    if (currentGroup != "" && currentGroup != null) verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
                     if (verbsListView.Groups[newGroup] != null)
                     {
                         verbsListView.Groups[newGroup].Items.Add(selectedItem);
