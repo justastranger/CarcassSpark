@@ -81,8 +81,14 @@ namespace CarcassSpark.Tools
             {
                 foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories))
                 {
+                    string folderName = Path.GetDirectoryName(templateFile).Split(Path.DirectorySeparatorChar).Last();
+                    ListViewGroup group = templatesListView.Groups[folderName] ?? new ListViewGroup(folderName, folderName);
+                    if (!templatesListView.Groups.Contains(group))
+                    {
+                        templatesListView.Groups.Add(group);
+                    }
                     string templateJSON = File.ReadAllText(templateFile);
-                    ListViewItem templateListViewItem = new ListViewItem(Path.GetFileName(templateFile)) { Tag = templateJSON, Name = Path.GetFileName(templateFile) };
+                    ListViewItem templateListViewItem = new ListViewItem(Path.GetFileName(templateFile)) { Tag = templateJSON, Name = Path.GetFileName(templateFile), Group = group };
                     templatesListView.Items.Add(templateListViewItem);
                 }
             }
