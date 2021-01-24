@@ -14,36 +14,38 @@ namespace CarcassSpark.ObjectViewers
     public partial class LegacyViewer : Form
     {
         public Legacy displayedLegacy;
-        bool editing;
         event EventHandler<Legacy> SuccessCallback;
 
         public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback)
         {
             InitializeComponent();
             displayedLegacy = legacy;
-            fillValues(legacy);
+            FillValues(legacy);
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else setEditingMode(false);
+            else SetEditingMode(false);
         }
 
-        void fillValues(Legacy legacy)
+        void FillValues(Legacy legacy)
         {
             if (legacy.id != null) idTextBox.Text = legacy.id;
             if (legacy.label != null) labelTextBox.Text = legacy.label;
             if (legacy.description != null) descriptionTextBox.Text = legacy.description;
             if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
-            if (legacy.image != null) imageTextBox.Text = legacy.image;
-            if (Utilities.getLegacyImage(legacy.image) != null)
+            if (legacy.comments != null) commentsTextBox.Text = legacy.comments;
+            if (legacy.image != null)
             {
-                pictureBox1.Image = Utilities.getLegacyImage(legacy.image);
+                imageTextBox.Text = legacy.image;
+                if (Utilities.LegacyImageExists(legacy.image)) pictureBox1.Image = Utilities.GetLegacyImage(legacy.image);
             }
+            if (legacy.deleted.HasValue) deletedCheckBox.CheckState = legacy.deleted.Value ? CheckState.Checked : CheckState.Unchecked;
             if (legacy.fromEnding != null) fromEndingTextBox.Text = legacy.fromEnding;
-            if (legacy.availableWithoutEndingMatch.HasValue) availableWithoutEndingMatchCheckBox.Checked = legacy.availableWithoutEndingMatch.Value;
+            if (legacy.availableWithoutEndingMatch.HasValue) availableWithoutEndingMatchCheckBox.CheckState = legacy.availableWithoutEndingMatch.Value ? CheckState.Checked : CheckState.Unchecked;
             if (legacy.startingVerbId != null) startingVerbIdTextBox.Text = legacy.startingVerbId;
+            if (legacy.newstart.HasValue) newStartCheckBox.CheckState = legacy.newstart.Value ? CheckState.Checked : CheckState.Unchecked;
             if (legacy.effects != null)
             {
                 foreach (KeyValuePair<string, int> kvp in legacy.effects)
@@ -55,8 +57,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (KeyValuePair<string, int> kvp in legacy.effects_extend)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryExtendStyle
+                    };
                     row.CreateCells(effectsDataGridView, kvp.Key, kvp.Value);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -65,8 +69,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string removeId in legacy.effects_remove)
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
+                    DataGridViewRow row = new DataGridViewRow
+                    {
+                        DefaultCellStyle = Utilities.DictionaryRemoveStyle
+                    };
                     row.CreateCells(effectsDataGridView, removeId);
                     effectsDataGridView.Rows.Add(row);
                 }
@@ -82,8 +88,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_prepend)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListPrependColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -91,8 +99,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_append)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListAppendColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListAppendColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -100,8 +110,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string ending in legacy.excludesOnEnding_remove)
                 {
-                    ListViewItem item = new ListViewItem(ending);
-                    item.BackColor = Utilities.ListRemoveColor;
+                    ListViewItem item = new ListViewItem(ending)
+                    {
+                        BackColor = Utilities.ListRemoveColor
+                    };
                     excludesOnEndingListView.Items.Add(item);
                 }
             }
@@ -112,15 +124,23 @@ namespace CarcassSpark.ObjectViewers
                     statusBarElementsListView.Items.Add(element);
                 }
             }
+            if (legacy.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", legacy.extends);
+            }
+            else if (legacy.extends?.Count == 1)
+            {
+                extendsTextBox.Text = legacy.extends[0];
+            }
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
-            this.editing = editing;
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly =!editing;
             descriptionTextBox.ReadOnly = !editing;
             startdescriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             fromEndingTextBox.ReadOnly = !editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
@@ -134,23 +154,24 @@ namespace CarcassSpark.ObjectViewers
             addExcludesTextBox.Visible = editing;
             removeButton.Visible = editing;
             excludeAddLabel.Visible = editing;
+            deletedCheckBox.Enabled = editing;
         }
 
-        private void effectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void EffectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = effectsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+            if (!(effectsDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
+            ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
             ev.Show();
         }
 
-        private void excludesOnEndingListView_DoubleClick(object sender, EventArgs e)
+        private void ExcludesOnEndingListView_DoubleClick(object sender, EventArgs e)
         {
             string id = excludesOnEndingListView.SelectedItems[0].ToString();
-            LegacyViewer lv = new LegacyViewer(Utilities.getLegacy(id), null);
+            LegacyViewer lv = new LegacyViewer(Utilities.GetLegacy(id), null);
             lv.Show();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
@@ -159,17 +180,20 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                
+                displayedLegacy.effects = null;
+                displayedLegacy.effects_extend = null;
+                displayedLegacy.effects_remove = null;
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
-                    string key = row.Cells[0].Value != null ? row.Cells[0].Value.ToString() : null;
+                    string key = row.Cells[0].Value?.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (key != null)
                     {
                         if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                         {
                             if (displayedLegacy.effects_extend == null) displayedLegacy.effects_extend = new Dictionary<string, int>();
-                            displayedLegacy.effects_extend[key] = value.Value;
+                            // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
+                            if (value.HasValue) displayedLegacy.effects_extend[key] = value.Value;
                         }
                         else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                         {
@@ -179,24 +203,26 @@ namespace CarcassSpark.ObjectViewers
                         else
                         {
                             if (displayedLegacy.effects == null) displayedLegacy.effects = new Dictionary<string, int>();
-                            displayedLegacy.effects[key] = value.Value;
+                            // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
+                            if (value.HasValue) displayedLegacy.effects[key] = value.Value;
                         }
                     }
+                    if (displayedLegacy.effects?.Count == 0) displayedLegacy.effects = null;
+                    if (displayedLegacy.effects_extend?.Count == 0) displayedLegacy.effects_extend = null;
+                    if (displayedLegacy.effects_remove?.Count == 0) displayedLegacy.effects_remove = null;
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedLegacy);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void addExcludesButton_Click(object sender, EventArgs e)
+        private void AddExcludesButton_Click(object sender, EventArgs e)
         {
             if (addExcludesTextBox.Text != "" && addExcludesTextBox.Text != null)
             {
@@ -207,7 +233,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void addExcludesTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void AddExcludesTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -221,7 +247,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.id = idTextBox.Text;
             if (displayedLegacy.id == "")
@@ -230,7 +256,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.label = labelTextBox.Text;
             if (displayedLegacy.label == "")
@@ -239,7 +265,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.description = descriptionTextBox.Text;
             if (displayedLegacy.description == "")
@@ -248,7 +274,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void startdescriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void StartdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.startdescription = startdescriptionTextBox.Text;
             if (displayedLegacy.startdescription == "")
@@ -257,12 +283,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void imageTextBox_TextChanged(object sender, EventArgs e)
+        private void ImageTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.image = imageTextBox.Text;
-            if (Utilities.getLegacyImage(imageTextBox.Text) != null)
+            if (Utilities.GetLegacyImage(imageTextBox.Text) != null)
             {
-                pictureBox1.Image = Utilities.getLegacyImage(imageTextBox.Text);
+                pictureBox1.Image = Utilities.GetLegacyImage(imageTextBox.Text);
             }
             if (displayedLegacy.image == "")
             {
@@ -270,7 +296,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void fromEndingTextBox_TextChanged(object sender, EventArgs e)
+        private void FromEndingTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.fromEnding = fromEndingTextBox.Text;
             if (displayedLegacy.fromEnding == "")
@@ -279,7 +305,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void startingVerbIdTextBox_TextChanged(object sender, EventArgs e)
+        private void StartingVerbIdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.startingVerbId = startingVerbIdTextBox.Text;
             if (displayedLegacy.startingVerbId == "")
@@ -288,16 +314,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedLegacy.availableWithoutEndingMatch = availableWithoutEndingMatchCheckBox.Checked;
-            if (!displayedLegacy.availableWithoutEndingMatch.Value)
-            {
-                displayedLegacy.availableWithoutEndingMatch = null;
-            }
-        }
-
-        private void removeButton_Click(object sender, EventArgs e)
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListView.SelectedItems[0].Text))
             {
@@ -307,7 +324,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void addStatusBarElementButton_Click(object sender, EventArgs e)
+        private void AddStatusBarElementButton_Click(object sender, EventArgs e)
         {
             if (displayedLegacy.statusbarelements != null && displayedLegacy.statusbarelements.Count == 4)
             {
@@ -324,7 +341,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void removeStatusBarElementButton_Click(object sender, EventArgs e)
+        private void RemoveStatusBarElementButton_Click(object sender, EventArgs e)
         {
             if (displayedLegacy.statusbarelements.Contains(statusBarElementsListView.SelectedItems[0].Text))
             {
@@ -334,7 +351,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void statusBarElementTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void StatusBarElementTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -354,7 +371,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsExtendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -369,7 +386,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void setAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsRemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
@@ -384,10 +401,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void effectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void EffectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            string key = e.Row.Cells[0].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            int? value = e.Row.Cells[1].Value != null ? Convert.ToInt32(e.Row.Cells[1].Value) : (int?)null;
+            string key = e.Row.Cells[0].Value?.ToString();
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
                 if (displayedLegacy.effects_extend.ContainsKey(key)) displayedLegacy.effects_extend.Remove(key);
@@ -405,12 +421,81 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void extendsTextBox_TextChanged(object sender, EventArgs e)
+        private void AvailableWithoutEndingMatchCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            displayedLegacy.extends = new List<string> { extendsTextBox.Text };
-            if (displayedLegacy.extends[0] == "")
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Checked) displayedLegacy.availableWithoutEndingMatch = true;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.availableWithoutEndingMatch = false;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.availableWithoutEndingMatch = null;
+        }
+
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedLegacy.comments = commentsTextBox.Text;
+            if (displayedLegacy.comments == "")
             {
-                displayedLegacy.extends = null;
+                displayedLegacy.comments = null;
+            }
+        }
+
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedLegacy.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.deleted = null;
+        }
+
+        private void NewStartCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (newStartCheckBox.CheckState == CheckState.Checked) displayedLegacy.newstart = true;
+            if (newStartCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.newstart = false;
+            if (newStartCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.newstart = null;
+        }
+
+        private void TableCoverImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableCoverImageTextBox.Text != "")
+            {
+                displayedLegacy.tablecoverimage = tableCoverImageTextBox.Text;
+            } else
+            {
+                displayedLegacy.tablecoverimage = null;
+            }
+        }
+
+        private void TableSurfaceImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableSurfaceImageTextBox.Text != "")
+            {
+                displayedLegacy.tablesurfaceimage = tableSurfaceImageTextBox.Text;
+            }
+            else
+            {
+                displayedLegacy.tablesurfaceimage = null;
+            }
+        }
+
+        private void TableEdgeImageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (tableEdgeImageTextBox.Text != "")
+            {
+                displayedLegacy.tableedgeimage = tableEdgeImageTextBox.Text;
+            }
+            else
+            {
+                displayedLegacy.tableedgeimage = null;
+            }
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedLegacy.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                if (extendsTextBox.Text != "") displayedLegacy.extends = new List<string> { extendsTextBox.Text };
+                else displayedLegacy.extends = null;
             }
         }
     }

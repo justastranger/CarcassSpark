@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlotViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
@@ -49,6 +50,7 @@
             this.forbiddenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forbiddenAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -60,51 +62,69 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.ToolTip.SetToolTip(this.idTextBox, "Internal name for the slot. Only used to differentiate the slots and is not refer" +
+        "enced anywhere.");
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // labelTextBox
             // 
-            this.labelTextBox.Location = new System.Drawing.Point(172, 25);
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTextBox.Location = new System.Drawing.Point(123, 25);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(100, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(149, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
+            this.ToolTip.SetToolTip(this.labelTextBox, "Label to display above the slot and in the details panel.");
+            this.labelTextBox.TextChanged += new System.EventHandler(this.LabelTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 64);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(260, 75);
             this.descriptionTextBox.TabIndex = 2;
-            this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
+            this.ToolTip.SetToolTip(this.descriptionTextBox, "Description for the slot to be displayed in its details panel.");
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // actionIdTextBox
             // 
+            this.actionIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.actionIdTextBox.Location = new System.Drawing.Point(12, 158);
             this.actionIdTextBox.Name = "actionIdTextBox";
-            this.actionIdTextBox.Size = new System.Drawing.Size(127, 20);
+            this.actionIdTextBox.Size = new System.Drawing.Size(174, 20);
             this.actionIdTextBox.TabIndex = 3;
             this.actionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ToolTip.SetToolTip(this.actionIdTextBox, "ID of the verb that this slot will only appear in.");
             this.actionIdTextBox.Visible = false;
-            this.actionIdTextBox.TextChanged += new System.EventHandler(this.actionIdTextBox_TextChanged);
+            this.actionIdTextBox.TextChanged += new System.EventHandler(this.ActionIdTextBox_TextChanged);
             // 
             // greedyCheckBox
             // 
+            this.greedyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.greedyCheckBox.AutoSize = true;
-            this.greedyCheckBox.Location = new System.Drawing.Point(212, 168);
+            this.greedyCheckBox.Location = new System.Drawing.Point(192, 168);
             this.greedyCheckBox.Name = "greedyCheckBox";
             this.greedyCheckBox.Size = new System.Drawing.Size(60, 17);
             this.greedyCheckBox.TabIndex = 6;
             this.greedyCheckBox.Text = "Greedy";
+            this.ToolTip.SetToolTip(this.greedyCheckBox, "When true, this slot will suck in the first card that fits the slot criteria.\r\nPl" +
+        "ayers lose control of any cards grabbed by the greedy slot and can not choose wh" +
+        "ich card gets selected.");
             this.greedyCheckBox.UseVisualStyleBackColor = true;
             this.greedyCheckBox.Visible = false;
-            this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.greedyCheckBox_CheckedChanged);
+            this.greedyCheckBox.CheckedChanged += new System.EventHandler(this.GreedyCheckBox_CheckedChanged);
             // 
             // requiredLabel
             // 
+            this.requiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.requiredLabel.AutoSize = true;
             this.requiredLabel.Location = new System.Drawing.Point(120, 181);
             this.requiredLabel.Name = "requiredLabel";
@@ -114,6 +134,7 @@
             // 
             // forbiddenLabel
             // 
+            this.forbiddenLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.forbiddenLabel.AutoSize = true;
             this.forbiddenLabel.Location = new System.Drawing.Point(120, 300);
             this.forbiddenLabel.Name = "forbiddenLabel";
@@ -123,8 +144,9 @@
             // 
             // actionIdLabel
             // 
+            this.actionIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.actionIdLabel.AutoSize = true;
-            this.actionIdLabel.Location = new System.Drawing.Point(52, 142);
+            this.actionIdLabel.Location = new System.Drawing.Point(12, 142);
             this.actionIdLabel.Name = "actionIdLabel";
             this.actionIdLabel.Size = new System.Drawing.Size(43, 13);
             this.actionIdLabel.TabIndex = 9;
@@ -151,8 +173,9 @@
             // 
             // labelLabel
             // 
+            this.labelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLabel.AutoSize = true;
-            this.labelLabel.Location = new System.Drawing.Point(169, 9);
+            this.labelLabel.Location = new System.Drawing.Point(218, 9);
             this.labelLabel.Name = "labelLabel";
             this.labelLabel.Size = new System.Drawing.Size(54, 13);
             this.labelLabel.TabIndex = 12;
@@ -160,28 +183,35 @@
             // 
             // okButton
             // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 431);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 13;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(197, 431);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 14;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // requiredDataGridView
             // 
             this.requiredDataGridView.AllowUserToResizeColumns = false;
             this.requiredDataGridView.AllowUserToResizeRows = false;
+            this.requiredDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requiredDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.requiredDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.requiredDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.requiredId,
@@ -190,25 +220,27 @@
             this.requiredDataGridView.Name = "requiredDataGridView";
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
-            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requiredDataGridView_CellDoubleClick_1);
-            this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.requiredDataGridView_UserDeletedRow);
+            this.ToolTip.SetToolTip(this.requiredDataGridView, resources.GetString("requiredDataGridView.ToolTip"));
+            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequiredDataGridView_CellDoubleClick_1);
+            this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequiredDataGridView_UserDeletedRow);
             // 
             // requiredId
             // 
             this.requiredId.HeaderText = "Required ID";
             this.requiredId.Name = "requiredId";
-            this.requiredId.Width = 109;
             // 
             // requiredAmount
             // 
             this.requiredAmount.HeaderText = "Amount";
             this.requiredAmount.Name = "requiredAmount";
-            this.requiredAmount.Width = 108;
             // 
             // forbiddenDataGridView
             // 
             this.forbiddenDataGridView.AllowUserToResizeColumns = false;
             this.forbiddenDataGridView.AllowUserToResizeRows = false;
+            this.forbiddenDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.forbiddenDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.forbiddenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.forbiddenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.forbiddenId,
@@ -217,37 +249,42 @@
             this.forbiddenDataGridView.Name = "forbiddenDataGridView";
             this.forbiddenDataGridView.Size = new System.Drawing.Size(260, 109);
             this.forbiddenDataGridView.TabIndex = 16;
-            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.forbiddenDataGridView_CellDoubleClick_1);
-            this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.forbiddenDataGridView_UserDeletedRow);
+            this.ToolTip.SetToolTip(this.forbiddenDataGridView, "Cards can not satisfy any of the conditions below.\r\nNegative values indicate a \"l" +
+        "ess than\" operator, allowing only cards with at least that much of an aspect.");
+            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForbiddenDataGridView_CellDoubleClick_1);
+            this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ForbiddenDataGridView_UserDeletedRow);
             // 
             // forbiddenId
             // 
             this.forbiddenId.HeaderText = "Forbidden ID";
             this.forbiddenId.Name = "forbiddenId";
-            this.forbiddenId.Width = 109;
             // 
             // forbiddenAmount
             // 
             this.forbiddenAmount.HeaderText = "Amount";
             this.forbiddenAmount.Name = "forbiddenAmount";
-            this.forbiddenAmount.Width = 108;
             // 
             // consumesCheckBox
             // 
+            this.consumesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.consumesCheckBox.AutoSize = true;
             this.consumesCheckBox.Location = new System.Drawing.Point(192, 145);
             this.consumesCheckBox.Name = "consumesCheckBox";
             this.consumesCheckBox.Size = new System.Drawing.Size(75, 17);
             this.consumesCheckBox.TabIndex = 17;
             this.consumesCheckBox.Text = "Consumes";
+            this.ToolTip.SetToolTip(this.consumesCheckBox, "When true, any card placed in the slot will be deleted at the conclusion of the r" +
+        "ecipe.");
             this.consumesCheckBox.UseVisualStyleBackColor = true;
             this.consumesCheckBox.Visible = false;
-            this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.consumesCheckBox_CheckedChanged);
+            this.consumesCheckBox.CheckedChanged += new System.EventHandler(this.ConsumesCheckBox_CheckedChanged);
             // 
             // SlotViewer
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(284, 466);
             this.Controls.Add(this.consumesCheckBox);
             this.Controls.Add(this.forbiddenDataGridView);
@@ -265,9 +302,10 @@
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(300, 505);
             this.Name = "SlotViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SlotViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).EndInit();
@@ -298,5 +336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenId;
         private System.Windows.Forms.DataGridViewTextBoxColumn forbiddenAmount;
         private System.Windows.Forms.CheckBox consumesCheckBox;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

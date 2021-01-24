@@ -1,5 +1,4 @@
-﻿extern alias CultistSimulator;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -9,299 +8,546 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CarcassSpark.ObjectViewers;
 using CarcassSpark.ObjectTypes;
+using Newtonsoft.Json;
+using MindFusion.Layout;
+using AssetStudio;
 
 namespace CarcassSpark
 {
     public class Utilities
     {
-        public static List<ModViewer> currentMods = new List<ModViewer>();
+        public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
 
 
-        public static string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
+        public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        public static string DirectoryToVanillaContent
+        {
+            get
+            {
+                if (Settings.settings["GamePath"]?.ToString() != null)
+                {
+                    return Path.Combine(Settings.settings["GamePath"].ToString(), "cultistsimulator_Data\\StreamingAssets\\content\\core\\");
+                }
+                else
+                {
+                    return "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
+                }
+            }
+        }
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
-        private static string directoryToVanillaAssets = "./cultistsimulator_Data/globalgamemanagers";
+        private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
+        private static AssetsManager AssetsManager = new AssetsManager();
+        public static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
+        public static ImageList ImageList;
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
-        public static Color ListAppendColor = Color.LimeGreen;
-        public static Color ListPrependColor = Color.Aquamarine;
-        public static Color ListRemoveColor = Color.Maroon;
+        public static System.Drawing.Color ListAppendColor = System.Drawing.Color.LimeGreen;
+        public static System.Drawing.Color ListPrependColor = System.Drawing.Color.Aquamarine;
+        public static System.Drawing.Color ListRemoveColor = System.Drawing.Color.Maroon;
         
         static Utilities(){
-            DictionaryExtendStyle.BackColor = Color.LimeGreen;
-            DictionaryRemoveStyle.BackColor = Color.Maroon;
+            DictionaryExtendStyle.BackColor = System.Drawing.Color.LimeGreen;
+            DictionaryRemoveStyle.BackColor = System.Drawing.Color.Maroon;
+            AssetsManager.LoadFiles(Settings.settings["GamePath"].ToString() + DirectoryToVanillaAssets);
+            CollectSprites();
+            // assetbundles = AssetsManager.assetsFileList.ToDictionary(file => file.fullName, file => file);
+            // MessageBox.Show(String.Concat(assets.Keys));
         }
 
-        public static string getIdType(string id)
+        private static void CollectSprites()
         {
-            if (aspectExists(id)) return "aspect";
-            if (elementExists(id)) return "element";
-            if (recipeExists(id)) return "recipe";
-            if (deckExists(id)) return "deck";
-            if (legacyExists(id)) return "legacy";
-            if (endingExists(id)) return "ending";
-            if (verbExists(id)) return "verb";
+            ResourceManager resourceManager = (ResourceManager)AssetsManager.assetsFileList[0].Objects.Find(@object => @object is ResourceManager);
+            List<KeyValuePair<string, PPtr<AssetStudio.Object>>> containers = resourceManager.m_Container.ToList();
+            foreach (KeyValuePair<string, PPtr<AssetStudio.Object>> keyValuePair in containers)
+            {
+                string key = keyValuePair.Key;
+                PPtr<AssetStudio.Object> valuePointer = keyValuePair.Value;
+                AssetStudio.Object value;
+                if (valuePointer.TryGet(out value))
+                {
+                    if (value is Sprite sprite)
+                    {
+                        assets[key] = sprite;
+                    }
+                }
+            }
+        }
+
+        public static string GetIdType(string id)
+        {
+            if (AspectExists(id)) return "aspect";
+            if (ElementExists(id)) return "element";
+            if (RecipeExists(id)) return "recipe";
+            if (DeckExists(id)) return "deck";
+            if (LegacyExists(id)) return "legacy";
+            if (EndingExists(id)) return "ending";
+            if (VerbExists(id)) return "verb";
             return "unknown";
         }
         
-        public static Image getVanillaAspect(string path)
+        public static Bitmap GetVanillaAspect(string id)
         {
-            throw new NotImplementedException("I still haven't figured out how to do this.");
+            string path = "images/aspects/" + id;
+            if (assets.ContainsKey(path))
+            {
+                return assets[path].GetImage();
+            }
+            else
+            {
+                return assets["images/elements/_x"].GetImage();
+            }
         }
 
-        public static Image getAspectImage(string id)
+        public static bool VanillaAspectImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            return assets.ContainsKey("images/aspects/" + id);
+        }
+
+        public static Bitmap GetVanillaElement(string id)
+        {
+            string path = "images/elements/" + id;
+            if (assets.ContainsKey(path))
             {
-                string pathToImage = mv.currentDirectory + "/images/icons40/aspects/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
+                return assets[path].GetImage();
             }
-            if(File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
+            else
+            {
+                return assets["images/elements/_x"].GetImage();
+            }
+        }
+
+        public static bool VanillaElementImageExists(string id)
+        {
+            return assets.ContainsKey("images/elements/" + id);
+        }
+
+        public static Bitmap GetVanillaEnding(string id)
+        {
+            string path = "images/endings/" + id;
+            if (assets.ContainsKey(path))
+            {
+                return assets[path].GetImage();
+            }
+            else
+            {
+                return assets["images/endings/despair"].GetImage();
+            }
+        }
+
+        public static bool VanillaEndingImageExists(string id)
+        {
+            return assets.ContainsKey("images/endings/" + id);
+        }
+
+        public static Bitmap GetVanillaLegacy(string id)
+        {
+            string path = "images/legacies/" + id;
+            if (assets.ContainsKey(path))
+            {
+                return assets[path].GetImage();
+            }
+            else
+            {
+                return assets["images/legacies/aspirant"].GetImage();
+            }
+        }
+
+        public static bool VanillaLegacyImageExists(string id)
+        {
+            return assets.ContainsKey("images/legacies/" + id);
+        }
+
+        public static Bitmap GetVanillaVerb(string id)
+        {
+            string path = "images/verbs/" + id;
+            if (assets.ContainsKey(path))
+            {
+                return assets[path].GetImage();
+            }
+            else
+            {
+                return assets["images/verbs/_x"].GetImage();
+            }
+        }
+
+        public static bool VanillaVerbImageExists(string id)
+        {
+            return assets.ContainsKey("images/verbs/" + id);
+        }
+
+        public static Bitmap GetVanillaCardBack(string id)
+        {
+            string path = "images/cardbacks/" + id;
+            if (assets.ContainsKey(id))
+            {
+                return assets[id].GetImage();
+            }
+            else
+            {
+                return assets["images/cardbacks/_x"].GetImage();
+            }
+        }
+
+        public static bool VanillaCardBackImageExists(string id)
+        {
+            return assets.ContainsKey("images/cardbacks/" + id);
+        }
+
+        public static Bitmap GetVanillaBurnImage(string id)
+        {
+            string path = "images/burns/" + id;
+            if (assets.ContainsKey(id))
+            {
+                return assets[id].GetImage();
+            }
+            else
+            {
+                return assets["images/burns/moon"].GetImage();
+            }
+        }
+
+        public static bool VanillaBurnImageImageExists(string id)
+        {
+            return assets.ContainsKey("images/burns/" + id);
+        }
+
+        public static bool AspectImageExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return VanillaAspectImageExists(id);
+            }
+            return false;
+        }
+        public static Image GetAspectImage(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.AspectImageExists(id))
+                {
+                    return source.GetAspectImage(id);
+                }
+                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return GetVanillaAspect(id);
+            }
+            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static Image getElementImage(string id)
+        public static bool ElementImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                string pathToImage = mv.currentDirectory + "/images/elementArt/" + id + ".png";
-                if (File.Exists(pathToImage))
+                if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
                 {
-                    return Image.FromFile(pathToImage);
+                    return true;
                 }
-            }
-            if (File.Exists(directoryToVanillaContent + "/images/elementArt/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/elementArt/_x.png");
-            return null;
-        }
-
-        public static Image getEndingImage(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                string pathToImage = mv.currentDirectory + "/images/endingArt/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
-            }
-            if (File.Exists(directoryToVanillaContent + "/images/endingArt/despair.png")) return Image.FromFile(directoryToVanillaContent + "/images/endingArt/despair.png");
-            return null;
-        }
-
-        public static Image getLegacyImage(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                string pathToImage = mv.currentDirectory + "/images/icons100/legacies/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
-            }
-            if (File.Exists(directoryToVanillaContent + "/images/icons100/legacies/ritual.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/legacies/ritual.png");
-            return null;
-        }
-
-        public static Image getVerbImage(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                string pathToImage = mv.currentDirectory + "/images/icons100/verbs/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
-            }
-            if (File.Exists(directoryToVanillaContent + "/images/icons100/verbs/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/icons100/verbs/_x.png");
-            return null;
-        }
-
-        public static Image getCardBackImage(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                string pathToImage = mv.currentDirectory + "/images/cardBacks/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
-            }
-            if (File.Exists(directoryToVanillaContent + "/images/cardBacks/_x.png")) return Image.FromFile(directoryToVanillaContent + "/images/cardBacks/_x.png");
-            return null;
-        }
-
-        public static Image getBurnImage(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                string pathToImage = mv.currentDirectory + "/images/burnImages/" + id + ".png";
-                if (File.Exists(pathToImage))
-                {
-                    return Image.FromFile(pathToImage);
-                }
-            }
-            return null;
-        }
-
-        public static bool aspectExists(string id)
-        {
-            foreach (ModViewer mv in currentMods)
-            {
-                if (mv.aspectExists(id)) return true;
+                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return VanillaElementImageExists(id);
             }
             return false;
         }
 
-        public static Aspect getAspect(string id)
+        public static Image GetElementImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getAspect(id) != null)
-                {
-                    return mv.getAspect(id);
-                }
+                if (source.ElementImageExists(id)) return source.GetElementImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return GetVanillaElement(id);
             }
+            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static bool elementExists(string id)
+        public static bool EndingImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.elementExists(id)) return true;
+                if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return VanillaEndingImageExists(id);
             }
             return false;
         }
 
-        public static Element getElement(string id)
+        public static Image GetEndingImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getElement(id) != null)
-                {
-                    return mv.getElement(id);
-                }
+                if (source.EndingImageExists(id)) return source.GetEndingImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return GetVanillaEnding(id);
             }
+            string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static bool recipeExists(string id)
+        public static bool LegacyImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.recipeExists(id)) return true;
+                if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return VanillaLegacyImageExists(id);
             }
             return false;
         }
 
-        public static Recipe getRecipe(string id)
+        public static Image GetLegacyImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getRecipe(id) != null)
-                {
-                    return mv.getRecipe(id);
-                }
+                if (source.LegacyImageExists(id)) return source.GetLegacyImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return GetVanillaLegacy(id);
             }
+            string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static bool deckExists(string id)
+        public static bool VerbImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.recipeExists(id)) return true;
+                if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return VanillaVerbImageExists(id);
             }
             return false;
         }
 
-        public static Deck getDeck(string id)
+        public static Image GetVerbImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getDeck(id) != null)
-                {
-                    return mv.getDeck(id);
-                }
+                if (source.VerbImageExists(id)) return source.GetVerbImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return GetVanillaVerb(id);
             }
+            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static bool legacyExists(string id)
+        public static bool CardBackImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.legacyExists(id)) return true;
+                if (File.Exists(source.currentDirectory + "/images/cardbacks/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id)) return VanillaCardBackImageExists(id);
             }
             return false;
         }
 
-        public static Legacy getLegacy(string id)
+        public static Image GetCardBackImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getLegacy(id) != null)
-                {
-                    return mv.getLegacy(id);
-                }
+                if (source.CardBackImageExists(id)) return source.GetCardBackImage(id);
+                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id)) return GetVanillaCardBack(id);
             }
+            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/cardbacks/_x.png";
+            if (File.Exists(defaultImage))
+                return Image.FromFile(defaultImage);
             return null;
         }
 
-        public static bool endingExists(string id)
+        public static bool BurnImageExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.endingExists(id)) return true;
+                if (File.Exists(source.currentDirectory + "/images/burns/" + id + ".png"))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id)) return VanillaBurnImageImageExists(id);
             }
             return false;
         }
 
-        public static Ending getEnding(string id)
+        public static Image GetBurnImage(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getEnding(id) != null)
-                {
-                    return mv.getEnding(id);
-                }
+                if (source.BurnImageExists(id)) return source.GetBurnImage(id);
+                if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id)) return GetVanillaBurnImage(id);
             }
             return null;
         }
 
-        public static bool verbExists(string id)
+        public static bool AspectExists(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.verbExists(id)) return true;
+                if (source.AspectExists(id)) return true;
             }
             return false;
         }
 
-        public static Verb getVerb(string id)
+        public static Aspect GetAspect(string id)
         {
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                if (mv.getVerb(id) != null)
+                if (source.GetAspect(id) != null)
                 {
-                    return mv.getVerb(id);
+                    return source.GetAspect(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool ElementExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.ElementExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Element GetElement(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetElement(id) != null)
+                {
+                    return source.GetElement(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool RecipeExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.RecipeExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Recipe GetRecipe(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetRecipe(id) != null)
+                {
+                    return source.GetRecipe(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool DeckExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.RecipeExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Deck GetDeck(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetDeck(id) != null)
+                {
+                    return source.GetDeck(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool LegacyExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.LegacyExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Legacy GetLegacy(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetLegacy(id) != null)
+                {
+                    return source.GetLegacy(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool EndingExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.EndingExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Ending GetEnding(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetEnding(id) != null)
+                {
+                    return source.GetEnding(id);
+                }
+            }
+            return null;
+        }
+
+        public static bool VerbExists(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.VerbExists(id)) return true;
+            }
+            return false;
+        }
+
+        public static Verb GetVerb(string id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetVerb(id) != null)
+                {
+                    return source.GetVerb(id);
                 }
             }
             return null;
         }
 
 
-        public static List<Aspect> getAspects()
+        public static List<Aspect> GetAspects()
         {
             Dictionary<string, Aspect> tmp = new Dictionary<string, Aspect>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Aspect> AspectEntry in mv.aspectsList)
+                foreach (KeyValuePair<string, Aspect> AspectEntry in source.Aspects)
                 {
                     if (!tmp.ContainsKey(AspectEntry.Key)) tmp.Add(AspectEntry.Key, AspectEntry.Value);
                     else tmp[AspectEntry.Key] = AspectEntry.Value;
@@ -311,12 +557,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Element> getElements()
+        public static List<Element> GetElements()
         {
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Element> ElementEntry in mv.elementsList)
+                foreach (KeyValuePair<string, Element> ElementEntry in source.Elements)
                 {
                     if (!tmp.ContainsKey(ElementEntry.Key)) tmp.Add(ElementEntry.Key, ElementEntry.Value);
                     else tmp[ElementEntry.Key] = ElementEntry.Value;
@@ -326,12 +572,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Recipe> getRecipes()
+        public static List<Recipe> GetRecipes()
         {
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Recipe> RecipeEntry in mv.recipesList)
+                foreach (KeyValuePair<string, Recipe> RecipeEntry in source.Recipes)
                 {
                     if (!tmp.ContainsKey(RecipeEntry.Key)) tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
                     else tmp[RecipeEntry.Key] = RecipeEntry.Value;
@@ -341,12 +587,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Deck> getDecks()
+        public static List<Deck> GetDecks()
         {
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Deck> DeckEntry in mv.decksList)
+                foreach (KeyValuePair<string, Deck> DeckEntry in source.Decks)
                 {
                     if (!tmp.ContainsKey(DeckEntry.Key)) tmp.Add(DeckEntry.Key, DeckEntry.Value);
                     else tmp[DeckEntry.Key] = DeckEntry.Value;
@@ -356,12 +602,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Legacy> getLegacies()
+        public static List<Legacy> GetLegacies()
         {
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Legacy> LegacyEntry in mv.legaciesList)
+                foreach (KeyValuePair<string, Legacy> LegacyEntry in source.Legacies)
                 {
                     if (!tmp.ContainsKey(LegacyEntry.Key)) tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
                     else tmp[LegacyEntry.Key] = LegacyEntry.Value;
@@ -371,12 +617,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Ending> getEndings()
+        public static List<Ending> GetEndings()
         {
             Dictionary<string, Ending> tmp = new Dictionary<string, Ending>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Ending> EndingEntry in mv.endingsList)
+                foreach (KeyValuePair<string, Ending> EndingEntry in source.Endings)
                 {
                     if (!tmp.ContainsKey(EndingEntry.Key)) tmp.Add(EndingEntry.Key, EndingEntry.Value);
                     else tmp[EndingEntry.Key] = EndingEntry.Value;
@@ -386,12 +632,12 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static List<Verb> getVerbs()
+        public static List<Verb> GetVerbs()
         {
             Dictionary<string, Verb> tmp = new Dictionary<string, Verb>();
-            foreach (ModViewer mv in currentMods)
+            foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Verb> VerbEntry in mv.verbsList)
+                foreach (KeyValuePair<string, Verb> VerbEntry in source.Verbs)
                 {
                     if (!tmp.ContainsKey(VerbEntry.Key)) tmp.Add(VerbEntry.Key, VerbEntry.Value);
                     else tmp[VerbEntry.Key] = VerbEntry.Value;
@@ -399,6 +645,33 @@ namespace CarcassSpark
             }
             if (tmp.Count > 0) return tmp.Values.ToList<Verb>();
             else return null;
+        }
+
+        public static ContentSource GetContentSource(string name)
+        {
+            if (ContentSources.ContainsKey(name))
+            {
+                return ContentSources[name];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string SerializeObject(object objectToSerialize)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            StringWriter stringWriter = new StringWriter(stringBuilder);
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            using (JsonTextWriter writer = new JsonTextWriter(stringWriter))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = '\t';
+                writer.Indentation = 1;
+                jsonSerializer.Serialize(writer, objectToSerialize);
+            }
+            return stringBuilder.ToString();
         }
     }
 }

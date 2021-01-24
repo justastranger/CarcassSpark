@@ -10,31 +10,28 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Verb
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description;
+        public string id, label, description, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? atStart;
+        public bool? deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Slot> slots;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$append")]
-        public List<Slot> slots_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$prepend")]
-        public List<Slot> slots_prepend;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$remove")]
-        public List<Slot> slots_remove;
+        public Slot slot;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, bool? atStart, List<Slot> slots,
-                    List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
+        public Verb(string id, string label, string description, string comments, bool? deleted, Slot slot, List<string> extends)
         {
             this.id = id;
             this.label = label;
             this.description = description;
-            this.atStart = atStart;
-            this.slots = slots;
-            this.slots_prepend = slots_prepend;
-            this.slots_append = slots_append;
-            this.slots_remove = slots_remove;
+            this.comments = comments;
+            this.slot = slot;
+            this.deleted = deleted;
+            this.extends = extends;
         }
 
         public Verb()
@@ -42,18 +39,15 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Verb Copy()
         {
-            Verb tmp = new Verb();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.atStart = atStart;
-            tmp.slots = slots;
-            tmp.slots_prepend = slots_prepend;
-            tmp.slots_append = slots_append;
-            tmp.slots_remove = slots_remove;
-            return tmp;
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Verb>(serializedObject);
         }
     }
 }

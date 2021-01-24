@@ -20,8 +20,24 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, string> challenges; // string aspect ID, string challenge type: "base", "advanced". Default if null: "base"
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Expulsion expulsion;
-
+        
         [JsonConstructor]
+        public RecipeLink(string id, int? chance, bool? additional, object challenges, Expulsion expulsion)
+        {
+            this.id = id;
+            this.chance = chance;
+            this.additional = additional;
+            if (challenges != null)
+            {
+                if (challenges is string) this.challenges = new Dictionary<string, string>() { [challenges as string] = "base" };
+                else if (challenges is Dictionary<string, string>)
+                {
+                    this.challenges = challenges as Dictionary<string, string>;
+                }
+            }
+            this.expulsion = expulsion;
+        }
+
         public RecipeLink(string id, int? chance, bool? additional, Dictionary<string, string> challenges, Expulsion expulsion)
         {
             this.id = id;
@@ -31,30 +47,25 @@ namespace CarcassSpark.ObjectTypes
             this.expulsion = expulsion;
         }
 
+        public RecipeLink(string id)
+        {
+            this.id = id;
+        }
+
         public RecipeLink()
         {
 
         }
 
-        public class Expulsion
+        public override string ToString()
         {
-            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public Dictionary<string, int> filter;
-            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public int? limit;
+            return JsonConvert.SerializeObject(this);
+        }
 
-            [JsonConstructor]
-            public Expulsion(Dictionary<string, int> filter, int? limit)
-            {
-                this.filter = filter;
-                this.limit = limit;
-            }
-
-            public Expulsion(int limit)
-            {
-                filter = new Dictionary<string, int>();
-                this.limit = limit;
-            }
+        public RecipeLink Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<RecipeLink>(serializedObject);
         }
     }
 }

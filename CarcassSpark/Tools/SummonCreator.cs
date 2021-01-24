@@ -18,114 +18,144 @@ namespace CarcassSpark.Tools
         public Element baseSummon, preSummon;
         public Recipe startSummon, succeedSummon;
 
-        private void inspectBaseButton_Click(object sender, EventArgs e)
+        public SummonCreator()
+        {
+            InitializeComponent();
+        }
+
+        private void InspectBaseButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(baseSummon, null);
             ev.Show();
         }
 
-        private void inspectPreButton_Click(object sender, EventArgs e)
+        private void InspectPreButton_Click(object sender, EventArgs e)
         {
             ElementViewer ev = new ElementViewer(preSummon, null);
             ev.Show();
         }
 
-        private void baseRecipe_Assign(object sender, Recipe result)
+        private void BaseRecipe_Assign(object sender, Recipe result)
         {
-            startSummon = result;
-            startSummon.effects = new Dictionary<string, string>();
-            startSummon.effects.Add(baseSummon.id, "1");
-            startSummon.linked = new List<RecipeLink>();
-            startSummon.linked.Add(new RecipeLink("summoninglosingcontrol", 30, false, null, null));
-            startSummon.actionId = "work";
-            startSummon.warmup = 180;
-            startSummon.requirements["desire"] = "-1";
-            startSummon.requirements["ritual"] = "1";
-            succeedSummon = new Recipe();
-            succeedSummon.id = startSummon.id + "_success";
-            succeedSummon.label = startSummon.label;
-            succeedSummon.actionId = startSummon.actionId;
-            succeedSummon.description = startSummon.description;
-            startSummon.linked.Add(new RecipeLink(succeedSummon.id, 100, false, null, null));
+            startSummon = result.Copy();
+            succeedSummon = new Recipe
+            {
+                id = startSummon.id + ".success",
+                label = startSummon.label,
+                actionId = startSummon.actionId,
+                description = startSummon.description
+            };
+            startSummon.linked.Add(new RecipeLink(succeedSummon.id));
             baseSummonIdTextBox.Text = baseSummon.id;
             successSummonTextBox.Text = succeedSummon.id;
             inspectBaseButton.Enabled = true;
             inspectSuccessRecipeButton.Enabled = true;
         }
 
-        private void createRecipeButton_Click(object sender, EventArgs e)
+        private void CreateRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(new Recipe(), baseRecipe_Assign);
-            MessageBox.Show("You do not have to fill out the Warm Up, Verb ID, Linked Recipes or effects portion, just the: ID, Label, Start Description, Description, and Requirements. You do not need to include desire: -1 or ritual: 1 in Requirements.");
+            Recipe startSummonRecipe = new Recipe()
+            {
+                actionId = "work",
+                requirements = new Dictionary<string, string>() {
+                    { "desire", "-1" },
+                    { "ritual", "1" }
+                },
+                warmup = 60,
+                effects = new Dictionary<string, string>
+                {
+                    { baseSummon.id, "1" }
+                },
+                linked = new List<RecipeLink>
+                {
+                    new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string, string>)null, null)
+                },
+                craftable = true
+            };
+
+            RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.GENERATOR);
+            MessageBox.Show("The fields with red labels are required.", "Required Values");
             rv.Show();
         }
 
-        private void inspectBaseRecipeButton_Click(object sender, EventArgs e)
+        private void InspectBaseRecipeButton_Click(object sender, EventArgs e)
         {
             RecipeViewer rv = new RecipeViewer(startSummon, null);
             rv.Show();
         }
 
-        private void inspectSuccessRecipeButton_Click(object sender, EventArgs e)
+        private void InspectSuccessRecipeButton_Click(object sender, EventArgs e)
         {
             RecipeViewer rv = new RecipeViewer(succeedSummon, null);
             rv.Show();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        public SummonCreator()
+        private void BaseElement_Assign(object sender, Element result)
         {
-            InitializeComponent();
-        }
-
-        private void baseElement_Assign(object sender, Element result)
-        {
-            baseSummon = result;
+            baseSummon = result.Copy();
             baseIdTextBox.Text = baseSummon.id;
-            Dictionary<string, int> tmpAspects = baseSummon.aspects;
-            Dictionary<string, int> newAspects = new Dictionary<string, int>();
-            foreach (KeyValuePair<string, int> kvp in tmpAspects)
+            baseSummon.xtriggers = new Dictionary<string, List<XTrigger>>()
+            {
+                { "killsummoned", new List<XTrigger>()
+                    {
+                        new XTrigger(baseSummon.decayTo)
+                    }
+                }
+            };
+            Dictionary<string, int> preAspects = new Dictionary<string, int>();
+            foreach (KeyValuePair<string, int> kvp in baseSummon.aspects)
             {
                 switch (kvp.Key)
                 {
                     case "summoned":
-                        //tmpAspects.Remove(kvp.Key);
-                        newAspects.Add("manifesting", 1);
+                        preAspects.Add("manifesting", 1);
                         break;
 
                     case "follower":
-                        //tmpAspects.Remove(kvp.Key);
                         break;
 
                     default:
-                        newAspects[kvp.Key] = kvp.Value;
+                        preAspects[kvp.Key] = kvp.Value;
                         break;
                 }
             }
-            Dictionary<string, List<XTrigger>> tempXTriggers = baseSummon.xtriggers;
-            tempXTriggers.Add("killmanifesting", new List<XTrigger> { new XTrigger(baseSummon.decayTo) });
-            preSummon = new Element();
-            preSummon.id = "pre." + baseSummon.id;
-            preSummon.label = baseSummon.label;
-            preSummon.description = baseSummon.description;
-            preSummon.unique = baseSummon.unique;
-            preSummon.icon = baseSummon.icon;
-            preSummon.comments = baseSummon.comments;
-            preSummon.aspects = tmpAspects;
-            preSummon.xtriggers = tempXTriggers;
-            preSummon.decayTo = baseSummon.id;
-            preSummon.lifetime = 1;
+            preSummon = new Element
+            {
+                id = "pre." + baseSummon.id,
+                label = baseSummon.label,
+                description = baseSummon.description,
+                unique = baseSummon.unique,
+                icon = baseSummon.icon,
+                comments = baseSummon.comments,
+                aspects = preAspects,
+                xtriggers = new Dictionary<string, List<XTrigger>>
+                {
+                    { "killmanifesting", new List<XTrigger>
+                        {
+                            new XTrigger(baseSummon.decayTo)
+                        }
+                    },
+                    { "killsummoned", new List<XTrigger>
+                        {
+                            new XTrigger(baseSummon.decayTo)
+                        }
+                    }
+                },
+                decayTo = baseSummon.id,
+                lifetime = 1
+            };
             preSummonIdTextBox.Text = preSummon.id;
 
             createRecipeButton.Enabled = true;
@@ -133,9 +163,19 @@ namespace CarcassSpark.Tools
             inspectPreButton.Enabled = true;
         }
 
-        private void createBaseElementButton_click(object sender, EventArgs e)
+        private void CreateBaseElementButton_click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(new Element(), baseElement_Assign);
+            Element baseElement = new Element()
+            {
+                aspects = new Dictionary<string, int>()
+                {
+                    { "summoned", 1 },
+                    { "follower", 1 }
+                },
+                lifetime = 60
+            };
+            MessageBox.Show("The fields with red labels are required.", "Required Values");
+            ElementViewer ev = new ElementViewer(baseElement, BaseElement_Assign, ElementType.GENERATOR);
             ev.Show();
         }
     }

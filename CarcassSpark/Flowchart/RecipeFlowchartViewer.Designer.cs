@@ -90,28 +90,28 @@
             // loadLinkedRecipesButton
             // 
             this.loadLinkedRecipesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadLinkedRecipesButton.Location = new System.Drawing.Point(548, 12);
+            this.loadLinkedRecipesButton.Location = new System.Drawing.Point(539, 41);
             this.loadLinkedRecipesButton.Name = "loadLinkedRecipesButton";
             this.loadLinkedRecipesButton.Size = new System.Drawing.Size(116, 23);
             this.loadLinkedRecipesButton.TabIndex = 3;
             this.loadLinkedRecipesButton.Text = "Load Linked Recipes";
             this.loadLinkedRecipesButton.UseVisualStyleBackColor = true;
-            this.loadLinkedRecipesButton.Click += new System.EventHandler(this.loadLinkedRecipesButton_Click);
+            this.loadLinkedRecipesButton.Click += new System.EventHandler(this.LoadLinkedRecipesButton_Click);
             // 
             // exportButton
             // 
             this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportButton.Location = new System.Drawing.Point(548, 41);
+            this.exportButton.Location = new System.Drawing.Point(539, 12);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(116, 23);
             this.exportButton.TabIndex = 4;
             this.exportButton.Text = "Export to PNG";
             this.exportButton.UseVisualStyleBackColor = true;
-            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            this.exportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "\"PNG files|*.png\"";
+            this.saveFileDialog1.Filter = "PNG files|*.png";
             // 
             // RecipeFlowchartViewer
             // 
@@ -124,6 +124,7 @@
             this.Controls.Add(this.zoomControl1);
             this.Controls.Add(this.diagramView1);
             this.Name = "RecipeFlowchartViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RecipeFlowchartViewer";
             this.Load += new System.EventHandler(this.RecipeFlowchartViewer_Load);
             this.ResumeLayout(false);

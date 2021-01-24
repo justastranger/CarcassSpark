@@ -22,44 +22,64 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedEnding = ending;
-            fillValues(ending);
+            FillValues(ending);
             if (SuccessCallback != null)
             {
-                setEditingMode(true);
+                SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else setEditingMode(false);
+            else SetEditingMode(false);
         }
 
-        void fillValues(Ending ending)
+        void FillValues(Ending ending)
         {
             if (ending.id != null) idTextBox.Text = ending.id;
             if (ending.label != null) labelTextBox.Text = ending.label;
-            if (ending.image != null) imageTextBox.Text = ending.image;
-            if (ending.id != null && ending.image == null) pictureBox1.Image = Utilities.getEndingImage(ending.id);
-            else if (ending.image != null) pictureBox1.Image = Utilities.getEndingImage(ending.image);
-            if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
-            if (ending.anim != null) animDomainUpDown.Text = ending.anim;
+            if (ending.image != null)
+            {
+                imageTextBox.Text = ending.image;
+                if (Utilities.EndingImageExists(ending.image))
+                {
+                    pictureBox1.Image = Utilities.GetEndingImage(ending.image);
+                }
+            }
+            else if (Utilities.EndingImageExists(ending.id))
+            {
+                pictureBox1.Image = Utilities.GetEndingImage(ending.id);
+            }
+            if (ending.flavour != null) endindFlavourComboBox.Text = ending.flavour;
+            if (ending.anim != null) animComboBox.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
+            if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
+            if (ending.deleted.HasValue) deletedCheckBox.Checked = ending.deleted.Value;
+            if (ending.extends?.Count > 1)
+            {
+                extendsTextBox.Text = string.Join(",", ending.extends);
+            }
+            else if (ending.extends?.Count == 1)
+            {
+                extendsTextBox.Text = ending.extends[0];
+            }
         }
 
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
-            flavourDomainUpDown.ReadOnly = !editing;
-            flavourDomainUpDown.Enabled = editing;
-            animDomainUpDown.ReadOnly = !editing;
-            animDomainUpDown.Enabled = editing;
+            commentsTextBox.ReadOnly = !editing;
+            endindFlavourComboBox.Enabled = editing;
+            animComboBox.Enabled = editing;
+            achievementTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.id = idTextBox.Text;
             if (displayedEnding.id == "")
@@ -68,7 +88,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void labelTextBox_TextChanged(object sender, EventArgs e)
+        private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.label = labelTextBox.Text;
             if (displayedEnding.label == "")
@@ -77,38 +97,20 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void imageTextBox_TextChanged(object sender, EventArgs e)
+        private void ImageTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.image = imageTextBox.Text;
-            if (Utilities.getEndingImage(imageTextBox.Text) != null)
+            if (Utilities.EndingImageExists(imageTextBox.Text))
             {
-                pictureBox1.Image = Utilities.getEndingImage(imageTextBox.Text);
+                pictureBox1.Image = Utilities.GetEndingImage(imageTextBox.Text);
             }
             if (displayedEnding.image == "")
             {
                 displayedEnding.image = null;
             }
         }
-
-        private void flavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            displayedEnding.flavour = flavourDomainUpDown.Text;
-            if (displayedEnding.flavour == "")
-            {
-                displayedEnding.flavour = null;
-            }
-        }
-
-        private void animDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            displayedEnding.anim = animDomainUpDown.Text;
-            if (displayedEnding.anim == "")
-            {
-                displayedEnding.anim = null;
-            }
-        }
-
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
             if (displayedEnding.description == "")
@@ -117,30 +119,74 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
-            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null || displayedEnding.achievement == null)
+            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null)// || displayedEnding.achievement == null)
             {
-                MessageBox.Show("All values must be filled for the Ending to be valid.");
+                MessageBox.Show("All values (except achievement) must be filled for the Ending to be valid.");
                 return;
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedEnding);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void achievementTextBox_TextChanged(object sender, EventArgs e)
+        private void AchievementTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.achievement = achievementTextBox.Text;
             if (displayedEnding.achievement == "")
             {
                 displayedEnding.achievement = null;
+            }
+        }
+
+        private void CommentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedEnding.comments = commentsTextBox.Text;
+            if (displayedEnding.comments == "")
+            {
+                displayedEnding.comments = null;
+            }
+        }
+
+        private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedEnding.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedEnding.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedEnding.deleted = null;
+        }
+
+        private void EndindFlavourComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.flavour = endindFlavourComboBox.Text;
+            if (displayedEnding.flavour == "")
+            {
+                displayedEnding.flavour = null;
+            }
+        }
+
+        private void AnimComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.anim = animComboBox.Text;
+            if (displayedEnding.anim == "")
+            {
+                displayedEnding.anim = null;
+            }
+        }
+
+        private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (extendsTextBox.Text.Contains(","))
+            {
+                displayedEnding.extends = extendsTextBox.Text.Split(',').ToList();
+            }
+            else
+            {
+                displayedEnding.extends = new List<string> { extendsTextBox.Text };
             }
         }
     }

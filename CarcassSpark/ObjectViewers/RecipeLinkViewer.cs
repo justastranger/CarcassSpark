@@ -21,12 +21,25 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedRecipeLink = recipeLink;
-            fillValues(recipeLink);
-            if (editing.HasValue) setEditingMode(editing.Value);
-            else setEditingMode(false);
+            FillValues(recipeLink);
+            if (editing.HasValue) SetEditingMode(editing.Value);
+            else SetEditingMode(false);
         }
 
-        void fillValues(RecipeLink recipeLink)
+        public RecipeLinkViewer(RecipeLink recipeLink, bool? editing, RecipeLinkType type)
+        {
+            InitializeComponent();
+            displayedRecipeLink = recipeLink;
+            FillValues(recipeLink);
+            if (editing.HasValue) SetEditingMode(editing.Value);
+            else SetEditingMode(false);
+            if (type == RecipeLinkType.LINKED)
+            {
+                SetLinked();
+            }
+        }
+
+        void FillValues(RecipeLink recipeLink)
         {
             idTextBox.Text = recipeLink.id;
             if (recipeLink.chance.HasValue) chanceNumericUpDown.Value = recipeLink.chance.Value;
@@ -44,10 +57,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     expulsionDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
+                if (recipeLink.expulsion.limit.HasValue) totalExpulsionLimitNumericUpDown.Value = recipeLink.expulsion.limit.Value;
             }
         }
         
-        void setEditingMode(bool editing)
+        void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -63,13 +77,34 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        private void openRecipeButton_Click(object sender, EventArgs e)
+        void SetAlt()
         {
-            RecipeViewer rv = new RecipeViewer(Utilities.getRecipe(idTextBox.Text), null);
-            rv.Show();
+
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        void SetLinked()
+        {
+            additionalCheckBox.Visible = false;
+            expulsionDataGridView.Visible = false;
+            expulsionLabel.Visible = false;
+            expulsionTotalLimitLabel.Visible = false;
+            totalExpulsionLimitNumericUpDown.Visible = false;
+        }
+
+        private void OpenRecipeButton_Click(object sender, EventArgs e)
+        {
+            if (Utilities.RecipeExists(idTextBox.Text))
+            {
+                RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(idTextBox.Text), null);
+                rv.Show();
+            }
+            else
+            {
+                MessageBox.Show("That recipe does not currently exist.");
+            }
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
         {
             if (challengesDataGridView.RowCount > 1)
             {
@@ -84,7 +119,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (expulsionDataGridView.RowCount > 1)
             {
-                displayedRecipeLink.expulsion = new RecipeLink.Expulsion(1);
+                displayedRecipeLink.expulsion = new Expulsion(Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) > 0 ? Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) : 1);
                 foreach (DataGridViewRow row in expulsionDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
@@ -93,27 +128,39 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-
-            DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, EventArgs e)
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.id = idTextBox.Text;
             if (displayedRecipeLink.id == "")
             {
                 displayedRecipeLink.id = null;
+                // idTextBox.BackColor = Color.White;
+                RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
+            }
+            else
+            {
+                if (Utilities.RecipeExists(displayedRecipeLink.id))
+                {
+                    // idTextBox.BackColor = Color.Green;
+                    RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
+                }
+                else
+                {
+                    // idTextBox.BackColor = Color.Red;
+                    RecipeIDErrorProvider.SetError(idTextBox, "Recipe ID Not Found");
+                }
             }
         }
 
-        private void chanceNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void ChanceNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.chance = Convert.ToInt32(chanceNumericUpDown.Value);
             if (displayedRecipeLink.chance == 0)
@@ -122,7 +169,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void additionalCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void AdditionalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedRecipeLink.additional = additionalCheckBox.Checked;
             if (!displayedRecipeLink.additional.Value)
@@ -131,24 +178,24 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void ChallengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedRecipeLink.challenges.Count == 0) displayedRecipeLink.challenges = null;
         }
 
-        private void expulsionsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ExpulsionsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string id = expulsionDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            switch (Utilities.getIdType(id))
+            switch (Utilities.GetIdType(id))
             {
                 case "aspect":
-                    AspectViewer av = new AspectViewer(Utilities.getAspect(id), null);
+                    AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
                     av.Show();
                     break;
 
                 case "element":
-                    ElementViewer ev = new ElementViewer(Utilities.getElement(id), null);
+                    ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
                     ev.Show();
                     break;
                 default:
@@ -156,16 +203,27 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void expulsionDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void ExpulsionDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if (displayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedRecipeLink.expulsion.filter.Count == 0) displayedRecipeLink.expulsion = null;
         }
         
-        private void challengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ChallengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AspectViewer av = new AspectViewer(Utilities.getAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null);
+            AspectViewer av = new AspectViewer(Utilities.GetAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null);
             av.Show();
         }
+
+        private void TotalExpulsionLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (displayedRecipeLink.expulsion != null) displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
+        }
+    }
+
+    public enum RecipeLinkType
+    {
+        ALT,
+        LINKED
     }
 }

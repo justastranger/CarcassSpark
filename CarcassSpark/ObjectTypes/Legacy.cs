@@ -10,10 +10,12 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Legacy
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, startdescription, image, fromEnding, startingVerbId;
+        public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments, tablecoverimage, tablesurfaceimage, tableedgeimage;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? availableWithoutEndingMatch;
+        public bool? availableWithoutEndingMatch, deleted, newstart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> excludesOnEnding;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$append")]
@@ -24,7 +26,7 @@ namespace CarcassSpark.ObjectTypes
         public List<string> excludesOnEnding_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> effects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$add")]
         public Dictionary<string, int> effects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
         public List<string> effects_remove;
@@ -36,17 +38,18 @@ namespace CarcassSpark.ObjectTypes
         public List<string> statusbarelements_append;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&remove")]
         public List<string> statusbarelements_remove;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
 
         [JsonConstructor]
-        public Legacy(string id, string label, string description, string startdescription,
-                      Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch,
+        public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
+                      Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
                       string startingVerbId, List<string> excludesOnEnding,
                       List<string> excludesOnEnding_prepend, List<string> excludesOnEnding_append, List<string> excludesOnEnding_remove,
                       Dictionary<string, int> effects_extend, List<string> effects_remove, List<string> statusbarelements,
                       List<string> statusbarelements_prepend, List<string> statusbarelements_append, List<string> statusbarelements_remove,
-                      List<string> extends)
+                      bool? deleted, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -55,9 +58,12 @@ namespace CarcassSpark.ObjectTypes
             this.effects = effects;
             this.effects_extend = effects_extend;
             this.effects_remove = effects_remove;
+            this.comments = comments;
+            this.tablecoverimage = tablecoverimage;
+            this.tableedgeimage = tableedgeimage;
+            this.tablesurfaceimage = tablesurfaceimage;
             this.image = image;
             this.fromEnding = fromEnding;
-            this.extends = extends;
             this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             this.startingVerbId = startingVerbId;
             this.excludesOnEnding = excludesOnEnding;
@@ -68,6 +74,9 @@ namespace CarcassSpark.ObjectTypes
             this.statusbarelements_prepend = statusbarelements_prepend;
             this.statusbarelements_append = statusbarelements_append;
             this.statusbarelements_remove = statusbarelements_remove;
+            this.deleted = deleted;
+            this.newstart = newstart;
+            this.extends = extends;
         }
 
         public Legacy()
@@ -75,30 +84,15 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Legacy Copy()
         {
-            Legacy tmp = new Legacy();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.startdescription = startdescription;
-            tmp.effects = effects;
-            tmp.effects_extend = effects_extend;
-            tmp.effects_remove = effects_remove;
-            tmp.image = image;
-            tmp.fromEnding = fromEnding;
-            tmp.extends = extends;
-            tmp.availableWithoutEndingMatch = availableWithoutEndingMatch;
-            tmp.startingVerbId = startingVerbId;
-            tmp.excludesOnEnding = excludesOnEnding;
-            tmp.excludesOnEnding_prepend = excludesOnEnding_prepend;
-            tmp.excludesOnEnding_append = excludesOnEnding_append;
-            tmp.excludesOnEnding_remove = excludesOnEnding_remove;
-            tmp.statusbarelements = statusbarelements;
-            tmp.statusbarelements_prepend = statusbarelements_prepend;
-            tmp.statusbarelements_append = statusbarelements_append;
-            tmp.statusbarelements_remove = statusbarelements_remove;
-            return tmp;
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Legacy>(serializedObject);
         }
     }
 }

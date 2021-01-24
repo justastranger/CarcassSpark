@@ -10,66 +10,58 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Recipe
     {
+        [JsonIgnore]
+        public string filename;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour;
+        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour, comments;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? craftable, hintonly, signalimportantloop;
+        public bool? craftable, hintonly, signalimportantloop, deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Deck internalDeck;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
+        public Deck internaldeck;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? maxexecutions, warmup;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "maxexecutions$add")]
-        public int? maxexecutions_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "maxexecutions$minus")]
-        public int? maxexecutions_minus;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "warmup$add")]
-        public int? warmup_add;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "warmup$minus")]
-        public int? warmup_minus;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> effects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$add")]
         public Dictionary<string, string> effects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "effects$remove")]
         public List<string> effects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$add")]
         public Dictionary<string, int> aspects_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$remove")]
         public List<string> aspects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, int> deckeffect;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffect$extend")]
-        public Dictionary<string, int> deckeffect_extend;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffect$remove")]
-        public List<string> deckeffect_remove;
+        public Dictionary<string, int> deckeffects;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffects$add")]
+        public Dictionary<string, int> deckeffects_extend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deckeffects$remove")]
+        public List<string> deckeffects_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> requirements;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$add")]
         public Dictionary<string, string> requirements_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "requirements$remove")]
         public List<string> requirements_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> extantreqs;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$add")]
         public Dictionary<string, string> extantreqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "extantreqs$remove")]
         public List<string> extantreqs_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> tablereqs;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$add")]
         public Dictionary<string, string> tablereqs_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "tablereqs$remove")]
         public List<string> tablereqs_remove;
@@ -84,13 +76,13 @@ namespace CarcassSpark.ObjectTypes
         public List<string> linked_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<RecipeLink> alternativerecipes;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$append")]
-        public List<RecipeLink> alternativerecipes_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$prepend")]
-        public List<RecipeLink> alternativerecipes_prepend;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alternativerecipes$remove")]
-        public List<string> alternativerecipes_remove;
+        public List<RecipeLink> alt;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$append")]
+        public List<RecipeLink> alt_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$prepend")]
+        public List<RecipeLink> alt_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$remove")]
+        public List<string> alt_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Slot> slots;
@@ -106,56 +98,57 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> purge;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$add")]
         public Dictionary<string, int> purge_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "purge$remove")]
         public List<string> purge_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> haltverb;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$add")]
         public Dictionary<string, int> haltverb_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "haltverb$remove")]
         public List<string> haltverb_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> deleteverb;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$extend")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$add")]
         public Dictionary<string, int> deleteverb_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$remove")]
         public List<string> deleteverb_remove;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
-        public Recipe(bool? craftable, bool? hintonly, int? warmup, int? warmup_add, int? warmup_minus, int? maxexecutions, int? maxexecutions_add, int? maxexecutions_minus,
+        public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? maxexecutions,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
-                      List<string> extends, Deck internalDeck, string ending, string burnimage,
+                      Deck internaldeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
                       Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
                       List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
-                      List<RecipeLink> alternativerecipes, List<RecipeLink> alternativerecipes_prepend, List<RecipeLink> alternativerecipes_append, List<string> alternativerecipes_remove,
-                      Dictionary<string, int> deckeffect, Dictionary<string, int> deckeffect_extend, List<string> deckeffect_remove,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> alt_prepend, List<RecipeLink> alt_append, List<string> alt_remove,
+                      Dictionary<string, int> deckeffects, Dictionary<string, int> deckeffects_extend, List<string> deckeffects_remove,
                       List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                       Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqs_extend, List<string> tablereqs_remove,
                       Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove,
                       Dictionary<string, int> purge, Dictionary<string, int> purge_extend, List<string> purge_remove,
                       Dictionary<string, int> haltverb, Dictionary<string, int> haltverb_extend, List<string> haltverb_remove,
-                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove)
+                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove, List<string> extends)
         {
             this.id = id;
             this.label = label;
             this.actionId = actionId;
             this.startdescription = startdescription;
             this.description = description;
+            this.comments = comments;
             this.craftable = craftable;
             this.hintonly = hintonly;
             this.ending = ending;
             this.burnimage = burnimage;
-            this.extends = extends;
+            this.deleted = deleted;
             this.warmup = warmup;
-            this.warmup_add = warmup_add;
-            this.warmup_minus = warmup_minus;
             this.requirements = requirements;
             this.requirements_extend = requirements_extend;
             this.requirements_remove = requirements_remove;
@@ -166,8 +159,6 @@ namespace CarcassSpark.ObjectTypes
             this.tablereqs_extend = tablereqs_extend;
             this.tablereqs_remove = tablereqs_remove;
             this.maxexecutions = maxexecutions;
-            this.maxexecutions_add = maxexecutions_add;
-            this.maxexecutions_minus = maxexecutions_minus;
             this.effects = effects;
             this.effects_extend = effects_extend;
             this.effects_remove = effects_remove;
@@ -176,10 +167,10 @@ namespace CarcassSpark.ObjectTypes
             this.linked_append = linked_append;
             this.linked_remove = linked_remove;
             this.slots = slots;
-            this.alternativerecipes = alternativerecipes;
-            this.alternativerecipes_prepend = alternativerecipes_prepend;
-            this.alternativerecipes_append = alternativerecipes_append;
-            this.alternativerecipes_remove = alternativerecipes_remove;
+            this.alt = alt ?? alternativerecipes;
+            this.alt_prepend = alt_prepend;
+            this.alt_append = alt_append;
+            this.alt_remove = alt_remove;
             this.mutations = mutations;
             this.mutations_prepend = mutations_prepend;
             this.mutations_append = mutations_append;
@@ -187,11 +178,11 @@ namespace CarcassSpark.ObjectTypes
             this.aspects = aspects;
             this.aspects_extend = aspects_extend;
             this.aspects_remove = aspects_remove;
-            this.deckeffect = deckeffect;
-            this.deckeffect_extend = deckeffect_extend;
-            this.deckeffect_remove = deckeffect_remove;
+            this.deckeffects = deckeffects;
+            this.deckeffects_extend = deckeffects_extend;
+            this.deckeffects_remove = deckeffects_remove;
             this.hintonly = hintonly;
-            this.internalDeck = internalDeck;
+            this.internaldeck = internaldeck;
             this.purge = purge;
             this.purge_extend = purge_extend;
             this.purge_remove = purge_remove;
@@ -204,6 +195,7 @@ namespace CarcassSpark.ObjectTypes
             this.portaleffect = portaleffect;
             this.signalendingflavour = signalendingflavour;
             this.signalimportantloop = signalimportantloop;
+            this.extends = extends;
         }
 
         public Recipe()
@@ -211,71 +203,16 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Recipe Copy()
         {
-            Recipe tmp = new Recipe();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.actionId = actionId;
-            tmp.startdescription = startdescription;
-            tmp.description = description;
-            tmp.craftable = craftable;
-            tmp.hintonly = hintonly;
-            tmp.ending = ending;
-            tmp.burnimage = burnimage;
-            tmp.extends = extends;
-            tmp.warmup = warmup;
-            tmp.warmup_add = warmup_add;
-            tmp.warmup_minus = warmup_minus;
-            tmp.requirements = requirements;
-            tmp.requirements_extend = requirements_extend;
-            tmp.requirements_remove = requirements_remove;
-            tmp.extantreqs = extantreqs;
-            tmp.extantreqs_extend = extantreqs_extend;
-            tmp.extantreqs_remove = extantreqs_remove;
-            tmp.tablereqs = tablereqs;
-            tmp.tablereqs_extend = tablereqs_extend;
-            tmp.tablereqs_remove = tablereqs_remove;
-            tmp.maxexecutions = maxexecutions;
-            tmp.maxexecutions_add = maxexecutions_add;
-            tmp.maxexecutions_minus = maxexecutions_minus;
-            tmp.effects = effects;
-            tmp.effects_extend = effects_extend;
-            tmp.effects_remove = effects_remove;
-            tmp.linked = linked;
-            tmp.linked_prepend = linked_prepend;
-            tmp.linked_append = linked_append;
-            tmp.linked_remove = linked_remove;
-            tmp.slots = slots;
-            tmp.alternativerecipes = alternativerecipes;
-            tmp.alternativerecipes_prepend = alternativerecipes_prepend;
-            tmp.alternativerecipes_append = alternativerecipes_append;
-            tmp.alternativerecipes_remove = alternativerecipes_remove;
-            tmp.mutations = mutations;
-            tmp.mutations_prepend = mutations_prepend;
-            tmp.mutations_append = mutations_append;
-            tmp.mutations_remove = mutations_remove;
-            tmp.aspects = aspects;
-            tmp.aspects_extend = aspects_extend;
-            tmp.aspects_remove = aspects_remove;
-            tmp.deckeffect = deckeffect;
-            tmp.deckeffect_extend = deckeffect_extend;
-            tmp.deckeffect_remove = deckeffect_remove;
-            tmp.hintonly = hintonly;
-            tmp.internalDeck = internalDeck;
-            tmp.purge = purge;
-            tmp.purge_extend = purge_extend;
-            tmp.purge_remove = purge_remove;
-            tmp.haltverb = haltverb;
-            tmp.haltverb_extend = haltverb_extend;
-            tmp.haltverb_remove = haltverb_remove;
-            tmp.deleteverb = deleteverb;
-            tmp.deleteverb_extend = deleteverb_extend;
-            tmp.deleteverb_remove = deleteverb_remove;
-            tmp.portaleffect = portaleffect;
-            tmp.signalendingflavour = signalendingflavour;
-            tmp.signalimportantloop = signalimportantloop;
-            return tmp;
+            // that's a big ol' yikes from me, but it works perfectly. I just wish I knew how to simplify it.
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Recipe>(serializedObject);
         }
     }
 }

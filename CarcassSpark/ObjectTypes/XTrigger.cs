@@ -10,16 +10,16 @@ namespace CarcassSpark.ObjectTypes
     public class XTrigger
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string morphEffect, id;
+        public string morpheffect, id;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? chance, level;
 
         [JsonConstructor]
-        public XTrigger(string id, int? chance, string morphEffect, int? level)
+        public XTrigger(string id, int? chance, string morpheffect, int? level)
         {
             this.id = id;
             this.chance = chance;
-            this.morphEffect = morphEffect;
+            this.morpheffect = morpheffect;
             this.level = level;
         }
 
@@ -31,6 +31,17 @@ namespace CarcassSpark.ObjectTypes
         public XTrigger()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public XTrigger Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<XTrigger>(serializedObject);
         }
 
         public enum MorphEffectType

@@ -14,27 +14,30 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Aspect : Element
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? isAspect, isHidden, noartneeded;
+        // These have been moved into the Element object to get me one step closer to unifying them
+        // [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        // public bool? isAspect, isHidden, noartneeded;
         
         [JsonConstructor]
-        public Aspect(string id, string label, string description,
-                      bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
-                      List<Induces> induces_prepend, List<Induces> induces_append, List<string> induces_remove,
-                      bool? isAspect, string comments, Dictionary<string, int> aspects)
+        public Aspect(string id, string label, string description, string inherits,
+                      bool? unique, bool? deleted, string icon, string comments,
+                      Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend,
+                      List<string> aspects_remove, List<Slot> slots, List<Slot> slots_prepend,
+                      List<Slot> slots_append, List<string> slots_remove,
+                      Dictionary<string, List<XTrigger>> xtriggers,
+                      Dictionary<string, List<XTrigger>> xtriggers_extend,
+                      List<string> xtriggers_remove, int? lifetime,
+                      string decayTo, string uniquenessgroup, bool? resaturate,
+                      bool? isHidden, bool? noartneeded, List<Induces> induces,
+                      List<Induces> induces_prepend, List<Induces> induces_append,
+                      List<string> induces_remove, bool? isAspect, List<string> extends) : base(id, label, description,
+                          inherits, unique, deleted, icon, comments, aspects, aspects_extend,
+                          aspects_remove, slots, slots_prepend, slots_append, slots_remove,
+                          xtriggers, xtriggers_extend, xtriggers_remove, lifetime,
+                          decayTo, uniquenessgroup, resaturate, extends)
         {
-            // necessary
-            this.id = id;
-            // necessary
-            this.label = label;
-            // necessary
-            this.description = description;
             // optional
             this.isAspect = isAspect;
-            // optional
-            if (icon != null) this.icon = icon;
-            else this.icon = id;
-            // isHidden is true iff isAspect is true
             // optional
             this.isHidden = isHidden;
             // optional
@@ -44,40 +47,17 @@ namespace CarcassSpark.ObjectTypes
             this.induces_remove = induces_remove;
             // optional
             this.noartneeded = noartneeded;
-            // optional
-            this.comments = comments;
-            // optional, didn't even know it was possible tbqh
-            this.aspects = aspects;
         }
 
         public Aspect()
         {
             isAspect = true;
         }
-
-        public string toString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
         
-        new public Aspect Copy()
+        public new Aspect Copy()
         {
-            Aspect tmp = new Aspect();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.isAspect = isAspect;
-            if (icon != null) tmp.icon = icon;
-            else tmp.icon = id;
-            tmp.isHidden = isHidden;
-            tmp.induces = induces;
-            tmp.induces_prepend = induces_prepend;
-            tmp.induces_append = induces_append;
-            tmp.induces_remove = induces_remove;
-            tmp.noartneeded = noartneeded;
-            tmp.comments = comments;
-            tmp.aspects = aspects;
-            return tmp;
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Aspect>(serializedObject);
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using CarcassSpark.ObjectViewers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,9 +13,8 @@ namespace CarcassSpark
     static class Program
     {
 
-        static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        static string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
-        static string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
+        static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        static readonly string csDllDirectory = "\\cultistsimulator_Data\\Managed\\";
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,41 +22,22 @@ namespace CarcassSpark
         [STAThread]
         static void Main()
         {
-            // Before we initialize, check to see if we're in the game folder at ./CSMT/
-            if (File.Exists("./cultistsimulator.exe")) {
-
-                //Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory + ";");
-
-                AppDomain.CurrentDomain.AssemblyResolve += resolveCultistSimulatorAssemblies;
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
-            } else {
-                MessageBox.Show("Please install me your Cultist Simulator installation folder.", "I'm lost :(", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-        }
-
-        private static string[] allowedAssemblies = new string[] { "Assembly-CSharp" };
-
-        private static Assembly resolveCultistSimulatorAssemblies(object sender, ResolveEventArgs args)
-        {
-            string assemblyFile = (args.Name.Contains(',')) ? args.Name.Substring(0, args.Name.IndexOf(',')) : args.Name;
-
-            if (!allowedAssemblies.Contains(assemblyFile))
+            Mutex mutex = new Mutex(true, "CarcassSpark");
+            if (!mutex.WaitOne(0, false))
             {
-                return null;
+                MessageBox.Show("Only one instance of Carcass Spark may be open at a time.");
+                return;
             }
 
-            try
+            // AppDomain.CurrentDomain.AssemblyResolve += ResolveCultistSimulatorAssemblies;
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            if (File.Exists(currentDirectory + "csmt.settings.json"))
             {
-                return Assembly.LoadFile(csDllDirectory + assemblyFile+".dll");
+                Settings.LoadSettings(currentDirectory + "csmt.settings.json");
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            Application.Run(new TabbedModViewer());
         }
     }
 }

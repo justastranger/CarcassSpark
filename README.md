@@ -1,7 +1,9 @@
 # Installation
 Acquire the binaries (by any means necessary) and place them in your Cultist Simulator installation Folder.
 
-If you downloaded it through Steam like I did, that will be in `steamapps/common/Cultist Simulator`.
+The latest release can be found [here](https://github.com/justastranger/CarcassSpark/releases/).
+
+If you downloaded it through Steam like I did, the correct folder will be in `steamapps/common/Cultist Simulator`.
 
 # Starting Out
 One of the first things you should do is open the vanilla files. There's a checkbox in the Settings menu that causes this to happen automatically. This allows all of the vanilla content to be inspected wherever it comes up in the Viewe forms. You'll be presented with a Mod Viewer. It's a simple overview, listing everything that's part of that particular content source in searchable ListBoxes.
@@ -10,7 +12,7 @@ To start off with creating a new mod, we'll be going back to the Main Form where
 
 Once you've chosen your new mod's folder, a manifest editor will appear for you to fill out. You can put in anything for this, or nothing at all if you're really lazy. Once you press the OK button to close the dialog, the manifest will be saved and your modding has officially begun!
 
-
+Mods go into your `LocalLow/Weather Factory/Cultist Simulator/mods` folder on Windows. This folder can be accessed by entering `%appdata%/../locallow/Weather Factory/Cultist Simulator/` into explorer or by creating a shortcut to `%appdata%/../locallow/Weather Factory/Cultist Simulator/`.
 
 # Property Support:
 Currently Supported:
@@ -21,36 +23,45 @@ Currently Supported:
        - Induces$append
    - Elements
      - Aspects
-       - Aspects$extend
+       - Aspects$add
        - Aspects$remove
      - XTriggers (aka Cross Triggers)
-       - XTriggers$extend
+       - XTriggers$add
        - XTriggers$remove
      - Slots
        - Slots$prepend
        - Slots$append
    - Recipes
      - Requirements
-       - Requirements$extend
+       - Requirements$add
        - Requirements$remove
      - Table Requirements
-       - tablereqs$extend
+       - tablereqs$add
        - tablereqs$remove
      - Extant Requirements
-       - extantreqs$extend
+       - extantreqs$add
        - extantreqs$remove
      - Effects
-       - Effects$extend
+       - Effects$add
        - Effects$remove
      - Aspect Effects
-       - Aspects$extend
+       - Aspects$add
        - Aspects$remove
      - Deck Effects
-       - deckeffect$extend
-       - deckeffect$remove
+       - deckeffects$add
+       - deckeffects$remove
+     - Purge
+       - Purge$add
+       - Purge$remove
+     - Halt Verb
+       - HaltVerb$add
+       - HaltVerb$remove
+     - Delete Verb
+       - DeleteVerb$add
+       - DeleteVerb$remove
      - Alternative Recipe Links
-       - alternativerecipes$prepend
-       - alternativerecipes$append
+       - alt$prepend
+       - alt$append
      - Linked Recipe Links
        - linked$prepend
        - linked$prepend
@@ -61,7 +72,7 @@ Currently Supported:
      - Internal Decks
    - Decks
      - DrawMessages
-       - drawmessages$extend
+       - drawmessages$add
        - drawmessages$remove
      - Spec (The actual Deck)
        - spec$prepend
@@ -69,15 +80,17 @@ Currently Supported:
        - spec$remove
    - Legacies
      - Effects
-       - effects$extend
+       - effects$add
        - effects$remove
      - Exclude on Ending
        - excludeonending$prepend
        - excludeonending$append
        - excludeonending$remove
+     - Table Images
+     - New Start
    - Endings
    - Verbs
-     - Slots
+     - Slot
    - Manifests
      - Dependencies
 
@@ -99,24 +112,22 @@ In order to display the vanilla images, you will need to extract and sort them y
 I've found that uTinyRipper works wonderfully for this purpose. It takes a bit of time to export everything and exports all the resources and metadata, but everything is pre-sorted and it's fairly easy to delete everything that's not a .png file.
 
 The toolkit will look for these images in `Cultist Simulator/cultistsimulator_Data/StreamingAssets/content/core/images/`
- - Aspect icons in `images/icons40/aspects`
- - Element icons in `images/elementart`
- - Legacy icons in `images/icons100/legacies`
- - Verb icons in `images/icons100/verbs`
- - Ending art in `images/endingart`
- - Burn images in `images/burnimages`
+ - Aspect icons in `images/aspects`
+ - Element icons in `images/elements`
+ - Legacy icons in `images/legacies`
+ - Verb icons in `images/verbs`
+ - Ending art in `images/endings`
+ - Burn images in `images/burns`
 
 # Mod Folder Structure
  - Your Mod Folder
    - `content`
      - json files in folders or not, structured however you want as long as they have the `.json` extension. Carcass Spark will save aspects in `aspects.json`, elements in `elements.json`, recipes in `recipes.json`, etc.
    - `images`
-     - `burnimages`
-     - `elementart`
-     - `endingart`
-     - `icons40`
-       - `aspects`
-     - `icons100`
-       - `legacies`
-       - `verbs`
+     - `burns`
+     - `elements`
+     - `endings`
+     - `aspects`
+     - `legacies`
+     - `verbs`
      - `statusbarelements`

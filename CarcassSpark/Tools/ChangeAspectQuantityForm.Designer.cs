@@ -55,27 +55,30 @@
             this.okButton1.TabIndex = 1;
             this.okButton1.Text = "OK";
             this.okButton1.UseVisualStyleBackColor = true;
-            this.okButton1.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton1.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(93, 38);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ChangeAspectQuantityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(180, 75);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton1);
             this.Controls.Add(this.numericUpDown1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ChangeAspectQuantityForm";
             this.Text = "Change Aspect Quantity";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
