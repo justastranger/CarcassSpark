@@ -765,5 +765,39 @@ namespace CarcassSpark.ObjectViewers
         {
             new AboutForm().Show();
         }
+
+        private void ModViewerTabs_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void ModViewerTabs_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
+                {
+                    if (Path.HasExtension(file))
+                        continue;
+                    string synopsisPath = Path.Combine(file, "synopsis.json");
+                    if (File.Exists(synopsisPath))
+                    {
+                        CreateNewModViewerTab(file, false, false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("There is not a 'synopsis.json' file in this folder.");
+                    }
+                }
+            }
+        }
     }
 }
