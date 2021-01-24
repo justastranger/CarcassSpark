@@ -2231,7 +2231,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newAspect.id = id;
-            aspectsListView.Items.Add(new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode() };
+            aspectsListView.Groups[aspectsListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            aspectsListView.Items.Add(newListViewItem);
             Content.Aspects.Add(newAspect.id, newAspect.Copy());
         }
 
@@ -2255,7 +2257,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newElement.id = id;
-            elementsListView.Items.Add(new ListViewItem(newElement.id) { Tag = newElement.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newElement.id) { Tag = newElement.GetHashCode() };
+            elementsListView.Groups[elementsListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            elementsListView.Items.Add(newListViewItem);
             Content.Elements.Add(newElement.id, newElement.Copy());
         }
 
@@ -2279,7 +2283,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newRecipe.id = id;
-            recipesListView.Items.Add(new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode() };
+            recipesListView.Groups[recipesListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            recipesListView.Items.Add(newListViewItem);
             Content.Recipes.Add(newRecipe.id, newRecipe);
         }
 
@@ -2303,7 +2309,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newDeck.id = id;
-            decksListView.Items.Add(new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode() };
+            decksListView.Groups[decksListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            decksListView.Items.Add(newListViewItem);
             Content.Decks.Add(newDeck.id, newDeck);
         }
 
@@ -2327,7 +2335,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newLegacy.id = id;
-            legaciesListView.Items.Add(new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode() };
+            legaciesListView.Groups[legaciesListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            legaciesListView.Items.Add(newListViewItem);
             Content.Legacies.Add(newLegacy.id, newLegacy);
         }
 
@@ -2351,7 +2361,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newEnding.id = id;
-            endingsListView.Items.Add(new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode() };
+            endingsListView.Groups[endingsListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            endingsListView.Items.Add(newListViewItem);
             Content.Endings.Add(newEnding.id, newEnding);
         }
 
@@ -2374,7 +2386,9 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newVerb.id = id;
-            verbsListView.Items.Add(new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() });
+            ListViewItem newListViewItem = new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode() };
+            verbsListView.Groups[verbsListView.SelectedItems[0].Group.Name].Items.Add(newListViewItem);
+            verbsListView.Items.Add(newListViewItem);
             Content.Verbs.Add(newVerb.id, newVerb);
         }
 
