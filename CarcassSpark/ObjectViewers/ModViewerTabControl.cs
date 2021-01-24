@@ -1482,12 +1482,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
+            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
                 if (element.aspects != null && element.aspects.ContainsKey(id))
+                {
+                    tmp.Add(element.id, element);
+                }
+                if (element.aspects_extend != null && element.aspects_extend.ContainsKey(id))
                 {
                     tmp.Add(element.id, element);
                 }
@@ -1501,12 +1505,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
+            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
                 if (element.xtriggers != null && element.xtriggers.ContainsKey(id))
+                {
+                    tmp.Add(element.id, element);
+                }
+                if (element.xtriggers_extend != null && element.xtriggers_extend.ContainsKey(id))
                 {
                     tmp.Add(element.id, element);
                 }
@@ -1520,7 +1528,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
+            if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
@@ -1530,15 +1538,30 @@ namespace CarcassSpark.ObjectViewers
                     if (recipe.requirements.ContainsKey(id)) tmp.Add(recipe.id, recipe);
                     else if (recipe.requirements.ContainsValue(id)) tmp.Add(recipe.id, recipe);
                 }
+                if (recipe.requirements_extend != null)
+                {
+                    if (recipe.requirements_extend.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.requirements_extend.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
                 else if (recipe.extantreqs != null)
                 {
                     if (recipe.extantreqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
                     else if (recipe.extantreqs.ContainsValue(id)) tmp.Add(recipe.id, recipe);
                 }
+                else if (recipe.extantreqs_extend != null)
+                {
+                    if (recipe.extantreqs_extend.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.extantreqs_extend.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
                 else if (recipe.tablereqs != null)
                 {
                     if (recipe.tablereqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
                     else if (recipe.tablereqs.ContainsValue(id)) tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.tablereqs_extend != null)
+                {
+                    if (recipe.tablereqs_extend.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    else if (recipe.tablereqs_extend.ContainsValue(id)) tmp.Add(recipe.id, recipe);
                 }
             }
             if (tmp.Count > 0)
@@ -1550,7 +1573,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
+            if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
@@ -1559,7 +1582,15 @@ namespace CarcassSpark.ObjectViewers
                 {
                     tmp.Add(recipe.id, recipe);
                 }
+                if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
                 else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1573,15 +1604,32 @@ namespace CarcassSpark.ObjectViewers
         
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
+            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
                 // TODO foreach (Slot slot in element.slots) if (slot.requirements.contains(id)) tmp.add(element.id, element)
-                foreach (Slot slot in element.slots)
+                if (element.slots != null)
                 {
-                    if (slot.required.ContainsKey(id)) tmp.Add(element.id, element);
+                    foreach (Slot slot in element.slots)
+                    {
+                        if (slot.required.ContainsKey(id)) tmp.Add(element.id, element);
+                    }
+                }
+                if (element.slots_prepend != null)
+                {
+                    foreach (Slot slot in element.slots_prepend)
+                    {
+                        if (slot.required.ContainsKey(id)) tmp.Add(element.id, element);
+                    }
+                }
+                if (element.slots_append != null)
+                {
+                    foreach (Slot slot in element.slots_append)
+                    {
+                        if (slot.required.ContainsKey(id)) tmp.Add(element.id, element);
+                    }
                 }
             }
             if (tmp.Count > 0)
@@ -1593,7 +1641,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
+            if (elementsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
             string id = elementsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
@@ -1627,6 +1675,16 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
+                if (element.xtriggers_extend != null)
+                {
+                    foreach (KeyValuePair<string, List<XTrigger>> xtrigger in element.xtriggers_extend)
+                    {
+                        foreach (XTrigger xtriggereffect in xtrigger.Value)
+                        {
+                            if (xtriggereffect.id == id) tmp.Add(element.id, element);
+                        }
+                    }
+                }
             }
             if (tmp.Count > 0)
             {
@@ -1637,22 +1695,34 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
+            if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = elementsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.requirements != null)
+                if (recipe.requirements != null && recipe.requirements.ContainsKey(id))
                 {
-                    if (recipe.requirements.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    tmp.Add(recipe.id, recipe);
                 }
-                else if (recipe.extantreqs != null)
+                if (recipe.requirements_extend != null && recipe.requirements_extend.ContainsKey(id))
                 {
-                    if (recipe.extantreqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    tmp.Add(recipe.id, recipe);
                 }
-                else if (recipe.tablereqs != null)
+                if (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(id))
                 {
-                    if (recipe.tablereqs.ContainsKey(id)) tmp.Add(recipe.id, recipe);
+                    tmp.Add(recipe.id, recipe);
+                }
+                if (recipe.extantreqs_extend != null && recipe.extantreqs_extend.ContainsKey(id))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                if (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(id))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                if (recipe.tablereqs_extend != null && recipe.tablereqs_extend.ContainsKey(id))
+                {
+                    tmp.Add(recipe.id, recipe);
                 }
             }
             if (tmp.Count > 0)
@@ -1664,7 +1734,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
+            if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = elementsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
@@ -1673,7 +1743,15 @@ namespace CarcassSpark.ObjectViewers
                 {
                     tmp.Add(recipe.id, recipe);
                 }
+                if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) || recipe.effects_extend.ContainsValue(id)))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
                 else if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1687,12 +1765,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
+            if (elementsListView.SelectedItems.Count != 1 || Content.Decks.Count == 0) return;
             string id = elementsListView.SelectedItems[0].Text;
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
                 if (deck.spec != null && deck.spec.Contains(id))
+                {
+                    tmp.Add(deck.id, deck);
+                }
+                if (deck.spec_prepend != null && deck.spec_prepend.Contains(id))
+                {
+                    tmp.Add(deck.id, deck);
+                }
+                if (deck.spec_append != null && deck.spec_append.Contains(id))
                 {
                     tmp.Add(deck.id, deck);
                 }
@@ -1706,12 +1792,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
+            if (elementsListView.SelectedItems.Count != 1 || Content.Legacies.Count == 0) return;
             string id = elementsListView.SelectedItems[0].Text;
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
                 if (legacy.effects != null && legacy.effects.ContainsKey(id))
+                {
+                    tmp.Add(legacy.id, legacy);
+                }
+                if (legacy.effects_extend != null && legacy.effects_extend.ContainsKey(id))
                 {
                     tmp.Add(legacy.id, legacy);
                 }
@@ -1725,25 +1815,71 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatLinkToThisRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1) return;
+            if (recipesListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = recipesListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.linked != null) foreach (RecipeLink link in recipe.linked)
+                if (recipe.linked != null)
+                {
+                    foreach (RecipeLink link in recipe.linked)
                     {
                         if (link.id == id)
                         {
                             tmp.Add(recipe.id, recipe);
                         }
                     }
-                if (recipe.alt != null) foreach (RecipeLink link in recipe.alt)
+                }
+                if (recipe.linked_prepend != null)
+                {
+                    foreach (RecipeLink link in recipe.linked_prepend)
                     {
                         if (link.id == id)
                         {
                             tmp.Add(recipe.id, recipe);
                         }
                     }
+                }
+                if (recipe.linked_append != null)
+                {
+                    foreach (RecipeLink link in recipe.linked_append)
+                    {
+                        if (link.id == id)
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
+                    }
+                }
+                if (recipe.alt != null)
+                {
+                    foreach (RecipeLink link in recipe.alt)
+                    {
+                        if (link.id == id)
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
+                    }
+                }
+                if (recipe.alt_prepend != null)
+                {
+                    foreach (RecipeLink link in recipe.alt_prepend)
+                    {
+                        if (link.id == id)
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
+                    }
+                }
+                if (recipe.alt_append != null)
+                {
+                    foreach (RecipeLink link in recipe.alt_append)
+                    {
+                        if (link.id == id)
+                        {
+                            tmp.Add(recipe.id, recipe);
+                        }
+                    }
+                }
             }
             if (tmp.Count > 0)
             {
@@ -1754,12 +1890,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1) return;
+            if (decksListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = decksListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
                 if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(id) && recipe.deckeffects[id] > 0)
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                if (recipe.deckeffects_extend != null && recipe.deckeffects_extend.ContainsKey(id) && recipe.deckeffects_extend[id] > 0)
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1773,7 +1913,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatCauseThisEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1) return;
+            if (endingsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = endingsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
@@ -1792,12 +1932,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1) return;
+            if (verbsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
             string id = verbsListView.SelectedItems[0].Text;
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.actionId != null && recipe.actionId == id)
+                if (recipe.actionId == id)
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1811,15 +1951,32 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1) return;
+            if (verbsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
             string id = verbsListView.SelectedItems[0].Text;
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                if (element.slots != null) foreach (Slot slot in element.slots)
+                if (element.slots != null)
+                {
+                    foreach (Slot slot in element.slots)
                     {
                         if (slot.actionId == id) tmp[element.id] = element;
                     }
+                }
+                if (element.slots_prepend != null)
+                {
+                    foreach (Slot slot in element.slots_prepend)
+                    {
+                        if (slot.actionId == id) tmp[element.id] = element;
+                    }
+                }
+                if (element.slots_append != null)
+                {
+                    foreach (Slot slot in element.slots_append)
+                    {
+                        if (slot.actionId == id) tmp[element.id] = element;
+                    }
+                }
             }
             if (tmp.Count > 0)
             {
