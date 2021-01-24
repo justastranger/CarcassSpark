@@ -719,7 +719,8 @@ namespace CarcassSpark.ObjectViewers
         {
             if (alternativeRecipesListView.SelectedItems.Count == 0) return;
             string oldId = alternativeRecipesListView.SelectedItems[0].Tag as string;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Tag as string], editing);
+            RecipeLink oldLink = alternativerecipeLinks[oldId];
+            RecipeLinkViewer rlv = new RecipeLinkViewer(oldLink.Copy(), editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
@@ -728,6 +729,7 @@ namespace CarcassSpark.ObjectViewers
                     alternativerecipeLinks.Remove(oldId);
                     alternativerecipeLinks[rlv.displayedRecipeLink.GetHashCode().ToString()] = rlv.displayedRecipeLink.Copy();
                     alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
+                    alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Tag = rlv.displayedRecipeLink.GetHashCode();
                 }
                 else
                 {
@@ -742,7 +744,8 @@ namespace CarcassSpark.ObjectViewers
         {
             if (linkedRecipesListView.SelectedItems.Count == 0) return;
             string oldId = linkedRecipesListView.SelectedItems[0].Tag as string;
-            RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedRecipesListView.SelectedItems[0].Tag as string], editing);
+            RecipeLink oldLink = recipeLinks[oldId];
+            RecipeLinkViewer rlv = new RecipeLinkViewer(oldLink.Copy(), editing);
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
@@ -751,6 +754,7 @@ namespace CarcassSpark.ObjectViewers
                     recipeLinks.Remove(oldId);
                     recipeLinks[rlv.displayedRecipeLink.GetHashCode().ToString()] = rlv.displayedRecipeLink.Copy();
                     linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
+                    linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Tag = rlv.displayedRecipeLink.GetHashCode();
                 }
                 else
                 {
