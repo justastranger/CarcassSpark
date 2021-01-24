@@ -760,5 +760,10 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager();
             templateManager.Show();
         }
+
+        private void aboutToolStripButton_Click(object sender, EventArgs e)
+        {
+            new AboutForm().Show();
+        }
     }
 }

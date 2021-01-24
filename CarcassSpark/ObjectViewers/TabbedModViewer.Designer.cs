@@ -71,6 +71,7 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.aboutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,8 @@
             this.newItemToolStripButton,
             this.importToolStripButton,
             this.toolsToolStripButton,
-            this.settingsToolStripButton});
+            this.settingsToolStripButton,
+            this.aboutToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(935, 25);
@@ -429,6 +431,16 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // aboutToolStripButton
+            // 
+            this.aboutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.aboutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripButton.Image")));
+            this.aboutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.aboutToolStripButton.Name = "aboutToolStripButton";
+            this.aboutToolStripButton.Size = new System.Drawing.Size(44, 22);
+            this.aboutToolStripButton.Text = "About";
+            this.aboutToolStripButton.Click += new System.EventHandler(this.aboutToolStripButton_Click);
+            // 
             // TabbedModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,6 +505,7 @@
         private System.Windows.Forms.ToolStripMenuItem culturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assetBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton aboutToolStripButton;
     }
 }
 
