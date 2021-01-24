@@ -27,6 +27,14 @@ namespace CarcassSpark.ObjectViewers
 
         public ContentSource Content = new ContentSource();
         
+        private string mostRecentAspectsGroup = "aspects";
+        private string mostRecentElementsGroup = "elements";
+        private string mostRecentRecipesGroup = "recipes";
+        private string mostRecentDecksGroup = "decks";
+        private string mostRecentLegaciesGroup = "legacies";
+        private string mostRecentEndingsGroup = "endings";
+        private string mostRecentVerbsGroup = "verbs";
+        
         public ModViewerTabControl(string location, bool isVanilla, bool newMod)
         {
             InitializeComponent();
@@ -2806,7 +2814,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = aspectsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentAspectsGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in aspectsListView.Groups)
             {
@@ -2829,6 +2837,7 @@ namespace CarcassSpark.ObjectViewers
                         aspectsListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentAspectsGroup = currentGroup;
                 }
             }
             // string id = aspectsListView.SelectedItems[0].Text;
@@ -2838,7 +2847,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = elementsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentElementsGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in elementsListView.Groups)
             {
@@ -2861,6 +2870,7 @@ namespace CarcassSpark.ObjectViewers
                         elementsListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentElementsGroup = currentGroup;
                 }
             }
         }
@@ -2869,7 +2879,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = recipesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentRecipesGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in recipesListView.Groups)
             {
@@ -2892,6 +2902,7 @@ namespace CarcassSpark.ObjectViewers
                         recipesListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentRecipesGroup = currentGroup;
                 }
             }
         }
@@ -2900,7 +2911,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = decksListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentDecksGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in decksListView.Groups)
             {
@@ -2923,6 +2934,7 @@ namespace CarcassSpark.ObjectViewers
                         decksListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentDecksGroup = currentGroup;
                 }
             }
         }
@@ -2931,7 +2943,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = legaciesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentLegaciesGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in legaciesListView.Groups)
             {
@@ -2954,6 +2966,7 @@ namespace CarcassSpark.ObjectViewers
                         legaciesListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentLegaciesGroup = currentGroup;
                 }
             }
         }
@@ -2962,7 +2975,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = endingsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentEndingsGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in endingsListView.Groups)
             {
@@ -2985,6 +2998,7 @@ namespace CarcassSpark.ObjectViewers
                         endingsListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentEndingsGroup = currentGroup;
                 }
             }
         }
@@ -2993,7 +3007,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewItem selectedItem = verbsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
+            string currentGroup = mostRecentVerbsGroup;
             List<string> groups = new List<string>();
             foreach (ListViewGroup lvg in verbsListView.Groups)
             {
@@ -3016,6 +3030,7 @@ namespace CarcassSpark.ObjectViewers
                         verbsListView.Groups.Add(listViewGroup);
                         listViewGroup.Items.Add(selectedItem);
                     }
+                    mostRecentVerbsGroup = currentGroup;
                 }
             }
         }
