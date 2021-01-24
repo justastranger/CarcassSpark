@@ -119,7 +119,7 @@
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.programNameLabel);
             this.Name = "AboutForm";
-            this.Text = "AboutForm";
+            this.Text = "About";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
