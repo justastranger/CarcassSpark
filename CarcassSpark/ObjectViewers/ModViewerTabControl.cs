@@ -313,7 +313,7 @@ namespace CarcassSpark.ObjectViewers
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                                 {
-                                    Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
+                                    Content.Aspects.Add(deserializedAspect.GetHashCode().ToString(), deserializedAspect);
                                     ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                     {
                                         Tag = deserializedAspect.GetHashCode()
@@ -337,7 +337,7 @@ namespace CarcassSpark.ObjectViewers
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 if (!Content.Aspects.ContainsKey(deserializedAspect.id))
                                 {
-                                    Content.Aspects.Add(deserializedAspect.id, deserializedAspect);
+                                    Content.Aspects.Add(deserializedAspect.GetHashCode().ToString(), deserializedAspect);
                                     ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                     {
                                         Tag = deserializedAspect.GetHashCode()
@@ -361,7 +361,7 @@ namespace CarcassSpark.ObjectViewers
                                 Element deserializedElement = element.ToObject<Element>();
                                 if (!Content.Elements.ContainsKey(deserializedElement.id))
                                 {
-                                    Content.Elements.Add(deserializedElement.id, deserializedElement);
+                                    Content.Elements.Add(deserializedElement.GetHashCode().ToString(), deserializedElement);
                                     ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
                                     {
                                         Tag = deserializedElement.GetHashCode()
@@ -388,7 +388,7 @@ namespace CarcassSpark.ObjectViewers
                             Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                             if (!Content.Recipes.ContainsKey(deserializedRecipe.id))
                             {
-                                Content.Recipes.Add(deserializedRecipe.id, deserializedRecipe);
+                                Content.Recipes.Add(deserializedRecipe.GetHashCode().ToString(), deserializedRecipe);
                                 ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
                                 {
                                     Tag = deserializedRecipe.GetHashCode()
@@ -414,7 +414,7 @@ namespace CarcassSpark.ObjectViewers
                             Deck deserializedDeck = deck.ToObject<Deck>();
                             if (!Content.Decks.ContainsKey(deserializedDeck.id))
                             {
-                                Content.Decks.Add(deserializedDeck.id, deserializedDeck);
+                                Content.Decks.Add(deserializedDeck.GetHashCode().ToString(), deserializedDeck);
                                 ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
                                 {
                                     Tag = deserializedDeck.GetHashCode()
@@ -440,7 +440,7 @@ namespace CarcassSpark.ObjectViewers
                             Legacy deserializedLegacy = legacy.ToObject<Legacy>();
                             if (!Content.Legacies.ContainsKey(deserializedLegacy.id))
                             {
-                                Content.Legacies.Add(deserializedLegacy.id, deserializedLegacy);
+                                Content.Legacies.Add(deserializedLegacy.GetHashCode().ToString(), deserializedLegacy);
                                 ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
                                 {
                                     Tag = deserializedLegacy.GetHashCode()
@@ -466,7 +466,7 @@ namespace CarcassSpark.ObjectViewers
                             Ending deserializedEnding = ending.ToObject<Ending>();
                             if (!Content.Endings.ContainsKey(deserializedEnding.id))
                             {
-                                Content.Endings.Add(deserializedEnding.id, deserializedEnding);
+                                Content.Endings.Add(deserializedEnding.GetHashCode().ToString(), deserializedEnding);
                                 ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
                                 {
                                     Tag = deserializedEnding.GetHashCode()
@@ -492,7 +492,7 @@ namespace CarcassSpark.ObjectViewers
                             Verb deserializedVerb = verb.ToObject<Verb>();
                             if (!Content.Verbs.ContainsKey(deserializedVerb.id))
                             {
-                                Content.Verbs.Add(deserializedVerb.id, deserializedVerb);
+                                Content.Verbs.Add(deserializedVerb.GetHashCode().ToString(), deserializedVerb);
                                 ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
                                 {
                                     Tag = deserializedVerb.GetHashCode()
@@ -589,7 +589,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        aspectsForGroup.Add(Content.Aspects[item.Text]);
+                        aspectsForGroup.Add(Content.Aspects[item.Tag.ToString()]);
                     }
                     if (aspectsForGroup.Count > 0)
                     {
@@ -621,7 +621,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        elementsForGroup.Add(Content.Elements[item.Text]);
+                        elementsForGroup.Add(Content.Elements[item.Tag.ToString()]);
                     }
                     if (elementsForGroup.Count > 0)
                     {
@@ -653,7 +653,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        recipesForGroup.Add(Content.Recipes[item.Text]);
+                        recipesForGroup.Add(Content.Recipes[item.Tag.ToString()]);
                     }
                     if (recipesForGroup.Count > 0)
                     {
@@ -685,7 +685,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        decksForGroup.Add(Content.Decks[item.Text]);
+                        decksForGroup.Add(Content.Decks[item.Tag.ToString()]);
                     }
                     if (decksForGroup.Count > 0)
                     {
@@ -717,7 +717,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        legaciesForGroup.Add(Content.Legacies[item.Text]);
+                        legaciesForGroup.Add(Content.Legacies[item.Tag.ToString()]);
                     }
                     if (legaciesForGroup.Count > 0)
                     {
@@ -749,7 +749,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        endingsForGroup.Add(Content.Endings[item.Text]);
+                        endingsForGroup.Add(Content.Endings[item.Tag.ToString()]);
                     }
                     if (endingsForGroup.Count > 0)
                     {
@@ -781,7 +781,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        verbsForGroup.Add(Content.Verbs[item.Text]);
+                        verbsForGroup.Add(Content.Verbs[item.Tag.ToString()]);
                     }
                     if (verbsForGroup.Count > 0)
                     {
@@ -858,7 +858,7 @@ namespace CarcassSpark.ObjectViewers
         private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
@@ -876,7 +876,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Aspects[result.id] = result.Copy();
             if (aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Aspects.Remove(aspectsListView.SelectedItems[0].Text);
+                Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
                 aspectsListView.SelectedItems[0].Text = result.id;
                 aspectsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -885,7 +885,7 @@ namespace CarcassSpark.ObjectViewers
         private void DecksListView_DoubleClick(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            string id = decksListView.SelectedItems[0].Text;
+            string id = decksListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
@@ -903,7 +903,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Decks[result.id] = result.Copy();
             if (decksListView.Items[decksListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Decks.Remove(decksListView.SelectedItems[0].Text);
+                Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                 decksListView.SelectedItems[0].Text = result.id;
                 decksListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -912,7 +912,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
@@ -930,7 +930,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Elements[result.id] = result.Copy();
             if (elementsListView.Items[elementsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
+                Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
                 elementsListView.SelectedItems[0].Text = result.id;
                 elementsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -939,7 +939,7 @@ namespace CarcassSpark.ObjectViewers
         private void EndingsListView_DoubleClick(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            string id = endingsListView.SelectedItems[0].Text;
+            string id = endingsListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
@@ -957,7 +957,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Endings[result.id] = result.Copy();
             if (endingsListView.Items[endingsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Endings.Remove(endingsListView.SelectedItems[0].Text);
+                Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
                 endingsListView.SelectedItems[0].Text = result.id;
                 endingsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -966,7 +966,7 @@ namespace CarcassSpark.ObjectViewers
         private void LegaciesListView_DoubleClick(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            string id = legaciesListView.SelectedItems[0].Text;
+            string id = legaciesListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign);
@@ -984,7 +984,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Legacies[result.id] = result.Copy();
             if (legaciesListView.Items[legaciesListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Legacies.Remove(legaciesListView.SelectedItems[0].Text);
+                Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
                 legaciesListView.SelectedItems[0].Text = result.id;
                 legaciesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -993,7 +993,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesListView_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            string id = recipesListView.SelectedItems[0].Text;
+            string id = recipesListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
@@ -1011,7 +1011,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Recipes[result.id] = result.Copy();
             if (recipesListView.Items[recipesListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Recipes.Remove(recipesListView.SelectedItems[0].Text);
+                Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                 recipesListView.SelectedItems[0].Text = result.id;
                 recipesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -1020,7 +1020,7 @@ namespace CarcassSpark.ObjectViewers
         private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            string id = verbsListView.SelectedItems[0].Text;
+            string id = verbsListView.SelectedItems[0].Tag.ToString();
             if (editMode)
             {
                 VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
@@ -1038,7 +1038,7 @@ namespace CarcassSpark.ObjectViewers
             Content.Verbs[result.id] = result.Copy();
             if (verbsListView.Items[verbsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Verbs.Remove(verbsListView.SelectedItems[0].Text);
+                Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
                 verbsListView.SelectedItems[0].Text = result.id;
                 verbsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
@@ -1483,7 +1483,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1506,7 +1506,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1529,7 +1529,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1574,7 +1574,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1605,7 +1605,7 @@ namespace CarcassSpark.ObjectViewers
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1642,7 +1642,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1661,7 +1661,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatXtriggerIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1696,7 +1696,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1735,7 +1735,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1766,7 +1766,7 @@ namespace CarcassSpark.ObjectViewers
         private void DecksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Decks.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
@@ -1793,7 +1793,7 @@ namespace CarcassSpark.ObjectViewers
         private void LegaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Legacies.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Text;
+            string id = elementsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
@@ -1816,7 +1816,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatLinkToThisRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = recipesListView.SelectedItems[0].Text;
+            string id = recipesListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1891,7 +1891,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = decksListView.SelectedItems[0].Text;
+            string id = decksListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1914,7 +1914,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatCauseThisEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = endingsListView.SelectedItems[0].Text;
+            string id = endingsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1933,7 +1933,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = verbsListView.SelectedItems[0].Text;
+            string id = verbsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1952,7 +1952,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = verbsListView.SelectedItems[0].Text;
+            string id = verbsListView.SelectedItems[0].Tag.ToString();
             Dictionary<string, Element> tmp = new Dictionary<string, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1988,7 +1988,7 @@ namespace CarcassSpark.ObjectViewers
         private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            string id = recipesListView.SelectedItems[0].Text;
+            string id = recipesListView.SelectedItems[0].Tag.ToString();
             RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id).Copy());
             rfv.Show();
         }
@@ -2203,7 +2203,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect aspectToEdit = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
+            Aspect aspectToEdit = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
             if (aspectToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
@@ -2212,14 +2212,14 @@ namespace CarcassSpark.ObjectViewers
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
                 if (deserializedAspect.id != aspectsListView.SelectedItems[0].Text)
                 {
-                    Content.Aspects.Remove(aspectsListView.SelectedItems[0].Text);
+                    Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
                     Content.Aspects[deserializedAspect.id] = deserializedAspect.Copy();
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
                     aspectsListView.SelectedItems[0].Tag = deserializedAspect.GetHashCode();
                 }
                 else
                 {
-                    Content.Aspects[aspectsListView.SelectedItems[0].Text] = deserializedAspect.Copy();
+                    Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()] = deserializedAspect.Copy();
                 }
             }
         }
@@ -2227,7 +2227,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element elementToEdit = Content.GetElement(elementsListView.SelectedItems[0].Text);
+            Element elementToEdit = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
             if (elementToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
@@ -2236,14 +2236,14 @@ namespace CarcassSpark.ObjectViewers
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                 if (deserializedElement.id != elementsListView.SelectedItems[0].Text)
                 {
-                    Content.Elements.Remove(elementsListView.SelectedItems[0].Text);
+                    Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
                     Content.Elements[deserializedElement.id] = deserializedElement.Copy();
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
                     elementsListView.SelectedItems[0].Tag = deserializedElement.GetHashCode();
                 }
                 else
                 {
-                    Content.Elements[elementsListView.SelectedItems[0].Text] = deserializedElement.Copy();
+                    Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()] = deserializedElement.Copy();
                 }
             }
         }
@@ -2251,7 +2251,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe recipeToEdit = Content.GetRecipe(recipesListView.SelectedItems[0].Text);
+            Recipe recipeToEdit = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
             if (recipeToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
@@ -2260,14 +2260,14 @@ namespace CarcassSpark.ObjectViewers
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
                 if (deserializedRecipe.id != recipesListView.SelectedItems[0].Text)
                 {
-                    Content.Recipes.Remove(recipesListView.SelectedItems[0].Text);
+                    Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                     Content.Recipes[deserializedRecipe.id] = deserializedRecipe.Copy();
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
                     recipesListView.SelectedItems[0].Tag = deserializedRecipe.GetHashCode();
                 }
                 else
                 {
-                    Content.Recipes[recipesListView.SelectedItems[0].Text] = deserializedRecipe.Copy();
+                    Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()] = deserializedRecipe.Copy();
                 }
             }
         }
@@ -2275,7 +2275,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck deckToEdit = Content.GetDeck(decksListView.SelectedItems[0].Text);
+            Deck deckToEdit = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
             if (deckToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
@@ -2284,14 +2284,14 @@ namespace CarcassSpark.ObjectViewers
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                 if (deserializedDeck.id != decksListView.SelectedItems[0].Text)
                 {
-                    Content.Decks.Remove(decksListView.SelectedItems[0].Text);
+                    Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                     Content.Decks[deserializedDeck.id] = deserializedDeck.Copy();
                     decksListView.SelectedItems[0].Text = deserializedDeck.id;
                     decksListView.SelectedItems[0].Tag = deserializedDeck.GetHashCode();
                 }
                 else
                 {
-                    Content.Decks[decksListView.SelectedItems[0].Text] = deserializedDeck.Copy();
+                    Content.Decks[decksListView.SelectedItems[0].Tag.ToString()] = deserializedDeck.Copy();
                 }
             }
         }
@@ -2299,7 +2299,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy legacyToEdit = Content.GetLegacy(legaciesListView.SelectedItems[0].Text);
+            Legacy legacyToEdit = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
             if (legacyToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
@@ -2308,14 +2308,14 @@ namespace CarcassSpark.ObjectViewers
                 Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
                 if (deserializedLegacy.id != legaciesListView.SelectedItems[0].Text)
                 {
-                    Content.Legacies.Remove(legaciesListView.SelectedItems[0].Text);
+                    Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
                     Content.Legacies[deserializedLegacy.id] = deserializedLegacy.Copy();
                     legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
                     legaciesListView.SelectedItems[0].Tag = deserializedLegacy.GetHashCode();
                 }
                 else
                 {
-                    Content.Legacies[legaciesListView.SelectedItems[0].Text] = deserializedLegacy.Copy();
+                    Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()] = deserializedLegacy.Copy();
                 }
             }
         }
@@ -2323,7 +2323,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending endingToEdit = Content.GetEnding(endingsListView.SelectedItems[0].Text);
+            Ending endingToEdit = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
             if (endingToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
@@ -2332,14 +2332,14 @@ namespace CarcassSpark.ObjectViewers
                 Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
                 if (deserializedEnding.id != endingsListView.SelectedItems[0].Text)
                 {
-                    Content.Endings.Remove(endingsListView.SelectedItems[0].Text);
+                    Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
                     Content.Endings[deserializedEnding.id] = deserializedEnding.Copy();
                     endingsListView.SelectedItems[0].Text = deserializedEnding.id;
                     endingsListView.SelectedItems[0].Tag = deserializedEnding.GetHashCode();
                 }
                 else
                 {
-                    Content.Endings[endingsListView.SelectedItems[0].Text] = deserializedEnding.Copy();
+                    Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()] = deserializedEnding.Copy();
                 }
             }
         }
@@ -2347,7 +2347,7 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb verbToEdit = Content.GetVerb(verbsListView.SelectedItems[0].Text);
+            Verb verbToEdit = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
             if (verbToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
@@ -2356,13 +2356,13 @@ namespace CarcassSpark.ObjectViewers
                 Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
                 if (deserializedVerb.id != verbsListView.SelectedItems[0].Text)
                 {
-                    Content.Verbs.Remove(verbsListView.SelectedItems[0].Text);
+                    Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
                     Content.Verbs[deserializedVerb.id] = deserializedVerb.Copy();
                     verbsListView.SelectedItems[0].Text = deserializedVerb.id;
                 }
                 else
                 {
-                    Content.Verbs[verbsListView.SelectedItems[0].Text] = deserializedVerb.Copy();
+                    Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()] = deserializedVerb.Copy();
                 }
             }
         }
@@ -2372,7 +2372,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedAspectToolStripMenuItem.Enabled) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = aspectsListView.SelectedItems[0].Group;
-            Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Text].Copy();
+            Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newAspect.id;
             if (aspectsListView.Items.ContainsKey(id))
             {
@@ -2400,7 +2400,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedElementToolStripMenuItem.Enabled) return;
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = elementsListView.SelectedItems[0].Group;
-            Element newElement = Content.Elements[elementsListView.SelectedItems[0].Text].Copy();
+            Element newElement = Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newElement.id;
             if (elementsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2428,7 +2428,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedRecipeToolStripMenuItem.Enabled) return;
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewGroup group = recipesListView.SelectedItems[0].Group;
-            Recipe newRecipe = Content.Recipes[recipesListView.SelectedItems[0].Text].Copy();
+            Recipe newRecipe = Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newRecipe.id;
             if (recipesListView.Items.ContainsKey(id + "_1"))
             {
@@ -2456,7 +2456,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedDeckToolStripMenuItem.Enabled) return;
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewGroup group = decksListView.SelectedItems[0].Group;
-            Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Text].Copy();
+            Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newDeck.id;
             if (decksListView.Items.ContainsKey(id + "_1"))
             {
@@ -2484,7 +2484,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedLegacyToolStripMenuItem.Enabled) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewGroup group = legaciesListView.SelectedItems[0].Group;
-            Legacy newLegacy = Content.Legacies[legaciesListView.SelectedItems[0].Text].Copy();
+            Legacy newLegacy = Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newLegacy.id;
             if (legaciesListView.Items.ContainsKey(id + "_1"))
             {
@@ -2512,7 +2512,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedEndingToolStripMenuItem.Enabled) return;
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = endingsListView.SelectedItems[0].Group;
-            Ending newEnding = Content.Endings[endingsListView.SelectedItems[0].Text].Copy();
+            Ending newEnding = Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newEnding.id;
             if (endingsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2540,7 +2540,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedVerbToolStripMenuItem.Enabled) return;
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = verbsListView.SelectedItems[0].Group;
-            Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Text].Copy();
+            Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()].Copy();
             string id = newVerb.id;
             if (verbsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2566,7 +2566,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
+            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
             if (exportedAspect == null) return;
             ExportObject(exportedAspect, exportedAspect.id);
         }
@@ -2574,7 +2574,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Text);
+            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
             if (exportedElement == null) return;
             ExportObject(exportedElement, exportedElement.id);
         }
@@ -2582,7 +2582,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Text);
+            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
             if (exportedRecipe == null) return;
             ExportObject(exportedRecipe, exportedRecipe.id);
         }
@@ -2590,7 +2590,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Text);
+            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
             if (exportedDeck == null) return;
             ExportObject(exportedDeck, exportedDeck.id);
         }
@@ -2598,7 +2598,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Text);
+            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
             if (exportedLegacy == null) return;
             ExportObject(exportedLegacy, exportedLegacy.id);
         }
@@ -2606,7 +2606,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Text);
+            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
             if (exportedEnding == null) return;
             ExportObject(exportedEnding, exportedEnding.id);
         }
@@ -2614,7 +2614,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Text);
+            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
             ExportObject(exportedVerb, exportedVerb.id);
         }
 
@@ -2639,7 +2639,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Text);
+            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
             if (exportedAspect == null) return;
             CopyObjectJSONToClipboard(exportedAspect);
         }
@@ -2647,7 +2647,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Text);
+            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
             if (exportedElement == null) return;
             CopyObjectJSONToClipboard(exportedElement);
         }
@@ -2655,7 +2655,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Text);
+            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
             if (exportedRecipe == null) return;
             CopyObjectJSONToClipboard(exportedRecipe);
         }
@@ -2663,7 +2663,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Text);
+            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
             if (exportedDeck == null) return;
             CopyObjectJSONToClipboard(exportedDeck);
         }
@@ -2671,7 +2671,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Text);
+            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
             if (exportedLegacy == null) return;
             CopyObjectJSONToClipboard(exportedLegacy);
         }
@@ -2679,7 +2679,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Text);
+            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
             if (exportedEnding == null) return;
             CopyObjectJSONToClipboard(exportedEnding);
         }
@@ -2687,7 +2687,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Text);
+            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
             if (exportedVerb == null) return;
             CopyObjectJSONToClipboard(exportedVerb);
         }
@@ -2905,7 +2905,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspectsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = aspectsListView.SelectedItems[0].Text;
+                string id = aspectsListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
@@ -2924,7 +2924,7 @@ namespace CarcassSpark.ObjectViewers
             if (elementsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = elementsListView.SelectedItems[0].Text;
+                string id = elementsListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
@@ -2943,7 +2943,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipesListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = recipesListView.SelectedItems[0].Text;
+                string id = recipesListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
@@ -2962,7 +2962,7 @@ namespace CarcassSpark.ObjectViewers
             if (decksListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = decksListView.SelectedItems[0].Text;
+                string id = decksListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
@@ -2981,7 +2981,7 @@ namespace CarcassSpark.ObjectViewers
             if (legaciesListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = legaciesListView.SelectedItems[0].Text;
+                string id = legaciesListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
@@ -3230,7 +3230,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Aspect));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Aspect templateAspect = JsonConvert.DeserializeObject<Aspect>(templateJson);
                 AspectViewer av = new AspectViewer(templateAspect, AspectsList_Add);
                 av.Show();
@@ -3242,7 +3242,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Element));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Element templateElement = JsonConvert.DeserializeObject<Element>(templateJson);
                 ElementViewer av = new ElementViewer(templateElement, ElementsList_Add);
                 av.Show();
@@ -3254,7 +3254,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Recipe));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Recipe templateRecipe = JsonConvert.DeserializeObject<Recipe>(templateJson);
                 RecipeViewer av = new RecipeViewer(templateRecipe, RecipesList_Add);
                 av.Show();
@@ -3266,7 +3266,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Deck));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Deck templateDeck = JsonConvert.DeserializeObject<Deck>(templateJson);
                 DeckViewer av = new DeckViewer(templateDeck, DecksList_Add);
                 av.Show();
@@ -3278,7 +3278,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Legacy));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Legacy templateLegacy = JsonConvert.DeserializeObject<Legacy>(templateJson);
                 LegacyViewer av = new LegacyViewer(templateLegacy, LegaciesList_Add);
                 av.Show();
@@ -3290,7 +3290,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Ending));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Ending templateEnding = JsonConvert.DeserializeObject<Ending>(templateJson);
                 EndingViewer av = new EndingViewer(templateEnding, EndingsList_Add);
                 av.Show();
@@ -3302,7 +3302,7 @@ namespace CarcassSpark.ObjectViewers
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Verb));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag as string;
+                string templateJson = templateManager.selectedItem.Tag.ToString();
                 Verb templateVerb = JsonConvert.DeserializeObject<Verb>(templateJson);
                 VerbViewer av = new VerbViewer(templateVerb, VerbsList_Add);
                 av.Show();
@@ -3314,7 +3314,7 @@ namespace CarcassSpark.ObjectViewers
             if (endingsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = endingsListView.SelectedItems[0].Text;
+                string id = endingsListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
@@ -3333,7 +3333,7 @@ namespace CarcassSpark.ObjectViewers
             if (verbsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = verbsListView.SelectedItems[0].Text;
+                string id = verbsListView.SelectedItems[0].Tag.ToString();
                 if (editMode)
                 {
                     VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
