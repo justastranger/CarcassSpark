@@ -3006,7 +3006,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Aspect"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3024,8 +3024,8 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Aspect", newGroup);
             }
-            // string id = aspectsListView.SelectedItems[0].Text;
         }
 
         private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3039,7 +3039,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Element"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3057,6 +3057,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Element", newGroup);
             }
         }
 
@@ -3071,7 +3072,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Recipe"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3089,6 +3090,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Recipe", newGroup);
             }
         }
 
@@ -3103,7 +3105,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Deck"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3121,6 +3123,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Deck", newGroup);
             }
         }
 
@@ -3135,7 +3138,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Legacy"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3153,6 +3156,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Legacy", newGroup);
             }
         }
 
@@ -3167,7 +3171,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Ending"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3199,7 +3203,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Verb"), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
@@ -3217,6 +3221,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                     }
                 }
+                Content.SetRecentGroup("Verb", newGroup);
             }
         }
 

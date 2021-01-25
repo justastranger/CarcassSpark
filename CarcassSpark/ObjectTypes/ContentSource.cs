@@ -156,6 +156,36 @@ namespace CarcassSpark.ObjectTypes
             else return null;
         }
 
+        public void SetRecentGroup(string type, string groupName)
+        {
+            Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
+            if (recentGroups != null)
+            {
+                recentGroups[type] = groupName;
+            }
+            else
+            {
+                recentGroups = new Dictionary<string, string>()
+                {
+                    {type, groupName}
+                };
+            }
+            CustomManifest["recentGroups"] = JObject.FromObject(recentGroups);
+        }
+
+        public string GetRecentGroup(string type)
+        {
+            Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
+            if (recentGroups != null && recentGroups.ContainsKey(type))
+            {
+                return recentGroups[type];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public Image GetAspectImage(string id)
         {
             string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
