@@ -189,8 +189,7 @@ namespace CarcassSpark.Tools
         {
             string type = filename.Split('_')[0];
             string filepath = Path.Combine(templatesPath, type, filename);
-            // File.Delete(filepath);
-            using (FileStream fileStream = File.Open(filepath, FileMode.CreateNew))
+            using (FileStream fileStream = File.Open(filepath, FileMode.Create))
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
             {
