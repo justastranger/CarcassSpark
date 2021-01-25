@@ -879,13 +879,13 @@ namespace CarcassSpark.ObjectViewers
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
             {
-                MessageBox.Show("All Recipes must have an ID");
+                MessageBox.Show("All Recipes must have an ID.");
                 return;
             }
             if (actionIdTextBox.Text == null || actionIdTextBox.Text == "")
             {
-                MessageBox.Show("All Recipes must have an Action/Verb ID");
-                return;
+                MessageBox.Show("All Recipes must have an Action/Verb ID unless they're extending a recipe with one.");
+                // return;
             }
             if (requirementsDataGridView.RowCount > 1)
             {
