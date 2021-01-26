@@ -2210,16 +2210,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                if (deserializedAspect.id != aspectsListView.SelectedItems[0].Text)
+                if (!deserializedAspect.Equals(aspectToEdit))
                 {
-                    Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
+                    // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
                     Content.Aspects[deserializedAspect.id] = deserializedAspect.Copy();
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
-                    aspectsListView.SelectedItems[0].Tag = deserializedAspect.GetHashCode();
+                    // aspectsListView.SelectedItems[0].Tag = deserializedAspect.GetHashCode();
                 }
                 else
                 {
-                    Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()] = deserializedAspect.Copy();
+                    // Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()] = deserializedAspect.Copy();
                 }
             }
         }
@@ -2234,16 +2234,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                if (deserializedElement.id != elementsListView.SelectedItems[0].Text)
+                if (!deserializedElement.Equals(elementToEdit))
                 {
-                    Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
+                    // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
                     Content.Elements[deserializedElement.id] = deserializedElement.Copy();
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
-                    elementsListView.SelectedItems[0].Tag = deserializedElement.GetHashCode();
+                    // elementsListView.SelectedItems[0].Tag = deserializedElement.GetHashCode();
                 }
                 else
                 {
-                    Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()] = deserializedElement.Copy();
+                    // Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()] = deserializedElement.Copy();
                 }
             }
         }
@@ -2258,16 +2258,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                if (deserializedRecipe.id != recipesListView.SelectedItems[0].Text)
+                if (deserializedRecipe.Equals(recipeToEdit))
                 {
-                    Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
+                    // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                     Content.Recipes[deserializedRecipe.id] = deserializedRecipe.Copy();
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
-                    recipesListView.SelectedItems[0].Tag = deserializedRecipe.GetHashCode();
+                    // recipesListView.SelectedItems[0].Tag = deserializedRecipe.GetHashCode();
                 }
                 else
                 {
-                    Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()] = deserializedRecipe.Copy();
+                    // Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()] = deserializedRecipe.Copy();
                 }
             }
         }
@@ -2282,16 +2282,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                if (deserializedDeck.id != decksListView.SelectedItems[0].Text)
+                if (deserializedDeck.Equals(deckToEdit))
                 {
-                    Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
+                    // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                     Content.Decks[deserializedDeck.id] = deserializedDeck.Copy();
                     decksListView.SelectedItems[0].Text = deserializedDeck.id;
-                    decksListView.SelectedItems[0].Tag = deserializedDeck.GetHashCode();
+                    // decksListView.SelectedItems[0].Tag = deserializedDeck.GetHashCode();
                 }
                 else
                 {
-                    Content.Decks[decksListView.SelectedItems[0].Tag.ToString()] = deserializedDeck.Copy();
+                    // Content.Decks[decksListView.SelectedItems[0].Tag.ToString()] = deserializedDeck.Copy();
                 }
             }
         }
@@ -2306,16 +2306,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                if (deserializedLegacy.id != legaciesListView.SelectedItems[0].Text)
+                if (!deserializedLegacy.Equals(legacyToEdit))
                 {
-                    Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
+                    // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
                     Content.Legacies[deserializedLegacy.id] = deserializedLegacy.Copy();
                     legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
-                    legaciesListView.SelectedItems[0].Tag = deserializedLegacy.GetHashCode();
+                    // legaciesListView.SelectedItems[0].Tag = deserializedLegacy.GetHashCode();
                 }
                 else
                 {
-                    Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()] = deserializedLegacy.Copy();
+                    // Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()] = deserializedLegacy.Copy();
                 }
             }
         }
@@ -2330,16 +2330,16 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                if (deserializedEnding.id != endingsListView.SelectedItems[0].Text)
+                if (!deserializedEnding.Equals(endingToEdit))
                 {
-                    Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
+                    // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
                     Content.Endings[deserializedEnding.id] = deserializedEnding.Copy();
                     endingsListView.SelectedItems[0].Text = deserializedEnding.id;
-                    endingsListView.SelectedItems[0].Tag = deserializedEnding.GetHashCode();
+                    // endingsListView.SelectedItems[0].Tag = deserializedEnding.GetHashCode();
                 }
                 else
                 {
-                    Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()] = deserializedEnding.Copy();
+                    // Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()] = deserializedEnding.Copy();
                 }
             }
         }
@@ -2354,15 +2354,15 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                if (deserializedVerb.id != verbsListView.SelectedItems[0].Text)
+                if (!deserializedVerb.Equals(verbToEdit))
                 {
-                    Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
+                    // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
                     Content.Verbs[deserializedVerb.id] = deserializedVerb.Copy();
                     verbsListView.SelectedItems[0].Text = deserializedVerb.id;
                 }
                 else
                 {
-                    Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()] = deserializedVerb.Copy();
+                    // Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()] = deserializedVerb.Copy();
                 }
             }
         }
