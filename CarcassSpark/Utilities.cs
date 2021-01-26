@@ -99,6 +99,63 @@ namespace CarcassSpark
             return "unknown";
         }
 
+        public static Guid GetGuid(object obj)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (obj is Aspect aspect)
+                {
+                    foreach (KeyValuePair<Guid, Aspect> kvp in source.Aspects)
+                    {
+                        if (kvp.Value.Equals(aspect)) return kvp.Key;
+                    }
+                }
+                else if (obj is Element element)
+                {
+                    foreach (KeyValuePair<Guid, Element> kvp in source.Elements)
+                    {
+                        if (kvp.Value.Equals(element)) return kvp.Key;
+                    }
+                }
+                else if (obj is Recipe recipe)
+                {
+                    foreach (KeyValuePair<Guid, Recipe> kvp in source.Recipes)
+                    {
+                        if (kvp.Value.Equals(recipe)) return kvp.Key;
+                    }
+                }
+                else if (obj is Deck deck)
+                {
+                    foreach (KeyValuePair<Guid, Deck> kvp in source.Decks)
+                    {
+                        if (kvp.Value.Equals(deck)) return kvp.Key;
+                    }
+                }
+                else if (obj is Legacy legacy)
+                {
+                    foreach (KeyValuePair<Guid, Legacy> kvp in source.Legacies)
+                    {
+                        if (kvp.Value.Equals(legacy)) return kvp.Key;
+                    }
+                }
+                else if (obj is Ending ending)
+                {
+                    foreach (KeyValuePair<Guid, Ending> kvp in source.Endings)
+                    {
+                        if (kvp.Value.Equals(ending)) return kvp.Key;
+                    }
+                }
+                else if (obj is Verb verb)
+                {
+                    foreach (KeyValuePair<Guid, Verb> kvp in source.Verbs)
+                    {
+                        if (kvp.Value.Equals(verb)) return kvp.Key;
+                    }
+                }
+            }
+            return Guid.Empty;
+        }
+        
         public static Bitmap GetVanillaAspect(string id)
         {
             try
