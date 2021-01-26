@@ -298,6 +298,7 @@ namespace CarcassSpark.ObjectViewers
                     case "elements":
                         foreach (JToken element in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             if (element["xtriggers"] != null)
                             {
                                 foreach (JProperty xtrigger in element["xtriggers"])
@@ -311,215 +312,194 @@ namespace CarcassSpark.ObjectViewers
                             if (element["isAspect"] != null)
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
-                                if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                                Content.Aspects.Add(guid, deserializedAspect);
+                                ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
-                                    Content.Aspects.Add(deserializedAspect.GetHashCode().ToString(), deserializedAspect);
-                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
-                                    {
-                                        Tag = deserializedAspect.GetHashCode()
-                                    };
-                                    aspectsListView.Items.Add(aspectLVI);
-                                    if (aspectsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        aspectsListView.Groups.Add(listViewGroup);
-                                        aspectLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        aspectLVI.Group = aspectsListView.Groups[fileName];
-                                    }
-                                    deserializedAspect.filename = fileName;
+                                    Tag = guid
+                                };
+                                aspectsListView.Items.Add(aspectLVI);
+                                if (aspectsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    aspectsListView.Groups.Add(listViewGroup);
+                                    aspectLVI.Group = listViewGroup;
                                 }
+                                else
+                                {
+                                    aspectLVI.Group = aspectsListView.Groups[fileName];
+                                }
+                                deserializedAspect.filename = fileName;
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
-                                if (!Content.Aspects.ContainsKey(deserializedAspect.id))
+                                Content.Aspects.Add(guid, deserializedAspect);
+                                ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
-                                    Content.Aspects.Add(deserializedAspect.GetHashCode().ToString(), deserializedAspect);
-                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
-                                    {
-                                        Tag = deserializedAspect.GetHashCode()
-                                    };
-                                    aspectsListView.Items.Add(aspectLVI);
-                                    if (aspectsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        aspectsListView.Groups.Add(listViewGroup);
-                                        aspectLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        aspectLVI.Group = aspectsListView.Groups[fileName];
-                                    }
-                                    deserializedAspect.filename = fileName;
+                                    Tag = guid
+                                };
+                                aspectsListView.Items.Add(aspectLVI);
+                                if (aspectsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    aspectsListView.Groups.Add(listViewGroup);
+                                    aspectLVI.Group = listViewGroup;
                                 }
+                                else
+                                {
+                                    aspectLVI.Group = aspectsListView.Groups[fileName];
+                                }
+                                deserializedAspect.filename = fileName;
                             }
                             else
                             {
                                 Element deserializedElement = element.ToObject<Element>();
-                                if (!Content.Elements.ContainsKey(deserializedElement.id))
+                                Content.Elements.Add(guid, deserializedElement);
+                                ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
                                 {
-                                    Content.Elements.Add(deserializedElement.GetHashCode().ToString(), deserializedElement);
-                                    ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
-                                    {
-                                        Tag = deserializedElement.GetHashCode()
-                                    };
-                                    elementsListView.Items.Add(elementLVI);
-                                    if (elementsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        elementsListView.Groups.Add(listViewGroup);
-                                        elementLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        elementLVI.Group = elementsListView.Groups[fileName];
-                                    }
-                                    deserializedElement.filename = fileName;
+                                    Tag = guid
+                                };
+                                elementsListView.Items.Add(elementLVI);
+                                if (elementsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    elementsListView.Groups.Add(listViewGroup);
+                                    elementLVI.Group = listViewGroup;
                                 }
+                                else
+                                {
+                                    elementLVI.Group = elementsListView.Groups[fileName];
+                                }
+                                deserializedElement.filename = fileName;
                             }
                         }
                         return;
                     case "recipes":
                         foreach (JToken recipe in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                            if (!Content.Recipes.ContainsKey(deserializedRecipe.id))
+                            Content.Recipes.Add(guid, deserializedRecipe);
+                            ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
                             {
-                                Content.Recipes.Add(deserializedRecipe.GetHashCode().ToString(), deserializedRecipe);
-                                ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
-                                {
-                                    Tag = deserializedRecipe.GetHashCode()
-                                };
-                                recipesListView.Items.Add(recipeLVI);
-                                if (recipesListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    recipesListView.Groups.Add(listViewGroup);
-                                    recipeLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    recipeLVI.Group = recipesListView.Groups[fileName];
-                                }
-                                deserializedRecipe.filename = fileName;
+                                Tag = guid
+                            };
+                            recipesListView.Items.Add(recipeLVI);
+                            if (recipesListView.Groups[fileName] == null)
+                            {
+                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                recipesListView.Groups.Add(listViewGroup);
+                                recipeLVI.Group = listViewGroup;
                             }
+                            else
+                            {
+                                recipeLVI.Group = recipesListView.Groups[fileName];
+                            }
+                            deserializedRecipe.filename = fileName;
                         }
                         return;
                     case "decks":
                         foreach (JToken deck in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Deck deserializedDeck = deck.ToObject<Deck>();
-                            if (!Content.Decks.ContainsKey(deserializedDeck.id))
+                            Content.Decks.Add(guid, deserializedDeck);
+                            ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
                             {
-                                Content.Decks.Add(deserializedDeck.GetHashCode().ToString(), deserializedDeck);
-                                ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
-                                {
-                                    Tag = deserializedDeck.GetHashCode()
-                                };
-                                decksListView.Items.Add(deckLVI);
-                                if (decksListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    decksListView.Groups.Add(listViewGroup);
-                                    deckLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    deckLVI.Group = decksListView.Groups[fileName];
-                                }
-                                deserializedDeck.filename = fileName;
+                                Tag = guid
+                            };
+                            decksListView.Items.Add(deckLVI);
+                            if (decksListView.Groups[fileName] == null)
+                            {
+                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                decksListView.Groups.Add(listViewGroup);
+                                deckLVI.Group = listViewGroup;
                             }
+                            else
+                            {
+                                deckLVI.Group = decksListView.Groups[fileName];
+                            }
+                            deserializedDeck.filename = fileName;
                         }
                         return;
                     case "legacies":
                         foreach (JToken legacy in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Legacy deserializedLegacy = legacy.ToObject<Legacy>();
-                            if (!Content.Legacies.ContainsKey(deserializedLegacy.id))
+                            Content.Legacies.Add(guid, deserializedLegacy);
+                            ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
                             {
-                                Content.Legacies.Add(deserializedLegacy.GetHashCode().ToString(), deserializedLegacy);
-                                ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
-                                {
-                                    Tag = deserializedLegacy.GetHashCode()
-                                };
-                                legaciesListView.Items.Add(legacyLVI);
-                                if (legaciesListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    legaciesListView.Groups.Add(listViewGroup);
-                                    legacyLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    legacyLVI.Group = legaciesListView.Groups[fileName];
-                                }
-                                deserializedLegacy.filename = fileName;
+                                Tag = guid
+                            };
+                            legaciesListView.Items.Add(legacyLVI);
+                            if (legaciesListView.Groups[fileName] == null)
+                            {
+                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                legaciesListView.Groups.Add(listViewGroup);
+                                legacyLVI.Group = listViewGroup;
                             }
+                            else
+                            {
+                                legacyLVI.Group = legaciesListView.Groups[fileName];
+                            }
+                            deserializedLegacy.filename = fileName;
                         }
                         return;
                     case "endings":
                         foreach (JToken ending in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Ending deserializedEnding = ending.ToObject<Ending>();
-                            if (!Content.Endings.ContainsKey(deserializedEnding.id))
+                            Content.Endings.Add(guid, deserializedEnding);
+                            ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
                             {
-                                Content.Endings.Add(deserializedEnding.GetHashCode().ToString(), deserializedEnding);
-                                ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
-                                {
-                                    Tag = deserializedEnding.GetHashCode()
-                                };
-                                endingsListView.Items.Add(endingLVI);
-                                if (endingsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    endingsListView.Groups.Add(listViewGroup);
-                                    endingLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    endingLVI.Group = endingsListView.Groups[fileName];
-                                }
-                                deserializedEnding.filename = fileName;
+                                Tag = guid
+                            };
+                            endingsListView.Items.Add(endingLVI);
+                            if (endingsListView.Groups[fileName] == null)
+                            {
+                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                endingsListView.Groups.Add(listViewGroup);
+                                endingLVI.Group = listViewGroup;
                             }
+                            else
+                            {
+                                endingLVI.Group = endingsListView.Groups[fileName];
+                            }
+                            deserializedEnding.filename = fileName;
                         }
                         return;
                     case "verbs":
                         foreach (JToken verb in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Verb deserializedVerb = verb.ToObject<Verb>();
-                            if (!Content.Verbs.ContainsKey(deserializedVerb.id))
+                            Content.Verbs.Add(guid, deserializedVerb);
+                            ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
                             {
-                                Content.Verbs.Add(deserializedVerb.GetHashCode().ToString(), deserializedVerb);
-                                ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
-                                {
-                                    Tag = deserializedVerb.GetHashCode()
-                                };
-                                verbsListView.Items.Add(verbLVI);
-                                if (verbsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    verbsListView.Groups.Add(listViewGroup);
-                                    verbLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    verbLVI.Group = verbsListView.Groups[fileName];
-                                }
-                                deserializedVerb.filename = fileName;
+                                Tag = guid
+                            };
+                            verbsListView.Items.Add(verbLVI);
+                            if (verbsListView.Groups[fileName] == null)
+                            {
+                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                verbsListView.Groups.Add(listViewGroup);
+                                verbLVI.Group = listViewGroup;
                             }
+                            else
+                            {
+                                verbLVI.Group = verbsListView.Groups[fileName];
+                            }
+                            deserializedVerb.filename = fileName;
                         }
                         return;
                     case "cultures":
                         foreach (JToken culture in parsedJToken.First.ToArray())
                         {
+                            Guid guid = Guid.NewGuid();
                             Culture deserializedCulture = culture.ToObject<Culture>();
-                            if (!Content.Cultures.ContainsKey(deserializedCulture.id))
-                            {
-                                Content.Cultures.Add(deserializedCulture.id, deserializedCulture);
-                            }
+                            Content.Cultures.Add(guid, deserializedCulture);
                         }
                         return;
                     default:
@@ -589,7 +569,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        aspectsForGroup.Add(Content.Aspects[item.Tag.ToString()]);
+                        aspectsForGroup.Add(Content.Aspects[(Guid)item.Tag]);
                     }
                     if (aspectsForGroup.Count > 0)
                     {
@@ -621,7 +601,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        elementsForGroup.Add(Content.Elements[item.Tag.ToString()]);
+                        elementsForGroup.Add(Content.Elements[(Guid)item.Tag]);
                     }
                     if (elementsForGroup.Count > 0)
                     {
@@ -653,7 +633,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        recipesForGroup.Add(Content.Recipes[item.Tag.ToString()]);
+                        recipesForGroup.Add(Content.Recipes[(Guid)item.Tag]);
                     }
                     if (recipesForGroup.Count > 0)
                     {
@@ -685,7 +665,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        decksForGroup.Add(Content.Decks[item.Tag.ToString()]);
+                        decksForGroup.Add(Content.Decks[(Guid)item.Tag]);
                     }
                     if (decksForGroup.Count > 0)
                     {
@@ -717,7 +697,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        legaciesForGroup.Add(Content.Legacies[item.Tag.ToString()]);
+                        legaciesForGroup.Add(Content.Legacies[(Guid)item.Tag]);
                     }
                     if (legaciesForGroup.Count > 0)
                     {
@@ -749,7 +729,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        endingsForGroup.Add(Content.Endings[item.Tag.ToString()]);
+                        endingsForGroup.Add(Content.Endings[(Guid)item.Tag]);
                     }
                     if (endingsForGroup.Count > 0)
                     {
@@ -781,7 +761,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (ListViewItem item in group.Items)
                     {
                         // TODO switch below to using Tags
-                        verbsForGroup.Add(Content.Verbs[item.Tag.ToString()]);
+                        verbsForGroup.Add(Content.Verbs[(Guid)item.Tag]);
                     }
                     if (verbsForGroup.Count > 0)
                     {
@@ -858,7 +838,7 @@ namespace CarcassSpark.ObjectViewers
         private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            string id = aspectsListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)aspectsListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
@@ -873,19 +853,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            Content.Aspects[result.id] = result.Copy();
+            Guid guid = (Guid)aspectsListView.Items[aspectsListView.SelectedIndices[0]].Tag;
+            Content.Aspects[guid] = result.Copy();
             if (aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
                 aspectsListView.SelectedItems[0].Text = result.id;
-                aspectsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void DecksListView_DoubleClick(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            string id = decksListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)decksListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
@@ -900,19 +879,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            Content.Decks[result.id] = result.Copy();
+            Guid guid = (Guid)decksListView.Items[decksListView.SelectedIndices[0]].Tag;
+            Content.Decks[guid] = result.Copy();
             if (decksListView.Items[decksListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                 decksListView.SelectedItems[0].Text = result.id;
-                decksListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)elementsListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
@@ -927,19 +905,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            Content.Elements[result.id] = result.Copy();
+            Guid guid = (Guid)elementsListView.Items[elementsListView.SelectedIndices[0]].Tag;
+            Content.Elements[guid] = result.Copy();
             if (elementsListView.Items[elementsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
                 elementsListView.SelectedItems[0].Text = result.id;
-                elementsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void EndingsListView_DoubleClick(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            string id = endingsListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)endingsListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
@@ -954,19 +931,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            Content.Endings[result.id] = result.Copy();
+            Guid guid = (Guid)endingsListView.Items[endingsListView.SelectedIndices[0]].Tag;
+            Content.Endings[guid] = result.Copy();
             if (endingsListView.Items[endingsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
                 endingsListView.SelectedItems[0].Text = result.id;
-                endingsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void LegaciesListView_DoubleClick(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            string id = legaciesListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)legaciesListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign);
@@ -981,19 +957,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            Content.Legacies[result.id] = result.Copy();
+            Guid guid = (Guid)legaciesListView.Items[legaciesListView.SelectedIndices[0]].Tag;
+            Content.Legacies[guid] = result.Copy();
             if (legaciesListView.Items[legaciesListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
                 legaciesListView.SelectedItems[0].Text = result.id;
-                legaciesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void RecipesListView_DoubleClick(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            string id = recipesListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
@@ -1008,19 +983,18 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            Content.Recipes[result.id] = result.Copy();
+            Guid guid = (Guid)recipesListView.Items[recipesListView.SelectedIndices[0]].Tag;
+            Content.Recipes[guid] = result.Copy();
             if (recipesListView.Items[recipesListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                 recipesListView.SelectedItems[0].Text = result.id;
-                recipesListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
         private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            string id = verbsListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
             if (editMode)
             {
                 VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
@@ -1035,12 +1009,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            Content.Verbs[result.id] = result.Copy();
+            Guid guid = (Guid)verbsListView.Items[verbsListView.SelectedIndices[0]].Tag;
+            Content.Verbs[guid] = result.Copy();
             if (verbsListView.Items[verbsListView.SelectedIndices[0]].Text != result.id)
             {
-                Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
                 verbsListView.SelectedItems[0].Text = result.id;
-                verbsListView.SelectedItems[0].Tag = result.GetHashCode();
             }
         }
 
@@ -1988,7 +1961,7 @@ namespace CarcassSpark.ObjectViewers
         private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            string id = recipesListView.SelectedItems[0].Tag.ToString();
+            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
             RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id).Copy());
             rfv.Show();
         }
@@ -2015,7 +1988,7 @@ namespace CarcassSpark.ObjectViewers
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 aspectsListView.Items.Remove(listViewItem);
-                Content.Aspects.Remove(listViewItem.Text);
+                Content.Aspects.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2027,7 +2000,7 @@ namespace CarcassSpark.ObjectViewers
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 elementsListView.Items.Remove(listViewItem);
-                Content.Elements.Remove(listViewItem.Text);
+                Content.Elements.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2039,7 +2012,7 @@ namespace CarcassSpark.ObjectViewers
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 recipesListView.Items.Remove(listViewItem);
-                Content.Recipes.Remove(listViewItem.Text);
+                Content.Recipes.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2051,7 +2024,7 @@ namespace CarcassSpark.ObjectViewers
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 decksListView.Items.Remove(listViewItem);
-                Content.Decks.Remove(listViewItem.Text);
+                Content.Decks.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2063,7 +2036,7 @@ namespace CarcassSpark.ObjectViewers
             if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
                 legaciesListView.Items.Remove(listViewItem);
-                Content.Legacies.Remove(listViewItem.Text);
+                Content.Legacies.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2071,11 +2044,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!deleteSelectedEndingToolStripMenuItem.Enabled) return;
             if (endingsListView.SelectedItems.Count < 1) return;
-            ListViewItem ListViewItem = endingsListView.SelectedItems[0];
-            if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
+            ListViewItem listViewItem = endingsListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                endingsListView.Items.Remove(ListViewItem);
-                Content.Endings.Remove(ListViewItem.Text);
+                endingsListView.Items.Remove(listViewItem);
+                Content.Endings.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2083,11 +2056,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!deleteSelectedVerbToolStripMenuItem.Enabled) return;
             if (verbsListView.SelectedItems.Count < 1) return;
-            ListViewItem ListViewItem = verbsListView.SelectedItems[0];
-            if (ConfirmDelete(ListViewItem.Text) == DialogResult.Yes)
+            ListViewItem listViewItem = verbsListView.SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
             {
-                verbsListView.Items.Remove(ListViewItem);
-                Content.Verbs.Remove(ListViewItem.Text);
+                verbsListView.Items.Remove(listViewItem);
+                Content.Verbs.Remove((Guid)listViewItem.Tag);
             }
         }
 
@@ -2203,7 +2176,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect aspectToEdit = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
+            Aspect aspectToEdit = Content.GetAspect(guid);
             if (aspectToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
@@ -2213,7 +2187,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedAspect.Equals(aspectToEdit))
                 {
                     // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
-                    Content.Aspects[deserializedAspect.id] = deserializedAspect.Copy();
+                    Content.Aspects[guid] = deserializedAspect.Copy();
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
                     // aspectsListView.SelectedItems[0].Tag = deserializedAspect.GetHashCode();
                 }
@@ -2227,7 +2201,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element elementToEdit = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
+            Element elementToEdit = Content.GetElement(guid);
             if (elementToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
@@ -2237,7 +2212,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedElement.Equals(elementToEdit))
                 {
                     // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
-                    Content.Elements[deserializedElement.id] = deserializedElement.Copy();
+                    Content.Elements[guid] = deserializedElement.Copy();
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
                     // elementsListView.SelectedItems[0].Tag = deserializedElement.GetHashCode();
                 }
@@ -2251,7 +2226,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe recipeToEdit = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
+            Recipe recipeToEdit = Content.GetRecipe(guid);
             if (recipeToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
@@ -2261,7 +2237,7 @@ namespace CarcassSpark.ObjectViewers
                 if (deserializedRecipe.Equals(recipeToEdit))
                 {
                     // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
-                    Content.Recipes[deserializedRecipe.id] = deserializedRecipe.Copy();
+                    Content.Recipes[guid] = deserializedRecipe.Copy();
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
                     // recipesListView.SelectedItems[0].Tag = deserializedRecipe.GetHashCode();
                 }
@@ -2275,7 +2251,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck deckToEdit = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
+            Deck deckToEdit = Content.GetDeck(guid);
             if (deckToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
@@ -2285,7 +2262,7 @@ namespace CarcassSpark.ObjectViewers
                 if (deserializedDeck.Equals(deckToEdit))
                 {
                     // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
-                    Content.Decks[deserializedDeck.id] = deserializedDeck.Copy();
+                    Content.Decks[guid] = deserializedDeck.Copy();
                     decksListView.SelectedItems[0].Text = deserializedDeck.id;
                     // decksListView.SelectedItems[0].Tag = deserializedDeck.GetHashCode();
                 }
@@ -2299,7 +2276,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy legacyToEdit = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
+            Legacy legacyToEdit = Content.GetLegacy(guid);
             if (legacyToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
@@ -2309,7 +2287,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedLegacy.Equals(legacyToEdit))
                 {
                     // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
-                    Content.Legacies[deserializedLegacy.id] = deserializedLegacy.Copy();
+                    Content.Legacies[guid] = deserializedLegacy.Copy();
                     legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
                     // legaciesListView.SelectedItems[0].Tag = deserializedLegacy.GetHashCode();
                 }
@@ -2323,7 +2301,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending endingToEdit = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
+            Ending endingToEdit = Content.GetEnding(guid);
             if (endingToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
@@ -2333,7 +2312,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedEnding.Equals(endingToEdit))
                 {
                     // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
-                    Content.Endings[deserializedEnding.id] = deserializedEnding.Copy();
+                    Content.Endings[guid] = deserializedEnding.Copy();
                     endingsListView.SelectedItems[0].Text = deserializedEnding.id;
                     // endingsListView.SelectedItems[0].Tag = deserializedEnding.GetHashCode();
                 }
@@ -2347,7 +2326,8 @@ namespace CarcassSpark.ObjectViewers
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb verbToEdit = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
+            Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
+            Verb verbToEdit = Content.GetVerb(guid);
             if (verbToEdit == null) return;
 
             JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
@@ -2357,7 +2337,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedVerb.Equals(verbToEdit))
                 {
                     // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
-                    Content.Verbs[deserializedVerb.id] = deserializedVerb.Copy();
+                    Content.Verbs[guid] = deserializedVerb.Copy();
                     verbsListView.SelectedItems[0].Text = deserializedVerb.id;
                 }
                 else
@@ -2372,7 +2352,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedAspectToolStripMenuItem.Enabled) return;
             if (aspectsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = aspectsListView.SelectedItems[0].Group;
-            Aspect newAspect = Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()].Copy();
+            Aspect newAspect = Content.Aspects[(Guid)aspectsListView.SelectedItems[0].Tag].Copy();
             string id = newAspect.id;
             if (aspectsListView.Items.ContainsKey(id))
             {
@@ -2392,7 +2372,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newAspect.GetHashCode(), Group = group };
             aspectsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Aspects.Add(newAspect.id, newAspect.Copy());
+            Content.Aspects.Add(Guid.NewGuid(), newAspect.Copy());
         }
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2400,7 +2380,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedElementToolStripMenuItem.Enabled) return;
             if (elementsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = elementsListView.SelectedItems[0].Group;
-            Element newElement = Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()].Copy();
+            Element newElement = Content.Elements[(Guid)elementsListView.SelectedItems[0].Tag].Copy();
             string id = newElement.id;
             if (elementsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2420,7 +2400,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newElement.GetHashCode(), Group = group };
             elementsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Elements.Add(newElement.id, newElement.Copy());
+            Content.Elements.Add(Guid.NewGuid(), newElement.Copy());
         }
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2428,7 +2408,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedRecipeToolStripMenuItem.Enabled) return;
             if (recipesListView.SelectedItems.Count < 1) return;
             ListViewGroup group = recipesListView.SelectedItems[0].Group;
-            Recipe newRecipe = Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()].Copy();
+            Recipe newRecipe = Content.Recipes[(Guid)recipesListView.SelectedItems[0].Tag].Copy();
             string id = newRecipe.id;
             if (recipesListView.Items.ContainsKey(id + "_1"))
             {
@@ -2448,7 +2428,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newRecipe.GetHashCode(), Group = group };
             recipesListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Recipes.Add(newRecipe.id, newRecipe);
+            Content.Recipes.Add(Guid.NewGuid(), newRecipe);
         }
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2456,7 +2436,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedDeckToolStripMenuItem.Enabled) return;
             if (decksListView.SelectedItems.Count < 1) return;
             ListViewGroup group = decksListView.SelectedItems[0].Group;
-            Deck newDeck = Content.Decks[decksListView.SelectedItems[0].Tag.ToString()].Copy();
+            Deck newDeck = Content.Decks[(Guid)decksListView.SelectedItems[0].Tag].Copy();
             string id = newDeck.id;
             if (decksListView.Items.ContainsKey(id + "_1"))
             {
@@ -2476,7 +2456,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newDeck.GetHashCode(), Group = group };
             decksListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Decks.Add(newDeck.id, newDeck);
+            Content.Decks.Add(Guid.NewGuid(), newDeck);
         }
 
         private void DuplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2484,7 +2464,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedLegacyToolStripMenuItem.Enabled) return;
             if (legaciesListView.SelectedItems.Count < 1) return;
             ListViewGroup group = legaciesListView.SelectedItems[0].Group;
-            Legacy newLegacy = Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()].Copy();
+            Legacy newLegacy = Content.Legacies[(Guid)legaciesListView.SelectedItems[0].Tag].Copy();
             string id = newLegacy.id;
             if (legaciesListView.Items.ContainsKey(id + "_1"))
             {
@@ -2504,7 +2484,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newLegacy.GetHashCode(), Group = group };
             legaciesListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Legacies.Add(newLegacy.id, newLegacy);
+            Content.Legacies.Add(Guid.NewGuid(), newLegacy);
         }
 
         private void DuplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2512,7 +2492,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedEndingToolStripMenuItem.Enabled) return;
             if (endingsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = endingsListView.SelectedItems[0].Group;
-            Ending newEnding = Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()].Copy();
+            Ending newEnding = Content.Endings[(Guid)endingsListView.SelectedItems[0].Tag].Copy();
             string id = newEnding.id;
             if (endingsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2532,7 +2512,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newEnding.GetHashCode(), Group = group };
             endingsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Endings.Add(newEnding.id, newEnding);
+            Content.Endings.Add(Guid.NewGuid(), newEnding);
         }
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2540,7 +2520,7 @@ namespace CarcassSpark.ObjectViewers
             if (!duplicateSelectedVerbToolStripMenuItem.Enabled) return;
             if (verbsListView.SelectedItems.Count < 1) return;
             ListViewGroup group = verbsListView.SelectedItems[0].Group;
-            Verb newVerb = Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()].Copy();
+            Verb newVerb = Content.Verbs[(Guid)verbsListView.SelectedItems[0].Tag].Copy();
             string id = newVerb.id;
             if (verbsListView.Items.ContainsKey(id + "_1"))
             {
@@ -2560,13 +2540,13 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newVerb.GetHashCode(), Group = group };
             verbsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Verbs.Add(newVerb.id, newVerb);
+            Content.Verbs.Add(Guid.NewGuid(), newVerb);
         }
 
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
+            Aspect exportedAspect = Content.GetAspect((Guid)aspectsListView.SelectedItems[0].Tag);
             if (exportedAspect == null) return;
             ExportObject(exportedAspect, exportedAspect.id);
         }
@@ -2574,7 +2554,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
+            Element exportedElement = Content.GetElement((Guid)elementsListView.SelectedItems[0].Tag);
             if (exportedElement == null) return;
             ExportObject(exportedElement, exportedElement.id);
         }
@@ -2582,7 +2562,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
+            Recipe exportedRecipe = Content.GetRecipe((Guid)recipesListView.SelectedItems[0].Tag);
             if (exportedRecipe == null) return;
             ExportObject(exportedRecipe, exportedRecipe.id);
         }
@@ -2590,7 +2570,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
+            Deck exportedDeck = Content.GetDeck((Guid)decksListView.SelectedItems[0].Tag);
             if (exportedDeck == null) return;
             ExportObject(exportedDeck, exportedDeck.id);
         }
@@ -2598,7 +2578,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
+            Legacy exportedLegacy = Content.GetLegacy((Guid)legaciesListView.SelectedItems[0].Tag);
             if (exportedLegacy == null) return;
             ExportObject(exportedLegacy, exportedLegacy.id);
         }
@@ -2606,7 +2586,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
+            Ending exportedEnding = Content.GetEnding((Guid)endingsListView.SelectedItems[0].Tag);
             if (exportedEnding == null) return;
             ExportObject(exportedEnding, exportedEnding.id);
         }
@@ -2614,7 +2594,7 @@ namespace CarcassSpark.ObjectViewers
         private void ExportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
+            Verb exportedVerb = Content.GetVerb((Guid)verbsListView.SelectedItems[0].Tag);
             ExportObject(exportedVerb, exportedVerb.id);
         }
 
@@ -2639,7 +2619,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1) return;
-            Aspect exportedAspect = Content.GetAspect(aspectsListView.SelectedItems[0].Tag.ToString());
+            Aspect exportedAspect = Content.GetAspect((Guid)aspectsListView.SelectedItems[0].Tag);
             if (exportedAspect == null) return;
             CopyObjectJSONToClipboard(exportedAspect);
         }
@@ -2647,7 +2627,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            Element exportedElement = Content.GetElement(elementsListView.SelectedItems[0].Tag.ToString());
+            Element exportedElement = Content.GetElement((Guid)elementsListView.SelectedItems[0].Tag);
             if (exportedElement == null) return;
             CopyObjectJSONToClipboard(exportedElement);
         }
@@ -2655,7 +2635,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1) return;
-            Recipe exportedRecipe = Content.GetRecipe(recipesListView.SelectedItems[0].Tag.ToString());
+            Recipe exportedRecipe = Content.GetRecipe((Guid)recipesListView.SelectedItems[0].Tag);
             if (exportedRecipe == null) return;
             CopyObjectJSONToClipboard(exportedRecipe);
         }
@@ -2663,7 +2643,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count < 1) return;
-            Deck exportedDeck = Content.GetDeck(decksListView.SelectedItems[0].Tag.ToString());
+            Deck exportedDeck = Content.GetDeck((Guid)decksListView.SelectedItems[0].Tag);
             if (exportedDeck == null) return;
             CopyObjectJSONToClipboard(exportedDeck);
         }
@@ -2671,7 +2651,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1) return;
-            Legacy exportedLegacy = Content.GetLegacy(legaciesListView.SelectedItems[0].Tag.ToString());
+            Legacy exportedLegacy = Content.GetLegacy((Guid)legaciesListView.SelectedItems[0].Tag);
             if (exportedLegacy == null) return;
             CopyObjectJSONToClipboard(exportedLegacy);
         }
@@ -2679,7 +2659,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count < 1) return;
-            Ending exportedEnding = Content.GetEnding(endingsListView.SelectedItems[0].Tag.ToString());
+            Ending exportedEnding = Content.GetEnding((Guid)endingsListView.SelectedItems[0].Tag);
             if (exportedEnding == null) return;
             CopyObjectJSONToClipboard(exportedEnding);
         }
@@ -2687,7 +2667,7 @@ namespace CarcassSpark.ObjectViewers
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count < 1) return;
-            Verb exportedVerb = Content.GetVerb(verbsListView.SelectedItems[0].Tag.ToString());
+            Verb exportedVerb = Content.GetVerb((Guid)verbsListView.SelectedItems[0].Tag);
             if (exportedVerb == null) return;
             CopyObjectJSONToClipboard(exportedVerb);
         }
@@ -2736,7 +2716,8 @@ namespace CarcassSpark.ObjectViewers
 
         public void AspectsList_Add(object sender, Aspect result)
         {
-            Content.Aspects[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Aspects[guid] = result.Copy();
             ListViewGroup defaultAspectsGroup;
             if (aspectsListView.Groups["aspects"] == null)
             {
@@ -2747,14 +2728,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultAspectsGroup = aspectsListView.Groups["aspects"];
             }
-            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultAspectsGroup };
+            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultAspectsGroup };
             // defaultAspectsGroup.Items.Add(newAspectEntry);
             aspectsListView.Items.Add(newAspectEntry);
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
-            Content.Elements[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Elements[guid] = result.Copy();
             ListViewGroup defaultElementsGroup;
             if (elementsListView.Groups["elements"] == null)
             {
@@ -2765,14 +2747,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultElementsGroup = elementsListView.Groups["elements"];
             }
-            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultElementsGroup };
+            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultElementsGroup };
             // defaultElementsGroup.Items.Add(newElementEntry);
             elementsListView.Items.Add(newElementEntry);
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
-            Content.Recipes[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Recipes[guid] = result.Copy();
             ListViewGroup defaultRecipesGroup;
             if (recipesListView.Groups["recipes"] == null)
             {
@@ -2783,14 +2766,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultRecipesGroup = recipesListView.Groups["recipes"];
             }
-            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultRecipesGroup };
+            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultRecipesGroup };
             // defaultRecipesGroup.Items.Add(newRecipeEntry);
             recipesListView.Items.Add(newRecipeEntry);
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
-            Content.Decks[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Decks[guid] = result.Copy();
             ListViewGroup defaultDecksGroup;
             if (decksListView.Groups["decks"] == null)
             {
@@ -2801,14 +2785,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultDecksGroup = decksListView.Groups["decks"];
             }
-            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultDecksGroup };
+            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultDecksGroup };
             // defaultDecksGroup.Items.Add(newDeckEntry);
             decksListView.Items.Add(newDeckEntry);
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
-            Content.Legacies[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Legacies[guid] = result.Copy();
             ListViewGroup defaultLegaciesGroup;
             if (legaciesListView.Groups["legacies"] == null)
             {
@@ -2819,14 +2804,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultLegaciesGroup = legaciesListView.Groups["legacies"];
             }
-            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultLegaciesGroup };
+            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultLegaciesGroup };
             // defaultLegaciesGroup.Items.Add(newLegacyEntry);
             legaciesListView.Items.Add(newLegacyEntry);
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
-            Content.Endings[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Endings[guid] = result.Copy();
             ListViewGroup defaultEndingsGroup;
             if (endingsListView.Groups["endings"] == null)
             {
@@ -2837,14 +2823,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultEndingsGroup = endingsListView.Groups["endings"];
             }
-            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultEndingsGroup };
+            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultEndingsGroup };
             // defaultEndingsGroup.Items.Add(newEndingEntry);
             endingsListView.Items.Add(newEndingEntry);
         }
 
         public void VerbsList_Add(object sender, Verb result)
         {
-            Content.Verbs[result.id] = result.Copy();
+            Guid guid = Guid.NewGuid();
+            Content.Verbs[guid] = result.Copy();
             ListViewGroup defaultVerbsGroup;
             if (verbsListView.Groups["verbs"] == null)
             {
@@ -2855,7 +2842,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultVerbsGroup = verbsListView.Groups["verbs"];
             }
-            ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = result.GetHashCode(), Group = defaultVerbsGroup };
+            ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultVerbsGroup };
             // defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
         }
@@ -2905,15 +2892,15 @@ namespace CarcassSpark.ObjectViewers
             if (aspectsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = aspectsListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
+                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), AspectsList_Assign);
                     av.Show();
                 }
                 else
                 {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null);
+                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), null);
                     av.Show();
                 }
             }
@@ -2924,15 +2911,15 @@ namespace CarcassSpark.ObjectViewers
             if (elementsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = elementsListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
+                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), ElementsList_Assign);
                     ev.Show();
                 }
                 else
                 {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null);
+                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), null);
                     ev.Show();
                 }
             }
@@ -2943,15 +2930,15 @@ namespace CarcassSpark.ObjectViewers
             if (recipesListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = recipesListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign);
                     rv.Show();
                 }
                 else
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null);
                     rv.Show();
                 }
             }
@@ -2962,15 +2949,15 @@ namespace CarcassSpark.ObjectViewers
             if (decksListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = decksListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), DecksList_Assign);
                     dv.Show();
                 }
                 else
                 {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null);
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), null);
                     dv.Show();
                 }
             }
@@ -2981,15 +2968,15 @@ namespace CarcassSpark.ObjectViewers
             if (legaciesListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = legaciesListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign);
                     rv.Show();
                 }
                 else
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null);
                     rv.Show();
                 }
             }
@@ -3314,15 +3301,15 @@ namespace CarcassSpark.ObjectViewers
             if (endingsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = endingsListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), EndingsList_Assign);
                     ev.Show();
                 }
                 else
                 {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null);
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), null);
                     ev.Show();
                 }
             }
@@ -3333,15 +3320,15 @@ namespace CarcassSpark.ObjectViewers
             if (verbsListView.SelectedItems.Count < 1) return;
             if (e.KeyCode == Keys.Enter)
             {
-                string id = verbsListView.SelectedItems[0].Tag.ToString();
+                Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), VerbsList_Assign);
                     vv.Show();
                 }
                 else
                 {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null);
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), null);
                     vv.Show();
                 }
             }
