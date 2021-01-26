@@ -14,8 +14,8 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class DecksDictionaryResults : Form
     {
-        private Dictionary<Deck, Guid> results;
-        private Dictionary<string, Deck> resultsWithId;
+        private Dictionary<Deck, Guid> results = new Dictionary<Deck, Guid>();
+        private Dictionary<string, Deck> resultsWithId = new Dictionary<string, Deck>();
 
         public DecksDictionaryResults(Dictionary<Guid, Deck> results)
         {

@@ -14,8 +14,8 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class LegaciesDictionaryResults : Form
     {
-        private Dictionary<Legacy, Guid> results;
-        private Dictionary<string, Legacy> resultsWithId;
+        private Dictionary<Legacy, Guid> results = new Dictionary<Legacy, Guid>();
+        private Dictionary<string, Legacy> resultsWithId = new Dictionary<string, Legacy>();
 
         public LegaciesDictionaryResults(Dictionary<Guid, Legacy> results)
         {
