@@ -724,14 +724,11 @@ namespace CarcassSpark.ObjectViewers
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
+                alternativerecipeLinks.Remove(guid);
+                alternativerecipeLinks.Add(guid, rlv.displayedRecipeLink.Copy());
                 if (alternativeRecipesListView.SelectedItems[0].Text != rlv.displayedRecipeLink.id)
                 {
-                    alternativerecipeLinks[guid] = rlv.displayedRecipeLink.Copy();
                     alternativeRecipesListView.SelectedItems[0].Text = rlv.displayedRecipeLink.id;
-                }
-                else
-                {
-                    alternativerecipeLinks[guid] = rlv.displayedRecipeLink.Copy();
                 }
                 SaveAlternativeRecipes();
                 // displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
@@ -747,14 +744,11 @@ namespace CarcassSpark.ObjectViewers
             rlv.ShowDialog();
             if (rlv.DialogResult == DialogResult.OK)
             {
+                recipeLinks.Remove(guid);
+                recipeLinks.Add(guid, rlv.displayedRecipeLink.Copy());
                 if (linkedRecipesListView.SelectedItems[0].Text != rlv.displayedRecipeLink.id)
                 {
-                    recipeLinks[guid] = rlv.displayedRecipeLink.Copy();
                     linkedRecipesListView.SelectedItems[0].Text = rlv.displayedRecipeLink.id;
-                }
-                else
-                {
-                    recipeLinks[guid] = rlv.displayedRecipeLink.Copy();
                 }
                 SaveLinkedRecipes();
             }
@@ -769,11 +763,12 @@ namespace CarcassSpark.ObjectViewers
             mv.ShowDialog();
             if (mv.DialogResult == DialogResult.OK)
             {
+                mutations.Remove(guid);
+                mutations.Add(guid, mv.displayedMutation.Copy());
                 if (oldId != mv.displayedMutation.mutate)
                 {
                     mutationsListView.SelectedItems[0].Text = mv.displayedMutation.mutate;
                 }
-                mutations[guid] = mv.displayedMutation.Copy();
                 SaveMutations();
                 // displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
             }
