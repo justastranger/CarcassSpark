@@ -14,27 +14,28 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class RecipesDictionaryResults : Form
     {
-        Dictionary<string, Recipe> results;
+        private Dictionary<Recipe, Guid> results;
+        private Dictionary<string, Recipe> resultsWithId;
 
-        public RecipesDictionaryResults(Dictionary<string, Recipe> results)
+        public RecipesDictionaryResults(Dictionary<Guid, Recipe> results)
         {
             InitializeComponent();
 
-            this.results = results;
-            foreach (string key in results.Keys)
+            // this.results = results;
+            foreach (KeyValuePair<Guid, Recipe> kvp in results)
             {
-                resultsListBox.Items.Add(key);
+                resultsListBox.Items.Add(kvp.Value.id);
+                resultsWithId.Add(kvp.Value.id, kvp.Value);
+                this.results.Add(kvp.Value, kvp.Key);
             }
         }
         
         private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            if (Utilities.RecipeExists(resultsListBox.SelectedItem.ToString()))
-            {
-                RecipeViewer ev = new RecipeViewer(Utilities.GetRecipe(resultsListBox.SelectedItem.ToString()), null);
-                ev.Show();
-            }
+            Recipe selectedRecipe = resultsWithId[resultsListBox.SelectedItem.ToString()];
+            RecipeViewer ev = new RecipeViewer(selectedRecipe.Copy(), null);
+            ev.Show();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
