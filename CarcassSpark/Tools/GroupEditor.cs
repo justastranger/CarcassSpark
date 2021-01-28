@@ -23,6 +23,22 @@ namespace CarcassSpark.Tools
             group = currentGroup;
         }
 
+        public GroupEditor(string currentGroup, string recentGroup, List<string> groups)
+        {
+            InitializeComponent();
+            groupComboBox.Items.AddRange(groups.ToArray());
+            if (recentGroup != null)
+            {
+                groupComboBox.Text = recentGroup;
+                group = recentGroup;
+            }
+            else
+            {
+                groupComboBox.Text = currentGroup;
+                group = currentGroup;
+            }
+        }
+
         private void GroupComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             group = groupComboBox.Text;

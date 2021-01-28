@@ -17,14 +17,14 @@ namespace CarcassSpark.Tools
         public Dictionary<string, Culture> displayedCultures;
         public bool editing;
 
-        public CulturesViewer(Dictionary<string, Culture> cultures)
+        public CulturesViewer(Dictionary<Guid, Culture> cultures)
         {
             InitializeComponent();
             FillValues(cultures);
             SetEditingMode(false);
         }
 
-        public CulturesViewer(Dictionary<string, Culture> cultures, bool? editing)
+        public CulturesViewer(Dictionary<Guid, Culture> cultures, bool? editing)
         {
             InitializeComponent();
             FillValues(cultures);
@@ -46,9 +46,9 @@ namespace CarcassSpark.Tools
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void FillValues(Dictionary<string, Culture> cultures)
+        void FillValues(Dictionary<Guid, Culture> cultures)
         {
-            displayedCultures = cultures.ToDictionary(entry => entry.Key,
+            displayedCultures = cultures.ToDictionary(entry => entry.Value.id,
                                                       entry => entry.Value.Copy());
             foreach (string key in displayedCultures.Keys)
             {

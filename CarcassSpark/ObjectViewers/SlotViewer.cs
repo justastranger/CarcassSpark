@@ -212,6 +212,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RequiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.required == null) return;
             if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.required.Count == 0) displayedSlot.required = null;
         }
@@ -260,6 +262,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void ForbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null) return;
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
         }

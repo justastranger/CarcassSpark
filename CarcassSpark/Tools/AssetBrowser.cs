@@ -37,48 +37,46 @@ namespace CarcassSpark.Tools
             }
             else
             {
-                Utilities.ImageList = new ImageList();
-                Utilities.ImageList.ImageSize = new Size(128, 128);
+                Utilities.ImageList = new ImageList
+                {
+                    ImageSize = new Size(128, 128)
+                };
                 assetsListView.LargeImageList = Utilities.ImageList;
                 foreach (string path in Utilities.assets.Keys)
                 {
                     string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
-                    ListViewGroup folderGroup;
-                    if (assetsListView.Groups[folder] != null)
+                    ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
+                    if (!assetsListView.Groups.Contains(folderGroup))
                     {
-                        folderGroup = assetsListView.Groups[folder];
-                    }
-                    else
-                    {
-                        folderGroup = new ListViewGroup(folder, folder);
                         assetsListView.Groups.Add(folderGroup);
                     }
                     Utilities.ImageList.Images.Add(path, Utilities.assets[path].GetImage());
                     ListViewItem item = new ListViewItem(path)
                     {
-                        ImageKey = path
+                        ImageKey = path,
+                        Group = folderGroup
                     };
-                    folderGroup.Items.Add(item);
+                    // folderGroup.Items.Add(item);
                     assetsListView.Items.Add(item);
                 }
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Dispose();
             Close();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Dispose();
             Close();
         }
 
-        private void assetsListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void AssetsListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (assetsListView.SelectedItems.Count == 1)
             {
@@ -89,7 +87,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void copyImageIDToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyImageIDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (assetsListView.SelectedItems.Count == 1)
             {

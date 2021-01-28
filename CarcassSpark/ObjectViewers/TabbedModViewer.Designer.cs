@@ -63,13 +63,15 @@
             this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jSONCleanerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.culturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assetBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.templateManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.aboutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.assetBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +83,8 @@
             this.newItemToolStripButton,
             this.importToolStripButton,
             this.toolsToolStripButton,
-            this.settingsToolStripButton});
+            this.settingsToolStripButton,
+            this.aboutToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(935, 25);
@@ -281,18 +284,21 @@
             this.aspectToolStripMenuItem1.Name = "aspectToolStripMenuItem1";
             this.aspectToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
             this.aspectToolStripMenuItem1.Text = "Aspect";
+            this.aspectToolStripMenuItem1.Click += new System.EventHandler(this.AspectToolStripMenuItem1_Click);
             // 
             // elementToolStripMenuItem1
             // 
             this.elementToolStripMenuItem1.Name = "elementToolStripMenuItem1";
             this.elementToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
             this.elementToolStripMenuItem1.Text = "Element";
+            this.elementToolStripMenuItem1.Click += new System.EventHandler(this.ElementToolStripMenuItem1_Click);
             // 
             // recipeToolStripMenuItem1
             // 
             this.recipeToolStripMenuItem1.Name = "recipeToolStripMenuItem1";
             this.recipeToolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
             this.recipeToolStripMenuItem1.Text = "Recipe";
+            this.recipeToolStripMenuItem1.Click += new System.EventHandler(this.RecipeToolStripMenuItem1_Click);
             // 
             // deckToolStripMenuItem1
             // 
@@ -330,7 +336,8 @@
             this.imageImporterToolStripMenuItem,
             this.jSONCleanerToolStripMenuItem,
             this.culturesToolStripMenuItem,
-            this.assetBrowserToolStripMenuItem});
+            this.assetBrowserToolStripMenuItem,
+            this.templateManagerToolStripMenuItem});
             this.toolsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripButton.Image")));
             this.toolsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolsToolStripButton.Name = "toolsToolStripButton";
@@ -340,30 +347,44 @@
             // summonGeneratorToolStripMenuItem
             // 
             this.summonGeneratorToolStripMenuItem.Name = "summonGeneratorToolStripMenuItem";
-            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.SummonGeneratorToolStripMenuItem_Click);
             // 
             // imageImporterToolStripMenuItem
             // 
             this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.imageImporterToolStripMenuItem.Text = "Image Importer";
             this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.ImageImporterToolStripMenuItem_Click);
             // 
             // jSONCleanerToolStripMenuItem
             // 
             this.jSONCleanerToolStripMenuItem.Name = "jSONCleanerToolStripMenuItem";
-            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jSONCleanerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.jSONCleanerToolStripMenuItem.Text = "JSON Cleaner";
             this.jSONCleanerToolStripMenuItem.Click += new System.EventHandler(this.JSONCleanerToolStripMenuItem_Click);
             // 
             // culturesToolStripMenuItem
             // 
             this.culturesToolStripMenuItem.Name = "culturesToolStripMenuItem";
-            this.culturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.culturesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.culturesToolStripMenuItem.Text = "Cultures";
             this.culturesToolStripMenuItem.Click += new System.EventHandler(this.culturesToolStripMenuItem_Click);
+            // 
+            // assetBrowserToolStripMenuItem
+            // 
+            this.assetBrowserToolStripMenuItem.Name = "assetBrowserToolStripMenuItem";
+            this.assetBrowserToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.assetBrowserToolStripMenuItem.Text = "Asset Browser";
+            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.assetBrowserToolStripMenuItem_Click);
+            // 
+            // templateManagerToolStripMenuItem
+            // 
+            this.templateManagerToolStripMenuItem.Name = "templateManagerToolStripMenuItem";
+            this.templateManagerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.templateManagerToolStripMenuItem.Text = "Template Manager";
+            this.templateManagerToolStripMenuItem.Click += new System.EventHandler(this.templateManagerToolStripMenuItem_Click);
             // 
             // settingsToolStripButton
             // 
@@ -374,6 +395,16 @@
             this.settingsToolStripButton.Size = new System.Drawing.Size(53, 22);
             this.settingsToolStripButton.Text = "Settings";
             this.settingsToolStripButton.Click += new System.EventHandler(this.SettingsToolStripButton_Click);
+            // 
+            // aboutToolStripButton
+            // 
+            this.aboutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.aboutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripButton.Image")));
+            this.aboutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.aboutToolStripButton.Name = "aboutToolStripButton";
+            this.aboutToolStripButton.Size = new System.Drawing.Size(44, 22);
+            this.aboutToolStripButton.Text = "About";
+            this.aboutToolStripButton.Click += new System.EventHandler(this.aboutToolStripButton_Click);
             // 
             // statusStrip1
             // 
@@ -392,6 +423,7 @@
             // 
             // ModViewerTabs
             // 
+            this.ModViewerTabs.AllowDrop = true;
             this.ModViewerTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -401,6 +433,8 @@
             this.ModViewerTabs.Size = new System.Drawing.Size(935, 316);
             this.ModViewerTabs.TabIndex = 27;
             this.ModViewerTabs.SelectedIndexChanged += new System.EventHandler(this.ModViewerTabs_SelectedIndexChanged);
+            this.ModViewerTabs.DragDrop += new System.Windows.Forms.DragEventHandler(this.ModViewerTabs_DragDrop);
+            this.ModViewerTabs.DragEnter += new System.Windows.Forms.DragEventHandler(this.ModViewerTabs_DragEnter);
             // 
             // folderBrowserDialog
             // 
@@ -409,13 +443,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
-            // 
-            // assetBrowserToolStripMenuItem
-            // 
-            this.assetBrowserToolStripMenuItem.Name = "assetBrowserToolStripMenuItem";
-            this.assetBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.assetBrowserToolStripMenuItem.Text = "Asset Browser";
-            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.assetBrowserToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
@@ -480,6 +507,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveSplitterLocationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem culturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assetBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton aboutToolStripButton;
     }
 }
 

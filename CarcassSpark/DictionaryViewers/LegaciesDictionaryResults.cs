@@ -14,27 +14,28 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class LegaciesDictionaryResults : Form
     {
-        Dictionary<string, Legacy> results;
+        private Dictionary<Legacy, Guid> results = new Dictionary<Legacy, Guid>();
+        private Dictionary<string, Legacy> resultsWithId = new Dictionary<string, Legacy>();
 
-        public LegaciesDictionaryResults(Dictionary<string, Legacy> results)
+        public LegaciesDictionaryResults(Dictionary<Guid, Legacy> results)
         {
             InitializeComponent();
 
-            this.results = results;
-            foreach (string key in results.Keys)
+            // this.resultsWithIds = results;
+            foreach (KeyValuePair<Guid, Legacy> kvp in results)
             {
-                resultsListBox.Items.Add(key);
+                resultsListBox.Items.Add(kvp.Value.id);
+                resultsWithId.Add(kvp.Value.id, kvp.Value);
+                this.results.Add(kvp.Value, kvp.Key);
             }
         }
 
         private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            if (Utilities.LegacyExists(resultsListBox.SelectedItem.ToString()))
-            {
-                LegacyViewer ev = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
-                ev.Show();
-            }
+            Legacy selectedLegacy = resultsWithId[resultsListBox.SelectedItem.ToString()];
+            LegacyViewer ev = new LegacyViewer(selectedLegacy.Copy(), null);
+            ev.Show();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -47,23 +48,6 @@ namespace CarcassSpark.DictionaryViewers
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void OkButton_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void CancelButton_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ResultsListBox_MouseDoubleClick_1(object sender, MouseEventArgs e)
-        {
-            if (resultsListBox.SelectedItem == null) return;
-            LegacyViewer lv = new LegacyViewer(results[resultsListBox.SelectedItem.ToString()], null);
-            lv.Show();
         }
     }
 }

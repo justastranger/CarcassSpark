@@ -169,6 +169,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Tools\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\AssetBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +329,18 @@
     <Compile Include="Tools\SummonCreator.Designer.cs">
       <DependentUpon>SummonCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\TemplateManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\TemplateManager.Designer.cs">
+      <DependentUpon>TemplateManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\TemplateManager.TemplateSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\TemplateManager.TemplateSetup.Designer.cs">
+      <DependentUpon>TemplateManager.TemplateSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="ObjectTypes\Verb.cs" />
     <Compile Include="ObjectViewers\VerbViewer.cs">
@@ -345,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\XTriggerViewer.resx">
       <DependentUpon>XTriggerViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\AssetBrowser.resx">
       <DependentUpon>AssetBrowser.cs</DependentUpon>
@@ -430,6 +451,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectViewers\VerbViewer.resx">
       <DependentUpon>VerbViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\TemplateManager.resx">
+      <DependentUpon>TemplateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\TemplateManager.TemplateSetup.resx">
+      <DependentUpon>TemplateManager.TemplateSetup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
