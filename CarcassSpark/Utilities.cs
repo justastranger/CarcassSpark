@@ -16,6 +16,13 @@ namespace CarcassSpark
 {
     public class Utilities
     {
+        private const string imagesPathAspects = "images/aspects/";
+        private const string imagesPathElements = "images/elements/";
+        private const string imagesPathEndings = "images/endings/";
+        private const string imagesPathLegacies = "images/legacies/";
+        private const string imagesPathVerbs = "images/verbs/";
+        private const string imagesPathCardBacks = "images/cardbacks/";
+        private const string imagesPathBurnImages = "images/burns/";
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
 
 
@@ -102,7 +109,7 @@ namespace CarcassSpark
 
         public static bool VanillaAspectImageExists(string id)
         {
-            return assets.ContainsKey("images/aspects/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ASPECT) + id);
         }
 
         public static Bitmap GetVanillaElement(string id)
@@ -120,7 +127,7 @@ namespace CarcassSpark
 
         public static bool VanillaElementImageExists(string id)
         {
-            return assets.ContainsKey("images/elements/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ELEMENT) + id);
         }
 
         public static Bitmap GetVanillaEnding(string id)
@@ -138,7 +145,7 @@ namespace CarcassSpark
 
         public static bool VanillaEndingImageExists(string id)
         {
-            return assets.ContainsKey("images/endings/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ENDING) + id);
         }
 
         public static Bitmap GetVanillaLegacy(string id)
@@ -156,7 +163,7 @@ namespace CarcassSpark
 
         public static bool VanillaLegacyImageExists(string id)
         {
-            return assets.ContainsKey("images/legacies/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.LEGACY) + id);
         }
 
         public static Bitmap GetVanillaVerb(string id)
@@ -174,7 +181,7 @@ namespace CarcassSpark
 
         public static bool VanillaVerbImageExists(string id)
         {
-            return assets.ContainsKey("images/verbs/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.VERB) + id);
         }
 
         public static Bitmap GetVanillaCardBack(string id)
@@ -192,7 +199,7 @@ namespace CarcassSpark
 
         public static bool VanillaCardBackImageExists(string id)
         {
-            return assets.ContainsKey("images/cardbacks/" + id);
+            return assets.ContainsKey(imagesPathCardBacks + id);
         }
 
         public static Bitmap GetVanillaBurnImage(string id)
@@ -210,7 +217,7 @@ namespace CarcassSpark
 
         public static bool VanillaBurnImageImageExists(string id)
         {
-            return assets.ContainsKey("images/burns/" + id);
+            return assets.ContainsKey(imagesPathBurnImages + id);
         }
 
         public static bool AspectImageExists(string id)
@@ -672,6 +679,38 @@ namespace CarcassSpark
                 jsonSerializer.Serialize(writer, objectToSerialize);
             }
             return stringBuilder.ToString();
+        }
+
+        private static string GetImagesPath(ModItemTypes itemType)
+        {
+            switch (itemType)
+            {
+            case ModItemTypes.ASPECT:
+                return imagesPathAspects;
+            case ModItemTypes.ELEMENT:
+                return imagesPathElements;
+            case ModItemTypes.LEGACY:
+                return imagesPathLegacies;
+            case ModItemTypes.ENDING:
+                return imagesPathEndings;
+            case ModItemTypes.VERB:
+                return imagesPathVerbs;
+            default:
+                throw new NotImplementedException();
+            }
+        }
+
+        public enum ModItemTypes
+        {
+            ASPECT,
+            ELEMENT,
+            RECIPE,
+            DECK,
+            LEGACY,
+            ENDING,
+            VERB,
+            UNKNOWN,
+            CULTURE
         }
     }
 }
