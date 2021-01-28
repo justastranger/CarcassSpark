@@ -96,15 +96,7 @@ namespace CarcassSpark
         
         public static Bitmap GetVanillaAspect(string id)
         {
-            string path = "images/aspects/" + id;
-            if (assets.ContainsKey(path))
-            {
-                return assets[path].GetImage();
-            }
-            else
-            {
-                return assets["images/elements/_x"].GetImage();
-            }
+            return GetVanillaImage(id, ModItemTypes.ASPECT);
         }
 
         public static bool VanillaAspectImageExists(string id)
@@ -114,15 +106,7 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaElement(string id)
         {
-            string path = "images/elements/" + id;
-            if (assets.ContainsKey(path))
-            {
-                return assets[path].GetImage();
-            }
-            else
-            {
-                return assets["images/elements/_x"].GetImage();
-            }
+            return GetVanillaImage(id, ModItemTypes.ELEMENT);
         }
 
         public static bool VanillaElementImageExists(string id)
@@ -132,15 +116,7 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaEnding(string id)
         {
-            string path = "images/endings/" + id;
-            if (assets.ContainsKey(path))
-            {
-                return assets[path].GetImage();
-            }
-            else
-            {
-                return assets["images/endings/despair"].GetImage();
-            }
+            return GetVanillaImage(id, ModItemTypes.ENDING);
         }
 
         public static bool VanillaEndingImageExists(string id)
@@ -150,15 +126,7 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaLegacy(string id)
         {
-            string path = "images/legacies/" + id;
-            if (assets.ContainsKey(path))
-            {
-                return assets[path].GetImage();
-            }
-            else
-            {
-                return assets["images/legacies/aspirant"].GetImage();
-            }
+            return GetVanillaImage(id, ModItemTypes.LEGACY);
         }
 
         public static bool VanillaLegacyImageExists(string id)
@@ -168,15 +136,7 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaVerb(string id)
         {
-            string path = "images/verbs/" + id;
-            if (assets.ContainsKey(path))
-            {
-                return assets[path].GetImage();
-            }
-            else
-            {
-                return assets["images/verbs/_x"].GetImage();
-            }
+            return GetVanillaImage(id, ModItemTypes.VERB);
         }
 
         public static bool VanillaVerbImageExists(string id)
@@ -186,15 +146,8 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaCardBack(string id)
         {
-            string path = "images/cardbacks/" + id;
-            if (assets.ContainsKey(id))
-            {
-                return assets[id].GetImage();
-            }
-            else
-            {
-                return assets["images/cardbacks/_x"].GetImage();
-            }
+            string path = imagesPathCardBacks + id;
+            return assets.ContainsKey(id) ? assets[id].GetImage() : assets["images/cardbacks/_x"].GetImage();
         }
 
         public static bool VanillaCardBackImageExists(string id)
@@ -204,15 +157,8 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaBurnImage(string id)
         {
-            string path = "images/burns/" + id;
-            if (assets.ContainsKey(id))
-            {
-                return assets[id].GetImage();
-            }
-            else
-            {
-                return assets["images/burns/moon"].GetImage();
-            }
+            string path = imagesPathBurnImages + id;
+            return assets.ContainsKey(id) ? assets[id].GetImage() : assets["images/burns/moon"].GetImage();
         }
 
         public static bool VanillaBurnImageImageExists(string id)
@@ -681,6 +627,24 @@ namespace CarcassSpark
             return stringBuilder.ToString();
         }
 
+        private static string GetDefaultImage(ModItemTypes itemType)
+        {
+            switch (itemType)
+            {
+            case ModItemTypes.ASPECT:
+            case ModItemTypes.ELEMENT:
+                return "images/elements/_x";
+            case ModItemTypes.LEGACY:
+                return "images/legacies/aspirant";
+            case ModItemTypes.ENDING:
+                return "images/endings/despair";
+            case ModItemTypes.VERB:
+                return "images/verbs/_x";
+            default:
+                throw new NotImplementedException();
+            }
+        }
+
         private static string GetImagesPath(ModItemTypes itemType)
         {
             switch (itemType)
@@ -700,6 +664,12 @@ namespace CarcassSpark
             }
         }
 
+
+        public static Bitmap GetVanillaImage(string id, ModItemTypes itemType)
+        {
+            string path = GetImagesPath(itemType) + id;
+            return assets.ContainsKey(path) ? assets[path].GetImage() : assets[GetDefaultImage(itemType)].GetImage();
+        }
         public enum ModItemTypes
         {
             ASPECT,
