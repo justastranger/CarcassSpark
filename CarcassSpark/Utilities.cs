@@ -168,16 +168,9 @@ namespace CarcassSpark
 
         public static bool AspectImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return VanillaAspectImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ASPECT);
         }
+
         public static Image GetAspectImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -196,15 +189,7 @@ namespace CarcassSpark
 
         public static bool ElementImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return VanillaElementImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ELEMENT);
         }
 
         public static Image GetElementImage(string id)
@@ -222,15 +207,7 @@ namespace CarcassSpark
 
         public static bool EndingImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return VanillaEndingImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ENDING);
         }
 
         public static Image GetEndingImage(string id)
@@ -248,15 +225,7 @@ namespace CarcassSpark
 
         public static bool LegacyImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return VanillaLegacyImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.LEGACY);
         }
 
         public static Image GetLegacyImage(string id)
@@ -274,15 +243,7 @@ namespace CarcassSpark
 
         public static bool VerbImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return VanillaVerbImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.VERB);
         }
 
         public static Image GetVerbImage(string id)
@@ -665,11 +626,34 @@ namespace CarcassSpark
         }
 
 
+        public static bool VanillaImageExistsAs(string id, ModItemTypes itemType)
+        {
+            return assets.ContainsKey(GetImagesPath(itemType) + id);
+        }
+
         public static Bitmap GetVanillaImage(string id, ModItemTypes itemType)
         {
             string path = GetImagesPath(itemType) + id;
             return assets.ContainsKey(path) ? assets[path].GetImage() : assets[GetDefaultImage(itemType)].GetImage();
         }
+
+        public static bool ImageExistsAs(string id, ModItemTypes itemType)
+        {
+            string imagePath = "/" + GetImagesPath(itemType) + id + ".png";
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + imagePath))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaImageExistsAs(id, itemType))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public enum ModItemTypes
         {
             ASPECT,
