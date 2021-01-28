@@ -173,18 +173,7 @@ namespace CarcassSpark
 
         public static Image GetAspectImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.AspectImageExists(id))
-                {
-                    return source.GetAspectImage(id);
-                }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return GetVanillaAspect(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ASPECT);
         }
 
         public static bool ElementImageExists(string id)
@@ -194,15 +183,7 @@ namespace CarcassSpark
 
         public static Image GetElementImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.ElementImageExists(id)) return source.GetElementImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return GetVanillaElement(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ELEMENT);
         }
 
         public static bool EndingImageExists(string id)
@@ -212,15 +193,7 @@ namespace CarcassSpark
 
         public static Image GetEndingImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.EndingImageExists(id)) return source.GetEndingImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return GetVanillaEnding(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ENDING);
         }
 
         public static bool LegacyImageExists(string id)
@@ -230,15 +203,7 @@ namespace CarcassSpark
 
         public static Image GetLegacyImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.LegacyImageExists(id)) return source.GetLegacyImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return GetVanillaLegacy(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.LEGACY);
         }
 
         public static bool VerbImageExists(string id)
@@ -248,15 +213,7 @@ namespace CarcassSpark
 
         public static Image GetVerbImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.VerbImageExists(id)) return source.GetVerbImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return GetVanillaVerb(id);
-            }
-            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.VERB);
         }
 
         public static bool CardBackImageExists(string id)
@@ -625,6 +582,54 @@ namespace CarcassSpark
             }
         }
 
+        public static Image GetImage(string id, ModItemTypes itemType)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                switch (itemType)
+                {
+                case ModItemTypes.ASPECT:
+                    if (source.AspectImageExists(id))
+                    {
+                        return source.GetAspectImage(id);
+                    }
+                    break;
+                case ModItemTypes.ELEMENT:
+                    if (source.ElementImageExists(id))
+                    {
+                        return source.GetElementImage(id);
+                    }
+                    break;
+                case ModItemTypes.LEGACY:
+                    if (source.LegacyImageExists(id))
+                    {
+                        return source.GetLegacyImage(id);
+                    }
+                    break;
+                case ModItemTypes.ENDING:
+                    if (source.EndingImageExists(id))
+                    {
+                        return source.GetEndingImage(id);
+                    }
+                    break;
+                case ModItemTypes.VERB:
+                    if (source.VerbImageExists(id))
+                    {
+                        return source.GetVerbImage(id);
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
+                }
+
+                if (source.GetName() == "Vanilla" && VanillaImageExistsAs(id, itemType))
+                {
+                    return GetVanillaImage(id, itemType);
+                }
+            }
+            string defaultImage = DirectoryToVanillaContent + "/" + GetDefaultImage(itemType) + ".png";
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
+        }
 
         public static bool VanillaImageExistsAs(string id, ModItemTypes itemType)
         {
