@@ -16,6 +16,13 @@ namespace CarcassSpark
 {
     public class Utilities
     {
+        private const string imagesPathAspects = "images/aspects/";
+        private const string imagesPathElements = "images/elements/";
+        private const string imagesPathEndings = "images/endings/";
+        private const string imagesPathLegacies = "images/legacies/";
+        private const string imagesPathVerbs = "images/verbs/";
+        private const string imagesPathCardBacks = "images/cardbacks/";
+        private const string imagesPathBurnImages = "images/burns/";
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
 
 
@@ -158,148 +165,60 @@ namespace CarcassSpark
         
         public static Bitmap GetVanillaAspect(string id)
         {
-            try
-            {
-                string path = "images/aspects/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/elements/_x"].GetImage();
-                }
-            }
-            catch (TypeInitializationException)
-            {
-                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            
+            return GetVanillaImage(id, ModItemTypes.ASPECT);
         }
 
         public static bool VanillaAspectImageExists(string id)
         {
-            return assets.ContainsKey("images/aspects/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ASPECT) + id);
         }
 
         public static Bitmap GetVanillaElement(string id)
         {
-            try
-            {
-                string path = "images/elements/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                   return assets["images/elements/_x"].GetImage();
-                }
-            }
-            catch (TypeInitializationException)
-            {
-                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            return GetVanillaImage(id, ModItemTypes.ELEMENT);
         }
 
         public static bool VanillaElementImageExists(string id)
         {
-            return assets.ContainsKey("images/elements/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ELEMENT) + id);
         }
 
         public static Bitmap GetVanillaEnding(string id)
         {
-            try
-            {
-                string path = "images/endings/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/endings/despair"].GetImage();
-                }
-            }
-            catch (TypeInitializationException)
-            {
-                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            return GetVanillaImage(id, ModItemTypes.ENDING);
         }
 
         public static bool VanillaEndingImageExists(string id)
         {
-            return assets.ContainsKey("images/endings/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.ENDING) + id);
         }
 
         public static Bitmap GetVanillaLegacy(string id)
         {
-            try
-            {
-                string path = "images/legacies/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/legacies/aspirant"].GetImage();
-                }
-            }
-            catch (TypeInitializationException)
-            {
-                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            return GetVanillaImage(id, ModItemTypes.LEGACY);
         }
 
         public static bool VanillaLegacyImageExists(string id)
         {
-            return assets.ContainsKey("images/legacies/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.LEGACY) + id);
         }
 
         public static Bitmap GetVanillaVerb(string id)
         {
-            try
-            {
-                string path = "images/verbs/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/verbs/_x"].GetImage();
-                }
-            }
-            catch (TypeInitializationException)
-            {
-                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            return GetVanillaImage(id, ModItemTypes.VERB);
         }
 
         public static bool VanillaVerbImageExists(string id)
         {
-            return assets.ContainsKey("images/verbs/" + id);
+            return assets.ContainsKey(GetImagesPath(ModItemTypes.VERB) + id);
         }
 
         public static Bitmap GetVanillaCardBack(string id)
         {
             try
             {
-                string path = "images/cardbacks/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/cardbacks/_x"].GetImage();
-                }
+				string path = imagesPathCardBacks + id;
+				return assets.ContainsKey(id) ? assets[id].GetImage() : assets["images/cardbacks/_x"].GetImage();
             }
             catch (TypeInitializationException)
             {
@@ -310,22 +229,15 @@ namespace CarcassSpark
 
         public static bool VanillaCardBackImageExists(string id)
         {
-            return assets.ContainsKey("images/cardbacks/" + id);
+            return assets.ContainsKey(imagesPathCardBacks + id);
         }
 
         public static Bitmap GetVanillaBurnImage(string id)
         {
             try
             {
-                string path = "images/burns/" + id;
-                if (assets.ContainsKey(path))
-                {
-                    return assets[path].GetImage();
-                }
-                else
-                {
-                    return assets["images/burns/moon"].GetImage();
-                }
+				string path = imagesPathBurnImages + id;
+				return assets.ContainsKey(id) ? assets[id].GetImage() : assets["images/burns/moon"].GetImage();
             }
             catch (TypeInitializationException)
             {
@@ -336,139 +248,57 @@ namespace CarcassSpark
 
         public static bool VanillaBurnImageImageExists(string id)
         {
-            return assets.ContainsKey("images/burns/" + id);
+            return assets.ContainsKey(imagesPathBurnImages + id);
         }
 
         public static bool AspectImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return VanillaAspectImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ASPECT);
         }
+
         public static Image GetAspectImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.AspectImageExists(id))
-                {
-                    return source.GetAspectImage(id);
-                }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id)) return GetVanillaAspect(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ASPECT);
         }
 
         public static bool ElementImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return VanillaElementImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ELEMENT);
         }
 
         public static Image GetElementImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.ElementImageExists(id)) return source.GetElementImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id)) return GetVanillaElement(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ELEMENT);
         }
 
         public static bool EndingImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return VanillaEndingImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.ENDING);
         }
 
         public static Image GetEndingImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.EndingImageExists(id)) return source.GetEndingImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id)) return GetVanillaEnding(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.ENDING);
         }
 
         public static bool LegacyImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return VanillaLegacyImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.LEGACY);
         }
 
         public static Image GetLegacyImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.LegacyImageExists(id)) return source.GetLegacyImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id)) return GetVanillaLegacy(id);
-            }
-            string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.LEGACY);
         }
 
         public static bool VerbImageExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
-                {
-                    return true;
-                }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return VanillaVerbImageExists(id);
-            }
-            return false;
+            return ImageExistsAs(id, ModItemTypes.VERB);
         }
 
         public static Image GetVerbImage(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.VerbImageExists(id)) return source.GetVerbImage(id);
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id)) return GetVanillaVerb(id);
-            }
-            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
-            if (File.Exists(defaultImage))
-                return Image.FromFile(defaultImage);
-            return null;
+            return GetImage(id, ModItemTypes.VERB);
         }
 
         public static bool CardBackImageExists(string id)
@@ -945,6 +775,141 @@ namespace CarcassSpark
                 jsonSerializer.Serialize(writer, objectToSerialize);
             }
             return stringBuilder.ToString();
+        }
+
+        private static string GetDefaultImage(ModItemTypes itemType)
+        {
+            switch (itemType)
+            {
+            case ModItemTypes.ASPECT:
+            case ModItemTypes.ELEMENT:
+                return "images/elements/_x";
+            case ModItemTypes.LEGACY:
+                return "images/legacies/aspirant";
+            case ModItemTypes.ENDING:
+                return "images/endings/despair";
+            case ModItemTypes.VERB:
+                return "images/verbs/_x";
+            default:
+                throw new NotImplementedException();
+            }
+        }
+
+        private static string GetImagesPath(ModItemTypes itemType)
+        {
+            switch (itemType)
+            {
+            case ModItemTypes.ASPECT:
+                return imagesPathAspects;
+            case ModItemTypes.ELEMENT:
+                return imagesPathElements;
+            case ModItemTypes.LEGACY:
+                return imagesPathLegacies;
+            case ModItemTypes.ENDING:
+                return imagesPathEndings;
+            case ModItemTypes.VERB:
+                return imagesPathVerbs;
+            default:
+                throw new NotImplementedException();
+            }
+        }
+
+        public static Image GetImage(string id, ModItemTypes itemType)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                switch (itemType)
+                {
+                case ModItemTypes.ASPECT:
+                    if (source.AspectImageExists(id))
+                    {
+                        return source.GetAspectImage(id);
+                    }
+                    break;
+                case ModItemTypes.ELEMENT:
+                    if (source.ElementImageExists(id))
+                    {
+                        return source.GetElementImage(id);
+                    }
+                    break;
+                case ModItemTypes.LEGACY:
+                    if (source.LegacyImageExists(id))
+                    {
+                        return source.GetLegacyImage(id);
+                    }
+                    break;
+                case ModItemTypes.ENDING:
+                    if (source.EndingImageExists(id))
+                    {
+                        return source.GetEndingImage(id);
+                    }
+                    break;
+                case ModItemTypes.VERB:
+                    if (source.VerbImageExists(id))
+                    {
+                        return source.GetVerbImage(id);
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
+                }
+
+                if (source.GetName() == "Vanilla" && VanillaImageExistsAs(id, itemType))
+                {
+                    return GetVanillaImage(id, itemType);
+                }
+            }
+            string defaultImage = DirectoryToVanillaContent + "/" + GetDefaultImage(itemType) + ".png";
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
+        }
+
+        public static bool VanillaImageExistsAs(string id, ModItemTypes itemType)
+        {
+            return assets.ContainsKey(GetImagesPath(itemType) + id);
+        }
+
+        public static Bitmap GetVanillaImage(string id, ModItemTypes itemType)
+        {
+            try
+            {
+				string path = GetImagesPath(itemType) + id;
+				return assets.ContainsKey(path) ? assets[path].GetImage() : assets[GetDefaultImage(itemType)].GetImage();
+            }
+            catch (TypeInitializationException)
+            {
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public static bool ImageExistsAs(string id, ModItemTypes itemType)
+        {
+            string imagePath = "/" + GetImagesPath(itemType) + id + ".png";
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (File.Exists(source.currentDirectory + imagePath))
+                {
+                    return true;
+                }
+                else if (source.GetName() == "Vanilla" && VanillaImageExistsAs(id, itemType))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public enum ModItemTypes
+        {
+            ASPECT,
+            ELEMENT,
+            RECIPE,
+            DECK,
+            LEGACY,
+            ENDING,
+            VERB,
+            UNKNOWN,
+            CULTURE
         }
     }
 }
