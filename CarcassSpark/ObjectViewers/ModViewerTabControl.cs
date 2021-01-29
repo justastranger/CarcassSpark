@@ -947,11 +947,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            Guid guid = (Guid)endingsListView.Items[endingsListView.SelectedIndices[0]].Tag;
-            Content.Endings[guid] = result.Copy();
-            if (endingsListView.Items[endingsListView.SelectedIndices[0]].Text != result.id)
+            EndingViewer endingViewer = (EndingViewer)sender;
+            if ((Guid)endingViewer.associatedListViewItem.Tag != result.guid)
             {
-                endingsListView.SelectedItems[0].Text = result.id;
+                Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
+                endingViewer.associatedListViewItem.Tag = result.guid;
+                Content.Endings.Add(result.guid, result.Copy());
+            }
+            if (endingViewer.associatedListViewItem.Text != result.id)
+            {
+                endingViewer.associatedListViewItem.Text = result.id;
             }
         }
 
