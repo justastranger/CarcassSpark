@@ -873,23 +873,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)decksListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
                 dv.Show();
             }
             else
             {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null);
+                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null, decksListView.SelectedItems[0]);
                 dv.Show();
             }
         }
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            Guid guid = (Guid)decksListView.Items[decksListView.SelectedIndices[0]].Tag;
-            Content.Decks[guid] = result.Copy();
-            if (decksListView.Items[decksListView.SelectedIndices[0]].Text != result.id)
+            DeckViewer deckViewer = (DeckViewer)sender;
+            if ((Guid)deckViewer.associatedListViewItem.Tag != result.guid)
             {
-                decksListView.SelectedItems[0].Text = result.id;
+                Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
+                deckViewer.associatedListViewItem.Tag = result.guid;
+                Content.Decks.Add(result.guid, result.Copy());
+            }
+            if (deckViewer.associatedListViewItem.Text != result.id)
+            {
+                deckViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2715,7 +2720,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeckViewer dv = new DeckViewer(new Deck(), DecksList_Add);
+            DeckViewer dv = new DeckViewer(new Deck(), DecksList_Add, null);
             dv.Show();
         }
 
@@ -2975,12 +2980,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), DecksList_Assign);
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
                     dv.Show();
                 }
                 else
                 {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), null);
+                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), null, decksListView.SelectedItems[0]);
                     dv.Show();
                 }
             }
@@ -3285,7 +3290,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Deck templateDeck = JsonConvert.DeserializeObject<Deck>(templateJson);
-                DeckViewer av = new DeckViewer(templateDeck, DecksList_Add);
+                DeckViewer av = new DeckViewer(templateDeck, DecksList_Add, null);
                 av.Show();
             }
         }

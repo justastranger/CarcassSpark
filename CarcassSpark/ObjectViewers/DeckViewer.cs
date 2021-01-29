@@ -17,6 +17,7 @@ namespace CarcassSpark.ObjectViewers
         bool editing;
         event EventHandler<Deck> SuccessCallback;
         bool internalDeck;
+        public ListViewItem associatedListViewItem;
 
         public DeckViewer(Deck deck)
         {
@@ -27,11 +28,12 @@ namespace CarcassSpark.ObjectViewers
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             FillValues(deck);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -41,11 +43,12 @@ namespace CarcassSpark.ObjectViewers
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck, ListViewItem item)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             FillValues(deck);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
