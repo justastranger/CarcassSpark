@@ -997,23 +997,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
             else
             {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null);
+                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
         }
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            Guid guid = (Guid)recipesListView.Items[recipesListView.SelectedIndices[0]].Tag;
-            Content.Recipes[guid] = result.Copy();
-            if (recipesListView.Items[recipesListView.SelectedIndices[0]].Text != result.id)
+            RecipeViewer recipeViewer = (RecipeViewer)sender;
+            if ((Guid)recipeViewer.associatedListViewItem.Tag != result.guid)
             {
-                recipesListView.SelectedItems[0].Text = result.id;
+                Content.Recipes.Remove((Guid)recipeViewer.associatedListViewItem.Tag);
+                recipeViewer.associatedListViewItem.Tag = result.guid;
+                Content.Recipes.Add(result.guid, result.Copy());
+            }
+            if (recipeViewer.associatedListViewItem.Text != result.id)
+            {
+                recipeViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2729,7 +2734,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(new Recipe(), RecipesList_Add);
+            RecipeViewer rv = new RecipeViewer(new Recipe(), RecipesList_Add, null);
             rv.Show();
         }
 
@@ -2976,12 +2981,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
                     rv.Show();
                 }
                 else
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null, recipesListView.SelectedItems[0]);
                     rv.Show();
                 }
             }
@@ -3014,12 +3019,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
                     rv.Show();
                 }
                 else
                 {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null);
+                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null, recipesListView.SelectedItems[0]);
                     rv.Show();
                 }
             }
@@ -3293,7 +3298,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Recipe templateRecipe = JsonConvert.DeserializeObject<Recipe>(templateJson);
-                RecipeViewer av = new RecipeViewer(templateRecipe, RecipesList_Add);
+                RecipeViewer av = new RecipeViewer(templateRecipe, RecipesList_Add, null);
                 av.Show();
             }
         }
