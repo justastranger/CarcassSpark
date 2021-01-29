@@ -1496,14 +1496,13 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.aspects != null && element.aspects.ContainsKey(id))
                 {
-                    tmp.Add(guid, element);
+                    tmp[element.guid] = element;
                 }
-                if (element.aspects_extend != null && element.aspects_extend.ContainsKey(id))
+                else if (element.aspects_extend != null && element.aspects_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, element);
+                    tmp[element.guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1520,14 +1519,13 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.xtriggers != null && element.xtriggers.ContainsKey(id))
                 {
-                    tmp.Add(guid, element);
+                    tmp[element.guid] = element;
                 }
-                if (element.xtriggers_extend != null && element.xtriggers_extend.ContainsKey(id))
+                else if (element.xtriggers_extend != null && element.xtriggers_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, element);
+                    tmp[element.guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1544,36 +1542,35 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.requirements != null)
                 {
-                    if (recipe.requirements.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.requirements.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.requirements.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.requirements.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
-                if (recipe.requirements_extend != null)
+                else if (recipe.requirements_extend != null)
                 {
-                    if (recipe.requirements_extend.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.requirements_extend.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.requirements_extend.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.requirements_extend.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
-                else if (recipe.extantreqs != null)
+                if (recipe.extantreqs != null)
                 {
-                    if (recipe.extantreqs.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.extantreqs.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.extantreqs.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.extantreqs.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
                 else if (recipe.extantreqs_extend != null)
                 {
-                    if (recipe.extantreqs_extend.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.extantreqs_extend.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.extantreqs_extend.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.extantreqs_extend.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
-                else if (recipe.tablereqs != null)
+                if (recipe.tablereqs != null)
                 {
-                    if (recipe.tablereqs.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.tablereqs.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.tablereqs.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.tablereqs.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
                 else if (recipe.tablereqs_extend != null)
                 {
-                    if (recipe.tablereqs_extend.ContainsKey(id)) tmp.Add(guid, recipe);
-                    else if (recipe.tablereqs_extend.ContainsValue(id)) tmp.Add(guid, recipe);
+                    if (recipe.tablereqs_extend.ContainsKey(id)) tmp[recipe.guid] = recipe;
+                    else if (recipe.tablereqs_extend.ContainsValue(id)) tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1590,22 +1587,21 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
+                else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
                 else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
                 else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1622,27 +1618,25 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                // TODO foreach (Slot slot in element.slots) if (slot.requirements.contains(id)) tmp.add(element.id, element)
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.slots != null)
                 {
                     foreach (Slot slot in element.slots)
                     {
-                        if (slot.required.ContainsKey(id)) tmp.Add(guid, element);
+                        if (slot.required.ContainsKey(id)) tmp[element.guid] = element;
                     }
                 }
-                if (element.slots_prepend != null)
+                else if (element.slots_prepend != null)
                 {
                     foreach (Slot slot in element.slots_prepend)
                     {
-                        if (slot.required.ContainsKey(id)) tmp.Add(guid, element);
+                        if (slot.required.ContainsKey(id)) tmp[element.guid] = element;
                     }
                 }
-                if (element.slots_append != null)
+                else if (element.slots_append != null)
                 {
                     foreach (Slot slot in element.slots_append)
                     {
-                        if (slot.required.ContainsKey(id)) tmp.Add(guid, element);
+                        if (slot.required.ContainsKey(id)) tmp[element.guid] = element;
                     }
                 }
             }
@@ -1660,10 +1654,9 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.decayTo == id)
                 {
-                    tmp.Add(guid, element);
+                    tmp[element.guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1680,24 +1673,23 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.xtriggers != null)
                 {
                     foreach (KeyValuePair<string, List<XTrigger>> xtrigger in element.xtriggers)
                     {
                         foreach (XTrigger xtriggereffect in xtrigger.Value)
                         {
-                            if (xtriggereffect.id == id) tmp.Add(guid, element);
+                            if (xtriggereffect.id == id) tmp[element.guid] = element;
                         }
                     }
                 }
-                if (element.xtriggers_extend != null)
+                else if (element.xtriggers_extend != null)
                 {
                     foreach (KeyValuePair<string, List<XTrigger>> xtrigger in element.xtriggers_extend)
                     {
                         foreach (XTrigger xtriggereffect in xtrigger.Value)
                         {
-                            if (xtriggereffect.id == id) tmp.Add(guid, element);
+                            if (xtriggereffect.id == id) tmp[element.guid] = element;
                         }
                     }
                 }
@@ -1716,30 +1708,29 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.requirements != null && recipe.requirements.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.requirements_extend != null && recipe.requirements_extend.ContainsKey(id))
+                else if (recipe.requirements_extend != null && recipe.requirements_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
                 if (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.extantreqs_extend != null && recipe.extantreqs_extend.ContainsKey(id))
+                else if (recipe.extantreqs_extend != null && recipe.extantreqs_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
                 if (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.tablereqs_extend != null && recipe.tablereqs_extend.ContainsKey(id))
+                else if (recipe.tablereqs_extend != null && recipe.tablereqs_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1756,22 +1747,21 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.effects != null && (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id)))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) || recipe.effects_extend.ContainsValue(id)))
+                else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) || recipe.effects_extend.ContainsValue(id)))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                else if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                if (recipe.aspects != null && recipe.aspects.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
+                else if (recipe.aspects_extend != null && recipe.aspects_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1788,18 +1778,17 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Deck> tmp = new Dictionary<Guid, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
-                Guid guid = (Guid)decksListView.Items[deck.id].Tag;
                 if (deck.spec != null && deck.spec.Contains(id))
                 {
-                    tmp.Add(guid, deck);
+                    tmp[deck.guid] = deck;
                 }
-                if (deck.spec_prepend != null && deck.spec_prepend.Contains(id))
+                else if (deck.spec_prepend != null && deck.spec_prepend.Contains(id))
                 {
-                    tmp.Add(guid, deck);
+                    tmp[deck.guid] = deck;
                 }
-                if (deck.spec_append != null && deck.spec_append.Contains(id))
+                else if (deck.spec_append != null && deck.spec_append.Contains(id))
                 {
-                    tmp.Add(guid, deck);
+                    tmp[deck.guid] = deck;
                 }
             }
             if (tmp.Count > 0)
@@ -1816,14 +1805,13 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Legacy> tmp = new Dictionary<Guid, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
-                Guid guid = (Guid)legaciesListView.Items[legacy.id].Tag;
                 if (legacy.effects != null && legacy.effects.ContainsKey(id))
                 {
-                    tmp.Add(guid, legacy);
+                    tmp[legacy.guid] = legacy;
                 }
-                if (legacy.effects_extend != null && legacy.effects_extend.ContainsKey(id))
+                else if (legacy.effects_extend != null && legacy.effects_extend.ContainsKey(id))
                 {
-                    tmp.Add(guid, legacy);
+                    tmp[legacy.guid] = legacy;
                 }
             }
             if (tmp.Count > 0)
@@ -1840,34 +1828,33 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.linked != null)
                 {
                     foreach (RecipeLink link in recipe.linked)
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
-                if (recipe.linked_prepend != null)
+                else if (recipe.linked_prepend != null)
                 {
                     foreach (RecipeLink link in recipe.linked_prepend)
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
-                if (recipe.linked_append != null)
+                else if (recipe.linked_append != null)
                 {
                     foreach (RecipeLink link in recipe.linked_append)
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
@@ -1877,27 +1864,27 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
-                if (recipe.alt_prepend != null)
+                else if (recipe.alt_prepend != null)
                 {
                     foreach (RecipeLink link in recipe.alt_prepend)
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
-                if (recipe.alt_append != null)
+                else if (recipe.alt_append != null)
                 {
                     foreach (RecipeLink link in recipe.alt_append)
                     {
                         if (link.id == id)
                         {
-                            tmp.Add(guid, recipe);
+                            tmp[recipe.guid] = recipe;
                         }
                     }
                 }
@@ -1916,14 +1903,13 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(id) && recipe.deckeffects[id] > 0)
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
-                if (recipe.deckeffects_extend != null && recipe.deckeffects_extend.ContainsKey(id) && recipe.deckeffects_extend[id] > 0)
+                else if (recipe.deckeffects_extend != null && recipe.deckeffects_extend.ContainsKey(id) && recipe.deckeffects_extend[id] > 0)
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1940,10 +1926,9 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.ending != null && recipe.ending == id)
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1960,10 +1945,9 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                Guid guid = (Guid)recipesListView.Items[recipe.id].Tag;
                 if (recipe.actionId == id)
                 {
-                    tmp.Add(guid, recipe);
+                    tmp[recipe.guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1980,26 +1964,25 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
-                Guid guid = (Guid)elementsListView.Items[element.id].Tag;
                 if (element.slots != null)
                 {
                     foreach (Slot slot in element.slots)
                     {
-                        if (slot.actionId == id) tmp[guid] = element;
+                        if (slot.actionId == id) tmp[element.guid] = element;
                     }
                 }
-                if (element.slots_prepend != null)
+                else if (element.slots_prepend != null)
                 {
                     foreach (Slot slot in element.slots_prepend)
                     {
-                        if (slot.actionId == id) tmp[guid] = element;
+                        if (slot.actionId == id) tmp[element.guid] = element;
                     }
                 }
-                if (element.slots_append != null)
+                else if (element.slots_append != null)
                 {
                     foreach (Slot slot in element.slots_append)
                     {
-                        if (slot.actionId == id) tmp[guid] = element;
+                        if (slot.actionId == id) tmp[element.guid] = element;
                     }
                 }
             }
