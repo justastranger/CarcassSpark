@@ -298,7 +298,6 @@ namespace CarcassSpark.ObjectViewers
                     case "elements":
                         foreach (JToken element in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             if (element["xtriggers"] != null)
                             {
                                 foreach (JProperty xtrigger in element["xtriggers"])
@@ -312,10 +311,10 @@ namespace CarcassSpark.ObjectViewers
                             if (element["isAspect"] != null)
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
-                                Content.Aspects.Add(guid, deserializedAspect);
+                                Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
                                 ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
-                                    Tag = guid,
+                                    Tag = deserializedAspect.guid,
                                     Name = deserializedAspect.id
                                 };
                                 aspectsListView.Items.Add(aspectLVI);
@@ -334,10 +333,10 @@ namespace CarcassSpark.ObjectViewers
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
-                                Content.Aspects.Add(guid, deserializedAspect);
+                                Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
                                 ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
-                                    Tag = guid,
+                                    Tag = deserializedAspect.guid,
                                     Name = deserializedAspect.id
                                 };
                                 aspectsListView.Items.Add(aspectLVI);
@@ -356,10 +355,10 @@ namespace CarcassSpark.ObjectViewers
                             else
                             {
                                 Element deserializedElement = element.ToObject<Element>();
-                                Content.Elements.Add(guid, deserializedElement);
+                                Content.Elements.Add(deserializedElement.guid, deserializedElement);
                                 ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
                                 {
-                                    Tag = guid,
+                                    Tag = deserializedElement.guid,
                                     Name = deserializedElement.id
                                 };
                                 elementsListView.Items.Add(elementLVI);
@@ -380,12 +379,11 @@ namespace CarcassSpark.ObjectViewers
                     case "recipes":
                         foreach (JToken recipe in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                            Content.Recipes.Add(guid, deserializedRecipe);
+                            Content.Recipes.Add(deserializedRecipe.guid, deserializedRecipe);
                             ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
                             {
-                                Tag = guid,
+                                Tag = deserializedRecipe.guid,
                                 Name = deserializedRecipe.id
                             };
                             recipesListView.Items.Add(recipeLVI);
@@ -405,12 +403,11 @@ namespace CarcassSpark.ObjectViewers
                     case "decks":
                         foreach (JToken deck in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Deck deserializedDeck = deck.ToObject<Deck>();
-                            Content.Decks.Add(guid, deserializedDeck);
+                            Content.Decks.Add(deserializedDeck.guid, deserializedDeck);
                             ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
                             {
-                                Tag = guid,
+                                Tag = deserializedDeck.guid,
                                 Name = deserializedDeck.id
                             };
                             decksListView.Items.Add(deckLVI);
@@ -430,12 +427,11 @@ namespace CarcassSpark.ObjectViewers
                     case "legacies":
                         foreach (JToken legacy in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Legacy deserializedLegacy = legacy.ToObject<Legacy>();
-                            Content.Legacies.Add(guid, deserializedLegacy);
+                            Content.Legacies.Add(deserializedLegacy.guid, deserializedLegacy);
                             ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
                             {
-                                Tag = guid,
+                                Tag = deserializedLegacy.guid,
                                 Name = deserializedLegacy.id
                             };
                             legaciesListView.Items.Add(legacyLVI);
@@ -455,12 +451,11 @@ namespace CarcassSpark.ObjectViewers
                     case "endings":
                         foreach (JToken ending in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Ending deserializedEnding = ending.ToObject<Ending>();
-                            Content.Endings.Add(guid, deserializedEnding);
+                            Content.Endings.Add(deserializedEnding.guid, deserializedEnding);
                             ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
                             {
-                                Tag = guid,
+                                Tag = deserializedEnding.guid,
                                 Name = deserializedEnding.id
                             };
                             endingsListView.Items.Add(endingLVI);
@@ -480,12 +475,11 @@ namespace CarcassSpark.ObjectViewers
                     case "verbs":
                         foreach (JToken verb in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Verb deserializedVerb = verb.ToObject<Verb>();
-                            Content.Verbs.Add(guid, deserializedVerb);
+                            Content.Verbs.Add(deserializedVerb.guid, deserializedVerb);
                             ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
                             {
-                                Tag = guid,
+                                Tag = deserializedVerb.guid,
                                 Name = deserializedVerb.id
                             };
                             verbsListView.Items.Add(verbLVI);
@@ -505,9 +499,8 @@ namespace CarcassSpark.ObjectViewers
                     case "cultures":
                         foreach (JToken culture in parsedJToken.First.ToArray())
                         {
-                            Guid guid = Guid.NewGuid();
                             Culture deserializedCulture = culture.ToObject<Culture>();
-                            Content.Cultures.Add(guid, deserializedCulture);
+                            Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
                         }
                         return;
                     default:
