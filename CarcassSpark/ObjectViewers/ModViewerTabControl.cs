@@ -1074,7 +1074,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = aspectsListView.Groups[aspect.filename];
                         }
-                        ListViewItem item = new ListViewItem(aspect.id) { Tag = Utilities.GetGuid(aspect), Group = group, Name = aspect.id };
+                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
                         // group.Items.Add(item);
                         aspectsListView.Items.Add(item);
                     }
@@ -1095,7 +1095,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = aspectsListView.Groups[aspect.filename];
                     }
-                    ListViewItem item = new ListViewItem(aspect.id) { Tag = Utilities.GetGuid(aspect), Group = group, Name = aspect.id };
+                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
                     // group.Items.Add(item);
                     aspectsListView.Items.Add(item);
                 }
@@ -1124,7 +1124,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = elementsListView.Groups[element.filename];
                         }
-                        ListViewItem item = new ListViewItem(element.id) { Tag = Utilities.GetGuid(element), Group = group, Name = element.id };
+                        ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
                         // group.Items.Add(item);
                         elementsListView.Items.Add(item);
                     }
@@ -1145,7 +1145,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = elementsListView.Groups[element.filename];
                     }
-                    ListViewItem item = new ListViewItem(element.id) { Tag = Utilities.GetGuid(element), Group = group, Name = element.id };
+                    ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
                     // group.Items.Add(item);
                     elementsListView.Items.Add(item);
                 }
@@ -1174,7 +1174,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = recipesListView.Groups[recipe.filename];
                         }
-                        ListViewItem item = new ListViewItem(recipe.id) { Tag = Utilities.GetGuid(recipe), Group = group, Name = recipe.id };
+                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
                         // group.Items.Add(item);
                         recipesListView.Items.Add(item);
                     }
@@ -1195,7 +1195,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = recipesListView.Groups[recipe.filename];
                     }
-                    ListViewItem item = new ListViewItem(recipe.id) { Tag = Utilities.GetGuid(recipe), Group = group, Name = recipe.id };
+                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
                     // group.Items.Add(item);
                     recipesListView.Items.Add(item);
                 }
@@ -1224,7 +1224,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = decksListView.Groups[deck.filename];
                         }
-                        ListViewItem item = new ListViewItem(deck.id) { Tag = Utilities.GetGuid(deck), Group = group, Name = deck.id };
+                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
                         // group.Items.Add(item);
                         decksListView.Items.Add(item);
                     }
@@ -1245,7 +1245,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = decksListView.Groups[deck.filename];
                     }
-                    ListViewItem item = new ListViewItem(deck.id) { Tag = Utilities.GetGuid(deck), Group = group, Name = deck.id };
+                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
                     // group.Items.Add(item);
                     decksListView.Items.Add(item);
                 }
@@ -1274,7 +1274,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = legaciesListView.Groups[legacy.filename];
                         }
-                        ListViewItem item = new ListViewItem(legacy.id) { Tag = Utilities.GetGuid(legacy), Group = group, Name = legacy.id };
+                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
                         // group.Items.Add(item);
                         legaciesListView.Items.Add(item);
                     }
@@ -1295,7 +1295,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = legaciesListView.Groups[legacy.filename];
                     }
-                    ListViewItem item = new ListViewItem(legacy.id) { Tag = Utilities.GetGuid(legacy), Group = group, Name = legacy.id };
+                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
                     // group.Items.Add(item);
                     legaciesListView.Items.Add(item);
                 }
@@ -1324,7 +1324,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = endingsListView.Groups[ending.filename];
                         }
-                        ListViewItem item = new ListViewItem(ending.id) { Tag = Utilities.GetGuid(ending), Group = group, Name = ending.id };
+                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
                         // group.Items.Add(item);
                         endingsListView.Items.Add(item);
                     }
@@ -1345,7 +1345,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = endingsListView.Groups[ending.filename];
                     }
-                    ListViewItem item = new ListViewItem(ending.id) { Tag = Utilities.GetGuid(ending), Group = group, Name = ending.id };
+                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
                     // group.Items.Add(item);
                     endingsListView.Items.Add(item);
                 }
@@ -1374,7 +1374,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             group = verbsListView.Groups[verb.filename];
                         }
-                        ListViewItem item = new ListViewItem(verb.id) { Tag = Utilities.GetGuid(verb), Group = group, Name = verb.id };
+                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
                         // group.Items.Add(item);
                         verbsListView.Items.Add(item);
                     }
@@ -1395,7 +1395,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         group = verbsListView.Groups[verb.filename];
                     }
-                    ListViewItem item = new ListViewItem(verb.id) { Tag = Utilities.GetGuid(verb), Group = group, Name = verb.id };
+                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
                     // group.Items.Add(item);
                     verbsListView.Items.Add(item);
                 }
