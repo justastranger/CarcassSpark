@@ -1492,7 +1492,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Text.ToString();
+            string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1516,7 +1516,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Tag.ToString();
+            string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1540,7 +1540,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Tag.ToString();
+            string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1586,7 +1586,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Tag.ToString();
+            string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1618,7 +1618,7 @@ namespace CarcassSpark.ObjectViewers
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = aspectsListView.SelectedItems[0].Tag.ToString();
+            string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1656,7 +1656,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatDecayIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1676,7 +1676,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsThatXtriggerIntoThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count < 1) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -1712,7 +1712,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatRequireThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1752,7 +1752,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatProduceThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1784,7 +1784,7 @@ namespace CarcassSpark.ObjectViewers
         private void DecksThatContainThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Decks.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Deck> tmp = new Dictionary<Guid, Deck>();
             foreach (Deck deck in Content.Decks.Values)
             {
@@ -1812,7 +1812,7 @@ namespace CarcassSpark.ObjectViewers
         private void LegaciesThatStartWithThisElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (elementsListView.SelectedItems.Count != 1 || Content.Legacies.Count == 0) return;
-            string id = elementsListView.SelectedItems[0].Tag.ToString();
+            string id = elementsListView.SelectedItems[0].Text;
             Dictionary<Guid, Legacy> tmp = new Dictionary<Guid, Legacy>();
             foreach (Legacy legacy in Content.Legacies.Values)
             {
@@ -1836,7 +1836,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatLinkToThisRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = recipesListView.SelectedItems[0].Tag.ToString();
+            string id = recipesListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1912,7 +1912,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatDrawFromThisDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (decksListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = decksListView.SelectedItems[0].Tag.ToString();
+            string id = decksListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1936,7 +1936,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatCauseThisEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (endingsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = endingsListView.SelectedItems[0].Tag.ToString();
+            string id = endingsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1956,7 +1956,7 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesThatUseThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0) return;
-            string id = verbsListView.SelectedItems[0].Tag.ToString();
+            string id = verbsListView.SelectedItems[0].Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1976,7 +1976,7 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsWithSlotsForThisVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (verbsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0) return;
-            string id = verbsListView.SelectedItems[0].Tag.ToString();
+            string id = verbsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
