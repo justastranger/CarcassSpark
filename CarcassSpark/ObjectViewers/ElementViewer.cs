@@ -24,12 +24,14 @@ namespace CarcassSpark.ObjectViewers
         public Element displayedElement;
         bool editing;
         event EventHandler<Element> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
-        public ElementViewer(Element element, EventHandler<Element> SuccessCallback)
+        public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedElement = element;
             FillValues(element);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -41,11 +43,12 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ElementType elementType)
+        public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ElementType elementType, ListViewItem item)
         {
             InitializeComponent();
             displayedElement = element;
             FillValues(element);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -260,7 +263,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 return;
             }
-            AspectViewer av = new AspectViewer(Utilities.GetAspect(aspectID), null);
+            AspectViewer av = new AspectViewer(Utilities.GetAspect(aspectID), null, null);
             av.Show();
         }
 

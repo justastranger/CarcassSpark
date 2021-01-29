@@ -904,23 +904,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)elementsListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
             else
             {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null);
+                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            Guid guid = (Guid)elementsListView.Items[elementsListView.SelectedIndices[0]].Tag;
-            Content.Elements[guid] = result.Copy();
-            if (elementsListView.Items[elementsListView.SelectedIndices[0]].Text != result.id)
+            ElementViewer elementViewer = (ElementViewer)sender;
+            if ((Guid)elementViewer.associatedListViewItem.Tag != result.guid)
             {
-                elementsListView.SelectedItems[0].Text = result.id;
+                Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
+                elementViewer.associatedListViewItem.Tag = result.guid;
+                Content.Elements.Add(result.guid, result.Copy());
+            }
+            if (elementViewer.associatedListViewItem.Text != result.id)
+            {
+                elementViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2708,7 +2713,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(new Element(), ElementsList_Add);
+            ElementViewer ev = new ElementViewer(new Element(), ElementsList_Add, null);
             ev.Show();
         }
 
@@ -2942,12 +2947,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), ElementsList_Assign);
+                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
                     ev.Show();
                 }
                 else
                 {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), null);
+                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), null, elementsListView.SelectedItems[0]);
                     ev.Show();
                 }
             }
@@ -3266,7 +3271,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Element templateElement = JsonConvert.DeserializeObject<Element>(templateJson);
-                ElementViewer av = new ElementViewer(templateElement, ElementsList_Add);
+                ElementViewer av = new ElementViewer(templateElement, ElementsList_Add, null);
                 av.Show();
             }
         }
