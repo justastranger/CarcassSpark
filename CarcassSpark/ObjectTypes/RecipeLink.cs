@@ -10,6 +10,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class RecipeLink
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

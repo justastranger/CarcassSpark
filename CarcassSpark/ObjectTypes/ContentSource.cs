@@ -12,6 +12,7 @@ namespace CarcassSpark.ObjectTypes
 {
     public class ContentSource
     {
+        public Guid guid = Guid.NewGuid();
 
         public string currentDirectory;
         public Synopsis synopsis;

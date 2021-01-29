@@ -9,6 +9,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Culture
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         // id, endonym, exonym, and fontscript are all required
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, endonym, exonym, fontscript;

@@ -11,6 +11,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Slot
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, actionId;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

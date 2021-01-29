@@ -9,6 +9,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Expulsion
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> filter;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

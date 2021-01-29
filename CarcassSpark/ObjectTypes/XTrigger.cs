@@ -9,6 +9,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class XTrigger
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string morpheffect, id;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

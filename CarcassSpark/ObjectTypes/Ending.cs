@@ -11,6 +11,8 @@ namespace CarcassSpark.ObjectTypes
     {
         [JsonIgnore]
         public string filename;
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, image, flavour, anim, achievement, comments;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
