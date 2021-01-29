@@ -966,23 +966,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)legaciesListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign, legaciesListView.SelectedItems[0]);
                 lv.Show();
             }
             else
             {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), null);
+                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), null, legaciesListView.SelectedItems[0]);
                 lv.Show();
             }
         }
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            Guid guid = (Guid)legaciesListView.Items[legaciesListView.SelectedIndices[0]].Tag;
-            Content.Legacies[guid] = result.Copy();
-            if (legaciesListView.Items[legaciesListView.SelectedIndices[0]].Text != result.id)
+            LegacyViewer legacyViewer = (LegacyViewer)sender;
+            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.guid)
             {
-                legaciesListView.SelectedItems[0].Text = result.id;
+                Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
+                legacyViewer.associatedListViewItem.Tag = result.guid;
+                Content.Legacies.Add(result.guid, result.Copy());
+            }
+            if (legacyViewer.associatedListViewItem.Text != result.id)
+            {
+                legacyViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2736,7 +2741,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LegacyViewer lv = new LegacyViewer(new Legacy(), LegaciesList_Add);
+            LegacyViewer lv = new LegacyViewer(new Legacy(), LegaciesList_Add, null);
             lv.Show();
         }
 
@@ -3312,7 +3317,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Legacy templateLegacy = JsonConvert.DeserializeObject<Legacy>(templateJson);
-                LegacyViewer av = new LegacyViewer(templateLegacy, LegaciesList_Add);
+                LegacyViewer av = new LegacyViewer(templateLegacy, LegaciesList_Add, null);
                 av.Show();
             }
         }
