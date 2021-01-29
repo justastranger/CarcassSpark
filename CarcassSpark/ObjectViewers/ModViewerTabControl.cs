@@ -1028,23 +1028,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
                 vv.Show();
             }
             else
             {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null);
+                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null, verbsListView.SelectedItems[0]);
                 vv.Show();
             }
         }
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            Guid guid = (Guid)verbsListView.Items[verbsListView.SelectedIndices[0]].Tag;
-            Content.Verbs[guid] = result.Copy();
-            if (verbsListView.Items[verbsListView.SelectedIndices[0]].Text != result.id)
+            VerbViewer verbViewer = (VerbViewer)sender;
+            if ((Guid)verbViewer.associatedListViewItem.Tag != result.guid)
             {
-                verbsListView.SelectedItems[0].Text = result.id;
+                Content.Verbs.Remove((Guid)verbViewer.associatedListViewItem.Tag);
+                verbViewer.associatedListViewItem.Tag = result.guid;
+                Content.Verbs.Add(result.guid, result.Copy());
+            }
+            if (verbViewer.associatedListViewItem.Text != result.id)
+            {
+                verbViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2758,7 +2763,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VerbViewer vv = new VerbViewer(new Verb(), VerbsList_Add);
+            VerbViewer vv = new VerbViewer(new Verb(), VerbsList_Add, null);
             vv.Show();
         }
 
@@ -3346,7 +3351,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Verb templateVerb = JsonConvert.DeserializeObject<Verb>(templateJson);
-                VerbViewer av = new VerbViewer(templateVerb, VerbsList_Add);
+                VerbViewer av = new VerbViewer(templateVerb, VerbsList_Add, null);
                 av.Show();
             }
         }
@@ -3378,12 +3383,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), VerbsList_Assign);
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
                     vv.Show();
                 }
                 else
                 {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), null);
+                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), null, verbsListView.SelectedItems[0]);
                     vv.Show();
                 }
             }
