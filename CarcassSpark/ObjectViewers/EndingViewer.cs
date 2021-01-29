@@ -17,12 +17,14 @@ namespace CarcassSpark.ObjectViewers
         public Ending displayedEnding;
         bool editing;
         event EventHandler<Ending> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
-        public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback)
+        public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedEnding = ending;
             FillValues(ending);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);

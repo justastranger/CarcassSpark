@@ -935,12 +935,12 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)endingsListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
                 ev.Show();
             }
             else
             {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null);
+                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null, endingsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
@@ -2737,7 +2737,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EndingViewer ev = new EndingViewer(new Ending(), EndingsList_Add);
+            EndingViewer ev = new EndingViewer(new Ending(), EndingsList_Add, null);
             ev.Show();
         }
 
@@ -3319,7 +3319,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Ending templateEnding = JsonConvert.DeserializeObject<Ending>(templateJson);
-                EndingViewer av = new EndingViewer(templateEnding, EndingsList_Add);
+                EndingViewer av = new EndingViewer(templateEnding, EndingsList_Add, null);
                 av.Show();
             }
         }
@@ -3344,12 +3344,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), EndingsList_Assign);
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
                     ev.Show();
                 }
                 else
                 {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), null);
+                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), null, endingsListView.SelectedItems[0]);
                     ev.Show();
                 }
             }
