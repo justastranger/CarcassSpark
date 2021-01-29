@@ -16,11 +16,13 @@ namespace CarcassSpark.ObjectViewers
         public Aspect displayedAspect;
         Dictionary<string, Induces> inducesDictionary;
         event EventHandler<Aspect> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
-        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
+        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedAspect = aspect;
+            associatedListViewItem = item;
             FillValues(aspect);
             if (SuccessCallback != null)
             {

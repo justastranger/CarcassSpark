@@ -842,23 +842,28 @@ namespace CarcassSpark.ObjectViewers
             Guid id = (Guid)aspectsListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
             else
             {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null);
+                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
         }
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            Guid guid = (Guid)aspectsListView.Items[aspectsListView.SelectedIndices[0]].Tag;
-            Content.Aspects[guid] = result.Copy();
-            if (aspectsListView.Items[aspectsListView.SelectedIndices[0]].Text != result.id)
+            AspectViewer aspectViewer = (AspectViewer)sender;
+            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.guid)
             {
-                aspectsListView.SelectedItems[0].Text = result.id;
+                Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
+                aspectViewer.associatedListViewItem.Tag = result.guid;
+                Content.Aspects.Add(result.guid, result.Copy());
+            }
+            if (aspectViewer.associatedListViewItem.Text != result.id)
+            {
+                aspectViewer.associatedListViewItem.Text = result.id;
             }
         }
 
@@ -2692,7 +2697,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AspectViewer av = new AspectViewer(new Aspect(), AspectsList_Add);
+            AspectViewer av = new AspectViewer(new Aspect(), AspectsList_Add, null);
             av.Show();
         }
 
@@ -2913,12 +2918,12 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
                 if (editMode)
                 {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), AspectsList_Assign);
+                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
                     av.Show();
                 }
                 else
                 {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), null);
+                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), null, aspectsListView.SelectedItems[0]);
                     av.Show();
                 }
             }
@@ -3244,7 +3249,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 string templateJson = templateManager.selectedItem.Tag.ToString();
                 Aspect templateAspect = JsonConvert.DeserializeObject<Aspect>(templateJson);
-                AspectViewer av = new AspectViewer(templateAspect, AspectsList_Add);
+                AspectViewer av = new AspectViewer(templateAspect, AspectsList_Add, null);
                 av.Show();
             }
         }
