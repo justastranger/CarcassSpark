@@ -114,12 +114,12 @@ namespace CarcassSpark.ObjectViewers
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if(Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -129,12 +129,12 @@ namespace CarcassSpark.ObjectViewers
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -235,12 +235,12 @@ namespace CarcassSpark.ObjectViewers
             }
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -250,12 +250,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(requiredDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }

@@ -95,7 +95,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (Utilities.RecipeExists(idTextBox.Text))
             {
-                RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(idTextBox.Text), null);
+                RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(idTextBox.Text), null, null);
                 rv.Show();
             }
             else
@@ -190,12 +190,12 @@ namespace CarcassSpark.ObjectViewers
             switch (Utilities.GetIdType(id))
             {
                 case "aspect":
-                    AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                    AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                     av.Show();
                     break;
 
                 case "element":
-                    ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                    ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                     ev.Show();
                     break;
                 default:
@@ -211,7 +211,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void ChallengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AspectViewer av = new AspectViewer(Utilities.GetAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null);
+            AspectViewer av = new AspectViewer(Utilities.GetAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null, null);
             av.Show();
         }
 

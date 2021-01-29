@@ -34,7 +34,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             Element selectedElement = resultsWithId[resultsListBox.SelectedItem.ToString()];
-            ElementViewer ev = new ElementViewer(selectedElement.Copy(), null);
+            ElementViewer ev = new ElementViewer(selectedElement.Copy(), null, null);
             ev.Show();
         }
 

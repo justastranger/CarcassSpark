@@ -1808,7 +1808,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null, null);
                 vv.Show();
             }
         }
@@ -1818,7 +1818,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null, null);
                 vv.Show();
             }
         }

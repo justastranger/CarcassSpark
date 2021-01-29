@@ -25,13 +25,13 @@ namespace CarcassSpark.Tools
 
         private void InspectBaseButton_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(baseSummon, null);
+            ElementViewer ev = new ElementViewer(baseSummon, null, null);
             ev.Show();
         }
 
         private void InspectPreButton_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(preSummon, null);
+            ElementViewer ev = new ElementViewer(preSummon, null, null);
             ev.Show();
         }
 
@@ -73,20 +73,20 @@ namespace CarcassSpark.Tools
                 craftable = true
             };
 
-            RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.GENERATOR);
+            RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.GENERATOR, null);
             MessageBox.Show("The fields with red labels are required.", "Required Values");
             rv.Show();
         }
 
         private void InspectBaseRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(startSummon, null);
+            RecipeViewer rv = new RecipeViewer(startSummon, null, null);
             rv.Show();
         }
 
         private void InspectSuccessRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(succeedSummon, null);
+            RecipeViewer rv = new RecipeViewer(succeedSummon, null, null);
             rv.Show();
         }
 
@@ -175,7 +175,7 @@ namespace CarcassSpark.Tools
                 lifetime = 60
             };
             MessageBox.Show("The fields with red labels are required.", "Required Values");
-            ElementViewer ev = new ElementViewer(baseElement, BaseElement_Assign, ElementType.GENERATOR);
+            ElementViewer ev = new ElementViewer(baseElement, BaseElement_Assign, ElementType.GENERATOR, null);
             ev.Show();
         }
     }

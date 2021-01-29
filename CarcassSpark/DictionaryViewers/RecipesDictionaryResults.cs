@@ -34,7 +34,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             Recipe selectedRecipe = resultsWithId[resultsListBox.SelectedItem.ToString()];
-            RecipeViewer ev = new RecipeViewer(selectedRecipe.Copy(), null);
+            RecipeViewer ev = new RecipeViewer(selectedRecipe.Copy(), null, null);
             ev.Show();
         }
 

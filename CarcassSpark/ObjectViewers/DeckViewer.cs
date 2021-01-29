@@ -302,12 +302,12 @@ namespace CarcassSpark.ObjectViewers
             string id = specListView.SelectedItems[0].Text.ToString();
             if (id.Contains("deck:") && Utilities.DeckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null);
+                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null, null);
                 dv.Show();
             }
             else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
         }

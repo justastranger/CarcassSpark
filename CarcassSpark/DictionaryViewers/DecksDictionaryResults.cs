@@ -44,7 +44,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             Deck selectedDeck = resultsWithId[resultsListBox.SelectedItem.ToString()];
-            DeckViewer ev = new DeckViewer(selectedDeck.Copy(), null);
+            DeckViewer ev = new DeckViewer(selectedDeck.Copy(), null, null);
             ev.Show();
         }
     }

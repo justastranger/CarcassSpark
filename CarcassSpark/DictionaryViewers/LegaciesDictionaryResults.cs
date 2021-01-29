@@ -34,7 +34,7 @@ namespace CarcassSpark.DictionaryViewers
         {
             if (resultsListBox.SelectedItem == null) return;
             Legacy selectedLegacy = resultsWithId[resultsListBox.SelectedItem.ToString()];
-            LegacyViewer ev = new LegacyViewer(selectedLegacy.Copy(), null);
+            LegacyViewer ev = new LegacyViewer(selectedLegacy.Copy(), null, null);
             ev.Show();
         }
 

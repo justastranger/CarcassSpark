@@ -131,7 +131,7 @@ namespace CarcassSpark.ObjectViewers
         private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!(inducesDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
-            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null);
+            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null, null);
             rv.Show();
         }
         

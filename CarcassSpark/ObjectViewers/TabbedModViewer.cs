@@ -258,43 +258,43 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add);
+            AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add, null);
             av.Show();
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add);
+            ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add, null);
             ev.Show();
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add);
+            RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add, null);
             rv.Show();
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add);
+            DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add, null);
             dv.Show();
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add);
+            LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add, null);
             lv.Show();
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add);
+            EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add, null);
             ev.Show();
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add);
+            VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add, null);
             vv.Show();
         }
 
