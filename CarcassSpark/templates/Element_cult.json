@@ -1,0 +1,43 @@
+{
+    "aspects": {
+        "society": 1,
+    },
+    "slots": [
+        {
+            "id": "Associate",
+            "label": "Associate",
+            "actionid": "talk",
+            "required": {
+                "mortal": 1
+            },
+            "forbidden": {
+                "hunter": 1,
+                "hireling": 1,
+                "prisoner": 1
+            },
+            "description": "A new recruit, or a hardened disciple."
+        },
+        {
+            "id": "Ceremony",
+            "label": "Ceremony",
+            "actionid": "talk",
+            "required": {
+                "lore": 1
+            },
+            "description": "To recruit a novice, I only need a small secret. The higher mysteries require deeper oaths."
+        },
+        {
+            "id": "Trappings",
+            "label": "Trappings",
+            "actionid": "talk",
+            "required": {
+                "tool": 1,
+                "ingredient": 1,
+                "influence": 1
+            },
+            "description": "For a proper sense of occasion. Consumes Ingredients and Influences; uses, but does not consume, Tools."
+        }
+    ],
+    "unique": true,
+	"comments": "By SarahK"
+}
