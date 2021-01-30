@@ -1415,8 +1415,9 @@ namespace CarcassSpark.ObjectViewers
         {
             try
             {
+                
                 Regex regex = new Regex(searchPattern);
-                return (from aspect in aspectsList
+                return (from aspect in aspectsList.AsParallel()
                         where (aspect.id != null && regex.IsMatch(aspect.id))
                            || (aspect.label != null && regex.IsMatch(aspect.label))
                            || (aspect.description != null && regex.IsMatch(aspect.description))
@@ -1425,7 +1426,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from aspect in aspectsList
+                return (from aspect in aspectsList.AsParallel()
                         where (aspect.id != null && aspect.id.Contains(searchPattern))
                            || (aspect.label != null && aspect.label.Contains(searchPattern))
                            || (aspect.description != null && aspect.description.Contains(searchPattern))
@@ -1439,7 +1440,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from element in elementsList
+                return (from element in elementsList.AsParallel()
                         where (element.id != null && regex.IsMatch(element.id))
                            || (element.label != null && regex.IsMatch(element.label))
                            || (element.comments != null && regex.IsMatch(element.comments))
@@ -1447,7 +1448,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from element in elementsList
+                return (from element in elementsList.AsParallel()
                         where (element.id != null && element.id.Contains(searchPattern))
                            || (element.label != null && element.label.Contains(searchPattern))
                            || (element.comments != null && element.comments.Contains(searchPattern))
@@ -1461,7 +1462,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from recipe in recipesList
+                return (from recipe in recipesList.AsParallel()
                         where (recipe.id != null && regex.IsMatch(recipe.id))
                            || (recipe.label != null && regex.IsMatch(recipe.label))
                            || (recipe.description != null && regex.IsMatch(recipe.description))
@@ -1471,7 +1472,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from recipe in recipesList
+                return (from recipe in recipesList.AsParallel()
                         where (recipe.id != null && recipe.id.Contains(searchPattern))
                            || (recipe.label != null && recipe.label.Contains(searchPattern))
                            || (recipe.description != null && recipe.description.Contains(searchPattern))
@@ -1487,7 +1488,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from deck in decksList
+                return (from deck in decksList.AsParallel()
                         where (deck.id != null && regex.IsMatch(deck.id))
                            || (deck.label != null && regex.IsMatch(deck.label))
                            || (deck.description != null && regex.IsMatch(deck.description))
@@ -1496,7 +1497,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from deck in decksList
+                return (from deck in decksList.AsParallel()
                         where (deck.id != null && deck.id.Contains(searchPattern))
                            || (deck.label != null && deck.label.Contains(searchPattern))
                            || (deck.description != null && deck.description.Contains(searchPattern))
@@ -1510,7 +1511,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from legacy in recipesList
+                return (from legacy in recipesList.AsParallel()
                         where (legacy.id != null && regex.IsMatch(legacy.id))
                            || (legacy.label != null && regex.IsMatch(legacy.label))
                            || (legacy.description != null && regex.IsMatch(legacy.description))
@@ -1520,7 +1521,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from legacy in recipesList
+                return (from legacy in recipesList.AsParallel()
                         where (legacy.id != null && legacy.id.Contains(searchPattern))
                            || (legacy.label != null && legacy.label.Contains(searchPattern))
                            || (legacy.description != null && legacy.description.Contains(searchPattern))
@@ -1535,7 +1536,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from ending in recipesList
+                return (from ending in recipesList.AsParallel()
                         where (ending.id != null && regex.IsMatch(ending.id))
                            || (ending.label != null && regex.IsMatch(ending.label))
                            || (ending.description != null && regex.IsMatch(ending.description))
@@ -1544,7 +1545,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from ending in recipesList
+                return (from ending in recipesList.AsParallel()
                         where (ending.id != null && ending.id.Contains(searchPattern))
                            || (ending.label != null && ending.label.Contains(searchPattern))
                            || (ending.description != null && ending.description.Contains(searchPattern))
@@ -1558,7 +1559,7 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 Regex regex = new Regex(searchPattern);
-                return (from verb in recipesList
+                return (from verb in recipesList.AsParallel()
                         where (verb.id != null && regex.IsMatch(verb.id))
                            || (verb.label != null && regex.IsMatch(verb.label))
                            || (verb.description != null && regex.IsMatch(verb.description))
@@ -1567,7 +1568,7 @@ namespace CarcassSpark.ObjectViewers
             }
             catch (ArgumentException)
             {
-                return (from verb in recipesList
+                return (from verb in recipesList.AsParallel()
                         where (verb.id != null && verb.id.Contains(searchPattern))
                            || (verb.label != null && verb.label.Contains(searchPattern))
                            || (verb.description != null && verb.description.Contains(searchPattern))
