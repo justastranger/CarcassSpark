@@ -1413,80 +1413,167 @@ namespace CarcassSpark.ObjectViewers
 
         private Aspect[] SearchAspects(List<Aspect> aspectsList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from aspect in aspectsList
-                    where (aspect.id != null && regex.IsMatch(aspect.id))
-                       || (aspect.label != null && regex.IsMatch(aspect.label))
-                       || (aspect.description != null && regex.IsMatch(aspect.description))
-                       || (aspect.comments != null && regex.IsMatch(aspect.comments))
-                    select aspect).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from aspect in aspectsList
+                        where (aspect.id != null && regex.IsMatch(aspect.id))
+                           || (aspect.label != null && regex.IsMatch(aspect.label))
+                           || (aspect.description != null && regex.IsMatch(aspect.description))
+                           || (aspect.comments != null && regex.IsMatch(aspect.comments))
+                        select aspect).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from aspect in aspectsList
+                        where (aspect.id != null && aspect.id.Contains(searchPattern))
+                           || (aspect.label != null && aspect.label.Contains(searchPattern))
+                           || (aspect.description != null && aspect.description.Contains(searchPattern))
+                           || (aspect.comments != null && aspect.comments.Contains(searchPattern))
+                        select aspect).ToArray();
+            }
         }
 
         private Element[] SearchElements(List<Element> elementsList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from element in elementsList
-                    where (element.id != null && regex.IsMatch(element.id))
-                       || (element.label != null && regex.IsMatch(element.label))
-                       || (element.comments != null && regex.IsMatch(element.comments))
-                    select element).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from element in elementsList
+                        where (element.id != null && regex.IsMatch(element.id))
+                           || (element.label != null && regex.IsMatch(element.label))
+                           || (element.comments != null && regex.IsMatch(element.comments))
+                        select element).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from element in elementsList
+                        where (element.id != null && element.id.Contains(searchPattern))
+                           || (element.label != null && element.label.Contains(searchPattern))
+                           || (element.comments != null && element.comments.Contains(searchPattern))
+                        select element).ToArray();
+            }
+            
         }
 
         private Recipe[] SearchRecipes(List<Recipe> recipesList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from recipe in recipesList
-                    where (recipe.id != null && regex.IsMatch(recipe.id))
-                       || (recipe.label != null && regex.IsMatch(recipe.label)) 
-                       || (recipe.description != null && regex.IsMatch(recipe.description))
-                       || (recipe.startdescription != null && regex.IsMatch(recipe.startdescription))
-                       || (recipe.comments != null && regex.IsMatch(recipe.comments))
-                    select recipe).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from recipe in recipesList
+                        where (recipe.id != null && regex.IsMatch(recipe.id))
+                           || (recipe.label != null && regex.IsMatch(recipe.label))
+                           || (recipe.description != null && regex.IsMatch(recipe.description))
+                           || (recipe.startdescription != null && regex.IsMatch(recipe.startdescription))
+                           || (recipe.comments != null && regex.IsMatch(recipe.comments))
+                        select recipe).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from recipe in recipesList
+                        where (recipe.id != null && recipe.id.Contains(searchPattern))
+                           || (recipe.label != null && recipe.label.Contains(searchPattern))
+                           || (recipe.description != null && recipe.description.Contains(searchPattern))
+                           || (recipe.startdescription != null && recipe.startdescription.Contains(searchPattern))
+                           || (recipe.comments != null && recipe.comments.Contains(searchPattern))
+                        select recipe).ToArray();
+            }
+            
         }
 
         private Deck[] SearchDecks(List<Deck> decksList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from deck in decksList
-                    where (deck.id != null && regex.IsMatch(deck.id))
-                       || (deck.label != null && regex.IsMatch(deck.label))
-                       || (deck.description != null && regex.IsMatch(deck.description))
-                       || (deck.comments != null && regex.IsMatch(deck.comments))
-                    select deck).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from deck in decksList
+                        where (deck.id != null && regex.IsMatch(deck.id))
+                           || (deck.label != null && regex.IsMatch(deck.label))
+                           || (deck.description != null && regex.IsMatch(deck.description))
+                           || (deck.comments != null && regex.IsMatch(deck.comments))
+                        select deck).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from deck in decksList
+                        where (deck.id != null && deck.id.Contains(searchPattern))
+                           || (deck.label != null && deck.label.Contains(searchPattern))
+                           || (deck.description != null && deck.description.Contains(searchPattern))
+                           || (deck.comments != null && deck.comments.Contains(searchPattern))
+                        select deck).ToArray();
+            }
         }
 
         private Legacy[] SearchLegacies(List<Legacy> recipesList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from legacy in recipesList
-                    where (legacy.id != null && regex.IsMatch(legacy.id))
-                       || (legacy.label != null && regex.IsMatch(legacy.label))
-                       || (legacy.description != null && regex.IsMatch(legacy.description))
-                       || (legacy.startdescription != null && regex.IsMatch(legacy.startdescription))
-                       || (legacy.comments != null && regex.IsMatch(legacy.comments))
-                    select legacy).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from legacy in recipesList
+                        where (legacy.id != null && regex.IsMatch(legacy.id))
+                           || (legacy.label != null && regex.IsMatch(legacy.label))
+                           || (legacy.description != null && regex.IsMatch(legacy.description))
+                           || (legacy.startdescription != null && regex.IsMatch(legacy.startdescription))
+                           || (legacy.comments != null && regex.IsMatch(legacy.comments))
+                        select legacy).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from legacy in recipesList
+                        where (legacy.id != null && legacy.id.Contains(searchPattern))
+                           || (legacy.label != null && legacy.label.Contains(searchPattern))
+                           || (legacy.description != null && legacy.description.Contains(searchPattern))
+                           || (legacy.startdescription != null && legacy.startdescription.Contains(searchPattern))
+                           || (legacy.comments != null && legacy.comments.Contains(searchPattern))
+                        select legacy).ToArray();
+            }
         }
 
         private Ending[] SearchEndings(List<Ending> recipesList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from ending in recipesList
-                    where (ending.id != null && regex.IsMatch(ending.id))
-                       || (ending.label != null && regex.IsMatch(ending.label))
-                       || (ending.description != null && regex.IsMatch(ending.description))
-                       || (ending.comments != null && regex.IsMatch(ending.comments))
-                    select ending).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from ending in recipesList
+                        where (ending.id != null && regex.IsMatch(ending.id))
+                           || (ending.label != null && regex.IsMatch(ending.label))
+                           || (ending.description != null && regex.IsMatch(ending.description))
+                           || (ending.comments != null && regex.IsMatch(ending.comments))
+                        select ending).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from ending in recipesList
+                        where (ending.id != null && ending.id.Contains(searchPattern))
+                           || (ending.label != null && ending.label.Contains(searchPattern))
+                           || (ending.description != null && ending.description.Contains(searchPattern))
+                           || (ending.comments != null && ending.comments.Contains(searchPattern))
+                        select ending).ToArray();
+            }
         }
 
         private Verb[] SearchVerbs(List<Verb> recipesList, string searchPattern)
         {
-            Regex regex = new Regex(searchPattern);
-            return (from verb in recipesList
-                    where (verb.id != null && regex.IsMatch(verb.id))
-                       || (verb.label != null && regex.IsMatch(verb.label))
-                       || (verb.description != null && regex.IsMatch(verb.description))
-                       || (verb.comments != null && regex.IsMatch(verb.comments))
-                    select verb).ToArray();
+            try
+            {
+                Regex regex = new Regex(searchPattern);
+                return (from verb in recipesList
+                        where (verb.id != null && regex.IsMatch(verb.id))
+                           || (verb.label != null && regex.IsMatch(verb.label))
+                           || (verb.description != null && regex.IsMatch(verb.description))
+                           || (verb.comments != null && regex.IsMatch(verb.comments))
+                        select verb).ToArray();
+            }
+            catch (ArgumentException)
+            {
+                return (from verb in recipesList
+                        where (verb.id != null && verb.id.Contains(searchPattern))
+                           || (verb.label != null && verb.label.Contains(searchPattern))
+                           || (verb.description != null && verb.description.Contains(searchPattern))
+                           || (verb.comments != null && verb.comments.Contains(searchPattern))
+                        select verb).ToArray();
+            }
         }
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
