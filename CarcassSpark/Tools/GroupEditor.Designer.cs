@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupEditor));
             this.groupComboBox = new System.Windows.Forms.ComboBox();
             this.okBbutton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -75,8 +76,10 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okBbutton);
             this.Controls.Add(this.groupComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GroupEditor";
-            this.Text = "GroupEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Group Editor";
             this.ResumeLayout(false);
 
         }

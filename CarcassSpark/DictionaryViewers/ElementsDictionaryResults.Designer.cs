@@ -80,6 +80,7 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.resultsListBox);
             this.Name = "ElementsDictionaryResults";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ElementsWithAspectResults";
             this.ResumeLayout(false);
 

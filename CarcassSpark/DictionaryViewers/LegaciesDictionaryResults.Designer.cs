@@ -78,6 +78,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Name = "LegaciesDictionaryResults";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LegaciesDictionaryResults";
             this.ResumeLayout(false);
 

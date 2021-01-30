@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageImporter));
             this.displayPictureBox = new System.Windows.Forms.PictureBox();
             this.typeLabel = new System.Windows.Forms.Label();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
@@ -130,10 +131,11 @@
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.displayPictureBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(300, 388);
             this.Name = "ImageImporter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ImageImporter";
+            this.Text = "Image Importer";
             ((System.ComponentModel.ISupportInitialize)(this.displayPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

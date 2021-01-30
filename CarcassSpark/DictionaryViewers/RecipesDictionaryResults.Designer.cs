@@ -80,6 +80,7 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.resultsListBox);
             this.Name = "RecipesDictionaryResults";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RecipesDictionaryResults";
             this.ResumeLayout(false);
 

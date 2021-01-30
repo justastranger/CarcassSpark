@@ -31,6 +31,7 @@ namespace CarcassSpark.Tools
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TemplateManager));
             this.templatesListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.scintilla1 = new ScintillaNET.Scintilla();
@@ -132,8 +133,10 @@ namespace CarcassSpark.Tools
             this.Controls.Add(this.newTemplateButton);
             this.Controls.Add(this.scintilla1);
             this.Controls.Add(this.templatesListView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TemplateManager";
-            this.Text = "TemplateManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Template Manager";
             this.ResumeLayout(false);
 
         }

@@ -169,7 +169,7 @@
             this.MinimumSize = new System.Drawing.Size(234, 225);
             this.Name = "MutationViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MutationViewer";
+            this.Text = "Mutation Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1673,7 +1673,7 @@
             this.MinimumSize = new System.Drawing.Size(1055, 707);
             this.Name = "RecipeViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RecipeViewer";
+            this.Text = "Recipe Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).EndInit();

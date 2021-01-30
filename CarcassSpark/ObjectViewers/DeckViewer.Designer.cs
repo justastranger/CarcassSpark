@@ -415,7 +415,7 @@
             this.MinimumSize = new System.Drawing.Size(574, 451);
             this.Name = "DeckViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DeckViewer";
+            this.Text = "Deck Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

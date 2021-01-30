@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CultureViewer));
             this.idLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.endonymTextBox = new System.Windows.Forms.TextBox();
@@ -218,8 +219,10 @@
             this.Controls.Add(this.endonymTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.idLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CultureViewer";
-            this.Text = "CultureViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Culture Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.UiLabelDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssetBrowser));
             this.assetsListView = new System.Windows.Forms.ListView();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
             this.assetsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyImageIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
             this.assetsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +54,20 @@
             this.assetsListView.UseCompatibleStateImageBehavior = false;
             this.assetsListView.View = System.Windows.Forms.View.Tile;
             this.assetsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.AssetsListView_MouseDoubleClick);
+            // 
+            // assetsContextMenuStrip
+            // 
+            this.assetsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyImageIDToolStripMenuItem});
+            this.assetsContextMenuStrip.Name = "assetsContextMenuStrip";
+            this.assetsContextMenuStrip.Size = new System.Drawing.Size(153, 26);
+            // 
+            // copyImageIDToolStripMenuItem
+            // 
+            this.copyImageIDToolStripMenuItem.Name = "copyImageIDToolStripMenuItem";
+            this.copyImageIDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyImageIDToolStripMenuItem.Text = "Copy Image ID";
+            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.CopyImageIDToolStripMenuItem_Click);
             // 
             // cancelButton
             // 
@@ -77,20 +92,6 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // assetsContextMenuStrip
-            // 
-            this.assetsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyImageIDToolStripMenuItem});
-            this.assetsContextMenuStrip.Name = "assetsContextMenuStrip";
-            this.assetsContextMenuStrip.Size = new System.Drawing.Size(181, 48);
-            // 
-            // copyImageIDToolStripMenuItem
-            // 
-            this.copyImageIDToolStripMenuItem.Name = "copyImageIDToolStripMenuItem";
-            this.copyImageIDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyImageIDToolStripMenuItem.Text = "Copy Image ID";
-            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.CopyImageIDToolStripMenuItem_Click);
-            // 
             // AssetBrowser
             // 
             this.AcceptButton = this.okButton;
@@ -101,8 +102,10 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.assetsListView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AssetBrowser";
-            this.Text = "AssetBrowser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Asset Browser";
             this.assetsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 

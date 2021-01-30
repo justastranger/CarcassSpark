@@ -265,7 +265,7 @@
             this.MinimumSize = new System.Drawing.Size(370, 459);
             this.Name = "VerbViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VerbViewer";
+            this.Text = "Verb Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -181,7 +181,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 341);
             this.Name = "XTriggerViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "XTriggerViewer";
+            this.Text = "XTrigger Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
