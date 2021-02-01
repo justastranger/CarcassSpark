@@ -11,6 +11,7 @@ using CarcassSpark.DictionaryViewers;
 using CarcassSpark.Flowchart;
 using CarcassSpark.Tools;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -810,6 +811,16 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
+        }
+
+        private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo()
+            {
+                FileName = "Explorer.exe",
+                Arguments = SelectedModViewer.Content.currentDirectory
+            };
+            Process.Start(startInfo);
         }
     }
 }

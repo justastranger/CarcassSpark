@@ -72,6 +72,7 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openModToolStripMenuItem,
             this.newModToolStripMenuItem,
+            this.openInExplorerToolStripMenuItem,
             this.openManifestToolStripMenuItem,
             this.reloadContentToolStripMenuItem,
             this.saveModToolStripMenuItem,
@@ -444,6 +446,13 @@
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
             // 
+            // openInExplorerToolStripMenuItem
+            // 
+            this.openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
+            this.openInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.openInExplorerToolStripMenuItem.Text = "Open in Explorer";
+            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openInExplorerToolStripMenuItem_Click);
+            // 
             // TabbedModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,6 +518,7 @@
         private System.Windows.Forms.ToolStripMenuItem assetBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton aboutToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem openInExplorerToolStripMenuItem;
     }
 }
 
