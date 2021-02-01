@@ -170,6 +170,7 @@
             this.drawsNumericUpDown.TabIndex = 8;
             this.ToolTip.SetToolTip(this.drawsNumericUpDown, "The number of times the deck will be drawn from when this deck is an internal dec" +
         "k for a recipe.");
+            this.drawsNumericUpDown.ValueChanged += new System.EventHandler(this.DrawsNumericUpDown_ValueChanged);
             // 
             // drawsLabel
             // 

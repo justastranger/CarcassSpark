@@ -449,5 +449,10 @@ namespace CarcassSpark.ObjectViewers
                 else displayedDeck.extends = null;
             }
         }
+
+        private void DrawsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            displayedDeck.draws = Convert.ToInt32(drawsNumericUpDown.Value);
+        }
     }
 }
