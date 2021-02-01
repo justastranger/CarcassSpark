@@ -452,6 +452,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DrawsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            if (drawsNumericUpDown.Value == 0)
+            {
+                displayedDeck.draws = null;
+                return;
+            }
             displayedDeck.draws = Convert.ToInt32(drawsNumericUpDown.Value);
         }
     }
