@@ -451,7 +451,7 @@
             this.openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
             this.openInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.openInExplorerToolStripMenuItem.Text = "Open in Explorer";
-            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openInExplorerToolStripMenuItem_Click);
+            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.OpenInExplorerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 

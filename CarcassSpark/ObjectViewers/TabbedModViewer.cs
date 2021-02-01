@@ -813,7 +813,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo()
             {
