@@ -2021,7 +2021,7 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.deleted = null;
         }
 
-        private void extendsTextBox_TextChanged_1(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged_1(object sender, EventArgs e)
         {
             if (extendsTextBox.Text.Contains(","))
             {

@@ -19,8 +19,7 @@ namespace CarcassSpark.ObjectViewers
     }
     public partial class ElementViewer : Form
     {
-
-        Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
+        readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         public Element displayedElement;
         bool editing;
         event EventHandler<Element> SuccessCallback;

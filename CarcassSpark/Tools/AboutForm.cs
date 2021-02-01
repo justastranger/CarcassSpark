@@ -22,7 +22,7 @@ namespace CarcassSpark.Tools
             pictureBox1.Image = Resources.toolforgef.ToBitmap();
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
         }

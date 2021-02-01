@@ -1607,7 +1607,7 @@
             this.extendsTextBox.TabIndex = 51;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged_1);
             // 
             // extendsLabel
             // 

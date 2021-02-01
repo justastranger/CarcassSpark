@@ -53,7 +53,7 @@
             this.okButton.TabIndex = 1;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -64,7 +64,7 @@
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // newCultureButton
             // 
@@ -74,7 +74,7 @@
             this.newCultureButton.TabIndex = 3;
             this.newCultureButton.Text = "New Culture";
             this.newCultureButton.UseVisualStyleBackColor = true;
-            this.newCultureButton.Click += new System.EventHandler(this.newCultureButton_Click);
+            this.newCultureButton.Click += new System.EventHandler(this.NewCultureButton_Click);
             // 
             // deleteButton
             // 
@@ -84,7 +84,7 @@
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // CulturesViewer
             // 

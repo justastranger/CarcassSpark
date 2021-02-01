@@ -49,7 +49,7 @@ namespace CarcassSpark.Tools
             group = groupComboBox.Text;
         }
 
-        private void okBbutton_Click(object sender, EventArgs e)
+        private void OkBbutton_Click(object sender, EventArgs e)
         {
             if (group == "" || group == null)
             {
@@ -65,12 +65,12 @@ namespace CarcassSpark.Tools
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void GroupComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             group = groupComboBox.Text;
         }

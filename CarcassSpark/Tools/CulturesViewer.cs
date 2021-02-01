@@ -75,18 +75,18 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void newCultureButton_Click(object sender, EventArgs e)
+        private void NewCultureButton_Click(object sender, EventArgs e)
         {
             CultureViewer cultureViewer = new CultureViewer(new Culture(), true);
             if (cultureViewer.ShowDialog() == DialogResult.OK)
@@ -99,7 +99,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (culturesListBox.SelectedItem == null) return;
             string id = culturesListBox.SelectedItem as string;

@@ -703,7 +703,7 @@ namespace CarcassSpark.ObjectViewers
             jc.ShowDialog();
         }
 
-        private void saveSplitterLocationsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveSplitterLocationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bool @checked = saveSplitterLocationsToolStripMenuItem.Checked;
             saveSplitterLocationsToolStripMenuItem.Checked = !@checked;
@@ -753,7 +753,7 @@ namespace CarcassSpark.ObjectViewers
             SelectedModViewer.SaveManifests(SelectedModViewer.Content.currentDirectory);
         }
 
-        private void culturesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CulturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures, SelectedModViewer.editMode);
             if (cv.ShowDialog() == DialogResult.OK)
@@ -762,19 +762,19 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void assetBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AssetBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AssetBrowser ab = new AssetBrowser();
             ab.Show();
         }
 
-        private void templateManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TemplateManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager();
             templateManager.Show();
         }
 
-        private void aboutToolStripButton_Click(object sender, EventArgs e)
+        private void AboutToolStripButton_Click(object sender, EventArgs e)
         {
             new AboutForm().Show();
         }
