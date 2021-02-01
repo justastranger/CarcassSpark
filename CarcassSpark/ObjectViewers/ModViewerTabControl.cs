@@ -1058,27 +1058,25 @@ namespace CarcassSpark.ObjectViewers
             aspectsListView.BeginUpdate();
             if (aspectsSearchTextBox.Text != "")
             {
-                if (aspectsSearchTextBox.Text.Length >= 3)
+                Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                aspectsListView.Items.Clear();
+                foreach (Aspect aspect in aspectsToAdd)
                 {
-                    Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    aspectsListView.Items.Clear();
-                    foreach (Aspect aspect in aspectsToAdd)
+                    ListViewGroup group;
+                    if (aspectsListView.Groups[aspect.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (aspectsListView.Groups[aspect.filename] == null)
-                        {
-                            group = new ListViewGroup(aspect.filename, aspect.filename);
-                        }
-                        else
-                        {
-                            group = aspectsListView.Groups[aspect.filename];
-                        }
-                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
-                        // group.Items.Add(item);
-                        aspectsListView.Items.Add(item);
+                        group = new ListViewGroup(aspect.filename, aspect.filename);
                     }
+                    else
+                    {
+                        group = aspectsListView.Groups[aspect.filename];
+                    }
+                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                aspectsListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1097,8 +1095,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
                     // group.Items.Add(item);
-                    aspectsListView.Items.Add(item);
+                    items.Add(item);
                 }
+                aspectsListView.Items.AddRange(items.ToArray());
             }
             aspectsListView.EndUpdate();
         }
@@ -1108,27 +1107,25 @@ namespace CarcassSpark.ObjectViewers
             elementsListView.BeginUpdate();
             if (elementsSearchTextBox.Text != "")
             {
-                if (elementsSearchTextBox.Text.Length >= 3)
+                Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                elementsListView.Items.Clear();
+                foreach (Element element in elementsToAdd)
                 {
-                    Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    elementsListView.Items.Clear();
-                    foreach (Element element in elementsToAdd)
+                    ListViewGroup group;
+                    if (elementsListView.Groups[element.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (elementsListView.Groups[element.filename] == null)
-                        {
-                            group = new ListViewGroup(element.filename, element.filename);
-                        }
-                        else
-                        {
-                            group = elementsListView.Groups[element.filename];
-                        }
-                        ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
-                        // group.Items.Add(item);
-                        elementsListView.Items.Add(item);
+                        group = new ListViewGroup(element.filename, element.filename);
                     }
+                    else
+                    {
+                        group = elementsListView.Groups[element.filename];
+                    }
+                    ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                elementsListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1147,8 +1144,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
                     // group.Items.Add(item);
-                    elementsListView.Items.Add(item);
+                    items.Add(item);
                 }
+                elementsListView.Items.AddRange(items.ToArray());
             }
             elementsListView.EndUpdate();
         }
@@ -1158,27 +1156,25 @@ namespace CarcassSpark.ObjectViewers
             recipesListView.BeginUpdate();
             if (recipesSearchTextBox.Text != "")
             {
-                if (recipesSearchTextBox.Text.Length >= 3)
+                Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                recipesListView.Items.Clear();
+                foreach (Recipe recipe in recipesToAdd)
                 {
-                    Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    recipesListView.Items.Clear();
-                    foreach (Recipe recipe in recipesToAdd)
+                    ListViewGroup group;
+                    if (recipesListView.Groups[recipe.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (recipesListView.Groups[recipe.filename] == null)
-                        {
-                            group = new ListViewGroup(recipe.filename, recipe.filename);
-                        }
-                        else
-                        {
-                            group = recipesListView.Groups[recipe.filename];
-                        }
-                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
-                        // group.Items.Add(item);
-                        recipesListView.Items.Add(item);
+                        group = new ListViewGroup(recipe.filename, recipe.filename);
                     }
+                    else
+                    {
+                        group = recipesListView.Groups[recipe.filename];
+                    }
+                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                recipesListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1197,8 +1193,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
                     // group.Items.Add(item);
-                    recipesListView.Items.Add(item);
+                    items.Add(item);
                 }
+                recipesListView.Items.AddRange(items.ToArray());
             }
             recipesListView.EndUpdate();
         }
@@ -1208,27 +1205,25 @@ namespace CarcassSpark.ObjectViewers
             decksListView.BeginUpdate();
             if (decksSearchTextBox.Text != "")
             {
-                if (decksSearchTextBox.Text.Length >= 3)
+                Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                decksListView.Items.Clear();
+                foreach (Deck deck in decksToAdd)
                 {
-                    Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    decksListView.Items.Clear();
-                    foreach (Deck deck in decksToAdd)
+                    ListViewGroup group;
+                    if (decksListView.Groups[deck.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (decksListView.Groups[deck.filename] == null)
-                        {
-                            group = new ListViewGroup(deck.filename, deck.filename);
-                        }
-                        else
-                        {
-                            group = decksListView.Groups[deck.filename];
-                        }
-                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
-                        // group.Items.Add(item);
-                        decksListView.Items.Add(item);
+                        group = new ListViewGroup(deck.filename, deck.filename);
                     }
+                    else
+                    {
+                        group = decksListView.Groups[deck.filename];
+                    }
+                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                decksListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1247,8 +1242,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
                     // group.Items.Add(item);
-                    decksListView.Items.Add(item);
+                    items.Add(item);
                 }
+                decksListView.Items.AddRange(items.ToArray());
             }
             decksListView.EndUpdate();
         }
@@ -1258,27 +1254,25 @@ namespace CarcassSpark.ObjectViewers
             legaciesListView.BeginUpdate();
             if (legaciesSearchTextBox.Text != "")
             {
-                if (legaciesSearchTextBox.Text.Length >= 3)
+                Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                legaciesListView.Items.Clear();
+                foreach (Legacy legacy in legaciesToAdd)
                 {
-                    Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    legaciesListView.Items.Clear();
-                    foreach (Legacy legacy in legaciesToAdd)
+                    ListViewGroup group;
+                    if (legaciesListView.Groups[legacy.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (legaciesListView.Groups[legacy.filename] == null)
-                        {
-                            group = new ListViewGroup(legacy.filename, legacy.filename);
-                        }
-                        else
-                        {
-                            group = legaciesListView.Groups[legacy.filename];
-                        }
-                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
-                        // group.Items.Add(item);
-                        legaciesListView.Items.Add(item);
+                        group = new ListViewGroup(legacy.filename, legacy.filename);
                     }
+                    else
+                    {
+                        group = legaciesListView.Groups[legacy.filename];
+                    }
+                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                legaciesListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1297,8 +1291,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
                     // group.Items.Add(item);
-                    legaciesListView.Items.Add(item);
+                    items.Add(item);
                 }
+                legaciesListView.Items.AddRange(items.ToArray());
             }
             legaciesListView.EndUpdate();
         }
@@ -1308,27 +1303,25 @@ namespace CarcassSpark.ObjectViewers
             endingsListView.BeginUpdate();
             if (endingsSearchTextBox.Text != "")
             {
-                if (endingsSearchTextBox.Text.Length >= 3)
+                Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                endingsListView.Items.Clear();
+                foreach (Ending ending in endingsToAdd)
                 {
-                    Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    endingsListView.Items.Clear();
-                    foreach (Ending ending in endingsToAdd)
+                    ListViewGroup group;
+                    if (endingsListView.Groups[ending.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (endingsListView.Groups[ending.filename] == null)
-                        {
-                            group = new ListViewGroup(ending.filename, ending.filename);
-                        }
-                        else
-                        {
-                            group = endingsListView.Groups[ending.filename];
-                        }
-                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
-                        // group.Items.Add(item);
-                        endingsListView.Items.Add(item);
+                        group = new ListViewGroup(ending.filename, ending.filename);
                     }
+                    else
+                    {
+                        group = endingsListView.Groups[ending.filename];
+                    }
+                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                endingsListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1347,8 +1340,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
                     // group.Items.Add(item);
-                    endingsListView.Items.Add(item);
+                    items.Add(item);
                 }
+                endingsListView.Items.AddRange(items.ToArray());
             }
             endingsListView.EndUpdate();
         }
@@ -1358,27 +1352,25 @@ namespace CarcassSpark.ObjectViewers
             verbsListView.BeginUpdate();
             if (verbsSearchTextBox.Text != "")
             {
-                if (verbsSearchTextBox.Text.Length >= 3)
+                Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                verbsListView.Items.Clear();
+                foreach (Verb verb in verbsToAdd)
                 {
-                    Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
-                    List<ListViewItem> items = new List<ListViewItem>();
-                    verbsListView.Items.Clear();
-                    foreach (Verb verb in verbsToAdd)
+                    ListViewGroup group;
+                    if (verbsListView.Groups[verb.filename] == null)
                     {
-                        ListViewGroup group;
-                        if (verbsListView.Groups[verb.filename] == null)
-                        {
-                            group = new ListViewGroup(verb.filename, verb.filename);
-                        }
-                        else
-                        {
-                            group = verbsListView.Groups[verb.filename];
-                        }
-                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
-                        // group.Items.Add(item);
-                        verbsListView.Items.Add(item);
+                        group = new ListViewGroup(verb.filename, verb.filename);
                     }
+                    else
+                    {
+                        group = verbsListView.Groups[verb.filename];
+                    }
+                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
+                verbsListView.Items.AddRange(items.ToArray());
             }
             else
             {
@@ -1397,8 +1389,9 @@ namespace CarcassSpark.ObjectViewers
                     }
                     ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
                     // group.Items.Add(item);
-                    verbsListView.Items.Add(item);
+                    items.Add(item);
                 }
+                verbsListView.Items.AddRange(items.ToArray());
             }
             verbsListView.EndUpdate();
         }
