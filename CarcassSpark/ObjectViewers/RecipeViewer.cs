@@ -884,9 +884,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.requirements_extend == null) displayedRecipe.requirements_extend = new Dictionary<string, string>();
                         displayedRecipe.requirements_extend[key] = value;
                     }
@@ -897,6 +898,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.requirements == null) displayedRecipe.requirements = new Dictionary<string, string>();
                         displayedRecipe.requirements[key] = value;
                     }
@@ -911,9 +913,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.extantreqs_extend == null) displayedRecipe.extantreqs_extend = new Dictionary<string, string>();
                         displayedRecipe.extantreqs_extend[key] = value;
                     }
@@ -924,6 +927,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.extantreqs == null) displayedRecipe.extantreqs = new Dictionary<string, string>();
                         displayedRecipe.extantreqs[key] = value;
                     }
@@ -938,9 +942,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.tablereqs_extend == null) displayedRecipe.tablereqs_extend = new Dictionary<string, string>();
                         displayedRecipe.tablereqs_extend[key] = value;
                     }
@@ -951,6 +956,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.tablereqs == null) displayedRecipe.tablereqs = new Dictionary<string, string>();
                         displayedRecipe.tablereqs[key] = value;
                     }
@@ -965,9 +971,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.effects_extend == null) displayedRecipe.effects_extend = new Dictionary<string, string>();
                         displayedRecipe.effects_extend[key] = value;
                     }
@@ -978,6 +985,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.effects == null) displayedRecipe.effects = new Dictionary<string, string>();
                         displayedRecipe.effects[key] = value;
                     }
