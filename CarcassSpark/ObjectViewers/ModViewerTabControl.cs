@@ -2348,7 +2348,7 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                if (deserializedRecipe.Equals(recipeToEdit))
+                if (!deserializedRecipe.Equals(recipeToEdit))
                 {
                     // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                     Content.Recipes[guid] = deserializedRecipe.Copy();
@@ -2372,7 +2372,7 @@ namespace CarcassSpark.ObjectViewers
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                if (deserializedDeck.Equals(deckToEdit))
+                if (!deserializedDeck.Equals(deckToEdit))
                 {
                     // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                     Content.Decks[guid] = deserializedDeck.Copy();
