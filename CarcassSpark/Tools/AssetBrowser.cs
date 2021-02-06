@@ -40,7 +40,10 @@ namespace CarcassSpark.Tools
                 string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
                 ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
 
-                if (objectType != "all" && objectType != folder) continue;
+                if (objectType != "all" && objectType != folder)
+                {
+                    continue;
+                }
 
                 if (!assetsListView.Groups.Contains(folderGroup))
                 {
@@ -102,8 +105,10 @@ namespace CarcassSpark.Tools
         private void ContentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             objectType = contentTypeComboBox.Text.ToLower();
-            if(contentTypeComboBox.SelectedIndex != contentTypeComboBox.Items.Count)
+            if (contentTypeComboBox.SelectedIndex != contentTypeComboBox.Items.Count)
+            {
                 assetsListView.Groups.Clear();
+            }
             LoadAssets();
         }
     }
