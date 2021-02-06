@@ -35,6 +35,7 @@
             this.copyImageIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
+            this.contentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.assetsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +93,30 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
+            // contentTypeComboBox
+            // 
+            this.contentTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.contentTypeComboBox.FormattingEnabled = true;
+            this.contentTypeComboBox.Items.AddRange(new object[] {
+                "Aspects",
+                "Burns",
+                "Cardbacks",
+                "Elements",
+                "Endings",
+                "Legacies",
+                "StatusBarIcons",
+                "UI",
+                "Verbs",
+                "All"});
+            this.contentTypeComboBox.Location = new System.Drawing.Point(93, 417);
+            this.contentTypeComboBox.Name = "contentTypeComboBox";
+            this.contentTypeComboBox.Size = new System.Drawing.Size(614, 21);
+            this.contentTypeComboBox.TabIndex = 3;
+            this.contentTypeComboBox.SelectedIndex = 0;
+            this.contentTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ContentTypeComboBox_SelectedIndexChanged);
+            // 
             // AssetBrowser
             // 
             this.AcceptButton = this.okButton;
@@ -99,6 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.contentTypeComboBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.assetsListView);
@@ -118,5 +144,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.ContextMenuStrip assetsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem copyImageIDToolStripMenuItem;
+        private System.Windows.Forms.ComboBox contentTypeComboBox;
     }
 }
