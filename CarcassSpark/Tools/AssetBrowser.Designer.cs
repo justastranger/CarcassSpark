@@ -106,6 +106,8 @@
                 "Elements",
                 "Endings",
                 "Legacies",
+                "StatusBarIcons",
+                "UI",
                 "Verbs",
                 "All"});
             this.contentTypeComboBox.Location = new System.Drawing.Point(93, 417);
