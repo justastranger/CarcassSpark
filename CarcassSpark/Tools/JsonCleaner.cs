@@ -31,20 +31,42 @@ namespace CarcassSpark.Tools
         {
             if (inputBrowserDialog.ShowDialog() == DialogResult.OK)
             {
+                int failCount = 0;
+                int successCount = 0;
                 jsonFiles.Clear();
                 inputTextBox.Text = inputBrowserDialog.SelectedPath;
                 foreach (string file in Directory.EnumerateFiles(inputBrowserDialog.SelectedPath, "*.json", SearchOption.AllDirectories))
                 {
-                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    try
                     {
-                        JObject deserialized = JObject.Parse(new StreamReader(fs).ReadToEnd());
-                        string newText = Utilities.SerializeObject(deserialized);
-                        // isolates the file's path from the selected folder
-                        string path = file.Remove(file.IndexOf(inputBrowserDialog.SelectedPath), inputBrowserDialog.SelectedPath.Length);
-                        jsonFiles.Add(path, newText);
+                        using (FileStream fs = new FileStream(file, FileMode.Open))
+                        using (StreamReader sr = new StreamReader(fs))
+                        {
+                            string newText = "{}";
+                            if (!sr.EndOfStream)
+                            {
+                                JObject deserialized = JObject.Parse(sr.ReadToEnd());
+                                newText = Utilities.SerializeObject(deserialized);
+                            }
+                            // isolates the file's path from the selected folder
+                            string path = file.Remove(file.IndexOf(inputBrowserDialog.SelectedPath), inputBrowserDialog.SelectedPath.Length);
+                            jsonFiles.Add(path, newText);
+                        }
+                        successCount++;
+                    }
+                    catch(Exception ex)
+                    {
+                        if (failCount <= 3)
+                        {
+                            MessageBox.Show("Failed to load and clean the following file:\r\n" + file.ToString() + "\r\n" + ex.Message);
+                        }
+                        failCount++;
                     }
                 }
-                MessageBox.Show("Loaded and cleaned " + jsonFiles.Count.ToString() + " files. Ready to save.");
+                MessageBox.Show("Loaded and cleaned " + successCount + " files. "
+                    + (failCount > 0 ? "Failed to clean " + failCount + " files. " : "")
+                    + " Ready to save.");
+
                 selectOutputFolderButton.Enabled = true;
             }
         }

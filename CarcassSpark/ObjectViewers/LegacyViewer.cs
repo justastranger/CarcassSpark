@@ -15,12 +15,14 @@ namespace CarcassSpark.ObjectViewers
     {
         public Legacy displayedLegacy;
         event EventHandler<Legacy> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
-        public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback)
+        public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedLegacy = legacy;
             FillValues(legacy);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -160,14 +162,14 @@ namespace CarcassSpark.ObjectViewers
         private void EffectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!(effectsDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
-            ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+            ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
             ev.Show();
         }
 
         private void ExcludesOnEndingListView_DoubleClick(object sender, EventArgs e)
         {
             string id = excludesOnEndingListView.SelectedItems[0].ToString();
-            LegacyViewer lv = new LegacyViewer(Utilities.GetLegacy(id), null);
+            LegacyViewer lv = new LegacyViewer(Utilities.GetLegacy(id), null, null);
             lv.Show();
         }
 

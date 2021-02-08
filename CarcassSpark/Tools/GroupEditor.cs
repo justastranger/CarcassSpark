@@ -23,6 +23,22 @@ namespace CarcassSpark.Tools
             group = currentGroup;
         }
 
+        public GroupEditor(string currentGroup, string recentGroup, List<string> groups)
+        {
+            InitializeComponent();
+            groupComboBox.Items.AddRange(groups.ToArray());
+            if (recentGroup != null)
+            {
+                groupComboBox.Text = recentGroup;
+                group = recentGroup;
+            }
+            else
+            {
+                groupComboBox.Text = currentGroup;
+                group = currentGroup;
+            }
+        }
+
         private void GroupComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             group = groupComboBox.Text;
@@ -33,7 +49,7 @@ namespace CarcassSpark.Tools
             group = groupComboBox.Text;
         }
 
-        private void okBbutton_Click(object sender, EventArgs e)
+        private void OkBbutton_Click(object sender, EventArgs e)
         {
             if (group == "" || group == null)
             {
@@ -49,12 +65,12 @@ namespace CarcassSpark.Tools
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void GroupComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             group = groupComboBox.Text;
         }

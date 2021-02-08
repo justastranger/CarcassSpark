@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CultureViewer));
             this.idLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.endonymTextBox = new System.Windows.Forms.TextBox();
@@ -65,7 +66,7 @@
             this.idTextBox.Size = new System.Drawing.Size(100, 20);
             this.idTextBox.TabIndex = 1;
             this.ToolTip.SetToolTip(this.idTextBox, "Internal ID of the culture");
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            this.idTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // endonymTextBox
             // 
@@ -74,7 +75,7 @@
             this.endonymTextBox.Size = new System.Drawing.Size(100, 20);
             this.endonymTextBox.TabIndex = 2;
             this.ToolTip.SetToolTip(this.endonymTextBox, "Name of the language in its own language");
-            this.endonymTextBox.TextChanged += new System.EventHandler(this.endonymTextBox_TextChanged);
+            this.endonymTextBox.TextChanged += new System.EventHandler(this.EndonymTextBox_TextChanged);
             // 
             // endonymLabel
             // 
@@ -93,7 +94,7 @@
             this.exonymTextBox.Size = new System.Drawing.Size(100, 20);
             this.exonymTextBox.TabIndex = 4;
             this.ToolTip.SetToolTip(this.exonymTextBox, "Name of language in English");
-            this.exonymTextBox.TextChanged += new System.EventHandler(this.exonymTextBox_TextChanged);
+            this.exonymTextBox.TextChanged += new System.EventHandler(this.ExonymTextBox_TextChanged);
             // 
             // exonymLabel
             // 
@@ -112,7 +113,7 @@
             this.fontScriptTextBox.Size = new System.Drawing.Size(100, 20);
             this.fontScriptTextBox.TabIndex = 6;
             this.ToolTip.SetToolTip(this.fontScriptTextBox, "Font Script used to display the text ingame. ex: latin, cyrillic, jp, cjk");
-            this.fontScriptTextBox.TextChanged += new System.EventHandler(this.fontScriptTextBox_TextChanged);
+            this.fontScriptTextBox.TextChanged += new System.EventHandler(this.FontScriptTextBox_TextChanged);
             // 
             // fontScriptLabel
             // 
@@ -135,7 +136,7 @@
             this.ToolTip.SetToolTip(this.boldAllowedCheckBox, "Tells the game whether or not the font script used in this culture will support b" +
         "eing bolded");
             this.boldAllowedCheckBox.UseVisualStyleBackColor = true;
-            this.boldAllowedCheckBox.CheckedChanged += new System.EventHandler(this.boldAllowedCheckBox_CheckedChanged);
+            this.boldAllowedCheckBox.CheckedChanged += new System.EventHandler(this.BoldAllowedCheckBox_CheckedChanged);
             // 
             // releasedCheckBox
             // 
@@ -148,7 +149,7 @@
             this.ToolTip.SetToolTip(this.releasedCheckBox, "Used to indicate whether the translation is still being worked on or if it\'s been" +
         " completed");
             this.releasedCheckBox.UseVisualStyleBackColor = true;
-            this.releasedCheckBox.CheckedChanged += new System.EventHandler(this.releasedCheckBox_CheckedChanged);
+            this.releasedCheckBox.CheckedChanged += new System.EventHandler(this.ReleasedCheckBox_CheckedChanged);
             // 
             // UiLabelDataGridView
             // 
@@ -184,7 +185,7 @@
             this.okButton.TabIndex = 11;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -218,8 +219,10 @@
             this.Controls.Add(this.endonymTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.idLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CultureViewer";
-            this.Text = "CultureViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Culture Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.UiLabelDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

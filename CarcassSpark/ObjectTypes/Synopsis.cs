@@ -9,6 +9,8 @@ namespace CarcassSpark.ObjectTypes
 {
     public class Synopsis
     {
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string name;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

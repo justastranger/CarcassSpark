@@ -909,7 +909,7 @@
             this.MinimumSize = new System.Drawing.Size(893, 538);
             this.Name = "LegacyViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LegacyViewer";
+            this.Text = "Legacy Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);

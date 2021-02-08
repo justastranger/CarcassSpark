@@ -61,6 +61,7 @@
             this.extendsLabel = new System.Windows.Forms.Label();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -170,6 +171,7 @@
             this.drawsNumericUpDown.TabIndex = 8;
             this.ToolTip.SetToolTip(this.drawsNumericUpDown, "The number of times the deck will be drawn from when this deck is an internal dec" +
         "k for a recipe.");
+            this.drawsNumericUpDown.ValueChanged += new System.EventHandler(this.DrawsNumericUpDown_ValueChanged);
             // 
             // drawsLabel
             // 
@@ -378,6 +380,16 @@
         "example3\"");
             this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged);
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(286, 377);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(69, 23);
+            this.deleteButton.TabIndex = 30;
+            this.deleteButton.Text = "Delete Item";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // DeckViewer
             // 
             this.AcceptButton = this.okButton;
@@ -385,6 +397,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(558, 412);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.deletedCheckBox);
@@ -415,7 +428,7 @@
             this.MinimumSize = new System.Drawing.Size(574, 451);
             this.Name = "DeckViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DeckViewer";
+            this.Text = "Deck Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -457,5 +470,6 @@
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

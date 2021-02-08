@@ -80,6 +80,7 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.resultsListBox);
             this.Name = "DecksDictionaryResults";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DecksDictionaryResults";
             this.ResumeLayout(false);
 

@@ -289,7 +289,7 @@
             this.MinimumSize = new System.Drawing.Size(396, 413);
             this.Name = "RecipeLinkViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RecipeLinkViewer";
+            this.Text = "Recipe Link Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).EndInit();

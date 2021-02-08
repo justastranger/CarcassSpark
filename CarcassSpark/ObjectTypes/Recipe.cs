@@ -12,6 +12,8 @@ namespace CarcassSpark.ObjectTypes
     {
         [JsonIgnore]
         public string filename;
+        [JsonIgnore]
+        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour, comments;
         // craftable has to be true in order for the player to initiate the recipe

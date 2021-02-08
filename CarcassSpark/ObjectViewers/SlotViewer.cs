@@ -114,12 +114,12 @@ namespace CarcassSpark.ObjectViewers
             string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if(Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -129,12 +129,12 @@ namespace CarcassSpark.ObjectViewers
             string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -212,6 +212,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void RequiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.required == null) return;
             if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.required.Count == 0) displayedSlot.required = null;
         }
@@ -233,12 +235,12 @@ namespace CarcassSpark.ObjectViewers
             }
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -248,18 +250,20 @@ namespace CarcassSpark.ObjectViewers
             if (!(requiredDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
 
         private void ForbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null) return;
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
         }

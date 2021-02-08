@@ -16,14 +16,16 @@ namespace CarcassSpark.ObjectViewers
         public Verb displayedVerb;
         bool editing;
         event EventHandler<Verb> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
         // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
-        public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback)
+        public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedVerb = verb;
             FillValues(verb);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);

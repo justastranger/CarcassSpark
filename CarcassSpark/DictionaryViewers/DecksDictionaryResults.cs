@@ -14,16 +14,19 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class DecksDictionaryResults : Form
     {
-        private readonly Dictionary<string, Deck> results;
+        private Dictionary<Deck, Guid> results = new Dictionary<Deck, Guid>();
+        private Dictionary<string, Deck> resultsWithId = new Dictionary<string, Deck>();
 
-        public DecksDictionaryResults(Dictionary<string, Deck> results)
+        public DecksDictionaryResults(Dictionary<Guid, Deck> results)
         {
             InitializeComponent();
 
-            this.results = results;
-            foreach (string key in results.Keys)
+            // this.results = results;
+            foreach (KeyValuePair<Guid, Deck> kvp in results)
             {
-                resultsListBox.Items.Add(key);
+                resultsListBox.Items.Add(kvp.Value.id);
+                resultsWithId.Add(kvp.Value.id, kvp.Value);
+                this.results.Add(kvp.Value, kvp.Key);
             }
         }
 
@@ -40,8 +43,9 @@ namespace CarcassSpark.DictionaryViewers
         private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (resultsListBox.SelectedItem == null) return;
-            DeckViewer dv = new DeckViewer(results[resultsListBox.SelectedItem.ToString()], null);
-            dv.Show();
+            Deck selectedDeck = resultsWithId[resultsListBox.SelectedItem.ToString()];
+            DeckViewer ev = new DeckViewer(selectedDeck.Copy(), null, null);
+            ev.Show();
         }
     }
 }

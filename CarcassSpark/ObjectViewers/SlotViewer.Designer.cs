@@ -306,7 +306,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 505);
             this.Name = "SlotViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SlotViewer";
+            this.Text = "Slot Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).EndInit();
             this.ResumeLayout(false);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JsonCleaner));
             this.inputBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.outputBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.selectInputFolderButton = new System.Windows.Forms.Button();
@@ -146,10 +147,11 @@
             this.Controls.Add(this.inputTextBox);
             this.Controls.Add(this.selectOutputFolderButton);
             this.Controls.Add(this.selectInputFolderButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(475, 223);
             this.Name = "JsonCleaner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "JsonCleaner";
+            this.Text = "Json Cleaner";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -145,12 +145,6 @@ Limit is how many of that particular element you'd like to move.
 The total expulsion limit above can be used to limit how many elements are moved into the new verb token altogether.
 This allows you to try to take, for example, up to 4 of either summons and/or followers into a new verb, but only allow a max of 4 elements to move across. </value>
   </data>
-  <metadata name="expulsionFilter.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="expulsionLimit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="RecipeIDErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>109, 17</value>
   </metadata>

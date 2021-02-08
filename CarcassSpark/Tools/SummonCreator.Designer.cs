@@ -247,7 +247,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 342);
             this.Name = "SummonCreator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SummonCreator";
+            this.Text = "Summon Creator";
             this.ResumeLayout(false);
             this.PerformLayout();
 

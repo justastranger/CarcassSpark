@@ -17,6 +17,7 @@ namespace CarcassSpark.ObjectViewers
         bool editing;
         event EventHandler<Deck> SuccessCallback;
         bool internalDeck;
+        public ListViewItem associatedListViewItem;
 
         public DeckViewer(Deck deck)
         {
@@ -27,11 +28,12 @@ namespace CarcassSpark.ObjectViewers
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             FillValues(deck);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -41,11 +43,12 @@ namespace CarcassSpark.ObjectViewers
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck)
+        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck, ListViewItem item)
         {
             InitializeComponent();
             this.displayedDeck = deck;
             FillValues(deck);
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -299,12 +302,12 @@ namespace CarcassSpark.ObjectViewers
             string id = specListView.SelectedItems[0].Text.ToString();
             if (id.Contains("deck:") && Utilities.DeckExists(id.Substring(id.IndexOf(":"))))
             {
-                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null);
+                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null, null);
                 dv.Show();
             }
             else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
         }
@@ -444,6 +447,43 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (extendsTextBox.Text != "") displayedDeck.extends = new List<string> { extendsTextBox.Text };
                 else displayedDeck.extends = null;
+            }
+        }
+
+        private void DrawsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (drawsNumericUpDown.Value == 0)
+            {
+                displayedDeck.draws = null;
+                return;
+            }
+            displayedDeck.draws = Convert.ToInt32(drawsNumericUpDown.Value);
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (specListView.SelectedItems.Count < 1) return;
+            ListViewItem item = specListView.SelectedItems[0];
+            specListView.Items.Remove(item);
+            if (item.BackColor == Utilities.ListAppendColor)
+            {
+                if (displayedDeck.spec_append.Contains(item.Text)) displayedDeck.spec_append.Remove(item.Text);
+                if (displayedDeck.spec_append.Count == 0) displayedDeck.spec_append = null;
+            }
+            else if (item.BackColor == Utilities.ListPrependColor)
+            {
+                if (displayedDeck.spec_prepend.Contains(item.Text)) displayedDeck.spec_prepend.Remove(item.Text);
+                if (displayedDeck.spec_prepend.Count == 0) displayedDeck.spec_prepend = null;
+            }
+            else if (item.BackColor == Utilities.ListRemoveColor)
+            {
+                if (displayedDeck.spec_remove.Contains(item.Text)) displayedDeck.spec_remove.Remove(item.Text);
+                if (displayedDeck.spec_remove.Count == 0) displayedDeck.spec_remove = null;
+            }
+            else
+            {
+                if (displayedDeck.spec.Contains(item.Text)) displayedDeck.spec.Remove(item.Text);
+                if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
             }
         }
     }

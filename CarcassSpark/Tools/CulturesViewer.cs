@@ -17,14 +17,14 @@ namespace CarcassSpark.Tools
         public Dictionary<string, Culture> displayedCultures;
         public bool editing;
 
-        public CulturesViewer(Dictionary<string, Culture> cultures)
+        public CulturesViewer(Dictionary<Guid, Culture> cultures)
         {
             InitializeComponent();
             FillValues(cultures);
             SetEditingMode(false);
         }
 
-        public CulturesViewer(Dictionary<string, Culture> cultures, bool? editing)
+        public CulturesViewer(Dictionary<Guid, Culture> cultures, bool? editing)
         {
             InitializeComponent();
             FillValues(cultures);
@@ -46,9 +46,9 @@ namespace CarcassSpark.Tools
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void FillValues(Dictionary<string, Culture> cultures)
+        void FillValues(Dictionary<Guid, Culture> cultures)
         {
-            displayedCultures = cultures.ToDictionary(entry => entry.Key,
+            displayedCultures = cultures.ToDictionary(entry => entry.Value.id,
                                                       entry => entry.Value.Copy());
             foreach (string key in displayedCultures.Keys)
             {
@@ -75,18 +75,18 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void newCultureButton_Click(object sender, EventArgs e)
+        private void NewCultureButton_Click(object sender, EventArgs e)
         {
             CultureViewer cultureViewer = new CultureViewer(new Culture(), true);
             if (cultureViewer.ShowDialog() == DialogResult.OK)
@@ -99,7 +99,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (culturesListBox.SelectedItem == null) return;
             string id = culturesListBox.SelectedItem as string;

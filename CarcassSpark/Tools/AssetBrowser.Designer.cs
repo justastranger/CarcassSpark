@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssetBrowser));
             this.assetsListView = new System.Windows.Forms.ListView();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
             this.assetsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyImageIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.contentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.assetsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,21 @@
             this.assetsListView.TabIndex = 0;
             this.assetsListView.UseCompatibleStateImageBehavior = false;
             this.assetsListView.View = System.Windows.Forms.View.Tile;
-            this.assetsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.assetsListView_MouseDoubleClick);
+            this.assetsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.AssetsListView_MouseDoubleClick);
+            // 
+            // assetsContextMenuStrip
+            // 
+            this.assetsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyImageIDToolStripMenuItem});
+            this.assetsContextMenuStrip.Name = "assetsContextMenuStrip";
+            this.assetsContextMenuStrip.Size = new System.Drawing.Size(153, 26);
+            // 
+            // copyImageIDToolStripMenuItem
+            // 
+            this.copyImageIDToolStripMenuItem.Name = "copyImageIDToolStripMenuItem";
+            this.copyImageIDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyImageIDToolStripMenuItem.Text = "Copy Image ID";
+            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.CopyImageIDToolStripMenuItem_Click);
             // 
             // cancelButton
             // 
@@ -64,7 +80,7 @@
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // okButton
             // 
@@ -75,21 +91,31 @@
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // assetsContextMenuStrip
+            // contentTypeComboBox
             // 
-            this.assetsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyImageIDToolStripMenuItem});
-            this.assetsContextMenuStrip.Name = "assetsContextMenuStrip";
-            this.assetsContextMenuStrip.Size = new System.Drawing.Size(181, 48);
-            // 
-            // copyImageIDToolStripMenuItem
-            // 
-            this.copyImageIDToolStripMenuItem.Name = "copyImageIDToolStripMenuItem";
-            this.copyImageIDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyImageIDToolStripMenuItem.Text = "Copy Image ID";
-            this.copyImageIDToolStripMenuItem.Click += new System.EventHandler(this.copyImageIDToolStripMenuItem_Click);
+            this.contentTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.contentTypeComboBox.FormattingEnabled = true;
+            this.contentTypeComboBox.Items.AddRange(new object[] {
+                "Aspects",
+                "Burns",
+                "Cardbacks",
+                "Elements",
+                "Endings",
+                "Legacies",
+                "StatusBarIcons",
+                "UI",
+                "Verbs",
+                "All"});
+            this.contentTypeComboBox.Location = new System.Drawing.Point(93, 417);
+            this.contentTypeComboBox.Name = "contentTypeComboBox";
+            this.contentTypeComboBox.Size = new System.Drawing.Size(614, 21);
+            this.contentTypeComboBox.TabIndex = 3;
+            this.contentTypeComboBox.SelectedIndex = 0;
+            this.contentTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ContentTypeComboBox_SelectedIndexChanged);
             // 
             // AssetBrowser
             // 
@@ -98,11 +124,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.contentTypeComboBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.assetsListView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AssetBrowser";
-            this.Text = "AssetBrowser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Asset Browser";
             this.assetsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -115,5 +144,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.ContextMenuStrip assetsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem copyImageIDToolStripMenuItem;
+        private System.Windows.Forms.ComboBox contentTypeComboBox;
     }
 }

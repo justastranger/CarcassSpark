@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupEditor));
             this.groupComboBox = new System.Windows.Forms.ComboBox();
             this.okBbutton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(426, 21);
             this.groupComboBox.TabIndex = 0;
-            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
+            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.GroupComboBox_SelectedIndexChanged);
             this.groupComboBox.TextUpdate += new System.EventHandler(this.GroupComboBox_TextUpdate);
             this.groupComboBox.SelectedValueChanged += new System.EventHandler(this.GroupComboBox_SelectedValueChanged);
             // 
@@ -52,7 +53,7 @@
             this.okBbutton.TabIndex = 1;
             this.okBbutton.Text = "OK";
             this.okBbutton.UseVisualStyleBackColor = true;
-            this.okBbutton.Click += new System.EventHandler(this.okBbutton_Click);
+            this.okBbutton.Click += new System.EventHandler(this.OkBbutton_Click);
             // 
             // cancelButton
             // 
@@ -63,7 +64,7 @@
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // GroupEditor
             // 
@@ -75,8 +76,10 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okBbutton);
             this.Controls.Add(this.groupComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GroupEditor";
-            this.Text = "GroupEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Group Editor";
             this.ResumeLayout(false);
 
         }

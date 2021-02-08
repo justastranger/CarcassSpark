@@ -1607,7 +1607,7 @@
             this.extendsTextBox.TabIndex = 51;
             this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.extendsTextBox, resources.GetString("extendsTextBox.ToolTip"));
-            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged_1);
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.ExtendsTextBox_TextChanged_1);
             // 
             // extendsLabel
             // 
@@ -1673,7 +1673,7 @@
             this.MinimumSize = new System.Drawing.Size(1055, 707);
             this.Name = "RecipeViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RecipeViewer";
+            this.Text = "Recipe Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).EndInit();

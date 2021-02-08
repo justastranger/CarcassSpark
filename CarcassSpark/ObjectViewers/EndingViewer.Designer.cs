@@ -344,7 +344,7 @@
             this.MinimumSize = new System.Drawing.Size(673, 459);
             this.Name = "EndingViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EndingViewer";
+            this.Text = "Ending Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

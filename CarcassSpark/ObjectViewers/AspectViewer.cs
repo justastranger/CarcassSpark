@@ -16,11 +16,13 @@ namespace CarcassSpark.ObjectViewers
         public Aspect displayedAspect;
         Dictionary<string, Induces> inducesDictionary;
         event EventHandler<Aspect> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
-        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
+        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedAspect = aspect;
+            associatedListViewItem = item;
             FillValues(aspect);
             if (SuccessCallback != null)
             {
@@ -129,7 +131,7 @@ namespace CarcassSpark.ObjectViewers
         private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!(inducesDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
-            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null);
+            RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null, null);
             rv.Show();
         }
         

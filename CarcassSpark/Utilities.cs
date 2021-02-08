@@ -75,6 +75,18 @@ namespace CarcassSpark
             }
         }
 
+        public static string GetIdType(Guid id)
+        {
+            if (AspectExists(id)) return "aspect";
+            if (ElementExists(id)) return "element";
+            if (RecipeExists(id)) return "recipe";
+            if (DeckExists(id)) return "deck";
+            if (LegacyExists(id)) return "legacy";
+            if (EndingExists(id)) return "ending";
+            if (VerbExists(id)) return "verb";
+            return "unknown";
+        }
+
         public static string GetIdType(string id)
         {
             if (AspectExists(id)) return "aspect";
@@ -86,18 +98,27 @@ namespace CarcassSpark
             if (VerbExists(id)) return "verb";
             return "unknown";
         }
-        
+
         public static Bitmap GetVanillaAspect(string id)
         {
-            string path = "images/aspects/" + id;
-            if (assets.ContainsKey(path))
+            try
             {
-                return assets[path].GetImage();
+                string path = "images/aspects/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/elements/_x"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/elements/_x"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
+            
         }
 
         public static bool VanillaAspectImageExists(string id)
@@ -107,14 +128,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaElement(string id)
         {
-            string path = "images/elements/" + id;
-            if (assets.ContainsKey(path))
+            try
             {
-                return assets[path].GetImage();
+                string path = "images/elements/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                   return assets["images/elements/_x"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/elements/_x"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -125,14 +154,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaEnding(string id)
         {
-            string path = "images/endings/" + id;
-            if (assets.ContainsKey(path))
+            try
             {
-                return assets[path].GetImage();
+                string path = "images/endings/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/endings/despair"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/endings/despair"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -143,14 +180,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaLegacy(string id)
         {
-            string path = "images/legacies/" + id;
-            if (assets.ContainsKey(path))
+            try
             {
-                return assets[path].GetImage();
+                string path = "images/legacies/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/legacies/aspirant"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/legacies/aspirant"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -161,14 +206,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaVerb(string id)
         {
-            string path = "images/verbs/" + id;
-            if (assets.ContainsKey(path))
+            try
             {
-                return assets[path].GetImage();
+                string path = "images/verbs/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/verbs/_x"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/verbs/_x"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -179,14 +232,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaCardBack(string id)
         {
-            string path = "images/cardbacks/" + id;
-            if (assets.ContainsKey(id))
+            try
             {
-                return assets[id].GetImage();
+                string path = "images/cardbacks/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/cardbacks/_x"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/cardbacks/_x"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -197,14 +258,22 @@ namespace CarcassSpark
 
         public static Bitmap GetVanillaBurnImage(string id)
         {
-            string path = "images/burns/" + id;
-            if (assets.ContainsKey(id))
+            try
             {
-                return assets[id].GetImage();
+                string path = "images/burns/" + id;
+                if (assets.ContainsKey(path))
+                {
+                    return assets[path].GetImage();
+                }
+                else
+                {
+                    return assets["images/burns/moon"].GetImage();
+                }
             }
-            else
+            catch (TypeInitializationException)
             {
-                return assets["images/burns/moon"].GetImage();
+                MessageBox.Show("Asset Studio's Texture Decoder Library can not be found. Please reinstall Carcass Spark.", "Missing Libraries", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
@@ -394,6 +463,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool AspectExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.AspectExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool AspectExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -401,6 +479,18 @@ namespace CarcassSpark
                 if (source.AspectExists(id)) return true;
             }
             return false;
+        }
+
+        public static Aspect GetAspect(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetAspect(id) != null)
+                {
+                    return source.GetAspect(id);
+                }
+            }
+            return null;
         }
 
         public static Aspect GetAspect(string id)
@@ -415,6 +505,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool ElementExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.ElementExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool ElementExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -422,6 +521,18 @@ namespace CarcassSpark
                 if (source.ElementExists(id)) return true;
             }
             return false;
+        }
+
+        public static Element GetElement(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetElement(id) != null)
+                {
+                    return source.GetElement(id);
+                }
+            }
+            return null;
         }
 
         public static Element GetElement(string id)
@@ -436,6 +547,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool RecipeExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.RecipeExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool RecipeExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -443,6 +563,18 @@ namespace CarcassSpark
                 if (source.RecipeExists(id)) return true;
             }
             return false;
+        }
+
+        public static Recipe GetRecipe(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetRecipe(id) != null)
+                {
+                    return source.GetRecipe(id);
+                }
+            }
+            return null;
         }
 
         public static Recipe GetRecipe(string id)
@@ -457,6 +589,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool DeckExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.RecipeExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool DeckExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -464,6 +605,18 @@ namespace CarcassSpark
                 if (source.RecipeExists(id)) return true;
             }
             return false;
+        }
+
+        public static Deck GetDeck(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetDeck(id) != null)
+                {
+                    return source.GetDeck(id);
+                }
+            }
+            return null;
         }
 
         public static Deck GetDeck(string id)
@@ -478,6 +631,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool LegacyExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.LegacyExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool LegacyExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -485,6 +647,18 @@ namespace CarcassSpark
                 if (source.LegacyExists(id)) return true;
             }
             return false;
+        }
+
+        public static Legacy GetLegacy(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetLegacy(id) != null)
+                {
+                    return source.GetLegacy(id);
+                }
+            }
+            return null;
         }
 
         public static Legacy GetLegacy(string id)
@@ -499,6 +673,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool EndingExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.EndingExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool EndingExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -506,6 +689,18 @@ namespace CarcassSpark
                 if (source.EndingExists(id)) return true;
             }
             return false;
+        }
+
+        public static Ending GetEnding(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetEnding(id) != null)
+                {
+                    return source.GetEnding(id);
+                }
+            }
+            return null;
         }
 
         public static Ending GetEnding(string id)
@@ -520,6 +715,15 @@ namespace CarcassSpark
             return null;
         }
 
+        public static bool VerbExists(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.VerbExists(id)) return true;
+            }
+            return false;
+        }
+
         public static bool VerbExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
@@ -527,6 +731,18 @@ namespace CarcassSpark
                 if (source.VerbExists(id)) return true;
             }
             return false;
+        }
+
+        public static Verb GetVerb(Guid id)
+        {
+            foreach (ContentSource source in ContentSources.Values)
+            {
+                if (source.GetVerb(id) != null)
+                {
+                    return source.GetVerb(id);
+                }
+            }
+            return null;
         }
 
         public static Verb GetVerb(string id)
@@ -544,10 +760,10 @@ namespace CarcassSpark
 
         public static List<Aspect> GetAspects()
         {
-            Dictionary<string, Aspect> tmp = new Dictionary<string, Aspect>();
+            Dictionary<Guid, Aspect> tmp = new Dictionary<Guid, Aspect>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Aspect> AspectEntry in source.Aspects)
+                foreach (KeyValuePair<Guid, Aspect> AspectEntry in source.Aspects)
                 {
                     if (!tmp.ContainsKey(AspectEntry.Key)) tmp.Add(AspectEntry.Key, AspectEntry.Value);
                     else tmp[AspectEntry.Key] = AspectEntry.Value;
@@ -559,10 +775,10 @@ namespace CarcassSpark
 
         public static List<Element> GetElements()
         {
-            Dictionary<string, Element> tmp = new Dictionary<string, Element>();
+            Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Element> ElementEntry in source.Elements)
+                foreach (KeyValuePair<Guid, Element> ElementEntry in source.Elements)
                 {
                     if (!tmp.ContainsKey(ElementEntry.Key)) tmp.Add(ElementEntry.Key, ElementEntry.Value);
                     else tmp[ElementEntry.Key] = ElementEntry.Value;
@@ -574,10 +790,10 @@ namespace CarcassSpark
 
         public static List<Recipe> GetRecipes()
         {
-            Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
+            Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Recipe> RecipeEntry in source.Recipes)
+                foreach (KeyValuePair<Guid, Recipe> RecipeEntry in source.Recipes)
                 {
                     if (!tmp.ContainsKey(RecipeEntry.Key)) tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
                     else tmp[RecipeEntry.Key] = RecipeEntry.Value;
@@ -589,10 +805,10 @@ namespace CarcassSpark
 
         public static List<Deck> GetDecks()
         {
-            Dictionary<string, Deck> tmp = new Dictionary<string, Deck>();
+            Dictionary<Guid, Deck> tmp = new Dictionary<Guid, Deck>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Deck> DeckEntry in source.Decks)
+                foreach (KeyValuePair<Guid, Deck> DeckEntry in source.Decks)
                 {
                     if (!tmp.ContainsKey(DeckEntry.Key)) tmp.Add(DeckEntry.Key, DeckEntry.Value);
                     else tmp[DeckEntry.Key] = DeckEntry.Value;
@@ -604,10 +820,10 @@ namespace CarcassSpark
 
         public static List<Legacy> GetLegacies()
         {
-            Dictionary<string, Legacy> tmp = new Dictionary<string, Legacy>();
+            Dictionary<Guid, Legacy> tmp = new Dictionary<Guid, Legacy>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Legacy> LegacyEntry in source.Legacies)
+                foreach (KeyValuePair<Guid, Legacy> LegacyEntry in source.Legacies)
                 {
                     if (!tmp.ContainsKey(LegacyEntry.Key)) tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
                     else tmp[LegacyEntry.Key] = LegacyEntry.Value;
@@ -619,10 +835,10 @@ namespace CarcassSpark
 
         public static List<Ending> GetEndings()
         {
-            Dictionary<string, Ending> tmp = new Dictionary<string, Ending>();
+            Dictionary<Guid, Ending> tmp = new Dictionary<Guid, Ending>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Ending> EndingEntry in source.Endings)
+                foreach (KeyValuePair<Guid, Ending> EndingEntry in source.Endings)
                 {
                     if (!tmp.ContainsKey(EndingEntry.Key)) tmp.Add(EndingEntry.Key, EndingEntry.Value);
                     else tmp[EndingEntry.Key] = EndingEntry.Value;
@@ -634,10 +850,10 @@ namespace CarcassSpark
 
         public static List<Verb> GetVerbs()
         {
-            Dictionary<string, Verb> tmp = new Dictionary<string, Verb>();
+            Dictionary<Guid, Verb> tmp = new Dictionary<Guid, Verb>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<string, Verb> VerbEntry in source.Verbs)
+                foreach (KeyValuePair<Guid, Verb> VerbEntry in source.Verbs)
                 {
                     if (!tmp.ContainsKey(VerbEntry.Key)) tmp.Add(VerbEntry.Key, VerbEntry.Value);
                     else tmp[VerbEntry.Key] = VerbEntry.Value;
