@@ -57,7 +57,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.modNameTextBox.Location = new System.Drawing.Point(12, 25);
             this.modNameTextBox.Name = "modNameTextBox";
-            this.modNameTextBox.Size = new System.Drawing.Size(357, 20);
+            this.modNameTextBox.Size = new System.Drawing.Size(380, 20);
             this.modNameTextBox.TabIndex = 0;
             this.modNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.modNameTextBox, "This is the name and (for the purpose of dependencies) the ID of the mod, as disp" +
@@ -70,7 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.modAuthorTextBox.Location = new System.Drawing.Point(12, 64);
             this.modAuthorTextBox.Name = "modAuthorTextBox";
-            this.modAuthorTextBox.Size = new System.Drawing.Size(357, 20);
+            this.modAuthorTextBox.Size = new System.Drawing.Size(380, 20);
             this.modAuthorTextBox.TabIndex = 1;
             this.modAuthorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.modAuthorTextBox, "This is where the credits go, usually just you.");
@@ -82,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.modVersionTextBox.Location = new System.Drawing.Point(12, 103);
             this.modVersionTextBox.Name = "modVersionTextBox";
-            this.modVersionTextBox.Size = new System.Drawing.Size(357, 20);
+            this.modVersionTextBox.Size = new System.Drawing.Size(380, 20);
             this.modVersionTextBox.TabIndex = 2;
             this.modVersionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ToolTip.SetToolTip(this.modVersionTextBox, resources.GetString("modVersionTextBox.ToolTip"));
@@ -97,7 +97,7 @@
             this.modDescriptionTextBox.Multiline = true;
             this.modDescriptionTextBox.Name = "modDescriptionTextBox";
             this.modDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.modDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
+            this.modDescriptionTextBox.Size = new System.Drawing.Size(380, 60);
             this.modDescriptionTextBox.TabIndex = 3;
             this.ToolTip.SetToolTip(this.modDescriptionTextBox, "This is the mod description shown in the mod menu and on the Steam Workshop.");
             this.modDescriptionTextBox.TextChanged += new System.EventHandler(this.ModDescriptionTextBox_TextChanged);
@@ -105,13 +105,14 @@
             // longDescriptionTextBox
             // 
             this.longDescriptionTextBox.AcceptsReturn = true;
-            this.longDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.longDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.longDescriptionTextBox.Location = new System.Drawing.Point(12, 221);
             this.longDescriptionTextBox.Multiline = true;
             this.longDescriptionTextBox.Name = "longDescriptionTextBox";
             this.longDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.longDescriptionTextBox.Size = new System.Drawing.Size(357, 60);
+            this.longDescriptionTextBox.Size = new System.Drawing.Size(380, 132);
             this.longDescriptionTextBox.TabIndex = 4;
             this.ToolTip.SetToolTip(this.longDescriptionTextBox, "This version is not currently shown anywhere ingame.");
             this.longDescriptionTextBox.TextChanged += new System.EventHandler(this.LongDescriptionTextBox_TextChanged);
@@ -120,7 +121,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 414);
+            this.okButton.Location = new System.Drawing.Point(12, 486);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -132,7 +133,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(294, 414);
+            this.cancelButton.Location = new System.Drawing.Point(317, 486);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
@@ -187,8 +188,9 @@
             // 
             // modDependenciesLabel
             // 
+            this.modDependenciesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.modDependenciesLabel.AutoSize = true;
-            this.modDependenciesLabel.Location = new System.Drawing.Point(12, 284);
+            this.modDependenciesLabel.Location = new System.Drawing.Point(12, 356);
             this.modDependenciesLabel.Name = "modDependenciesLabel";
             this.modDependenciesLabel.Size = new System.Drawing.Size(100, 13);
             this.modDependenciesLabel.TabIndex = 12;
@@ -198,8 +200,7 @@
             // 
             this.dependeniesDataGridView.AllowUserToResizeColumns = false;
             this.dependeniesDataGridView.AllowUserToResizeRows = false;
-            this.dependeniesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dependeniesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dependeniesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dependeniesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -207,9 +208,9 @@
             this.dependencyModId,
             this.dependencyVersionOperator,
             this.dependencyVersion});
-            this.dependeniesDataGridView.Location = new System.Drawing.Point(12, 300);
+            this.dependeniesDataGridView.Location = new System.Drawing.Point(12, 372);
             this.dependeniesDataGridView.Name = "dependeniesDataGridView";
-            this.dependeniesDataGridView.Size = new System.Drawing.Size(357, 108);
+            this.dependeniesDataGridView.Size = new System.Drawing.Size(380, 108);
             this.dependeniesDataGridView.TabIndex = 13;
             this.ToolTip.SetToolTip(this.dependeniesDataGridView, "If your mod depends on another mod, you can say so and prevent your mod from bein" +
         "g used without its dependencies.");
@@ -243,7 +244,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(381, 449);
+            this.ClientSize = new System.Drawing.Size(404, 521);
             this.Controls.Add(this.dependeniesDataGridView);
             this.Controls.Add(this.modDependenciesLabel);
             this.Controls.Add(this.longModDescriptionLabel);

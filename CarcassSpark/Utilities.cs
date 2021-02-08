@@ -294,6 +294,7 @@ namespace CarcassSpark
             }
             return false;
         }
+
         public static Image GetAspectImage(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
