@@ -195,10 +195,11 @@
             this.copyAspectJSONToClipboardToolStripMenuItem,
             this.openSelectedAspectsJSONToolStripMenuItem,
             this.newAspectToolStripMenuItem,
-            this.setGroupAspectToolStripMenuItem});
+            this.setGroupAspectToolStripMenuItem,
+            this.hideGroupAspectToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 180);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 202);
             // 
             // searchToolStripMenuItem
             // 
@@ -333,10 +334,11 @@
             this.copyElementJSONToClipboardToolStripMenuItem,
             this.openSelectedElementsJSONToolStripMenuItem,
             this.newElementToolStripMenuItem,
-            this.setGroupElementToolStripMenuItem});
+            this.setGroupElementToolStripMenuItem,
+            this.hideGroupElementToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 180);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 202);
             // 
             // searchToolStripMenuItem1
             // 
@@ -482,10 +484,11 @@
             this.copyRecipeJSONToClipboardToolStripMenuItem,
             this.openSelectedRecipesJSONToolStripMenuItem,
             this.newRecipeToolStripMenuItem,
-            this.setGroupRecipeToolStripMenuItem});
+            this.setGroupRecipeToolStripMenuItem,
+            this.hideGroupRecipeToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 202);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 224);
             // 
             // searchForToolStripMenuItem
             // 
@@ -589,10 +592,11 @@
             this.copyDeckJSONToClipboardToolStripMenuItem,
             this.openSelectedDecksJSONToolStripMenuItem,
             this.newDeckToolStripMenuItem,
-            this.setGroupDeckToolStripMenuItem});
+            this.setGroupDeckToolStripMenuItem,
+            this.hideGroupDeckToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 180);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 202);
             // 
             // searchForToolStripMenuItem1
             // 
@@ -688,9 +692,10 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem,
             this.openSelectedLegacysJSONToolStripMenuItem,
             this.newLegacyToolStripMenuItem,
-            this.setGroupLegacyToolStripMenuItem});
+            this.setGroupLegacyToolStripMenuItem,
+            this.hideGroupLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 158);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 180);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
@@ -772,9 +777,10 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem,
             this.openSelectedEndingsJSONToolStripMenuItem,
             this.newEndingToolStripMenuItem,
-            this.setGroupEndingToolStripMenuItem});
+            this.setGroupEndingToolStripMenuItem,
+            this.hideGroupEndingToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 180);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 202);
             // 
             // searchForToolStripMenuItem2
             // 
@@ -871,9 +877,10 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem,
             this.openSelectedVerbsJSONToolStripMenuItem,
             this.newVerbToolStripMenuItem,
-            this.setGroupVerbToolStripMenuItem});
+            this.setGroupVerbToolStripMenuItem,
+            this.hideGroupVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 180);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 202);
             // 
             // searchForToolStripMenuItem3
             // 
