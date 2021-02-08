@@ -3458,6 +3458,39 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aspectsListView.SelectedItems.Count < 1) return;
+        }
 
+        private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elementsListView.SelectedItems.Count < 1) return;
+        }
+
+        private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListView.SelectedItems.Count < 1) return;
+        }
+
+        private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (decksListView.SelectedItems.Count < 1) return;
+        }
+
+        private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (legaciesListView.SelectedItems.Count < 1) return;
+        }
+
+        private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (endingsListView.SelectedItems.Count < 1) return;
+        }
+
+        private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (verbsListView.SelectedItems.Count < 1) return;
+        }
     }
 }

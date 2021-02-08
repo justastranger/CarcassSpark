@@ -822,5 +822,33 @@ namespace CarcassSpark.ObjectViewers
             };
             Process.Start(startInfo);
         }
+
+        private void aspectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void elementsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void recipesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void decksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void legaciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void endingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
