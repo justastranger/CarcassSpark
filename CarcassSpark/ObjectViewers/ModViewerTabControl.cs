@@ -95,6 +95,16 @@ namespace CarcassSpark.ObjectViewers
 
         public bool LoadContent()
         {
+            if(IsDirty && editMode)
+            {
+                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and reload content.",
+                    "You have unsaved changes",
+                    MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return false;
+                }
+            }
+
             try
             {
                 aspectsListView.Items.Clear();
