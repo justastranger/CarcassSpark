@@ -866,5 +866,35 @@ namespace CarcassSpark.ObjectViewers
             TabPage tabPage = (TabPage)((ModViewerTabControl)modViewerTab).Parent;
             tabPage.Text = v ? tabPage.Name + "*" : tabPage.Name;
         }
+
+        private void ModViewerTabs_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                // Thanks, Samuel from StackOverflow for this 12 year old solution
+                TabPage tab = ModViewerTabs.TabPages.Cast<TabPage>().Where((t, i) => ModViewerTabs.GetTabRect(i).Contains(e.Location)).First();
+                // Selecting a tab fires an event handler that'll update SelectedModViewer, so we can just use that variable
+                ModViewerTabs.SelectTab(tab);
+                // TODO deduplicate the code below
+                if (SelectedModViewer.isVanilla)
+                {
+                    MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+                {
+                    if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
+                        "You have unsaved changes",
+                        MessageBoxButtons.OKCancel) != DialogResult.OK)
+                    {
+                        return;
+                    }
+                }
+                Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
+                Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
+                SelectedModViewer.Dispose();
+                ModViewerTabs.TabPages.Remove(tab);
+            }
+        }
     }
 }
