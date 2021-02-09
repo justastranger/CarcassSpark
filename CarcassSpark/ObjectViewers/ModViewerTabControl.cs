@@ -3460,44 +3460,53 @@ namespace CarcassSpark.ObjectViewers
 
         private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1) return;
-            aspectsListView.Groups.Remove(aspectsListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(aspectsListView);
         }
 
         private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1) return;
-            elementsListView.Groups.Remove(elementsListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(elementsListView);
         }
 
         private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1) return;
-            recipesListView.Groups.Remove(recipesListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(recipesListView);
         }
 
         private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1) return;
-            decksListView.Groups.Remove(decksListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(decksListView);
         }
 
         private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1) return;
-            legaciesListView.Groups.Remove(legaciesListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(legaciesListView);
         }
 
         private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1) return;
-            endingsListView.Groups.Remove(endingsListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(endingsListView);
         }
 
         private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1) return;
-            verbsListView.Groups.Remove(verbsListView.SelectedItems[0].Group);
+            hideCurrentGroupShortTerm(verbsListView);
+        }
+
+        private void hideCurrentGroupShortTerm(ListView lv)
+        {
+            if (lv.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            ListViewGroup group = lv.SelectedItems[0].Group;
+            while (group.Items.Count > 0)
+            {
+                ListViewItem item = group.Items[0];
+                group.Items.Remove(item);
+                lv.Items.Remove(item);
+            }
         }
     }
 }
