@@ -3391,7 +3391,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Aspect));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3403,7 +3403,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateElementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Element));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3415,7 +3415,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void UseTemplateRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Recipe));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3427,7 +3427,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Deck));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3439,7 +3439,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Legacy));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3451,7 +3451,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Ending));
             if (templateManager.ShowDialog() == DialogResult.OK)
@@ -3463,7 +3463,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void useTemplateVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseTemplateVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Verb));
             if (templateManager.ShowDialog() == DialogResult.OK)

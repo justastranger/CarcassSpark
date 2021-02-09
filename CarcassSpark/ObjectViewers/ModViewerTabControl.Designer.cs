@@ -299,7 +299,7 @@
             this.useTemplateAspectToolStripMenuItem.Name = "useTemplateAspectToolStripMenuItem";
             this.useTemplateAspectToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateAspectToolStripMenuItem.Text = "Use Template";
-            this.useTemplateAspectToolStripMenuItem.Click += new System.EventHandler(this.useTemplateAspectToolStripMenuItem_Click);
+            this.useTemplateAspectToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateAspectToolStripMenuItem_Click);
             // 
             // setGroupAspectToolStripMenuItem
             // 
@@ -440,7 +440,7 @@
             this.useTemplateElementToolStripMenuItem.Name = "useTemplateElementToolStripMenuItem";
             this.useTemplateElementToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateElementToolStripMenuItem.Text = "Use Template";
-            this.useTemplateElementToolStripMenuItem.Click += new System.EventHandler(this.useTemplateElementToolStripMenuItem_Click);
+            this.useTemplateElementToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateElementToolStripMenuItem_Click);
             // 
             // setGroupElementToolStripMenuItem
             // 
@@ -541,7 +541,7 @@
             this.useTemplateRecipeToolStripMenuItem1.Name = "useTemplateRecipeToolStripMenuItem1";
             this.useTemplateRecipeToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.useTemplateRecipeToolStripMenuItem1.Text = "Use Template";
-            this.useTemplateRecipeToolStripMenuItem1.Click += new System.EventHandler(this.useTemplateRecipeToolStripMenuItem1_Click);
+            this.useTemplateRecipeToolStripMenuItem1.Click += new System.EventHandler(this.UseTemplateRecipeToolStripMenuItem1_Click);
             // 
             // setGroupRecipeToolStripMenuItem
             // 
@@ -634,7 +634,7 @@
             this.useTemplateDeckToolStripMenuItem.Name = "useTemplateDeckToolStripMenuItem";
             this.useTemplateDeckToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateDeckToolStripMenuItem.Text = "Use Template";
-            this.useTemplateDeckToolStripMenuItem.Click += new System.EventHandler(this.useTemplateDeckToolStripMenuItem_Click);
+            this.useTemplateDeckToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateDeckToolStripMenuItem_Click);
             // 
             // setGroupDeckToolStripMenuItem
             // 
@@ -710,7 +710,7 @@
             this.useTemplateLegacyToolStripMenuItem.Name = "useTemplateLegacyToolStripMenuItem";
             this.useTemplateLegacyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateLegacyToolStripMenuItem.Text = "Use Template";
-            this.useTemplateLegacyToolStripMenuItem.Click += new System.EventHandler(this.useTemplateLegacyToolStripMenuItem_Click);
+            this.useTemplateLegacyToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateLegacyToolStripMenuItem_Click);
             // 
             // setGroupLegacyToolStripMenuItem
             // 
@@ -802,7 +802,7 @@
             this.useTemplateEndingToolStripMenuItem.Name = "useTemplateEndingToolStripMenuItem";
             this.useTemplateEndingToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateEndingToolStripMenuItem.Text = "Use Template";
-            this.useTemplateEndingToolStripMenuItem.Click += new System.EventHandler(this.useTemplateEndingToolStripMenuItem_Click);
+            this.useTemplateEndingToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateEndingToolStripMenuItem_Click);
             // 
             // setGroupEndingToolStripMenuItem
             // 
@@ -902,7 +902,7 @@
             this.useTemplateVerbToolStripMenuItem.Name = "useTemplateVerbToolStripMenuItem";
             this.useTemplateVerbToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.useTemplateVerbToolStripMenuItem.Text = "Use Template";
-            this.useTemplateVerbToolStripMenuItem.Click += new System.EventHandler(this.useTemplateVerbToolStripMenuItem_Click);
+            this.useTemplateVerbToolStripMenuItem.Click += new System.EventHandler(this.UseTemplateVerbToolStripMenuItem_Click);
             // 
             // setGroupVerbToolStripMenuItem
             // 
