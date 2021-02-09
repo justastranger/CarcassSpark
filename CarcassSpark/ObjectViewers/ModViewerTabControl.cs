@@ -3460,51 +3460,51 @@ namespace CarcassSpark.ObjectViewers
 
         private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(aspectsListView);
+            if (!hideCurrentGroupShortTerm(aspectsListView)) { return; }
         }
 
         private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(elementsListView);
+            if (!hideCurrentGroupShortTerm(elementsListView)) { return; }
         }
 
         private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(recipesListView);
+            if (!hideCurrentGroupShortTerm(recipesListView)) { return; }
         }
 
         private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(decksListView);
+            if (!hideCurrentGroupShortTerm(decksListView)) { return; }
         }
 
         private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(legaciesListView);
+            if (!hideCurrentGroupShortTerm(legaciesListView)) { return; }
         }
 
         private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(endingsListView);
+            if (!hideCurrentGroupShortTerm(endingsListView)) { return; }
         }
 
         private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hideCurrentGroupShortTerm(verbsListView);
+            if (!hideCurrentGroupShortTerm(verbsListView)) { return; }
         }
 
-        private void hideCurrentGroupShortTerm(ListView lv)
+        private bool hideCurrentGroupShortTerm(ListView lv)
         {
             if (lv.SelectedItems.Count < 1)
             {
-                return;
+                return false;
             }
 
             if (MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
-                return;
+                return false;
             }
 
             ListViewGroup group = lv.SelectedItems[0].Group;
@@ -3514,6 +3514,7 @@ namespace CarcassSpark.ObjectViewers
                 group.Items.Remove(item);
                 lv.Items.Remove(item);
             }
+            return true;
         }
     }
 }
