@@ -808,9 +808,13 @@ namespace CarcassSpark.ObjectViewers
                 foreach (string file in files)
                 {
                     if (Path.HasExtension(file))
+                    {   // We are only interested in paths, if there's an extension then it's a file so we'll skip it
                         continue;
+                    }
+                    // Then we check for a synopsis or a manifest to see if we're actually looking at a valid mod folder
                     string synopsisPath = Path.Combine(file, "synopsis.json");
-                    if (File.Exists(synopsisPath))
+                    string manifestPath = Path.Combine(file, "manifest.json");
+                    if (File.Exists(synopsisPath) || File.Exists(manifestPath))
                     {
                         CreateNewModViewerTab(file, false, false);
                     }
