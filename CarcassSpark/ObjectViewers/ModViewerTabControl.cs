@@ -3500,6 +3500,13 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
 
+            if (MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
+                "Last chance to save!",
+                MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+
             ListViewGroup group = lv.SelectedItems[0].Group;
             while (group.Items.Count > 0)
             {
