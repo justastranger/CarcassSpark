@@ -132,8 +132,14 @@ namespace CarcassSpark.ObjectViewers
                 if (mvtc != null && mvtc.valid)
                 {
                     CreateNewModViewerTab(mvtc);
-                    if (Settings.settings["previousMods"] is JArray array) array.Add(JToken.FromObject(mvtc.Content.currentDirectory));
-                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
+                    if (Settings.HasPreviousMods())
+                    {
+                        Settings.AddPreviousMod(location);
+                    }
+                    else
+                    {
+                        Settings.InitPreviousMods(location);
+                    }
                     Settings.SaveSettings();
                 }
             }
@@ -805,18 +811,26 @@ namespace CarcassSpark.ObjectViewers
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (string file in files)
+                foreach (string path in files)
                 {
-                    if (Path.HasExtension(file))
+                    if (Path.HasExtension(path))
                     {   // We are only interested in paths, if there's an extension then it's a file so we'll skip it
                         continue;
                     }
                     // Then we check for a synopsis or a manifest to see if we're actually looking at a valid mod folder
-                    string synopsisPath = Path.Combine(file, "synopsis.json");
-                    string manifestPath = Path.Combine(file, "manifest.json");
+                    string synopsisPath = Path.Combine(path, "synopsis.json");
+                    string manifestPath = Path.Combine(path, "manifest.json");
                     if (File.Exists(synopsisPath) || File.Exists(manifestPath))
                     {
-                        CreateNewModViewerTab(file, false, false);
+                        if (Settings.HasPreviousMods())
+                        {
+                            Settings.AddPreviousMod(path);
+                        }
+                        else
+                        {
+                            Settings.InitPreviousMods(path);
+                        }
+                        CreateNewModViewerTab(path, false, false);
                     }
                     else
                     {

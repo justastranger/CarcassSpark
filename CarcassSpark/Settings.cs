@@ -84,7 +84,7 @@ namespace CarcassSpark
 
         public static bool HasPreviousMods()
         {
-            return settings["previousMods"] != null && settings["previousMods"].Count() > 0;
+            return settings["previousMods"] != null && settings["previousMods"] is JArray && settings["previousMods"].Count() > 0;
         }
 
         public static List<string> GetPreviousMods()
@@ -93,7 +93,7 @@ namespace CarcassSpark
             else return null;
         }
 
-        public static void RemovePreviousMod(string path)
+        public static bool RemovePreviousMod(string path)
         {
             List<string> tmp = settings["previousMods"].ToObject<List<string>>();
             if (tmp.Contains(path))
@@ -101,7 +101,21 @@ namespace CarcassSpark
                 tmp.RemoveAll(str => str == path);
                 settings["previousMods"] = JArray.FromObject(tmp);
                 SaveSettings();
+                return true;
             }
+            return false;
+        }
+
+        public static void AddPreviousMod(string path)
+        {
+            (settings["previousMods"] as JArray).Add(path);
+            SaveSettings();
+        }
+
+        public static void InitPreviousMods(string path)
+        {
+            settings["previousMods"] = new JArray(path);
+            SaveSettings();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
