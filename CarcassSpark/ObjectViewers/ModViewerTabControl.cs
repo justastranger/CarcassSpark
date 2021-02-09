@@ -25,6 +25,8 @@ namespace CarcassSpark.ObjectViewers
     {
         public bool isVanilla, editMode, valid = false;
 
+        public bool IsDirty { get; private set; } = false;
+
         public ContentSource Content = new ContentSource();
         
         public ModViewerTabControl(string location, bool isVanilla, bool newMod)
@@ -93,6 +95,16 @@ namespace CarcassSpark.ObjectViewers
 
         public bool LoadContent()
         {
+            if(IsDirty && editMode)
+            {
+                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and reload content.",
+                    "You have unsaved changes",
+                    MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return false;
+                }
+            }
+
             try
             {
                 aspectsListView.Items.Clear();
@@ -126,6 +138,7 @@ namespace CarcassSpark.ObjectViewers
                             }
                         }
                         // mod loaded successfully
+                        MarkDirty(false);
                         return true;
                     }
                     return false;
@@ -806,6 +819,7 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
             SaveManifests(location);
+            MarkDirty(false);
         }
 
         public void SaveManifests(string location)
@@ -865,6 +879,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 aspectViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void DecksListView_DoubleClick(object sender, EventArgs e)
@@ -927,6 +942,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 elementViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void EndingsListView_DoubleClick(object sender, EventArgs e)
@@ -958,6 +974,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 endingViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void LegaciesListView_DoubleClick(object sender, EventArgs e)
@@ -989,6 +1006,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 legacyViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void RecipesListView_DoubleClick(object sender, EventArgs e)
@@ -1020,6 +1038,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 recipeViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void VerbsListView_DoubleClick(object sender, EventArgs e)
@@ -1051,6 +1070,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 verbViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty(true);
         }
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
@@ -2105,6 +2125,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 aspectsListView.Items.Remove(listViewItem);
                 Content.Aspects.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2117,6 +2138,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 elementsListView.Items.Remove(listViewItem);
                 Content.Elements.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2129,6 +2151,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 recipesListView.Items.Remove(listViewItem);
                 Content.Recipes.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2141,6 +2164,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 decksListView.Items.Remove(listViewItem);
                 Content.Decks.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2153,6 +2177,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 legaciesListView.Items.Remove(listViewItem);
                 Content.Legacies.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2165,6 +2190,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 endingsListView.Items.Remove(listViewItem);
                 Content.Endings.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2177,6 +2203,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 verbsListView.Items.Remove(listViewItem);
                 Content.Verbs.Remove((Guid)listViewItem.Tag);
+                MarkDirty(true);
             }
         }
 
@@ -2305,6 +2332,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
                     Content.Aspects[guid] = deserializedAspect.Copy();
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2329,6 +2357,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
                     Content.Elements[guid] = deserializedElement.Copy();
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2353,6 +2382,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
                     Content.Recipes[guid] = deserializedRecipe.Copy();
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2377,6 +2407,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
                     Content.Decks[guid] = deserializedDeck.Copy();
                     decksListView.SelectedItems[0].Text = deserializedDeck.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2401,6 +2432,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
                     Content.Legacies[guid] = deserializedLegacy.Copy();
                     legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2425,6 +2457,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
                     Content.Endings[guid] = deserializedEnding.Copy();
                     endingsListView.SelectedItems[0].Text = deserializedEnding.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2449,6 +2482,7 @@ namespace CarcassSpark.ObjectViewers
                     // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
                     Content.Verbs[guid] = deserializedVerb.Copy();
                     verbsListView.SelectedItems[0].Text = deserializedVerb.id;
+                    MarkDirty(true);
                 }
                 else
                 {
@@ -2484,6 +2518,7 @@ namespace CarcassSpark.ObjectViewers
             aspectsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Aspects.Add(newGuid, newAspect.Copy());
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2513,6 +2548,7 @@ namespace CarcassSpark.ObjectViewers
             elementsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Elements.Add(newGuid, newElement.Copy());
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2542,6 +2578,7 @@ namespace CarcassSpark.ObjectViewers
             recipesListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Recipes.Add(newGuid, newRecipe);
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2571,6 +2608,7 @@ namespace CarcassSpark.ObjectViewers
             decksListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Decks.Add(newGuid, newDeck);
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2600,6 +2638,7 @@ namespace CarcassSpark.ObjectViewers
             legaciesListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Legacies.Add(newGuid, newLegacy);
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2629,6 +2668,7 @@ namespace CarcassSpark.ObjectViewers
             endingsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Endings.Add(newGuid, newEnding);
+            MarkDirty(true);
         }
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2658,6 +2698,7 @@ namespace CarcassSpark.ObjectViewers
             verbsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
             Content.Verbs.Add(newGuid, newVerb);
+            MarkDirty(true);
         }
 
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2848,6 +2889,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultAspectsGroup, Name = result.id };
             // defaultAspectsGroup.Items.Add(newAspectEntry);
             aspectsListView.Items.Add(newAspectEntry);
+            MarkDirty(true);
         }
 
         public void ElementsList_Add(object sender, Element result)
@@ -2867,6 +2909,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultElementsGroup, Name = result.id };
             // defaultElementsGroup.Items.Add(newElementEntry);
             elementsListView.Items.Add(newElementEntry);
+            MarkDirty(true);
         }
 
         public void RecipesList_Add(object sender, Recipe result)
@@ -2886,6 +2929,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultRecipesGroup, Name = result.id };
             // defaultRecipesGroup.Items.Add(newRecipeEntry);
             recipesListView.Items.Add(newRecipeEntry);
+            MarkDirty(true);
         }
 
         public void DecksList_Add(object sender, Deck result)
@@ -2905,6 +2949,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultDecksGroup, Name = result.id };
             // defaultDecksGroup.Items.Add(newDeckEntry);
             decksListView.Items.Add(newDeckEntry);
+            MarkDirty(true);
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
@@ -2924,6 +2969,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultLegaciesGroup, Name = result.id };
             // defaultLegaciesGroup.Items.Add(newLegacyEntry);
             legaciesListView.Items.Add(newLegacyEntry);
+            MarkDirty(true);
         }
 
         public void EndingsList_Add(object sender, Ending result)
@@ -2943,6 +2989,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultEndingsGroup, Name = result.id };
             // defaultEndingsGroup.Items.Add(newEndingEntry);
             endingsListView.Items.Add(newEndingEntry);
+            MarkDirty(true);
         }
 
         public void VerbsList_Add(object sender, Verb result)
@@ -2962,6 +3009,7 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultVerbsGroup, Name = result.id };
             // defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
+            MarkDirty(true);
         }
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
@@ -3128,6 +3176,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetAspect((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Aspect", newGroup);
             }
@@ -3162,6 +3211,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetElement((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Element", newGroup);
             }
@@ -3196,6 +3246,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetRecipe((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Recipe", newGroup);
             }
@@ -3230,6 +3281,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetDeck((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Deck", newGroup);
             }
@@ -3264,6 +3316,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetLegacy((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Legacy", newGroup);
             }
@@ -3298,6 +3351,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetEnding((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
             }
         }
@@ -3331,6 +3385,7 @@ namespace CarcassSpark.ObjectViewers
                         listViewGroup.Items.Add(selectedItem);
                         Content.GetVerb((Guid)selectedItem.Tag).filename = newGroup;
                     }
+                    MarkDirty(true);
                 }
                 Content.SetRecentGroup("Verb", newGroup);
             }
@@ -3459,5 +3514,15 @@ namespace CarcassSpark.ObjectViewers
         }
 
 
+        
+        private void MarkDirty(bool v)
+        {
+            this.IsDirty = v;
+        }
+        
+        public void MarkDirty()
+        {
+            this.IsDirty = true;
+        }
     }
 }
