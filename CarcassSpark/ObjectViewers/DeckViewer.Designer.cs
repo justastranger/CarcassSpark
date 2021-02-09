@@ -383,6 +383,7 @@
             // deleteButton
             // 
             this.deleteButton.Location = new System.Drawing.Point(286, 377);
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(69, 23);
             this.deleteButton.TabIndex = 30;

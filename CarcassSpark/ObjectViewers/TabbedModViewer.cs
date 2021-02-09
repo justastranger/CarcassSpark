@@ -171,6 +171,15 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if(SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            {
+                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
+                    "You have unsaved changes",
+                    MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
             Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
             // ((JArray)Settings.settings["previousMods"]).Remove(SelectedModViewer.Content.currentDirectory);
             Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
