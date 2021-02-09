@@ -23,7 +23,9 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class ModViewerTabControl : UserControl
     {
-        public bool isVanilla, editMode, valid = false;
+        public bool isVanilla, editMode, isValid = false;
+
+        public EventHandler<bool> MarkDirtyEventHandler;
 
         public bool IsDirty { get; private set; } = false;
 
@@ -42,7 +44,7 @@ namespace CarcassSpark.ObjectViewers
                 // if the user cancels the synopsis creation for a new mod, invalidate the control and abort loading.
                 if (!CreateSynopsis())
                 {
-                    valid = false;
+                    isValid = false;
                     return;
                 }
             }
@@ -51,11 +53,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
                 Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
-                valid = true;
+                isValid = true;
             }
             else
             {
-                valid = false;
+                isValid = false;
                 // MessageBox.Show("Failed to load content source.");
             }
         }
@@ -3518,11 +3520,13 @@ namespace CarcassSpark.ObjectViewers
         private void MarkDirty(bool v)
         {
             IsDirty = v;
+            if (MarkDirtyEventHandler != null) MarkDirtyEventHandler.Invoke(this, IsDirty);
         }
         
         public void MarkDirty()
         {
             IsDirty = true;
+            if (MarkDirtyEventHandler != null) MarkDirtyEventHandler.Invoke(this, IsDirty);
         }
     }
 }

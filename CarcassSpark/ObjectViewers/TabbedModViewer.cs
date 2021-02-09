@@ -92,10 +92,12 @@ namespace CarcassSpark.ObjectViewers
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
             SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-            if (SelectedModViewer.valid)
+            if (SelectedModViewer.isValid)
             {
+                SelectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
                 TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
                 newPage.Controls.Add(SelectedModViewer);
+                newPage.Name = SelectedModViewer.Content.GetName();
                 ModViewerTabs.TabPages.Add(newPage);
                 ModViewerTabs.SelectTab(newPage);
             } 
@@ -108,8 +110,9 @@ namespace CarcassSpark.ObjectViewers
         private void CreateNewModViewerTab(ModViewerTabControl mvtc)
         {
             SelectedModViewer = mvtc;
-            TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
-            newPage.Controls.Add(SelectedModViewer);
+            TabPage newPage = new TabPage(mvtc.Content.GetName());
+            newPage.Controls.Add(mvtc);
+            newPage.Name = mvtc.Content.GetName();
             ModViewerTabs.TabPages.Add(newPage);
             ModViewerTabs.SelectTab(newPage);
         }
@@ -129,8 +132,9 @@ namespace CarcassSpark.ObjectViewers
                 {
                     MessageBox.Show("Error Opening Mod");
                 }
-                if (mvtc != null && mvtc.valid)
+                if (mvtc != null && mvtc.isValid)
                 {
+                    mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
                     if (Settings.HasPreviousMods())
                     {
@@ -160,11 +164,18 @@ namespace CarcassSpark.ObjectViewers
                 {
                     MessageBox.Show("Error Creating Mod");
                 }
-                if (mvtc != null && mvtc.valid)
+                if (mvtc != null && mvtc.isValid)
                 {
+                    mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
-                    if (Settings.settings["previousMods"] is JArray array) array.Add(JToken.FromObject(mvtc.Content.currentDirectory));
-                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
+                    if (Settings.HasPreviousMods())
+                    {
+                        Settings.AddPreviousMod(location);
+                    }
+                    else
+                    {
+                        Settings.InitPreviousMods(location);
+                    }
                     Settings.SaveSettings();
                 }
             }
@@ -848,6 +859,12 @@ namespace CarcassSpark.ObjectViewers
                 Arguments = SelectedModViewer.Content.currentDirectory
             };
             Process.Start(startInfo);
+        }
+
+        public void MarkTabDirty(object modViewerTab, bool v)
+        {
+            TabPage tabPage = (TabPage)((ModViewerTabControl)modViewerTab).Parent;
+            tabPage.Text = v ? tabPage.Name + "*" : tabPage.Name;
         }
     }
 }
