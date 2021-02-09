@@ -3517,12 +3517,12 @@ namespace CarcassSpark.ObjectViewers
         
         private void MarkDirty(bool v)
         {
-            this.IsDirty = v;
+            IsDirty = v;
         }
         
         public void MarkDirty()
         {
-            this.IsDirty = true;
+            IsDirty = true;
         }
     }
 }
