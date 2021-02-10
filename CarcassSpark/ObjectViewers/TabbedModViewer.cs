@@ -246,11 +246,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla) return;
-            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis);
+            if (SelectedModViewer.isVanilla)
+            {
+                MessageBox.Show("There is no synopsis for vanilla content.");
+                return;
+            }
+
+            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis.Copy());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.synopsis = mv.displayedSynopsis;
+                if (SelectedModViewer.Content.synopsis.name != mv.displayedSynopsis.name)
+                {
+                    SelectedModViewer.Parent.Name = mv.displayedSynopsis.name;
+                }
+                SelectedModViewer.Content.synopsis = mv.displayedSynopsis.Copy();
                 SelectedModViewer.SaveMod();
             }
         }
