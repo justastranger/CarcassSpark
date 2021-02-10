@@ -181,6 +181,7 @@ namespace CarcassSpark.ObjectViewers
             specAppendButton.Visible = editing;
             specPrependButton.Visible = editing;
             specRemoveButton.Visible = editing;
+            deleteButton.Visible = editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
