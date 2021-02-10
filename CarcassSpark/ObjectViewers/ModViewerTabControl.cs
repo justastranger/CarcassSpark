@@ -3117,6 +3117,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (elementsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3152,6 +3163,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3187,6 +3209,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || elementsListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3222,6 +3255,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || elementsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) decksListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3257,6 +3301,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || elementsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3292,6 +3347,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || elementsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || verbsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
@@ -3326,6 +3392,17 @@ namespace CarcassSpark.ObjectViewers
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
+                if (aspectsListView.Groups[newGroup] != null
+                 || elementsListView.Groups[newGroup] != null
+                 || recipesListView.Groups[newGroup] != null
+                 || legaciesListView.Groups[newGroup] != null
+                 || decksListView.Groups[newGroup] != null
+                 || endingsListView.Groups[newGroup] != null)
+                {
+                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (newGroup != currentGroup)
                 {
                     if (currentGroup != "" && currentGroup != null) verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
