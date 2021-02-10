@@ -61,6 +61,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 extendsTextBox.Text = verb.extends[0];
             }
+            if (verb.comments != null)
+            {
+                commentsTextBox.Text = verb.comments;
+            }
         }
 
         void SetEditingMode(bool editing)
@@ -163,8 +167,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.comments = commentsTextBox.Text;
-            if (displayedVerb.comments == "")
+            if (commentsTextBox.Text != "" && commentsTextBox.Text != null)
+            {
+                displayedVerb.comments = commentsTextBox.Text;
+            }
+            else
             {
                 displayedVerb.comments = null;
             }
