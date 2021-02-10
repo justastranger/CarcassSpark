@@ -60,6 +60,8 @@
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.verbIconLabel = new System.Windows.Forms.Label();
+            this.verbIconTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -118,11 +120,11 @@
             this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 208);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 247);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(630, 105);
+            this.descriptionTextBox.Size = new System.Drawing.Size(630, 66);
             this.descriptionTextBox.TabIndex = 4;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -130,7 +132,7 @@
             // 
             this.inducesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inducesLabel.AutoSize = true;
-            this.inducesLabel.Location = new System.Drawing.Point(364, 15);
+            this.inducesLabel.Location = new System.Drawing.Point(286, 12);
             this.inducesLabel.Name = "inducesLabel";
             this.inducesLabel.Size = new System.Drawing.Size(45, 13);
             this.inducesLabel.TabIndex = 5;
@@ -147,9 +149,9 @@
             this.chance,
             this.inducesAdditional});
             this.inducesDataGridView.ContextMenuStrip = this.propertyOperationContextMenuStrip;
-            this.inducesDataGridView.Location = new System.Drawing.Point(287, 31);
+            this.inducesDataGridView.Location = new System.Drawing.Point(287, 28);
             this.inducesDataGridView.Name = "inducesDataGridView";
-            this.inducesDataGridView.Size = new System.Drawing.Size(355, 169);
+            this.inducesDataGridView.Size = new System.Drawing.Size(355, 213);
             this.inducesDataGridView.TabIndex = 6;
             this.ToolTip.SetToolTip(this.inducesDataGridView, resources.GetString("inducesDataGridView.ToolTip"));
             this.inducesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InducesDataGridView_CellDoubleClick);
@@ -288,7 +290,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(80, 192);
+            this.descriptionLabel.Location = new System.Drawing.Point(12, 231);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 17;
@@ -373,6 +375,23 @@
             this.extendsLabel.TabIndex = 24;
             this.extendsLabel.Text = "Extends";
             // 
+            // verbIconLabel
+            // 
+            this.verbIconLabel.AutoSize = true;
+            this.verbIconLabel.Location = new System.Drawing.Point(143, 205);
+            this.verbIconLabel.Name = "verbIconLabel";
+            this.verbIconLabel.Size = new System.Drawing.Size(53, 13);
+            this.verbIconLabel.TabIndex = 25;
+            this.verbIconLabel.Text = "Verb Icon";
+            // 
+            // verbIconTextBox
+            // 
+            this.verbIconTextBox.Location = new System.Drawing.Point(146, 221);
+            this.verbIconTextBox.Name = "verbIconTextBox";
+            this.verbIconTextBox.Size = new System.Drawing.Size(134, 20);
+            this.verbIconTextBox.TabIndex = 26;
+            this.verbIconTextBox.TextChanged += new System.EventHandler(this.VerbIconTextBox_TextChanged);
+            // 
             // AspectViewer
             // 
             this.AcceptButton = this.okButton;
@@ -380,6 +399,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(654, 382);
+            this.Controls.Add(this.verbIconTextBox);
+            this.Controls.Add(this.verbIconLabel);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.deletedCheckBox);
@@ -447,5 +468,7 @@
         private System.Windows.Forms.TextBox extendsTextBox;
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Label verbIconLabel;
+        private System.Windows.Forms.TextBox verbIconTextBox;
     }
 }

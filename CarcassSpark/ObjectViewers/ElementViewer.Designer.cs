@@ -73,6 +73,8 @@
             this.extendsLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.extendXTriggerButton = new System.Windows.Forms.Button();
+            this.verbIconTextBox = new System.Windows.Forms.TextBox();
+            this.verbIconLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -494,7 +496,7 @@
             // 
             this.extendsTextBox.Location = new System.Drawing.Point(258, 220);
             this.extendsTextBox.Name = "extendsTextBox";
-            this.extendsTextBox.Size = new System.Drawing.Size(245, 20);
+            this.extendsTextBox.Size = new System.Drawing.Size(124, 20);
             this.extendsTextBox.TabIndex = 42;
             this.ToolTip.SetToolTip(this.extendsTextBox, "Comma separated list of elements to inherit properties from.\r\n\"example1,example2," +
         "example3\"");
@@ -519,6 +521,25 @@
             this.extendXTriggerButton.UseVisualStyleBackColor = true;
             this.extendXTriggerButton.Click += new System.EventHandler(this.ExtendXTriggerButton_Click);
             // 
+            // verbIconTextBox
+            // 
+            this.verbIconTextBox.Location = new System.Drawing.Point(388, 220);
+            this.verbIconTextBox.Name = "verbIconTextBox";
+            this.verbIconTextBox.Size = new System.Drawing.Size(112, 20);
+            this.verbIconTextBox.TabIndex = 45;
+            this.ToolTip.SetToolTip(this.verbIconTextBox, "Filename, minus extension, of the image from \"images/verbs\" to override the verb\'" +
+        "s normal icon with when this element is present.");
+            this.verbIconTextBox.TextChanged += new System.EventHandler(this.VerbIconTextBox_TextChanged);
+            // 
+            // verbIconLabel
+            // 
+            this.verbIconLabel.AutoSize = true;
+            this.verbIconLabel.Location = new System.Drawing.Point(388, 204);
+            this.verbIconLabel.Name = "verbIconLabel";
+            this.verbIconLabel.Size = new System.Drawing.Size(53, 13);
+            this.verbIconLabel.TabIndex = 46;
+            this.verbIconLabel.Text = "Verb Icon";
+            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
@@ -526,6 +547,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(769, 412);
+            this.Controls.Add(this.verbIconLabel);
+            this.Controls.Add(this.verbIconTextBox);
             this.Controls.Add(this.extendXTriggerButton);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.extendsTextBox);
@@ -622,5 +645,7 @@
         private System.Windows.Forms.Label extendsLabel;
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Button extendXTriggerButton;
+        private System.Windows.Forms.TextBox verbIconTextBox;
+        private System.Windows.Forms.Label verbIconLabel;
     }
 }

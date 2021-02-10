@@ -51,6 +51,7 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
             okButton.Visible = editing;
             deletedCheckBox.Enabled = editing;
+            verbIconTextBox.ReadOnly = !editing;
         }
 
         public void FillValues(Aspect aspect)
@@ -75,6 +76,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
             if (aspect.comments != null) commentTextBox.Text = aspect.comments;
             if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
+            if (aspect.verbicon != null) verbIconTextBox.Text = aspect.verbicon;
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
@@ -341,6 +343,18 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (extendsTextBox.Text != "") displayedAspect.extends = new List<string> { extendsTextBox.Text };
                 else displayedAspect.extends = null;
+            }
+        }
+
+        private void VerbIconTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (verbIconTextBox.Text != "" && verbIconTextBox.Text != null)
+            {
+                displayedAspect.verbicon = verbIconTextBox.Text;
+            }
+            else
+            {
+                displayedAspect.verbicon = null;
             }
         }
     }

@@ -90,6 +90,7 @@ namespace CarcassSpark.ObjectViewers
             setAsRemoveToolStripMenuItem.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
+            verbIconTextBox.ReadOnly = !editing;
         }
 
         void SetType(ElementType elementType)
@@ -132,6 +133,7 @@ namespace CarcassSpark.ObjectViewers
             if (element.comments != null) commentsTextBox.Text = element.comments;
             if (element.inherits != null) inheritsTextBox.Text = element.inherits;
             if (element.deleted.HasValue) deletedCheckBox.Checked = element.deleted.Value;
+            if (element.verbicon != null) verbIconTextBox.Text = element.verbicon;
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
@@ -672,6 +674,18 @@ namespace CarcassSpark.ObjectViewers
                 if (displayedElement.xtriggers_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, List<XTrigger>>();
                 xtriggersListView.Items.Add(new ListViewItem(xtv.catalyst) { BackColor = Utilities.DictionaryExtendStyle.BackColor });
                 displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
+            }
+        }
+
+        private void VerbIconTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (verbIconTextBox.Text != "" && verbIconTextBox.Text != null)
+            {
+                displayedElement.verbicon = verbIconTextBox.Text;
+            }
+            else
+            {
+                displayedElement.verbicon = null;
             }
         }
     }
