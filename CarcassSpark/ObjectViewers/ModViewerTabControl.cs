@@ -568,6 +568,14 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void ClearContentFolder(string modLocation)
+        {
+            foreach (string file in Directory.EnumerateFiles(modLocation + "/content/", "*.json"))
+            {
+                File.Delete(file);
+            }
+        }
+
         public void SaveMod()
         {
             SaveMod(Content.currentDirectory);
@@ -576,6 +584,7 @@ namespace CarcassSpark.ObjectViewers
         public void SaveMod(string location)
         {
             CreateDirectories(location);
+            ClearContentFolder(location);
             if (Content.Aspects.Count > 0)
             {
                 foreach (ListViewGroup group in aspectsListView.Groups)
@@ -597,13 +606,6 @@ namespace CarcassSpark.ObjectViewers
                         using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
                         {
                             jtw.WriteRaw(serializedAspects);
-                        }
-                    }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
                         }
                     }
                 }
@@ -631,13 +633,6 @@ namespace CarcassSpark.ObjectViewers
                             jtw.WriteRaw(serializedElements);
                         }
                     }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
-                        }
-                    }
                 }
             }
             if (Content.Recipes.Count > 0)
@@ -661,13 +656,6 @@ namespace CarcassSpark.ObjectViewers
                         using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
                         {
                             jtw.WriteRaw(serializedRecipes);
-                        }
-                    }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
                         }
                     }
                 }
@@ -695,13 +683,6 @@ namespace CarcassSpark.ObjectViewers
                             jtw.WriteRaw(serializedDecks);
                         }
                     }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
-                        }
-                    }
                 }
             }
             if (legaciesListView.Items.Count > 0)
@@ -725,13 +706,6 @@ namespace CarcassSpark.ObjectViewers
                         using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
                         {
                             jtw.WriteRaw(serializedLegacies);
-                        }
-                    }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
                         }
                     }
                 }
@@ -759,13 +733,6 @@ namespace CarcassSpark.ObjectViewers
                             jtw.WriteRaw(serializedLegacies);
                         }
                     }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
-                        }
-                    }
                 }
             }
             if (verbsListView.Items.Count > 0)
@@ -791,13 +758,6 @@ namespace CarcassSpark.ObjectViewers
                             jtw.WriteRaw(serializedLegacies);
                         }
                     }
-                    else
-                    {
-                        if (File.Exists(location + "/content/" + fileName + ".json"))
-                        {
-                            File.Delete(location + "/content/" + fileName + ".json");
-                        }
-                    }
                 }
             }
             if (Content.Cultures.Count > 0)
@@ -811,13 +771,6 @@ namespace CarcassSpark.ObjectViewers
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/cultures.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(culturesJson);
-                }
-            }
-            else
-            {
-                if (File.Exists(location + "/content/cultures.json"))
-                {
-                    File.Delete(location + "/content/cultures.json");
                 }
             }
             SaveManifests(location);
