@@ -290,6 +290,7 @@
             this.Name = "RecipeLinkViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recipe Link Viewer";
+            this.Shown += new System.EventHandler(this.RecipeLinkViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).EndInit();

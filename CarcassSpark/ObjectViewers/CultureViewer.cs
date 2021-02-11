@@ -171,7 +171,6 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture, bool? editing)
         {
             InitializeComponent();
-            FillValues(culture);
             if (editing.HasValue)
             {
                 SetEditingMode(editing.Value);
@@ -181,7 +180,6 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture)
         {
             InitializeComponent();
-            FillValues(culture);
             SetEditingMode(false);
         }
 
@@ -289,6 +287,11 @@ namespace CarcassSpark.ObjectViewers
         private void ReleasedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedCulture.released = releasedCheckBox.Checked;
+        }
+
+        private void CultureViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedCulture);
         }
     }
 }

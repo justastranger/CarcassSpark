@@ -22,8 +22,7 @@ namespace CarcassSpark.ObjectViewers
         public DeckViewer(Deck deck)
         {
             InitializeComponent();
-            this.displayedDeck = deck;
-            FillValues(deck);
+            displayedDeck = deck;
             SetEditingMode(false);
             SetInternal(false);
         }
@@ -31,8 +30,7 @@ namespace CarcassSpark.ObjectViewers
         public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
-            this.displayedDeck = deck;
-            FillValues(deck);
+            displayedDeck = deck;
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -46,8 +44,7 @@ namespace CarcassSpark.ObjectViewers
         public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck, ListViewItem item)
         {
             InitializeComponent();
-            this.displayedDeck = deck;
-            FillValues(deck);
+            displayedDeck = deck;
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -523,6 +520,11 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.spec.Remove(item.Text);
                 if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
             }
+        }
+
+        private void DeckViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedDeck);
         }
     }
 }

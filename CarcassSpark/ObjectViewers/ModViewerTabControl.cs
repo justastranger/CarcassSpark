@@ -44,8 +44,7 @@ namespace CarcassSpark.ObjectViewers
                 // if the user cancels the synopsis creation for a new mod, invalidate the control and abort loading.
                 if (!CreateSynopsis())
                 {
-                    isValid = false;
-                    return;
+                    throw new Exception("New Mod Canceled");
                 }
             }
             // if loading content is successful
@@ -53,11 +52,10 @@ namespace CarcassSpark.ObjectViewers
             {
                 SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
                 Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
-                isValid = true;
             }
             else
             {
-                isValid = false;
+                throw new Exception("Loading Failed");
                 // MessageBox.Show("Failed to load content source.");
             }
         }
@@ -107,62 +105,53 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
 
-            try
+            aspectsListView.Items.Clear();
+            Content.Aspects.Clear();
+            elementsListView.Items.Clear();
+            Content.Elements.Clear();
+            recipesListView.Items.Clear();
+            Content.Recipes.Clear();
+            decksListView.Items.Clear();
+            Content.Decks.Clear();
+            legaciesListView.Items.Clear();
+            Content.Legacies.Clear();
+            endingsListView.Items.Clear();
+            Content.Endings.Clear();
+            verbsListView.Items.Clear();
+            Content.Verbs.Clear();
+            if (!isVanilla)
             {
-                aspectsListView.Items.Clear();
-                Content.Aspects.Clear();
-                elementsListView.Items.Clear();
-                Content.Elements.Clear();
-                recipesListView.Items.Clear();
-                Content.Recipes.Clear();
-                decksListView.Items.Clear();
-                Content.Decks.Clear();
-                legaciesListView.Items.Clear();
-                Content.Legacies.Clear();
-                endingsListView.Items.Clear();
-                Content.Endings.Clear();
-                verbsListView.Items.Clear();
-                Content.Verbs.Clear();
-                if (!isVanilla)
+                // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
+                if (!CheckForSynopsis())
                 {
-                    // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
-                    if (!CheckForSynopsis())
-                    {
-                        return false;
-                    }
-                    if (Directory.Exists(Content.currentDirectory + "\\content\\"))
-                    {
-                        foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
-                        {
-                            using (FileStream fs = new FileStream(file, FileMode.Open))
-                            {
-                                LoadFile(fs, file);
-                            }
-                        }
-                        // mod loaded successfully
-                        MarkDirty(false);
-                        return true;
-                    }
                     return false;
                 }
-                else
+                if (Directory.Exists(Content.currentDirectory + "\\content\\"))
                 {
-                    Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
-                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
+                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
                     {
                         using (FileStream fs = new FileStream(file, FileMode.Open))
                         {
                             LoadFile(fs, file);
                         }
                     }
+                    // mod loaded successfully
+                    MarkDirty(false);
                     return true;
                 }
-            }
-            // mod failed to load catastrophically
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Content Source Loading Failed");
                 return false;
+            }
+            else
+            {
+                Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
+                {
+                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    {
+                        LoadFile(fs, file);
+                    }
+                }
+                return true;
             }
         }
 
@@ -3545,8 +3534,11 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void ModViewerTabControl_Load(object sender, EventArgs e)
+        {
 
-        
+        }
+
         private void MarkDirty(bool v)
         {
             IsDirty = v;

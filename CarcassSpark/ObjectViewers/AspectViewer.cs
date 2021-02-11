@@ -23,7 +23,6 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             displayedAspect = aspect;
             associatedListViewItem = item;
-            FillValues(aspect);
             if (SuccessCallback != null)
             {
                 this.SuccessCallback += SuccessCallback;
@@ -356,6 +355,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedAspect.verbicon = null;
             }
+        }
+
+        private void AspectViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedAspect);
         }
     }
 }

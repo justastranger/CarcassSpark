@@ -29,7 +29,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedElement = element;
-            FillValues(element);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -46,7 +45,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedElement = element;
-            FillValues(element);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -687,6 +685,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedElement.verbicon = null;
             }
+        }
+
+        private void ElementViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedElement);
         }
     }
 }

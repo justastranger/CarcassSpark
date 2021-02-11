@@ -428,6 +428,7 @@
             this.Name = "AspectViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aspect Viewer";
+            this.Shown += new System.EventHandler(this.AspectViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);

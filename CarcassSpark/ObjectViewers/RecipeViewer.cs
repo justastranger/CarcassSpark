@@ -34,7 +34,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedRecipe = recipe;
-            FillValues(recipe);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -48,7 +47,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedRecipe = recipe;
-            FillValues(recipe);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -59,7 +57,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 SetEditingMode(false);
             }
-
             SetViewerType(recipeViewerType);
         }
 
@@ -2032,6 +2029,11 @@ namespace CarcassSpark.ObjectViewers
                 if (extendsTextBox.Text != "") displayedRecipe.extends = new List<string> { extendsTextBox.Text };
                 else displayedRecipe.extends = null;
             }
+        }
+
+        private void RecipeViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedRecipe);
         }
     }
 }

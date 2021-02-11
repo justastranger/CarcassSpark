@@ -21,7 +21,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedMutation = mutation;
-            FillValues(mutation);
             if (editing.HasValue) SetEditingMode(editing.Value);
             else SetEditingMode(false);
         }
@@ -89,6 +88,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedMutation.additive = null;
             }
+        }
+
+        private void MutationViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedMutation);
         }
     }
 }

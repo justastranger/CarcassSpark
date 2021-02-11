@@ -466,6 +466,7 @@
             this.Name = "TabbedModViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carcass Spark";
+            this.Shown += new System.EventHandler(this.TabbedModViewer_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -480,7 +481,6 @@
         private System.Windows.Forms.ToolStripDropDownButton fileToolStripDropDownButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
-        private System.Windows.Forms.TabControl ModViewerTabs;
         private System.Windows.Forms.ToolStripMenuItem openModToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.ToolStripMenuItem closeModToolStripMenuItem;
@@ -520,6 +520,7 @@
         private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton aboutToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem openInExplorerToolStripMenuItem;
+        public System.Windows.Forms.TabControl ModViewerTabs;
     }
 }
 

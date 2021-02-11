@@ -29,8 +29,7 @@ namespace CarcassSpark.ObjectViewers
         public SlotViewer(Slot slot, bool? editing, SlotType? slotType)
         {
             InitializeComponent();
-            this.displayedSlot = slot;
-            FillValues(slot);
+            displayedSlot = slot;
             if (slotType.HasValue) this.slotType = slotType.Value;
             if (editing.HasValue) SetEditingMode(editing.Value);
             else SetEditingMode(false);
@@ -39,8 +38,7 @@ namespace CarcassSpark.ObjectViewers
         public SlotViewer(Slot slot, bool? editing)
         {
             InitializeComponent();
-            this.displayedSlot = slot;
-            FillValues(slot);
+            displayedSlot = slot;
             if (editing.HasValue) SetEditingMode(editing.Value);
             else SetEditingMode(false);
         }
@@ -266,6 +264,11 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null) return;
             if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
             if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
+        }
+
+        private void SlotViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedSlot);
         }
     }
 }

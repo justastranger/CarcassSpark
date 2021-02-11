@@ -24,7 +24,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedVerb = verb;
-            FillValues(verb);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -195,6 +194,11 @@ namespace CarcassSpark.ObjectViewers
                 if (extendsTextBox.Text != "") displayedVerb.extends = new List<string> { extendsTextBox.Text };
                 else displayedVerb.extends = null;
             }
+        }
+
+        private void VerbViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedVerb);
         }
     }
 }

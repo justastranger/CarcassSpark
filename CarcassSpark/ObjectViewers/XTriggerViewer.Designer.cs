@@ -182,6 +182,7 @@
             this.Name = "XTriggerViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XTrigger Viewer";
+            this.Shown += new System.EventHandler(this.XTriggerViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

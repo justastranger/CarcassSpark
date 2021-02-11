@@ -24,51 +24,7 @@ namespace CarcassSpark.ObjectViewers
             // this should always be first before messing with any components like the Folder Browser Dialog
             InitializeComponent();
             // This is necessary to ensure we have a reference point for the game and the game's assemblies
-            if (Settings.settings["GamePath"] == null)
-            {
-                // If installed in the game's folder, save the user the hassle and just use that install
-                if (File.Exists("cultistsimulator.exe"))
-                {
-                    Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
-                    Settings.settings["portable"] = false;
-                    Settings.SaveSettings();
-                    InitializeTabs();
-                }
-                else
-                {
-                    // Otherwise, make them select the game's installation folder
-                    MessageBox.Show("Please select your Cultist Simulator game directory.");
-                    folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Check to see if the game's actually installed there
-                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
-                        {
-                            Settings.settings["portable"] = true;
-                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
-                            Settings.SaveSettings();
-                            InitializeTabs();
-                        }
-                        else
-                        {
-                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Application.Exit();
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        // Didn't open the games folder
-                        MessageBox.Show("No directory selected, exiting.");
-                        Application.Exit();
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                InitializeTabs();
-            }
+            
         }
 
         private void InitializeTabs()
@@ -91,19 +47,19 @@ namespace CarcassSpark.ObjectViewers
         }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
-            SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-            if (SelectedModViewer.isValid)
+            try
             {
+                SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
                 SelectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
                 TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
                 newPage.Controls.Add(SelectedModViewer);
                 newPage.Name = SelectedModViewer.Content.GetName();
                 ModViewerTabs.TabPages.Add(newPage);
                 ModViewerTabs.SelectTab(newPage);
-            } 
-            else
+            }
+            catch
             {
-                SelectedModViewer.Dispose();
+
             }
         }
 
@@ -123,17 +79,9 @@ namespace CarcassSpark.ObjectViewers
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = null;
                 try
                 {
-                    mvtc = new ModViewerTabControl(location, false, false);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error Opening Mod");
-                }
-                if (mvtc != null && mvtc.isValid)
-                {
+                    ModViewerTabControl mvtc = new ModViewerTabControl(location, false, false);
                     mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
                     if (Settings.HasPreviousMods())
@@ -145,6 +93,11 @@ namespace CarcassSpark.ObjectViewers
                         Settings.InitPreviousMods(location);
                     }
                     Settings.SaveSettings();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Opening Mod");
+                    return;
                 }
             }
         }
@@ -155,17 +108,9 @@ namespace CarcassSpark.ObjectViewers
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = null;
                 try
                 {
-                    mvtc = new ModViewerTabControl(location, false, true);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error Creating Mod");
-                }
-                if (mvtc != null && mvtc.isValid)
-                {
+                    ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
                     mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
                     if (Settings.HasPreviousMods())
@@ -177,6 +122,10 @@ namespace CarcassSpark.ObjectViewers
                         Settings.InitPreviousMods(location);
                     }
                     Settings.SaveSettings();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Creating Mod");
                 }
             }
         }
@@ -903,6 +852,55 @@ namespace CarcassSpark.ObjectViewers
                 Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
                 SelectedModViewer.Dispose();
                 ModViewerTabs.TabPages.Remove(tab);
+            }
+        }
+
+        private void TabbedModViewer_Shown(object sender, EventArgs e)
+        {
+            if (Settings.settings["GamePath"] == null)
+            {
+                // If installed in the game's folder, save the user the hassle and just use that install
+                if (File.Exists("cultistsimulator.exe"))
+                {
+                    Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
+                    Settings.settings["portable"] = false;
+                    Settings.SaveSettings();
+                    InitializeTabs();
+                }
+                else
+                {
+                    // Otherwise, make them select the game's installation folder
+                    MessageBox.Show("Please select your Cultist Simulator game directory.");
+                    folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Check to see if the game's actually installed there
+                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
+                        {
+                            Settings.settings["portable"] = true;
+                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
+                            Settings.SaveSettings();
+                            InitializeTabs();
+                        }
+                        else
+                        {
+                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Application.Exit();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Didn't open the games folder
+                        MessageBox.Show("No directory selected, exiting.");
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                InitializeTabs();
             }
         }
     }

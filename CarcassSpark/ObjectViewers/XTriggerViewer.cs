@@ -30,7 +30,6 @@ namespace CarcassSpark.ObjectViewers
             InitializeComponent();
             displayedXTriggers = xTriggers;
             this.catalyst = catalyst;
-            FillValues();
             SetEditingMode(editing);
             xtriggersDataGridView.ReadOnly = remove;
         }
@@ -120,6 +119,11 @@ namespace CarcassSpark.ObjectViewers
                 displayedXTriggers = null;
                 Close();
             }
+        }
+
+        private void XTriggerViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues();
         }
     }
 }

@@ -72,8 +72,8 @@
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.extendXTriggerButton = new System.Windows.Forms.Button();
             this.verbIconTextBox = new System.Windows.Forms.TextBox();
+            this.extendXTriggerButton = new System.Windows.Forms.Button();
             this.verbIconLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
@@ -511,16 +511,6 @@
             this.extendsLabel.TabIndex = 43;
             this.extendsLabel.Text = "Extends";
             // 
-            // extendXTriggerButton
-            // 
-            this.extendXTriggerButton.Location = new System.Drawing.Point(258, 157);
-            this.extendXTriggerButton.Name = "extendXTriggerButton";
-            this.extendXTriggerButton.Size = new System.Drawing.Size(95, 23);
-            this.extendXTriggerButton.TabIndex = 44;
-            this.extendXTriggerButton.Text = "Append XTrigger";
-            this.extendXTriggerButton.UseVisualStyleBackColor = true;
-            this.extendXTriggerButton.Click += new System.EventHandler(this.ExtendXTriggerButton_Click);
-            // 
             // verbIconTextBox
             // 
             this.verbIconTextBox.Location = new System.Drawing.Point(388, 220);
@@ -530,6 +520,16 @@
             this.ToolTip.SetToolTip(this.verbIconTextBox, "Filename, minus extension, of the image from \"images/verbs\" to override the verb\'" +
         "s normal icon with when this element is present.");
             this.verbIconTextBox.TextChanged += new System.EventHandler(this.VerbIconTextBox_TextChanged);
+            // 
+            // extendXTriggerButton
+            // 
+            this.extendXTriggerButton.Location = new System.Drawing.Point(258, 157);
+            this.extendXTriggerButton.Name = "extendXTriggerButton";
+            this.extendXTriggerButton.Size = new System.Drawing.Size(95, 23);
+            this.extendXTriggerButton.TabIndex = 44;
+            this.extendXTriggerButton.Text = "Append XTrigger";
+            this.extendXTriggerButton.UseVisualStyleBackColor = true;
+            this.extendXTriggerButton.Click += new System.EventHandler(this.ExtendXTriggerButton_Click);
             // 
             // verbIconLabel
             // 
@@ -591,6 +591,7 @@
             this.Name = "ElementViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Element Viewer";
+            this.Shown += new System.EventHandler(this.ElementViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);

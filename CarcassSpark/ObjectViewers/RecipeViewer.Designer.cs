@@ -1674,6 +1674,7 @@
             this.Name = "RecipeViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recipe Viewer";
+            this.Shown += new System.EventHandler(this.RecipeViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.extantreqsDataGridView)).EndInit();

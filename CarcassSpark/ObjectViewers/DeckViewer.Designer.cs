@@ -382,8 +382,8 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(286, 377);
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.Location = new System.Drawing.Point(286, 377);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(69, 23);
             this.deleteButton.TabIndex = 30;
@@ -430,6 +430,7 @@
             this.Name = "DeckViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Deck Viewer";
+            this.Shown += new System.EventHandler(this.DeckViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

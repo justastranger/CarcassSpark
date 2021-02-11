@@ -21,7 +21,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedLegacy = legacy;
-            FillValues(legacy);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -499,6 +498,11 @@ namespace CarcassSpark.ObjectViewers
                 if (extendsTextBox.Text != "") displayedLegacy.extends = new List<string> { extendsTextBox.Text };
                 else displayedLegacy.extends = null;
             }
+        }
+
+        private void LegacyViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedLegacy);
         }
     }
 }

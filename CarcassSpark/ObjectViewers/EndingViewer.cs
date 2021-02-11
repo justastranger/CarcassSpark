@@ -23,7 +23,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedEnding = ending;
-            FillValues(ending);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
@@ -190,6 +189,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedEnding.extends = new List<string> { extendsTextBox.Text };
             }
+        }
+
+        private void EndingViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedEnding);
         }
     }
 }

@@ -345,6 +345,7 @@
             this.Name = "EndingViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ending Viewer";
+            this.Shown += new System.EventHandler(this.EndingViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

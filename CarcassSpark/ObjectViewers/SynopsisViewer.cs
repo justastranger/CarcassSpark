@@ -19,15 +19,19 @@ namespace CarcassSpark.ObjectViewers
         public SynopsisViewer(Synopsis synopsis)
         {
             InitializeComponent();
-            this.displayedSynopsis = synopsis;
-            modNameTextBox.Text = synopsis.name;
-            modAuthorTextBox.Text = synopsis.author;
-            modVersionTextBox.Text = synopsis.version;
-            modDescriptionTextBox.Text = synopsis.description;
-            longDescriptionTextBox.Text = synopsis.description_long;
-            if (synopsis.dependencies != null)
+            displayedSynopsis = synopsis;
+        }
+
+        private void FillValues()
+        {
+            modNameTextBox.Text = displayedSynopsis.name;
+            modAuthorTextBox.Text = displayedSynopsis.author;
+            modVersionTextBox.Text = displayedSynopsis.version;
+            modDescriptionTextBox.Text = displayedSynopsis.description;
+            longDescriptionTextBox.Text = displayedSynopsis.description_long;
+            if (displayedSynopsis.dependencies != null)
             {
-                foreach (string dep in synopsis.dependencies)
+                foreach (string dep in displayedSynopsis.dependencies)
                 {
                     string[] depPieces = dep.Split(' ');
                     if (depPieces.Count() > 0)
@@ -121,6 +125,11 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
             }
+        }
+
+        private void SynopsisViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues();
         }
     }
 }

@@ -12,6 +12,13 @@ using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
+
+    public enum RecipeLinkType
+    {
+        ALT,
+        LINKED
+    }
+
     public partial class RecipeLinkViewer : Form
     {
         public RecipeLink displayedRecipeLink;
@@ -21,7 +28,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedRecipeLink = recipeLink;
-            FillValues(recipeLink);
             if (editing.HasValue) SetEditingMode(editing.Value);
             else SetEditingMode(false);
         }
@@ -30,7 +36,6 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedRecipeLink = recipeLink;
-            FillValues(recipeLink);
             if (editing.HasValue) SetEditingMode(editing.Value);
             else SetEditingMode(false);
             if (type == RecipeLinkType.LINKED)
@@ -219,11 +224,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedRecipeLink.expulsion != null) displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
         }
-    }
 
-    public enum RecipeLinkType
-    {
-        ALT,
-        LINKED
+        private void RecipeLinkViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedRecipeLink);
+        }
     }
 }

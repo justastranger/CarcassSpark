@@ -307,6 +307,7 @@
             this.Name = "SlotViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Slot Viewer";
+            this.Shown += new System.EventHandler(this.SlotViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.requiredDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forbiddenDataGridView)).EndInit();
             this.ResumeLayout(false);
