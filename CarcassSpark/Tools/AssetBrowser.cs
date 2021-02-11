@@ -131,11 +131,14 @@ namespace CarcassSpark.Tools
 
         private void AssetBrowser_Shown(object sender, EventArgs e)
         {
-            foreach (string path in Utilities.assets.Keys)
+            if (!(Utilities.ImageList.Images.Count == Utilities.assets.Count))
             {
-                if (!Utilities.ImageList.Images.ContainsKey(path))
+                foreach (string path in Utilities.assets.Keys)
                 {
-                    Utilities.ImageList.Images.Add(path, Utilities.assets[path].GetImage());
+                    if (!Utilities.ImageList.Images.ContainsKey(path))
+                    {
+                        Utilities.ImageList.Images.Add(path, Utilities.assets[path].GetImage());
+                    }
                 }
             }
             LoadAssets();
