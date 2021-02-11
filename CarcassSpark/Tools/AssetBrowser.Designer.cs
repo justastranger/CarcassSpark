@@ -100,21 +100,20 @@
             this.contentTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.contentTypeComboBox.FormattingEnabled = true;
             this.contentTypeComboBox.Items.AddRange(new object[] {
-                "Aspects",
-                "Burns",
-                "Cardbacks",
-                "Elements",
-                "Endings",
-                "Legacies",
-                "StatusBarIcons",
-                "UI",
-                "Verbs",
-                "All"});
+            "Aspects",
+            "Burns",
+            "Cardbacks",
+            "Elements",
+            "Endings",
+            "Legacies",
+            "StatusBarIcons",
+            "UI",
+            "Verbs",
+            "All"});
             this.contentTypeComboBox.Location = new System.Drawing.Point(93, 417);
             this.contentTypeComboBox.Name = "contentTypeComboBox";
             this.contentTypeComboBox.Size = new System.Drawing.Size(614, 21);
             this.contentTypeComboBox.TabIndex = 3;
-            this.contentTypeComboBox.SelectedIndex = 0;
             this.contentTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ContentTypeComboBox_SelectedIndexChanged);
             // 
             // AssetBrowser
@@ -132,6 +131,7 @@
             this.Name = "AssetBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asset Browser";
+            this.Shown += new System.EventHandler(this.AssetBrowser_Shown);
             this.assetsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
