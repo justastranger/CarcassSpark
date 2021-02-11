@@ -39,7 +39,10 @@ namespace CarcassSpark
         private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
         private static AssetsManager AssetsManager = new AssetsManager();
         public static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
-        public static ImageList ImageList;
+        public static ImageList ImageList = new ImageList
+        {
+            ImageSize = new Size(128, 128)
+        };
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
@@ -52,8 +55,6 @@ namespace CarcassSpark
             DictionaryRemoveStyle.BackColor = System.Drawing.Color.Maroon;
             AssetsManager.LoadFiles(Settings.settings["GamePath"].ToString() + DirectoryToVanillaAssets);
             CollectSprites();
-            // assetbundles = AssetsManager.assetsFileList.ToDictionary(file => file.fullName, file => file);
-            // MessageBox.Show(String.Concat(assets.Keys));
         }
 
         private static void CollectSprites()
@@ -64,12 +65,12 @@ namespace CarcassSpark
             {
                 string key = keyValuePair.Key;
                 PPtr<AssetStudio.Object> valuePointer = keyValuePair.Value;
-                AssetStudio.Object value;
-                if (valuePointer.TryGet(out value))
+                if (valuePointer.TryGet(out AssetStudio.Object value))
                 {
                     if (value is Sprite sprite)
                     {
                         assets[key] = sprite;
+                        ImageList.Images.Add(key, sprite.GetImage());
                     }
                 }
             }

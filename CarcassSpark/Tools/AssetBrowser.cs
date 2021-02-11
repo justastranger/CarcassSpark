@@ -19,13 +19,6 @@ namespace CarcassSpark.Tools
         public AssetBrowser()
         {
             InitializeComponent();
-            if (Utilities.ImageList == null)
-            {
-                Utilities.ImageList = new ImageList
-                {
-                    ImageSize = new Size(128, 128)
-                };
-            }
             assetsListView.LargeImageList = Utilities.ImageList;
             // LoadAssets();
         }
@@ -131,16 +124,7 @@ namespace CarcassSpark.Tools
 
         private void AssetBrowser_Shown(object sender, EventArgs e)
         {
-            if (!(Utilities.ImageList.Images.Count == Utilities.assets.Count))
-            {
-                foreach (string path in Utilities.assets.Keys)
-                {
-                    if (!Utilities.ImageList.Images.ContainsKey(path))
-                    {
-                        Utilities.ImageList.Images.Add(path, Utilities.assets[path].GetImage());
-                    }
-                }
-            }
+            
             LoadAssets();
         }
     }
