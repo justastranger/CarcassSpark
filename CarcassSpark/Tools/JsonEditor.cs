@@ -1,12 +1,6 @@
 ﻿using ScintillaNET;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
@@ -89,7 +83,7 @@ namespace CarcassSpark.Tools
             scintillaEditor.ReadOnly = readOnly;
             Text = readOnly ? "JSON Viewer" : "JSON Editor";
         }
-        
+
         public JsonEditor(string json, string type, bool readOnly)
         {
             InitializeComponent();
@@ -116,10 +110,10 @@ namespace CarcassSpark.Tools
             Settings.settings["jsonEditorLastContentType"] = objectType;
             Settings.SaveSettings();
         }
-        
+
         private void OkButton_Click(object sender, EventArgs e)
         {
-            
+
             Close();
         }
 

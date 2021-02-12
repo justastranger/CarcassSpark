@@ -2,14 +2,9 @@
 using Newtonsoft.Json;
 using ScintillaNET;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
@@ -23,8 +18,8 @@ namespace CarcassSpark.Tools
 
     public partial class TemplateManager : Form
     {
-        readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
-        bool unsavedChanged = false;
+        private readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
+        private bool unsavedChanged = false;
         public ListViewItem selectedItem;
 
         public TemplateManager()
@@ -45,7 +40,7 @@ namespace CarcassSpark.Tools
             }
             if (entityType != null)
             {
-                foreach(ListViewItem item in templatesListView.Items)
+                foreach (ListViewItem item in templatesListView.Items)
                 {
                     if (!item.Text.Contains(entityType.Name))
                     {
@@ -59,7 +54,7 @@ namespace CarcassSpark.Tools
         {
             selectButton.Visible = true;
         }
-        
+
         private void SetScintillaStyle()
         {
             scintilla1.Styles[Style.Json.Default].ForeColor = Color.Silver;
@@ -76,7 +71,11 @@ namespace CarcassSpark.Tools
 
         public void EnumerateTemplates()
         {
-            if (!Directory.Exists(templatesPath)) Directory.CreateDirectory(templatesPath);
+            if (!Directory.Exists(templatesPath))
+            {
+                Directory.CreateDirectory(templatesPath);
+            }
+
             if (Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories).Count() > 0)
             {
                 foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories))
@@ -97,7 +96,11 @@ namespace CarcassSpark.Tools
 
         private void TemplatesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (templatesListView.SelectedItems.Count != 1) return;
+            if (templatesListView.SelectedItems.Count != 1)
+            {
+                return;
+            }
+
             selectedItem = templatesListView.SelectedItems[0];
             scintilla1.Tag = templatesListView.SelectedItems[0].Text;
             scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
@@ -108,7 +111,11 @@ namespace CarcassSpark.Tools
             string newFileName = entityType.Name + "_" + filename + ".json";
             string entityJson = JsonConvert.SerializeObject(Activator.CreateInstance(entityType));
             string filepath = Path.Combine(templatesPath, entityType.Name, newFileName);
-            if (!Directory.Exists(Path.Combine(templatesPath, entityType.Name))) Directory.CreateDirectory(Path.Combine(templatesPath, entityType.Name));
+            if (!Directory.Exists(Path.Combine(templatesPath, entityType.Name)))
+            {
+                Directory.CreateDirectory(Path.Combine(templatesPath, entityType.Name));
+            }
+
             if (File.Exists(filepath) && MessageBox.Show("File already exists, do you want to overwrite it?", "File already exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 return item;
@@ -163,7 +170,10 @@ namespace CarcassSpark.Tools
                     default:
                         break;
                 }
-                if (newListViewItem.Tag != null) templatesListView.Items.Add(newListViewItem);
+                if (newListViewItem.Tag != null)
+                {
+                    templatesListView.Items.Add(newListViewItem);
+                }
             }
         }
 
@@ -180,7 +190,11 @@ namespace CarcassSpark.Tools
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (templatesListView.SelectedItems.Count != 1) return;
+            if (templatesListView.SelectedItems.Count != 1)
+            {
+                return;
+            }
+
             string filename = templatesListView.SelectedItems[0].Text;
             DeleteFileAndEntry(filename);
         }
@@ -266,7 +280,11 @@ namespace CarcassSpark.Tools
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            if (selectedItem == null) return;
+            if (selectedItem == null)
+            {
+                return;
+            }
+
             if (unsavedChanged)
             {
                 if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))

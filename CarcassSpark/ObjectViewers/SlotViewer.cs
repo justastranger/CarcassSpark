@@ -1,14 +1,7 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -24,35 +17,57 @@ namespace CarcassSpark.ObjectViewers
         public Slot displayedSlot;
         public bool editing;
         private readonly SlotType? slotType;
-        
+
 
         public SlotViewer(Slot slot, bool? editing, SlotType? slotType)
         {
             InitializeComponent();
-            this.displayedSlot = slot;
-            FillValues(slot);
-            if (slotType.HasValue) this.slotType = slotType.Value;
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            displayedSlot = slot;
+            if (slotType.HasValue)
+            {
+                this.slotType = slotType.Value;
+            }
+
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
         public SlotViewer(Slot slot, bool? editing)
         {
             InitializeComponent();
-            this.displayedSlot = slot;
-            FillValues(slot);
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            displayedSlot = slot;
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
-        void FillValues(Slot slot)
+        private void FillValues(Slot slot)
         {
             idTextBox.Text = slot.id;
             labelTextBox.Text = slot.label;
             descriptionTextBox.Text = slot.description;
             actionIdTextBox.Text = slot.actionId;
-            if (slot.greedy.HasValue) greedyCheckBox.Checked = slot.greedy.Value;
-            if (slot.consumes.HasValue) consumesCheckBox.Checked = slot.consumes.Value;
+            if (slot.greedy.HasValue)
+            {
+                greedyCheckBox.Checked = slot.greedy.Value;
+            }
+
+            if (slot.consumes.HasValue)
+            {
+                consumesCheckBox.Checked = slot.consumes.Value;
+            }
+
             if (slot.required != null)
             {
                 foreach (KeyValuePair<string, int> req in slot.required)
@@ -69,7 +84,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
 
@@ -117,7 +132,7 @@ namespace CarcassSpark.ObjectViewers
                 ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
-            else if(Utilities.AspectExists(id))
+            else if (Utilities.AspectExists(id))
             {
                 AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
@@ -146,7 +161,10 @@ namespace CarcassSpark.ObjectViewers
                 displayedSlot.required = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in requiredDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    }
                 }
             }
             if (forbiddenDataGridView.RowCount > 1)
@@ -154,7 +172,10 @@ namespace CarcassSpark.ObjectViewers
                 displayedSlot.forbidden = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in forbiddenDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                    }
                 }
             }
             Close();
@@ -213,9 +234,20 @@ namespace CarcassSpark.ObjectViewers
         private void RequiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
-            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.required == null) return;
-            if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
-            if (displayedSlot.required.Count == 0) displayedSlot.required = null;
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.required == null)
+            {
+                return;
+            }
+
+            if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            {
+                displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
+            }
+
+            if (displayedSlot.required.Count == 0)
+            {
+                displayedSlot.required = null;
+            }
         }
 
         private void ConsumesCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -247,7 +279,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void RequiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (!(requiredDataGridView.SelectedCells[0].Value is string id)) return;
+            if (!(requiredDataGridView.SelectedCells[0].Value is string id))
+            {
+                return;
+            }
+
             if (Utilities.ElementExists(id))
             {
                 ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
@@ -263,9 +299,25 @@ namespace CarcassSpark.ObjectViewers
         private void ForbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
-            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null) return;
-            if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
-            if (displayedSlot.forbidden.Count == 0) displayedSlot.forbidden = null;
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null)
+            {
+                return;
+            }
+
+            if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            {
+                displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
+            }
+
+            if (displayedSlot.forbidden.Count == 0)
+            {
+                displayedSlot.forbidden = null;
+            }
+        }
+
+        private void SlotViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedSlot);
         }
     }
 }

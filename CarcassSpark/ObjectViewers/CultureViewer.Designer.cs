@@ -223,6 +223,7 @@
             this.Name = "CultureViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Culture Viewer";
+            this.Shown += new System.EventHandler(this.CultureViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.UiLabelDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -19,7 +14,7 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, int> required, forbidden;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? greedy, consumes, noanim;
-        
+
         [JsonConstructor]
         public Slot(string id, string label, string description, bool? greedy, bool? consumes, Dictionary<string, int> required, string actionId, Dictionary<string, int> forbidden)
         {

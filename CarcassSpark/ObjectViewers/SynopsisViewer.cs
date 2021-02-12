@@ -1,14 +1,8 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using System.Text.RegularExpressions;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -19,21 +13,32 @@ namespace CarcassSpark.ObjectViewers
         public SynopsisViewer(Synopsis synopsis)
         {
             InitializeComponent();
-            this.displayedSynopsis = synopsis;
-            modNameTextBox.Text = synopsis.name;
-            modAuthorTextBox.Text = synopsis.author;
-            modVersionTextBox.Text = synopsis.version;
-            modDescriptionTextBox.Text = synopsis.description;
-            longDescriptionTextBox.Text = synopsis.description_long;
-            if (synopsis.dependencies != null)
+            displayedSynopsis = synopsis;
+        }
+
+        private void FillValues()
+        {
+            modNameTextBox.Text = displayedSynopsis.name;
+            modAuthorTextBox.Text = displayedSynopsis.author;
+            modVersionTextBox.Text = displayedSynopsis.version;
+            modDescriptionTextBox.Text = displayedSynopsis.description;
+            longDescriptionTextBox.Text = displayedSynopsis.description_long;
+            if (displayedSynopsis.dependencies != null)
             {
-                foreach (string dep in synopsis.dependencies)
+                foreach (string dep in displayedSynopsis.dependencies)
                 {
                     string[] depPieces = dep.Split(' ');
                     if (depPieces.Count() > 0)
                     {
-                        if (depPieces.Count() == 1) dependeniesDataGridView.Rows.Add(dep);
-                        if (depPieces.Count() == 3) dependeniesDataGridView.Rows.Add(depPieces[0], depPieces[1], depPieces[2]);
+                        if (depPieces.Count() == 1)
+                        {
+                            dependeniesDataGridView.Rows.Add(dep);
+                        }
+
+                        if (depPieces.Count() == 3)
+                        {
+                            dependeniesDataGridView.Rows.Add(depPieces[0], depPieces[1], depPieces[2]);
+                        }
                     }
                     // dependeniesDataGridView.Rows.Add(dep.modId, dep.VersionOperator, dep.version);
                 }
@@ -97,9 +102,21 @@ namespace CarcassSpark.ObjectViewers
                 foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
                 {
                     Synopsis.Dependency dep = new Synopsis.Dependency();
-                    if (row.Cells[0].Value != null) dep.modId = row.Cells[0].Value.ToString();
-                    if (row.Cells[1].Value != null) dep.VersionOperator = row.Cells[1].Value.ToString();
-                    if (row.Cells[2].Value != null) dep.version = row.Cells[2].Value.ToString();
+                    if (row.Cells[0].Value != null)
+                    {
+                        dep.modId = row.Cells[0].Value.ToString();
+                    }
+
+                    if (row.Cells[1].Value != null)
+                    {
+                        dep.VersionOperator = row.Cells[1].Value.ToString();
+                    }
+
+                    if (row.Cells[2].Value != null)
+                    {
+                        dep.version = row.Cells[2].Value.ToString();
+                    }
+
                     if (dep.modId != null)
                     {
                         displayedSynopsis.dependencies.Add(dep.ToString());
@@ -121,6 +138,11 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
             }
+        }
+
+        private void SynopsisViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues();
         }
     }
 }

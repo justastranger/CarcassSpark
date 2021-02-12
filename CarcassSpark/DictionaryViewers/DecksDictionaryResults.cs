@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
+﻿using CarcassSpark.ObjectTypes;
 using CarcassSpark.ObjectViewers;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CarcassSpark.DictionaryViewers
 {
@@ -42,7 +36,11 @@ namespace CarcassSpark.DictionaryViewers
 
         private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (resultsListBox.SelectedItem == null) return;
+            if (resultsListBox.SelectedItem == null)
+            {
+                return;
+            }
+
             Deck selectedDeck = resultsWithId[resultsListBox.SelectedItem.ToString()];
             DeckViewer ev = new DeckViewer(selectedDeck.Copy(), null, null);
             ev.Show();

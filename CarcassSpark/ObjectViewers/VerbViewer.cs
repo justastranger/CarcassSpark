@@ -1,21 +1,17 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectViewers
 {
     public partial class VerbViewer : Form
     {
         public Verb displayedVerb;
-        bool editing;
-        event EventHandler<Verb> SuccessCallback;
+        private bool editing;
+
+        private event EventHandler<Verb> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
@@ -24,26 +20,44 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedVerb = verb;
-            FillValues(verb);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else SetEditingMode(false);
+            else
+            {
+                SetEditingMode(false);
+            }
         }
-        
-        void FillValues(Verb verb)
+
+        private void FillValues(Verb verb)
         {
-            if (verb.id != null) idTextBox.Text = verb.id;
+            if (verb.id != null)
+            {
+                idTextBox.Text = verb.id;
+            }
+
             if (Utilities.VerbImageExists(verb.id))
             {
                 pictureBox1.Image = Utilities.GetVerbImage(verb.id);
             }
-            if (verb.label != null) labelTextBox.Text = verb.label;
-            if (verb.description != null) descriptionTextBox.Text = verb.description;
-            if (verb.deleted.HasValue) deletedCheckBox.Checked = verb.deleted.Value;
+            if (verb.label != null)
+            {
+                labelTextBox.Text = verb.label;
+            }
+
+            if (verb.description != null)
+            {
+                descriptionTextBox.Text = verb.description;
+            }
+
+            if (verb.deleted.HasValue)
+            {
+                deletedCheckBox.Checked = verb.deleted.Value;
+            }
+
             if (verb.slot != null)
             {
                 addSlotButton.Text = "Open Slot";
@@ -61,9 +75,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 extendsTextBox.Text = verb.extends[0];
             }
+            if (verb.comments != null)
+            {
+                commentsTextBox.Text = verb.comments;
+            }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -163,8 +181,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.comments = commentsTextBox.Text;
-            if (displayedVerb.comments == "")
+            if (commentsTextBox.Text != "" && commentsTextBox.Text != null)
+            {
+                displayedVerb.comments = commentsTextBox.Text;
+            }
+            else
             {
                 displayedVerb.comments = null;
             }
@@ -172,9 +193,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (deletedCheckBox.CheckState == CheckState.Checked) displayedVerb.deleted = true;
-            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedVerb.deleted = false;
-            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedVerb.deleted = null;
+            if (deletedCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedVerb.deleted = true;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedVerb.deleted = false;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedVerb.deleted = null;
+            }
         }
 
         private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
@@ -185,9 +217,20 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                if (extendsTextBox.Text != "") displayedVerb.extends = new List<string> { extendsTextBox.Text };
-                else displayedVerb.extends = null;
+                if (extendsTextBox.Text != "")
+                {
+                    displayedVerb.extends = new List<string> { extendsTextBox.Text };
+                }
+                else
+                {
+                    displayedVerb.extends = null;
+                }
             }
+        }
+
+        private void VerbViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedVerb);
         }
     }
 }

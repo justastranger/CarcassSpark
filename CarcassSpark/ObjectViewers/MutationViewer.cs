@@ -1,40 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
     public partial class MutationViewer : Form
     {
         public Mutation displayedMutation;
-        bool editing;
+        private bool editing;
 
         public MutationViewer(Mutation mutation, bool? editing)
         {
             InitializeComponent();
             displayedMutation = mutation;
-            FillValues(mutation);
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
-        void FillValues(Mutation mutation)
+        private void FillValues(Mutation mutation)
         {
-            if (mutation.filter != null) filterTextBox.Text = mutation.filter;
-            if (mutation.mutate != null) mutateAspectIdTextBox.Text = mutation.mutate;
-            if (mutation.level.HasValue) levelNumericUpDown.Value = mutation.level.Value;
-            if (mutation.additive.HasValue) additiveCheckBox.Checked = mutation.additive.Value;
+            if (mutation.filter != null)
+            {
+                filterTextBox.Text = mutation.filter;
+            }
+
+            if (mutation.mutate != null)
+            {
+                mutateAspectIdTextBox.Text = mutation.mutate;
+            }
+
+            if (mutation.level.HasValue)
+            {
+                levelNumericUpDown.Value = mutation.level.Value;
+            }
+
+            if (mutation.additive.HasValue)
+            {
+                additiveCheckBox.Checked = mutation.additive.Value;
+            }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             filterTextBox.ReadOnly = !editing;
@@ -89,6 +101,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedMutation.additive = null;
             }
+        }
+
+        private void MutationViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedMutation);
         }
     }
 }

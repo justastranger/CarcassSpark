@@ -1,74 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿using CarcassSpark.ObjectTypes;
+using CarcassSpark.Tools;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.DictionaryViewers;
-using CarcassSpark.Flowchart;
-using CarcassSpark.Tools;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace CarcassSpark.ObjectViewers
 {
     public partial class TabbedModViewer : Form
     {
-        ModViewerTabControl SelectedModViewer;
+        private ModViewerTabControl SelectedModViewer;
 
         public TabbedModViewer()
         {
             // this should always be first before messing with any components like the Folder Browser Dialog
             InitializeComponent();
             // This is necessary to ensure we have a reference point for the game and the game's assemblies
-            if (Settings.settings["GamePath"] == null)
-            {
-                // If installed in the game's folder, save the user the hassle and just use that install
-                if (File.Exists("cultistsimulator.exe"))
-                {
-                    Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
-                    Settings.settings["portable"] = false;
-                    Settings.SaveSettings();
-                    InitializeTabs();
-                }
-                else
-                {
-                    // Otherwise, make them select the game's installation folder
-                    MessageBox.Show("Please select your Cultist Simulator game directory.");
-                    folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Check to see if the game's actually installed there
-                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
-                        {
-                            Settings.settings["portable"] = true;
-                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
-                            Settings.SaveSettings();
-                            InitializeTabs();
-                        }
-                        else
-                        {
-                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Application.Exit();
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        // Didn't open the games folder
-                        MessageBox.Show("No directory selected, exiting.");
-                        Application.Exit();
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                InitializeTabs();
-            }
+
         }
 
         private void InitializeTabs()
@@ -77,10 +29,12 @@ namespace CarcassSpark.ObjectViewers
             if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
             {
                 if (((JArray)Settings.settings["previousMods"]).Count() > 0)
+                {
                     foreach (string path in Settings.GetPreviousMods())
-                    { 
+                    {
                         CreateNewModViewerTab(path, false, false);
                     }
+                }
             }
             if (!SelectedModViewer.isVanilla)
             {
@@ -91,19 +45,19 @@ namespace CarcassSpark.ObjectViewers
         }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
-            SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-            if (SelectedModViewer.isValid)
+            try
             {
+                SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
                 SelectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
                 TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
                 newPage.Controls.Add(SelectedModViewer);
                 newPage.Name = SelectedModViewer.Content.GetName();
                 ModViewerTabs.TabPages.Add(newPage);
                 ModViewerTabs.SelectTab(newPage);
-            } 
-            else
+            }
+            catch
             {
-                SelectedModViewer.Dispose();
+
             }
         }
 
@@ -123,17 +77,9 @@ namespace CarcassSpark.ObjectViewers
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = null;
                 try
                 {
-                    mvtc = new ModViewerTabControl(location, false, false);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error Opening Mod");
-                }
-                if (mvtc != null && mvtc.isValid)
-                {
+                    ModViewerTabControl mvtc = new ModViewerTabControl(location, false, false);
                     mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
                     if (Settings.HasPreviousMods())
@@ -145,6 +91,11 @@ namespace CarcassSpark.ObjectViewers
                         Settings.InitPreviousMods(location);
                     }
                     Settings.SaveSettings();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Opening Mod");
+                    return;
                 }
             }
         }
@@ -155,17 +106,9 @@ namespace CarcassSpark.ObjectViewers
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = null;
                 try
                 {
-                    mvtc = new ModViewerTabControl(location, false, true);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error Creating Mod");
-                }
-                if (mvtc != null && mvtc.isValid)
-                {
+                    ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
                     mvtc.MarkDirtyEventHandler += MarkTabDirty;
                     CreateNewModViewerTab(mvtc);
                     if (Settings.HasPreviousMods())
@@ -177,6 +120,10 @@ namespace CarcassSpark.ObjectViewers
                         Settings.InitPreviousMods(location);
                     }
                     Settings.SaveSettings();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Creating Mod");
                 }
             }
         }
@@ -188,7 +135,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
             {
                 if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
                     "You have unsaved changes",
@@ -226,7 +173,7 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             SelectedModViewer = (ModViewerTabControl)ModViewerTabs.SelectedTab.Controls[0];
-            
+
             toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
             toggleAutosaveToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("AutoSave") ?? false);
             saveSplitterLocationsToolStripMenuItem.Checked = SelectedModViewer.isVanilla ? (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>()) : (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
@@ -246,11 +193,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla) return;
-            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis);
+            if (SelectedModViewer.isVanilla)
+            {
+                MessageBox.Show("There is no synopsis for vanilla content.");
+                return;
+            }
+
+            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis.Copy());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.synopsis = mv.displayedSynopsis;
+                if (SelectedModViewer.Content.synopsis.name != mv.displayedSynopsis.name)
+                {
+                    SelectedModViewer.Parent.Name = mv.displayedSynopsis.name;
+                }
+                SelectedModViewer.Content.synopsis = mv.displayedSynopsis.Copy();
                 SelectedModViewer.SaveMod();
             }
         }
@@ -347,6 +303,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception ex)
                 {
@@ -377,6 +334,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Elements[guid] = deserializedElement;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -407,6 +365,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -437,6 +396,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Decks[guid] = deserializedDeck;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -467,6 +427,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -497,6 +458,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Endings[guid] = deserializedEnding;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -527,6 +489,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -537,12 +500,17 @@ namespace CarcassSpark.ObjectViewers
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Clipboard.ContainsText()) return;
+            if (!Clipboard.ContainsText())
+            {
+                return;
+            }
+
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
                 Guid guid = Guid.NewGuid();
                 ListViewGroup listViewGroup;
+                SelectedModViewer.MarkDirty();
                 switch (je.objectType)
                 {
                     case "Aspect":
@@ -762,7 +730,7 @@ namespace CarcassSpark.ObjectViewers
                     });
                     Settings.SaveSettings();
                 }
-                
+
             }
             else
             {
@@ -930,6 +898,55 @@ namespace CarcassSpark.ObjectViewers
         private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedModViewer.Content.ResetHiddenGroups("verbs");
+		}
+		
+        private void TabbedModViewer_Shown(object sender, EventArgs e)
+        {
+            if (Settings.settings["GamePath"] == null)
+            {
+                // If installed in the game's folder, save the user the hassle and just use that install
+                if (File.Exists("cultistsimulator.exe"))
+                {
+                    Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
+                    Settings.settings["portable"] = false;
+                    Settings.SaveSettings();
+                    InitializeTabs();
+                }
+                else
+                {
+                    // Otherwise, make them select the game's installation folder
+                    MessageBox.Show("Please select your Cultist Simulator game directory.");
+                    folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Check to see if the game's actually installed there
+                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
+                        {
+                            Settings.settings["portable"] = true;
+                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
+                            Settings.SaveSettings();
+                            InitializeTabs();
+                        }
+                        else
+                        {
+                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Application.Exit();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Didn't open the games folder
+                        MessageBox.Show("No directory selected, exiting.");
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                InitializeTabs();
+            }
         }
     }
 }

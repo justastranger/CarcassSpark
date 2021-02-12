@@ -2,12 +2,7 @@
 using CarcassSpark.ObjectViewers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
@@ -38,7 +33,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             okButton.Visible = editing;
@@ -46,7 +41,7 @@ namespace CarcassSpark.Tools
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void FillValues(Dictionary<Guid, Culture> cultures)
+        private void FillValues(Dictionary<Guid, Culture> cultures)
         {
             displayedCultures = cultures.ToDictionary(entry => entry.Value.id,
                                                       entry => entry.Value.Copy());
@@ -58,7 +53,11 @@ namespace CarcassSpark.Tools
 
         private void CulturesListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (culturesListBox.SelectedItem == null) return;
+            if (culturesListBox.SelectedItem == null)
+            {
+                return;
+            }
+
             string id = culturesListBox.SelectedItem as string;
             CultureViewer cv = new CultureViewer(displayedCultures[id].Copy(), editing);
             if (cv.ShowDialog() == DialogResult.OK)
@@ -101,10 +100,21 @@ namespace CarcassSpark.Tools
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (culturesListBox.SelectedItem == null) return;
+            if (culturesListBox.SelectedItem == null)
+            {
+                return;
+            }
+
             string id = culturesListBox.SelectedItem as string;
-            if (displayedCultures.ContainsKey(id)) displayedCultures.Remove(id);
-            if (culturesListBox.Items.Contains(id)) culturesListBox.Items.Remove(id);
+            if (displayedCultures.ContainsKey(id))
+            {
+                displayedCultures.Remove(id);
+            }
+
+            if (culturesListBox.Items.Contains(id))
+            {
+                culturesListBox.Items.Remove(id);
+            }
         }
     }
 }

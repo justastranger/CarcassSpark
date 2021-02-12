@@ -1,42 +1,47 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
     public partial class EndingViewer : Form
     {
         public Ending displayedEnding;
-        bool editing;
-        event EventHandler<Ending> SuccessCallback;
+        private bool editing;
+
+        private event EventHandler<Ending> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedEnding = ending;
-            FillValues(ending);
             associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else SetEditingMode(false);
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
-        void FillValues(Ending ending)
+        private void FillValues(Ending ending)
         {
-            if (ending.id != null) idTextBox.Text = ending.id;
-            if (ending.label != null) labelTextBox.Text = ending.label;
+            if (ending.id != null)
+            {
+                idTextBox.Text = ending.id;
+            }
+
+            if (ending.label != null)
+            {
+                labelTextBox.Text = ending.label;
+            }
+
             if (ending.image != null)
             {
                 imageTextBox.Text = ending.image;
@@ -49,12 +54,36 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.GetEndingImage(ending.id);
             }
-            if (ending.flavour != null) endindFlavourComboBox.Text = ending.flavour;
-            if (ending.anim != null) animComboBox.Text = ending.anim;
-            if (ending.description != null) descriptionTextBox.Text = ending.description;
-            if (ending.comments != null) commentsTextBox.Text = ending.comments;
-            if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
-            if (ending.deleted.HasValue) deletedCheckBox.Checked = ending.deleted.Value;
+            if (ending.flavour != null)
+            {
+                endindFlavourComboBox.Text = ending.flavour;
+            }
+
+            if (ending.anim != null)
+            {
+                animComboBox.Text = ending.anim;
+            }
+
+            if (ending.description != null)
+            {
+                descriptionTextBox.Text = ending.description;
+            }
+
+            if (ending.comments != null)
+            {
+                commentsTextBox.Text = ending.comments;
+            }
+
+            if (ending.achievement != null)
+            {
+                achievementTextBox.Text = ending.achievement;
+            }
+
+            if (ending.deleted.HasValue)
+            {
+                deletedCheckBox.Checked = ending.deleted.Value;
+            }
+
             if (ending.extends?.Count > 1)
             {
                 extendsTextBox.Text = string.Join(",", ending.extends);
@@ -65,7 +94,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -111,7 +140,7 @@ namespace CarcassSpark.ObjectViewers
                 displayedEnding.image = null;
             }
         }
-        
+
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
@@ -157,9 +186,20 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (deletedCheckBox.CheckState == CheckState.Checked) displayedEnding.deleted = true;
-            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedEnding.deleted = false;
-            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedEnding.deleted = null;
+            if (deletedCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedEnding.deleted = true;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedEnding.deleted = false;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedEnding.deleted = null;
+            }
         }
 
         private void EndindFlavourComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,6 +230,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedEnding.extends = new List<string> { extendsTextBox.Text };
             }
+        }
+
+        private void EndingViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedEnding);
         }
     }
 }

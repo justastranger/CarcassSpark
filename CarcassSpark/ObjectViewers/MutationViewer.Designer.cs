@@ -170,6 +170,7 @@
             this.Name = "MutationViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mutation Viewer";
+            this.Shown += new System.EventHandler(this.MutationViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.levelNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

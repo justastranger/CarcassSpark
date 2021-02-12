@@ -910,6 +910,7 @@
             this.Name = "LegacyViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Legacy Viewer";
+            this.Shown += new System.EventHandler(this.LegacyViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.effectsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);

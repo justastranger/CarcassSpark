@@ -2,21 +2,16 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace CarcassSpark
 {
     public partial class Settings : Form
     {
         public static JObject settings = new JObject();
+
         // settings["openWithVanilla"] bool
         // settings["loadPreviousMods"] bool
         // settings["previousMods"] string[]
@@ -24,7 +19,7 @@ namespace CarcassSpark
         // settings["loadAllFlowchartNodes"] bool
         // settings["portable"] bool
         // settings["GamePath"] string
-        static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
         {
@@ -67,13 +62,32 @@ namespace CarcassSpark
             }
         }
 
-        void PopulateSettings()
+        private void PopulateSettings()
         {
-            if (settings["loadPreviousMods"] != null) loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
-            if (settings["previousMods"]?.ToObject<List<string>>()?.Count > 0) previousModsTextBox.Text = string.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
-            if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
-            if (settings["portable"] != null) portableCheckBox.Checked = settings["portable"].ToObject<bool>();
-            if (settings["GamePath"] != null) GamePathTextBox.Text = settings["GamePath"].ToString();
+            if (settings["loadPreviousMods"] != null)
+            {
+                loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
+            }
+
+            if (settings["previousMods"]?.ToObject<List<string>>()?.Count > 0)
+            {
+                previousModsTextBox.Text = string.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
+            }
+
+            if (settings["loadAllFlowchartNodes"] != null)
+            {
+                loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
+            }
+
+            if (settings["portable"] != null)
+            {
+                portableCheckBox.Checked = settings["portable"].ToObject<bool>();
+            }
+
+            if (settings["GamePath"] != null)
+            {
+                GamePathTextBox.Text = settings["GamePath"].ToString();
+            }
         }
 
         private void LoadPreviousModsCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -89,8 +103,14 @@ namespace CarcassSpark
 
         public static List<string> GetPreviousMods()
         {
-            if (settings["previousMods"] != null) return settings["previousMods"].ToObject<List<string>>();
-            else return null;
+            if (settings["previousMods"] != null)
+            {
+                return settings["previousMods"].ToObject<List<string>>();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static bool RemovePreviousMod(string path)
@@ -148,7 +168,7 @@ namespace CarcassSpark
 
         private void PreviousModsTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void GamePathTextBox_DoubleClick(object sender, EventArgs e)
@@ -176,7 +196,10 @@ namespace CarcassSpark
             List<string> validatedPaths = new List<string>();
             foreach (string path in previousMods.Distinct())
             {
-                if (Directory.Exists(path) && File.Exists(path + "\\synopsis.json")) validatedPaths.Add(path);
+                if (Directory.Exists(path) && File.Exists(path + "\\synopsis.json"))
+                {
+                    validatedPaths.Add(path);
+                }
             }
             // settings["previousMods"] = JArray.FromObject(validatedPaths.Distinct());
             return validatedPaths;

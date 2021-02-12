@@ -1,49 +1,68 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
+
+    public enum RecipeLinkType
+    {
+        ALT,
+        LINKED
+    }
+
     public partial class RecipeLinkViewer : Form
     {
         public RecipeLink displayedRecipeLink;
-        bool editing;
+        private bool editing;
 
         public RecipeLinkViewer(RecipeLink recipeLink, bool? editing)
         {
             InitializeComponent();
             displayedRecipeLink = recipeLink;
-            FillValues(recipeLink);
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
         public RecipeLinkViewer(RecipeLink recipeLink, bool? editing, RecipeLinkType type)
         {
             InitializeComponent();
             displayedRecipeLink = recipeLink;
-            FillValues(recipeLink);
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
+
             if (type == RecipeLinkType.LINKED)
             {
                 SetLinked();
             }
         }
 
-        void FillValues(RecipeLink recipeLink)
+        private void FillValues(RecipeLink recipeLink)
         {
             idTextBox.Text = recipeLink.id;
-            if (recipeLink.chance.HasValue) chanceNumericUpDown.Value = recipeLink.chance.Value;
-            if (recipeLink.additional.HasValue) additionalCheckBox.Checked = recipeLink.additional.Value;
+            if (recipeLink.chance.HasValue)
+            {
+                chanceNumericUpDown.Value = recipeLink.chance.Value;
+            }
+
+            if (recipeLink.additional.HasValue)
+            {
+                additionalCheckBox.Checked = recipeLink.additional.Value;
+            }
+
             if (recipeLink.challenges != null)
             {
                 foreach (KeyValuePair<string, string> kvp in recipeLink.challenges)
@@ -57,11 +76,14 @@ namespace CarcassSpark.ObjectViewers
                 {
                     expulsionDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
-                if (recipeLink.expulsion.limit.HasValue) totalExpulsionLimitNumericUpDown.Value = recipeLink.expulsion.limit.Value;
+                if (recipeLink.expulsion.limit.HasValue)
+                {
+                    totalExpulsionLimitNumericUpDown.Value = recipeLink.expulsion.limit.Value;
+                }
             }
         }
-        
-        void SetEditingMode(bool editing)
+
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -77,12 +99,12 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void SetAlt()
+        private void SetAlt()
         {
 
         }
 
-        void SetLinked()
+        private void SetLinked()
         {
             additionalCheckBox.Visible = false;
             expulsionDataGridView.Visible = false;
@@ -180,8 +202,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void ChallengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
-            if (displayedRecipeLink.challenges.Count == 0) displayedRecipeLink.challenges = null;
+            if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            {
+                displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
+            }
+
+            if (displayedRecipeLink.challenges.Count == 0)
+            {
+                displayedRecipeLink.challenges = null;
+            }
         }
 
         private void ExpulsionsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -205,10 +234,17 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExpulsionDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString())) displayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
-            if (displayedRecipeLink.expulsion.filter.Count == 0) displayedRecipeLink.expulsion = null;
+            if (displayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            {
+                displayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
+            }
+
+            if (displayedRecipeLink.expulsion.filter.Count == 0)
+            {
+                displayedRecipeLink.expulsion = null;
+            }
         }
-        
+
         private void ChallengesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             AspectViewer av = new AspectViewer(Utilities.GetAspect(challengesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), null, null);
@@ -217,13 +253,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void TotalExpulsionLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (displayedRecipeLink.expulsion != null) displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
+            if (displayedRecipeLink.expulsion != null)
+            {
+                displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
+            }
         }
-    }
 
-    public enum RecipeLinkType
-    {
-        ALT,
-        LINKED
+        private void RecipeLinkViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedRecipeLink);
+        }
     }
 }

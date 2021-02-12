@@ -1,12 +1,6 @@
 ﻿using CarcassSpark.ObjectTypes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
@@ -14,7 +8,7 @@ namespace CarcassSpark.ObjectViewers
     public partial class CultureViewer : Form
     {
         public Culture displayedCulture;
-        List<string> uilabelkeyslist = new List<string>() {
+        private List<string> uilabelkeyslist = new List<string>() {
             "UI_PAUSE",
             "UI_UNPAUSE",
             "UI_NORMALSPEED",
@@ -166,12 +160,11 @@ namespace CarcassSpark.ObjectViewers
             "GRAPHICS_LEVEL_1",
             "GRAPHICS_LEVEL_2",
             "GRAPHICS_LEVEL_3"
-        }; 
+        };
 
         public CultureViewer(Culture culture, bool? editing)
         {
             InitializeComponent();
-            FillValues(culture);
             if (editing.HasValue)
             {
                 SetEditingMode(editing.Value);
@@ -181,11 +174,10 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture)
         {
             InitializeComponent();
-            FillValues(culture);
             SetEditingMode(false);
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
@@ -198,15 +190,23 @@ namespace CarcassSpark.ObjectViewers
             releasedCheckBox.Enabled = editing;
         }
 
-        void FillValues(Culture culture)
+        private void FillValues(Culture culture)
         {
             displayedCulture = culture;
             idTextBox.Text = culture.id;
             endonymTextBox.Text = culture.endonym;
             exonymTextBox.Text = culture.exonym;
             fontScriptTextBox.Text = culture.fontscript;
-            if (culture.boldallowed.HasValue) boldAllowedCheckBox.Checked = culture.boldallowed.Value;
-            if (culture.released.HasValue) releasedCheckBox.Checked = culture.released.Value;
+            if (culture.boldallowed.HasValue)
+            {
+                boldAllowedCheckBox.Checked = culture.boldallowed.Value;
+            }
+
+            if (culture.released.HasValue)
+            {
+                releasedCheckBox.Checked = culture.released.Value;
+            }
+
             if (culture.uilabels != null && culture.uilabels.Count > 0)
             {
                 foreach (KeyValuePair<string, string> uilabel in culture.uilabels)
@@ -250,7 +250,10 @@ namespace CarcassSpark.ObjectViewers
                     string key = row.Cells[0].Value as string;
                     string value = row.Cells[1].Value as string;
                     // only save the keys with a value. Also prevents the saving of the final, blank row that always exists in a DataGridView for some reason.
-                    if (value != "" && value != null) displayedCulture.uilabels.Add(key, value);
+                    if (value != "" && value != null)
+                    {
+                        displayedCulture.uilabels.Add(key, value);
+                    }
                 }
             }
             DialogResult = DialogResult.OK;
@@ -259,26 +262,50 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (idTextBox.Text != "") displayedCulture.id = idTextBox.Text;
-            else displayedCulture.id = null;
+            if (idTextBox.Text != "")
+            {
+                displayedCulture.id = idTextBox.Text;
+            }
+            else
+            {
+                displayedCulture.id = null;
+            }
         }
 
         private void EndonymTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (endonymTextBox.Text != "") displayedCulture.endonym = endonymTextBox.Text;
-            else displayedCulture.endonym = null;
+            if (endonymTextBox.Text != "")
+            {
+                displayedCulture.endonym = endonymTextBox.Text;
+            }
+            else
+            {
+                displayedCulture.endonym = null;
+            }
         }
 
         private void ExonymTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (exonymTextBox.Text != "") displayedCulture.exonym = exonymTextBox.Text;
-            else displayedCulture.exonym = null;
+            if (exonymTextBox.Text != "")
+            {
+                displayedCulture.exonym = exonymTextBox.Text;
+            }
+            else
+            {
+                displayedCulture.exonym = null;
+            }
         }
 
         private void FontScriptTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (fontScriptTextBox.Text != "") displayedCulture.fontscript = fontScriptTextBox.Text;
-            else displayedCulture.fontscript = null;
+            if (fontScriptTextBox.Text != "")
+            {
+                displayedCulture.fontscript = fontScriptTextBox.Text;
+            }
+            else
+            {
+                displayedCulture.fontscript = null;
+            }
         }
 
         private void BoldAllowedCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -289,6 +316,11 @@ namespace CarcassSpark.ObjectViewers
         private void ReleasedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedCulture.released = releasedCheckBox.Checked;
+        }
+
+        private void CultureViewer_Shown(object sender, EventArgs e)
+        {
+            FillValues(displayedCulture);
         }
     }
 }

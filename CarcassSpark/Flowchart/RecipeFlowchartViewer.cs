@@ -3,21 +3,17 @@ using MindFusion.Diagramming;
 using MindFusion.Diagramming.Layout;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Flowchart
 {
     public partial class RecipeFlowchartViewer : Form
     {
-        bool skipYesNo = false;
-        readonly Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
+        private bool skipYesNo = false;
+        private readonly Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
         private readonly List<RecipeNode> recipeNodesThatNeedToBeProcessed = new List<RecipeNode>();
         private readonly CascadeLayout layout = new CascadeLayout();
 
@@ -37,12 +33,12 @@ namespace CarcassSpark.Flowchart
             }
         }
 
-        void ArrangeNodes()
+        private void ArrangeNodes()
         {
             layout.Arrange(diagram1);
         }
 
-        void ProcessRecipes()
+        private void ProcessRecipes()
         {
             List<RecipeNode> nodesInProgress = new List<RecipeNode>(recipeNodesThatNeedToBeProcessed);
             recipeNodesThatNeedToBeProcessed.Clear();
@@ -59,11 +55,11 @@ namespace CarcassSpark.Flowchart
                     {
                         RecipeNode tmpNode = CreateRecipeNode(Utilities.GetRecipe(link), 25, 25);
                         recipeNodes[link] = tmpNode;
-                        
+
                         tmpNode.Node.AttachTo(currentNode.Node, AttachToNode.MiddleRight);
                         recipeNodesThatNeedToBeProcessed.Add(tmpNode);
                     }
-                    
+
                 }
                 foreach (TreeViewItem rootItem in currentNode.Node.RootItems)
                 {
@@ -76,7 +72,7 @@ namespace CarcassSpark.Flowchart
                             {
                                 if (recipeChild.Label.Contains("Recipe ID: "))
                                 {
-                                    CreateLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ')+1)));
+                                    CreateLink(currentNode.Node, child, (TreeViewNode)diagram1.FindNodeById(recipeChild.Label.Substring(recipeChild.Label.LastIndexOf(' ') + 1)));
                                 }
                             }
                         }
@@ -89,7 +85,7 @@ namespace CarcassSpark.Flowchart
             progressBar1.Visible = false;
         }
 
-        void ProcessAllRecipes()
+        private void ProcessAllRecipes()
         {
             progressBar1.Visible = true;
             progressBar1.Value = 0;
@@ -136,7 +132,7 @@ namespace CarcassSpark.Flowchart
             progressBar1.Visible = false;
         }
 
-        void CreateLink(TreeViewNode outgoing, TreeViewNode incoming)
+        private void CreateLink(TreeViewNode outgoing, TreeViewNode incoming)
         {
             DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoing, incoming);
             tmp.AddLabel((string)incoming.Id);
@@ -145,7 +141,7 @@ namespace CarcassSpark.Flowchart
             tmp.AutoRoute = true;
         }
 
-        void CreateLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
+        private void CreateLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
         {
             //DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoingNode, incoming);
             DiagramLink tmp = new DiagramLink(diagram1);
@@ -159,7 +155,7 @@ namespace CarcassSpark.Flowchart
             diagram1.Links.Add(tmp);
         }
 
-        RecipeNode CreateRecipeNode(Recipe recipe, float x, float y)
+        private RecipeNode CreateRecipeNode(Recipe recipe, float x, float y)
         {
             //if (recipeNodes.ContainsKey(recipe.id))
             //{
@@ -172,10 +168,21 @@ namespace CarcassSpark.Flowchart
             tempTVN.Id = recipe.id;
             tempTVN.IgnoreLayout = false;
             tempTVN.ConnectionStyle = TreeViewConnectionStyle.Items;
-            if (recipe.label != null) tempTVN.Text = recipe.label;
-            else tempTVN.Text = recipe.id;
+            if (recipe.label != null)
+            {
+                tempTVN.Text = recipe.label;
+            }
+            else
+            {
+                tempTVN.Text = recipe.id;
+            }
+
             tempTVN.RootItems.Add(new TreeViewItem("Recipe ID: " + recipe.id));
-            if (recipe.actionId != null) tempTVN.RootItems.Add(new TreeViewItem("Action ID: " + recipe.actionId));
+            if (recipe.actionId != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Action ID: " + recipe.actionId));
+            }
+
             if (recipe.startdescription != null)
             {
                 tempTVN.RootItems.Add(new TreeViewItem("Recipe Start Description: "));
@@ -191,28 +198,84 @@ namespace CarcassSpark.Flowchart
                 tempTVN.RootItems.Add(new TreeViewItem("Recipe Comments: "));
                 tempTVN.RootItems.Last().Children.Add(new TreeViewItem(recipe.comments));
             }
-            if (recipe.ending != null) tempTVN.RootItems.Add(new TreeViewItem("Ending: " + recipe.ending));
-            if (recipe.signalendingflavour != null) tempTVN.RootItems.Add(new TreeViewItem("Signal Ending Flavour: " + recipe.signalendingflavour));
-            if (recipe.signalimportantloop.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Signal Important Loop: " + recipe.signalimportantloop.Value));
-            if (recipe.portaleffect != null) tempTVN.RootItems.Add(new TreeViewItem("Portal Effect: " + recipe.portaleffect));
-            if (recipe.burnimage != null) tempTVN.RootItems.Add(new TreeViewItem("Burn Image: " + recipe.burnimage));
-            if (recipe.deleted.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Deleted: " + recipe.deleted.Value));
-            if (recipe.craftable.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Craftable: " + recipe.craftable.Value.ToString()));
-            if (recipe.hintonly.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Hint Only: " + recipe.hintonly.Value.ToString()));
-            if (recipe.maxexecutions.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Max Executions: " + recipe.maxexecutions.Value.ToString()));
-            if (recipe.warmup.HasValue) tempTVN.RootItems.Add(new TreeViewItem("Warmup: " + recipe.warmup.Value.ToString()));
+            if (recipe.ending != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Ending: " + recipe.ending));
+            }
+
+            if (recipe.signalendingflavour != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Signal Ending Flavour: " + recipe.signalendingflavour));
+            }
+
+            if (recipe.signalimportantloop.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Signal Important Loop: " + recipe.signalimportantloop.Value));
+            }
+
+            if (recipe.portaleffect != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Portal Effect: " + recipe.portaleffect));
+            }
+
+            if (recipe.burnimage != null)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Burn Image: " + recipe.burnimage));
+            }
+
+            if (recipe.deleted.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Deleted: " + recipe.deleted.Value));
+            }
+
+            if (recipe.craftable.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Craftable: " + recipe.craftable.Value.ToString()));
+            }
+
+            if (recipe.hintonly.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Hint Only: " + recipe.hintonly.Value.ToString()));
+            }
+
+            if (recipe.maxexecutions.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Max Executions: " + recipe.maxexecutions.Value.ToString()));
+            }
+
+            if (recipe.warmup.HasValue)
+            {
+                tempTVN.RootItems.Add(new TreeViewItem("Warmup: " + recipe.warmup.Value.ToString()));
+            }
+
             if (recipe.internaldeck != null)
             {
                 tempTVN.RootItems.Add(new TreeViewItem("Internal Deck: "));
-                if (recipe.internaldeck.label != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Label: " + recipe.internaldeck.label));
+                if (recipe.internaldeck.label != null)
+                {
+                    tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Label: " + recipe.internaldeck.label));
+                }
+
                 if (recipe.internaldeck.description != null)
                 {
                     tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Description: "));
                     tempTVN.RootItems.Last().Children.Last().Children.Add(new TreeViewItem(recipe.internaldeck.description));
                 }
-                if (recipe.internaldeck.draws.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Draws: " + recipe.internaldeck.draws.Value));
-                if (recipe.internaldeck.resetonexhaustion.HasValue) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Reset on Exhaustion: " + recipe.internaldeck.resetonexhaustion.Value));
-                if (recipe.internaldeck.defaultcard != null) tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Default Card: " + recipe.internaldeck.defaultcard));
+                if (recipe.internaldeck.draws.HasValue)
+                {
+                    tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Draws: " + recipe.internaldeck.draws.Value));
+                }
+
+                if (recipe.internaldeck.resetonexhaustion.HasValue)
+                {
+                    tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Reset on Exhaustion: " + recipe.internaldeck.resetonexhaustion.Value));
+                }
+
+                if (recipe.internaldeck.defaultcard != null)
+                {
+                    tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Default Card: " + recipe.internaldeck.defaultcard));
+                }
+
                 if (recipe.internaldeck.spec != null)
                 {
                     tempTVN.RootItems.Last().Children.Add(new TreeViewItem("Cards: "));
@@ -228,9 +291,15 @@ namespace CarcassSpark.Flowchart
                 TreeViewItem slotItem = new TreeViewItem("Recipe Slot");
                 tempTVN.RootItems.Add(slotItem);
                 // string id
-                if (slot.id != null) slotItem.Children.Add(new TreeViewItem("ID: " + slot.id));
+                if (slot.id != null)
+                {
+                    slotItem.Children.Add(new TreeViewItem("ID: " + slot.id));
+                }
                 // string label
-                if (slot.label != null) slotItem.Children.Add(new TreeViewItem("Label: " + slot.label));
+                if (slot.label != null)
+                {
+                    slotItem.Children.Add(new TreeViewItem("Label: " + slot.label));
+                }
                 // string description
                 if (slot.description != null)
                 {
@@ -238,7 +307,10 @@ namespace CarcassSpark.Flowchart
                     slotItem.Children.Last().Children.Add(new TreeViewItem(slot.description));
                 }
                 // string actionId
-                if (slot.actionId != null) slotItem.Children.Add(new TreeViewItem("Action ID: " + slot.actionId));
+                if (slot.actionId != null)
+                {
+                    slotItem.Children.Add(new TreeViewItem("Action ID: " + slot.actionId));
+                }
                 // Dictionary<string, int> required
                 if (slot.required != null)
                 {
@@ -258,9 +330,15 @@ namespace CarcassSpark.Flowchart
                     }
                 }
                 // bool? greedy
-                if (slot.greedy.HasValue) slotItem.Children.Add(new TreeViewItem("Greedy: " + slot.greedy.Value.ToString()));
+                if (slot.greedy.HasValue)
+                {
+                    slotItem.Children.Add(new TreeViewItem("Greedy: " + slot.greedy.Value.ToString()));
+                }
                 // bool? consumes
-                if (slot.consumes.HasValue) slotItem.Children.Add(new TreeViewItem("Consumes: " + slot.consumes.Value.ToString()));
+                if (slot.consumes.HasValue)
+                {
+                    slotItem.Children.Add(new TreeViewItem("Consumes: " + slot.consumes.Value.ToString()));
+                }
             }
             if (recipe.requirements != null)
             {
@@ -353,9 +431,21 @@ namespace CarcassSpark.Flowchart
                     linked.Children.Add(recipeTree);
                     //linkedNodes.Add(link.id, tempTVN);
                     outgoingLinks.Add(link.id);
-                    if (link.id != null) recipeTree.Children.Add(new TreeViewItem("Recipe ID: " + link.id));
-                    if (link.chance.HasValue) recipeTree.Children.Add(new TreeViewItem("Chance: " + link.chance.Value.ToString()));
-                    if (link.additional.HasValue) recipeTree.Children.Add(new TreeViewItem("Additional: " + link.additional.Value.ToString()));
+                    if (link.id != null)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Recipe ID: " + link.id));
+                    }
+
+                    if (link.chance.HasValue)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Chance: " + link.chance.Value.ToString()));
+                    }
+
+                    if (link.additional.HasValue)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Additional: " + link.additional.Value.ToString()));
+                    }
+
                     if (link.expulsion != null)
                     {
                         TreeViewItem expulsion = new TreeViewItem("Expulsions: ");
@@ -387,9 +477,21 @@ namespace CarcassSpark.Flowchart
                     linked.Children.Add(recipeTree);
                     //linkedNodes.Add(link.id, tempTVN);
                     outgoingLinks.Add(link.id);
-                    if (link.id != null)recipeTree.Children.Add(new TreeViewItem("Recipe ID: " + link.id));
-                    if (link.chance.HasValue) recipeTree.Children.Add(new TreeViewItem("Chance: " + link.chance.Value.ToString()));
-                    if (link.additional.HasValue) recipeTree.Children.Add(new TreeViewItem("Additional: " + link.additional.Value.ToString()));
+                    if (link.id != null)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Recipe ID: " + link.id));
+                    }
+
+                    if (link.chance.HasValue)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Chance: " + link.chance.Value.ToString()));
+                    }
+
+                    if (link.additional.HasValue)
+                    {
+                        recipeTree.Children.Add(new TreeViewItem("Additional: " + link.additional.Value.ToString()));
+                    }
+
                     if (link.expulsion != null)
                     {
                         TreeViewItem expulsion = new TreeViewItem("Expulsions: ");
@@ -428,15 +530,19 @@ namespace CarcassSpark.Flowchart
             tempTVN.ResizeToFitText();
             return new RecipeNode(tempTVN, outgoingLinks);
         }
-        
+
         private void RecipeFlowchartViewer_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LoadLinkedRecipesButton_Click(object sender, EventArgs e)
         {
-            if (recipeNodesThatNeedToBeProcessed.Count == 0 || recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) == 0) return;
+            if (recipeNodesThatNeedToBeProcessed.Count == 0 || recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) == 0)
+            {
+                return;
+            }
+
             if (!skipYesNo)
             {
                 switch (MessageBox.Show("There are currently " + recipeNodes.Count.ToString() + " Recipe Nodes currently loaded and " + recipeNodesThatNeedToBeProcessed.Sum(item => item.linkedRecipes.Count) + " more that you are attempting to load. As you load more Recipe Nodes, loading becomes slower and slower. Are you sure you want to continue? Pressing Cancel will supprress this warning. There is a config setting that can be enabled to load all nodes at once when this form is opened, completely bypassing this.", "Loading More Recipes", MessageBoxButtons.YesNoCancel))

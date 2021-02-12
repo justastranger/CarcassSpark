@@ -265,6 +265,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Synopsis Viewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SynopsisViewer_FormClosing);
+            this.Shown += new System.EventHandler(this.SynopsisViewer_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dependeniesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

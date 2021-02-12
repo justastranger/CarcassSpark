@@ -1506,6 +1506,7 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "ModViewerTabControl";
             this.Size = new System.Drawing.Size(770, 422);
+            this.Load += new System.EventHandler(this.ModViewerTabControl_Load);
             this.VisibleChanged += new System.EventHandler(this.ModViewerTabControl_VisibleChanged);
             this.aspectContextMenuStrip.ResumeLayout(false);
             this.elementContextMenuStrip.ResumeLayout(false);

@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -91,7 +88,10 @@ namespace CarcassSpark.ObjectTypes
                 {
                     return modId;
                 }
-                else return modId;
+                else
+                {
+                    return modId;
+                }
             }
 
             public Dependency Copy()

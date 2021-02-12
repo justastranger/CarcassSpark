@@ -1,12 +1,7 @@
 ﻿using AssetStudio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
@@ -19,52 +14,62 @@ namespace CarcassSpark.Tools
         public AssetBrowser()
         {
             InitializeComponent();
-            LoadAssets();
+            assetsListView.LargeImageList = Utilities.ImageList;
+            // LoadAssets();
         }
 
         private void LoadAssets()
         {
-            if (Utilities.ImageList == null)
-            {
-                Utilities.ImageList = new ImageList
-                {
-                    ImageSize = new Size(128, 128)
-                };
-            }
-
-            assetsListView.LargeImageList = Utilities.ImageList;
+            assetsListView.Items.Clear();
             HashSet<ListViewItem> listViewItems = new HashSet<ListViewItem>();
-
-            foreach (string path in Utilities.assets.Keys)
+            if (objectType == "all")
             {
-                string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
-                ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
-
-                if (objectType != "all" && objectType != folder)
+                foreach (string path in Utilities.assets.Keys)
                 {
-                    continue;
+                    string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
+                    ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
+
+                    if (!assetsListView.Groups.Contains(folderGroup))
+                    {
+                        assetsListView.Groups.Add(folderGroup);
+                    }
+
+                    ListViewItem item = new ListViewItem(path)
+                    {
+                        ImageKey = path,
+                        Group = folderGroup
+                    };
+
+                    listViewItems.Add(item);
                 }
+                assetsListView.Items.AddRange(listViewItems.ToArray());
+            }
+            else
+            {
+                ListViewGroup folderGroup = assetsListView.Groups[objectType] ?? new ListViewGroup(objectType, objectType);
 
                 if (!assetsListView.Groups.Contains(folderGroup))
                 {
                     assetsListView.Groups.Add(folderGroup);
                 }
 
-                if (!Utilities.ImageList.Images.ContainsKey(path))
+                foreach (string path in Utilities.assets.Keys)
                 {
-                    Utilities.ImageList.Images.Add(path, Utilities.assets[path].GetImage());
+                    string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
+
+                    if (folder == objectType.ToLower())
+                    {
+                        ListViewItem item = new ListViewItem(path)
+                        {
+                            ImageKey = path,
+                            Group = folderGroup
+                        };
+
+                        listViewItems.Add(item);
+                    }
                 }
-
-                ListViewItem item = new ListViewItem(path)
-                {
-                    ImageKey = path,
-                    Group = folderGroup
-                };
-
-                folderGroup.Items.Add(item);
-                listViewItems.Add(item);
+                assetsListView.Items.AddRange(listViewItems.ToArray());
             }
-            assetsListView.Items.AddRange(listViewItems.ToArray());
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -109,6 +114,12 @@ namespace CarcassSpark.Tools
             {
                 assetsListView.Groups.Clear();
             }
+            LoadAssets();
+        }
+
+        private void AssetBrowser_Shown(object sender, EventArgs e)
+        {
+
             LoadAssets();
         }
     }

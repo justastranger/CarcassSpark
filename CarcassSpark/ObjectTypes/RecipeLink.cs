@@ -2,9 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -37,7 +34,10 @@ namespace CarcassSpark.ObjectTypes
                 {
                     this.challenges = dict;
                 }
-                else if (challenges is string) this.challenges = new Dictionary<string, string>() { [challenges as string] = "base" };
+                else if (challenges is string)
+                {
+                    this.challenges = new Dictionary<string, string>() { [challenges as string] = "base" };
+                }
             }
             this.expulsion = expulsion;
         }
