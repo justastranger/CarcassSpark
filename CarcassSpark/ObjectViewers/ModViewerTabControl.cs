@@ -3555,6 +3555,14 @@ namespace CarcassSpark.ObjectViewers
                 return false;
             }
 
+            if(IsDirty)
+            {
+                MessageBox.Show("Save or discard your unsaved changes, then try again.",
+                "You have unsaved changes!",
+                MessageBoxButtons.OK);
+                return false;
+            }
+
             if (MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
