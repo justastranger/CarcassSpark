@@ -305,6 +305,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception ex)
                 {
@@ -335,6 +336,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Elements[guid] = deserializedElement;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -365,6 +367,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -395,6 +398,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Decks[guid] = deserializedDeck;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -425,6 +429,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -455,6 +460,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Endings[guid] = deserializedEnding;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -485,6 +491,7 @@ namespace CarcassSpark.ObjectViewers
                         SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = guid, Group = group });
                     }
                     SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
+                    SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -501,6 +508,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 Guid guid = Guid.NewGuid();
                 ListViewGroup listViewGroup;
+                SelectedModViewer.MarkDirty();
                 switch (je.objectType)
                 {
                     case "Aspect":
