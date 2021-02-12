@@ -1,12 +1,7 @@
 ﻿using AssetStudio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.Tools
@@ -61,7 +56,7 @@ namespace CarcassSpark.Tools
                 foreach (string path in Utilities.assets.Keys)
                 {
                     string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
-                    
+
                     if (folder == objectType.ToLower())
                     {
                         ListViewItem item = new ListViewItem(path)
@@ -124,7 +119,7 @@ namespace CarcassSpark.Tools
 
         private void AssetBrowser_Shown(object sender, EventArgs e)
         {
-            
+
             LoadAssets();
         }
     }

@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -32,19 +29,31 @@ namespace CarcassSpark.ObjectTypes
 
         public ContentSource()
         {
-            
+
         }
-        
+
         public string GetName()
         {
-            if (synopsis != null) return synopsis.name;
-            else return null;
+            if (synopsis != null)
+            {
+                return synopsis.name;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Element GetElement(Guid id)
         {
-            if (ElementExists(id)) return Elements[id];
-            else return null;
+            if (ElementExists(id))
+            {
+                return Elements[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Element GetElement(string id)
@@ -53,7 +62,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Element element in Elements.Values)
                 {
-                    if (element.id == id) return element;
+                    if (element.id == id)
+                    {
+                        return element;
+                    }
                 }
             }
             return null;
@@ -66,8 +78,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Deck GetDeck(Guid id)
         {
-            if (DeckExists(id)) return Decks[id];
-            else return null;
+            if (DeckExists(id))
+            {
+                return Decks[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Deck GetDeck(string id)
@@ -76,7 +94,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Deck deck in Decks.Values)
                 {
-                    if (deck.id == id) return deck;
+                    if (deck.id == id)
+                    {
+                        return deck;
+                    }
                 }
             }
             return null;
@@ -89,8 +110,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Aspect GetAspect(Guid id)
         {
-            if (AspectExists(id)) return Aspects[id];
-            else return null;
+            if (AspectExists(id))
+            {
+                return Aspects[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Aspect GetAspect(string id)
@@ -99,7 +126,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Aspect aspect in Aspects.Values)
                 {
-                    if (aspect.id == id) return aspect;
+                    if (aspect.id == id)
+                    {
+                        return aspect;
+                    }
                 }
             }
             return null;
@@ -114,7 +144,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Aspect aspect in Aspects.Values)
             {
-                if (aspect.id == id) return true;
+                if (aspect.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -123,7 +156,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Element element in Elements.Values)
             {
-                if (element.id == id) return true;
+                if (element.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -132,7 +168,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Recipe recipe in Recipes.Values)
             {
-                if (recipe.id == id) return true;
+                if (recipe.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -141,7 +180,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Deck deck in Decks.Values)
             {
-                if (deck.id == id) return true;
+                if (deck.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -150,7 +192,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Legacy legacy in Legacies.Values)
             {
-                if (legacy.id == id) return true;
+                if (legacy.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -159,7 +204,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Verb verb in Verbs.Values)
             {
-                if (verb.id == id) return true;
+                if (verb.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -168,15 +216,24 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Ending ending in Endings.Values)
             {
-                if (ending.id == id) return true;
+                if (ending.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
         public Legacy GetLegacy(Guid id)
         {
-            if (LegacyExists(id)) return Legacies[id];
-            else return null;
+            if (LegacyExists(id))
+            {
+                return Legacies[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Legacy GetLegacy(string id)
@@ -185,7 +242,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Legacy legacy in Legacies.Values)
                 {
-                    if (legacy.id == id) return legacy;
+                    if (legacy.id == id)
+                    {
+                        return legacy;
+                    }
                 }
             }
             return null;
@@ -198,8 +258,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Recipe GetRecipe(Guid id)
         {
-            if (RecipeExists(id)) return Recipes[id];
-            else return null;
+            if (RecipeExists(id))
+            {
+                return Recipes[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Recipe GetRecipe(string id)
@@ -208,7 +274,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Recipe recipe in Recipes.Values)
                 {
-                    if (recipe.id == id) return recipe;
+                    if (recipe.id == id)
+                    {
+                        return recipe;
+                    }
                 }
             }
             return null;
@@ -221,8 +290,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Ending GetEnding(Guid id)
         {
-            if (EndingExists(id)) return Endings[id];
-            else return null;
+            if (EndingExists(id))
+            {
+                return Endings[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Ending GetEnding(string id)
@@ -231,7 +306,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Ending ending in Endings.Values)
                 {
-                    if (ending.id == id) return ending;
+                    if (ending.id == id)
+                    {
+                        return ending;
+                    }
                 }
             }
             return null;
@@ -244,8 +322,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Verb GetVerb(Guid id)
         {
-            if (VerbExists(id)) return Verbs[id];
-            else return null;
+            if (VerbExists(id))
+            {
+                return Verbs[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Verb GetVerb(string id)
@@ -254,7 +338,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Verb verb in Verbs.Values)
                 {
-                    if (verb.id == id) return verb;
+                    if (verb.id == id)
+                    {
+                        return verb;
+                    }
                 }
             }
             return null;
@@ -267,8 +354,14 @@ namespace CarcassSpark.ObjectTypes
 
         public Culture GetCulture(Guid id)
         {
-            if (CultureExists(id)) return Cultures[id];
-            else return null;
+            if (CultureExists(id))
+            {
+                return Cultures[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Culture GetCulture(string id)
@@ -277,7 +370,10 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Culture culture in Cultures.Values)
                 {
-                    if (culture.id == id) return culture;
+                    if (culture.id == id)
+                    {
+                        return culture;
+                    }
                 }
             }
             return null;
@@ -292,7 +388,10 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Culture culture in Cultures.Values)
             {
-                if (culture.id == id) return true;
+                if (culture.id == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -304,26 +403,50 @@ namespace CarcassSpark.ObjectTypes
 
         public string GetCustomManifestString(string key)
         {
-            if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToString();
-            else return null;
+            if (CustomManifest.ContainsKey(key))
+            {
+                return CustomManifest[key].ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public bool? GetCustomManifestBool(string key)
         {
-            if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<bool?>();
-            else return null;
+            if (CustomManifest.ContainsKey(key))
+            {
+                return CustomManifest[key].ToObject<bool?>();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public int? GetCustomManifestInt(string key)
         {
-            if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<int?>();
-            else return null;
+            if (CustomManifest.ContainsKey(key))
+            {
+                return CustomManifest[key].ToObject<int?>();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<int> GetCustomManifestListInt(string key)
         {
-            if (CustomManifest.ContainsKey(key)) return CustomManifest[key].ToObject<List<int>>();
-            else return null;
+            if (CustomManifest.ContainsKey(key))
+            {
+                return CustomManifest[key].ToObject<List<int>>();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void SetRecentGroup(string type, string groupName)

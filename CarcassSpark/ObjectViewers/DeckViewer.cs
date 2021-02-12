@@ -1,13 +1,9 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -37,7 +33,11 @@ namespace CarcassSpark.ObjectViewers
                 SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else SetEditingMode(false);
+            else
+            {
+                SetEditingMode(false);
+            }
+
             SetInternal(false);
         }
 
@@ -51,9 +51,19 @@ namespace CarcassSpark.ObjectViewers
                 SetEditingMode(true);
                 this.SuccessCallback += SuccessCallback;
             }
-            else SetEditingMode(false);
-            if (internalDeck.HasValue) SetInternal(internalDeck.Value);
-            else SetInternal(false);
+            else
+            {
+                SetEditingMode(false);
+            }
+
+            if (internalDeck.HasValue)
+            {
+                SetInternal(internalDeck.Value);
+            }
+            else
+            {
+                SetInternal(false);
+            }
         }
 
         void SetInternal(bool internalDeck)
@@ -69,14 +79,46 @@ namespace CarcassSpark.ObjectViewers
 
         void FillValues(Deck deck)
         {
-            if (deck.id != null) idTextBox.Text = deck.id;
-            if (deck.label != null) labelTextBox.Text = deck.label;
-            if (deck.comments != null) commentsTextBox.Text = deck.comments;
-            if (deck.description != null) descriptionTextBox.Text = deck.description;
-            if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
-            if (deck.defaultcard != null) defaultCardTextBox.Text = deck.defaultcard;
-            if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
-            if (deck.deleted.HasValue) deletedCheckBox.Checked = deck.deleted.Value;
+            if (deck.id != null)
+            {
+                idTextBox.Text = deck.id;
+            }
+
+            if (deck.label != null)
+            {
+                labelTextBox.Text = deck.label;
+            }
+
+            if (deck.comments != null)
+            {
+                commentsTextBox.Text = deck.comments;
+            }
+
+            if (deck.description != null)
+            {
+                descriptionTextBox.Text = deck.description;
+            }
+
+            if (deck.resetonexhaustion.HasValue)
+            {
+                resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
+            }
+
+            if (deck.defaultcard != null)
+            {
+                defaultCardTextBox.Text = deck.defaultcard;
+            }
+
+            if (deck.draws.HasValue)
+            {
+                drawsNumericUpDown.Value = deck.draws.Value;
+            }
+
+            if (deck.deleted.HasValue)
+            {
+                deletedCheckBox.Checked = deck.deleted.Value;
+            }
+
             if (deck.spec != null)
             {
                 foreach (string id in deck.spec)
@@ -183,10 +225,10 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
         }
-        
+
         private void NewCardButton_Click(object sender, EventArgs e)
         {
-            if(newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
                 specListView.Items.Add(newCardTextBox.Text);
                 if (displayedDeck.spec == null)
@@ -197,7 +239,7 @@ namespace CarcassSpark.ObjectViewers
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
-            else if(specListView.SelectedItems.Count > 0)
+            else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
                 if (displayedDeck.spec == null)
@@ -287,12 +329,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewCardTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
                 {
                     specListView.Items.Add(newCardTextBox.Text);
-                    if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
+                    if (displayedDeck.spec == null)
+                    {
+                        displayedDeck.spec = new List<string>();
+                    }
+
                     displayedDeck.spec.Add(newCardTextBox.Text);
                     newCardTextBox.Text = "";
                     newCardTextBox.Focus();
@@ -308,10 +354,14 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.defaultcard = null;
             }
         }
-        
+
         private void SpecListView_DoubleClick(object sender, EventArgs e)
         {
-            if (specListView.SelectedItems == null) return;
+            if (specListView.SelectedItems == null)
+            {
+                return;
+            }
+
             string id = specListView.SelectedItems[0].Text.ToString();
             if (id.Contains("deck:") && Utilities.DeckExists(id.Substring(id.IndexOf(":"))))
             {
@@ -331,22 +381,55 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedDeck.drawmessages_extend == null) return;
-                if (displayedDeck.drawmessages_extend.ContainsKey(key)) displayedDeck.drawmessages_extend.Remove(key);
-                if (displayedDeck.drawmessages_extend.Count == 0) displayedDeck.drawmessages_extend = null;
+                if (displayedDeck.drawmessages_extend == null)
+                {
+                    return;
+                }
+
+                if (displayedDeck.drawmessages_extend.ContainsKey(key))
+                {
+                    displayedDeck.drawmessages_extend.Remove(key);
+                }
+
+                if (displayedDeck.drawmessages_extend.Count == 0)
+                {
+                    displayedDeck.drawmessages_extend = null;
+                }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedDeck.drawmessages_remove == null) return;
-                if (displayedDeck.drawmessages_remove.Contains(key)) displayedDeck.drawmessages_remove.Remove(key);
-                if (displayedDeck.drawmessages_remove.Count == 0) displayedDeck.drawmessages_remove = null;
+                if (displayedDeck.drawmessages_remove == null)
+                {
+                    return;
+                }
+
+                if (displayedDeck.drawmessages_remove.Contains(key))
+                {
+                    displayedDeck.drawmessages_remove.Remove(key);
+                }
+
+                if (displayedDeck.drawmessages_remove.Count == 0)
+                {
+                    displayedDeck.drawmessages_remove = null;
+                }
             }
             else
             {
-                if (displayedDeck.drawmessages == null) return;
-                if (displayedDeck.drawmessages.ContainsKey(key)) displayedDeck.drawmessages.Remove(key);
-                if (displayedDeck.drawmessages.Count == 0) displayedDeck.drawmessages = null;
+                if (displayedDeck.drawmessages == null)
+                {
+                    return;
+                }
+
+                if (displayedDeck.drawmessages.ContainsKey(key))
+                {
+                    displayedDeck.drawmessages.Remove(key);
+                }
+
+                if (displayedDeck.drawmessages.Count == 0)
+                {
+                    displayedDeck.drawmessages = null;
+                }
             }
         }
 
@@ -359,7 +442,11 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListPrependColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_prepend == null) displayedDeck.spec_prepend = new List<string>();
+                if (displayedDeck.spec_prepend == null)
+                {
+                    displayedDeck.spec_prepend = new List<string>();
+                }
+
                 displayedDeck.spec_prepend.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
@@ -387,7 +474,11 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListAppendColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_append == null) displayedDeck.spec_append = new List<string>();
+                if (displayedDeck.spec_append == null)
+                {
+                    displayedDeck.spec_append = new List<string>();
+                }
+
                 displayedDeck.spec_append.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
@@ -415,7 +506,11 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListRemoveColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_remove == null) displayedDeck.spec_remove = new List<string>();
+                if (displayedDeck.spec_remove == null)
+                {
+                    displayedDeck.spec_remove = new List<string>();
+                }
+
                 displayedDeck.spec_remove.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
@@ -455,16 +550,38 @@ namespace CarcassSpark.ObjectViewers
 
         private void ResetOnExhaustionCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
-            if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
-            if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedDeck.resetonexhaustion = true;
+            }
+
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedDeck.resetonexhaustion = false;
+            }
+
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedDeck.resetonexhaustion = null;
+            }
         }
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (deletedCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
-            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
-            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
+            if (deletedCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedDeck.resetonexhaustion = true;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedDeck.resetonexhaustion = false;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedDeck.resetonexhaustion = null;
+            }
         }
 
         private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
@@ -475,8 +592,14 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                if (extendsTextBox.Text != "") displayedDeck.extends = new List<string> { extendsTextBox.Text };
-                else displayedDeck.extends = null;
+                if (extendsTextBox.Text != "")
+                {
+                    displayedDeck.extends = new List<string> { extendsTextBox.Text };
+                }
+                else
+                {
+                    displayedDeck.extends = null;
+                }
             }
         }
 
@@ -492,7 +615,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (specListView.SelectedItems.Count < 1) return;
+            if (specListView.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
             ListViewItem item = specListView.SelectedItems[0];
             specListView.Items.Remove(item);
             DeleteItemFromCurrentGroup(item);
@@ -503,22 +630,34 @@ namespace CarcassSpark.ObjectViewers
             if (item.BackColor == Utilities.ListAppendColor && displayedDeck.spec_append != null)
             {
                 displayedDeck.spec_append.Remove(item.Text);
-                if (displayedDeck.spec_append.Count == 0) displayedDeck.spec_append = null;
+                if (displayedDeck.spec_append.Count == 0)
+                {
+                    displayedDeck.spec_append = null;
+                }
             }
             else if (item.BackColor == Utilities.ListPrependColor && displayedDeck.spec_append != null)
             {
                 displayedDeck.spec_prepend.Remove(item.Text);
-                if (displayedDeck.spec_prepend.Count == 0) displayedDeck.spec_prepend = null;
+                if (displayedDeck.spec_prepend.Count == 0)
+                {
+                    displayedDeck.spec_prepend = null;
+                }
             }
             else if (item.BackColor == Utilities.ListRemoveColor && displayedDeck.spec_append != null)
             {
                 displayedDeck.spec_remove.Remove(item.Text);
-                if (displayedDeck.spec_remove.Count == 0) displayedDeck.spec_remove = null;
+                if (displayedDeck.spec_remove.Count == 0)
+                {
+                    displayedDeck.spec_remove = null;
+                }
             }
             else if (displayedDeck.spec != null)
             {
                 displayedDeck.spec.Remove(item.Text);
-                if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
+                if (displayedDeck.spec.Count == 0)
+                {
+                    displayedDeck.spec = null;
+                }
             }
         }
 

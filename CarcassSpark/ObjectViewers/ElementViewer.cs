@@ -1,13 +1,9 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -111,8 +107,16 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Element element)
         {
-            if (element.id != null) idTextBox.Text = element.id;
-            if (element.label != null) labelTextBox.Text = element.label;
+            if (element.id != null)
+            {
+                idTextBox.Text = element.id;
+            }
+
+            if (element.label != null)
+            {
+                labelTextBox.Text = element.label;
+            }
+
             if (element.icon != null)
             {
                 iconTextBox.Text = element.icon;
@@ -122,16 +126,56 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.GetElementImage(element.id);
             }
-            if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
-            if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
-            if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
-            if (element.resaturate.HasValue) resaturateCheckBox.Checked = element.resaturate.Value;
-            if (element.uniquenessgroup != null) uniquenessgroupTextBox.Text = element.uniquenessgroup;
-            if (element.description != null) descriptionTextBox.Text = element.description;
-            if (element.comments != null) commentsTextBox.Text = element.comments;
-            if (element.inherits != null) inheritsTextBox.Text = element.inherits;
-            if (element.deleted.HasValue) deletedCheckBox.Checked = element.deleted.Value;
-            if (element.verbicon != null) verbIconTextBox.Text = element.verbicon;
+            if (element.lifetime.HasValue)
+            {
+                lifetimeNumericUpDown.Value = element.lifetime.Value;
+            }
+
+            if (element.decayTo != null)
+            {
+                decayToTextBox.Text = element.decayTo;
+            }
+
+            if (element.unique.HasValue)
+            {
+                uniqueCheckBox.Checked = element.unique.Value;
+            }
+
+            if (element.resaturate.HasValue)
+            {
+                resaturateCheckBox.Checked = element.resaturate.Value;
+            }
+
+            if (element.uniquenessgroup != null)
+            {
+                uniquenessgroupTextBox.Text = element.uniquenessgroup;
+            }
+
+            if (element.description != null)
+            {
+                descriptionTextBox.Text = element.description;
+            }
+
+            if (element.comments != null)
+            {
+                commentsTextBox.Text = element.comments;
+            }
+
+            if (element.inherits != null)
+            {
+                inheritsTextBox.Text = element.inherits;
+            }
+
+            if (element.deleted.HasValue)
+            {
+                deletedCheckBox.Checked = element.deleted.Value;
+            }
+
+            if (element.verbicon != null)
+            {
+                verbIconTextBox.Text = element.verbicon;
+            }
+
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
@@ -234,7 +278,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         DefaultCellStyle = Utilities.DictionaryRemoveStyle
                     };
-                    row.CreateCells(aspectsDataGridView, removeId );
+                    row.CreateCells(aspectsDataGridView, removeId);
                     aspectsDataGridView.Rows.Add(row);
                 }
             }
@@ -250,7 +294,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void SlotsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (slotsListView.SelectedItems == null) return;
+            if (slotsListView.SelectedItems == null)
+            {
+                return;
+            }
+
             string slotId = slotsListView.SelectedItems[0].Text.ToString();
             SlotViewer sv = new SlotViewer(slots[slotId], editing, SlotType.ELEMENT);
             sv.Show();
@@ -269,7 +317,11 @@ namespace CarcassSpark.ObjectViewers
         private void XtriggersListView_DoubleClick(object sender, EventArgs e)
         {
             // multiselect is false, so SelectedItems.Count can only ever be 0 or 1
-            if (xtriggersListView.SelectedItems.Count == 0) return;
+            if (xtriggersListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
             string id = xtriggersListView.SelectedItems[0].Text;
             Color backColor = xtriggersListView.SelectedItems[0].BackColor;
             XTriggerViewer xtv;
@@ -357,18 +409,39 @@ namespace CarcassSpark.ObjectViewers
                         int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                         if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                         {
-                            if (displayedElement.aspects_extend == null) displayedElement.aspects_extend = new Dictionary<string, int>();
-                            if (!displayedElement.aspects_extend.ContainsKey(key)) displayedElement.aspects_extend.Add(key, value.Value);
+                            if (displayedElement.aspects_extend == null)
+                            {
+                                displayedElement.aspects_extend = new Dictionary<string, int>();
+                            }
+
+                            if (!displayedElement.aspects_extend.ContainsKey(key))
+                            {
+                                displayedElement.aspects_extend.Add(key, value.Value);
+                            }
                         }
                         else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                         {
-                            if (displayedElement.aspects_remove == null) displayedElement.aspects_remove = new List<string>();
-                            if (!displayedElement.aspects_remove.Contains(key)) displayedElement.aspects_remove.Add(key);
+                            if (displayedElement.aspects_remove == null)
+                            {
+                                displayedElement.aspects_remove = new List<string>();
+                            }
+
+                            if (!displayedElement.aspects_remove.Contains(key))
+                            {
+                                displayedElement.aspects_remove.Add(key);
+                            }
                         }
                         else
                         {
-                            if (displayedElement.aspects == null) displayedElement.aspects = new Dictionary<string, int>();
-                            if (!displayedElement.aspects.ContainsKey(key)) displayedElement.aspects.Add(key, value.Value);
+                            if (displayedElement.aspects == null)
+                            {
+                                displayedElement.aspects = new Dictionary<string, int>();
+                            }
+
+                            if (!displayedElement.aspects.ContainsKey(key))
+                            {
+                                displayedElement.aspects.Add(key, value.Value);
+                            }
                         }
                     }
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
@@ -458,7 +531,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 slots.Add(sv.displayedSlot.id, sv.displayedSlot);
                 slotsListView.Items.Add(sv.displayedSlot.id);
-                if (displayedElement.slots == null) displayedElement.slots = new List<Slot>();
+                if (displayedElement.slots == null)
+                {
+                    displayedElement.slots = new List<Slot>();
+                }
+
                 displayedElement.slots.Add(sv.displayedSlot);
             }
         }
@@ -469,22 +546,55 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedElement.aspects_extend == null) return;
-                if (displayedElement.aspects_extend.ContainsKey(key)) displayedElement.aspects_extend.Remove(key);
-                if (displayedElement.aspects_extend.Count == 0) displayedElement.aspects_extend = null;
+                if (displayedElement.aspects_extend == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.aspects_extend.ContainsKey(key))
+                {
+                    displayedElement.aspects_extend.Remove(key);
+                }
+
+                if (displayedElement.aspects_extend.Count == 0)
+                {
+                    displayedElement.aspects_extend = null;
+                }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedElement.aspects_remove == null) return;
-                if (displayedElement.aspects_remove.Contains(key)) displayedElement.aspects_remove.Remove(key);
-                if (displayedElement.aspects_remove.Count == 0) displayedElement.aspects_remove = null;
+                if (displayedElement.aspects_remove == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.aspects_remove.Contains(key))
+                {
+                    displayedElement.aspects_remove.Remove(key);
+                }
+
+                if (displayedElement.aspects_remove.Count == 0)
+                {
+                    displayedElement.aspects_remove = null;
+                }
             }
             else
             {
-                if (displayedElement.aspects == null) return;
-                if (displayedElement.aspects.ContainsKey(key)) displayedElement.aspects.Remove(key);
-                if (displayedElement.aspects.Count == 0) displayedElement.aspects = null;
+                if (displayedElement.aspects == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.aspects.ContainsKey(key))
+                {
+                    displayedElement.aspects.Remove(key);
+                }
+
+                if (displayedElement.aspects.Count == 0)
+                {
+                    displayedElement.aspects = null;
+                }
             }
         }
 
@@ -494,22 +604,55 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedElement.xtriggers_extend == null) return;
-                if (displayedElement.xtriggers_extend.ContainsKey(key)) displayedElement.xtriggers_extend.Remove(key);
-                if (displayedElement.xtriggers_extend.Count == 0) displayedElement.xtriggers_extend = null;
+                if (displayedElement.xtriggers_extend == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.xtriggers_extend.ContainsKey(key))
+                {
+                    displayedElement.xtriggers_extend.Remove(key);
+                }
+
+                if (displayedElement.xtriggers_extend.Count == 0)
+                {
+                    displayedElement.xtriggers_extend = null;
+                }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedElement.xtriggers_remove == null) return;
-                if (displayedElement.xtriggers_remove.Contains(key)) displayedElement.xtriggers_remove.Remove(key);
-                if (displayedElement.xtriggers_remove.Count == 0) displayedElement.xtriggers_remove = null;
+                if (displayedElement.xtriggers_remove == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.xtriggers_remove.Contains(key))
+                {
+                    displayedElement.xtriggers_remove.Remove(key);
+                }
+
+                if (displayedElement.xtriggers_remove.Count == 0)
+                {
+                    displayedElement.xtriggers_remove = null;
+                }
             }
             else
             {
-                if (displayedElement.xtriggers == null) return;
-                if (displayedElement.xtriggers.ContainsKey(key)) displayedElement.xtriggers.Remove(key);
-                if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
+                if (displayedElement.xtriggers == null)
+                {
+                    return;
+                }
+
+                if (displayedElement.xtriggers.ContainsKey(key))
+                {
+                    displayedElement.xtriggers.Remove(key);
+                }
+
+                if (displayedElement.xtriggers.Count == 0)
+                {
+                    displayedElement.xtriggers = null;
+                }
             }
         }
 
@@ -518,7 +661,11 @@ namespace CarcassSpark.ObjectViewers
             XTriggerViewer xtv = new XTriggerViewer();
             if (xtv.ShowDialog() == DialogResult.OK)
             {
-                if (displayedElement.xtriggers == null) displayedElement.xtriggers = new Dictionary<string, List<XTrigger>>();
+                if (displayedElement.xtriggers == null)
+                {
+                    displayedElement.xtriggers = new Dictionary<string, List<XTrigger>>();
+                }
+
                 xtriggersListView.Items.Add(xtv.catalyst);
                 displayedElement.xtriggers[xtv.catalyst] = xtv.displayedXTriggers;
             }
@@ -526,7 +673,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteXTriggerButton_Click(object sender, EventArgs e)
         {
-            if (xtriggersListView.SelectedItems.Count == 0) return;
+            if (xtriggersListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
             ListViewItem item = xtriggersListView.SelectedItems[0];
             string selectedId = item.Text;
             if (item.BackColor == Utilities.DictionaryExtendStyle.BackColor)
@@ -536,7 +687,10 @@ namespace CarcassSpark.ObjectViewers
                     displayedElement.xtriggers_extend.Remove(selectedId);
                     xtriggersListView.Items.Remove(item);
                 }
-                if (displayedElement.xtriggers_extend.Count == 0) displayedElement.xtriggers_extend = null;
+                if (displayedElement.xtriggers_extend.Count == 0)
+                {
+                    displayedElement.xtriggers_extend = null;
+                }
             }
             else if (item.BackColor == Utilities.DictionaryRemoveStyle.BackColor)
             {
@@ -545,7 +699,10 @@ namespace CarcassSpark.ObjectViewers
                     displayedElement.xtriggers_remove.Remove(selectedId);
                     xtriggersListView.Items.Remove(item);
                 }
-                if (displayedElement.xtriggers_remove.Count == 0) displayedElement.xtriggers_remove = null;
+                if (displayedElement.xtriggers_remove.Count == 0)
+                {
+                    displayedElement.xtriggers_remove = null;
+                }
             }
             else
             {
@@ -554,7 +711,10 @@ namespace CarcassSpark.ObjectViewers
                     displayedElement.xtriggers.Remove(selectedId);
                     xtriggersListView.Items.Remove(item);
                 }
-                if (displayedElement.xtriggers.Count == 0) displayedElement.xtriggers = null;
+                if (displayedElement.xtriggers.Count == 0)
+                {
+                    displayedElement.xtriggers = null;
+                }
             }
         }
 
@@ -590,35 +750,74 @@ namespace CarcassSpark.ObjectViewers
 
         private void UniqueCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (uniqueCheckBox.CheckState == CheckState.Checked) displayedElement.unique = true;
-            if (uniqueCheckBox.CheckState == CheckState.Unchecked) displayedElement.unique = false;
-            if (uniqueCheckBox.CheckState == CheckState.Indeterminate) displayedElement.unique = null;
+            if (uniqueCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedElement.unique = true;
+            }
+
+            if (uniqueCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedElement.unique = false;
+            }
+
+            if (uniqueCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedElement.unique = null;
+            }
         }
 
         private void ResaturateCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (resaturateCheckBox.CheckState == CheckState.Checked) displayedElement.resaturate = true;
-            if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
-            if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
+            if (resaturateCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedElement.resaturate = true;
+            }
+
+            if (resaturateCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedElement.resaturate = false;
+            }
+
+            if (resaturateCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedElement.resaturate = null;
+            }
         }
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.comments = commentsTextBox.Text;
-            if (displayedElement.comments == "") displayedElement.comments = null;
+            if (displayedElement.comments == "")
+            {
+                displayedElement.comments = null;
+            }
         }
 
         private void InheritsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedElement.inherits = inheritsTextBox.Text;
-            if (displayedElement.inherits == "") displayedElement.inherits = null;
+            if (displayedElement.inherits == "")
+            {
+                displayedElement.inherits = null;
+            }
         }
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (deletedCheckBox.CheckState == CheckState.Checked) displayedElement.deleted = true;
-            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedElement.deleted = false;
-            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedElement.deleted = null;
+            if (deletedCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedElement.deleted = true;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedElement.deleted = false;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedElement.deleted = null;
+            }
         }
 
         private void RemoveSlotButton_Click(object sender, EventArgs e)
@@ -657,10 +856,16 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedElement.extends = extendsTextBox.Text.Split(',').ToList();
             }
-            else 
+            else
             {
-                if (extendsTextBox.Text != "") displayedElement.extends = new List<string> { extendsTextBox.Text };
-                else displayedElement.extends = null;
+                if (extendsTextBox.Text != "")
+                {
+                    displayedElement.extends = new List<string> { extendsTextBox.Text };
+                }
+                else
+                {
+                    displayedElement.extends = null;
+                }
             }
         }
 
@@ -669,7 +874,11 @@ namespace CarcassSpark.ObjectViewers
             XTriggerViewer xtv = new XTriggerViewer();
             if (xtv.ShowDialog() == DialogResult.OK)
             {
-                if (displayedElement.xtriggers_extend == null) displayedElement.xtriggers_extend = new Dictionary<string, List<XTrigger>>();
+                if (displayedElement.xtriggers_extend == null)
+                {
+                    displayedElement.xtriggers_extend = new Dictionary<string, List<XTrigger>>();
+                }
+
                 xtriggersListView.Items.Add(new ListViewItem(xtv.catalyst) { BackColor = Utilities.DictionaryExtendStyle.BackColor });
                 displayedElement.xtriggers_extend[xtv.catalyst] = xtv.displayedXTriggers;
             }

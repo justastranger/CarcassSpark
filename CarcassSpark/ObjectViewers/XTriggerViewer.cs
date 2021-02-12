@@ -1,12 +1,6 @@
 ﻿using CarcassSpark.ObjectTypes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
@@ -80,7 +74,11 @@ namespace CarcassSpark.ObjectViewers
                 displayedXTriggers = new List<XTrigger>();
                 foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value as string == null || row.Cells[0].Value as string == "") continue;
+                    if (row.Cells[0].Value as string == null || row.Cells[0].Value as string == "")
+                    {
+                        continue;
+                    }
+
                     XTrigger xtrigger = new XTrigger()
                     {
                         id = row.Cells[0].Value as string,

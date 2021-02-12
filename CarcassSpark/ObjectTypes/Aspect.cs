@@ -1,14 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.IO;
-using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
-using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -17,7 +8,7 @@ namespace CarcassSpark.ObjectTypes
         // These have been moved into the Element object to get me one step closer to unifying them
         // [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         // public bool? isAspect, isHidden, noartneeded;
-        
+
         [JsonConstructor]
         public Aspect(string id, string label, string description, string inherits,
                       bool? unique, bool? deleted, string icon, string comments,
@@ -53,7 +44,7 @@ namespace CarcassSpark.ObjectTypes
         {
             isAspect = true;
         }
-        
+
         public new Aspect Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);

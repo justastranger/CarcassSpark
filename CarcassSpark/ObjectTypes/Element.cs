@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -100,7 +96,7 @@ namespace CarcassSpark.ObjectTypes
             // extends has been transformed into a proper inheritance/templating system, making the above possibly obsolete
             this.extends = extends;
         }
-        
+
         public Element(string id, string label, string description,
                        string icon, string comments, Dictionary<string, int> aspects,
                        List<Slot> slots, Dictionary<string, List<XTrigger>> xtriggers,
@@ -121,7 +117,7 @@ namespace CarcassSpark.ObjectTypes
             this.uniquenessgroup = uniquenessgroup;
             this.inherits = inherits;
         }
-        
+
         public Element()
         {
 
@@ -138,5 +134,5 @@ namespace CarcassSpark.ObjectTypes
             return JsonConvert.DeserializeObject<Element>(serializedObject);
         }
     }
-    
+
 }

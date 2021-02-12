@@ -1,13 +1,8 @@
-﻿using System;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -33,7 +28,7 @@ namespace CarcassSpark.ObjectViewers
                 SetEditingMode(false);
             }
         }
-        
+
         void SetEditingMode(bool editing)
         {
             idTextBox.ReadOnly = !editing;
@@ -55,27 +50,66 @@ namespace CarcassSpark.ObjectViewers
 
         public void FillValues(Aspect aspect)
         {
-            if (aspect.id != null) idTextBox.Text = aspect.id;
-            if (aspect.label != null) labelTextBox.Text = aspect.label;
+            if (aspect.id != null)
+            {
+                idTextBox.Text = aspect.id;
+            }
+
+            if (aspect.label != null)
+            {
+                labelTextBox.Text = aspect.label;
+            }
+
             if ((!aspect.noartneeded.HasValue) || aspect.noartneeded.Value == false)
             {
                 if (aspect.icon != null)
                 {
                     iconTextBox.Text = aspect.icon;
-                    if (Utilities.AspectImageExists(aspect.icon)) pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
+                    if (Utilities.AspectImageExists(aspect.icon))
+                    {
+                        pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
+                    }
                 }
                 else if (Utilities.AspectImageExists(aspect.id))
                 {
                     pictureBox1.Image = Utilities.GetAspectImage(aspect.id);
                 }
             }
-            if (aspect.description != null) descriptionTextBox.Text = aspect.description;
-            if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
-            if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
-            if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
-            if (aspect.comments != null) commentTextBox.Text = aspect.comments;
-            if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
-            if (aspect.verbicon != null) verbIconTextBox.Text = aspect.verbicon;
+            if (aspect.description != null)
+            {
+                descriptionTextBox.Text = aspect.description;
+            }
+
+            if (aspect.isHidden.HasValue)
+            {
+                isHiddenCheckBox.Checked = aspect.isHidden.Value;
+            }
+
+            if (aspect.noartneeded.HasValue)
+            {
+                noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
+            }
+
+            if (aspect.inherits != null)
+            {
+                inheritsTextBox.Text = aspect.inherits;
+            }
+
+            if (aspect.comments != null)
+            {
+                commentTextBox.Text = aspect.comments;
+            }
+
+            if (aspect.deleted.HasValue)
+            {
+                deletedCheckBox.Checked = aspect.deleted.Value;
+            }
+
+            if (aspect.verbicon != null)
+            {
+                verbIconTextBox.Text = aspect.verbicon;
+            }
+
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
@@ -122,7 +156,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.extends?.Count > 1)
             {
                 extendsTextBox.Text = string.Join(",", aspect.extends);
-            } 
+            }
             else if (aspect.extends?.Count == 1)
             {
                 extendsTextBox.Text = aspect.extends[0];
@@ -131,11 +165,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void InducesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!(inducesDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
+            if (!(inducesDataGridView.Rows[e.RowIndex].Cells[0].Value is string id))
+            {
+                return;
+            }
+
             RecipeViewer rv = new RecipeViewer(Utilities.GetRecipe(id), null, null);
             rv.Show();
         }
-        
+
         private void OkButton_Click(object sender, EventArgs e)
         {
             if (idTextBox.Text == null || idTextBox.Text == "")
@@ -143,7 +181,8 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("All Aspects must have an ID.");
                 return;
             }
-            if (inducesDataGridView.Rows.Count > 1) {
+            if (inducesDataGridView.Rows.Count > 1)
+            {
                 displayedAspect.induces = null;
                 displayedAspect.induces_append = null;
                 displayedAspect.induces_prepend = null;
@@ -154,22 +193,38 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
                         {
-                            if (displayedAspect.induces_append == null) displayedAspect.induces_append = new List<Induces>();
+                            if (displayedAspect.induces_append == null)
+                            {
+                                displayedAspect.induces_append = new List<Induces>();
+                            }
+
                             displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
                         {
-                            if (displayedAspect.induces_prepend == null) displayedAspect.induces_prepend = new List<Induces>();
+                            if (displayedAspect.induces_prepend == null)
+                            {
+                                displayedAspect.induces_prepend = new List<Induces>();
+                            }
+
                             displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
                         {
-                            if (displayedAspect.induces_remove == null) displayedAspect.induces_remove = new List<String>();
+                            if (displayedAspect.induces_remove == null)
+                            {
+                                displayedAspect.induces_remove = new List<String>();
+                            }
+
                             displayedAspect.induces_remove.Add(row.Cells[0].Value as string);
                         }
                         else
                         {
-                            if (displayedAspect.induces == null) displayedAspect.induces = new List<Induces>();
+                            if (displayedAspect.induces == null)
+                            {
+                                displayedAspect.induces = new List<Induces>();
+                            }
+
                             displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                     }
@@ -230,27 +285,71 @@ namespace CarcassSpark.ObjectViewers
             Induces induces = key != null ? inducesDictionary[key] : null;
             if (e.Row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
             {
-                if (displayedAspect.induces_append == null) return;
-                if (displayedAspect.induces_append.Contains(induces)) displayedAspect.induces_append.Remove(induces);
-                if (displayedAspect.induces_append.Count == 0) displayedAspect.induces_append = null;
+                if (displayedAspect.induces_append == null)
+                {
+                    return;
+                }
+
+                if (displayedAspect.induces_append.Contains(induces))
+                {
+                    displayedAspect.induces_append.Remove(induces);
+                }
+
+                if (displayedAspect.induces_append.Count == 0)
+                {
+                    displayedAspect.induces_append = null;
+                }
             }
             else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
             {
-                if (displayedAspect.induces_prepend == null) return;
-                if (displayedAspect.induces_prepend.Contains(induces)) displayedAspect.induces_prepend.Remove(induces);
-                if (displayedAspect.induces_prepend.Count == 0) displayedAspect.induces_prepend = null;
+                if (displayedAspect.induces_prepend == null)
+                {
+                    return;
+                }
+
+                if (displayedAspect.induces_prepend.Contains(induces))
+                {
+                    displayedAspect.induces_prepend.Remove(induces);
+                }
+
+                if (displayedAspect.induces_prepend.Count == 0)
+                {
+                    displayedAspect.induces_prepend = null;
+                }
             }
             else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
             {
-                if (displayedAspect.induces_remove == null) return;
-                if (displayedAspect.induces_remove.Contains(key)) displayedAspect.induces_remove.Remove(key);
-                if (displayedAspect.induces_remove.Count == 0) displayedAspect.induces_remove = null;
+                if (displayedAspect.induces_remove == null)
+                {
+                    return;
+                }
+
+                if (displayedAspect.induces_remove.Contains(key))
+                {
+                    displayedAspect.induces_remove.Remove(key);
+                }
+
+                if (displayedAspect.induces_remove.Count == 0)
+                {
+                    displayedAspect.induces_remove = null;
+                }
             }
             else
             {
-                if (displayedAspect.induces == null) return;
-                if (displayedAspect.induces.Contains(induces)) displayedAspect.induces.Remove(induces);
-                if (displayedAspect.induces.Count == 0) displayedAspect.induces = null;
+                if (displayedAspect.induces == null)
+                {
+                    return;
+                }
+
+                if (displayedAspect.induces.Contains(induces))
+                {
+                    displayedAspect.induces.Remove(induces);
+                }
+
+                if (displayedAspect.induces.Count == 0)
+                {
+                    displayedAspect.induces = null;
+                }
             }
         }
 
@@ -301,35 +400,74 @@ namespace CarcassSpark.ObjectViewers
 
         private void IsHiddenCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (isHiddenCheckBox.CheckState == CheckState.Checked) displayedAspect.isHidden = true;
-            if (isHiddenCheckBox.CheckState == CheckState.Unchecked) displayedAspect.isHidden = false;
-            if (isHiddenCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.isHidden = null;
+            if (isHiddenCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedAspect.isHidden = true;
+            }
+
+            if (isHiddenCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedAspect.isHidden = false;
+            }
+
+            if (isHiddenCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedAspect.isHidden = null;
+            }
         }
 
         private void NoartworkneededCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (noartworkneededCheckBox.CheckState == CheckState.Checked) displayedAspect.noartneeded = true;
-            if (noartworkneededCheckBox.CheckState == CheckState.Unchecked) displayedAspect.noartneeded = false;
-            if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.noartneeded = null;
+            if (noartworkneededCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedAspect.noartneeded = true;
+            }
+
+            if (noartworkneededCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedAspect.noartneeded = false;
+            }
+
+            if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedAspect.noartneeded = null;
+            }
         }
 
         private void CommentTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.comments = commentTextBox.Text;
-            if (displayedAspect.comments == "") displayedAspect.comments = null;
+            if (displayedAspect.comments == "")
+            {
+                displayedAspect.comments = null;
+            }
         }
 
         private void InheritsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.inherits = inheritsTextBox.Text;
-            if (displayedAspect.inherits == "") displayedAspect.inherits = null;
+            if (displayedAspect.inherits == "")
+            {
+                displayedAspect.inherits = null;
+            }
         }
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            if (deletedCheckBox.CheckState == CheckState.Checked) displayedAspect.deleted = true;
-            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedAspect.deleted = false;
-            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.deleted = null;
+            if (deletedCheckBox.CheckState == CheckState.Checked)
+            {
+                displayedAspect.deleted = true;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                displayedAspect.deleted = false;
+            }
+
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                displayedAspect.deleted = null;
+            }
         }
 
         private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
@@ -340,8 +478,14 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                if (extendsTextBox.Text != "") displayedAspect.extends = new List<string> { extendsTextBox.Text };
-                else displayedAspect.extends = null;
+                if (extendsTextBox.Text != "")
+                {
+                    displayedAspect.extends = new List<string> { extendsTextBox.Text };
+                }
+                else
+                {
+                    displayedAspect.extends = null;
+                }
             }
         }
 

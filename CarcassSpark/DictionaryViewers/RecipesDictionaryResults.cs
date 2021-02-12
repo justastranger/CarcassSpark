@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
+﻿using CarcassSpark.ObjectTypes;
 using CarcassSpark.ObjectViewers;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CarcassSpark.DictionaryViewers
 {
@@ -29,10 +23,14 @@ namespace CarcassSpark.DictionaryViewers
                 this.results.Add(kvp.Value, kvp.Key);
             }
         }
-        
+
         private void ResultsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (resultsListBox.SelectedItem == null) return;
+            if (resultsListBox.SelectedItem == null)
+            {
+                return;
+            }
+
             Recipe selectedRecipe = resultsWithId[resultsListBox.SelectedItem.ToString()];
             RecipeViewer ev = new RecipeViewer(selectedRecipe.Copy(), null, null);
             ev.Show();

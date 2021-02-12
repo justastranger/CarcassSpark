@@ -1,17 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using CarcassSpark.ObjectTypes;
+using CarcassSpark.Tools;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.DictionaryViewers;
-using CarcassSpark.Flowchart;
-using CarcassSpark.Tools;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -24,7 +20,7 @@ namespace CarcassSpark.ObjectViewers
             // this should always be first before messing with any components like the Folder Browser Dialog
             InitializeComponent();
             // This is necessary to ensure we have a reference point for the game and the game's assemblies
-            
+
         }
 
         private void InitializeTabs()
@@ -33,10 +29,12 @@ namespace CarcassSpark.ObjectViewers
             if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
             {
                 if (((JArray)Settings.settings["previousMods"]).Count() > 0)
+                {
                     foreach (string path in Settings.GetPreviousMods())
-                    { 
+                    {
                         CreateNewModViewerTab(path, false, false);
                     }
+                }
             }
             if (!SelectedModViewer.isVanilla)
             {
@@ -137,7 +135,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
             {
                 if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
                     "You have unsaved changes",
@@ -175,7 +173,7 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             SelectedModViewer = (ModViewerTabControl)ModViewerTabs.SelectedTab.Controls[0];
-            
+
             toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
             toggleAutosaveToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("AutoSave") ?? false);
             saveSplitterLocationsToolStripMenuItem.Checked = SelectedModViewer.isVanilla ? (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>()) : (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
@@ -502,7 +500,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Clipboard.ContainsText()) return;
+            if (!Clipboard.ContainsText())
+            {
+                return;
+            }
+
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
@@ -728,7 +730,7 @@ namespace CarcassSpark.ObjectViewers
                     });
                     Settings.SaveSettings();
                 }
-                
+
             }
             else
             {

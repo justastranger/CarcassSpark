@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CarcassSpark.ObjectTypes;
+using System;
 using System.Windows.Forms;
-using CarcassSpark.ObjectTypes;
-using CarcassSpark.ObjectViewers;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -21,16 +13,37 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
             displayedMutation = mutation;
-            if (editing.HasValue) SetEditingMode(editing.Value);
-            else SetEditingMode(false);
+            if (editing.HasValue)
+            {
+                SetEditingMode(editing.Value);
+            }
+            else
+            {
+                SetEditingMode(false);
+            }
         }
 
         void FillValues(Mutation mutation)
         {
-            if (mutation.filter != null) filterTextBox.Text = mutation.filter;
-            if (mutation.mutate != null) mutateAspectIdTextBox.Text = mutation.mutate;
-            if (mutation.level.HasValue) levelNumericUpDown.Value = mutation.level.Value;
-            if (mutation.additive.HasValue) additiveCheckBox.Checked = mutation.additive.Value;
+            if (mutation.filter != null)
+            {
+                filterTextBox.Text = mutation.filter;
+            }
+
+            if (mutation.mutate != null)
+            {
+                mutateAspectIdTextBox.Text = mutation.mutate;
+            }
+
+            if (mutation.level.HasValue)
+            {
+                levelNumericUpDown.Value = mutation.level.Value;
+            }
+
+            if (mutation.additive.HasValue)
+            {
+                additiveCheckBox.Checked = mutation.additive.Value;
+            }
         }
 
         void SetEditingMode(bool editing)
