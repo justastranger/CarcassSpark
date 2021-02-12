@@ -33,6 +33,7 @@
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.openModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,6 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.openInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -136,6 +136,13 @@
             this.newModToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.newModToolStripMenuItem.Text = "New Mod";
             this.newModToolStripMenuItem.Click += new System.EventHandler(this.NewModToolStripMenuItem_Click);
+            // 
+            // openInExplorerToolStripMenuItem
+            // 
+            this.openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
+            this.openInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.openInExplorerToolStripMenuItem.Text = "Open in Explorer";
+            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.OpenInExplorerToolStripMenuItem_Click);
             // 
             // openManifestToolStripMenuItem
             // 
@@ -502,6 +509,7 @@
             this.ModViewerTabs.SelectedIndexChanged += new System.EventHandler(this.ModViewerTabs_SelectedIndexChanged);
             this.ModViewerTabs.DragDrop += new System.Windows.Forms.DragEventHandler(this.ModViewerTabs_DragDrop);
             this.ModViewerTabs.DragEnter += new System.Windows.Forms.DragEventHandler(this.ModViewerTabs_DragEnter);
+            this.ModViewerTabs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ModViewerTabs_MouseClick);
             // 
             // folderBrowserDialog
             // 
@@ -510,13 +518,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
-            // 
-            // openInExplorerToolStripMenuItem
-            // 
-            this.openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
-            this.openInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.openInExplorerToolStripMenuItem.Text = "Open in Explorer";
-            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.OpenInExplorerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
