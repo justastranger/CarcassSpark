@@ -33,7 +33,7 @@ namespace CarcassSpark.Tools
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             okButton.Visible = editing;
@@ -41,7 +41,7 @@ namespace CarcassSpark.Tools
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void FillValues(Dictionary<Guid, Culture> cultures)
+        private void FillValues(Dictionary<Guid, Culture> cultures)
         {
             displayedCultures = cultures.ToDictionary(entry => entry.Value.id,
                                                       entry => entry.Value.Copy());

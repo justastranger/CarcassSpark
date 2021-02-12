@@ -9,8 +9,9 @@ namespace CarcassSpark.ObjectViewers
     public partial class VerbViewer : Form
     {
         public Verb displayedVerb;
-        bool editing;
-        event EventHandler<Verb> SuccessCallback;
+        private bool editing;
+
+        private event EventHandler<Verb> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
@@ -31,7 +32,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(Verb verb)
+        private void FillValues(Verb verb)
         {
             if (verb.id != null)
             {
@@ -80,7 +81,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;

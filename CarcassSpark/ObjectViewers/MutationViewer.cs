@@ -7,7 +7,7 @@ namespace CarcassSpark.ObjectViewers
     public partial class MutationViewer : Form
     {
         public Mutation displayedMutation;
-        bool editing;
+        private bool editing;
 
         public MutationViewer(Mutation mutation, bool? editing)
         {
@@ -23,7 +23,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(Mutation mutation)
+        private void FillValues(Mutation mutation)
         {
             if (mutation.filter != null)
             {
@@ -46,7 +46,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             filterTextBox.ReadOnly = !editing;

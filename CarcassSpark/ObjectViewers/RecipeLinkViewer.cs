@@ -15,7 +15,7 @@ namespace CarcassSpark.ObjectViewers
     public partial class RecipeLinkViewer : Form
     {
         public RecipeLink displayedRecipeLink;
-        bool editing;
+        private bool editing;
 
         public RecipeLinkViewer(RecipeLink recipeLink, bool? editing)
         {
@@ -50,7 +50,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(RecipeLink recipeLink)
+        private void FillValues(RecipeLink recipeLink)
         {
             idTextBox.Text = recipeLink.id;
             if (recipeLink.chance.HasValue)
@@ -83,7 +83,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -99,12 +99,12 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        void SetAlt()
+        private void SetAlt()
         {
 
         }
 
-        void SetLinked()
+        private void SetLinked()
         {
             additionalCheckBox.Visible = false;
             expulsionDataGridView.Visible = false;

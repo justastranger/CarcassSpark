@@ -11,6 +11,7 @@ namespace CarcassSpark
     public partial class Settings : Form
     {
         public static JObject settings = new JObject();
+
         // settings["openWithVanilla"] bool
         // settings["loadPreviousMods"] bool
         // settings["previousMods"] string[]
@@ -18,7 +19,7 @@ namespace CarcassSpark
         // settings["loadAllFlowchartNodes"] bool
         // settings["portable"] bool
         // settings["GamePath"] string
-        static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
         {
@@ -61,7 +62,7 @@ namespace CarcassSpark
             }
         }
 
-        void PopulateSettings()
+        private void PopulateSettings()
         {
             if (settings["loadPreviousMods"] != null)
             {

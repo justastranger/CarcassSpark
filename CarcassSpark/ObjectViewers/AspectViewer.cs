@@ -9,8 +9,9 @@ namespace CarcassSpark.ObjectViewers
     public partial class AspectViewer : Form
     {
         public Aspect displayedAspect;
-        Dictionary<string, Induces> inducesDictionary;
-        event EventHandler<Aspect> SuccessCallback;
+        private Dictionary<string, Induces> inducesDictionary;
+
+        private event EventHandler<Aspect> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
@@ -29,7 +30,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;

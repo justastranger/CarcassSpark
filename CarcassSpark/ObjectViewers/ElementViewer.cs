@@ -15,10 +15,11 @@ namespace CarcassSpark.ObjectViewers
     }
     public partial class ElementViewer : Form
     {
-        readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
+        private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         public Element displayedElement;
-        bool editing;
-        event EventHandler<Element> SuccessCallback;
+        private bool editing;
+
+        private event EventHandler<Element> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ListViewItem item)
@@ -54,7 +55,7 @@ namespace CarcassSpark.ObjectViewers
             SetType(elementType);
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -87,7 +88,7 @@ namespace CarcassSpark.ObjectViewers
             verbIconTextBox.ReadOnly = !editing;
         }
 
-        void SetType(ElementType elementType)
+        private void SetType(ElementType elementType)
         {
             switch (elementType)
             {

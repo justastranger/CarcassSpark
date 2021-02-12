@@ -6,17 +6,16 @@ using System.Windows.Forms;
 
 namespace CarcassSpark
 {
-    static class Program
+    internal static class Program
     {
-
-        static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        static readonly string csDllDirectory = "\\cultistsimulator_Data\\Managed\\";
+        private static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string csDllDirectory = "\\cultistsimulator_Data\\Managed\\";
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Mutex mutex = new Mutex(true, "CarcassSpark");
             if (!mutex.WaitOne(0, false))

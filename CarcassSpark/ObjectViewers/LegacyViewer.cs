@@ -9,7 +9,8 @@ namespace CarcassSpark.ObjectViewers
     public partial class LegacyViewer : Form
     {
         public Legacy displayedLegacy;
-        event EventHandler<Legacy> SuccessCallback;
+
+        private event EventHandler<Legacy> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback, ListViewItem item)
@@ -28,7 +29,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(Legacy legacy)
+        private void FillValues(Legacy legacy)
         {
             if (legacy.id != null)
             {
@@ -176,7 +177,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;

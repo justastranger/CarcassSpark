@@ -52,7 +52,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(Slot slot)
+        private void FillValues(Slot slot)
         {
             idTextBox.Text = slot.id;
             labelTextBox.Text = slot.label;
@@ -84,7 +84,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
 

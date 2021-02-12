@@ -18,8 +18,8 @@ namespace CarcassSpark.Tools
 
     public partial class TemplateManager : Form
     {
-        readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
-        bool unsavedChanged = false;
+        private readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
+        private bool unsavedChanged = false;
         public ListViewItem selectedItem;
 
         public TemplateManager()

@@ -9,8 +9,9 @@ namespace CarcassSpark.ObjectViewers
     public partial class EndingViewer : Form
     {
         public Ending displayedEnding;
-        bool editing;
-        event EventHandler<Ending> SuccessCallback;
+        private bool editing;
+
+        private event EventHandler<Ending> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback, ListViewItem item)
@@ -29,7 +30,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void FillValues(Ending ending)
+        private void FillValues(Ending ending)
         {
             if (ending.id != null)
             {
@@ -93,7 +94,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;

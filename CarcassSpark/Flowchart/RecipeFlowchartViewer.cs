@@ -12,8 +12,8 @@ namespace CarcassSpark.Flowchart
 {
     public partial class RecipeFlowchartViewer : Form
     {
-        bool skipYesNo = false;
-        readonly Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
+        private bool skipYesNo = false;
+        private readonly Dictionary<string, RecipeNode> recipeNodes = new Dictionary<string, RecipeNode>();
         private readonly List<RecipeNode> recipeNodesThatNeedToBeProcessed = new List<RecipeNode>();
         private readonly CascadeLayout layout = new CascadeLayout();
 
@@ -33,12 +33,12 @@ namespace CarcassSpark.Flowchart
             }
         }
 
-        void ArrangeNodes()
+        private void ArrangeNodes()
         {
             layout.Arrange(diagram1);
         }
 
-        void ProcessRecipes()
+        private void ProcessRecipes()
         {
             List<RecipeNode> nodesInProgress = new List<RecipeNode>(recipeNodesThatNeedToBeProcessed);
             recipeNodesThatNeedToBeProcessed.Clear();
@@ -85,7 +85,7 @@ namespace CarcassSpark.Flowchart
             progressBar1.Visible = false;
         }
 
-        void ProcessAllRecipes()
+        private void ProcessAllRecipes()
         {
             progressBar1.Visible = true;
             progressBar1.Value = 0;
@@ -132,7 +132,7 @@ namespace CarcassSpark.Flowchart
             progressBar1.Visible = false;
         }
 
-        void CreateLink(TreeViewNode outgoing, TreeViewNode incoming)
+        private void CreateLink(TreeViewNode outgoing, TreeViewNode incoming)
         {
             DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoing, incoming);
             tmp.AddLabel((string)incoming.Id);
@@ -141,7 +141,7 @@ namespace CarcassSpark.Flowchart
             tmp.AutoRoute = true;
         }
 
-        void CreateLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
+        private void CreateLink(TreeViewNode outgoingNode, TreeViewItem outgoingItem, TreeViewNode incoming)
         {
             //DiagramLink tmp = diagram1.Factory.CreateDiagramLink(outgoingNode, incoming);
             DiagramLink tmp = new DiagramLink(diagram1);
@@ -155,7 +155,7 @@ namespace CarcassSpark.Flowchart
             diagram1.Links.Add(tmp);
         }
 
-        RecipeNode CreateRecipeNode(Recipe recipe, float x, float y)
+        private RecipeNode CreateRecipeNode(Recipe recipe, float x, float y)
         {
             //if (recipeNodes.ContainsKey(recipe.id))
             //{

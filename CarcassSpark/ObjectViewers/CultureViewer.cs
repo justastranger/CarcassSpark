@@ -8,7 +8,7 @@ namespace CarcassSpark.ObjectViewers
     public partial class CultureViewer : Form
     {
         public Culture displayedCulture;
-        List<string> uilabelkeyslist = new List<string>() {
+        private List<string> uilabelkeyslist = new List<string>() {
             "UI_PAUSE",
             "UI_UNPAUSE",
             "UI_NORMALSPEED",
@@ -177,7 +177,7 @@ namespace CarcassSpark.ObjectViewers
             SetEditingMode(false);
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
@@ -190,7 +190,7 @@ namespace CarcassSpark.ObjectViewers
             releasedCheckBox.Enabled = editing;
         }
 
-        void FillValues(Culture culture)
+        private void FillValues(Culture culture)
         {
             displayedCulture = culture;
             idTextBox.Text = culture.id;

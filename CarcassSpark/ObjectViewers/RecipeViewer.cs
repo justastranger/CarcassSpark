@@ -17,13 +17,13 @@ namespace CarcassSpark.ObjectViewers
     public partial class RecipeViewer : Form
     {
         public Recipe displayedRecipe;
-        bool editing;
-        event EventHandler<Recipe> SuccessCallback;
-        public ListViewItem associatedListViewItem;
+        private bool editing;
 
-        readonly Dictionary<Guid, RecipeLink> recipeLinks = new Dictionary<Guid, RecipeLink>();
-        readonly Dictionary<Guid, RecipeLink> alternativerecipeLinks = new Dictionary<Guid, RecipeLink>();
-        readonly Dictionary<Guid, Mutation> mutations = new Dictionary<Guid, Mutation>();
+        private event EventHandler<Recipe> SuccessCallback;
+        public ListViewItem associatedListViewItem;
+        private readonly Dictionary<Guid, RecipeLink> recipeLinks = new Dictionary<Guid, RecipeLink>();
+        private readonly Dictionary<Guid, RecipeLink> alternativerecipeLinks = new Dictionary<Guid, RecipeLink>();
+        private readonly Dictionary<Guid, Mutation> mutations = new Dictionary<Guid, Mutation>();
 
         public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, ListViewItem item)
         {
@@ -58,7 +58,7 @@ namespace CarcassSpark.ObjectViewers
             SetViewerType(recipeViewerType);
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;
@@ -136,7 +136,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetViewerType(RecipeType recipeViewerType)
+        private void SetViewerType(RecipeType recipeViewerType)
         {
             switch (recipeViewerType)
             {

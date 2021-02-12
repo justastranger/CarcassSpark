@@ -10,9 +10,11 @@ namespace CarcassSpark.ObjectViewers
     public partial class DeckViewer : Form
     {
         public Deck displayedDeck;
-        bool editing;
-        event EventHandler<Deck> SuccessCallback;
-        bool internalDeck;
+        private bool editing;
+
+        private event EventHandler<Deck> SuccessCallback;
+
+        private bool internalDeck;
         public ListViewItem associatedListViewItem;
 
         public DeckViewer(Deck deck)
@@ -66,7 +68,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetInternal(bool internalDeck)
+        private void SetInternal(bool internalDeck)
         {
             idTextBox.Visible = !internalDeck;
             idLabel.Visible = !internalDeck;
@@ -77,7 +79,7 @@ namespace CarcassSpark.ObjectViewers
             this.internalDeck = internalDeck;
         }
 
-        void FillValues(Deck deck)
+        private void FillValues(Deck deck)
         {
             if (deck.id != null)
             {
@@ -201,7 +203,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        void SetEditingMode(bool editing)
+        private void SetEditingMode(bool editing)
         {
             this.editing = editing;
             idTextBox.ReadOnly = !editing;

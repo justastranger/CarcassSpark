@@ -13,7 +13,7 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class TabbedModViewer : Form
     {
-        ModViewerTabControl SelectedModViewer;
+        private ModViewerTabControl SelectedModViewer;
 
         public TabbedModViewer()
         {
