@@ -241,48 +241,80 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add, null);
             av.Show();
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add, null);
             ev.Show();
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add, null);
             rv.Show();
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add, null);
             dv.Show();
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add, null);
             lv.Show();
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add, null);
             ev.Show();
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add, null);
             vv.Show();
         }
 
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -314,6 +346,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -345,6 +381,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -376,6 +416,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeckToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -407,6 +451,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegacyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -438,6 +486,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -469,6 +521,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -500,6 +556,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (!Clipboard.ContainsText())
             {
                 return;
@@ -627,6 +687,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void SummonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
@@ -666,6 +730,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void ImageImporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             ImageImporter ii = new ImageImporter();
             if (ii.ShowDialog() == DialogResult.OK)
             {
