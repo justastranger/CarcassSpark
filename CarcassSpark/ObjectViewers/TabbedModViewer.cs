@@ -740,19 +740,19 @@ namespace CarcassSpark.ObjectViewers
                 switch (ii.displayedImageType.ToLower())
                 {
                     case "aspect":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\aspects\\" + ii.displayedFileName, true);
                         break;
                     case "element":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\elements\\" + ii.displayedFileName, true);
                         break;
                     case "ending":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\endings\\" + ii.displayedFileName, true);
                         break;
                     case "legacy":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\legacies\\" + ii.displayedFileName, true);
                         break;
                     case "verb":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\verbs\\" + ii.displayedFileName, true);
                         break;
                 }
                 MessageBox.Show("Imported " + ii.displayedImageType + " image.");
