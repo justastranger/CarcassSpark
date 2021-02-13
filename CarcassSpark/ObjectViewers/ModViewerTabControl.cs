@@ -4094,44 +4094,51 @@ namespace CarcassSpark.ObjectViewers
 
         private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(aspectsListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["aspects"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(elementsListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["elements"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(recipesListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["recipes"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(decksListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["decks"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(legaciesListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["legacies"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(endingsListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["endings"]);
+            if (group==null) { return; }
         }
 
         private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!hideCurrentGroupShortTerm(verbsListView)) { return; }
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["verbs"]);
+            if (group==null) { return; }
         }
 
-        private bool hideCurrentGroupShortTerm(ListView lv)
+        private ListViewGroup hideCurrentGroupShortTerm(ListView lv)
         {
             if (lv.SelectedItems.Count < 1)
             {
-                return false;
+                return null;
             }
 
             if(IsDirty)
@@ -4139,14 +4146,13 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Save or discard your unsaved changes, then try again.",
                 "You have unsaved changes!",
                 MessageBoxButtons.OK);
-                return false;
+                return null;
             }
-
-            if (MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
+            else if (editMode && MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
-                return false;
+                return null;
             }
 
             ListViewGroup group = lv.SelectedItems[0].Group;
@@ -4156,7 +4162,7 @@ namespace CarcassSpark.ObjectViewers
                 group.Items.Remove(item);
                 lv.Items.Remove(item);
             }
-            return true;
+            return group;
         }
         
         private void ModViewerTabControl_Load(object sender, EventArgs e)
