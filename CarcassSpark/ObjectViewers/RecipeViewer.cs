@@ -1690,6 +1690,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void RequirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -1748,6 +1749,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExtantreqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -1806,6 +1808,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void TablereqsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -1864,6 +1867,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void EffectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -1922,6 +1926,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -1980,6 +1985,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeckeffectDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -2423,6 +2429,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -2481,6 +2488,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void HaltVerbDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
@@ -2539,6 +2547,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void PurgeDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
