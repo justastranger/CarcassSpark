@@ -206,6 +206,11 @@ namespace CarcassSpark.ObjectViewers
                 descriptionTextBox.Text = recipe.description;
             }
 
+            if (recipe.comments != null)
+            {
+                commentsTextBox.Text = recipe.comments;
+            }
+
             if (recipe.portaleffect != null)
             {
                 portalEffectDomainUpDown.Text = recipe.portaleffect;
