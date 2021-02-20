@@ -1156,26 +1156,9 @@ namespace CarcassSpark.ObjectViewers
                 aspectsListView.Items.Clear();
                 foreach (Aspect aspect in aspectsToAdd)
                 {
-                    ListViewGroup group;
-                    if (aspectsListView.Groups[aspect.filename] == null)
-                    {
-                        group = new ListViewGroup(aspect.filename, aspect.filename);
-                    }
-                    else
-                    {
-                        group = aspectsListView.Groups[aspect.filename];
-                    }
-                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                aspectsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                aspectsListView.Items.Clear();
-                foreach (Aspect aspect in Content.Aspects.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("aspects")) ? hiddenGroups["aspects"].Contains(aspect.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (aspectsListView.Groups[aspect.filename] == null)
@@ -1189,6 +1172,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                aspectsListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                aspectsListView.Items.Clear();
+                foreach (Aspect aspect in Content.Aspects.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("aspects")) ? hiddenGroups["aspects"].Contains(aspect.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (aspectsListView.Groups[aspect.filename] == null)
+                    {
+                        group = new ListViewGroup(aspect.filename, aspect.filename);
+                    }
+                    else
+                    {
+                        group = aspectsListView.Groups[aspect.filename];
+                    }
+                    ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 aspectsListView.Items.AddRange(items.ToArray());
             }
@@ -1205,26 +1215,9 @@ namespace CarcassSpark.ObjectViewers
                 elementsListView.Items.Clear();
                 foreach (Element element in elementsToAdd)
                 {
-                    ListViewGroup group;
-                    if (elementsListView.Groups[element.filename] == null)
-                    {
-                        group = new ListViewGroup(element.filename, element.filename);
-                    }
-                    else
-                    {
-                        group = elementsListView.Groups[element.filename];
-                    }
-                    ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                elementsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                elementsListView.Items.Clear();
-                foreach (Element element in Content.Elements.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("elements")) ? hiddenGroups["elements"].Contains(element.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (elementsListView.Groups[element.filename] == null)
@@ -1238,6 +1231,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                elementsListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                elementsListView.Items.Clear();
+                foreach (Element element in Content.Elements.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("elements")) ? hiddenGroups["elements"].Contains(element.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (elementsListView.Groups[element.filename] == null)
+                    {
+                        group = new ListViewGroup(element.filename, element.filename);
+                    }
+                    else
+                    {
+                        group = elementsListView.Groups[element.filename];
+                    }
+                    ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 elementsListView.Items.AddRange(items.ToArray());
             }
@@ -1254,26 +1274,9 @@ namespace CarcassSpark.ObjectViewers
                 recipesListView.Items.Clear();
                 foreach (Recipe recipe in recipesToAdd)
                 {
-                    ListViewGroup group;
-                    if (recipesListView.Groups[recipe.filename] == null)
-                    {
-                        group = new ListViewGroup(recipe.filename, recipe.filename);
-                    }
-                    else
-                    {
-                        group = recipesListView.Groups[recipe.filename];
-                    }
-                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                recipesListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                recipesListView.Items.Clear();
-                foreach (Recipe recipe in Content.Recipes.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("recipes")) ? hiddenGroups["recipes"].Contains(recipe.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (recipesListView.Groups[recipe.filename] == null)
@@ -1287,6 +1290,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                recipesListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                recipesListView.Items.Clear();
+                foreach (Recipe recipe in Content.Recipes.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("recipes")) ? hiddenGroups["recipes"].Contains(recipe.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (recipesListView.Groups[recipe.filename] == null)
+                    {
+                        group = new ListViewGroup(recipe.filename, recipe.filename);
+                    }
+                    else
+                    {
+                        group = recipesListView.Groups[recipe.filename];
+                    }
+                    ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 recipesListView.Items.AddRange(items.ToArray());
             }
@@ -1303,26 +1333,9 @@ namespace CarcassSpark.ObjectViewers
                 decksListView.Items.Clear();
                 foreach (Deck deck in decksToAdd)
                 {
-                    ListViewGroup group;
-                    if (decksListView.Groups[deck.filename] == null)
-                    {
-                        group = new ListViewGroup(deck.filename, deck.filename);
-                    }
-                    else
-                    {
-                        group = decksListView.Groups[deck.filename];
-                    }
-                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                decksListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                decksListView.Items.Clear();
-                foreach (Deck deck in Content.Decks.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("decks")) ? hiddenGroups["decks"].Contains(deck.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (decksListView.Groups[deck.filename] == null)
@@ -1336,6 +1349,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                decksListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                decksListView.Items.Clear();
+                foreach (Deck deck in Content.Decks.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("decks")) ? hiddenGroups["decks"].Contains(deck.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (decksListView.Groups[deck.filename] == null)
+                    {
+                        group = new ListViewGroup(deck.filename, deck.filename);
+                    }
+                    else
+                    {
+                        group = decksListView.Groups[deck.filename];
+                    }
+                    ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 decksListView.Items.AddRange(items.ToArray());
             }
@@ -1352,26 +1392,9 @@ namespace CarcassSpark.ObjectViewers
                 legaciesListView.Items.Clear();
                 foreach (Legacy legacy in legaciesToAdd)
                 {
-                    ListViewGroup group;
-                    if (legaciesListView.Groups[legacy.filename] == null)
-                    {
-                        group = new ListViewGroup(legacy.filename, legacy.filename);
-                    }
-                    else
-                    {
-                        group = legaciesListView.Groups[legacy.filename];
-                    }
-                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                legaciesListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                legaciesListView.Items.Clear();
-                foreach (Legacy legacy in Content.Legacies.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("legacies")) ? hiddenGroups["legacies"].Contains(legacy.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (legaciesListView.Groups[legacy.filename] == null)
@@ -1385,6 +1408,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                legaciesListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                legaciesListView.Items.Clear();
+                foreach (Legacy legacy in Content.Legacies.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("legacies")) ? hiddenGroups["legacies"].Contains(legacy.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (legaciesListView.Groups[legacy.filename] == null)
+                    {
+                        group = new ListViewGroup(legacy.filename, legacy.filename);
+                    }
+                    else
+                    {
+                        group = legaciesListView.Groups[legacy.filename];
+                    }
+                    ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 legaciesListView.Items.AddRange(items.ToArray());
             }
@@ -1401,26 +1451,9 @@ namespace CarcassSpark.ObjectViewers
                 endingsListView.Items.Clear();
                 foreach (Ending ending in endingsToAdd)
                 {
-                    ListViewGroup group;
-                    if (endingsListView.Groups[ending.filename] == null)
-                    {
-                        group = new ListViewGroup(ending.filename, ending.filename);
-                    }
-                    else
-                    {
-                        group = endingsListView.Groups[ending.filename];
-                    }
-                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                endingsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                endingsListView.Items.Clear();
-                foreach (Ending ending in Content.Endings.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("endings")) ? hiddenGroups["endings"].Contains(ending.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (endingsListView.Groups[ending.filename] == null)
@@ -1434,6 +1467,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                endingsListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                endingsListView.Items.Clear();
+                foreach (Ending ending in Content.Endings.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("endings")) ? hiddenGroups["endings"].Contains(ending.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (endingsListView.Groups[ending.filename] == null)
+                    {
+                        group = new ListViewGroup(ending.filename, ending.filename);
+                    }
+                    else
+                    {
+                        group = endingsListView.Groups[ending.filename];
+                    }
+                    ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 endingsListView.Items.AddRange(items.ToArray());
             }
@@ -1450,26 +1510,9 @@ namespace CarcassSpark.ObjectViewers
                 verbsListView.Items.Clear();
                 foreach (Verb verb in verbsToAdd)
                 {
-                    ListViewGroup group;
-                    if (verbsListView.Groups[verb.filename] == null)
-                    {
-                        group = new ListViewGroup(verb.filename, verb.filename);
-                    }
-                    else
-                    {
-                        group = verbsListView.Groups[verb.filename];
-                    }
-                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
-                    // group.Items.Add(item);
-                    items.Add(item);
-                }
-                verbsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                verbsListView.Items.Clear();
-                foreach (Verb verb in Content.Verbs.Values)
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("verbs")) ? hiddenGroups["verbs"].Contains(verb.filename) : false;
+                if (!isGroupHidden)
                 {
                     ListViewGroup group;
                     if (verbsListView.Groups[verb.filename] == null)
@@ -1483,6 +1526,33 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
                     // group.Items.Add(item);
                     items.Add(item);
+                }
+                }
+                verbsListView.Items.AddRange(items.ToArray());
+            }
+            else
+            {
+                List<ListViewItem> items = new List<ListViewItem>();
+                verbsListView.Items.Clear();
+                foreach (Verb verb in Content.Verbs.Values)
+                {
+                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("verbs")) ? hiddenGroups["verbs"].Contains(verb.filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group;
+                    if (verbsListView.Groups[verb.filename] == null)
+                    {
+                        group = new ListViewGroup(verb.filename, verb.filename);
+                    }
+                    else
+                    {
+                        group = verbsListView.Groups[verb.filename];
+                    }
+                    ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
                 }
                 verbsListView.Items.AddRange(items.ToArray());
             }
