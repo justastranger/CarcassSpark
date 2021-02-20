@@ -4094,43 +4094,43 @@ namespace CarcassSpark.ObjectViewers
 
         private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["aspects"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(aspectsListView);
             if (group==null) { return; }
         }
 
         private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["elements"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(elementsListView);
             if (group==null) { return; }
         }
 
         private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["recipes"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(recipesListView);
             if (group==null) { return; }
         }
 
         private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["decks"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(decksListView);
             if (group==null) { return; }
         }
 
         private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["legacies"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(legaciesListView);
             if (group==null) { return; }
         }
 
         private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["endings"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(endingsListView);
             if (group==null) { return; }
         }
 
         private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["verbs"]);
+            ListViewGroup group = hideCurrentGroupShortTerm(verbsListView);
             if (group==null) { return; }
         }
 

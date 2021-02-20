@@ -867,37 +867,30 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("aspects");
         }
 
         private void elementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("elements");
         }
 
         private void recipesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("recipes");
         }
 
         private void decksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("decks");
         }
 
         private void legaciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("legacies");
         }
 
         private void endingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("endings");
         }
 
         private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("verbs");
 		}
 		
         private void TabbedModViewer_Shown(object sender, EventArgs e)
