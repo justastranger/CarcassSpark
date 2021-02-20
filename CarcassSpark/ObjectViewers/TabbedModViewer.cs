@@ -984,7 +984,7 @@ namespace CarcassSpark.ObjectViewers
         private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedModViewer.Content.ResetHiddenGroups("verbs");
-		}
+        }
 		
         private void TabbedModViewer_Shown(object sender, EventArgs e)
         {
