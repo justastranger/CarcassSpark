@@ -858,7 +858,7 @@ namespace CarcassSpark.ObjectViewers
             SaveCustomManifest(location);
         }
 
-        private void SaveCustomManifest(string location)
+        public void SaveCustomManifest(string location)
         {
             if (isVanilla)
             {
