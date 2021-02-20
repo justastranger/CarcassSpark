@@ -643,7 +643,6 @@ namespace CarcassSpark.ObjectViewers
         public void SaveMod(string location)
         {
             CreateDirectories(location);
-            // TODO: prevent people from making groups that already exist, but are hidden
             ClearContentFolder(location);
             if (Content.Aspects.Count > 0)
             {
@@ -3772,6 +3771,12 @@ namespace CarcassSpark.ObjectViewers
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 if (newGroup != currentGroup)
                 {
@@ -3828,6 +3833,12 @@ namespace CarcassSpark.ObjectViewers
                  || verbsListView.Groups[newGroup] != null)
                 {
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3888,6 +3899,12 @@ namespace CarcassSpark.ObjectViewers
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 if (newGroup != currentGroup)
                 {
@@ -3944,6 +3961,12 @@ namespace CarcassSpark.ObjectViewers
                  || verbsListView.Groups[newGroup] != null)
                 {
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -4004,6 +4027,12 @@ namespace CarcassSpark.ObjectViewers
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 if (newGroup != currentGroup)
                 {
@@ -4062,6 +4091,12 @@ namespace CarcassSpark.ObjectViewers
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 if (newGroup != currentGroup)
                 {
@@ -4117,6 +4152,12 @@ namespace CarcassSpark.ObjectViewers
                  || endingsListView.Groups[newGroup] != null)
                 {
                     MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
+                if (GroupExistsAsHidden(newGroup))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -4368,6 +4409,20 @@ namespace CarcassSpark.ObjectViewers
             {
                 MarkDirtyEventHandler.Invoke(this, IsDirty);
             }
+        }
+
+        public bool GroupExistsAsHidden(string newGroup)
+        {
+            bool isGroupHidden = false;
+            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            if (hiddenGroups != null)
+            {
+                foreach (string key in hiddenGroups.Keys)
+                {
+                    isGroupHidden |= hiddenGroups[key].Contains(newGroup) || hiddenGroups[key].Contains(newGroup + ".json");
+                }
+            }
+            return isGroupHidden;
         }
     }
 }
