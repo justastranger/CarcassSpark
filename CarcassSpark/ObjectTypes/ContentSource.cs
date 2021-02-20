@@ -624,5 +624,10 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
         }
+
+        public void ResetHiddenGroups(string v)
+        {
+            // throw new NotImplementedException();
+        }
     }
 }
