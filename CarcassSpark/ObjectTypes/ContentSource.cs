@@ -625,9 +625,10 @@ namespace CarcassSpark.ObjectTypes
             return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
         }
 
-        public void ResetHiddenGroups(string v)
+        public void ResetHiddenGroups(string objectType)
         {
-            // throw new NotImplementedException();
+            // This function is NYI.
+            // When created, it will reset all hidden groups associated with the object type identified in the input string.
         }
     }
 }
