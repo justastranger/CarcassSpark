@@ -352,75 +352,75 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
+                                if (!isGroupHidden)
                                 {
-                                    Tag = deserializedAspect.guid,
-                                    Name = deserializedAspect.id
-                                };
-                                aspectsListView.Items.Add(aspectLVI);
-                                if (aspectsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    aspectsListView.Groups.Add(listViewGroup);
-                                    aspectLVI.Group = listViewGroup;
+                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
+                                    {
+                                        Tag = deserializedAspect.guid,
+                                        Name = deserializedAspect.id
+                                    };
+                                    aspectsListView.Items.Add(aspectLVI);
+                                    if (aspectsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        aspectsListView.Groups.Add(listViewGroup);
+                                        aspectLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        aspectLVI.Group = aspectsListView.Groups[fileName];
+                                    }
                                 }
-                                else
-                                {
-                                    aspectLVI.Group = aspectsListView.Groups[fileName];
-                                }
-                            }
                                 deserializedAspect.filename = fileName;
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
+                                if (!isGroupHidden)
                                 {
-                                    Tag = deserializedAspect.guid,
-                                    Name = deserializedAspect.id
-                                };
-                                aspectsListView.Items.Add(aspectLVI);
-                                if (aspectsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    aspectsListView.Groups.Add(listViewGroup);
-                                    aspectLVI.Group = listViewGroup;
+                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
+                                    {
+                                        Tag = deserializedAspect.guid,
+                                        Name = deserializedAspect.id
+                                    };
+                                    aspectsListView.Items.Add(aspectLVI);
+                                    if (aspectsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        aspectsListView.Groups.Add(listViewGroup);
+                                        aspectLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        aspectLVI.Group = aspectsListView.Groups[fileName];
+                                    }
                                 }
-                                else
-                                {
-                                    aspectLVI.Group = aspectsListView.Groups[fileName];
-                                }
-                            }
                                 deserializedAspect.filename = fileName;
                             }
                             else
                             {
                                 Element deserializedElement = element.ToObject<Element>();
                                 Content.Elements.Add(deserializedElement.guid, deserializedElement);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
+                                if (!isGroupHidden)
                                 {
-                                    Tag = deserializedElement.guid,
-                                    Name = deserializedElement.id
-                                };
-                                elementsListView.Items.Add(elementLVI);
-                                if (elementsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    elementsListView.Groups.Add(listViewGroup);
-                                    elementLVI.Group = listViewGroup;
+                                    ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
+                                    {
+                                        Tag = deserializedElement.guid,
+                                        Name = deserializedElement.id
+                                    };
+                                    elementsListView.Items.Add(elementLVI);
+                                    if (elementsListView.Groups[fileName] == null)
+                                    {
+                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                        elementsListView.Groups.Add(listViewGroup);
+                                        elementLVI.Group = listViewGroup;
+                                    }
+                                    else
+                                    {
+                                        elementLVI.Group = elementsListView.Groups[fileName];
+                                    }
                                 }
-                                else
-                                {
-                                    elementLVI.Group = elementsListView.Groups[fileName];
-                                }
-                            }
                                 deserializedElement.filename = fileName;
                             }
                         }
@@ -430,25 +430,25 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                             Content.Recipes.Add(deserializedRecipe.guid, deserializedRecipe);
-                        if (!isGroupHidden)
-                        {
-                            ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
+                            if (!isGroupHidden)
                             {
-                                Tag = deserializedRecipe.guid,
-                                Name = deserializedRecipe.id
-                            };
-                            recipesListView.Items.Add(recipeLVI);
-                            if (recipesListView.Groups[fileName] == null)
-                            {
-                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                recipesListView.Groups.Add(listViewGroup);
-                                recipeLVI.Group = listViewGroup;
+                                ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
+                                {
+                                    Tag = deserializedRecipe.guid,
+                                    Name = deserializedRecipe.id
+                                };
+                                recipesListView.Items.Add(recipeLVI);
+                                if (recipesListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    recipesListView.Groups.Add(listViewGroup);
+                                    recipeLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    recipeLVI.Group = recipesListView.Groups[fileName];
+                                }
                             }
-                            else
-                            {
-                                recipeLVI.Group = recipesListView.Groups[fileName];
-                            }
-                        }
                             deserializedRecipe.filename = fileName;
                         }
                         return;
@@ -457,25 +457,25 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Deck deserializedDeck = deck.ToObject<Deck>();
                             Content.Decks.Add(deserializedDeck.guid, deserializedDeck);
-                        if (!isGroupHidden)
-                        {
-                            ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
+                            if (!isGroupHidden)
                             {
-                                Tag = deserializedDeck.guid,
-                                Name = deserializedDeck.id
-                            };
-                            decksListView.Items.Add(deckLVI);
-                            if (decksListView.Groups[fileName] == null)
-                            {
-                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                decksListView.Groups.Add(listViewGroup);
-                                deckLVI.Group = listViewGroup;
+                                ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
+                                {
+                                    Tag = deserializedDeck.guid,
+                                    Name = deserializedDeck.id
+                                };
+                                decksListView.Items.Add(deckLVI);
+                                if (decksListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    decksListView.Groups.Add(listViewGroup);
+                                    deckLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    deckLVI.Group = decksListView.Groups[fileName];
+                                }
                             }
-                            else
-                            {
-                                deckLVI.Group = decksListView.Groups[fileName];
-                            }
-                        }
                             deserializedDeck.filename = fileName;
                         }
                         return;
@@ -484,25 +484,25 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Legacy deserializedLegacy = legacy.ToObject<Legacy>();
                             Content.Legacies.Add(deserializedLegacy.guid, deserializedLegacy);
-                        if (!isGroupHidden)
-                        {
-                            ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
+                            if (!isGroupHidden)
                             {
-                                Tag = deserializedLegacy.guid,
-                                Name = deserializedLegacy.id
-                            };
-                            legaciesListView.Items.Add(legacyLVI);
-                            if (legaciesListView.Groups[fileName] == null)
-                            {
-                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                legaciesListView.Groups.Add(listViewGroup);
-                                legacyLVI.Group = listViewGroup;
+                                ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
+                                {
+                                    Tag = deserializedLegacy.guid,
+                                    Name = deserializedLegacy.id
+                                };
+                                legaciesListView.Items.Add(legacyLVI);
+                                if (legaciesListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    legaciesListView.Groups.Add(listViewGroup);
+                                    legacyLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    legacyLVI.Group = legaciesListView.Groups[fileName];
+                                }
                             }
-                            else
-                            {
-                                legacyLVI.Group = legaciesListView.Groups[fileName];
-                            }
-                        }
                             deserializedLegacy.filename = fileName;
                         }
                         return;
@@ -511,25 +511,25 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Ending deserializedEnding = ending.ToObject<Ending>();
                             Content.Endings.Add(deserializedEnding.guid, deserializedEnding);
-                        if (!isGroupHidden)
-                        {
-                            ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
+                            if (!isGroupHidden)
                             {
-                                Tag = deserializedEnding.guid,
-                                Name = deserializedEnding.id
-                            };
-                            endingsListView.Items.Add(endingLVI);
-                            if (endingsListView.Groups[fileName] == null)
-                            {
-                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                endingsListView.Groups.Add(listViewGroup);
-                                endingLVI.Group = listViewGroup;
+                                ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
+                                {
+                                    Tag = deserializedEnding.guid,
+                                    Name = deserializedEnding.id
+                                };
+                                endingsListView.Items.Add(endingLVI);
+                                if (endingsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    endingsListView.Groups.Add(listViewGroup);
+                                    endingLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    endingLVI.Group = endingsListView.Groups[fileName];
+                                }
                             }
-                            else
-                            {
-                                endingLVI.Group = endingsListView.Groups[fileName];
-                            }
-                        }
                             deserializedEnding.filename = fileName;
                         }
                         return;
@@ -538,25 +538,25 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Verb deserializedVerb = verb.ToObject<Verb>();
                             Content.Verbs.Add(deserializedVerb.guid, deserializedVerb);
-                        if (!isGroupHidden)
-                        {
-                            ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
+                            if (!isGroupHidden)
                             {
-                                Tag = deserializedVerb.guid,
-                                Name = deserializedVerb.id
-                            };
-                            verbsListView.Items.Add(verbLVI);
-                            if (verbsListView.Groups[fileName] == null)
-                            {
-                                ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                verbsListView.Groups.Add(listViewGroup);
-                                verbLVI.Group = listViewGroup;
+                                ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
+                                {
+                                    Tag = deserializedVerb.guid,
+                                    Name = deserializedVerb.id
+                                };
+                                verbsListView.Items.Add(verbLVI);
+                                if (verbsListView.Groups[fileName] == null)
+                                {
+                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                                    verbsListView.Groups.Add(listViewGroup);
+                                    verbLVI.Group = listViewGroup;
+                                }
+                                else
+                                {
+                                    verbLVI.Group = verbsListView.Groups[fileName];
+                                }
                             }
-                            else
-                            {
-                                verbLVI.Group = verbsListView.Groups[fileName];
-                            }
-                        }
                             deserializedVerb.filename = fileName;
                         }
                         return;
