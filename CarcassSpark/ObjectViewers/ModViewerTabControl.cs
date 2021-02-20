@@ -899,6 +899,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 deckViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty();
         }
 
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
