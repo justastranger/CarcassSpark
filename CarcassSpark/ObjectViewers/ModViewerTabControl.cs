@@ -316,6 +316,14 @@ namespace CarcassSpark.ObjectViewers
             {
                 JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
                 string fileType = parsedJToken.Path;
+                bool isGroupHidden = false;
+                
+                Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+                if (hiddenGroups != null && fileName != null && hiddenGroups.ContainsKey(fileType) && hiddenGroups[fileType] != null)
+                {
+                    isGroupHidden = hiddenGroups[fileType].Contains(fileName);
+                } // */
+
                 switch (fileType)
                 {
                     case "elements":
@@ -437,6 +445,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Deck deserializedDeck = deck.ToObject<Deck>();
                             Content.Decks.Add(deserializedDeck.guid, deserializedDeck);
+                        if (!isGroupHidden)
+                        {
                             ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
                             {
                                 Tag = deserializedDeck.guid,
@@ -453,6 +463,7 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 deckLVI.Group = decksListView.Groups[fileName];
                             }
+                        }
                             deserializedDeck.filename = fileName;
                         }
                         return;
@@ -461,6 +472,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Legacy deserializedLegacy = legacy.ToObject<Legacy>();
                             Content.Legacies.Add(deserializedLegacy.guid, deserializedLegacy);
+                        if (!isGroupHidden)
+                        {
                             ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
                             {
                                 Tag = deserializedLegacy.guid,
@@ -477,6 +490,7 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 legacyLVI.Group = legaciesListView.Groups[fileName];
                             }
+                        }
                             deserializedLegacy.filename = fileName;
                         }
                         return;
@@ -485,6 +499,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Ending deserializedEnding = ending.ToObject<Ending>();
                             Content.Endings.Add(deserializedEnding.guid, deserializedEnding);
+                        if (!isGroupHidden)
+                        {
                             ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
                             {
                                 Tag = deserializedEnding.guid,
@@ -501,6 +517,7 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 endingLVI.Group = endingsListView.Groups[fileName];
                             }
+                        }
                             deserializedEnding.filename = fileName;
                         }
                         return;
@@ -509,6 +526,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Verb deserializedVerb = verb.ToObject<Verb>();
                             Content.Verbs.Add(deserializedVerb.guid, deserializedVerb);
+                        if (!isGroupHidden)
+                        {
                             ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
                             {
                                 Tag = deserializedVerb.guid,
@@ -525,6 +544,7 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 verbLVI.Group = verbsListView.Groups[fileName];
                             }
+                        }
                             deserializedVerb.filename = fileName;
                         }
                         return;
