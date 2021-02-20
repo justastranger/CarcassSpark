@@ -165,6 +165,7 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture, bool? editing)
         {
             InitializeComponent();
+            displayedCulture = culture;
             if (editing.HasValue)
             {
                 SetEditingMode(editing.Value);
@@ -174,6 +175,7 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture)
         {
             InitializeComponent();
+            displayedCulture = culture;
             SetEditingMode(false);
         }
 
@@ -192,7 +194,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Culture culture)
         {
-            displayedCulture = culture;
             idTextBox.Text = culture.id;
             endonymTextBox.Text = culture.endonym;
             exonymTextBox.Text = culture.exonym;

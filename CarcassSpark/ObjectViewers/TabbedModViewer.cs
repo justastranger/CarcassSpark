@@ -241,48 +241,80 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add, null);
             av.Show();
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add, null);
             ev.Show();
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add, null);
             rv.Show();
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add, null);
             dv.Show();
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add, null);
             lv.Show();
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add, null);
             ev.Show();
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add, null);
             vv.Show();
         }
 
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -302,6 +334,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = guid, Group = group });
                     }
+                    deserializedAspect.filename = "aspects";
                     SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
                     SelectedModViewer.MarkDirty();
                 }
@@ -314,6 +347,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -333,6 +370,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = guid, Group = group });
                     }
+                    deserializedElement.filename = "elements";
                     SelectedModViewer.Content.Elements[guid] = deserializedElement;
                     SelectedModViewer.MarkDirty();
                 }
@@ -345,6 +383,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -364,6 +406,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = group });
                     }
+                    deserializedRecipe.filename = "recipes";
                     SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
                     SelectedModViewer.MarkDirty();
                 }
@@ -376,6 +419,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeckToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -395,6 +442,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = guid, Group = group });
                     }
+                    deserializedDeck.filename = "decks";
                     SelectedModViewer.Content.Decks[guid] = deserializedDeck;
                     SelectedModViewer.MarkDirty();
                 }
@@ -407,6 +455,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void LegacyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -426,6 +478,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = group });
                     }
+                    deserializedLegacy.filename = "legacies";
                     SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
                     SelectedModViewer.MarkDirty();
                 }
@@ -438,6 +491,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void EndingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -457,6 +514,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = guid, Group = group });
                     }
+                    deserializedEnding.filename = "endings";
                     SelectedModViewer.Content.Endings[guid] = deserializedEnding;
                     SelectedModViewer.MarkDirty();
                 }
@@ -469,6 +527,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -488,6 +550,7 @@ namespace CarcassSpark.ObjectViewers
                         }
                         SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = guid, Group = group });
                     }
+                    deserializedVerb.filename = "verbs";
                     SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
                     SelectedModViewer.MarkDirty();
                 }
@@ -500,6 +563,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             if (!Clipboard.ContainsText())
             {
                 return;
@@ -520,6 +587,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.aspectsListView.Groups.Add(listViewGroup);
                         }
                         Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
+                        deserializedAspect.filename = "aspects";
                         SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
                         if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                         {
@@ -535,6 +603,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.elementsListView.Groups.Add(listViewGroup);
                         }
                         Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
+                        deserializedElement.filename = "elements";
                         SelectedModViewer.Content.Elements[guid] = deserializedElement;
                         if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                         {
@@ -550,6 +619,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.recipesListView.Groups.Add(listViewGroup);
                         }
                         Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
+                        deserializedRecipe.filename = "recipes";
                         SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
                         if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                         {
@@ -565,6 +635,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.decksListView.Groups.Add(listViewGroup);
                         }
                         Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
+                        deserializedDeck.filename = "decks";
                         SelectedModViewer.Content.Decks[guid] = deserializedDeck;
                         if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                         {
@@ -580,6 +651,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.legaciesListView.Groups.Add(listViewGroup);
                         }
                         Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
+                        deserializedLegacy.filename = "legacies";
                         SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
                         if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                         {
@@ -595,6 +667,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.endingsListView.Groups.Add(listViewGroup);
                         }
                         Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
+                        deserializedEnding.filename = "endings";
                         SelectedModViewer.Content.Endings[guid] = deserializedEnding;
                         if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                         {
@@ -610,6 +683,7 @@ namespace CarcassSpark.ObjectViewers
                             SelectedModViewer.verbsListView.Groups.Add(listViewGroup);
                         }
                         Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
+                        deserializedVerb.filename = "verbs";
                         SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
                         if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                         {
@@ -627,6 +701,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void SummonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
@@ -639,11 +717,13 @@ namespace CarcassSpark.ObjectViewers
                 Guid baseGuid = Guid.NewGuid();
                 ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(baseSummon);
+                sc.baseSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(baseGuid, sc.baseSummon.Copy());
 
                 Guid preGuid = Guid.NewGuid();
                 ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(preSummon);
+                sc.preSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(preGuid, sc.preSummon.Copy());
 
                 ListViewGroup defaultRecipesGroup = SelectedModViewer.elementsListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
@@ -655,36 +735,42 @@ namespace CarcassSpark.ObjectViewers
                 Guid startGuid = Guid.NewGuid();
                 ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(startSummon);
+                sc.startSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(startGuid, sc.startSummon.Copy());
 
                 Guid succeedGuid = Guid.NewGuid();
                 ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(succeedSummon);
+                sc.succeedSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(succeedGuid, sc.succeedSummon.Copy());
             }
         }
 
         private void ImageImporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectedModViewer.isVanilla)
+            {
+                return;
+            }
             ImageImporter ii = new ImageImporter();
             if (ii.ShowDialog() == DialogResult.OK)
             {
                 switch (ii.displayedImageType.ToLower())
                 {
                     case "aspect":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\aspects\\" + ii.displayedFileName, true);
                         break;
                     case "element":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\elements\\" + ii.displayedFileName, true);
                         break;
                     case "ending":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\endings\\" + ii.displayedFileName, true);
                         break;
                     case "legacy":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\legacies\\" + ii.displayedFileName, true);
                         break;
                     case "verb":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName, true);
+                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\verbs\\" + ii.displayedFileName, true);
                         break;
                 }
                 MessageBox.Show("Imported " + ii.displayedImageType + " image.");
