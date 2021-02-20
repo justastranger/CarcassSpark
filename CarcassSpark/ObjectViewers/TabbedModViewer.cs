@@ -696,6 +696,7 @@ namespace CarcassSpark.ObjectViewers
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
+                SelectedModViewer.MarkDirty();
             }
         }
 
@@ -984,7 +985,7 @@ namespace CarcassSpark.ObjectViewers
         private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedModViewer.Content.ResetHiddenGroups("verbs");
-		}
+        }
 		
         private void TabbedModViewer_Shown(object sender, EventArgs e)
         {
