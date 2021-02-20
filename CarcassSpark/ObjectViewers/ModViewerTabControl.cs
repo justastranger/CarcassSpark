@@ -585,176 +585,183 @@ namespace CarcassSpark.ObjectViewers
             ClearContentFolder(location);
             if (Content.Aspects.Count > 0)
             {
-                foreach (ListViewGroup group in aspectsListView.Groups)
+                Dictionary<string, List<Aspect>> sortedAspects = new Dictionary<string, List<Aspect>>();
+                
+                foreach (Aspect aspect in Content.Aspects.Values)
                 {
-                    string fileName = group.Name;
-                    List<Aspect> aspectsForGroup = new List<Aspect>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedAspects.ContainsKey(aspect.filename))
                     {
-                        // TODO switch below to using Tags
-                        aspectsForGroup.Add(Content.Aspects[(Guid)item.Tag]);
+                        sortedAspects[aspect.filename] = new List<Aspect>();
                     }
-                    if (aspectsForGroup.Count > 0)
+                    sortedAspects[aspect.filename].Add(aspect);
+                }
+
+                foreach (KeyValuePair<string, List<Aspect>> keyValuePair in sortedAspects)
+                {
+                    JObject aspects = new JObject
                     {
-                        JObject aspects = new JObject
-                        {
-                            ["elements"] = JArray.FromObject(aspectsForGroup)
-                        };
-                        string serializedAspects = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedAspects);
-                        }
+                        ["elements"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedAspects = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedAspects);
                     }
                 }
             }
             if (Content.Elements.Count > 0)
             {
-                foreach (ListViewGroup group in elementsListView.Groups)
+                Dictionary<string, List<Element>> sortedElements = new Dictionary<string, List<Element>>();
+
+                foreach (Element element in Content.Elements.Values)
                 {
-                    string fileName = group.Name;
-                    List<Element> elementsForGroup = new List<Element>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedElements.ContainsKey(element.filename))
                     {
-                        // TODO switch below to using Tags
-                        elementsForGroup.Add(Content.Elements[(Guid)item.Tag]);
+                        sortedElements[element.filename] = new List<Element>();
                     }
-                    if (elementsForGroup.Count > 0)
+                    sortedElements[element.filename].Add(element);
+                }
+
+                foreach (KeyValuePair<string, List<Element>> keyValuePair in sortedElements)
+                {
+                    JObject elements = new JObject
                     {
-                        JObject elements = new JObject
-                        {
-                            ["elements"] = JArray.FromObject(elementsForGroup)
-                        };
-                        string serializedElements = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedElements);
-                        }
+                        ["elements"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedElements = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedElements);
                     }
                 }
             }
             if (Content.Recipes.Count > 0)
             {
-                foreach (ListViewGroup group in recipesListView.Groups)
+                Dictionary<string, List<Recipe>> sortedRecipes = new Dictionary<string, List<Recipe>>();
+
+                foreach (Recipe recipe in Content.Recipes.Values)
                 {
-                    string fileName = group.Name;
-                    List<Recipe> recipesForGroup = new List<Recipe>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedRecipes.ContainsKey(recipe.filename))
                     {
-                        // TODO switch below to using Tags
-                        recipesForGroup.Add(Content.Recipes[(Guid)item.Tag]);
+                        sortedRecipes[recipe.filename] = new List<Recipe>();
                     }
-                    if (recipesForGroup.Count > 0)
+                    sortedRecipes[recipe.filename].Add(recipe);
+                }
+
+                foreach (KeyValuePair<string, List<Recipe>> keyValuePair in sortedRecipes)
+                {
+                    JObject recipes = new JObject
                     {
-                        JObject recipes = new JObject
-                        {
-                            ["recipes"] = JArray.FromObject(recipesForGroup)
-                        };
-                        string serializedRecipes = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedRecipes);
-                        }
+                        ["recipes"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedRecipes = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedRecipes);
                     }
                 }
             }
             if (decksListView.Items.Count > 0)
             {
-                foreach (ListViewGroup group in decksListView.Groups)
+                Dictionary<string, List<Deck>> sortedDecks = new Dictionary<string, List<Deck>>();
+
+                foreach (Deck deck in Content.Decks.Values)
                 {
-                    string fileName = group.Name;
-                    List<Deck> decksForGroup = new List<Deck>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedDecks.ContainsKey(deck.filename))
                     {
-                        // TODO switch below to using Tags
-                        decksForGroup.Add(Content.Decks[(Guid)item.Tag]);
+                        sortedDecks[deck.filename] = new List<Deck>();
                     }
-                    if (decksForGroup.Count > 0)
+                    sortedDecks[deck.filename].Add(deck);
+                }
+
+                foreach (KeyValuePair<string, List<Deck>> keyValuePair in sortedDecks)
+                {
+                    JObject decks = new JObject
                     {
-                        JObject decks = new JObject
-                        {
-                            ["decks"] = JArray.FromObject(decksForGroup)
-                        };
-                        string serializedDecks = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedDecks);
-                        }
+                        ["decks"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedDecks = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedDecks);
                     }
                 }
             }
             if (legaciesListView.Items.Count > 0)
             {
-                foreach (ListViewGroup group in legaciesListView.Groups)
+                Dictionary<string, List<Legacy>> sortedLegacies = new Dictionary<string, List<Legacy>>();
+
+                foreach (Legacy legacy in Content.Legacies.Values)
                 {
-                    string fileName = group.Name;
-                    List<Legacy> legaciesForGroup = new List<Legacy>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedLegacies.ContainsKey(legacy.filename))
                     {
-                        // TODO switch below to using Tags
-                        legaciesForGroup.Add(Content.Legacies[(Guid)item.Tag]);
+                        sortedLegacies[legacy.filename] = new List<Legacy>();
                     }
-                    if (legaciesForGroup.Count > 0)
+                    sortedLegacies[legacy.filename].Add(legacy);
+                }
+
+                foreach (KeyValuePair<string, List<Legacy>> keyValuePair in sortedLegacies)
+                {
+                    JObject legacies = new JObject
                     {
-                        JObject legacies = new JObject
-                        {
-                            ["legacies"] = JArray.FromObject(legaciesForGroup)
-                        };
-                        string serializedLegacies = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedLegacies);
-                        }
+                        ["legacies"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedLegacies = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedLegacies);
                     }
                 }
             }
             if (endingsListView.Items.Count > 0)
             {
-                foreach (ListViewGroup group in endingsListView.Groups)
+                Dictionary<string, List<Ending>> sortedEndings = new Dictionary<string, List<Ending>>();
+
+                foreach (Ending ending in Content.Endings.Values)
                 {
-                    string fileName = group.Name;
-                    List<Ending> endingsForGroup = new List<Ending>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedEndings.ContainsKey(ending.filename))
                     {
-                        // TODO switch below to using Tags
-                        endingsForGroup.Add(Content.Endings[(Guid)item.Tag]);
+                        sortedEndings[ending.filename] = new List<Ending>();
                     }
-                    if (endingsForGroup.Count > 0)
+                    sortedEndings[ending.filename].Add(ending);
+                }
+
+                foreach (KeyValuePair<string, List<Ending>> keyValuePair in sortedEndings)
+                {
+                    JObject endings = new JObject
                     {
-                        JObject endings = new JObject
-                        {
-                            ["endings"] = JArray.FromObject(endingsForGroup)
-                        };
-                        string serializedLegacies = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedLegacies);
-                        }
+                        ["endings"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedEndings = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedEndings);
                     }
                 }
             }
             if (verbsListView.Items.Count > 0)
             {
-                foreach (ListViewGroup group in verbsListView.Groups)
+                Dictionary<string, List<Verb>> sortedVerbs = new Dictionary<string, List<Verb>>();
+
+                foreach (Verb verb in Content.Verbs.Values)
                 {
-                    string fileName = group.Name;
-                    List<Verb> verbsForGroup = new List<Verb>();
-                    foreach (ListViewItem item in group.Items)
+                    if (!sortedVerbs.ContainsKey(verb.filename))
                     {
-                        // TODO switch below to using Tags
-                        verbsForGroup.Add(Content.Verbs[(Guid)item.Tag]);
+                        sortedVerbs[verb.filename] = new List<Verb>();
                     }
-                    if (verbsForGroup.Count > 0)
+                    sortedVerbs[verb.filename].Add(verb);
+                }
+
+                foreach (KeyValuePair<string, List<Verb>> keyValuePair in sortedVerbs)
+                {
+                    JObject verbs = new JObject
                     {
-                        JObject verbs = new JObject
-                        {
-                            ["verbs"] = JArray.FromObject(verbsForGroup)
-                        };
-                        string serializedLegacies = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + fileName + ".json", FileMode.Create))))
-                        {
-                            jtw.WriteRaw(serializedLegacies);
-                        }
+                        ["verbs"] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedVerbs = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedVerbs);
                     }
                 }
             }
@@ -838,7 +845,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
                 aspectViewer.associatedListViewItem.Tag = result.guid;
-                Content.Aspects.Add(result.guid, result.Copy());
+                Aspect newAspect = result.Copy();
+                newAspect.filename = aspectViewer.associatedListViewItem.Group.Name;
+                Content.Aspects.Add(result.guid, newAspect);
             }
             if (aspectViewer.associatedListViewItem.Text != result.id)
             {
@@ -874,7 +883,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
                 deckViewer.associatedListViewItem.Tag = result.guid;
-                Content.Decks.Add(result.guid, result.Copy());
+                Deck newDeck = result.Copy();
+                newDeck.filename = deckViewer.associatedListViewItem.Group.Name;
+                Content.Decks.Add(result.guid, newDeck);
             }
             if (deckViewer.associatedListViewItem.Text != result.id)
             {
@@ -909,7 +920,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
                 elementViewer.associatedListViewItem.Tag = result.guid;
-                Content.Elements.Add(result.guid, result.Copy());
+                Element newElement = result.Copy();
+                newElement.filename = elementViewer.associatedListViewItem.Group.Name;
+                Content.Elements.Add(result.guid, newElement);
             }
             if (elementViewer.associatedListViewItem.Text != result.id)
             {
@@ -945,7 +958,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
                 endingViewer.associatedListViewItem.Tag = result.guid;
-                Content.Endings.Add(result.guid, result.Copy());
+                Ending newEnding = result.Copy();
+                newEnding.filename = endingViewer.associatedListViewItem.Group.Name;
+                Content.Endings.Add(result.guid, newEnding);
             }
             if (endingViewer.associatedListViewItem.Text != result.id)
             {
@@ -981,7 +996,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
                 legacyViewer.associatedListViewItem.Tag = result.guid;
-                Content.Legacies.Add(result.guid, result.Copy());
+                Legacy newLegacy = result.Copy();
+                newLegacy.filename = legacyViewer.associatedListViewItem.Group.Name;
+                Content.Legacies.Add(result.guid, newLegacy);
             }
             if (legacyViewer.associatedListViewItem.Text != result.id)
             {
@@ -1017,7 +1034,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Recipes.Remove((Guid)recipeViewer.associatedListViewItem.Tag);
                 recipeViewer.associatedListViewItem.Tag = result.guid;
-                Content.Recipes.Add(result.guid, result.Copy());
+                Recipe newRecipe = result.Copy();
+                newRecipe.filename = recipeViewer.associatedListViewItem.Group.Name;
+                Content.Recipes.Add(result.guid, newRecipe);
             }
             if (recipeViewer.associatedListViewItem.Text != result.id)
             {
@@ -1053,7 +1072,9 @@ namespace CarcassSpark.ObjectViewers
             {
                 Content.Verbs.Remove((Guid)verbViewer.associatedListViewItem.Tag);
                 verbViewer.associatedListViewItem.Tag = result.guid;
-                Content.Verbs.Add(result.guid, result.Copy());
+                Verb newVerb = result.Copy();
+                newVerb.filename = verbViewer.associatedListViewItem.Group.Name;
+                Content.Verbs.Add(result.guid, newVerb);
             }
             if (verbViewer.associatedListViewItem.Text != result.id)
             {
@@ -2514,7 +2535,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedAspect.Equals(aspectToEdit))
                 {
                     // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
-                    Content.Aspects[guid] = deserializedAspect.Copy();
+                    deserializedAspect.filename = aspectsListView.SelectedItems[0].Group.Name;
+                    Content.Aspects[guid] = deserializedAspect;
                     aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
                     MarkDirty();
                 }
@@ -2546,7 +2568,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedElement.Equals(elementToEdit))
                 {
                     // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
-                    Content.Elements[guid] = deserializedElement.Copy();
+                    deserializedElement.filename = elementsListView.SelectedItems[0].Group.Name;
+                    Content.Elements[guid] = deserializedElement;
                     elementsListView.SelectedItems[0].Text = deserializedElement.id;
                     MarkDirty();
                 }
@@ -2578,7 +2601,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedRecipe.Equals(recipeToEdit))
                 {
                     // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
-                    Content.Recipes[guid] = deserializedRecipe.Copy();
+                    deserializedRecipe.filename = recipesListView.SelectedItems[0].Group.Name;
+                    Content.Recipes[guid] = deserializedRecipe;
                     recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
                     MarkDirty();
                 }
@@ -2610,7 +2634,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedDeck.Equals(deckToEdit))
                 {
                     // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
-                    Content.Decks[guid] = deserializedDeck.Copy();
+                    deserializedDeck.filename = decksListView.SelectedItems[0].Group.Name;
+                    Content.Decks[guid] = deserializedDeck;
                     decksListView.SelectedItems[0].Text = deserializedDeck.id;
                     MarkDirty();
                 }
@@ -2642,7 +2667,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedLegacy.Equals(legacyToEdit))
                 {
                     // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
-                    Content.Legacies[guid] = deserializedLegacy.Copy();
+                    deserializedLegacy.filename = legaciesListView.SelectedItems[0].Group.Name;
+                    Content.Legacies[guid] = deserializedLegacy;
                     legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
                     MarkDirty();
                 }
@@ -2674,7 +2700,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedEnding.Equals(endingToEdit))
                 {
                     // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
-                    Content.Endings[guid] = deserializedEnding.Copy();
+                    deserializedEnding.filename = endingsListView.SelectedItems[0].Group.Name;
+                    Content.Endings[guid] = deserializedEnding;
                     endingsListView.SelectedItems[0].Text = deserializedEnding.id;
                     MarkDirty();
                 }
@@ -2706,7 +2733,8 @@ namespace CarcassSpark.ObjectViewers
                 if (!deserializedVerb.Equals(verbToEdit))
                 {
                     // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
-                    Content.Verbs[guid] = deserializedVerb.Copy();
+                    deserializedVerb.filename = verbsListView.SelectedItems[0].Group.Name;
+                    Content.Verbs[guid] = deserializedVerb;
                     verbsListView.SelectedItems[0].Text = deserializedVerb.id;
                     MarkDirty();
                 }
@@ -2747,11 +2775,12 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newAspect.id = id;
+            newAspect.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newGuid, Group = group, Name = newAspect.id };
             aspectsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Aspects.Add(newGuid, newAspect.Copy());
+            Content.Aspects.Add(newGuid, newAspect);
             MarkDirty();
         }
 
@@ -2785,11 +2814,12 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newElement.id = id;
+            newElement.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newGuid, Group = group, Name = newElement.id };
             elementsListView.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Elements.Add(newGuid, newElement.Copy());
+            Content.Elements.Add(newGuid, newElement);
             MarkDirty();
         }
 
@@ -2823,6 +2853,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newRecipe.id = id;
+            newRecipe.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newGuid, Group = group, Name = newRecipe.id };
             recipesListView.Items.Add(newItem);
@@ -2861,6 +2892,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newDeck.id = id;
+            newDeck.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newGuid, Group = group, Name = newDeck.id };
             decksListView.Items.Add(newItem);
@@ -2899,6 +2931,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newLegacy.id = id;
+            newLegacy.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newGuid, Group = group, Name = newLegacy.id };
             legaciesListView.Items.Add(newItem);
@@ -2937,6 +2970,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newEnding.id = id;
+            newEnding.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newGuid, Group = group, Name = newEnding.id };
             endingsListView.Items.Add(newItem);
@@ -2975,6 +3009,7 @@ namespace CarcassSpark.ObjectViewers
                 id += "_1";
             }
             newVerb.id = id;
+            newVerb.filename = group.Name;
             Guid newGuid = Guid.NewGuid();
             ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newGuid, Group = group, Name = newVerb.id };
             verbsListView.Items.Add(newItem);
@@ -3265,7 +3300,9 @@ namespace CarcassSpark.ObjectViewers
         public void AspectsList_Add(object sender, Aspect result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Aspects[guid] = result.Copy();
+            Aspect newAspect = result.Copy();
+            newAspect.filename = "aspects";
+            Content.Aspects[guid] = newAspect;
             ListViewGroup defaultAspectsGroup;
             if (aspectsListView.Groups["aspects"] == null)
             {
@@ -3285,7 +3322,9 @@ namespace CarcassSpark.ObjectViewers
         public void ElementsList_Add(object sender, Element result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Elements[guid] = result.Copy();
+            Element newElement = result.Copy();
+            newElement.filename = "elements";
+            Content.Elements[guid] = newElement;
             ListViewGroup defaultElementsGroup;
             if (elementsListView.Groups["elements"] == null)
             {
@@ -3305,7 +3344,9 @@ namespace CarcassSpark.ObjectViewers
         public void RecipesList_Add(object sender, Recipe result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Recipes[guid] = result.Copy();
+            Recipe newRecipe = result.Copy();
+            newRecipe.filename = "recipes";
+            Content.Recipes[guid] = newRecipe;
             ListViewGroup defaultRecipesGroup;
             if (recipesListView.Groups["recipes"] == null)
             {
@@ -3325,7 +3366,9 @@ namespace CarcassSpark.ObjectViewers
         public void DecksList_Add(object sender, Deck result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Decks[guid] = result.Copy();
+            Deck newDeck = result.Copy();
+            newDeck.filename = "decks";
+            Content.Decks[guid] = newDeck;
             ListViewGroup defaultDecksGroup;
             if (decksListView.Groups["decks"] == null)
             {
@@ -3345,7 +3388,9 @@ namespace CarcassSpark.ObjectViewers
         public void LegaciesList_Add(object sender, Legacy result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Legacies[guid] = result.Copy();
+            Legacy newLegacy = result.Copy();
+            newLegacy.filename = "legacies";
+            Content.Legacies[guid] = newLegacy;
             ListViewGroup defaultLegaciesGroup;
             if (legaciesListView.Groups["legacies"] == null)
             {
@@ -3365,7 +3410,9 @@ namespace CarcassSpark.ObjectViewers
         public void EndingsList_Add(object sender, Ending result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Endings[guid] = result.Copy();
+            Ending newEnding = result.Copy();
+            newEnding.filename = "endings";
+            Content.Endings[guid] = newEnding;
             ListViewGroup defaultEndingsGroup;
             if (endingsListView.Groups["endings"] == null)
             {
@@ -3385,7 +3432,9 @@ namespace CarcassSpark.ObjectViewers
         public void VerbsList_Add(object sender, Verb result)
         {
             Guid guid = Guid.NewGuid();
-            Content.Verbs[guid] = result.Copy();
+            Verb newVerb = result.Copy();
+            newVerb.filename = "verbs";
+            Content.Verbs[guid] = newVerb;
             ListViewGroup defaultVerbsGroup;
             if (verbsListView.Groups["verbs"] == null)
             {
