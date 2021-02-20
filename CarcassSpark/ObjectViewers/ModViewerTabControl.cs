@@ -4178,6 +4178,12 @@ namespace CarcassSpark.ObjectViewers
 
         private ListViewGroup hideCurrentGroupShortTerm(ListView lv)
         {
+            MessageBox.Show("Currently, there are problems with hiding things in ListViews.\r\nTo err on the side of caution, this feature is disabled.",
+                "How did you even reach this?",
+                MessageBoxButtons.OK);
+            return null;
+
+            /*
             if (lv.SelectedItems.Count < 1)
             {
                 return null;
@@ -4205,6 +4211,7 @@ namespace CarcassSpark.ObjectViewers
                 lv.Items.Remove(item);
             }
             return group;
+            // */
         }
         
         private void ModViewerTabControl_Load(object sender, EventArgs e)
