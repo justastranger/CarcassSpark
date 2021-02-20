@@ -628,10 +628,10 @@ namespace CarcassSpark.ObjectTypes
 
         public void SetHiddenGroup(string type, string groupName)
         {
-            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
             if (hiddenGroups == null)
             {
-                hiddenGroups = new Dictionary<string, string[]>();
+                hiddenGroups = new Dictionary<string, List<string>>();
             }
 
             if (type == "aspects")
@@ -641,12 +641,9 @@ namespace CarcassSpark.ObjectTypes
 
             if (!hiddenGroups.ContainsKey(type))
             {
-                hiddenGroups[type] = new string[] { groupName };
+                hiddenGroups[type] = new List<string>();
             }
-            else
-            {
-                hiddenGroups[type].Append(groupName);
-            }
+            hiddenGroups[type].Add(groupName);
             CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
         }
 
