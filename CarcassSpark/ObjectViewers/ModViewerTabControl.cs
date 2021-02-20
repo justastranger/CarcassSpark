@@ -113,6 +113,8 @@ namespace CarcassSpark.ObjectViewers
             Content.Endings.Clear();
             verbsListView.Items.Clear();
             Content.Verbs.Clear();
+            try
+            {
             if (!isVanilla)
             {
                 // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
@@ -133,7 +135,6 @@ namespace CarcassSpark.ObjectViewers
                     MarkDirty(false);
                     return true;
                 }
-                return false;
             }
             else
             {
@@ -147,6 +148,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 return true;
             }
+            }
+            // mod failed to load catastrophically
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "\r\n" + e.StackTrace, "Content Source Loading Failed");
+            }
+            return false;
         }
 
         public bool CreateSynopsis()
