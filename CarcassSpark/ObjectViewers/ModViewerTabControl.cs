@@ -396,6 +396,8 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 Element deserializedElement = element.ToObject<Element>();
                                 Content.Elements.Add(deserializedElement.guid, deserializedElement);
+                            if (!isGroupHidden)
+                            {
                                 ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
                                 {
                                     Tag = deserializedElement.guid,
@@ -412,6 +414,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     elementLVI.Group = elementsListView.Groups[fileName];
                                 }
+                            }
                                 deserializedElement.filename = fileName;
                             }
                         }
@@ -421,6 +424,8 @@ namespace CarcassSpark.ObjectViewers
                         {
                             Recipe deserializedRecipe = recipe.ToObject<Recipe>();
                             Content.Recipes.Add(deserializedRecipe.guid, deserializedRecipe);
+                        if (!isGroupHidden)
+                        {
                             ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
                             {
                                 Tag = deserializedRecipe.guid,
@@ -437,6 +442,7 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 recipeLVI.Group = recipesListView.Groups[fileName];
                             }
+                        }
                             deserializedRecipe.filename = fileName;
                         }
                         return;
