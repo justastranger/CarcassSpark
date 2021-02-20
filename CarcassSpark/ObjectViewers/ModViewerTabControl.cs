@@ -352,6 +352,8 @@ namespace CarcassSpark.ObjectViewers
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
+                            if (!isGroupHidden)
+                            {
                                 ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
                                     Tag = deserializedAspect.guid,
@@ -368,12 +370,15 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     aspectLVI.Group = aspectsListView.Groups[fileName];
                                 }
+                            }
                                 deserializedAspect.filename = fileName;
                             }
                             else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
                             {
                                 Aspect deserializedAspect = element.ToObject<Aspect>();
                                 Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
+                            if (!isGroupHidden)
+                            {
                                 ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
                                 {
                                     Tag = deserializedAspect.guid,
@@ -390,6 +395,7 @@ namespace CarcassSpark.ObjectViewers
                                 {
                                     aspectLVI.Group = aspectsListView.Groups[fileName];
                                 }
+                            }
                                 deserializedAspect.filename = fileName;
                             }
                             else
