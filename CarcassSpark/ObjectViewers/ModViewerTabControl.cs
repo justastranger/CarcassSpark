@@ -4317,44 +4317,58 @@ namespace CarcassSpark.ObjectViewers
 
         private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(aspectsListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["aspects"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("aspects", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(elementsListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["elements"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("elements", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(recipesListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["recipes"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("recipes", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(decksListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["decks"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("decks", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(legaciesListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["legacies"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("legacies", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(endingsListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["endings"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("endings", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(verbsListView);
+            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["verbs"]);
             if (group==null) { return; }
+            Content.SetHiddenGroup("verbs", group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         private ListViewGroup hideCurrentGroupShortTerm(ListView lv)
