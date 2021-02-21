@@ -126,39 +126,39 @@ namespace CarcassSpark.ObjectViewers
             Content.Verbs.Clear();
             try
             {
-            if (!isVanilla)
-            {
-                // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
-                if (!CheckForSynopsis())
+                if (!isVanilla)
                 {
-                    return false;
+                    // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
+                    if (!CheckForSynopsis())
+                    {
+                        return false;
+                    }
+                    if (Directory.Exists(Content.currentDirectory + "\\content\\"))
+                    {
+                        foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+                        {
+                            using (FileStream fs = new FileStream(file, FileMode.Open))
+                            {
+                                LoadFile(fs, file);
+                            }
+                        }
+                        // mod loaded successfully
+                        MarkDirty(false);
+                        return true;
+                    }
                 }
-                if (Directory.Exists(Content.currentDirectory + "\\content\\"))
+                else
                 {
-                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
+                    Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
                     {
                         using (FileStream fs = new FileStream(file, FileMode.Open))
                         {
                             LoadFile(fs, file);
                         }
                     }
-                    // mod loaded successfully
-                    MarkDirty(false);
                     return true;
                 }
-            }
-            else
-            {
-                Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
-                foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
-                {
-                    using (FileStream fs = new FileStream(file, FileMode.Open))
-                    {
-                        LoadFile(fs, file);
-                    }
-                }
-                return true;
-            }
             }
             // mod failed to load catastrophically
             catch (Exception e)
