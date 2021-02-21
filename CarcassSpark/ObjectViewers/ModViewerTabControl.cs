@@ -619,19 +619,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void ClearContentFolder(string modLocation)
         {
-            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            List<string> allHiddenGroups = new List<string>();
-            foreach(string key in hiddenGroups.Keys)
-            {
-                allHiddenGroups.AddRange(hiddenGroups[key]);
-            }
-
             foreach (string file in Directory.EnumerateFiles(modLocation + "/content/", "*.json"))
             {
-                if (!allHiddenGroups.Contains(file))
-                {
-                    File.Delete(file);
-                }
+                File.Delete(file);
             }
         }
 
