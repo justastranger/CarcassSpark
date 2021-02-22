@@ -833,6 +833,36 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty(false);
         }
 
+        private void SaveType<T>(Dictionary<Guid, T> contentDict, string typeName, string location) where T : IGameObject
+        {
+            if (contentDict.Count > 0)
+            {
+                Dictionary<string, List<T>> sortedGameObjects = new Dictionary<string, List<T>>();
+
+                foreach (T gameObject in contentDict.Values)
+                {
+                    if (!sortedGameObjects.ContainsKey(gameObject.Filename))
+                    {
+                        sortedGameObjects[gameObject.Filename] = new List<T>();
+                    }
+                    sortedGameObjects[gameObject.Filename].Add(gameObject);
+                }
+
+                foreach (KeyValuePair<string, List<T>> keyValuePair in sortedGameObjects)
+                {
+                    JObject gameObjects = new JObject
+                    {
+                        [typeName] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedGameObjects = JsonConvert.SerializeObject(gameObjects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedGameObjects);
+                    }
+                }
+            }
+        }
+
         public void SaveManifests(string location)
         {
             if (isVanilla)
