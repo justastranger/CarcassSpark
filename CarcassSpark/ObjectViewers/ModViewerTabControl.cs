@@ -342,7 +342,7 @@ namespace CarcassSpark.ObjectViewers
                                 }
                                 else if (xtrigger.Value.Value<string>() != null)
                                 {
-                                    xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
+                                    xtrigger.Value = JArray.FromObject(new List<XTrigger> { new XTrigger(xtrigger.Value.Value<string>()) });
                                 }
                             }
                         }
