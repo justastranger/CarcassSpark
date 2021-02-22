@@ -22,8 +22,7 @@ namespace CarcassSpark.ObjectViewers
         public EventHandler<bool> MarkDirtyEventHandler;
 
         public bool IsDirty { get; private set; } = false;
-
-        public Dictionary<string, ListView> ListViews = new Dictionary<string, ListView>();
+        public Dictionary<string, ListView> ListViews { get; set; } = new Dictionary<string, ListView>();
 
         public ContentSource Content = new ContentSource();
 
