@@ -954,7 +954,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void aspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("elements");
+            SelectedModViewer.Content.ResetHiddenGroups("aspects");
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
         }
 

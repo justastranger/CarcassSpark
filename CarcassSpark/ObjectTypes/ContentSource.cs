@@ -634,11 +634,6 @@ namespace CarcassSpark.ObjectTypes
                 hiddenGroups = new Dictionary<string, List<string>>();
             }
 
-            if (type == "aspects")
-            {
-                type = "elements";
-            }
-
             if (!hiddenGroups.ContainsKey(type))
             {
                 hiddenGroups[type] = new List<string>();
