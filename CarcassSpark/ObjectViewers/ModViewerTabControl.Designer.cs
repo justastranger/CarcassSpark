@@ -93,7 +93,7 @@
             this.duplicateSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openSelectedLegacysJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSelectedLegaciesJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useTemplateLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGroupLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -686,7 +686,7 @@
             this.duplicateSelectedLegacyToolStripMenuItem,
             this.exportSelectedLegacyToolStripMenuItem,
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem,
-            this.openSelectedLegacysJSONToolStripMenuItem,
+            this.openSelectedLegaciesJSONToolStripMenuItem,
             this.newLegacyToolStripMenuItem,
             this.setGroupLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
@@ -723,13 +723,13 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Text = "Copy Selected Legacy JSON to Clipboard";
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click);
             // 
-            // openSelectedLegacysJSONToolStripMenuItem
+            // openSelectedLegaciesJSONToolStripMenuItem
             // 
-            this.openSelectedLegacysJSONToolStripMenuItem.Name = "openSelectedLegacysJSONToolStripMenuItem";
-            this.openSelectedLegacysJSONToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.openSelectedLegacysJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
-            this.openSelectedLegacysJSONToolStripMenuItem.Text = "Open Selected Legacy\'s JSON";
-            this.openSelectedLegacysJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedLegacysJSONToolStripMenuItem_Click);
+            this.openSelectedLegaciesJSONToolStripMenuItem.Name = "openSelectedLegaciesJSONToolStripMenuItem";
+            this.openSelectedLegaciesJSONToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.openSelectedLegaciesJSONToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
+            this.openSelectedLegaciesJSONToolStripMenuItem.Text = "Open Selected Legacy\'s JSON";
+            this.openSelectedLegaciesJSONToolStripMenuItem.Click += new System.EventHandler(this.OpenSelectedLegaciesJSONToolStripMenuItem_Click);
             // 
             // newLegacyToolStripMenuItem
             // 
@@ -1589,7 +1589,7 @@
         private System.Windows.Forms.ToolStripMenuItem duplicateSelectedLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportSelectedLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectedLegacyJSONToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openSelectedLegacysJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedLegaciesJSONToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip endingContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchForToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem recipesThatCauseThisEndingToolStripMenuItem;

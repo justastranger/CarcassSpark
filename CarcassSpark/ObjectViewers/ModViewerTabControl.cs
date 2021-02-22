@@ -2125,7 +2125,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void OpenSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSelectedLegaciesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1)
             {
