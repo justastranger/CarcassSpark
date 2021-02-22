@@ -1578,6 +1578,32 @@ namespace CarcassSpark.ObjectViewers
             verbsListView.EndUpdate();
         }
 
+        private void SearchTextBox_TextChanged<T>(Dictionary<Guid, T> dict, string NewText, string hiddenGroupsKey, Func<List<T>, string, T[]> func) where T : IGameObject
+        {
+            ListView listView = ListViews[hiddenGroupsKey];
+            listView.BeginUpdate();
+            listView.Items.Clear();
+            List<ListViewItem> items = new List<ListViewItem>();
+            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(hiddenGroupsKey));
+            T[] itemsToAdd = (NewText != "") ? func(dict.Values.ToList(), NewText) : dict.Values.ToArray();
+            foreach (T gameObject in itemsToAdd)
+            {
+                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[hiddenGroupsKey].Contains(gameObject.Filename) : false;
+                if (!isGroupHidden)
+                {
+                    ListViewGroup group = listView.Groups[gameObject.Filename] == null
+                        ? new ListViewGroup(gameObject.Filename, gameObject.Filename)
+                        : listView.Groups[gameObject.Filename];
+                    ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
+                    // group.Items.Add(item);
+                    items.Add(item);
+                }
+            }
+            listView.Items.AddRange(items.ToArray());
+            listView.EndUpdate();
+        }
+
         private string[] SearchKeys(List<string> keysList, string searchPattern)
         {
             Regex regex = new Regex(searchPattern);
