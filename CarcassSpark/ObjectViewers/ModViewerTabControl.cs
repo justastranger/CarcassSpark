@@ -573,6 +573,32 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void AddItemToContentAndListView<T>(JToken token, Dictionary<Guid, T> dict, ListView listView, string fileName, bool isGroupHidden) where T : IGameObject
+        {
+            T deserializedObject = token.ToObject<T>();
+            dict.Add(deserializedObject.Guid, deserializedObject);
+            if (!isGroupHidden)
+            {
+                ListViewItem lviCurr = new ListViewItem(deserializedObject.ID)
+                {
+                    Tag = deserializedObject.Guid,
+                    Name = deserializedObject.ID
+                };
+                listView.Items.Add(lviCurr);
+                if (listView.Groups[fileName] == null)
+                {
+                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                    listView.Groups.Add(listViewGroup);
+                    lviCurr.Group = listViewGroup;
+                }
+                else
+                {
+                    lviCurr.Group = listView.Groups[fileName];
+                }
+            }
+            deserializedObject.Filename = fileName;
+        }
+
         private void CreateDirectories(string modLocation)
         {
             if (!Directory.Exists(modLocation + "/content/"))
