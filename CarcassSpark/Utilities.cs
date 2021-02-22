@@ -602,7 +602,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.AspectExists(id))
+                if (source.Aspects.Exists(id))
                 {
                     return true;
                 }
@@ -614,7 +614,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.AspectExists(id))
+                if (source.Aspects.Exists(id))
                 {
                     return true;
                 }
@@ -626,9 +626,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetAspect(id) != null)
+                if (source.Aspects.Get(id) != null)
                 {
-                    return source.GetAspect(id);
+                    return source.Aspects.Get(id);
                 }
             }
             return null;
@@ -638,9 +638,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetAspect(id) != null)
+                if (source.Aspects.Get(id) != null)
                 {
-                    return source.GetAspect(id);
+                    return source.Aspects.Get(id);
                 }
             }
             return null;
@@ -650,7 +650,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.ElementExists(id))
+                if (source.Elements.Exists(id))
                 {
                     return true;
                 }
@@ -662,7 +662,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.ElementExists(id))
+                if (source.Elements.Exists(id))
                 {
                     return true;
                 }
@@ -674,9 +674,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetElement(id) != null)
+                if (source.Elements.Get(id) != null)
                 {
-                    return source.GetElement(id);
+                    return source.Elements.Get(id);
                 }
             }
             return null;
@@ -686,9 +686,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetElement(id) != null)
+                if (source.Elements.Get(id) != null)
                 {
-                    return source.GetElement(id);
+                    return source.Elements.Get(id);
                 }
             }
             return null;
@@ -698,7 +698,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.RecipeExists(id))
+                if (source.Recipes.Exists(id))
                 {
                     return true;
                 }
@@ -710,7 +710,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.RecipeExists(id))
+                if (source.Recipes.Exists(id))
                 {
                     return true;
                 }
@@ -722,9 +722,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetRecipe(id) != null)
+                if (source.Recipes.Get(id) != null)
                 {
-                    return source.GetRecipe(id);
+                    return source.Recipes.Get(id);
                 }
             }
             return null;
@@ -734,9 +734,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetRecipe(id) != null)
+                if (source.Recipes.Get(id) != null)
                 {
-                    return source.GetRecipe(id);
+                    return source.Recipes.Get(id);
                 }
             }
             return null;
@@ -746,7 +746,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.RecipeExists(id))
+                if (source.Recipes.Exists(id))
                 {
                     return true;
                 }
@@ -758,7 +758,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.RecipeExists(id))
+                if (source.Recipes.Exists(id))
                 {
                     return true;
                 }
@@ -770,9 +770,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetDeck(id) != null)
+                if (source.Decks.Get(id) != null)
                 {
-                    return source.GetDeck(id);
+                    return source.Decks.Get(id);
                 }
             }
             return null;
@@ -782,9 +782,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetDeck(id) != null)
+                if (source.Decks.Get(id) != null)
                 {
-                    return source.GetDeck(id);
+                    return source.Decks.Get(id);
                 }
             }
             return null;
@@ -794,7 +794,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.LegacyExists(id))
+                if (source.Legacies.Exists(id))
                 {
                     return true;
                 }
@@ -806,7 +806,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.LegacyExists(id))
+                if (source.Legacies.Exists(id))
                 {
                     return true;
                 }
@@ -818,9 +818,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetLegacy(id) != null)
+                if (source.Legacies.Get(id) != null)
                 {
-                    return source.GetLegacy(id);
+                    return source.Legacies.Get(id);
                 }
             }
             return null;
@@ -830,9 +830,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetLegacy(id) != null)
+                if (source.Legacies.Get(id) != null)
                 {
-                    return source.GetLegacy(id);
+                    return source.Legacies.Get(id);
                 }
             }
             return null;
@@ -842,7 +842,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.EndingExists(id))
+                if (source.Endings.Exists(id))
                 {
                     return true;
                 }
@@ -854,7 +854,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.EndingExists(id))
+                if (source.Endings.Exists(id))
                 {
                     return true;
                 }
@@ -866,9 +866,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetEnding(id) != null)
+                if (source.Endings.Get(id) != null)
                 {
-                    return source.GetEnding(id);
+                    return source.Endings.Get(id);
                 }
             }
             return null;
@@ -878,9 +878,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetEnding(id) != null)
+                if (source.Endings.Get(id) != null)
                 {
-                    return source.GetEnding(id);
+                    return source.Endings.Get(id);
                 }
             }
             return null;
@@ -890,7 +890,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.VerbExists(id))
+                if (source.Verbs.Exists(id))
                 {
                     return true;
                 }
@@ -902,7 +902,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.VerbExists(id))
+                if (source.Verbs.Exists(id))
                 {
                     return true;
                 }
@@ -914,9 +914,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetVerb(id) != null)
+                if (source.Verbs.Get(id) != null)
                 {
-                    return source.GetVerb(id);
+                    return source.Verbs.Get(id);
                 }
             }
             return null;
@@ -926,9 +926,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.GetVerb(id) != null)
+                if (source.Verbs.Get(id) != null)
                 {
-                    return source.GetVerb(id);
+                    return source.Verbs.Get(id);
                 }
             }
             return null;

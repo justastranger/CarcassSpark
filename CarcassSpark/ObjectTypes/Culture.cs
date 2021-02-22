@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Culture
+    public class Culture : IHasGuidAndID
     {
         [JsonIgnore]
         public Guid guid = Guid.NewGuid();
@@ -17,6 +17,9 @@ namespace CarcassSpark.ObjectTypes
         // and so is this, where the actual localization happens
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> uilabels;
+
+        public Guid Guid { get => this.guid; set => this.guid = value; }
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public Culture(string id, string endonym, string exonym, string fontscript, bool? boldallowed, bool? released, Dictionary<string, string> uilabels)

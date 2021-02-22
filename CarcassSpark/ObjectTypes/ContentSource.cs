@@ -19,15 +19,15 @@ namespace CarcassSpark.ObjectTypes
         // CustomManifest["EditMode"]
         // CustomManifest["AutoSave"]
 
-        public Dictionary<Guid, Aspect> Aspects = new Dictionary<Guid, Aspect>();
-        public Dictionary<Guid, Element> Elements = new Dictionary<Guid, Element>();
-        public Dictionary<Guid, Recipe> Recipes = new Dictionary<Guid, Recipe>();
-        public Dictionary<Guid, Deck> Decks = new Dictionary<Guid, Deck>();
-        public Dictionary<Guid, Legacy> Legacies = new Dictionary<Guid, Legacy>();
-        public Dictionary<Guid, Ending> Endings = new Dictionary<Guid, Ending>();
-        public Dictionary<Guid, Verb> Verbs = new Dictionary<Guid, Verb>();
-        public Dictionary<Guid, Culture> Cultures = new Dictionary<Guid, Culture>();
-
+        public ContentGroup<Aspect> Aspects = new ContentGroup<Aspect>();
+        public ContentGroup<Element> Elements = new ContentGroup<Element>();
+        public ContentGroup<Recipe> Recipes = new ContentGroup<Recipe>();
+        public ContentGroup<Deck> Decks = new ContentGroup<Deck>();
+        public ContentGroup<Legacy> Legacies = new ContentGroup<Legacy>();
+        public ContentGroup<Ending> Endings = new ContentGroup<Ending>();
+        public ContentGroup<Verb> Verbs = new ContentGroup<Verb>();
+        public ContentGroup<Culture> Cultures = new ContentGroup<Culture>();
+        
         public ContentSource()
         {
 
@@ -44,359 +44,7 @@ namespace CarcassSpark.ObjectTypes
                 return null;
             }
         }
-
-        public Element GetElement(Guid id)
-        {
-            if (ElementExists(id))
-            {
-                return Elements[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Element GetElement(string id)
-        {
-            if (ElementExists(id))
-            {
-                foreach (Element element in Elements.Values)
-                {
-                    if (element.id == id)
-                    {
-                        return element;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool ElementExists(Guid id)
-        {
-            return Elements.ContainsKey(id);
-        }
-
-        public Deck GetDeck(Guid id)
-        {
-            if (DeckExists(id))
-            {
-                return Decks[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Deck GetDeck(string id)
-        {
-            if (DeckExists(id))
-            {
-                foreach (Deck deck in Decks.Values)
-                {
-                    if (deck.id == id)
-                    {
-                        return deck;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool DeckExists(Guid id)
-        {
-            return Decks.ContainsKey(id);
-        }
-
-        public Aspect GetAspect(Guid id)
-        {
-            if (AspectExists(id))
-            {
-                return Aspects[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Aspect GetAspect(string id)
-        {
-            if (AspectExists(id))
-            {
-                foreach (Aspect aspect in Aspects.Values)
-                {
-                    if (aspect.id == id)
-                    {
-                        return aspect;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool AspectExists(Guid id)
-        {
-            return Aspects.ContainsKey(id);
-        }
-
-        public bool AspectExists(string id)
-        {
-            foreach (Aspect aspect in Aspects.Values)
-            {
-                if (aspect.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool ElementExists(string id)
-        {
-            foreach (Element element in Elements.Values)
-            {
-                if (element.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool RecipeExists(string id)
-        {
-            foreach (Recipe recipe in Recipes.Values)
-            {
-                if (recipe.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool DeckExists(string id)
-        {
-            foreach (Deck deck in Decks.Values)
-            {
-                if (deck.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool LegacyExists(string id)
-        {
-            foreach (Legacy legacy in Legacies.Values)
-            {
-                if (legacy.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool VerbExists(string id)
-        {
-            foreach (Verb verb in Verbs.Values)
-            {
-                if (verb.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool EndingExists(string id)
-        {
-            foreach (Ending ending in Endings.Values)
-            {
-                if (ending.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public Legacy GetLegacy(Guid id)
-        {
-            if (LegacyExists(id))
-            {
-                return Legacies[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Legacy GetLegacy(string id)
-        {
-            if (LegacyExists(id))
-            {
-                foreach (Legacy legacy in Legacies.Values)
-                {
-                    if (legacy.id == id)
-                    {
-                        return legacy;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool LegacyExists(Guid id)
-        {
-            return Legacies.ContainsKey(id);
-        }
-
-        public Recipe GetRecipe(Guid id)
-        {
-            if (RecipeExists(id))
-            {
-                return Recipes[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Recipe GetRecipe(string id)
-        {
-            if (RecipeExists(id))
-            {
-                foreach (Recipe recipe in Recipes.Values)
-                {
-                    if (recipe.id == id)
-                    {
-                        return recipe;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool RecipeExists(Guid id)
-        {
-            return Recipes.ContainsKey(id);
-        }
-
-        public Ending GetEnding(Guid id)
-        {
-            if (EndingExists(id))
-            {
-                return Endings[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Ending GetEnding(string id)
-        {
-            if (EndingExists(id))
-            {
-                foreach (Ending ending in Endings.Values)
-                {
-                    if (ending.id == id)
-                    {
-                        return ending;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool EndingExists(Guid id)
-        {
-            return Endings.ContainsKey(id);
-        }
-
-        public Verb GetVerb(Guid id)
-        {
-            if (VerbExists(id))
-            {
-                return Verbs[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Verb GetVerb(string id)
-        {
-            if (VerbExists(id))
-            {
-                foreach (Verb verb in Verbs.Values)
-                {
-                    if (verb.id == id)
-                    {
-                        return verb;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool VerbExists(Guid id)
-        {
-            return Verbs.ContainsKey(id);
-        }
-
-        public Culture GetCulture(Guid id)
-        {
-            if (CultureExists(id))
-            {
-                return Cultures[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Culture GetCulture(string id)
-        {
-            if (CultureExists(id))
-            {
-                foreach (Culture culture in Cultures.Values)
-                {
-                    if (culture.id == id)
-                    {
-                        return culture;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public bool CultureExists(Guid id)
-        {
-            return Cultures.ContainsKey(id);
-        }
-
-        public bool CultureExists(string id)
-        {
-            foreach (Culture culture in Cultures.Values)
-            {
-                if (culture.id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+        
         public void SetCustomManifestProperty(string key, object value)
         {
             CustomManifest[key] = JToken.FromObject(value);
@@ -667,6 +315,76 @@ namespace CarcassSpark.ObjectTypes
                 hiddenGroups.Remove(type);
                 CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
             }
+        }
+    }
+
+    public class ContentGroup<T> where T : IHasGuidAndID
+    {
+        public Dictionary<Guid, T> GameObjects = new Dictionary<Guid, T>();
+
+        public int Count { get => GameObjects.Count; }
+        public Dictionary<Guid, T>.ValueCollection Values { get => GameObjects.Values; }
+        public T this[Guid key] { get => GameObjects[key]; set=> GameObjects[key] = value; }
+
+        public bool Exists(string id)
+        {
+            foreach (T ending in GameObjects.Values.Where((go) => go.ID == id))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool Exists(Guid id)
+        {
+            return GameObjects.ContainsKey(id);
+        }
+
+        public T Get(Guid id)
+        {
+            if (Exists(id))
+            {
+                return GameObjects[id];
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+
+        public T Get(string id)
+        {
+            if (Exists(id))
+            {
+                foreach (T gameOBJ in GameObjects.Values)
+                {
+                    if (gameOBJ.ID == id)
+                    {
+                        return gameOBJ;
+                    }
+                }
+            }
+            return default(T);
+        }
+
+        public void Clear()
+        {
+            GameObjects.Clear();
+        }
+
+        public void Add(Guid guid, T gameObject)
+        {
+            GameObjects.Add(guid, gameObject);
+        }
+
+        public void Remove(Guid guid)
+        {
+            GameObjects.Remove(guid);
+        }
+
+        public Dictionary<Guid, T>.Enumerator GetEnumerator()
+        {
+            return GameObjects.GetEnumerator();
         }
     }
 }

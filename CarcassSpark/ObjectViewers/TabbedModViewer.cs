@@ -836,10 +836,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void CulturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures, SelectedModViewer.editMode);
+            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures.GameObjects, SelectedModViewer.editMode);
             if (cv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.Cultures = cv.displayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
+                SelectedModViewer.Content.Cultures.GameObjects = cv.displayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
             }
         }
 
