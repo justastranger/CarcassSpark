@@ -394,8 +394,7 @@ namespace CarcassSpark.ObjectViewers
                         Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
                     }
                     return;
-                default:
-                    break;
+                // Default case is empty.
                 }
             }
         }
