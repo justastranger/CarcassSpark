@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Element
+    public class Element : IGameObject
     {
         [JsonIgnore]
         public string filename;
@@ -48,6 +48,10 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
+
+        public string Filename { get => this.filename; set => this.filename = value; }
+        public Guid Guid { get => this.guid; set => this.guid = value; }
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,

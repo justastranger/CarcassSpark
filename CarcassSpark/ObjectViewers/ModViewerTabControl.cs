@@ -126,39 +126,33 @@ namespace CarcassSpark.ObjectViewers
             Content.Verbs.Clear();
             try
             {
-                if (!isVanilla)
-                {
-                    // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
-                    if (!CheckForSynopsis())
-                    {
-                        return false;
-                    }
-                    if (Directory.Exists(Content.currentDirectory + "\\content\\"))
-                    {
-                        foreach (string file in Directory.EnumerateFiles(Content.currentDirectory + "\\content\\", "*.json", SearchOption.AllDirectories))
-                        {
-                            using (FileStream fs = new FileStream(file, FileMode.Open))
-                            {
-                                LoadFile(fs, file);
-                            }
-                        }
-                        // mod loaded successfully
-                        MarkDirty(false);
-                        return true;
-                    }
-                }
-                else
+                // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
+                if(isVanilla)
                 {
                     Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
-                    foreach (string file in Directory.EnumerateFiles(Content.currentDirectory, "*.json", SearchOption.AllDirectories))
-                    {
-                        using (FileStream fs = new FileStream(file, FileMode.Open))
-                        {
-                            LoadFile(fs, file);
-                        }
-                    }
-                    return true;
                 }
+                else if(!CheckForSynopsis() || !Directory.Exists(Content.currentDirectory + "\\content\\"))
+                {
+                    return false;
+                }
+
+                IEnumerable<string> files = Directory.EnumerateFiles(Content.currentDirectory + (isVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
+
+                foreach (string file in files)
+                {
+                    using (FileStream fs = new FileStream(file, FileMode.Open))
+                    {
+                        LoadFile(fs, file);
+                    }
+                }
+
+                if (!isVanilla)
+                {
+                    // mod loaded successfully
+                    MarkDirty(false);
+                }
+
+                return true;
             }
             // mod failed to load catastrophically
             catch (Exception e)
@@ -326,251 +320,111 @@ namespace CarcassSpark.ObjectViewers
 
                 switch (fileType)
                 {
-                    case "elements":
-                        foreach (JToken element in parsedJToken.First.ToArray())
-                        {
-                            if (element["xtriggers"] != null)
-                            {
-                                foreach (JProperty xtrigger in element["xtriggers"])
-                                {
-                                    if (xtrigger.Value as JArray != null)
-                                    {
-                                        xtrigger.Value = xtrigger.Value as JArray;
-                                    }
-                                    else if (xtrigger.Value as JObject != null)
-                                    {
-                                        xtrigger.Value = new JArray(xtrigger.Value);
-                                    }
-                                    else if (xtrigger.Value.Value<string>() != null)
-                                    {
-                                        xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
-                                    }
-                                }
-                            }
+                case "elements":
+                    bool isAspectHidden = false;
+                    if (hiddenGroups != null && hiddenGroups.ContainsKey("aspects") && hiddenGroups["aspects"] != null)
+                    {
+                        isAspectHidden = hiddenGroups["aspects"].Contains(fileName);
+                    }
 
-                            if (element["isAspect"] != null)
-                            {
-                                Aspect deserializedAspect = element.ToObject<Aspect>();
-                                Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
-                                if (!isGroupHidden)
-                                {
-                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
-                                    {
-                                        Tag = deserializedAspect.guid,
-                                        Name = deserializedAspect.id
-                                    };
-                                    aspectsListView.Items.Add(aspectLVI);
-                                    if (aspectsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        aspectsListView.Groups.Add(listViewGroup);
-                                        aspectLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        aspectLVI.Group = aspectsListView.Groups[fileName];
-                                    }
-                                }
-                                deserializedAspect.filename = fileName;
-                            }
-                            else if (element["extends"] != null && Utilities.AspectExists(element["id"].ToString()))
-                            {
-                                Aspect deserializedAspect = element.ToObject<Aspect>();
-                                Content.Aspects.Add(deserializedAspect.guid, deserializedAspect);
-                                if (!isGroupHidden)
-                                {
-                                    ListViewItem aspectLVI = new ListViewItem(deserializedAspect.id)
-                                    {
-                                        Tag = deserializedAspect.guid,
-                                        Name = deserializedAspect.id
-                                    };
-                                    aspectsListView.Items.Add(aspectLVI);
-                                    if (aspectsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        aspectsListView.Groups.Add(listViewGroup);
-                                        aspectLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        aspectLVI.Group = aspectsListView.Groups[fileName];
-                                    }
-                                }
-                                deserializedAspect.filename = fileName;
-                            }
-                            else
-                            {
-                                Element deserializedElement = element.ToObject<Element>();
-                                Content.Elements.Add(deserializedElement.guid, deserializedElement);
-                                if (!isGroupHidden)
-                                {
-                                    ListViewItem elementLVI = new ListViewItem(deserializedElement.id)
-                                    {
-                                        Tag = deserializedElement.guid,
-                                        Name = deserializedElement.id
-                                    };
-                                    elementsListView.Items.Add(elementLVI);
-                                    if (elementsListView.Groups[fileName] == null)
-                                    {
-                                        ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                        elementsListView.Groups.Add(listViewGroup);
-                                        elementLVI.Group = listViewGroup;
-                                    }
-                                    else
-                                    {
-                                        elementLVI.Group = elementsListView.Groups[fileName];
-                                    }
-                                }
-                                deserializedElement.filename = fileName;
-                            }
-                        }
-                        return;
-                    case "recipes":
-                        foreach (JToken recipe in parsedJToken.First.ToArray())
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        if (token["xtriggers"] != null)
                         {
-                            Recipe deserializedRecipe = recipe.ToObject<Recipe>();
-                            Content.Recipes.Add(deserializedRecipe.guid, deserializedRecipe);
-                            if (!isGroupHidden)
+                            foreach (JProperty xtrigger in token["xtriggers"])
                             {
-                                ListViewItem recipeLVI = new ListViewItem(deserializedRecipe.id)
+                                if (xtrigger.Value as JArray != null)
                                 {
-                                    Tag = deserializedRecipe.guid,
-                                    Name = deserializedRecipe.id
-                                };
-                                recipesListView.Items.Add(recipeLVI);
-                                if (recipesListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    recipesListView.Groups.Add(listViewGroup);
-                                    recipeLVI.Group = listViewGroup;
+                                    xtrigger.Value = xtrigger.Value as JArray;
                                 }
-                                else
+                                else if (xtrigger.Value as JObject != null)
                                 {
-                                    recipeLVI.Group = recipesListView.Groups[fileName];
+                                    xtrigger.Value = new JArray(xtrigger.Value);
+                                }
+                                else if (xtrigger.Value.Value<string>() != null)
+                                {
+                                    xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
                                 }
                             }
-                            deserializedRecipe.filename = fileName;
                         }
-                        return;
-                    case "decks":
-                        foreach (JToken deck in parsedJToken.First.ToArray())
+                        
+                        if (token["isAspect"] != null || (token["extends"] != null && Utilities.AspectExists(token["id"].ToString())))
                         {
-                            Deck deserializedDeck = deck.ToObject<Deck>();
-                            Content.Decks.Add(deserializedDeck.guid, deserializedDeck);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem deckLVI = new ListViewItem(deserializedDeck.id)
-                                {
-                                    Tag = deserializedDeck.guid,
-                                    Name = deserializedDeck.id
-                                };
-                                decksListView.Items.Add(deckLVI);
-                                if (decksListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    decksListView.Groups.Add(listViewGroup);
-                                    deckLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    deckLVI.Group = decksListView.Groups[fileName];
-                                }
-                            }
-                            deserializedDeck.filename = fileName;
+                            AddItemToContentAndListView(token, Content.Aspects, aspectsListView, fileName, isAspectHidden);
                         }
-                        return;
-                    case "legacies":
-                        foreach (JToken legacy in parsedJToken.First.ToArray())
+                        else
                         {
-                            Legacy deserializedLegacy = legacy.ToObject<Legacy>();
-                            Content.Legacies.Add(deserializedLegacy.guid, deserializedLegacy);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem legacyLVI = new ListViewItem(deserializedLegacy.id)
-                                {
-                                    Tag = deserializedLegacy.guid,
-                                    Name = deserializedLegacy.id
-                                };
-                                legaciesListView.Items.Add(legacyLVI);
-                                if (legaciesListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    legaciesListView.Groups.Add(listViewGroup);
-                                    legacyLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    legacyLVI.Group = legaciesListView.Groups[fileName];
-                                }
-                            }
-                            deserializedLegacy.filename = fileName;
+                            AddItemToContentAndListView(token, Content.Elements, elementsListView, fileName, isGroupHidden);
                         }
-                        return;
-                    case "endings":
-                        foreach (JToken ending in parsedJToken.First.ToArray())
-                        {
-                            Ending deserializedEnding = ending.ToObject<Ending>();
-                            Content.Endings.Add(deserializedEnding.guid, deserializedEnding);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem endingLVI = new ListViewItem(deserializedEnding.id)
-                                {
-                                    Tag = deserializedEnding.guid,
-                                    Name = deserializedEnding.id
-                                };
-                                endingsListView.Items.Add(endingLVI);
-                                if (endingsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    endingsListView.Groups.Add(listViewGroup);
-                                    endingLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    endingLVI.Group = endingsListView.Groups[fileName];
-                                }
-                            }
-                            deserializedEnding.filename = fileName;
-                        }
-                        return;
-                    case "verbs":
-                        foreach (JToken verb in parsedJToken.First.ToArray())
-                        {
-                            Verb deserializedVerb = verb.ToObject<Verb>();
-                            Content.Verbs.Add(deserializedVerb.guid, deserializedVerb);
-                            if (!isGroupHidden)
-                            {
-                                ListViewItem verbLVI = new ListViewItem(deserializedVerb.id)
-                                {
-                                    Tag = deserializedVerb.guid,
-                                    Name = deserializedVerb.id
-                                };
-                                verbsListView.Items.Add(verbLVI);
-                                if (verbsListView.Groups[fileName] == null)
-                                {
-                                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
-                                    verbsListView.Groups.Add(listViewGroup);
-                                    verbLVI.Group = listViewGroup;
-                                }
-                                else
-                                {
-                                    verbLVI.Group = verbsListView.Groups[fileName];
-                                }
-                            }
-                            deserializedVerb.filename = fileName;
-                        }
-                        return;
-                    case "cultures":
-                        foreach (JToken culture in parsedJToken.First.ToArray())
-                        {
-                            Culture deserializedCulture = culture.ToObject<Culture>();
-                            Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
-                        }
-                        return;
-                    default:
-                        break;
+                    }
+                    return;
+                case "recipes":
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        AddItemToContentAndListView(token, Content.Recipes, recipesListView, fileName, isGroupHidden);
+                    }
+                    return;
+                case "decks":
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        AddItemToContentAndListView(token, Content.Decks, decksListView, fileName, isGroupHidden);
+                    }
+                    return;
+                case "legacies":
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        AddItemToContentAndListView(token, Content.Legacies, legaciesListView, fileName, isGroupHidden);
+                    }
+                    return;
+                case "endings":
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        AddItemToContentAndListView(token, Content.Endings, endingsListView, fileName, isGroupHidden);
+                    }
+                    return;
+                case "verbs":
+                    foreach (JToken token in parsedJToken.First.ToArray())
+                    {
+                        AddItemToContentAndListView(token, Content.Verbs, verbsListView, fileName, isGroupHidden);
+                    }
+                    return;
+                case "cultures":
+                    foreach (JToken culture in parsedJToken.First.ToArray())
+                    {
+                        Culture deserializedCulture = culture.ToObject<Culture>();
+                        Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
+                    }
+                    return;
+                default:
+                    break;
                 }
             }
+        }
+
+        private void AddItemToContentAndListView<T>(JToken token, Dictionary<Guid, T> dict, ListView listView, string fileName, bool isGroupHidden) where T : IGameObject
+        {
+            T deserializedObject = token.ToObject<T>();
+            dict.Add(deserializedObject.Guid, deserializedObject);
+            if (!isGroupHidden)
+            {
+                ListViewItem lviCurr = new ListViewItem(deserializedObject.ID)
+                {
+                    Tag = deserializedObject.Guid,
+                    Name = deserializedObject.ID
+                };
+                listView.Items.Add(lviCurr);
+                if (listView.Groups[fileName] == null)
+                {
+                    ListViewGroup listViewGroup = new ListViewGroup(fileName, fileName);
+                    listView.Groups.Add(listViewGroup);
+                    lviCurr.Group = listViewGroup;
+                }
+                else
+                {
+                    lviCurr.Group = listView.Groups[fileName];
+                }
+            }
+            deserializedObject.Filename = fileName;
         }
 
         private void CreateDirectories(string modLocation)
@@ -634,188 +488,13 @@ namespace CarcassSpark.ObjectViewers
         {
             CreateDirectories(location);
             ClearContentFolder(location);
-            if (Content.Aspects.Count > 0)
-            {
-                Dictionary<string, List<Aspect>> sortedAspects = new Dictionary<string, List<Aspect>>();
-                
-                foreach (Aspect aspect in Content.Aspects.Values)
-                {
-                    if (!sortedAspects.ContainsKey(aspect.filename))
-                    {
-                        sortedAspects[aspect.filename] = new List<Aspect>();
-                    }
-                    sortedAspects[aspect.filename].Add(aspect);
-                }
-
-                foreach (KeyValuePair<string, List<Aspect>> keyValuePair in sortedAspects)
-                {
-                    JObject aspects = new JObject
-                    {
-                        ["elements"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedAspects = JsonConvert.SerializeObject(aspects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedAspects);
-                    }
-                }
-            }
-            if (Content.Elements.Count > 0)
-            {
-                Dictionary<string, List<Element>> sortedElements = new Dictionary<string, List<Element>>();
-
-                foreach (Element element in Content.Elements.Values)
-                {
-                    if (!sortedElements.ContainsKey(element.filename))
-                    {
-                        sortedElements[element.filename] = new List<Element>();
-                    }
-                    sortedElements[element.filename].Add(element);
-                }
-
-                foreach (KeyValuePair<string, List<Element>> keyValuePair in sortedElements)
-                {
-                    JObject elements = new JObject
-                    {
-                        ["elements"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedElements = JsonConvert.SerializeObject(elements, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedElements);
-                    }
-                }
-            }
-            if (Content.Recipes.Count > 0)
-            {
-                Dictionary<string, List<Recipe>> sortedRecipes = new Dictionary<string, List<Recipe>>();
-
-                foreach (Recipe recipe in Content.Recipes.Values)
-                {
-                    if (!sortedRecipes.ContainsKey(recipe.filename))
-                    {
-                        sortedRecipes[recipe.filename] = new List<Recipe>();
-                    }
-                    sortedRecipes[recipe.filename].Add(recipe);
-                }
-
-                foreach (KeyValuePair<string, List<Recipe>> keyValuePair in sortedRecipes)
-                {
-                    JObject recipes = new JObject
-                    {
-                        ["recipes"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedRecipes = JsonConvert.SerializeObject(recipes, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedRecipes);
-                    }
-                }
-            }
-            if (decksListView.Items.Count > 0)
-            {
-                Dictionary<string, List<Deck>> sortedDecks = new Dictionary<string, List<Deck>>();
-
-                foreach (Deck deck in Content.Decks.Values)
-                {
-                    if (!sortedDecks.ContainsKey(deck.filename))
-                    {
-                        sortedDecks[deck.filename] = new List<Deck>();
-                    }
-                    sortedDecks[deck.filename].Add(deck);
-                }
-
-                foreach (KeyValuePair<string, List<Deck>> keyValuePair in sortedDecks)
-                {
-                    JObject decks = new JObject
-                    {
-                        ["decks"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedDecks = JsonConvert.SerializeObject(decks, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedDecks);
-                    }
-                }
-            }
-            if (legaciesListView.Items.Count > 0)
-            {
-                Dictionary<string, List<Legacy>> sortedLegacies = new Dictionary<string, List<Legacy>>();
-
-                foreach (Legacy legacy in Content.Legacies.Values)
-                {
-                    if (!sortedLegacies.ContainsKey(legacy.filename))
-                    {
-                        sortedLegacies[legacy.filename] = new List<Legacy>();
-                    }
-                    sortedLegacies[legacy.filename].Add(legacy);
-                }
-
-                foreach (KeyValuePair<string, List<Legacy>> keyValuePair in sortedLegacies)
-                {
-                    JObject legacies = new JObject
-                    {
-                        ["legacies"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedLegacies = JsonConvert.SerializeObject(legacies, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedLegacies);
-                    }
-                }
-            }
-            if (endingsListView.Items.Count > 0)
-            {
-                Dictionary<string, List<Ending>> sortedEndings = new Dictionary<string, List<Ending>>();
-
-                foreach (Ending ending in Content.Endings.Values)
-                {
-                    if (!sortedEndings.ContainsKey(ending.filename))
-                    {
-                        sortedEndings[ending.filename] = new List<Ending>();
-                    }
-                    sortedEndings[ending.filename].Add(ending);
-                }
-
-                foreach (KeyValuePair<string, List<Ending>> keyValuePair in sortedEndings)
-                {
-                    JObject endings = new JObject
-                    {
-                        ["endings"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedEndings = JsonConvert.SerializeObject(endings, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedEndings);
-                    }
-                }
-            }
-            if (verbsListView.Items.Count > 0)
-            {
-                Dictionary<string, List<Verb>> sortedVerbs = new Dictionary<string, List<Verb>>();
-
-                foreach (Verb verb in Content.Verbs.Values)
-                {
-                    if (!sortedVerbs.ContainsKey(verb.filename))
-                    {
-                        sortedVerbs[verb.filename] = new List<Verb>();
-                    }
-                    sortedVerbs[verb.filename].Add(verb);
-                }
-
-                foreach (KeyValuePair<string, List<Verb>> keyValuePair in sortedVerbs)
-                {
-                    JObject verbs = new JObject
-                    {
-                        ["verbs"] = JArray.FromObject(keyValuePair.Value)
-                    };
-                    string serializedVerbs = JsonConvert.SerializeObject(verbs, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
-                    {
-                        jtw.WriteRaw(serializedVerbs);
-                    }
-                }
-            }
+            SaveType(Content.Aspects, "elements", location);
+            SaveType(Content.Elements, "elements", location);
+            SaveType(Content.Recipes, "recipes", location);
+            SaveType(Content.Decks, "decks", location);
+            SaveType(Content.Legacies, "legacies", location);
+            SaveType(Content.Endings, "endings", location);
+            SaveType(Content.Verbs, "verbs", location);
             if (Content.Cultures.Count > 0)
             {
                 // TODO fix this, I'm *pretty* sure it doesn't save cultures correctly. It looks like they need to be saved individually, in subfolders, with a blank json file named after the culture's ID?
@@ -831,6 +510,36 @@ namespace CarcassSpark.ObjectViewers
             }
             SaveManifests(location);
             MarkDirty(false);
+        }
+
+        private void SaveType<T>(Dictionary<Guid, T> contentDict, string gameType, string location) where T : IGameObject
+        {
+            if (contentDict.Count > 0)
+            {
+                Dictionary<string, List<T>> sortedGameObjects = new Dictionary<string, List<T>>();
+
+                foreach (T gameObject in contentDict.Values)
+                {
+                    if (!sortedGameObjects.ContainsKey(gameObject.Filename))
+                    {
+                        sortedGameObjects[gameObject.Filename] = new List<T>();
+                    }
+                    sortedGameObjects[gameObject.Filename].Add(gameObject);
+                }
+
+                foreach (KeyValuePair<string, List<T>> keyValuePair in sortedGameObjects)
+                {
+                    JObject gameObjects = new JObject
+                    {
+                        [gameType] = JArray.FromObject(keyValuePair.Value)
+                    };
+                    string serializedGameObjects = JsonConvert.SerializeObject(gameObjects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
+                    {
+                        jtw.WriteRaw(serializedGameObjects);
+                    }
+                }
+            }
         }
 
         public void SaveManifests(string location)
@@ -1137,415 +846,63 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            aspectsListView.BeginUpdate();
-            if (aspectsSearchTextBox.Text != "")
-            {
-                Aspect[] aspectsToAdd = SearchAspects(Content.Aspects.Values.ToList(), aspectsSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                aspectsListView.Items.Clear();
-                foreach (Aspect aspect in aspectsToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("aspects")) ? hiddenGroups["aspects"].Contains(aspect.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (aspectsListView.Groups[aspect.filename] == null)
-                        {
-                            group = new ListViewGroup(aspect.filename, aspect.filename);
-                        }
-                        else
-                        {
-                            group = aspectsListView.Groups[aspect.filename];
-                        }
-                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                aspectsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                aspectsListView.Items.Clear();
-                foreach (Aspect aspect in Content.Aspects.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("aspects")) ? hiddenGroups["aspects"].Contains(aspect.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (aspectsListView.Groups[aspect.filename] == null)
-                        {
-                            group = new ListViewGroup(aspect.filename, aspect.filename);
-                        }
-                        else
-                        {
-                            group = aspectsListView.Groups[aspect.filename];
-                        }
-                        ListViewItem item = new ListViewItem(aspect.id) { Tag = aspect.guid, Group = group, Name = aspect.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                aspectsListView.Items.AddRange(items.ToArray());
-            }
-            aspectsListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, "aspects", SearchAspects);
         }
 
         private void ElementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            elementsListView.BeginUpdate();
-            if (elementsSearchTextBox.Text != "")
-            {
-                Element[] elementsToAdd = SearchElements(Content.Elements.Values.ToList(), elementsSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                elementsListView.Items.Clear();
-                foreach (Element element in elementsToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("elements")) ? hiddenGroups["elements"].Contains(element.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (elementsListView.Groups[element.filename] == null)
-                        {
-                            group = new ListViewGroup(element.filename, element.filename);
-                        }
-                        else
-                        {
-                            group = elementsListView.Groups[element.filename];
-                        }
-                        ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                elementsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                elementsListView.Items.Clear();
-                foreach (Element element in Content.Elements.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("elements")) ? hiddenGroups["elements"].Contains(element.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (elementsListView.Groups[element.filename] == null)
-                        {
-                            group = new ListViewGroup(element.filename, element.filename);
-                        }
-                        else
-                        {
-                            group = elementsListView.Groups[element.filename];
-                        }
-                        ListViewItem item = new ListViewItem(element.id) { Tag = element.guid, Group = group, Name = element.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                elementsListView.Items.AddRange(items.ToArray());
-            }
-            elementsListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Elements, elementsSearchTextBox.Text, "elements", SearchElements);
         }
 
         private void RecipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            recipesListView.BeginUpdate();
-            if (recipesSearchTextBox.Text != "")
-            {
-                Recipe[] recipesToAdd = SearchRecipes(Content.Recipes.Values.ToList(), recipesSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                recipesListView.Items.Clear();
-                foreach (Recipe recipe in recipesToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("recipes")) ? hiddenGroups["recipes"].Contains(recipe.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (recipesListView.Groups[recipe.filename] == null)
-                        {
-                            group = new ListViewGroup(recipe.filename, recipe.filename);
-                        }
-                        else
-                        {
-                            group = recipesListView.Groups[recipe.filename];
-                        }
-                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                recipesListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                recipesListView.Items.Clear();
-                foreach (Recipe recipe in Content.Recipes.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("recipes")) ? hiddenGroups["recipes"].Contains(recipe.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (recipesListView.Groups[recipe.filename] == null)
-                        {
-                            group = new ListViewGroup(recipe.filename, recipe.filename);
-                        }
-                        else
-                        {
-                            group = recipesListView.Groups[recipe.filename];
-                        }
-                        ListViewItem item = new ListViewItem(recipe.id) { Tag = recipe.guid, Group = group, Name = recipe.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                recipesListView.Items.AddRange(items.ToArray());
-            }
-            recipesListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Recipes, recipesSearchTextBox.Text, "recipes", SearchRecipes);
         }
 
         private void DecksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            decksListView.BeginUpdate();
-            if (decksSearchTextBox.Text != "")
-            {
-                Deck[] decksToAdd = SearchDecks(Content.Decks.Values.ToList(), decksSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                decksListView.Items.Clear();
-                foreach (Deck deck in decksToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("decks")) ? hiddenGroups["decks"].Contains(deck.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (decksListView.Groups[deck.filename] == null)
-                        {
-                            group = new ListViewGroup(deck.filename, deck.filename);
-                        }
-                        else
-                        {
-                            group = decksListView.Groups[deck.filename];
-                        }
-                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                decksListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                decksListView.Items.Clear();
-                foreach (Deck deck in Content.Decks.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("decks")) ? hiddenGroups["decks"].Contains(deck.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (decksListView.Groups[deck.filename] == null)
-                        {
-                            group = new ListViewGroup(deck.filename, deck.filename);
-                        }
-                        else
-                        {
-                            group = decksListView.Groups[deck.filename];
-                        }
-                        ListViewItem item = new ListViewItem(deck.id) { Tag = deck.guid, Group = group, Name = deck.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                decksListView.Items.AddRange(items.ToArray());
-            }
-            decksListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Decks, decksSearchTextBox.Text, "decks", SearchDecks);
         }
 
         private void LegaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            legaciesListView.BeginUpdate();
-            if (legaciesSearchTextBox.Text != "")
-            {
-                Legacy[] legaciesToAdd = SearchLegacies(Content.Legacies.Values.ToList(), legaciesSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                legaciesListView.Items.Clear();
-                foreach (Legacy legacy in legaciesToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("legacies")) ? hiddenGroups["legacies"].Contains(legacy.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (legaciesListView.Groups[legacy.filename] == null)
-                        {
-                            group = new ListViewGroup(legacy.filename, legacy.filename);
-                        }
-                        else
-                        {
-                            group = legaciesListView.Groups[legacy.filename];
-                        }
-                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                legaciesListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                legaciesListView.Items.Clear();
-                foreach (Legacy legacy in Content.Legacies.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("legacies")) ? hiddenGroups["legacies"].Contains(legacy.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (legaciesListView.Groups[legacy.filename] == null)
-                        {
-                            group = new ListViewGroup(legacy.filename, legacy.filename);
-                        }
-                        else
-                        {
-                            group = legaciesListView.Groups[legacy.filename];
-                        }
-                        ListViewItem item = new ListViewItem(legacy.id) { Tag = legacy.guid, Group = group, Name = legacy.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                legaciesListView.Items.AddRange(items.ToArray());
-            }
-            legaciesListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Legacies, legaciesSearchTextBox.Text, "legacies", SearchLegacies);
         }
 
         private void EndingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            endingsListView.BeginUpdate();
-            if (endingsSearchTextBox.Text != "")
-            {
-                Ending[] endingsToAdd = SearchEndings(Content.Endings.Values.ToList(), endingsSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                endingsListView.Items.Clear();
-                foreach (Ending ending in endingsToAdd)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("endings")) ? hiddenGroups["endings"].Contains(ending.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (endingsListView.Groups[ending.filename] == null)
-                        {
-                            group = new ListViewGroup(ending.filename, ending.filename);
-                        }
-                        else
-                        {
-                            group = endingsListView.Groups[ending.filename];
-                        }
-                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                endingsListView.Items.AddRange(items.ToArray());
-            }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                endingsListView.Items.Clear();
-                foreach (Ending ending in Content.Endings.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("endings")) ? hiddenGroups["endings"].Contains(ending.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (endingsListView.Groups[ending.filename] == null)
-                        {
-                            group = new ListViewGroup(ending.filename, ending.filename);
-                        }
-                        else
-                        {
-                            group = endingsListView.Groups[ending.filename];
-                        }
-                        ListViewItem item = new ListViewItem(ending.id) { Tag = ending.guid, Group = group, Name = ending.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                endingsListView.Items.AddRange(items.ToArray());
-            }
-            endingsListView.EndUpdate();
+            SearchTextBox_TextChanged(Content.Endings, endingsSearchTextBox.Text, "endings", SearchEndings);
         }
 
         private void VerbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            verbsListView.BeginUpdate();
-            if (verbsSearchTextBox.Text != "")
+            SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, "verbs", SearchVerbs);
+        }
+
+        private void SearchTextBox_TextChanged<T>(Dictionary<Guid, T> dict, string NewText, string hiddenGroupsKey, Func<List<T>, string, T[]> func) where T : IGameObject
+        {
+            ListView listView = ListViews[hiddenGroupsKey];
+            listView.BeginUpdate();
+            listView.Items.Clear();
+            List<ListViewItem> items = new List<ListViewItem>();
+            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(hiddenGroupsKey));
+            T[] itemsToAdd = (NewText != "") ? func(dict.Values.ToList(), NewText) : dict.Values.ToArray();
+            foreach (T gameObject in itemsToAdd)
             {
-                Verb[] verbsToAdd = SearchVerbs(Content.Verbs.Values.ToList(), verbsSearchTextBox.Text);
-                List<ListViewItem> items = new List<ListViewItem>();
-                verbsListView.Items.Clear();
-                foreach (Verb verb in verbsToAdd)
+                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[hiddenGroupsKey].Contains(gameObject.Filename) : false;
+                if (!isGroupHidden)
                 {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("verbs")) ? hiddenGroups["verbs"].Contains(verb.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (verbsListView.Groups[verb.filename] == null)
-                        {
-                            group = new ListViewGroup(verb.filename, verb.filename);
-                        }
-                        else
-                        {
-                            group = verbsListView.Groups[verb.filename];
-                        }
-                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
+                    ListViewGroup group = listView.Groups[gameObject.Filename] == null
+                        ? new ListViewGroup(gameObject.Filename, gameObject.Filename)
+                        : listView.Groups[gameObject.Filename];
+                    ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
+                    // group.Items.Add(item);
+                    items.Add(item);
                 }
-                verbsListView.Items.AddRange(items.ToArray());
             }
-            else
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                verbsListView.Items.Clear();
-                foreach (Verb verb in Content.Verbs.Values)
-                {
-                    Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-                    bool isGroupHidden = (hiddenGroups != null && hiddenGroups.ContainsKey("verbs")) ? hiddenGroups["verbs"].Contains(verb.filename) : false;
-                    if (!isGroupHidden)
-                    {
-                        ListViewGroup group;
-                        if (verbsListView.Groups[verb.filename] == null)
-                        {
-                            group = new ListViewGroup(verb.filename, verb.filename);
-                        }
-                        else
-                        {
-                            group = verbsListView.Groups[verb.filename];
-                        }
-                        ListViewItem item = new ListViewItem(verb.id) { Tag = verb.guid, Group = group, Name = verb.id };
-                        // group.Items.Add(item);
-                        items.Add(item);
-                    }
-                }
-                verbsListView.Items.AddRange(items.ToArray());
-            }
-            verbsListView.EndUpdate();
+            listView.Items.AddRange(items.ToArray());
+            listView.EndUpdate();
         }
 
         private string[] SearchKeys(List<string> keysList, string searchPattern)
