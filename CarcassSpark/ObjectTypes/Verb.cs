@@ -20,8 +20,8 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
 
-        public string Filename { get => this.Filename; set => this.Filename = value; }
-        public Guid Guid { get => this.Guid; set => this.Guid = value; }
+        public string Filename { get => this.filename; set => this.filename = value; }
+        public Guid Guid { get => this.guid; set => this.guid = value; }
         public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]

@@ -136,7 +136,7 @@ namespace CarcassSpark.ObjectViewers
                     return false;
                 }
 
-                IEnumerable<string> files = Directory.EnumerateFiles(Content.currentDirectory + (isVanilla ? "" : "\\content\\", "*.json", SearchOption.AllDirectories));
+                IEnumerable<string> files = Directory.EnumerateFiles(Content.currentDirectory + (isVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
 
                 foreach (string file in files)
                 {
