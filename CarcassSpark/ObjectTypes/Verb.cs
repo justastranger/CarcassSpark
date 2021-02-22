@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Verb
+    public class Verb : IGameObject
     {
         [JsonIgnore]
         public string filename;
@@ -19,6 +19,10 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> extends;
+
+        public string Filename { get => this.Filename; set => this.Filename = value; }
+        public Guid Guid { get => this.Guid; set => this.Guid = value; }
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public Verb(string id, string label, string description, string comments, bool? deleted, Slot slot, List<string> extends)
