@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace CarcassSpark.ObjectTypes
 {
@@ -623,6 +624,49 @@ namespace CarcassSpark.ObjectTypes
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
+        }
+
+        public void SetHiddenGroup(string type, string groupName)
+        {
+            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            if (hiddenGroups == null)
+            {
+                hiddenGroups = new Dictionary<string, List<string>>();
+            }
+
+            if (!hiddenGroups.ContainsKey(type))
+            {
+                hiddenGroups[type] = new List<string>();
+            }
+            hiddenGroups[type].Add(groupName);
+            CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+        }
+
+        public string[] GetHiddenGroups(string type)
+        {
+            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            return hiddenGroups != null && hiddenGroups.ContainsKey(type) ? hiddenGroups[type] : null;
+        }
+
+        public string[] GetAllHiddenGroups()
+        {
+            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            string[] allGroups = new string[] { };
+            foreach (string type in hiddenGroups.Keys)
+            {
+                allGroups.Concat(hiddenGroups[type]);
+            }
+            return allGroups.Count() > 0 ? allGroups : null;
+        }
+
+        public void ResetHiddenGroups(string type)
+        {
+            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
+            {
+                hiddenGroups.Remove(type);
+                CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+            }
         }
     }
 }

@@ -696,6 +696,7 @@ namespace CarcassSpark.ObjectViewers
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
+                SelectedModViewer.MarkDirty();
             }
         }
 
@@ -951,6 +952,48 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        private void aspectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("aspects");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void elementsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("elements");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void recipesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("recipes");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void decksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("decks");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void legaciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("legacies");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void endingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("endings");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+
+        private void verbsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedModViewer.Content.ResetHiddenGroups("verbs");
+            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
+        }
+		
         private void TabbedModViewer_Shown(object sender, EventArgs e)
         {
             if (Settings.settings["GamePath"] == null)
