@@ -897,6 +897,10 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
                     // group.Items.Add(item);
                     items.Add(item);
+                    if(!listView.Groups.Contains(group))
+                    {
+                        listView.Groups.Add(group);
+                    }
                 }
             }
             listView.Items.AddRange(items.ToArray());
