@@ -488,7 +488,7 @@ namespace CarcassSpark.ObjectViewers
         {
             CreateDirectories(location);
             ClearContentFolder(location);
-            SaveType(Content.Aspects, "aspects", location);
+            SaveType(Content.Aspects, "elements", location);
             SaveType(Content.Elements, "elements", location);
             SaveType(Content.Recipes, "recipes", location);
             SaveType(Content.Decks, "decks", location);
@@ -512,7 +512,7 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty(false);
         }
 
-        private void SaveType<T>(Dictionary<Guid, T> contentDict, string typeName, string location) where T : IGameObject
+        private void SaveType<T>(Dictionary<Guid, T> contentDict, string gameType, string location) where T : IGameObject
         {
             if (contentDict.Count > 0)
             {
@@ -531,7 +531,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     JObject gameObjects = new JObject
                     {
-                        [typeName] = JArray.FromObject(keyValuePair.Value)
+                        [gameType] = JArray.FromObject(keyValuePair.Value)
                     };
                     string serializedGameObjects = JsonConvert.SerializeObject(gameObjects, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                     using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/content/" + keyValuePair.Key + ".json", FileMode.Create))))
