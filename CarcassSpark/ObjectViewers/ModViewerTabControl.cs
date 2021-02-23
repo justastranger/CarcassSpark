@@ -22,8 +22,7 @@ namespace CarcassSpark.ObjectViewers
         public EventHandler<bool> MarkDirtyEventHandler;
 
         public bool IsDirty { get; private set; } = false;
-
-        public Dictionary<string, ListView> ListViews = new Dictionary<string, ListView>();
+        public Dictionary<string, ListView> ListViews { get; set; } = new Dictionary<string, ListView>();
 
         public ContentSource Content = new ContentSource();
 
@@ -237,7 +236,7 @@ namespace CarcassSpark.ObjectViewers
         {
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd());
+            Content.SetCustomManifest(JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()));
         }
 
         public void LoadWidths()
@@ -311,8 +310,8 @@ namespace CarcassSpark.ObjectViewers
                 JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
                 string fileType = parsedJToken.Path;
                 bool isGroupHidden = false;
-                
-                Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+
+                Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
                 if (hiddenGroups != null && fileName != null && hiddenGroups.ContainsKey(fileType) && hiddenGroups[fileType] != null)
                 {
                     isGroupHidden = hiddenGroups[fileType].Contains(fileName);
@@ -343,7 +342,7 @@ namespace CarcassSpark.ObjectViewers
                                 }
                                 else if (xtrigger.Value.Value<string>() != null)
                                 {
-                                    xtrigger.Value = JArray.FromObject(new List<XTrigger>() { new XTrigger(xtrigger.Value.Value<string>()) });
+                                    xtrigger.Value = JArray.FromObject(new List<XTrigger> { new XTrigger(xtrigger.Value.Value<string>()) });
                                 }
                             }
                         }
@@ -395,8 +394,7 @@ namespace CarcassSpark.ObjectViewers
                         Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
                     }
                     return;
-                default:
-                    break;
+                // Default case is empty.
                 }
             }
         }
@@ -557,6 +555,11 @@ namespace CarcassSpark.ObjectViewers
             SaveCustomManifest(location);
         }
 
+        public void SaveCustomManifest()
+        {
+            SaveCustomManifest(Content.currentDirectory);
+        }
+
         public void SaveCustomManifest(string location)
         {
             if (isVanilla)
@@ -564,9 +567,9 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
 
-            if (Content.CustomManifest.Count > 0)
+            if (Content.GetCustomManifest().Count > 0)
             {
-                string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
+                string CustomManifestJson = JsonConvert.SerializeObject(Content.GetCustomManifest(), Formatting.Indented);
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/CarcassSpark.Manifest.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(CustomManifestJson);
@@ -898,6 +901,10 @@ namespace CarcassSpark.ObjectViewers
                         : listView.Groups[gameObject.Filename];
                     ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
                     // group.Items.Add(item);
+                    if (!listView.Groups.Contains(group))
+                    {
+                        listView.Groups.Add(group);
+                    }
                     items.Add(item);
                 }
             }
@@ -3662,63 +3669,63 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void hideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["aspects"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["aspects"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("aspects", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["elements"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["elements"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("elements", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["recipes"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["recipes"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("recipes", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["decks"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["decks"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("decks", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["legacies"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["legacies"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("legacies", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["endings"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["endings"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("endings", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private void hideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = hideCurrentGroupShortTerm(ListViews["verbs"]);
+            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["verbs"]);
             if (group==null) { return; }
             Content.SetHiddenGroup("verbs", group.Name);
             SaveCustomManifest(Content.currentDirectory);
         }
 
-        private ListViewGroup hideCurrentGroupShortTerm(ListView lv)
+        private ListViewGroup HideCurrentGroupShortTerm(ListView lv)
         {
             if (lv.SelectedItems.Count < 1)
             {
@@ -3775,15 +3782,38 @@ namespace CarcassSpark.ObjectViewers
         public bool GroupExistsAsHidden(string newGroup)
         {
             bool isGroupHidden = false;
-            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             if (hiddenGroups != null)
             {
                 foreach (string key in hiddenGroups.Keys)
                 {
-                    isGroupHidden |= hiddenGroups[key].Contains(newGroup) || hiddenGroups[key].Contains(newGroup + ".json");
+                    isGroupHidden |= hiddenGroups[key].Contains(newGroup) | hiddenGroups[key].Contains(newGroup + ".json");
                 }
             }
             return isGroupHidden;
+        }
+
+        // This should only ever get called from the reset hidden groups button!
+        public void ReloadListView<T>(Dictionary<Guid, T> dict, string type) where T : IGameObject
+        {
+            ListView listView = ListViews[type];
+            listView.BeginUpdate();
+            listView.Items.Clear();
+            List<ListViewItem> itemsToAdd = new List<ListViewItem>();
+
+            foreach (T entity in dict.Values)
+            {
+                ListViewGroup group = listView.Groups[entity.Filename] ?? new ListViewGroup(entity.Filename, entity.Filename);
+                if (!listView.Groups.Contains(group))
+                {
+                    listView.Groups.Add(group);
+                }
+                ListViewItem listViewItem = new ListViewItem(entity.ID) { Tag = entity.Guid, Group = group, Name = entity.ID };
+                itemsToAdd.Add(listViewItem);
+            }
+
+            listView.Items.AddRange(itemsToAdd.ToArray());
+            listView.EndUpdate();
         }
     }
 }
