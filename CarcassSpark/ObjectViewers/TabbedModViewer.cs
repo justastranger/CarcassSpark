@@ -224,7 +224,7 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             toggleEditModeToolStripMenuItem.Checked = !toggleEditModeToolStripMenuItem.Checked;
-            SelectedModViewer.Content.CustomManifest["EditMode"] = toggleEditModeToolStripMenuItem.Checked;
+            SelectedModViewer.Content.SetEditMode(toggleEditModeToolStripMenuItem.Checked);
             SelectedModViewer.SetEditingMode(toggleEditModeToolStripMenuItem.Checked);
         }
 
@@ -823,7 +823,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (!SelectedModViewer.isVanilla)
                 {
-                    SelectedModViewer.Content.CustomManifest.Remove("saveWidths");
+                    SelectedModViewer.Content.GetCustomManifest().Remove("saveWidths");
                 }
                 else
                 {

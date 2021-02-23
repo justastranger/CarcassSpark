@@ -236,7 +236,7 @@ namespace CarcassSpark.ObjectViewers
         {
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd());
+            Content.SetCustomManifest(JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()));
         }
 
         public void LoadWidths()
@@ -310,8 +310,8 @@ namespace CarcassSpark.ObjectViewers
                 JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
                 string fileType = parsedJToken.Path;
                 bool isGroupHidden = false;
-                
-                Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+
+                Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
                 if (hiddenGroups != null && fileName != null && hiddenGroups.ContainsKey(fileType) && hiddenGroups[fileType] != null)
                 {
                     isGroupHidden = hiddenGroups[fileType].Contains(fileName);
@@ -562,9 +562,9 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
 
-            if (Content.CustomManifest.Count > 0)
+            if (Content.GetCustomManifest().Count > 0)
             {
-                string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
+                string CustomManifestJson = JsonConvert.SerializeObject(Content.GetCustomManifest(), Formatting.Indented);
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/CarcassSpark.Manifest.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(CustomManifestJson);
@@ -877,23 +877,21 @@ namespace CarcassSpark.ObjectViewers
             SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, "verbs", SearchVerbs);
         }
 
-        private void SearchTextBox_TextChanged<T>(Dictionary<Guid, T> dict, string NewText, string hiddenGroupsKey, Func<List<T>, string, T[]> func) where T : IGameObject
+        private void SearchTextBox_TextChanged<T>(Dictionary<Guid, T> dict, string NewText, string entityType, Func<List<T>, string, T[]> func) where T : IGameObject
         {
-            ListView listView = ListViews[hiddenGroupsKey];
+            ListView listView = ListViews[entityType];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
-            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(hiddenGroupsKey));
+            Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(entityType));
             T[] itemsToAdd = (NewText != "") ? func(dict.Values.ToList(), NewText) : dict.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
-                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[hiddenGroupsKey].Contains(gameObject.Filename) : false;
+                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[entityType].Contains(gameObject.Filename) : false;
                 if (!isGroupHidden)
                 {
-                    ListViewGroup group = listView.Groups[gameObject.Filename] == null
-                        ? new ListViewGroup(gameObject.Filename, gameObject.Filename)
-                        : listView.Groups[gameObject.Filename];
+                    ListViewGroup group = listView.Groups[gameObject.Filename] ?? new ListViewGroup(gameObject.Filename, gameObject.Filename);
                     ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
                     // group.Items.Add(item);
                     if (!listView.Groups.Contains(group))
@@ -3777,12 +3775,12 @@ namespace CarcassSpark.ObjectViewers
         public bool GroupExistsAsHidden(string newGroup)
         {
             bool isGroupHidden = false;
-            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             if (hiddenGroups != null)
             {
                 foreach (string key in hiddenGroups.Keys)
                 {
-                    isGroupHidden |= hiddenGroups[key].Contains(newGroup) || hiddenGroups[key].Contains(newGroup + ".json");
+                    isGroupHidden |= hiddenGroups[key].Contains(newGroup) | hiddenGroups[key].Contains(newGroup + ".json");
                 }
             }
             return isGroupHidden;

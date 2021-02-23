@@ -15,9 +15,14 @@ namespace CarcassSpark.ObjectTypes
         public string currentDirectory;
         public Synopsis synopsis;
 
-        public JObject CustomManifest = new JObject();
+        private JObject CustomManifest = new JObject();
         // CustomManifest["EditMode"]
         // CustomManifest["AutoSave"]
+        // CustomManifest["hiddenGroups"]
+        // CustomManifest["widths"]
+        // CustomManifest["saveWidths"]
+        // CustomManifest["recentGroups"]
+        // oh man why did I do that to myself
 
         public Dictionary<Guid, Aspect> Aspects = new Dictionary<Guid, Aspect>();
         public Dictionary<Guid, Element> Elements = new Dictionary<Guid, Element>();
@@ -397,6 +402,16 @@ namespace CarcassSpark.ObjectTypes
             return false;
         }
 
+        public void SetCustomManifest(JObject customManifest)
+        {
+            CustomManifest = customManifest;
+        }
+
+        public JObject GetCustomManifest()
+        {
+            return CustomManifest;
+        }
+
         public void SetCustomManifestProperty(string key, object value)
         {
             CustomManifest[key] = JToken.FromObject(value);
@@ -648,7 +663,7 @@ namespace CarcassSpark.ObjectTypes
             return hiddenGroups != null && hiddenGroups.ContainsKey(type) ? hiddenGroups[type] : null;
         }
 
-        public string[] GetAllHiddenGroups()
+        public string[] GetHiddenGroupsFlattened()
         {
             Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             string[] allGroups = new string[] { };
@@ -657,6 +672,33 @@ namespace CarcassSpark.ObjectTypes
                 allGroups.Concat(hiddenGroups[type]);
             }
             return allGroups.Count() > 0 ? allGroups : null;
+        }
+
+        public Dictionary<string, List<string>> GetHiddenGroupsDictionary()
+        {
+            return CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+        }
+
+        public List<string> GetHiddenGroupsForType(string type)
+        {
+            return GetHiddenGroupsDictionary()[type];
+        }
+
+        public bool GetEditMode()
+        {
+            if (CustomManifest["EditMode"] != null)
+            {
+                return CustomManifest["EditMode"].ToObject<bool>();
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SetEditMode(bool editMode)
+        {
+            CustomManifest["EditMode"] = editMode;
         }
 
         public void ResetHiddenGroups(string type)
