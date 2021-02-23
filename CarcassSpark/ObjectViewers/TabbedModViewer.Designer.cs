@@ -76,6 +76,7 @@
             this.legaciesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hiddenGroupManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,6 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.hiddenGroupManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -103,8 +103,8 @@
             this.importToolStripButton,
             this.toolsToolStripButton,
             this.settingsToolStripButton,
-            this.aboutToolStripButton,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.aboutToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(935, 25);
@@ -501,6 +501,13 @@
             this.verbsToolStripMenuItem1.Text = "Verbs";
             this.verbsToolStripMenuItem1.Click += new System.EventHandler(this.VerbsToolStripMenuItem_Click);
             // 
+            // hiddenGroupManagerToolStripMenuItem
+            // 
+            this.hiddenGroupManagerToolStripMenuItem.Name = "hiddenGroupManagerToolStripMenuItem";
+            this.hiddenGroupManagerToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.hiddenGroupManagerToolStripMenuItem.Text = "Hidden Group Manager";
+            this.hiddenGroupManagerToolStripMenuItem.Click += new System.EventHandler(this.hiddenGroupManagerToolStripMenuItem_Click);
+            // 
             // hideToolStripMenuItem
             // 
             this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
@@ -600,13 +607,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
-            // 
-            // hiddenGroupManagerToolStripMenuItem
-            // 
-            this.hiddenGroupManagerToolStripMenuItem.Name = "hiddenGroupManagerToolStripMenuItem";
-            this.hiddenGroupManagerToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.hiddenGroupManagerToolStripMenuItem.Text = "Hidden Group Manager";
-            this.hiddenGroupManagerToolStripMenuItem.Click += new System.EventHandler(this.hiddenGroupManagerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
