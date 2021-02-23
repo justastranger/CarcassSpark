@@ -3141,13 +3141,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         aspectsListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        aspectsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetAspect((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    aspectsListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetAspect((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Aspect", newGroup);
@@ -3205,13 +3204,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         elementsListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        elementsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetElement((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    elementsListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetElement((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Element", newGroup);
@@ -3269,13 +3267,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         recipesListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        recipesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetRecipe((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    recipesListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetRecipe((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Recipe", newGroup);
@@ -3333,13 +3330,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         decksListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        decksListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetDeck((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    decksListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetDeck((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Deck", newGroup);
@@ -3397,13 +3393,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         legaciesListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        legaciesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetLegacy((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    legaciesListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetLegacy((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Legacy", newGroup);
@@ -3461,13 +3456,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         endingsListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        endingsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetEnding((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    endingsListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetEnding((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
             }
@@ -3524,13 +3518,12 @@ namespace CarcassSpark.ObjectViewers
                     {
                         verbsListView.Groups[newGroup].Items.Add(selectedItem);
                     }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        verbsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.GetVerb((Guid)selectedItem.Tag).Filename = newGroup;
-                    }
+
+                    ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                    verbsListView.Groups.Add(listViewGroup);
+                    listViewGroup.Items.Add(selectedItem);
+                    Content.GetVerb((Guid)selectedItem.Tag).Filename = newGroup;
+
                     MarkDirty();
                 }
                 Content.SetRecentGroup("Verb", newGroup);
