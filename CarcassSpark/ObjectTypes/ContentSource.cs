@@ -684,6 +684,33 @@ namespace CarcassSpark.ObjectTypes
             return GetHiddenGroupsDictionary()[type];
         }
 
+        public void SetHiddenGroupsForType(string type, List<string> groups)
+        {
+            if (CustomManifest["hiddenGroups"] != null)
+            {
+                CustomManifest["hiddenGroups"][type] = JArray.FromObject(groups);
+            }
+            else
+            {
+                CustomManifest["hiddenGroups"] = JObject.FromObject(new Dictionary<string, List<string>>()
+                {
+                    { type, groups }
+                });
+            }
+        }
+
+        public void SetHiddenGroups(Dictionary<string, List<string>> hiddenGroups)
+        {
+            if (hiddenGroups != null && hiddenGroups.Count > 0)
+            {
+                CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+            }
+            else if (CustomManifest["hiddenGroups"] != null)
+            {
+                CustomManifest.Remove("hiddenGroups");
+            }
+        }
+
         public bool GetEditMode()
         {
             if (CustomManifest["EditMode"] != null)
@@ -707,7 +734,14 @@ namespace CarcassSpark.ObjectTypes
             if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
             {
                 hiddenGroups.Remove(type);
-                CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+                if (hiddenGroups.Count > 0)
+                {
+                    CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+                }
+                else if (CustomManifest["hiddenGroups"] != null)
+                {
+                    CustomManifest.Remove("hiddenGroups");
+                }
             }
         }
     }

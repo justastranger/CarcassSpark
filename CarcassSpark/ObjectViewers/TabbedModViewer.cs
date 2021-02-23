@@ -1049,5 +1049,16 @@ namespace CarcassSpark.ObjectViewers
                 InitializeTabs();
             }
         }
+
+        private void hiddenGroupManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HiddenGroupManager hiddenGroupManager = new HiddenGroupManager(SelectedModViewer.Content.GetHiddenGroupsDictionary());
+            if (hiddenGroupManager.ShowDialog() == DialogResult.OK)
+            {
+                SelectedModViewer.Content.SetHiddenGroups(hiddenGroupManager.HiddenGroups);
+                SelectedModViewer.SaveCustomManifest();
+                SelectedModViewer.LoadContent();
+            }
+        }
     }
 }

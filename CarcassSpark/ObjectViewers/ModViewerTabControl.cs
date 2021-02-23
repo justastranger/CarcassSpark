@@ -555,6 +555,11 @@ namespace CarcassSpark.ObjectViewers
             SaveCustomManifest(location);
         }
 
+        public void SaveCustomManifest()
+        {
+            SaveCustomManifest(Content.currentDirectory);
+        }
+
         public void SaveCustomManifest(string location)
         {
             if (isVanilla)

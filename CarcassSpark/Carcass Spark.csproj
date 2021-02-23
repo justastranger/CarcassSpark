@@ -300,6 +300,12 @@
     <Compile Include="Tools\GroupEditor.Designer.cs">
       <DependentUpon>GroupEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\HiddenGroupManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\HiddenGroupManager.Designer.cs">
+      <DependentUpon>HiddenGroupManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ImageViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\GroupEditor.resx">
       <DependentUpon>GroupEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\HiddenGroupManager.resx">
+      <DependentUpon>HiddenGroupManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ImageViewer.resx">
       <DependentUpon>ImageViewer.cs</DependentUpon>
