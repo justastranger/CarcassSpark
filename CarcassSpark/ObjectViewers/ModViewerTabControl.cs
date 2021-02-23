@@ -847,6 +847,8 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty();
         }
 
+        #region "Search Text Box Text Changed" events
+
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, "aspects", SearchAspects);
@@ -1085,6 +1087,8 @@ namespace CarcassSpark.ObjectViewers
                         select verb).ToArray();
             }
         }
+
+        #endregion
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2000,6 +2004,8 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #region "Open Selected JSON" events
+
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1)
@@ -2230,6 +2236,9 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
         }
+
+        #endregion
+        #region "Duplicate Selected" events
 
         private void DuplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2504,6 +2513,9 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty();
         }
 
+        #endregion
+        #region "Export Selected" events
+
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1)
@@ -2628,6 +2640,8 @@ namespace CarcassSpark.ObjectViewers
         {
             Clipboard.SetText(Utilities.SerializeObject(objectToExport));
         }
+        #endregion
+        #region "Copy Selected JSON to Clipboard" events
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2741,6 +2755,9 @@ namespace CarcassSpark.ObjectViewers
             CopyObjectJSONToClipboard(exportedVerb);
         }
 
+        #endregion
+        #region "New" events
+
         private void NewAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AspectViewer av = new AspectViewer(new Aspect(), AspectsList_Add, null);
@@ -2782,6 +2799,9 @@ namespace CarcassSpark.ObjectViewers
             VerbViewer vv = new VerbViewer(new Verb(), VerbsList_Add, null);
             vv.Show();
         }
+
+        #endregion
+        #region Add to List events
 
         public void AspectsList_Add(object sender, Aspect result)
         {
@@ -2937,6 +2957,8 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty();
         }
 
+        #endregion
+
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
         {
             LoadWidths();
@@ -2976,6 +2998,8 @@ namespace CarcassSpark.ObjectViewers
         {
             SaveWidths();
         }
+
+        #region ListView Key Down events
 
         private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
         {
@@ -3091,6 +3115,9 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
         }
+
+        #endregion
+        #region Set Group toolstrip menu item clicked events
 
         private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3539,6 +3566,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
+        #region Use Template toolstrip menu item clicked events
+
         private void UseTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Aspect));
@@ -3668,6 +3698,8 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
         }
+        #endregion
+        #region Hide Group toolstrip menu items clicked events
 
         private void HideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3755,7 +3787,9 @@ namespace CarcassSpark.ObjectViewers
             }
             return group;
         }
-        
+
+        #endregion
+
         private void ModViewerTabControl_Load(object sender, EventArgs e)
         {
 
