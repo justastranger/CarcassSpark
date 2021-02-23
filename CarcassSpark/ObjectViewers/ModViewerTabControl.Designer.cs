@@ -195,10 +195,11 @@
             this.copyAspectJSONToClipboardToolStripMenuItem,
             this.openSelectedAspectsJSONToolStripMenuItem,
             this.newAspectToolStripMenuItem,
-            this.setGroupAspectToolStripMenuItem});
+            this.setGroupAspectToolStripMenuItem,
+            this.hideGroupAspectToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 180);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(306, 224);
             // 
             // searchToolStripMenuItem
             // 
@@ -321,7 +322,7 @@
             this.hideGroupAspectToolStripMenuItem.Name = "hideGroupAspectToolStripMenuItem";
             this.hideGroupAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.hideGroupAspectToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupAspectToolStripMenuItem.Click += new System.EventHandler(this.hideGroupAspectToolStripMenuItem_Click);
+            this.hideGroupAspectToolStripMenuItem.Click += new System.EventHandler(this.HideGroupAspectToolStripMenuItem_Click);
             // 
             // elementContextMenuStrip
             // 
@@ -333,10 +334,11 @@
             this.copyElementJSONToClipboardToolStripMenuItem,
             this.openSelectedElementsJSONToolStripMenuItem,
             this.newElementToolStripMenuItem,
-            this.setGroupElementToolStripMenuItem});
+            this.setGroupElementToolStripMenuItem,
+            this.hideGroupElementToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 180);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(313, 202);
             // 
             // searchToolStripMenuItem1
             // 
@@ -469,7 +471,7 @@
             this.hideGroupElementToolStripMenuItem.Name = "hideGroupElementToolStripMenuItem";
             this.hideGroupElementToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.hideGroupElementToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupElementToolStripMenuItem.Click += new System.EventHandler(this.hideGroupElementToolStripMenuItem_Click);
+            this.hideGroupElementToolStripMenuItem.Click += new System.EventHandler(this.HideGroupElementToolStripMenuItem_Click);
             // 
             // recipeContextMenuStrip
             // 
@@ -482,10 +484,11 @@
             this.copyRecipeJSONToClipboardToolStripMenuItem,
             this.openSelectedRecipesJSONToolStripMenuItem,
             this.newRecipeToolStripMenuItem,
-            this.setGroupRecipeToolStripMenuItem});
+            this.setGroupRecipeToolStripMenuItem,
+            this.hideGroupRecipeToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 202);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(258, 224);
             // 
             // searchForToolStripMenuItem
             // 
@@ -577,7 +580,7 @@
             this.hideGroupRecipeToolStripMenuItem.Name = "hideGroupRecipeToolStripMenuItem";
             this.hideGroupRecipeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.hideGroupRecipeToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupRecipeToolStripMenuItem.Click += new System.EventHandler(this.hideGroupRecipeToolStripMenuItem_Click);
+            this.hideGroupRecipeToolStripMenuItem.Click += new System.EventHandler(this.HideGroupRecipeToolStripMenuItem_Click);
             // 
             // deckContextMenuStrip
             // 
@@ -589,10 +592,11 @@
             this.copyDeckJSONToClipboardToolStripMenuItem,
             this.openSelectedDecksJSONToolStripMenuItem,
             this.newDeckToolStripMenuItem,
-            this.setGroupDeckToolStripMenuItem});
+            this.setGroupDeckToolStripMenuItem,
+            this.hideGroupDeckToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 180);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(296, 202);
             // 
             // searchForToolStripMenuItem1
             // 
@@ -677,7 +681,7 @@
             this.hideGroupDeckToolStripMenuItem.Name = "hideGroupDeckToolStripMenuItem";
             this.hideGroupDeckToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
             this.hideGroupDeckToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupDeckToolStripMenuItem.Click += new System.EventHandler(this.hideGroupDeckToolStripMenuItem_Click);
+            this.hideGroupDeckToolStripMenuItem.Click += new System.EventHandler(this.HideGroupDeckToolStripMenuItem_Click);
             // 
             // legacyContextMenuStrip
             // 
@@ -688,9 +692,10 @@
             this.copySelectedLegacyJSONToClipboardToolStripMenuItem,
             this.openSelectedLegacysJSONToolStripMenuItem,
             this.newLegacyToolStripMenuItem,
-            this.setGroupLegacyToolStripMenuItem});
+            this.setGroupLegacyToolStripMenuItem,
+            this.hideGroupLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 158);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(332, 180);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
@@ -760,7 +765,7 @@
             this.hideGroupLegacyToolStripMenuItem.Name = "hideGroupLegacyToolStripMenuItem";
             this.hideGroupLegacyToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.hideGroupLegacyToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.hideGroupLegacyToolStripMenuItem_Click);
+            this.hideGroupLegacyToolStripMenuItem.Click += new System.EventHandler(this.HideGroupLegacyToolStripMenuItem_Click);
             // 
             // endingContextMenuStrip
             // 
@@ -772,9 +777,10 @@
             this.copySelectedEndingJSONToClipboardToolStripMenuItem,
             this.openSelectedEndingsJSONToolStripMenuItem,
             this.newEndingToolStripMenuItem,
-            this.setGroupEndingToolStripMenuItem});
+            this.setGroupEndingToolStripMenuItem,
+            this.hideGroupEndingToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 180);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(332, 202);
             // 
             // searchForToolStripMenuItem2
             // 
@@ -859,7 +865,7 @@
             this.hideGroupEndingToolStripMenuItem.Name = "hideGroupEndingToolStripMenuItem";
             this.hideGroupEndingToolStripMenuItem.Size = new System.Drawing.Size(331, 22);
             this.hideGroupEndingToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.hideGroupEndingToolStripMenuItem_Click);
+            this.hideGroupEndingToolStripMenuItem.Click += new System.EventHandler(this.HideGroupEndingToolStripMenuItem_Click);
             // 
             // verbContextMenuStrip
             // 
@@ -871,7 +877,8 @@
             this.copySelectedVerbJSONToClipboardToolStripMenuItem,
             this.openSelectedVerbsJSONToolStripMenuItem,
             this.newVerbToolStripMenuItem,
-            this.setGroupVerbToolStripMenuItem});
+            this.setGroupVerbToolStripMenuItem,
+            this.hideGroupVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
             this.verbContextMenuStrip.Size = new System.Drawing.Size(318, 202);
             // 
@@ -966,7 +973,7 @@
             this.hideGroupVerbToolStripMenuItem.Name = "hideGroupVerbToolStripMenuItem";
             this.hideGroupVerbToolStripMenuItem.Size = new System.Drawing.Size(317, 22);
             this.hideGroupVerbToolStripMenuItem.Text = "Hide Group";
-            this.hideGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.hideGroupVerbToolStripMenuItem_Click);
+            this.hideGroupVerbToolStripMenuItem.Click += new System.EventHandler(this.HideGroupVerbToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
