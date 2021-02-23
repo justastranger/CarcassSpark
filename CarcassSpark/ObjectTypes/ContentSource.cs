@@ -730,18 +730,11 @@ namespace CarcassSpark.ObjectTypes
 
         public void ResetHiddenGroups(string type)
         {
-            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
             if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
             {
                 hiddenGroups.Remove(type);
-                if (hiddenGroups.Count > 0)
-                {
-                    CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
-                }
-                else if (CustomManifest["hiddenGroups"] != null)
-                {
-                    CustomManifest.Remove("hiddenGroups");
-                }
+                SetHiddenGroups(hiddenGroups);
             }
         }
     }
