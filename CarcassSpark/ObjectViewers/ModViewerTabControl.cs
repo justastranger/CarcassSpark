@@ -604,13 +604,13 @@ namespace CarcassSpark.ObjectViewers
         private void AspectsList_Assign(object sender, Aspect result)
         {
             AspectViewer aspectViewer = (AspectViewer)sender;
-            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
-                aspectViewer.associatedListViewItem.Tag = result.guid;
+                aspectViewer.associatedListViewItem.Tag = result.Guid;
                 Aspect newAspect = result.Copy();
                 newAspect.Filename = aspectViewer.associatedListViewItem.Group.Name;
-                Content.Aspects.Add(result.guid, newAspect);
+                Content.Aspects.Add(result.Guid, newAspect);
             }
             if (aspectViewer.associatedListViewItem.Text != result.ID)
             {
@@ -642,13 +642,13 @@ namespace CarcassSpark.ObjectViewers
         private void DecksList_Assign(object sender, Deck result)
         {
             DeckViewer deckViewer = (DeckViewer)sender;
-            if ((Guid)deckViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)deckViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
-                deckViewer.associatedListViewItem.Tag = result.guid;
+                deckViewer.associatedListViewItem.Tag = result.Guid;
                 Deck newDeck = result.Copy();
                 newDeck.Filename = deckViewer.associatedListViewItem.Group.Name;
-                Content.Decks.Add(result.guid, newDeck);
+                Content.Decks.Add(result.Guid, newDeck);
             }
             if (deckViewer.associatedListViewItem.Text != result.ID)
             {
@@ -680,13 +680,13 @@ namespace CarcassSpark.ObjectViewers
         private void ElementsList_Assign(object sender, Element result)
         {
             ElementViewer elementViewer = (ElementViewer)sender;
-            if ((Guid)elementViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)elementViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
-                elementViewer.associatedListViewItem.Tag = result.guid;
+                elementViewer.associatedListViewItem.Tag = result.Guid;
                 Element newElement = result.Copy();
                 newElement.Filename = elementViewer.associatedListViewItem.Group.Name;
-                Content.Elements.Add(result.guid, newElement);
+                Content.Elements.Add(result.Guid, newElement);
             }
             if (elementViewer.associatedListViewItem.Text != result.ID)
             {
@@ -718,13 +718,13 @@ namespace CarcassSpark.ObjectViewers
         private void EndingsList_Assign(object sender, Ending result)
         {
             EndingViewer endingViewer = (EndingViewer)sender;
-            if ((Guid)endingViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)endingViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
-                endingViewer.associatedListViewItem.Tag = result.guid;
+                endingViewer.associatedListViewItem.Tag = result.Guid;
                 Ending newEnding = result.Copy();
                 newEnding.Filename = endingViewer.associatedListViewItem.Group.Name;
-                Content.Endings.Add(result.guid, newEnding);
+                Content.Endings.Add(result.Guid, newEnding);
             }
             if (endingViewer.associatedListViewItem.Text != result.ID)
             {
@@ -756,13 +756,13 @@ namespace CarcassSpark.ObjectViewers
         private void LegaciesList_Assign(object sender, Legacy result)
         {
             LegacyViewer legacyViewer = (LegacyViewer)sender;
-            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
-                legacyViewer.associatedListViewItem.Tag = result.guid;
+                legacyViewer.associatedListViewItem.Tag = result.Guid;
                 Legacy newLegacy = result.Copy();
                 newLegacy.Filename = legacyViewer.associatedListViewItem.Group.Name;
-                Content.Legacies.Add(result.guid, newLegacy);
+                Content.Legacies.Add(result.Guid, newLegacy);
             }
             if (legacyViewer.associatedListViewItem.Text != result.ID)
             {
@@ -794,13 +794,13 @@ namespace CarcassSpark.ObjectViewers
         private void RecipesList_Assign(object sender, Recipe result)
         {
             RecipeViewer recipeViewer = (RecipeViewer)sender;
-            if ((Guid)recipeViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)recipeViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Recipes.Remove((Guid)recipeViewer.associatedListViewItem.Tag);
-                recipeViewer.associatedListViewItem.Tag = result.guid;
+                recipeViewer.associatedListViewItem.Tag = result.Guid;
                 Recipe newRecipe = result.Copy();
                 newRecipe.Filename = recipeViewer.associatedListViewItem.Group.Name;
-                Content.Recipes.Add(result.guid, newRecipe);
+                Content.Recipes.Add(result.Guid, newRecipe);
             }
             if (recipeViewer.associatedListViewItem.Text != result.ID)
             {
@@ -832,13 +832,13 @@ namespace CarcassSpark.ObjectViewers
         private void VerbsList_Assign(object sender, Verb result)
         {
             VerbViewer verbViewer = (VerbViewer)sender;
-            if ((Guid)verbViewer.associatedListViewItem.Tag != result.guid)
+            if ((Guid)verbViewer.associatedListViewItem.Tag != result.Guid)
             {
                 Content.Verbs.Remove((Guid)verbViewer.associatedListViewItem.Tag);
-                verbViewer.associatedListViewItem.Tag = result.guid;
+                verbViewer.associatedListViewItem.Tag = result.Guid;
                 Verb newVerb = result.Copy();
                 newVerb.Filename = verbViewer.associatedListViewItem.Group.Name;
-                Content.Verbs.Add(result.guid, newVerb);
+                Content.Verbs.Add(result.Guid, newVerb);
             }
             if (verbViewer.associatedListViewItem.Text != result.ID)
             {
@@ -1097,11 +1097,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (element.aspects != null && element.aspects.ContainsKey(id))
                 {
-                    tmp[element.guid] = element;
+                    tmp[element.Guid] = element;
                 }
                 else if (element.aspects_extend != null && element.aspects_extend.ContainsKey(id))
                 {
-                    tmp[element.guid] = element;
+                    tmp[element.Guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1124,11 +1124,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (element.xtriggers != null && element.xtriggers.ContainsKey(id))
                 {
-                    tmp[element.guid] = element;
+                    tmp[element.Guid] = element;
                 }
                 else if (element.xtriggers_extend != null && element.xtriggers_extend.ContainsKey(id))
                 {
-                    tmp[element.guid] = element;
+                    tmp[element.Guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1153,66 +1153,66 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (recipe.requirements.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.requirements.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
                 else if (recipe.requirements_extend != null)
                 {
                     if (recipe.requirements_extend.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.requirements_extend.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
                 if (recipe.extantreqs != null)
                 {
                     if (recipe.extantreqs.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.extantreqs.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
                 else if (recipe.extantreqs_extend != null)
                 {
                     if (recipe.extantreqs_extend.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.extantreqs_extend.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
                 if (recipe.tablereqs != null)
                 {
                     if (recipe.tablereqs.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.tablereqs.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
                 else if (recipe.tablereqs_extend != null)
                 {
                     if (recipe.tablereqs_extend.ContainsKey(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                     else if (recipe.tablereqs_extend.ContainsValue(id))
                     {
-                        tmp[recipe.guid] = recipe;
+                        tmp[recipe.Guid] = recipe;
                     }
                 }
             }
@@ -1236,19 +1236,19 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1275,7 +1275,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.required.ContainsKey(id))
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
@@ -1285,7 +1285,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.required.ContainsKey(id))
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
@@ -1295,7 +1295,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.required.ContainsKey(id))
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
@@ -1320,7 +1320,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (element.decayTo == id)
                 {
-                    tmp[element.guid] = element;
+                    tmp[element.Guid] = element;
                 }
             }
             if (tmp.Count > 0)
@@ -1349,7 +1349,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             if (xtriggereffect.id == id)
                             {
-                                tmp[element.guid] = element;
+                                tmp[element.Guid] = element;
                             }
                         }
                     }
@@ -1362,7 +1362,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             if (xtriggereffect.id == id)
                             {
-                                tmp[element.guid] = element;
+                                tmp[element.Guid] = element;
                             }
                         }
                     }
@@ -1388,27 +1388,27 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.requirements != null && recipe.requirements.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.requirements_extend != null && recipe.requirements_extend.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 if (recipe.extantreqs != null && recipe.extantreqs.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.extantreqs_extend != null && recipe.extantreqs_extend.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 if (recipe.tablereqs != null && recipe.tablereqs.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.tablereqs_extend != null && recipe.tablereqs_extend.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1431,19 +1431,19 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.effects != null && (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id)))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) || recipe.effects_extend.ContainsValue(id)))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 if (recipe.aspects != null && recipe.aspects.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.aspects_extend != null && recipe.aspects_extend.ContainsKey(id))
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1466,15 +1466,15 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (deck.spec != null && deck.spec.Contains(id))
                 {
-                    tmp[deck.guid] = deck;
+                    tmp[deck.Guid] = deck;
                 }
                 else if (deck.spec_prepend != null && deck.spec_prepend.Contains(id))
                 {
-                    tmp[deck.guid] = deck;
+                    tmp[deck.Guid] = deck;
                 }
                 else if (deck.spec_append != null && deck.spec_append.Contains(id))
                 {
-                    tmp[deck.guid] = deck;
+                    tmp[deck.Guid] = deck;
                 }
             }
             if (tmp.Count > 0)
@@ -1497,11 +1497,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (legacy.effects != null && legacy.effects.ContainsKey(id))
                 {
-                    tmp[legacy.guid] = legacy;
+                    tmp[legacy.Guid] = legacy;
                 }
                 else if (legacy.effects_extend != null && legacy.effects_extend.ContainsKey(id))
                 {
-                    tmp[legacy.guid] = legacy;
+                    tmp[legacy.Guid] = legacy;
                 }
             }
             if (tmp.Count > 0)
@@ -1528,7 +1528,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1538,7 +1538,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1548,7 +1548,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1558,7 +1558,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1568,7 +1568,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1578,7 +1578,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (link.id == id)
                         {
-                            tmp[recipe.guid] = recipe;
+                            tmp[recipe.Guid] = recipe;
                         }
                     }
                 }
@@ -1603,11 +1603,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.deckeffects != null && recipe.deckeffects.ContainsKey(id) && recipe.deckeffects[id] > 0)
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
                 else if (recipe.deckeffects_extend != null && recipe.deckeffects_extend.ContainsKey(id) && recipe.deckeffects_extend[id] > 0)
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1630,7 +1630,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.ending != null && recipe.ending == id)
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1653,7 +1653,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 if (recipe.actionId == id)
                 {
-                    tmp[recipe.guid] = recipe;
+                    tmp[recipe.Guid] = recipe;
                 }
             }
             if (tmp.Count > 0)
@@ -1680,7 +1680,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.actionId == id)
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
@@ -1690,7 +1690,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.actionId == id)
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
@@ -1700,7 +1700,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (slot.actionId == id)
                         {
-                            tmp[element.guid] = element;
+                            tmp[element.Guid] = element;
                         }
                     }
                 }
