@@ -81,9 +81,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Deck deck)
         {
-            if (deck.id != null)
+            if (deck.ID != null)
             {
-                idTextBox.Text = deck.id;
+                idTextBox.Text = deck.ID;
             }
 
             if (deck.label != null)
@@ -295,10 +295,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.id = idTextBox.Text;
-            if (displayedDeck.id == "")
+            displayedDeck.ID = idTextBox.Text;
+            if (displayedDeck.ID == "")
             {
-                displayedDeck.id = null;
+                displayedDeck.ID = null;
             }
         }
 

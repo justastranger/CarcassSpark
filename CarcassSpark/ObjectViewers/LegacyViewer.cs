@@ -31,9 +31,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Legacy legacy)
         {
-            if (legacy.id != null)
+            if (legacy.ID != null)
             {
-                idTextBox.Text = legacy.id;
+                idTextBox.Text = legacy.ID;
             }
 
             if (legacy.label != null)
@@ -326,10 +326,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.id = idTextBox.Text;
-            if (displayedLegacy.id == "")
+            displayedLegacy.ID = idTextBox.Text;
+            if (displayedLegacy.ID == "")
             {
-                displayedLegacy.id = null;
+                displayedLegacy.ID = null;
             }
         }
 

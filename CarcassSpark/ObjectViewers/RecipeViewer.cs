@@ -156,9 +156,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Recipe recipe)
         {
-            if (recipe.id != null)
+            if (recipe.ID != null)
             {
-                idTextBox.Text = recipe.id;
+                idTextBox.Text = recipe.ID;
             }
 
             if (recipe.label != null)
@@ -1600,11 +1600,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (idTextBox.Text == "")
             {
-                displayedRecipe.id = null;
+                displayedRecipe.ID = null;
             }
             else
             {
-                displayedRecipe.id = idTextBox.Text;
+                displayedRecipe.ID = idTextBox.Text;
             }
         }
 

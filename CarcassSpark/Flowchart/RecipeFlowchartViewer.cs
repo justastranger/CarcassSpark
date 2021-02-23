@@ -21,7 +21,7 @@ namespace CarcassSpark.Flowchart
         {
             InitializeComponent();
             RecipeNode RootRecipeNode = CreateRecipeNode(recipe, 25, 25);
-            recipeNodes.Add(recipe.id, RootRecipeNode);
+            recipeNodes.Add(recipe.ID, RootRecipeNode);
             recipeNodesThatNeedToBeProcessed.Add(RootRecipeNode);
             //tl.KeepGroupLayout = true;
             //layout.Orientation = MindFusion.Diagramming.Layout.Orientation.Vertical;
@@ -165,7 +165,7 @@ namespace CarcassSpark.Flowchart
             //Dictionary<string, TreeViewItem> tmp = new Dictionary<string, TreeViewItem>();
             List<string> outgoingLinks = new List<string>();
             TreeViewNode tempTVN = diagram1.Factory.CreateTreeViewNode(x, y, 150, 150);
-            tempTVN.Id = recipe.id;
+            tempTVN.Id = recipe.ID;
             tempTVN.IgnoreLayout = false;
             tempTVN.ConnectionStyle = TreeViewConnectionStyle.Items;
             if (recipe.label != null)
@@ -174,10 +174,10 @@ namespace CarcassSpark.Flowchart
             }
             else
             {
-                tempTVN.Text = recipe.id;
+                tempTVN.Text = recipe.ID;
             }
 
-            tempTVN.RootItems.Add(new TreeViewItem("Recipe ID: " + recipe.id));
+            tempTVN.RootItems.Add(new TreeViewItem("Recipe ID: " + recipe.ID));
             if (recipe.actionId != null)
             {
                 tempTVN.RootItems.Add(new TreeViewItem("Action ID: " + recipe.actionId));
