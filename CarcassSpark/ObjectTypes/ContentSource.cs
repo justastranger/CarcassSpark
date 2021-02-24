@@ -235,7 +235,8 @@ namespace CarcassSpark.ObjectTypes
 
         public List<string> GetHiddenGroupsForType(string type)
         {
-            return GetHiddenGroupsDictionary()[type];
+            Dictionary<string, List<string>> dict = GetHiddenGroupsDictionary();
+            return dict.ContainsKey(type) ? dict[type] : null;
         }
 
         public void SetHiddenGroupsForType(string type, List<string> groups)
