@@ -254,7 +254,6 @@ namespace CarcassSpark.ObjectViewers
 
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
-                // requirementsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.requirements)
                 {
                     requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -286,7 +285,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.extantreqs != null && recipe.extantreqs.Count > 0)
             {
-                // extantreqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.extantreqs)
                 {
                     extantreqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -318,7 +316,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.tablereqs != null && recipe.tablereqs.Count > 0)
             {
-                // tablereqsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.tablereqs)
                 {
                     tablereqsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -350,7 +347,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.effects != null && recipe.effects.Count > 0)
             {
-                // effectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.effects)
                 {
                     effectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -382,7 +378,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.aspects != null && recipe.aspects.Count > 0)
             {
-                // aspectsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.aspects)
                 {
                     aspectsDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -414,7 +409,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.deckeffects != null && recipe.deckeffects.Count > 0)
             {
-                // deckeffectDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.deckeffects)
                 {
                     deckeffectDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -444,20 +438,6 @@ namespace CarcassSpark.ObjectViewers
                     deckeffectDataGridView.Rows.Add(row);
                 }
             }
-            if (recipe.alt != null && recipe.alt.Count > 0)
-            {
-                // alternativerecipeLinks.Clear();
-                // alternativeRecipesListView.Items.Clear();
-                foreach (RecipeLink rl in recipe.alt)
-                {
-                    ListViewItem item = new ListViewItem(rl.id)
-                    {
-                        Tag = Guid.NewGuid()
-                    };
-                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
-                    alternativeRecipesListView.Items.Add(item);
-                }
-            }
             if (recipe.alt_prepend != null && recipe.alt_prepend.Count > 0)
             {
                 foreach (RecipeLink rl in recipe.alt_prepend)
@@ -469,6 +449,18 @@ namespace CarcassSpark.ObjectViewers
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
                     alternativerecipeLinks.Add((Guid)item.Tag, rl);
+                }
+            }
+            if (recipe.alt != null && recipe.alt.Count > 0)
+            {
+                foreach (RecipeLink rl in recipe.alt)
+                {
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        Tag = Guid.NewGuid()
+                    };
+                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
+                    alternativeRecipesListView.Items.Add(item);
                 }
             }
             if (recipe.alt_append != null && recipe.alt_append.Count > 0)
@@ -497,29 +489,8 @@ namespace CarcassSpark.ObjectViewers
                     alternativeRecipesListView.Items.Insert(0, item);
                 }
             }
-            if (recipe.linked != null && recipe.linked.Count > 0)
-            {
-                // recipeLinks.Clear();
-                // linkedRecipesListView.Items.Clear();
-                foreach (RecipeLink rl in recipe.linked)
-                {
-                    ListViewItem item = new ListViewItem(rl.id)
-                    {
-                        Tag = Guid.NewGuid()
-                    };
-                    linkedRecipesListView.Items.Add(item);
-                    recipeLinks.Add((Guid)item.Tag, rl);
-                }
-            }
             if (recipe.linked_prepend != null && recipe.linked_prepend.Count > 0)
             {
-                // recipeLinks.Clear();
-                // linkedRecipesListView.Items.Clear();
-                // foreach (RecipeLink rl in recipe.linked)
-                // {
-                //     recipeLinks.Add(rl.id, rl);
-                //     linkedRecipesListView.Items.Add(rl.id);
-                // }
                 foreach (RecipeLink rl in recipe.linked_prepend)
                 {
                     ListViewItem item = new ListViewItem(rl.id)
@@ -528,6 +499,18 @@ namespace CarcassSpark.ObjectViewers
                         Tag = Guid.NewGuid()
                     };
                     linkedRecipesListView.Items.Insert(0, item);
+                    recipeLinks.Add((Guid)item.Tag, rl);
+                }
+            }
+            if (recipe.linked != null && recipe.linked.Count > 0)
+            {
+                foreach (RecipeLink rl in recipe.linked)
+                {
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        Tag = Guid.NewGuid()
+                    };
+                    linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
@@ -548,7 +531,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string rl in recipe.linked_remove)
                 {
-                    // recipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl)
                     {
                         BackColor = Utilities.ListRemoveColor,
@@ -558,26 +540,8 @@ namespace CarcassSpark.ObjectViewers
                     linkedRecipesListView.Items.Insert(0, item);
                 }
             }
-            if (recipe.mutations != null && recipe.mutations.Count > 0)
-            {
-
-                // mutations.Clear();
-                // mutationsListView.Items.Clear();
-                foreach (Mutation mutation in recipe.mutations)
-                {
-                    ListViewItem item = new ListViewItem(mutation.mutate)
-                    {
-                        Tag = Guid.NewGuid()
-                    };
-                    mutations.Add((Guid)item.Tag, mutation);
-                    mutationsListView.Items.Add(item);
-                }
-            }
             if (recipe.mutations_prepend != null && recipe.mutations_prepend.Count > 0)
             {
-
-                // mutations.Clear();
-                // mutationsListView.Items.Clear();
                 foreach (Mutation mutation in recipe.mutations_prepend)
                 {
                     ListViewItem item = new ListViewItem(mutation.mutate)
@@ -589,11 +553,20 @@ namespace CarcassSpark.ObjectViewers
                     mutationsListView.Items.Add(item);
                 }
             }
+            if (recipe.mutations != null && recipe.mutations.Count > 0)
+            {
+                foreach (Mutation mutation in recipe.mutations)
+                {
+                    ListViewItem item = new ListViewItem(mutation.mutate)
+                    {
+                        Tag = Guid.NewGuid()
+                    };
+                    mutations.Add((Guid)item.Tag, mutation);
+                    mutationsListView.Items.Add(item);
+                }
+            }
             if (recipe.mutations_append != null && recipe.mutations_append.Count > 0)
             {
-
-                // mutations.Clear();
-                // mutationsListView.Items.Clear();
                 foreach (Mutation mutation in recipe.mutations_append)
                 {
                     ListViewItem item = new ListViewItem(mutation.mutate)
@@ -609,7 +582,6 @@ namespace CarcassSpark.ObjectViewers
             {
                 foreach (string mutation in recipe.mutations_remove)
                 {
-                    // recipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(mutation)
                     {
                         BackColor = Utilities.ListRemoveColor,
@@ -621,7 +593,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.purge != null && recipe.purge.Count > 0)
             {
-                // purgeDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.purge)
                 {
                     purgeDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -685,7 +656,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.haltverb != null && recipe.haltverb.Count > 0)
             {
-                // haltVerbDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.haltverb)
                 {
                     haltVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
@@ -794,7 +764,6 @@ namespace CarcassSpark.ObjectViewers
                     alternativeRecipesListView.SelectedItems[0].Text = rlv.displayedRecipeLink.id;
                 }
                 SaveAlternativeRecipes();
-                // displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
             }
         }
 
@@ -841,7 +810,6 @@ namespace CarcassSpark.ObjectViewers
                     mutationsListView.SelectedItems[0].Text = mv.displayedMutation.mutate;
                 }
                 SaveMutations();
-                // displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
             }
         }
 
@@ -1410,8 +1378,6 @@ namespace CarcassSpark.ObjectViewers
                     Guid newGuid = Guid.NewGuid();
                     alternativeRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = newGuid });
                     alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    //if (displayedRecipe.alternativerecipes != null) displayedRecipe.alternativerecipes.Add(rlv.displayedRecipeLink);
-                    //else displayedRecipe.alternativerecipes = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
                 }
             }
@@ -1432,8 +1398,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
                     alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    // if (displayedRecipe.alternativerecipes_prepend != null) displayedRecipe.alternativerecipes_prepend.Add(rlv.displayedRecipeLink);
-                    // else displayedRecipe.alternativerecipes_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
                 }
             }
@@ -1454,8 +1418,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     alternativeRecipesListView.Items.Add(item);
                     alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    // if (displayedRecipe.alternativerecipes_append != null) displayedRecipe.alternativerecipes_append.Add(rlv.displayedRecipeLink);
-                    // else displayedRecipe.alternativerecipes_append = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveAlternativeRecipes();
                 }
             }
@@ -1471,8 +1433,6 @@ namespace CarcassSpark.ObjectViewers
                     Guid newGuid = Guid.NewGuid();
                     linkedRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = newGuid });
                     recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    // if (displayedRecipe.linked != null) displayedRecipe.linked.Add(rlv.displayedRecipeLink);
-                    // else displayedRecipe.linked = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
                 }
             }
@@ -1493,8 +1453,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     linkedRecipesListView.Items.Insert(0, item);
                     recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    // if (displayedRecipe.linked_prepend != null) displayedRecipe.linked_prepend.Add(rlv.displayedRecipeLink);
-                    // else displayedRecipe.linked_prepend = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
                 }
             }
@@ -1515,8 +1473,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
-                    // if (displayedRecipe.linked_append != null) displayedRecipe.linked_append.Add(rlv.displayedRecipeLink);
-                    // else displayedRecipe.linked_append = new List<RecipeLink> { rlv.displayedRecipeLink };
                     SaveLinkedRecipes();
                 }
             }
@@ -1536,8 +1492,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     mutationsListView.Items.Add(item);
                     mutations.Add(newGuid, mv.displayedMutation);
-                    // if (displayedRecipe.mutations != null) displayedRecipe.mutations.Add(mv.displayedMutation);
-                    // else displayedRecipe.mutations = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();
                 }
             }
@@ -1558,8 +1512,6 @@ namespace CarcassSpark.ObjectViewers
                     };
                     mutationsListView.Items.Add(item);
                     mutations.Add(newGuid, mv.displayedMutation);
-                    // if (displayedRecipe.mutations_prepend != null) displayedRecipe.mutations_prepend.Add(mv.displayedMutation);
-                    // else displayedRecipe.mutations_prepend = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();
                 }
             }
@@ -2050,25 +2002,21 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)alternativeRecipesListView.SelectedItems[0].Tag;
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    // displayedRecipe.alternativerecipes_prepend.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(guid);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
                 }
                 else if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    // displayedRecipe.alternativerecipes_append.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(guid);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    // displayedRecipe.alternativerecipes_remove.Remove(value);
                     alternativerecipeLinks.Remove(guid);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
                 }
                 else
                 {
-                    // displayedRecipe.alternativerecipes.Remove(alternativerecipeLinks[value]);
                     alternativerecipeLinks.Remove(guid);
                     alternativeRecipesListView.Items.Remove(alternativeRecipesListView.SelectedItems[0]);
                 }
@@ -2084,43 +2032,23 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)linkedRecipesListView.SelectedItems[0].Tag;
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    // displayedRecipe.linked_prepend.Remove(recipeLinks[guid]);
                     recipeLinks.Remove(guid);
                     linkedRecipesListView.Items.Remove(linkedRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.linked_prepend.Count == 0)
-                    {
-                        displayedRecipe.linked_prepend = null;
-                    }
                 }
                 else if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    // displayedRecipe.linked_append.Remove(recipeLinks[guid]);
                     recipeLinks.Remove(guid);
                     linkedRecipesListView.Items.Remove(linkedRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.linked_append.Count == 0)
-                    {
-                        displayedRecipe.linked_append = null;
-                    }
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    // displayedRecipe.linked_remove.Remove(guid);
                     recipeLinks.Remove(guid);
                     linkedRecipesListView.Items.Remove(linkedRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.linked_remove.Count == 0)
-                    {
-                        displayedRecipe.linked_remove = null;
-                    }
                 }
                 else
                 {
-                    // displayedRecipe.linked.Remove(recipeLinks[guid]);
                     recipeLinks.Remove(guid);
                     linkedRecipesListView.Items.Remove(linkedRecipesListView.SelectedItems[0]);
-                    if (displayedRecipe.linked.Count == 0)
-                    {
-                        displayedRecipe.linked = null;
-                    }
                 }
                 SaveLinkedRecipes();
             }
@@ -2134,43 +2062,23 @@ namespace CarcassSpark.ObjectViewers
                 Guid guid = (Guid)mutationsListView.SelectedItems[0].Tag;
                 if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    // displayedRecipe.mutations_prepend.Remove(mutations[hashcode]);
                     mutations.Remove(guid);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
-                    if (displayedRecipe.mutations_prepend.Count == 0)
-                    {
-                        displayedRecipe.mutations_prepend = null;
-                    }
                 }
                 else if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    // displayedRecipe.mutations_append.Remove(mutations[hashcode]);
                     mutations.Remove(guid);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
-                    if (displayedRecipe.mutations_append.Count == 0)
-                    {
-                        displayedRecipe.mutations_append = null;
-                    }
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    // displayedRecipe.mutations_remove.Remove(hashcode);
                     mutations.Remove(guid);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
-                    if (displayedRecipe.mutations_remove.Count == 0)
-                    {
-                        displayedRecipe.mutations_remove = null;
-                    }
                 }
                 else
                 {
-                    // displayedRecipe.mutations.Remove(mutations[hashcode]);
                     mutations.Remove(guid);
                     mutationsListView.Items.Remove(mutationsListView.SelectedItems[0]);
-                    if (displayedRecipe.mutations.Count == 0)
-                    {
-                        displayedRecipe.mutations = null;
-                    }
                 }
                 SaveMutations();
             }
