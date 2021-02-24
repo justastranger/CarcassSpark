@@ -694,7 +694,7 @@ namespace CarcassSpark.ObjectViewers
                         break;
                     default:
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
+                        return;
                 }
                 SelectedModViewer.MarkDirty();
             }
