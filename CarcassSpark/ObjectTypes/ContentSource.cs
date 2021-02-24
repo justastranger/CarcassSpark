@@ -40,14 +40,7 @@ namespace CarcassSpark.ObjectTypes
 
         public string GetName()
         {
-            if (synopsis != null)
-            {
-                return synopsis.name;
-            }
-            else
-            {
-                return null;
-            }
+            return synopsis != null ? synopsis.name : null;
         }
 
         public void SetCustomManifestProperty(string key, object value)
@@ -57,50 +50,22 @@ namespace CarcassSpark.ObjectTypes
 
         public string GetCustomManifestString(string key)
         {
-            if (CustomManifest.ContainsKey(key))
-            {
-                return CustomManifest[key].ToString();
-            }
-            else
-            {
-                return null;
-            }
+            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToString() : null;
         }
 
         public bool? GetCustomManifestBool(string key)
         {
-            if (CustomManifest.ContainsKey(key))
-            {
-                return CustomManifest[key].ToObject<bool?>();
-            }
-            else
-            {
-                return null;
-            }
+            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<bool?>() : null;
         }
 
         public int? GetCustomManifestInt(string key)
         {
-            if (CustomManifest.ContainsKey(key))
-            {
-                return CustomManifest[key].ToObject<int?>();
-            }
-            else
-            {
-                return null;
-            }
+            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<int?>() : null;
         }
 
         public List<int> GetCustomManifestListInt(string key)
         {
-            if (CustomManifest.ContainsKey(key))
-            {
-                return CustomManifest[key].ToObject<List<int>>();
-            }
-            else
-            {
-                return null;
-            }
+            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<List<int>>() : null;
         }
 
         public void SetRecentGroup(string type, string groupName)
@@ -123,112 +88,63 @@ namespace CarcassSpark.ObjectTypes
         public string GetRecentGroup(string type)
         {
             Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
-            if (recentGroups != null && recentGroups.ContainsKey(type))
-            {
-                return recentGroups[type];
-            }
-            else
-            {
-                return null;
-            }
+            return recentGroups != null && recentGroups.ContainsKey(type) ? recentGroups[type] : null;
         }
 
         public Image GetAspectImage(string id)
         {
             string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaAspectImageExists(id))
-            {
-                return Utilities.GetVanillaAspect(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaAspectImageExists(id) ? Utilities.GetVanillaAspect(id) : null;
         }
 
         public Image GetElementImage(string id)
         {
             string pathToImage = currentDirectory + "/images/elements/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaElementImageExists(id))
-            {
-                return Utilities.GetVanillaElement(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaElementImageExists(id) ? Utilities.GetVanillaElement(id) : null;
         }
 
         public Image GetEndingImage(string id)
         {
             string pathToImage = currentDirectory + "/images/endings/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaEndingImageExists(id))
-            {
-                return Utilities.GetVanillaEnding(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaEndingImageExists(id) ? Utilities.GetVanillaEnding(id) : null;
         }
 
         public Image GetLegacyImage(string id)
         {
             string pathToImage = currentDirectory + "/images/legacies/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaLegacyImageExists(id))
-            {
-                return Utilities.GetVanillaLegacy(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaLegacyImageExists(id) ? Utilities.GetVanillaLegacy(id) : null;
         }
 
         public Image GetVerbImage(string id)
         {
             string pathToImage = currentDirectory + "/images/verbs/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaVerbImageExists(id))
-            {
-                return Utilities.GetVanillaVerb(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaVerbImageExists(id) ? Utilities.GetVanillaVerb(id) : null;
         }
 
         public Image GetCardBackImage(string id)
         {
             string pathToImage = currentDirectory + "/images/cardbacks/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaCardBackImageExists(id))
-            {
-                return Utilities.GetVanillaCardBack(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaCardBackImageExists(id) ? Utilities.GetVanillaCardBack(id) : null;
         }
 
         public Image GetBurnImage(string id)
         {
             string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
-            if (File.Exists(pathToImage))
-            {
-                return Image.FromFile(pathToImage);
-            }
-            else if (Utilities.VanillaBurnImageImageExists(id))
-            {
-                return Utilities.GetVanillaBurnImage(id);
-            }
-            return null;
+            return File.Exists(pathToImage)
+                ? Image.FromFile(pathToImage)
+                : Utilities.VanillaBurnImageImageExists(id) ? Utilities.GetVanillaBurnImage(id) : null;
         }
 
         public bool AspectImageExists(string id)
@@ -351,14 +267,7 @@ namespace CarcassSpark.ObjectTypes
 
         public bool GetEditMode()
         {
-            if (CustomManifest["EditMode"] != null)
-            {
-                return CustomManifest["EditMode"].ToObject<bool>();
-            }
-            else
-            {
-                return false;
-            }
+            return CustomManifest["EditMode"] != null ? CustomManifest["EditMode"].ToObject<bool>() : false;
         }
 
         public void SetEditMode(bool editMode)
@@ -412,14 +321,7 @@ namespace CarcassSpark.ObjectTypes
 
         public T Get(Guid id)
         {
-            if (Exists(id))
-            {
-                return GameObjects[id];
-            }
-            else
-            {
-                return default(T);
-            }
+            return Exists(id) ? GameObjects[id] : default(T);
         }
 
         public T Get(string id)
