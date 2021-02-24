@@ -851,51 +851,50 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, "aspects", SearchAspects);
+            SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, SearchAspects);
         }
 
         private void ElementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Elements, elementsSearchTextBox.Text, "elements", SearchElements);
+            SearchTextBox_TextChanged(Content.Elements, elementsSearchTextBox.Text, SearchElements);
         }
 
         private void RecipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Recipes, recipesSearchTextBox.Text, "recipes", SearchRecipes);
+            SearchTextBox_TextChanged(Content.Recipes, recipesSearchTextBox.Text, SearchRecipes);
         }
 
         private void DecksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Decks, decksSearchTextBox.Text, "decks", SearchDecks);
+            SearchTextBox_TextChanged(Content.Decks, decksSearchTextBox.Text, SearchDecks);
         }
 
         private void LegaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Legacies, legaciesSearchTextBox.Text, "legacies", SearchLegacies);
+            SearchTextBox_TextChanged(Content.Legacies, legaciesSearchTextBox.Text, SearchLegacies);
         }
 
         private void EndingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Endings, endingsSearchTextBox.Text, "endings", SearchEndings);
+            SearchTextBox_TextChanged(Content.Endings, endingsSearchTextBox.Text, SearchEndings);
         }
 
         private void VerbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, "verbs", SearchVerbs);
+            SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, SearchVerbs);
         }
 
-        private void SearchTextBox_TextChanged<T>(ContentGroup<T> contentGroup, string NewText, string hiddenGroupsKey, Func<List<T>, string, T[]> func) where T : IGameObject
+        private void SearchTextBox_TextChanged<T>(ContentGroup<T> contentGroup, string NewText, Func<List<T>, string, T[]> func) where T : IGameObject
         {
-            ListView listView = ListViews[hiddenGroupsKey];
+            ListView listView = ListViews[contentGroup.Filename];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
-            Dictionary<string, string[]> hiddenGroups = Content.CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(hiddenGroupsKey));
+            string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename); //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             T[] itemsToAdd = (NewText != "") ? func(contentGroup.Values.ToList(), NewText) : contentGroup.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
-                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[hiddenGroupsKey].Contains(gameObject.Filename) : false;
+                bool isGroupHidden = hiddenGroups.Contains(gameObject.Filename);
                 if (!isGroupHidden)
                 {
                     ListViewGroup group = listView.Groups[gameObject.Filename] == null
