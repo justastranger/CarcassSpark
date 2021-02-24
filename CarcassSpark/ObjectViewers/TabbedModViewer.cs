@@ -817,12 +817,13 @@ namespace CarcassSpark.ObjectViewers
                     });
                     Settings.SaveSettings();
                 }
+
             }
             else
             {
                 if (!SelectedModViewer.isVanilla)
                 {
-                    SelectedModViewer.Content.CustomManifest.Remove("saveWidths");
+                    SelectedModViewer.Content.GetCustomManifest().Remove("saveWidths");
                 }
                 else
                 {
