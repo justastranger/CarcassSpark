@@ -13,6 +13,7 @@ namespace CarcassSpark.Tools
     public partial class HiddenGroupManager : Form
     {
         public Dictionary<string, List<string>> HiddenGroups;
+        private Dictionary<string, List<string>> RemovedGroups = new Dictionary<string, List<string>>();
 
         public HiddenGroupManager(Dictionary<string, List<string>> hiddenGroups)
         {
@@ -22,6 +23,11 @@ namespace CarcassSpark.Tools
 
         private void LoadHiddenGroups()
         {
+            if (HiddenGroups == null)
+            {
+                return;
+            }
+
             foreach (KeyValuePair<string, List<string>> type in HiddenGroups)
             {
                 ListViewGroup HiddenGroupsTypeGroup = new ListViewGroup(type.Key, type.Key);
@@ -48,6 +54,17 @@ namespace CarcassSpark.Tools
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            foreach(string key in RemovedGroups.Keys)
+            {
+                if(HiddenGroups.ContainsKey(key))
+                {
+                    HiddenGroups[key].AddRange(RemovedGroups[key]);
+                }
+                else
+                {
+                    HiddenGroups[key] = RemovedGroups[key];
+                }
+            }
             Close();
         }
 
@@ -57,6 +74,15 @@ namespace CarcassSpark.Tools
             ListViewItem itemToRemove = hiddenGroupsListView.SelectedItems[0];
             ListViewGroup itemGroup = itemToRemove.Group;
             HiddenGroups[itemToRemove.Group.Name].Remove(itemToRemove.Text);
+
+            if(RemovedGroups.ContainsKey(itemGroup.Name))
+            {
+                RemovedGroups[itemGroup.Name].Add(itemToRemove.Text);
+            }
+            else
+            {
+                RemovedGroups.Add(itemGroup.Name, new List<string>{itemToRemove.Text});
+            }
             // itemGroup.Items.Remove(itemToRemove);
             itemToRemove.Remove();
             if (itemGroup.Items.Count == 0)
