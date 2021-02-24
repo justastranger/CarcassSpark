@@ -24,15 +24,15 @@ namespace CarcassSpark.ObjectTypes
         // CustomManifest["recentGroups"]
         // oh man why did I do that to myself
 
-        public ContentGroup<Aspect> Aspects = new ContentGroup<Aspect>();
-        public ContentGroup<Element> Elements = new ContentGroup<Element>();
-        public ContentGroup<Recipe> Recipes = new ContentGroup<Recipe>();
-        public ContentGroup<Deck> Decks = new ContentGroup<Deck>();
-        public ContentGroup<Legacy> Legacies = new ContentGroup<Legacy>();
-        public ContentGroup<Ending> Endings = new ContentGroup<Ending>();
-        public ContentGroup<Verb> Verbs = new ContentGroup<Verb>();
-        public ContentGroup<Culture> Cultures = new ContentGroup<Culture>();
-        
+        public ContentGroup<Aspect> Aspects = new ContentGroup<Aspect>("Aspect", "Aspects", "aspects");
+        public ContentGroup<Element> Elements = new ContentGroup<Element>("Element", "Elements", "elements");
+        public ContentGroup<Recipe> Recipes = new ContentGroup<Recipe>("Recipe", "Recipes", "recipes");
+        public ContentGroup<Deck> Decks = new ContentGroup<Deck>("Deck", "Decks", "decks");
+        public ContentGroup<Legacy> Legacies = new ContentGroup<Legacy>("Legacy", "Legacies", "legacies");
+        public ContentGroup<Ending> Endings = new ContentGroup<Ending>("Ending", "Endings", "endings");
+        public ContentGroup<Verb> Verbs = new ContentGroup<Verb>("Verb", "Verbs", "verbs");
+        public ContentGroup<Culture> Cultures = new ContentGroup<Culture>("Culture", "Cultures", null);
+
         public ContentSource()
         {
 
@@ -383,7 +383,18 @@ namespace CarcassSpark.ObjectTypes
 
         public int Count { get => GameObjects.Count; }
         public Dictionary<Guid, T>.ValueCollection Values { get => GameObjects.Values; }
+        public string DisplayName { get; private set; }
+        public string DisplayNamePlural { get; private set; }
+        public string Filename { get; private set; }
+
         public T this[Guid key] { get => GameObjects[key]; set=> GameObjects[key] = value; }
+
+        public ContentGroup(string d, string p, string f)
+        {
+            DisplayName = d;
+            Filename = f;
+            DisplayNamePlural = p;
+        }
 
         public bool Exists(string id)
         {
