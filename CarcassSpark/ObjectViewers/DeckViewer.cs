@@ -121,6 +121,17 @@ namespace CarcassSpark.ObjectViewers
                 deletedCheckBox.Checked = deck.deleted.Value;
             }
 
+            if (deck.spec_prepend != null)
+            {
+                foreach (string id in deck.spec_prepend)
+                {
+                    ListViewItem lvi = new ListViewItem(id)
+                    {
+                        BackColor = Utilities.ListPrependColor
+                    };
+                    specListView.Items.Add(lvi);
+                }
+            }
             if (deck.spec != null)
             {
                 foreach (string id in deck.spec)
@@ -136,17 +147,6 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem lvi = new ListViewItem(id)
                     {
                         BackColor = Utilities.ListAppendColor
-                    };
-                    specListView.Items.Add(lvi);
-                }
-            }
-            if (deck.spec_prepend != null)
-            {
-                foreach (string id in deck.spec_prepend)
-                {
-                    ListViewItem lvi = new ListViewItem(id)
-                    {
-                        BackColor = Utilities.ListPrependColor
                     };
                     specListView.Items.Add(lvi);
                 }
