@@ -2216,138 +2216,37 @@ namespace CarcassSpark.ObjectViewers
 
         public void AspectsList_Add(object sender, Aspect result)
         {
-            Guid guid = Guid.NewGuid();
-            Aspect newAspect = result.Copy();
-            newAspect.filename = "aspects";
-            Content.Aspects[guid] = newAspect;
-            ListViewGroup defaultAspectsGroup;
-            if (aspectsListView.Groups["aspects"] == null)
-            {
-                defaultAspectsGroup = new ListViewGroup("aspects", "aspects");
-                aspectsListView.Groups.Add(defaultAspectsGroup);
-            }
-            else
-            {
-                defaultAspectsGroup = aspectsListView.Groups["aspects"];
-            }
-            ListViewItem newAspectEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultAspectsGroup, Name = result.id };
-            // defaultAspectsGroup.Items.Add(newAspectEntry);
-            aspectsListView.Items.Add(newAspectEntry);
-            MarkDirty();
+            AddToList(Content.Aspects, result.Copy());
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
-            Guid guid = Guid.NewGuid();
-            Element newElement = result.Copy();
-            newElement.filename = "elements";
-            Content.Elements[guid] = newElement;
-            ListViewGroup defaultElementsGroup;
-            if (elementsListView.Groups["elements"] == null)
-            {
-                defaultElementsGroup = new ListViewGroup("elements", "elements");
-                elementsListView.Groups.Add(defaultElementsGroup);
-            }
-            else
-            {
-                defaultElementsGroup = elementsListView.Groups["elements"];
-            }
-            ListViewItem newElementEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultElementsGroup, Name = result.id };
-            // defaultElementsGroup.Items.Add(newElementEntry);
-            elementsListView.Items.Add(newElementEntry);
-            MarkDirty();
+            AddToList(Content.Elements, result.Copy());
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
-            Guid guid = Guid.NewGuid();
-            Recipe newRecipe = result.Copy();
-            newRecipe.filename = "recipes";
-            Content.Recipes[guid] = newRecipe;
-            ListViewGroup defaultRecipesGroup;
-            if (recipesListView.Groups["recipes"] == null)
-            {
-                defaultRecipesGroup = new ListViewGroup("recipes", "recipes");
-                recipesListView.Groups.Add(defaultRecipesGroup);
-            }
-            else
-            {
-                defaultRecipesGroup = recipesListView.Groups["recipes"];
-            }
-            ListViewItem newRecipeEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultRecipesGroup, Name = result.id };
-            // defaultRecipesGroup.Items.Add(newRecipeEntry);
-            recipesListView.Items.Add(newRecipeEntry);
-            MarkDirty();
+            AddToList(Content.Recipes, result.Copy());
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
-            Guid guid = Guid.NewGuid();
-            Deck newDeck = result.Copy();
-            newDeck.filename = "decks";
-            Content.Decks[guid] = newDeck;
-            ListViewGroup defaultDecksGroup;
-            if (decksListView.Groups["decks"] == null)
-            {
-                defaultDecksGroup = new ListViewGroup("decks", "decks");
-                decksListView.Groups.Add(defaultDecksGroup);
-            }
-            else
-            {
-                defaultDecksGroup = decksListView.Groups["decks"];
-            }
-            ListViewItem newDeckEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultDecksGroup, Name = result.id };
-            // defaultDecksGroup.Items.Add(newDeckEntry);
-            decksListView.Items.Add(newDeckEntry);
-            MarkDirty();
+            AddToList(Content.Decks, result.Copy());
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
-            Guid guid = Guid.NewGuid();
-            Legacy newLegacy = result.Copy();
-            newLegacy.filename = "legacies";
-            Content.Legacies[guid] = newLegacy;
-            ListViewGroup defaultLegaciesGroup;
-            if (legaciesListView.Groups["legacies"] == null)
-            {
-                defaultLegaciesGroup = new ListViewGroup("legacies", "legacies");
-                legaciesListView.Groups.Add(defaultLegaciesGroup);
-            }
-            else
-            {
-                defaultLegaciesGroup = legaciesListView.Groups["legacies"];
-            }
-            ListViewItem newLegacyEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultLegaciesGroup, Name = result.id };
-            // defaultLegaciesGroup.Items.Add(newLegacyEntry);
-            legaciesListView.Items.Add(newLegacyEntry);
-            MarkDirty();
+            AddToList(Content.Legacies, result.Copy());
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
-            Guid guid = Guid.NewGuid();
-            Ending newEnding = result.Copy();
-            newEnding.filename = "endings";
-            Content.Endings[guid] = newEnding;
-            ListViewGroup defaultEndingsGroup;
-            if (endingsListView.Groups["endings"] == null)
-            {
-                defaultEndingsGroup = new ListViewGroup("endings", "endings");
-                endingsListView.Groups.Add(defaultEndingsGroup);
-            }
-            else
-            {
-                defaultEndingsGroup = endingsListView.Groups["endings"];
-            }
-            ListViewItem newEndingEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultEndingsGroup, Name = result.id };
-            // defaultEndingsGroup.Items.Add(newEndingEntry);
-            endingsListView.Items.Add(newEndingEntry);
-            MarkDirty();
+            AddToList(Content.Endings, result.Copy());
         }
 
         public void VerbsList_Add(object sender, Verb result)
         {
+            /*
             Guid guid = Guid.NewGuid();
             Verb newVerb = result.Copy();
             newVerb.filename = "verbs";
@@ -2365,6 +2264,30 @@ namespace CarcassSpark.ObjectViewers
             ListViewItem newVerbEntry = new ListViewItem(result.id) { Tag = guid, Group = defaultVerbsGroup, Name = result.id };
             // defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
+            MarkDirty();
+            */
+            AddToList(Content.Verbs, result.Copy());
+        }
+
+        private void AddToList<T>(ContentGroup<T> contentGroup, T newGameObject) where T : IGameObject
+        {
+            ListView listView = ListViews[contentGroup.Filename];
+            Guid guid = Guid.NewGuid();
+            newGameObject.Filename = contentGroup.Filename;
+            contentGroup[guid] = newGameObject;
+            ListViewGroup defaultGroup;
+            if (listView.Groups[contentGroup.Filename] == null)
+            {
+                defaultGroup = new ListViewGroup(contentGroup.Filename, contentGroup.Filename);
+                listView.Groups.Add(defaultGroup);
+            }
+            else
+            {
+                defaultGroup = listView.Groups[contentGroup.Filename];
+            }
+            ListViewItem newEntry = new ListViewItem(newGameObject.ID) { Tag = guid, Group = defaultGroup, Name = newGameObject.ID };
+            // defaultGroup.Items.Add(newEntry);
+            listView.Items.Add(newEntry);
             MarkDirty();
         }
 
