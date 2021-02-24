@@ -2467,114 +2467,54 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Aspect exportedAspect = Content.Aspects.Get((Guid)aspectsListView.SelectedItems[0].Tag);
-            if (exportedAspect == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedAspect);
+            CopySelectedJSONToClipboard(Content.Aspects);
         }
 
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Element exportedElement = Content.Elements.Get((Guid)elementsListView.SelectedItems[0].Tag);
-            if (exportedElement == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedElement);
+            CopySelectedJSONToClipboard(Content.Elements);
         }
 
         private void CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Recipe exportedRecipe = Content.Recipes.Get((Guid)recipesListView.SelectedItems[0].Tag);
-            if (exportedRecipe == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedRecipe);
+            CopySelectedJSONToClipboard(Content.Recipes);
         }
 
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Deck exportedDeck = Content.Decks.Get((Guid)decksListView.SelectedItems[0].Tag);
-            if (exportedDeck == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedDeck);
+            CopySelectedJSONToClipboard(Content.Decks);
         }
 
         private void CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Legacy exportedLegacy = Content.Legacies.Get((Guid)legaciesListView.SelectedItems[0].Tag);
-            if (exportedLegacy == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedLegacy);
+            CopySelectedJSONToClipboard(Content.Legacies);
         }
 
         private void CopySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Ending exportedEnding = Content.Endings.Get((Guid)endingsListView.SelectedItems[0].Tag);
-            if (exportedEnding == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedEnding);
+            CopySelectedJSONToClipboard(Content.Endings);
         }
 
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            CopySelectedJSONToClipboard(Content.Verbs);
+        }
+
+        private void CopySelectedJSONToClipboard<T>(ContentGroup<T> contentGroup) where T : IGameObject
+        {
+            ListView lv = ListViews[contentGroup.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Verb exportedVerb = Content.Verbs.Get((Guid)verbsListView.SelectedItems[0].Tag);
-            if (exportedVerb == null)
+            T exportedT = contentGroup.Get((Guid)lv.SelectedItems[0].Tag);
+            if (exportedT == null)
             {
                 return;
             }
 
-            CopyObjectJSONToClipboard(exportedVerb);
+            Clipboard.SetText(Utilities.SerializeObject(exportedT));
         }
 
         #endregion
