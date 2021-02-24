@@ -236,7 +236,7 @@ namespace CarcassSpark.ObjectViewers
         {
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.SetCustomManifest(JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd()));
+            Content.CustomManifest = JsonConvert.DeserializeObject<JObject>(new StreamReader(file).ReadToEnd());
         }
 
         public void LoadWidths()
@@ -567,9 +567,9 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
 
-            if (Content.GetCustomManifest().Count > 0)
+            if (Content.CustomManifest.Count > 0)
             {
-                string CustomManifestJson = JsonConvert.SerializeObject(Content.GetCustomManifest(), Formatting.Indented);
+                string CustomManifestJson = JsonConvert.SerializeObject(Content.CustomManifest, Formatting.Indented);
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/CarcassSpark.Manifest.json", FileMode.Create))))
                 {
                     jtw.WriteRaw(CustomManifestJson);
