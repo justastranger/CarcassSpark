@@ -241,33 +241,25 @@ namespace CarcassSpark.ObjectViewers
 
         public void LoadWidths()
         {
+            List<int> widths = null;
             if (!isVanilla)
             {
-                List<int> widths = Content.GetCustomManifestListInt("widths");
-                if (widths != null)
-                {
-                    tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
-                    tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
-                    tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
-                    tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
-                    tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
-                    tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
-                    tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
-                }
+                widths = Content.GetCustomManifestListInt("widths");
             }
             else
             {   // This part looks way uglier than the part above because I didn't make getter functions for the Settings, only Custom Manifests :(
-                List<int> widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
-                if (widths != null)
-                {
-                    tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
-                    tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
-                    tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
-                    tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
-                    tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
-                    tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
-                    tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
-                }
+                widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
+            }
+
+            if (widths != null)
+            {
+                tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
+                tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
+                tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
+                tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
+                tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
+                tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
+                tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
             }
         }
 
