@@ -3646,14 +3646,14 @@ namespace CarcassSpark.ObjectViewers
         }
 
         // This should only ever get called from the reset hidden groups button!
-        public void ReloadListView<T>(Dictionary<Guid, T> dict, string type) where T : IGameObject
+        public void ReloadListView<T>(ContentGroup<T> contentGroup) where T : IGameObject
         {
-            ListView listView = ListViews[type];
+            ListView listView = ListViews[contentGroup.Filename];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> itemsToAdd = new List<ListViewItem>();
 
-            foreach (T entity in dict.Values)
+            foreach (T entity in contentGroup.Values)
             {
                 ListViewGroup group = listView.Groups[entity.Filename] ?? new ListViewGroup(entity.Filename, entity.Filename);
                 if (!listView.Groups.Contains(group))

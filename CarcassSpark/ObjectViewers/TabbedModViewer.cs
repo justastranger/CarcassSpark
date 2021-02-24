@@ -954,51 +954,51 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("aspects");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Aspects.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Aspects, "aspects");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Aspects);
         }
 
         private void ElementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("elements");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Elements.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Elements, "elements");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Elements);
         }
 
         private void RecipesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("recipes");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Recipes.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Recipes, "recipes");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Recipes);
         }
 
         private void DecksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("decks");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Decks.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Decks, "decks");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Decks);
         }
 
         private void LegaciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("legacies");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Legacies.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Legacies, "legacies");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Legacies);
         }
 
         private void EndingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("endings");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Endings.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Endings, "endings");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Endings);
         }
 
         private void VerbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("verbs");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Verbs.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs, "verbs");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs);
         }
 		
         private void TabbedModViewer_Shown(object sender, EventArgs e)
