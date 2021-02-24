@@ -2178,115 +2178,55 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Aspect exportedAspect = Content.Aspects.Get((Guid)aspectsListView.SelectedItems[0].Tag);
-            if (exportedAspect == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedAspect, exportedAspect.id);
+            ExportSelectedGameObject(Content.Aspects);
         }
 
         private void ExportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Element exportedElement = Content.Elements.Get((Guid)elementsListView.SelectedItems[0].Tag);
-            if (exportedElement == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedElement, exportedElement.id);
+            ExportSelectedGameObject(Content.Elements);
         }
 
         private void ExportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Recipe exportedRecipe = Content.Recipes.Get((Guid)recipesListView.SelectedItems[0].Tag);
-            if (exportedRecipe == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedRecipe, exportedRecipe.id);
+            ExportSelectedGameObject(Content.Recipes);
         }
 
         private void ExportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Deck exportedDeck = Content.Decks.Get((Guid)decksListView.SelectedItems[0].Tag);
-            if (exportedDeck == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedDeck, exportedDeck.id);
+            ExportSelectedGameObject(Content.Decks);
         }
 
         private void ExportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Legacy exportedLegacy = Content.Legacies.Get((Guid)legaciesListView.SelectedItems[0].Tag);
-            if (exportedLegacy == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedLegacy, exportedLegacy.id);
+            ExportSelectedGameObject(Content.Legacies);
         }
 
         private void ExportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Ending exportedEnding = Content.Endings.Get((Guid)endingsListView.SelectedItems[0].Tag);
-            if (exportedEnding == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedEnding, exportedEnding.id);
+            ExportSelectedGameObject(Content.Endings);
         }
 
         private void ExportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            ExportSelectedGameObject(Content.Verbs);
+        }
+
+        private void ExportSelectedGameObject<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Verb exportedVerb = Content.Verbs.Get((Guid)verbsListView.SelectedItems[0].Tag);
-            ExportObject(exportedVerb, exportedVerb.id);
-        }
-
-        private void ExportObject(object objectToExport, string id)
-        {
-            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
-            saveFileDialog.FileName = objectToExport.GetType().Name + "_" + id + ".json";
+            T exportedGameObject = cg.Get((Guid)lv.SelectedItems[0].Tag);
+            if (exportedGameObject == null)
+            {
+                return;
+            }
+            
+            string JSON = JsonConvert.SerializeObject(exportedGameObject, Formatting.Indented);
+            saveFileDialog.FileName = exportedGameObject.GetType().Name + "_" + exportedGameObject.ID + ".json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
