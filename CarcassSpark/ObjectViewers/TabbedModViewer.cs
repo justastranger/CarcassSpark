@@ -309,223 +309,44 @@ namespace CarcassSpark.ObjectViewers
             vv.Show();
         }
 
+        #region "Import" events
+
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
-                    {
-                        MessageBox.Show("Aspect already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
-                        if (!SelectedModViewer.aspectsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.aspectsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = guid, Group = group });
-                    }
-                    deserializedAspect.filename = "aspects";
-                    SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error deserializing Aspect: " + ex.ToString());
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Aspects);
         }
 
         private void ElementToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
-                    {
-                        MessageBox.Show("Element already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
-                        if (!SelectedModViewer.elementsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.elementsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = guid, Group = group });
-                    }
-                    deserializedElement.filename = "elements";
-                    SelectedModViewer.Content.Elements[guid] = deserializedElement;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Element");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Elements);
         }
 
         private void RecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
-                    {
-                        MessageBox.Show("Recipe already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
-                        if (!SelectedModViewer.recipesListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.recipesListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = group });
-                    }
-                    deserializedRecipe.filename = "recipes";
-                    SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Recipe");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Recipes);
         }
 
         private void DeckToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
-                    {
-                        MessageBox.Show("Deck already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
-                        if (!SelectedModViewer.decksListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.decksListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = guid, Group = group });
-                    }
-                    deserializedDeck.filename = "decks";
-                    SelectedModViewer.Content.Decks[guid] = deserializedDeck;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Deck");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Decks);
         }
 
         private void LegacyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
-                    {
-                        MessageBox.Show("Legacy already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
-                        if (!SelectedModViewer.legaciesListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.legaciesListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = group });
-                    }
-                    deserializedLegacy.filename = "legacies";
-                    SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Legacy");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Legacies);
         }
 
         private void EndingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
-                    {
-                        MessageBox.Show("Ending already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
-                        if (!SelectedModViewer.endingsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.endingsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = guid, Group = group });
-                    }
-                    deserializedEnding.filename = "endings";
-                    SelectedModViewer.Content.Endings[guid] = deserializedEnding;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Ending");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Endings);
         }
 
         private void VerbToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImportGameObject(SelectedModViewer.Content.Verbs);
+        }
+
+        private void ImportGameObject<T>(ContentGroup<T> cg) where T : IGameObject
         {
             if (SelectedModViewer.isVanilla)
             {
@@ -536,30 +357,33 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Guid guid = Guid.NewGuid();
-                    Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
+                    T deserializedT = JsonConvert.DeserializeObject<T>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    ListView listView = SelectedModViewer.ListViews[cg.DisplayName];
+                    if (listView.Items.ContainsKey(deserializedT.ID))
                     {
-                        MessageBox.Show("Verb already exists, overwriting.");
+                        MessageBox.Show(cg.DisplayName + " already exists, overwriting.");
                     }
                     else
                     {
-                        ListViewGroup group = SelectedModViewer.verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
-                        if (!SelectedModViewer.verbsListView.Groups.Contains(group))
+                        ListViewGroup group = listView.Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
+                        if (!listView.Groups.Contains(group))
                         {
-                            SelectedModViewer.verbsListView.Groups.Add(group);
+                            listView.Groups.Add(group);
                         }
-                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = guid, Group = group });
+                        listView.Items.Add(new ListViewItem(deserializedT.ID) { Tag = guid, Group = group });
                     }
-                    deserializedVerb.filename = "verbs";
-                    SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
+                    deserializedT.Filename = cg.Filename;
+                    cg[guid] = deserializedT;
                     SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error deserializing Verb");
+                    MessageBox.Show("Error deserializing " + cg.DisplayName);
                 }
             }
         }
+
+        #endregion
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
