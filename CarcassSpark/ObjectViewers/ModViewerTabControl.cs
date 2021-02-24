@@ -2847,293 +2847,93 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
+        #region "Set Group" events
+
+        private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (setGroupAspectToolStripMenuItem.Enabled)
+            {
+                SetGroup(Content.Aspects);
+            }
+        }
+
+        private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (setGroupElementToolStripMenuItem.Enabled)
+            {
+                SetGroup(Content.Elements);
+            }
+        }
+
         private void SetGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupRecipeToolStripMenuItem.Enabled)
+            if (setGroupRecipeToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = recipesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in recipesListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Recipe"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (recipesListView.Groups[newGroup] != null)
-                    {
-                        recipesListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        recipesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Recipes.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Recipe", newGroup);
+                SetGroup(Content.Recipes);
             }
         }
 
         private void SetGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupDeckToolStripMenuItem.Enabled)
+            if (setGroupDeckToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = decksListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in decksListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Deck"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        decksListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (decksListView.Groups[newGroup] != null)
-                    {
-                        decksListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        decksListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Decks.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Deck", newGroup);
+                SetGroup(Content.Decks);
             }
         }
 
         private void SetGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupLegacyToolStripMenuItem.Enabled)
+            if (setGroupLegacyToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = legaciesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in legaciesListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Legacy"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (legaciesListView.Groups[newGroup] != null)
-                    {
-                        legaciesListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        legaciesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Legacies.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Legacy", newGroup);
+                SetGroup(Content.Legacies);
             }
         }
 
         private void SetGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupEndingToolStripMenuItem.Enabled)
+            if (setGroupEndingToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = endingsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in endingsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Ending"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (endingsListView.Groups[newGroup] != null)
-                    {
-                        endingsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        endingsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Endings.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
+                SetGroup(Content.Endings);
             }
         }
 
         private void SetGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupVerbToolStripMenuItem.Enabled)
+            if (setGroupVerbToolStripMenuItem.Enabled)
+            {
+                SetGroup(Content.Verbs);
+            }
+        }
+
+        public void SetGroup<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = verbsListView.SelectedItems[0];
+            ListViewItem selectedItem = lv.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
             List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in verbsListView.Groups)
+            foreach (ListViewGroup lvg in lv.Groups)
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Verb"), groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup(cg.DisplayName), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null)
+                foreach (ListView listView in ListViews.Values)
                 {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    // TODO: Make this respect the ContentSource, rather than the ListView.
+                    // We REALLY don't want people making groups that exist for other types.
+                    if (listView != lv && listView.Groups[newGroup] != null)
+                    {
+                        MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                 }
                 
                 if (GroupExistsAsHidden(newGroup))
@@ -3146,23 +2946,19 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (currentGroup != "" && currentGroup != null)
                     {
-                        verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                        lv.Groups[currentGroup].Items.Remove(selectedItem);
                     }
 
-                    if (verbsListView.Groups[newGroup] != null)
-                    {
-                        verbsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
+                    if (lv.Groups[newGroup] == null)
                     {
                         ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        verbsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Verbs.Get((Guid)selectedItem.Tag).filename = newGroup;
+                        lv.Groups.Add(listViewGroup);
                     }
+                    lv.Groups[newGroup].Items.Add(selectedItem);
+                    cg.Get((Guid)selectedItem.Tag).Filename = newGroup;
                     MarkDirty();
                 }
-                Content.SetRecentGroup("Verb", newGroup);
+                Content.SetRecentGroup(cg.DisplayName, newGroup);
             }
         }
 
