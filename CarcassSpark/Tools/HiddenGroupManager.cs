@@ -22,17 +22,20 @@ namespace CarcassSpark.Tools
 
         private void LoadHiddenGroups()
         {
-            foreach (KeyValuePair<string, List<string>> type in HiddenGroups)
+            if (HiddenGroups != null)
             {
-                ListViewGroup HiddenGroupsTypeGroup = new ListViewGroup(type.Key, type.Key);
-                hiddenGroupsListView.Groups.Add(HiddenGroupsTypeGroup);
-                List<ListViewItem> HiddenGroupsItems = new List<ListViewItem>();
-                foreach (string hiddenGroup in type.Value)
+                foreach (KeyValuePair<string, List<string>> type in HiddenGroups)
                 {
-                    HiddenGroupsItems.Add(new ListViewItem(hiddenGroup));
+                    ListViewGroup HiddenGroupsTypeGroup = new ListViewGroup(type.Key, type.Key);
+                    hiddenGroupsListView.Groups.Add(HiddenGroupsTypeGroup);
+                    List<ListViewItem> HiddenGroupsItems = new List<ListViewItem>();
+                    foreach (string hiddenGroup in type.Value)
+                    {
+                        HiddenGroupsItems.Add(new ListViewItem(hiddenGroup));
+                    }
+                    HiddenGroupsTypeGroup.Items.AddRange(HiddenGroupsItems.ToArray());
+                    hiddenGroupsListView.Items.AddRange(HiddenGroupsItems.ToArray());
                 }
-                HiddenGroupsTypeGroup.Items.AddRange(HiddenGroupsItems.ToArray());
-                hiddenGroupsListView.Items.AddRange(HiddenGroupsItems.ToArray());
             }
         }
 
