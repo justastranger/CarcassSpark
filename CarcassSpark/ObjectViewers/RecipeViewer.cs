@@ -444,6 +444,19 @@ namespace CarcassSpark.ObjectViewers
                     deckeffectDataGridView.Rows.Add(row);
                 }
             }
+            if (recipe.alt_prepend != null && recipe.alt_prepend.Count > 0)
+            {
+                foreach (RecipeLink rl in recipe.alt_prepend)
+                {
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
+                        BackColor = Utilities.ListPrependColor,
+                        Tag = Guid.NewGuid()
+                    };
+                    alternativeRecipesListView.Items.Add(item);
+                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
+                }
+            }
             if (recipe.alt != null && recipe.alt.Count > 0)
             {
                 // alternativerecipeLinks.Clear();
@@ -452,19 +465,6 @@ namespace CarcassSpark.ObjectViewers
                 {
                     ListViewItem item = new ListViewItem(rl.id)
                     {
-                        Tag = Guid.NewGuid()
-                    };
-                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
-                    alternativeRecipesListView.Items.Add(item);
-                }
-            }
-            if (recipe.alt_prepend != null && recipe.alt_prepend.Count > 0)
-            {
-                foreach (RecipeLink rl in recipe.alt_prepend)
-                {
-                    ListViewItem item = new ListViewItem(rl.id)
-                    {
-                        BackColor = Utilities.ListPrependColor,
                         Tag = Guid.NewGuid()
                     };
                     alternativeRecipesListView.Items.Add(item);
@@ -497,20 +497,6 @@ namespace CarcassSpark.ObjectViewers
                     alternativeRecipesListView.Items.Add(item);
                 }
             }
-            if (recipe.linked != null && recipe.linked.Count > 0)
-            {
-                // recipeLinks.Clear();
-                // linkedRecipesListView.Items.Clear();
-                foreach (RecipeLink rl in recipe.linked)
-                {
-                    ListViewItem item = new ListViewItem(rl.id)
-                    {
-                        Tag = Guid.NewGuid()
-                    };
-                    linkedRecipesListView.Items.Add(item);
-                    recipeLinks.Add((Guid)item.Tag, rl);
-                }
-            }
             if (recipe.linked_prepend != null && recipe.linked_prepend.Count > 0)
             {
                 // recipeLinks.Clear();
@@ -525,6 +511,20 @@ namespace CarcassSpark.ObjectViewers
                     ListViewItem item = new ListViewItem(rl.id)
                     {
                         BackColor = Utilities.ListPrependColor,
+                        Tag = Guid.NewGuid()
+                    };
+                    linkedRecipesListView.Items.Add(item);
+                    recipeLinks.Add((Guid)item.Tag, rl);
+                }
+            }
+            if (recipe.linked != null && recipe.linked.Count > 0)
+            {
+                // recipeLinks.Clear();
+                // linkedRecipesListView.Items.Clear();
+                foreach (RecipeLink rl in recipe.linked)
+                {
+                    ListViewItem item = new ListViewItem(rl.id)
+                    {
                         Tag = Guid.NewGuid()
                     };
                     linkedRecipesListView.Items.Add(item);
