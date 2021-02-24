@@ -204,22 +204,14 @@ namespace CarcassSpark.ObjectViewers
                 }
                 return true;
             }
+            // no manifest so we'll try to make one
+            else if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                // return true if everything's going good; otherwise, return false so I can abort the creation of the tab
+                return CreateSynopsis() ? true : false;
+            }
             else
             {
-                // no manifest so we'll try to make one
-                if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    // return true if everything's going good
-                    if (CreateSynopsis())
-                    {
-                        return true;
-                    }
-                    // otherwise return false so I can abort the creation of the tab
-                    else
-                    {
-                        return false;
-                    }
-                }
                 return false;
             }
         }
