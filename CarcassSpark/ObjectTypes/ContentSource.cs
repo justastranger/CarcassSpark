@@ -15,7 +15,6 @@ namespace CarcassSpark.ObjectTypes
         public string currentDirectory;
         public Synopsis synopsis;
 
-        private JObject CustomManifest = new JObject();
         // CustomManifest["EditMode"]
         // CustomManifest["AutoSave"]
         // CustomManifest["hiddenGroups"]
@@ -32,6 +31,8 @@ namespace CarcassSpark.ObjectTypes
         public ContentGroup<Ending> Endings = new ContentGroup<Ending>("Ending", "Endings", "endings");
         public ContentGroup<Verb> Verbs = new ContentGroup<Verb>("Verb", "Verbs", "verbs");
         public ContentGroup<Culture> Cultures = new ContentGroup<Culture>("Culture", "Cultures", null);
+
+        public JObject CustomManifest { get; set; } = new JObject();
 
         public ContentSource()
         {
