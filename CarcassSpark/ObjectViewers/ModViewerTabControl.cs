@@ -2716,134 +2716,49 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        #endregion
-        #region Set Group toolstrip menu item clicked events
-
-        private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!setGroupAspectToolStripMenuItem.Enabled)
+            if (endingsListView.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            if (aspectsListView.SelectedItems.Count < 1)
+            if (e.KeyCode == Keys.Enter)
             {
-                return;
-            }
-
-            ListViewItem selectedItem = aspectsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in aspectsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Aspect"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
+                Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
+                if (editMode)
                 {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
+                    ev.Show();
                 }
-                
-                if (GroupExistsAsHidden(newGroup))
+                else
                 {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), null, endingsListView.SelectedItems[0]);
+                    ev.Show();
                 }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (aspectsListView.Groups[newGroup] != null)
-                    {
-                        aspectsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        aspectsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Aspects.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Aspect", newGroup);
             }
         }
 
-        private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!setGroupElementToolStripMenuItem.Enabled)
+            if (verbsListView.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            if (elementsListView.SelectedItems.Count < 1)
+            if (e.KeyCode == Keys.Enter)
             {
-                return;
-            }
-
-            ListViewItem selectedItem = elementsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in elementsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Element"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
+                Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
+                if (editMode)
                 {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
+                    vv.Show();
                 }
-                
-                if (GroupExistsAsHidden(newGroup))
+                else
                 {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), null, verbsListView.SelectedItems[0]);
+                    vv.Show();
                 }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (elementsListView.Groups[newGroup] != null)
-                    {
-                        elementsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        elementsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                        Content.Elements.Get((Guid)selectedItem.Tag).filename = newGroup;
-                    }
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Element", newGroup);
             }
         }
 
@@ -3049,51 +2964,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-                else
-                {
-                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), null, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-            }
-        }
-
-        private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
-                else
-                {
-                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), null, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
-            }
-        }
         #endregion
         #region Hide Group toolstrip menu items clicked events
 
