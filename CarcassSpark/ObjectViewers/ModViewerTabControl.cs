@@ -581,6 +581,8 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #region "Double-Click" events
+
         private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
             if (aspectsListView.SelectedItems.Count < 1)
@@ -599,62 +601,6 @@ namespace CarcassSpark.ObjectViewers
                 AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
-        }
-
-        private void AspectsList_Assign(object sender, Aspect result)
-        {
-            AspectViewer aspectViewer = (AspectViewer)sender;
-            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
-                aspectViewer.associatedListViewItem.Tag = result.guid;
-                Aspect newAspect = result.Copy();
-                newAspect.filename = aspectViewer.associatedListViewItem.Group.Name;
-                Content.Aspects.Add(result.guid, newAspect);
-            }
-            if (aspectViewer.associatedListViewItem.Text != result.id)
-            {
-                aspectViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
-        }
-
-        private void DecksListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)decksListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
-                dv.Show();
-            }
-            else
-            {
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), null, decksListView.SelectedItems[0]);
-                dv.Show();
-            }
-        }
-
-        private void DecksList_Assign(object sender, Deck result)
-        {
-            DeckViewer deckViewer = (DeckViewer)sender;
-            if ((Guid)deckViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
-                deckViewer.associatedListViewItem.Tag = result.guid;
-                Deck newDeck = result.Copy();
-                newDeck.filename = deckViewer.associatedListViewItem.Group.Name;
-                Content.Decks.Add(result.guid, newDeck);
-            }
-            if (deckViewer.associatedListViewItem.Text != result.id)
-            {
-                deckViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
         }
 
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
@@ -677,22 +623,44 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ElementsList_Assign(object sender, Element result)
+        private void RecipesListView_DoubleClick(object sender, EventArgs e)
         {
-            ElementViewer elementViewer = (ElementViewer)sender;
-            if ((Guid)elementViewer.associatedListViewItem.Tag != result.guid)
+            if (recipesListView.SelectedItems.Count < 1)
             {
-                Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
-                elementViewer.associatedListViewItem.Tag = result.guid;
-                Element newElement = result.Copy();
-                newElement.filename = elementViewer.associatedListViewItem.Group.Name;
-                Content.Elements.Add(result.guid, newElement);
+                return;
             }
-            if (elementViewer.associatedListViewItem.Text != result.id)
+
+            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
+            if (editMode)
             {
-                elementViewer.associatedListViewItem.Text = result.id;
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
+                rv.Show();
             }
-            MarkDirty();
+            else
+            {
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), null, recipesListView.SelectedItems[0]);
+                rv.Show();
+            }
+        }
+
+        private void DecksListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (decksListView.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            Guid id = (Guid)decksListView.SelectedItems[0].Tag;
+            if (editMode)
+            {
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
+                dv.Show();
+            }
+            else
+            {
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), null, decksListView.SelectedItems[0]);
+                dv.Show();
+            }
         }
 
         private void EndingsListView_DoubleClick(object sender, EventArgs e)
@@ -715,24 +683,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void EndingsList_Assign(object sender, Ending result)
-        {
-            EndingViewer endingViewer = (EndingViewer)sender;
-            if ((Guid)endingViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
-                endingViewer.associatedListViewItem.Tag = result.guid;
-                Ending newEnding = result.Copy();
-                newEnding.filename = endingViewer.associatedListViewItem.Group.Name;
-                Content.Endings.Add(result.guid, newEnding);
-            }
-            if (endingViewer.associatedListViewItem.Text != result.id)
-            {
-                endingViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
-        }
-
         private void LegaciesListView_DoubleClick(object sender, EventArgs e)
         {
             if (legaciesListView.SelectedItems.Count < 1)
@@ -753,42 +703,63 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void LegaciesList_Assign(object sender, Legacy result)
+        private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
-            LegacyViewer legacyViewer = (LegacyViewer)sender;
-            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
-                legacyViewer.associatedListViewItem.Tag = result.guid;
-                Legacy newLegacy = result.Copy();
-                newLegacy.filename = legacyViewer.associatedListViewItem.Group.Name;
-                Content.Legacies.Add(result.guid, newLegacy);
-            }
-            if (legacyViewer.associatedListViewItem.Text != result.id)
-            {
-                legacyViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
-        }
-
-        private void RecipesListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (recipesListView.SelectedItems.Count < 1)
+            if (verbsListView.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
+            Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
             if (editMode)
             {
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                rv.Show();
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
+                vv.Show();
             }
             else
             {
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), null, recipesListView.SelectedItems[0]);
-                rv.Show();
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), null, verbsListView.SelectedItems[0]);
+                vv.Show();
             }
+        }
+
+        #endregion
+        #region "List_Assign" events
+
+        private void AspectsList_Assign(object sender, Aspect result)
+        {
+            AspectViewer aspectViewer = (AspectViewer)sender;
+            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.guid)
+            {
+                Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
+                aspectViewer.associatedListViewItem.Tag = result.guid;
+                Aspect newAspect = result.Copy();
+                newAspect.filename = aspectViewer.associatedListViewItem.Group.Name;
+                Content.Aspects.Add(result.guid, newAspect);
+            }
+            if (aspectViewer.associatedListViewItem.Text != result.id)
+            {
+                aspectViewer.associatedListViewItem.Text = result.id;
+            }
+            MarkDirty();
+        }
+
+        private void ElementsList_Assign(object sender, Element result)
+        {
+            ElementViewer elementViewer = (ElementViewer)sender;
+            if ((Guid)elementViewer.associatedListViewItem.Tag != result.guid)
+            {
+                Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
+                elementViewer.associatedListViewItem.Tag = result.guid;
+                Element newElement = result.Copy();
+                newElement.filename = elementViewer.associatedListViewItem.Group.Name;
+                Content.Elements.Add(result.guid, newElement);
+            }
+            if (elementViewer.associatedListViewItem.Text != result.id)
+            {
+                elementViewer.associatedListViewItem.Text = result.id;
+            }
+            MarkDirty();
         }
 
         private void RecipesList_Assign(object sender, Recipe result)
@@ -809,24 +780,58 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty();
         }
 
-        private void VerbsListView_DoubleClick(object sender, EventArgs e)
+        private void DecksList_Assign(object sender, Deck result)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            DeckViewer deckViewer = (DeckViewer)sender;
+            if ((Guid)deckViewer.associatedListViewItem.Tag != result.guid)
             {
-                return;
+                Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
+                deckViewer.associatedListViewItem.Tag = result.guid;
+                Deck newDeck = result.Copy();
+                newDeck.filename = deckViewer.associatedListViewItem.Group.Name;
+                Content.Decks.Add(result.guid, newDeck);
             }
+            if (deckViewer.associatedListViewItem.Text != result.id)
+            {
+                deckViewer.associatedListViewItem.Text = result.id;
+            }
+            MarkDirty();
+        }
 
-            Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
-            if (editMode)
+        private void EndingsList_Assign(object sender, Ending result)
+        {
+            EndingViewer endingViewer = (EndingViewer)sender;
+            if ((Guid)endingViewer.associatedListViewItem.Tag != result.guid)
             {
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                vv.Show();
+                Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
+                endingViewer.associatedListViewItem.Tag = result.guid;
+                Ending newEnding = result.Copy();
+                newEnding.filename = endingViewer.associatedListViewItem.Group.Name;
+                Content.Endings.Add(result.guid, newEnding);
             }
-            else
+            if (endingViewer.associatedListViewItem.Text != result.id)
             {
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), null, verbsListView.SelectedItems[0]);
-                vv.Show();
+                endingViewer.associatedListViewItem.Text = result.id;
             }
+            MarkDirty();
+        }
+
+        private void LegaciesList_Assign(object sender, Legacy result)
+        {
+            LegacyViewer legacyViewer = (LegacyViewer)sender;
+            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.guid)
+            {
+                Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
+                legacyViewer.associatedListViewItem.Tag = result.guid;
+                Legacy newLegacy = result.Copy();
+                newLegacy.filename = legacyViewer.associatedListViewItem.Group.Name;
+                Content.Legacies.Add(result.guid, newLegacy);
+            }
+            if (legacyViewer.associatedListViewItem.Text != result.id)
+            {
+                legacyViewer.associatedListViewItem.Text = result.id;
+            }
+            MarkDirty();
         }
 
         private void VerbsList_Assign(object sender, Verb result)
