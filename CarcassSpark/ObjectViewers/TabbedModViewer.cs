@@ -575,128 +575,53 @@ namespace CarcassSpark.ObjectViewers
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
-                Guid guid = Guid.NewGuid();
-                ListViewGroup listViewGroup;
-                SelectedModViewer.MarkDirty();
                 switch (je.objectType)
                 {
                     case "Aspect":
-                        listViewGroup = SelectedModViewer.aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
-                        if (!SelectedModViewer.aspectsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.aspectsListView.Groups.Add(listViewGroup);
-                        }
-                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                        deserializedAspect.filename = "aspects";
-                        SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
-                        if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedAspect.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.aspectsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Aspects, je.objectText);
                         break;
                     case "Element":
-                        listViewGroup = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
-                        if (!SelectedModViewer.elementsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.elementsListView.Groups.Add(listViewGroup);
-                        }
-                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                        deserializedElement.filename = "elements";
-                        SelectedModViewer.Content.Elements[guid] = deserializedElement;
-                        if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedElement.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.elementsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Elements, je.objectText);
                         break;
                     case "Recipe":
-                        listViewGroup = SelectedModViewer.recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
-                        if (!SelectedModViewer.recipesListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.recipesListView.Groups.Add(listViewGroup);
-                        }
-                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                        deserializedRecipe.filename = "recipes";
-                        SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
-                        if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.recipesListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Recipes, je.objectText);
                         break;
                     case "Deck":
-                        listViewGroup = SelectedModViewer.decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
-                        if (SelectedModViewer.decksListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.decksListView.Groups.Add(listViewGroup);
-                        }
-                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                        deserializedDeck.filename = "decks";
-                        SelectedModViewer.Content.Decks[guid] = deserializedDeck;
-                        if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedDeck.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.decksListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Decks, je.objectText);
                         break;
                     case "Legacy":
-                        listViewGroup = SelectedModViewer.legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
-                        if (SelectedModViewer.legaciesListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.legaciesListView.Groups.Add(listViewGroup);
-                        }
-                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                        deserializedLegacy.filename = "legacies";
-                        SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
-                        if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.legaciesListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Legacies, je.objectText);
                         break;
                     case "Ending":
-                        listViewGroup = SelectedModViewer.endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
-                        if (SelectedModViewer.endingsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.endingsListView.Groups.Add(listViewGroup);
-                        }
-                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                        deserializedEnding.filename = "endings";
-                        SelectedModViewer.Content.Endings[guid] = deserializedEnding;
-                        if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedEnding.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.endingsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Endings, je.objectText);
                         break;
                     case "Verb":
-                        listViewGroup = SelectedModViewer.verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
-                        if (SelectedModViewer.verbsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.verbsListView.Groups.Add(listViewGroup);
-                        }
-                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                        deserializedVerb.filename = "verbs";
-                        SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
-                        if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedVerb.id) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.verbsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Verbs, je.objectText);
                         break;
                     default:
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                 }
                 SelectedModViewer.MarkDirty();
+            }
+        }
+
+        private void FromClipboardOnOkay<T>(ContentGroup<T> cg, string objectText) where T : IGameObject
+        {
+            Guid guid = Guid.NewGuid();
+            ListViewGroup listViewGroup = SelectedModViewer.ListViews[cg.Filename].Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
+            if (SelectedModViewer.ListViews[cg.Filename].Groups.Contains(listViewGroup))
+            {
+                SelectedModViewer.ListViews[cg.Filename].Groups.Add(listViewGroup);
+            }
+            T deserializedGameObject = JsonConvert.DeserializeObject<T>(objectText);
+            deserializedGameObject.Filename = cg.Filename;
+            cg[guid] = deserializedGameObject;
+            if (!SelectedModViewer.ListViews[cg.Filename].Items.ContainsKey(deserializedGameObject.ID))
+            {
+                ListViewItem item = new ListViewItem(deserializedGameObject.ID) { Tag = guid, Group = listViewGroup };
+                SelectedModViewer.ListViews[cg.Filename].Items.Add(item);
+                // listViewGroup.Items.Add(item);
             }
         }
 
