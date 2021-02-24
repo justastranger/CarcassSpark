@@ -1740,148 +1740,57 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedAspectToolStripMenuItem.Enabled)
+            if (deleteSelectedAspectToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = aspectsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                aspectsListView.Items.Remove(listViewItem);
-                Content.Aspects.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Aspects);
             }
         }
 
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedElementToolStripMenuItem.Enabled)
+            if (deleteSelectedElementToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = elementsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                elementsListView.Items.Remove(listViewItem);
-                Content.Elements.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Elements);
             }
         }
 
         private void DeleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedRecipeToolStripMenuItem.Enabled)
+            if (deleteSelectedRecipeToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = recipesListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                recipesListView.Items.Remove(listViewItem);
-                Content.Recipes.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Recipes);
             }
         }
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedDeckToolStripMenuItem.Enabled)
+            if (deleteSelectedDeckToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = decksListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                decksListView.Items.Remove(listViewItem);
-                Content.Decks.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Decks);
             }
         }
 
         private void DeleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedLegacyToolStripMenuItem.Enabled)
+            if (deleteSelectedLegacyToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = legaciesListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                legaciesListView.Items.Remove(listViewItem);
-                Content.Legacies.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Legacies);
             }
         }
 
         private void DeleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedEndingToolStripMenuItem.Enabled)
+            if (deleteSelectedEndingToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = endingsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                endingsListView.Items.Remove(listViewItem);
-                Content.Endings.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Endings);
             }
         }
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedVerbToolStripMenuItem.Enabled)
+            if (deleteSelectedVerbToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = verbsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                verbsListView.Items.Remove(listViewItem);
-                Content.Verbs.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Verbs);
             }
         }
 
@@ -1898,6 +1807,22 @@ namespace CarcassSpark.ObjectViewers
         public void Deleted(string id)
         {
             MessageBox.Show(id + "has been deleted.");
+        }
+
+        private void DeleteSelected<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            if (ListViews[cg.Filename].SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            ListViewItem listViewItem = ListViews[cg.Filename].SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
+            {
+                ListViews[cg.Filename].Items.Remove(listViewItem);
+                cg.Remove((Guid)listViewItem.Tag);
+                MarkDirty();
+            }
         }
 
         #endregion
