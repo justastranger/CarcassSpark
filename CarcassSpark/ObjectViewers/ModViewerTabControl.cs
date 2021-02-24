@@ -3806,11 +3806,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void MarkDirty()
         {
-            IsDirty = true;
-            if (MarkDirtyEventHandler != null)
-            {
-                MarkDirtyEventHandler.Invoke(this, IsDirty);
-            }
+            MarkDirty(true);
         }
 
         public bool GroupExistsAsHidden(string newGroup)

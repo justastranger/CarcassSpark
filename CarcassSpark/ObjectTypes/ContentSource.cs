@@ -72,17 +72,12 @@ namespace CarcassSpark.ObjectTypes
         public void SetRecentGroup(string type, string groupName)
         {
             Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
-            if (recentGroups != null)
+            if (recentGroups == null)
             {
-                recentGroups[type] = groupName;
+                recentGroups = new Dictionary<string, string>();
             }
-            else
-            {
-                recentGroups = new Dictionary<string, string>()
-                {
-                    {type, groupName}
-                };
-            }
+            
+            recentGroups[type] = groupName;
             CustomManifest["recentGroups"] = JObject.FromObject(recentGroups);
         }
 
