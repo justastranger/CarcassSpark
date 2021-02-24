@@ -836,7 +836,8 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty();
         }
 
-        #region "Search Text Box Text Changed" events
+        #endregion
+        #region "Search Text Box" events
 
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -1077,6 +1078,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
+        #region "Search for..." events
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1706,6 +1708,8 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
+
         private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recipesListView.SelectedItems.Count < 1)
@@ -1731,6 +1735,8 @@ namespace CarcassSpark.ObjectViewers
         {
             SaveMod();
         }
+
+        #region "Delete Selected" events
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1894,6 +1900,9 @@ namespace CarcassSpark.ObjectViewers
             MessageBox.Show(id + "has been deleted.");
         }
 
+        #endregion
+        #region "Mouse Down" events
+
         private void AspectsListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -1992,6 +2001,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
         #region "Open Selected JSON" events
 
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2225,10 +2235,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public void CopyObjectJSONToClipboard(object objectToExport)
-        {
-            Clipboard.SetText(Utilities.SerializeObject(objectToExport));
-        }
         #endregion
         #region "Copy Selected JSON to Clipboard" events
 
@@ -2285,7 +2291,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-        #region "New" events
+        #region "Create New" events
 
         private void NewAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2330,7 +2336,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-        #region Add to List events
+        #region "Add to List" events
 
         public void AspectsList_Add(object sender, Aspect result)
         {
@@ -2528,7 +2534,7 @@ namespace CarcassSpark.ObjectViewers
             SaveWidths();
         }
 
-        #region ListView Key Down events
+        #region "Key Down" events
 
         private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
         {
@@ -2807,7 +2813,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-        #region Use Template toolstrip menu item clicked events
+        #region "Use Template" events
 
         private void UseTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2894,7 +2900,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-        #region Hide Group toolstrip menu items clicked events
+        #region "Hide Group" events
 
         private void HideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
