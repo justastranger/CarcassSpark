@@ -15,6 +15,5 @@ namespace CarcassSpark.ObjectTypes
         Guid Guid { get; set; }
         [JsonIgnore]
         string ID { get; set; }
-        string Filename { get; set; }
     }
 }
