@@ -2007,231 +2007,69 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-            Aspect aspectToEdit = Content.Aspects.Get(guid);
-            if (aspectToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                if (!deserializedAspect.Equals(aspectToEdit))
-                {
-                    // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
-                    deserializedAspect.filename = aspectsListView.SelectedItems[0].Group.Name;
-                    Content.Aspects[guid] = deserializedAspect;
-                    aspectsListView.SelectedItems[0].Text = deserializedAspect.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()] = deserializedAspect.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Aspects);
         }
 
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
-            Element elementToEdit = Content.Elements.Get(guid);
-            if (elementToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                if (!deserializedElement.Equals(elementToEdit))
-                {
-                    // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
-                    deserializedElement.filename = elementsListView.SelectedItems[0].Group.Name;
-                    Content.Elements[guid] = deserializedElement;
-                    elementsListView.SelectedItems[0].Text = deserializedElement.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()] = deserializedElement.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Elements);
         }
 
         private void OpenSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
-            Recipe recipeToEdit = Content.Recipes.Get(guid);
-            if (recipeToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                if (!deserializedRecipe.Equals(recipeToEdit))
-                {
-                    // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
-                    deserializedRecipe.filename = recipesListView.SelectedItems[0].Group.Name;
-                    Content.Recipes[guid] = deserializedRecipe;
-                    recipesListView.SelectedItems[0].Text = deserializedRecipe.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()] = deserializedRecipe.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Recipes);
         }
 
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
-            Deck deckToEdit = Content.Decks.Get(guid);
-            if (deckToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                if (!deserializedDeck.Equals(deckToEdit))
-                {
-                    // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
-                    deserializedDeck.filename = decksListView.SelectedItems[0].Group.Name;
-                    Content.Decks[guid] = deserializedDeck;
-                    decksListView.SelectedItems[0].Text = deserializedDeck.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Decks[decksListView.SelectedItems[0].Tag.ToString()] = deserializedDeck.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Decks);
         }
 
         private void OpenSelectedLegaciesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
-            Legacy legacyToEdit = Content.Legacies.Get(guid);
-            if (legacyToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                if (!deserializedLegacy.Equals(legacyToEdit))
-                {
-                    // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
-                    deserializedLegacy.filename = legaciesListView.SelectedItems[0].Group.Name;
-                    Content.Legacies[guid] = deserializedLegacy;
-                    legaciesListView.SelectedItems[0].Text = deserializedLegacy.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()] = deserializedLegacy.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Legacies);
         }
 
         private void OpenSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-            Ending endingToEdit = Content.Endings.Get(guid);
-            if (endingToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                if (!deserializedEnding.Equals(endingToEdit))
-                {
-                    // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
-                    deserializedEnding.filename = endingsListView.SelectedItems[0].Group.Name;
-                    Content.Endings[guid] = deserializedEnding;
-                    endingsListView.SelectedItems[0].Text = deserializedEnding.id;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()] = deserializedEnding.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Endings);
         }
 
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            OpenSelectedJSON(Content.Verbs);
+        }
+
+        private void OpenSelectedJSON<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-            Verb verbToEdit = Content.Verbs.Get(guid);
-            if (verbToEdit == null)
+            Guid guid = (Guid)lv.SelectedItems[0].Tag;
+            T gameObjectToEdit = cg.Get(guid);
+            if (gameObjectToEdit == null)
             {
                 return;
             }
 
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(gameObjectToEdit), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
-                Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                if (!deserializedVerb.Equals(verbToEdit))
+                T deserializedGameObject = JsonConvert.DeserializeObject<T>(je.objectText);
+                if (!deserializedGameObject.Equals(gameObjectToEdit))
                 {
-                    // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
-                    deserializedVerb.filename = verbsListView.SelectedItems[0].Group.Name;
-                    Content.Verbs[guid] = deserializedVerb;
-                    verbsListView.SelectedItems[0].Text = deserializedVerb.id;
+                    // cg.Remove(lv.SelectedItems[0].Tag.ToString());
+                    deserializedGameObject.Filename = lv.SelectedItems[0].Group.Name;
+                    cg[guid] = deserializedGameObject;
+                    lv.SelectedItems[0].Text = deserializedGameObject.ID;
                     MarkDirty();
                 }
                 else
                 {
-                    // Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()] = deserializedVerb.Copy();
+                    // cg[lv.SelectedItems[0].Tag.ToString()] = deserializedGameObject.Copy();
                 }
             }
         }
