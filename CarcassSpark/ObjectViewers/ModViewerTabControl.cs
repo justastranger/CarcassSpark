@@ -2241,258 +2241,81 @@ namespace CarcassSpark.ObjectViewers
 
         private void DuplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedAspectToolStripMenuItem.Enabled)
+            if (duplicateSelectedAspectToolStripMenuItem.Enabled)
             {
-                return;
+                Aspect newGameObject = Content.Aspects[(Guid)aspectsListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Aspects, newGameObject);
             }
-
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = aspectsListView.SelectedItems[0].Group;
-            Aspect newAspect = Content.Aspects[(Guid)aspectsListView.SelectedItems[0].Tag].Copy();
-            string id = newAspect.id;
-            if (aspectsListView.Items.ContainsKey(id))
-            {
-                id += "_";
-                int tmp = 1;
-                while (aspectsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newAspect.id = id;
-            newAspect.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newAspect.id) { Tag = newGuid, Group = group, Name = newAspect.id };
-            aspectsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Aspects.Add(newGuid, newAspect);
-            MarkDirty();
         }
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedElementToolStripMenuItem.Enabled)
+            if (duplicateSelectedElementToolStripMenuItem.Enabled)
             {
-                return;
+                Element newGameObject = Content.Elements[(Guid) elementsListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Elements, newGameObject);
             }
-
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = elementsListView.SelectedItems[0].Group;
-            Element newElement = Content.Elements[(Guid)elementsListView.SelectedItems[0].Tag].Copy();
-            string id = newElement.id;
-            if (elementsListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (elementsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newElement.id = id;
-            newElement.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newElement.id) { Tag = newGuid, Group = group, Name = newElement.id };
-            elementsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Elements.Add(newGuid, newElement);
-            MarkDirty();
         }
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedRecipeToolStripMenuItem.Enabled)
+            if (duplicateSelectedRecipeToolStripMenuItem.Enabled)
             {
-                return;
+                Recipe newGameObject = Content.Recipes[(Guid) recipesListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Recipes, newGameObject);
             }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = recipesListView.SelectedItems[0].Group;
-            Recipe newRecipe = Content.Recipes[(Guid)recipesListView.SelectedItems[0].Tag].Copy();
-            string id = newRecipe.id;
-            if (recipesListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (recipesListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newRecipe.id = id;
-            newRecipe.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newRecipe.id) { Tag = newGuid, Group = group, Name = newRecipe.id };
-            recipesListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Recipes.Add(newGuid, newRecipe);
-            MarkDirty();
         }
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedDeckToolStripMenuItem.Enabled)
+            if (duplicateSelectedDeckToolStripMenuItem.Enabled)
             {
-                return;
+                Deck newGameObject = Content.Decks[(Guid) decksListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Decks, newGameObject);
             }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = decksListView.SelectedItems[0].Group;
-            Deck newDeck = Content.Decks[(Guid)decksListView.SelectedItems[0].Tag].Copy();
-            string id = newDeck.id;
-            if (decksListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (decksListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newDeck.id = id;
-            newDeck.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newDeck.id) { Tag = newGuid, Group = group, Name = newDeck.id };
-            decksListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Decks.Add(newGuid, newDeck);
-            MarkDirty();
         }
 
         private void DuplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedLegacyToolStripMenuItem.Enabled)
+            if (duplicateSelectedLegacyToolStripMenuItem.Enabled)
             {
-                return;
+                Legacy newGameObject = Content.Legacies[(Guid) legaciesListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Legacies, newGameObject);
             }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = legaciesListView.SelectedItems[0].Group;
-            Legacy newLegacy = Content.Legacies[(Guid)legaciesListView.SelectedItems[0].Tag].Copy();
-            string id = newLegacy.id;
-            if (legaciesListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (legaciesListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newLegacy.id = id;
-            newLegacy.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newLegacy.id) { Tag = newGuid, Group = group, Name = newLegacy.id };
-            legaciesListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Legacies.Add(newGuid, newLegacy);
-            MarkDirty();
         }
 
         private void DuplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedEndingToolStripMenuItem.Enabled)
+            if (duplicateSelectedEndingToolStripMenuItem.Enabled)
             {
-                return;
+                Ending newGameObject = Content.Endings[(Guid) verbsListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Endings, newGameObject);
             }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = endingsListView.SelectedItems[0].Group;
-            Ending newEnding = Content.Endings[(Guid)endingsListView.SelectedItems[0].Tag].Copy();
-            string id = newEnding.id;
-            if (endingsListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (endingsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newEnding.id = id;
-            newEnding.filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newEnding.id) { Tag = newGuid, Group = group, Name = newEnding.id };
-            endingsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Endings.Add(newGuid, newEnding);
-            MarkDirty();
         }
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedVerbToolStripMenuItem.Enabled)
+            if (duplicateSelectedVerbToolStripMenuItem.Enabled)
+            {
+                Verb newGameObject = Content.Verbs[(Guid)verbsListView.SelectedItems[0].Tag].Copy();
+                DuplicateSelectedGameObject(Content.Verbs, newGameObject);
+            }
+        }
+
+        private void DuplicateSelectedGameObject<T>(ContentGroup<T> contentGroup, T newGameObject) where T : IGameObject
+        {
+            ListView lv = ListViews[contentGroup.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
-
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = verbsListView.SelectedItems[0].Group;
-            Verb newVerb = Content.Verbs[(Guid)verbsListView.SelectedItems[0].Tag].Copy();
-            string id = newVerb.id;
-            if (verbsListView.Items.ContainsKey(id + "_1"))
+            ListViewGroup group = lv.SelectedItems[0].Group;
+            string id = newGameObject.ID;
+            if (lv.Items.ContainsKey(id + "_1"))
             {
                 id += "_";
                 int tmp = 1;
-                while (verbsListView.Items.ContainsKey(id + tmp.ToString()))
+                while (lv.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -2502,13 +2325,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 id += "_1";
             }
-            newVerb.id = id;
-            newVerb.filename = group.Name;
+            newGameObject.ID = id;
+            newGameObject.Filename = group.Name;
             Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newVerb.id) { Tag = newGuid, Group = group, Name = newVerb.id };
-            verbsListView.Items.Add(newItem);
+            ListViewItem newItem = new ListViewItem(newGameObject.ID) { Tag = newGuid, Group = group, Name = newGameObject.ID };
+            lv.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Verbs.Add(newGuid, newVerb);
+            contentGroup.Add(newGuid, newGameObject);
             MarkDirty();
         }
 
