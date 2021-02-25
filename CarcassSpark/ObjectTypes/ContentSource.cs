@@ -294,13 +294,12 @@ namespace CarcassSpark.ObjectTypes
 
     public class ContentGroup<T> where T : IHasGuidAndID
     {
-        public Dictionary<Guid, T> GameObjects = new Dictionary<Guid, T>();
-
         public int Count { get => GameObjects.Count; }
         public Dictionary<Guid, T>.ValueCollection Values { get => GameObjects.Values; }
         public string DisplayName { get; private set; }
         public string DisplayNamePlural { get; private set; }
         public string Filename { get; private set; }
+        public Dictionary<Guid, T> GameObjects { get; set; } = new Dictionary<Guid, T>();
 
         public T this[Guid key] { get => GameObjects.ContainsKey(key) ? GameObjects[key] : default(T); set=> GameObjects[key] = value; }
 
