@@ -18,8 +18,8 @@ namespace CarcassSpark.DictionaryViewers
             // this.results = results;
             foreach (KeyValuePair<Guid, Element> kvp in results)
             {
-                resultsListBox.Items.Add(kvp.Value.id);
-                resultsWithId.Add(kvp.Value.id, kvp.Value);
+                resultsListBox.Items.Add(kvp.Value.ID);
+                resultsWithId.Add(kvp.Value.ID, kvp.Value);
                 this.results.Add(kvp.Value, kvp.Key);
             }
         }

@@ -34,14 +34,14 @@ namespace CarcassSpark.Tools
             startSummon = result.Copy();
             succeedSummon = new Recipe
             {
-                id = startSummon.id + ".success",
+                ID = startSummon.ID + ".success",
                 label = startSummon.label,
                 actionId = startSummon.actionId,
                 description = startSummon.description
             };
-            startSummon.linked.Add(new RecipeLink(succeedSummon.id));
-            baseSummonIdTextBox.Text = baseSummon.id;
-            successSummonTextBox.Text = succeedSummon.id;
+            startSummon.linked.Add(new RecipeLink(succeedSummon.ID));
+            baseSummonIdTextBox.Text = baseSummon.ID;
+            successSummonTextBox.Text = succeedSummon.ID;
             inspectBaseButton.Enabled = true;
             inspectSuccessRecipeButton.Enabled = true;
         }
@@ -58,7 +58,7 @@ namespace CarcassSpark.Tools
                 warmup = 60,
                 effects = new Dictionary<string, string>
                 {
-                    { baseSummon.id, "1" }
+                    { baseSummon.ID, "1" }
                 },
                 linked = new List<RecipeLink>
                 {
@@ -99,7 +99,7 @@ namespace CarcassSpark.Tools
         private void BaseElement_Assign(object sender, Element result)
         {
             baseSummon = result.Copy();
-            baseIdTextBox.Text = baseSummon.id;
+            baseIdTextBox.Text = baseSummon.ID;
             baseSummon.xtriggers = new Dictionary<string, List<XTrigger>>()
             {
                 { "killsummoned", new List<XTrigger>()
@@ -127,7 +127,7 @@ namespace CarcassSpark.Tools
             }
             preSummon = new Element
             {
-                id = "pre." + baseSummon.id,
+                id = "pre." + baseSummon.ID,
                 label = baseSummon.label,
                 description = baseSummon.description,
                 unique = baseSummon.unique,
@@ -147,10 +147,10 @@ namespace CarcassSpark.Tools
                         }
                     }
                 },
-                decayTo = baseSummon.id,
+                decayTo = baseSummon.ID,
                 lifetime = 1
             };
-            preSummonIdTextBox.Text = preSummon.id;
+            preSummonIdTextBox.Text = preSummon.ID;
 
             createRecipeButton.Enabled = true;
             inspectBaseButton.Enabled = true;

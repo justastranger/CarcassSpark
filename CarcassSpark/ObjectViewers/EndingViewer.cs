@@ -32,9 +32,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Ending ending)
         {
-            if (ending.id != null)
+            if (ending.ID != null)
             {
-                idTextBox.Text = ending.id;
+                idTextBox.Text = ending.ID;
             }
 
             if (ending.label != null)
@@ -50,9 +50,9 @@ namespace CarcassSpark.ObjectViewers
                     pictureBox1.Image = Utilities.GetEndingImage(ending.image);
                 }
             }
-            else if (Utilities.EndingImageExists(ending.id))
+            else if (Utilities.EndingImageExists(ending.ID))
             {
-                pictureBox1.Image = Utilities.GetEndingImage(ending.id);
+                pictureBox1.Image = Utilities.GetEndingImage(ending.ID);
             }
             if (ending.flavour != null)
             {
@@ -112,10 +112,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedEnding.id = idTextBox.Text;
-            if (displayedEnding.id == "")
+            displayedEnding.ID = idTextBox.Text;
+            if (displayedEnding.ID == "")
             {
-                displayedEnding.id = null;
+                displayedEnding.ID = null;
             }
         }
 
@@ -152,7 +152,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (displayedEnding.id == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null)// || displayedEnding.achievement == null)
+            if (displayedEnding.ID == null || displayedEnding.label == null || displayedEnding.image == null || displayedEnding.flavour == null || displayedEnding.description == null || displayedEnding.anim == null)// || displayedEnding.achievement == null)
             {
                 MessageBox.Show("All values (except achievement) must be filled for the Ending to be valid.");
                 return;

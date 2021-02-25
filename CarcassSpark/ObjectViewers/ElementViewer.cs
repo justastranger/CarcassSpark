@@ -108,9 +108,9 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Element element)
         {
-            if (element.id != null)
+            if (element.ID != null)
             {
-                idTextBox.Text = element.id;
+                idTextBox.Text = element.ID;
             }
 
             if (element.label != null)
@@ -123,9 +123,9 @@ namespace CarcassSpark.ObjectViewers
                 iconTextBox.Text = element.icon;
                 // if (Utilities.ElementImageExists(element.icon)) pictureBox1.Image = Utilities.GetElementImage(element.icon);
             }
-            else if (Utilities.ElementImageExists(element.id))
+            else if (Utilities.ElementImageExists(element.ID))
             {
-                pictureBox1.Image = Utilities.GetElementImage(element.id);
+                pictureBox1.Image = Utilities.GetElementImage(element.ID);
             }
             if (element.lifetime.HasValue)
             {
@@ -459,10 +459,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedElement.id = idTextBox.Text;
-            if (displayedElement.id == "")
+            displayedElement.ID = idTextBox.Text;
+            if (displayedElement.ID == "")
             {
-                displayedElement.id = null;
+                displayedElement.ID = null;
             }
         }
 

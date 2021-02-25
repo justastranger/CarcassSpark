@@ -51,9 +51,9 @@ namespace CarcassSpark.ObjectViewers
 
         public void FillValues(Aspect aspect)
         {
-            if (aspect.id != null)
+            if (aspect.ID != null)
             {
-                idTextBox.Text = aspect.id;
+                idTextBox.Text = aspect.ID;
             }
 
             if (aspect.label != null)
@@ -71,9 +71,9 @@ namespace CarcassSpark.ObjectViewers
                         pictureBox1.Image = Utilities.GetAspectImage(aspect.icon);
                     }
                 }
-                else if (Utilities.AspectImageExists(aspect.id))
+                else if (Utilities.AspectImageExists(aspect.ID))
                 {
-                    pictureBox1.Image = Utilities.GetAspectImage(aspect.id);
+                    pictureBox1.Image = Utilities.GetAspectImage(aspect.ID);
                 }
             }
             if (aspect.description != null)
@@ -242,10 +242,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.id = idTextBox.Text;
-            if (displayedAspect.id == "")
+            displayedAspect.ID = idTextBox.Text;
+            if (displayedAspect.ID == "")
             {
-                displayedAspect.id = null;
+                displayedAspect.ID = null;
             }
         }
 

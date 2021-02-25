@@ -34,14 +34,14 @@ namespace CarcassSpark.ObjectViewers
 
         private void FillValues(Verb verb)
         {
-            if (verb.id != null)
+            if (verb.ID != null)
             {
-                idTextBox.Text = verb.id;
+                idTextBox.Text = verb.ID;
             }
 
-            if (Utilities.VerbImageExists(verb.id))
+            if (Utilities.VerbImageExists(verb.ID))
             {
-                pictureBox1.Image = Utilities.GetVerbImage(verb.id);
+                pictureBox1.Image = Utilities.GetVerbImage(verb.ID);
             }
             if (verb.label != null)
             {
@@ -136,14 +136,14 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.id = idTextBox.Text;
+            displayedVerb.ID = idTextBox.Text;
             if (Utilities.VerbImageExists(idTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetVerbImage(idTextBox.Text);
             }
-            if (displayedVerb.id == "")
+            if (displayedVerb.ID == "")
             {
-                displayedVerb.id = null;
+                displayedVerb.ID = null;
             }
         }
 
