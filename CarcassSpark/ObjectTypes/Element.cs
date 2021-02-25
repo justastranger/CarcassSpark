@@ -140,6 +140,12 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Element>(serializedObject);
         }
+
+        Element IGameObject.Copy<Element>()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Element>(serializedObject);
+        }
     }
 
 }

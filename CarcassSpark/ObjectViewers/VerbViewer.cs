@@ -6,13 +6,15 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class VerbViewer : Form
+    public partial class VerbViewer : Form, IGameObjectViewer<Verb>
     {
         public Verb displayedVerb;
         private bool editing;
 
         private event EventHandler<Verb> SuccessCallback;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
         // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
@@ -30,6 +32,11 @@ namespace CarcassSpark.ObjectViewers
             {
                 SetEditingMode(false);
             }
+        }
+
+        public IGameObjectViewer<Verb> CreateNew(Verb gameObject, EventHandler<Verb> successCallback, ListViewItem item)
+        {
+            return new VerbViewer(gameObject, successCallback, item);
         }
 
         private void FillValues(Verb verb)

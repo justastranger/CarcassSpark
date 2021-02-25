@@ -6,13 +6,20 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class AspectViewer : Form
+    public partial class AspectViewer : Form, IGameObjectViewer<Aspect>
     {
         public Aspect displayedAspect;
         private Dictionary<string, Induces> inducesDictionary;
 
         private event EventHandler<Aspect> SuccessCallback;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+
+        public IGameObjectViewer<Aspect> CreateNew(Aspect gameObject, EventHandler<Aspect> successCallback, ListViewItem item)
+        {
+            return new AspectViewer(gameObject, successCallback, item);
+        }
 
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
         {

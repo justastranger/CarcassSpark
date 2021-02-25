@@ -215,6 +215,12 @@ namespace CarcassSpark.ObjectTypes
 
         public Recipe Copy()
         {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Recipe>(serializedObject);
+        }
+
+        Recipe IGameObject.Copy<Recipe>()
+        {
             // that's a big ol' yikes from me, but it works perfectly. I just wish I knew how to simplify it.
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Recipe>(serializedObject);

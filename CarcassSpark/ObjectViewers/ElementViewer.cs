@@ -13,7 +13,7 @@ namespace CarcassSpark.ObjectViewers
         ASPECT,
         GENERATOR
     }
-    public partial class ElementViewer : Form
+    public partial class ElementViewer : Form, IGameObjectViewer<Element>
     {
         private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         public Element displayedElement;
@@ -21,6 +21,13 @@ namespace CarcassSpark.ObjectViewers
 
         private event EventHandler<Element> SuccessCallback;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+
+        public IGameObjectViewer<Element> CreateNew(Element gameObject, EventHandler<Element> successCallback, ListViewItem item)
+        {
+            return new ElementViewer(gameObject, successCallback, item);
+        }
 
         public ElementViewer(Element element, EventHandler<Element> SuccessCallback, ListViewItem item)
         {

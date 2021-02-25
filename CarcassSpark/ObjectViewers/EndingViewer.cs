@@ -6,13 +6,20 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class EndingViewer : Form
+    public partial class EndingViewer : Form, IGameObjectViewer<Ending>
     {
         public Ending displayedEnding;
         private bool editing;
 
         private event EventHandler<Ending> SuccessCallback;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+
+        public IGameObjectViewer<Ending> CreateNew(Ending gameObject, EventHandler<Ending> successCallback, ListViewItem item)
+        {
+            return new EndingViewer(gameObject, successCallback, item);
+        }
 
         public EndingViewer(Ending ending, EventHandler<Ending> SuccessCallback, ListViewItem item)
         {
