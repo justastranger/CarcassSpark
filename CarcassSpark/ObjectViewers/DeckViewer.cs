@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class DeckViewer : Form
+    public partial class DeckViewer : Form, IGameObjectViewer<Deck>
     {
         public Deck displayedDeck;
         private bool editing;
@@ -16,6 +16,13 @@ namespace CarcassSpark.ObjectViewers
 
         private bool internalDeck;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+
+        public IGameObjectViewer<Deck> CreateNew(Deck gameObject, EventHandler<Deck> successCallback, ListViewItem item)
+        {
+            return new DeckViewer(gameObject, successCallback, item);
+        }
 
         public DeckViewer(Deck deck)
         {

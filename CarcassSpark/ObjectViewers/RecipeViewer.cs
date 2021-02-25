@@ -14,7 +14,7 @@ namespace CarcassSpark.ObjectViewers
         GENERATOR
     }
 
-    public partial class RecipeViewer : Form
+    public partial class RecipeViewer : Form, IGameObjectViewer<Recipe>
     {
         public Recipe displayedRecipe;
         private bool editing;
@@ -24,6 +24,8 @@ namespace CarcassSpark.ObjectViewers
         private readonly Dictionary<Guid, RecipeLink> recipeLinks = new Dictionary<Guid, RecipeLink>();
         private readonly Dictionary<Guid, RecipeLink> alternativerecipeLinks = new Dictionary<Guid, RecipeLink>();
         private readonly Dictionary<Guid, Mutation> mutations = new Dictionary<Guid, Mutation>();
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
         public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, ListViewItem item)
         {
@@ -56,6 +58,11 @@ namespace CarcassSpark.ObjectViewers
                 SetEditingMode(false);
             }
             SetViewerType(recipeViewerType);
+        }
+
+        public IGameObjectViewer<Recipe> CreateNew(Recipe gameObject, EventHandler<Recipe> successCallback, ListViewItem item)
+        {
+            return new RecipeViewer(gameObject, successCallback, item);
         }
 
         private void SetEditingMode(bool editing)
