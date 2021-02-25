@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Slot
+    public class Slot : IHasGuidAndID
     {
         [JsonIgnore]
         public Guid guid = Guid.NewGuid();
@@ -14,6 +14,11 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, int> required, forbidden;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? greedy, consumes, noanim;
+
+        [JsonIgnore]
+        public Guid Guid { get => this.guid; set => this.guid = value; }
+        [JsonIgnore]
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public Slot(string id, string label, string description, bool? greedy, bool? consumes, Dictionary<string, int> required, string actionId, Dictionary<string, int> forbidden)

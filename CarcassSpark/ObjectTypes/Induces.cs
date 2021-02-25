@@ -3,7 +3,7 @@ using System;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Induces
+    public class Induces : IHasGuidAndID
     {
         [JsonIgnore]
         public Guid guid = Guid.NewGuid();
@@ -15,6 +15,11 @@ namespace CarcassSpark.ObjectTypes
         public bool? additional;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Expulsion expulsion;
+        
+        [JsonIgnore]
+        public Guid Guid { get => this.guid; set => this.guid = value; }
+        [JsonIgnore]
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public Induces(string id, int? chance, bool? additional, Expulsion expulsion)

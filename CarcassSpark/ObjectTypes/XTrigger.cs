@@ -3,7 +3,7 @@ using System;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class XTrigger
+    public class XTrigger : IHasGuidAndID
     {
         [JsonIgnore]
         public Guid guid = Guid.NewGuid();
@@ -11,6 +11,11 @@ namespace CarcassSpark.ObjectTypes
         public string morpheffect, id;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? chance, level;
+        
+        [JsonIgnore]
+        public Guid Guid { get => this.guid; set => this.guid = value; }
+        [JsonIgnore]
+        public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
         public XTrigger(string id, int? chance, string morpheffect, int? level)

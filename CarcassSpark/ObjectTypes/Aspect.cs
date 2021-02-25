@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Aspect : Element
+    public class Aspect : Element, IGameObject
     {
         // These have been moved into the Element object to get me one step closer to unifying them
         // [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -45,7 +45,13 @@ namespace CarcassSpark.ObjectTypes
             isAspect = true;
         }
 
-        public new Aspect Copy()
+        new public Aspect Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Aspect>(serializedObject);
+        }
+
+        Aspect IGameObject.Copy<Aspect>()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Aspect>(serializedObject);

@@ -6,12 +6,19 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class LegacyViewer : Form
+    public partial class LegacyViewer : Form, IGameObjectViewer<Legacy>
     {
         public Legacy displayedLegacy;
 
         private event EventHandler<Legacy> SuccessCallback;
         public ListViewItem associatedListViewItem;
+
+        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+
+        public IGameObjectViewer<Legacy> CreateNew(Legacy gameObject, EventHandler<Legacy> successCallback, ListViewItem item)
+        {
+            return new LegacyViewer(gameObject, successCallback, item);
+        }
 
         public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback, ListViewItem item)
         {

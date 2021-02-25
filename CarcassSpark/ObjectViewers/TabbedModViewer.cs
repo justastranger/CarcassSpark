@@ -309,223 +309,44 @@ namespace CarcassSpark.ObjectViewers
             vv.Show();
         }
 
+        #region "Import" events
+
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.ID))
-                    {
-                        MessageBox.Show("Aspect already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
-                        if (!SelectedModViewer.aspectsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.aspectsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedAspect.filename = "aspects";
-                    SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error deserializing Aspect: " + ex.ToString());
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Aspects);
         }
 
         private void ElementToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.ID))
-                    {
-                        MessageBox.Show("Element already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
-                        if (!SelectedModViewer.elementsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.elementsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedElement.filename = "elements";
-                    SelectedModViewer.Content.Elements[guid] = deserializedElement;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Element");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Elements);
         }
 
         private void RecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.ID))
-                    {
-                        MessageBox.Show("Recipe already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
-                        if (!SelectedModViewer.recipesListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.recipesListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedRecipe.filename = "recipes";
-                    SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Recipe");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Recipes);
         }
 
         private void DeckToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.ID))
-                    {
-                        MessageBox.Show("Deck already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
-                        if (!SelectedModViewer.decksListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.decksListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedDeck.filename = "decks";
-                    SelectedModViewer.Content.Decks[guid] = deserializedDeck;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Deck");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Decks);
         }
 
         private void LegacyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.ID))
-                    {
-                        MessageBox.Show("Legacy already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
-                        if (!SelectedModViewer.legaciesListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.legaciesListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedLegacy.filename = "legacies";
-                    SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Legacy");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Legacies);
         }
 
         private void EndingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Guid guid = Guid.NewGuid();
-                    Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.ID))
-                    {
-                        MessageBox.Show("Ending already exists, overwriting.");
-                    }
-                    else
-                    {
-                        ListViewGroup group = SelectedModViewer.endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
-                        if (!SelectedModViewer.endingsListView.Groups.Contains(group))
-                        {
-                            SelectedModViewer.endingsListView.Groups.Add(group);
-                        }
-                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.ID) { Tag = guid, Group = group });
-                    }
-                    deserializedEnding.filename = "endings";
-                    SelectedModViewer.Content.Endings[guid] = deserializedEnding;
-                    SelectedModViewer.MarkDirty();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error deserializing Ending");
-                }
-            }
+            ImportGameObject(SelectedModViewer.Content.Endings);
         }
 
         private void VerbToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImportGameObject(SelectedModViewer.Content.Verbs);
+        }
+
+        private void ImportGameObject<T>(ContentGroup<T> cg) where T : IGameObject
         {
             if (SelectedModViewer.isVanilla)
             {
@@ -536,30 +357,33 @@ namespace CarcassSpark.ObjectViewers
                 try
                 {
                     Guid guid = Guid.NewGuid();
-                    Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.ID))
+                    T deserializedT = JsonConvert.DeserializeObject<T>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    ListView listView = SelectedModViewer.ListViews[cg.DisplayName];
+                    if (listView.Items.ContainsKey(deserializedT.ID))
                     {
-                        MessageBox.Show("Verb already exists, overwriting.");
+                        MessageBox.Show(cg.DisplayName + " already exists, overwriting.");
                     }
                     else
                     {
-                        ListViewGroup group = SelectedModViewer.verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
-                        if (!SelectedModViewer.verbsListView.Groups.Contains(group))
+                        ListViewGroup group = listView.Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
+                        if (!listView.Groups.Contains(group))
                         {
-                            SelectedModViewer.verbsListView.Groups.Add(group);
+                            listView.Groups.Add(group);
                         }
-                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.ID) { Tag = guid, Group = group });
+                        listView.Items.Add(new ListViewItem(deserializedT.ID) { Tag = guid, Group = group });
                     }
-                    deserializedVerb.filename = "verbs";
-                    SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
+                    deserializedT.Filename = cg.Filename;
+                    cg[guid] = deserializedT;
                     SelectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error deserializing Verb");
+                    MessageBox.Show("Error deserializing " + cg.DisplayName);
                 }
             }
         }
+
+        #endregion
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -575,128 +399,53 @@ namespace CarcassSpark.ObjectViewers
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
-                Guid guid = Guid.NewGuid();
-                ListViewGroup listViewGroup;
-                SelectedModViewer.MarkDirty();
                 switch (je.objectType)
                 {
                     case "Aspect":
-                        listViewGroup = SelectedModViewer.aspectsListView.Groups["aspects"] ?? new ListViewGroup("aspects", "aspects");
-                        if (!SelectedModViewer.aspectsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.aspectsListView.Groups.Add(listViewGroup);
-                        }
-                        Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                        deserializedAspect.filename = "aspects";
-                        SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
-                        if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedAspect.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.aspectsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Aspects, je.objectText);
                         break;
                     case "Element":
-                        listViewGroup = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
-                        if (!SelectedModViewer.elementsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.elementsListView.Groups.Add(listViewGroup);
-                        }
-                        Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                        deserializedElement.filename = "elements";
-                        SelectedModViewer.Content.Elements[guid] = deserializedElement;
-                        if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedElement.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.elementsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Elements, je.objectText);
                         break;
                     case "Recipe":
-                        listViewGroup = SelectedModViewer.recipesListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
-                        if (!SelectedModViewer.recipesListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.recipesListView.Groups.Add(listViewGroup);
-                        }
-                        Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                        deserializedRecipe.filename = "recipes";
-                        SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
-                        if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedRecipe.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.recipesListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Recipes, je.objectText);
                         break;
                     case "Deck":
-                        listViewGroup = SelectedModViewer.decksListView.Groups["decks"] ?? new ListViewGroup("decks", "decks");
-                        if (SelectedModViewer.decksListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.decksListView.Groups.Add(listViewGroup);
-                        }
-                        Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                        deserializedDeck.filename = "decks";
-                        SelectedModViewer.Content.Decks[guid] = deserializedDeck;
-                        if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedDeck.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.decksListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Decks, je.objectText);
                         break;
                     case "Legacy":
-                        listViewGroup = SelectedModViewer.legaciesListView.Groups["legacies"] ?? new ListViewGroup("legacies", "legacies");
-                        if (SelectedModViewer.legaciesListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.legaciesListView.Groups.Add(listViewGroup);
-                        }
-                        Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                        deserializedLegacy.filename = "legacies";
-                        SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
-                        if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedLegacy.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.legaciesListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Legacies, je.objectText);
                         break;
                     case "Ending":
-                        listViewGroup = SelectedModViewer.endingsListView.Groups["endings"] ?? new ListViewGroup("endings", "endings");
-                        if (SelectedModViewer.endingsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.endingsListView.Groups.Add(listViewGroup);
-                        }
-                        Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                        deserializedEnding.filename = "endings";
-                        SelectedModViewer.Content.Endings[guid] = deserializedEnding;
-                        if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedEnding.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.endingsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Endings, je.objectText);
                         break;
                     case "Verb":
-                        listViewGroup = SelectedModViewer.verbsListView.Groups["verbs"] ?? new ListViewGroup("verbs", "verbs");
-                        if (SelectedModViewer.verbsListView.Groups.Contains(listViewGroup))
-                        {
-                            SelectedModViewer.verbsListView.Groups.Add(listViewGroup);
-                        }
-                        Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                        deserializedVerb.filename = "verbs";
-                        SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
-                        if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.ID))
-                        {
-                            ListViewItem item = new ListViewItem(deserializedVerb.ID) { Tag = guid, Group = listViewGroup };
-                            SelectedModViewer.verbsListView.Items.Add(item);
-                            // listViewGroup.Items.Add(item);
-                        }
+                        FromClipboardOnOkay(SelectedModViewer.Content.Verbs, je.objectText);
                         break;
                     default:
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
+                        return;
                 }
                 SelectedModViewer.MarkDirty();
+            }
+        }
+
+        private void FromClipboardOnOkay<T>(ContentGroup<T> cg, string objectText) where T : IGameObject
+        {
+            Guid guid = Guid.NewGuid();
+            ListViewGroup listViewGroup = SelectedModViewer.ListViews[cg.Filename].Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
+            if (SelectedModViewer.ListViews[cg.Filename].Groups.Contains(listViewGroup))
+            {
+                SelectedModViewer.ListViews[cg.Filename].Groups.Add(listViewGroup);
+            }
+            T deserializedGameObject = JsonConvert.DeserializeObject<T>(objectText);
+            deserializedGameObject.Filename = cg.Filename;
+            cg[guid] = deserializedGameObject;
+            if (!SelectedModViewer.ListViews[cg.Filename].Items.ContainsKey(deserializedGameObject.ID))
+            {
+                ListViewItem item = new ListViewItem(deserializedGameObject.ID) { Tag = guid, Group = listViewGroup };
+                SelectedModViewer.ListViews[cg.Filename].Items.Add(item);
+                // listViewGroup.Items.Add(item);
             }
         }
 
@@ -716,13 +465,13 @@ namespace CarcassSpark.ObjectViewers
                 }
 
                 Guid baseGuid = Guid.NewGuid();
-                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.ID) { Tag = baseGuid, Group = defaultElementsGroup };
+                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(baseSummon);
                 sc.baseSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(baseGuid, sc.baseSummon.Copy());
 
                 Guid preGuid = Guid.NewGuid();
-                ListViewItem preSummon = new ListViewItem(sc.preSummon.ID) { Tag = preGuid, Group = defaultElementsGroup };
+                ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(preSummon);
                 sc.preSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(preGuid, sc.preSummon.Copy());
@@ -734,13 +483,13 @@ namespace CarcassSpark.ObjectViewers
                 }
 
                 Guid startGuid = Guid.NewGuid();
-                ListViewItem startSummon = new ListViewItem(sc.startSummon.ID) { Tag = startGuid, Group = defaultRecipesGroup };
+                ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(startSummon);
                 sc.startSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(startGuid, sc.startSummon.Copy());
 
                 Guid succeedGuid = Guid.NewGuid();
-                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.ID) { Tag = succeedGuid, Group = defaultRecipesGroup };
+                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(succeedSummon);
                 sc.succeedSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(succeedGuid, sc.succeedSummon.Copy());
@@ -836,10 +585,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void CulturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures, SelectedModViewer.editMode);
+            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures.GameObjects, SelectedModViewer.editMode);
             if (cv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.Cultures = cv.displayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
+                SelectedModViewer.Content.Cultures.GameObjects = cv.displayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
             }
         }
 
@@ -954,51 +703,51 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("aspects");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Aspects.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Aspects, "aspects");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Aspects);
         }
 
         private void ElementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("elements");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Elements.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Elements, "elements");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Elements);
         }
 
         private void RecipesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("recipes");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Recipes.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Recipes, "recipes");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Recipes);
         }
 
         private void DecksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("decks");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Decks.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Decks, "decks");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Decks);
         }
 
         private void LegaciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("legacies");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Legacies.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Legacies, "legacies");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Legacies);
         }
 
         private void EndingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("endings");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Endings.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Endings, "endings");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Endings);
         }
 
         private void VerbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups("verbs");
+            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Verbs.Filename);
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs, "verbs");
+            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs);
         }
 		
         private void TabbedModViewer_Shown(object sender, EventArgs e)

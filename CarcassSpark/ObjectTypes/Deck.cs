@@ -88,6 +88,12 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Deck>(serializedObject);
         }
+
+        Deck IGameObject.Copy<Deck>()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Deck>(serializedObject);
+        }
     }
 
 }

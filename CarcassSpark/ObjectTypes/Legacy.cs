@@ -99,5 +99,11 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Legacy>(serializedObject);
         }
+
+        Legacy IGameObject.Copy<Legacy>()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Legacy>(serializedObject);
+        }
     }
 }

@@ -97,6 +97,8 @@ namespace CarcassSpark.ObjectViewers
             setGroupVerbToolStripMenuItem.Enabled = editing;
         }
 
+        #region Saving and Loading
+
         public bool LoadContent()
         {
             if (IsDirty && editMode)
@@ -204,22 +206,14 @@ namespace CarcassSpark.ObjectViewers
                 }
                 return true;
             }
+            // no manifest so we'll try to make one
+            else if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                // return true if everything's going good; otherwise, return false so I can abort the creation of the tab
+                return CreateSynopsis() ? true : false;
+            }
             else
             {
-                // no manifest so we'll try to make one
-                if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    // return true if everything's going good
-                    if (CreateSynopsis())
-                    {
-                        return true;
-                    }
-                    // otherwise return false so I can abort the creation of the tab
-                    else
-                    {
-                        return false;
-                    }
-                }
                 return false;
             }
         }
@@ -241,33 +235,25 @@ namespace CarcassSpark.ObjectViewers
 
         public void LoadWidths()
         {
+            List<int> widths = null;
             if (!isVanilla)
             {
-                List<int> widths = Content.GetCustomManifestListInt("widths");
-                if (widths != null)
-                {
-                    tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
-                    tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
-                    tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
-                    tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
-                    tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
-                    tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
-                    tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
-                }
+                widths = Content.GetCustomManifestListInt("widths");
             }
             else
             {   // This part looks way uglier than the part above because I didn't make getter functions for the Settings, only Custom Manifests :(
-                List<int> widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
-                if (widths != null)
-                {
-                    tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
-                    tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
-                    tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
-                    tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
-                    tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
-                    tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
-                    tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
-                }
+                widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
+            }
+
+            if (widths != null)
+            {
+                tableLayoutPanel2.Size = new Size(widths[0], tableLayoutPanel2.Size.Height);
+                tableLayoutPanel3.Size = new Size(widths[1], tableLayoutPanel3.Size.Height);
+                tableLayoutPanel4.Size = new Size(widths[2], tableLayoutPanel4.Size.Height);
+                tableLayoutPanel5.Size = new Size(widths[3], tableLayoutPanel5.Size.Height);
+                tableLayoutPanel6.Size = new Size(widths[4], tableLayoutPanel6.Size.Height);
+                tableLayoutPanel7.Size = new Size(widths[5], tableLayoutPanel7.Size.Height);
+                tableLayoutPanel8.Size = new Size(widths[6], tableLayoutPanel8.Size.Height);
             }
         }
 
@@ -391,7 +377,7 @@ namespace CarcassSpark.ObjectViewers
                     foreach (JToken culture in parsedJToken.First.ToArray())
                     {
                         Culture deserializedCulture = culture.ToObject<Culture>();
-                        Content.Cultures.Add(deserializedCulture.guid, deserializedCulture);
+                        Content.Cultures.Add(deserializedCulture.Guid, deserializedCulture);
                     }
                     return;
                 // Default case is empty.
@@ -399,10 +385,10 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void AddItemToContentAndListView<T>(JToken token, Dictionary<Guid, T> dict, ListView listView, string fileName, bool isGroupHidden) where T : IGameObject
+        private void AddItemToContentAndListView<T>(JToken token, ContentGroup<T> contentGroup, ListView listView, string fileName, bool isGroupHidden) where T : IGameObject
         {
             T deserializedObject = token.ToObject<T>();
-            dict.Add(deserializedObject.Guid, deserializedObject);
+            contentGroup.Add(deserializedObject.Guid, deserializedObject);
             if (!isGroupHidden)
             {
                 ListViewItem lviCurr = new ListViewItem(deserializedObject.ID)
@@ -510,13 +496,13 @@ namespace CarcassSpark.ObjectViewers
             MarkDirty(false);
         }
 
-        private void SaveType<T>(Dictionary<Guid, T> contentDict, string gameType, string location) where T : IGameObject
+        private void SaveType<T>(ContentGroup<T> contentGroup, string gameType, string location) where T : IGameObject
         {
-            if (contentDict.Count > 0)
+            if (contentGroup.Count > 0)
             {
                 Dictionary<string, List<T>> sortedGameObjects = new Dictionary<string, List<T>>();
 
-                foreach (T gameObject in contentDict.Values)
+                foreach (T gameObject in contentGroup.Values)
                 {
                     if (!sortedGameObjects.ContainsKey(gameObject.Filename))
                     {
@@ -581,322 +567,188 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
+        #region "Double-Click" events
+
         private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
+            if (aspectsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)aspectsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
+                Guid id = (Guid) aspectsListView.SelectedItems[0].Tag;
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), editMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
-            else
-            {
-                AspectViewer av = new AspectViewer(Content.GetAspect(id).Copy(), null, aspectsListView.SelectedItems[0]);
-                av.Show();
-            }
-        }
-
-        private void AspectsList_Assign(object sender, Aspect result)
-        {
-            AspectViewer aspectViewer = (AspectViewer)sender;
-            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.Guid)
-            {
-                Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
-                aspectViewer.associatedListViewItem.Tag = result.Guid;
-                Aspect newAspect = result.Copy();
-                newAspect.Filename = aspectViewer.associatedListViewItem.Group.Name;
-                Content.Aspects.Add(result.Guid, newAspect);
-            }
-            if (aspectViewer.associatedListViewItem.Text != result.ID)
-            {
-                aspectViewer.associatedListViewItem.Text = result.ID;
-            }
-            MarkDirty();
-        }
-
-        private void DecksListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)decksListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
-                dv.Show();
-            }
-            else
-            {
-                DeckViewer dv = new DeckViewer(Content.GetDeck(id).Copy(), null, decksListView.SelectedItems[0]);
-                dv.Show();
-            }
-        }
-
-        private void DecksList_Assign(object sender, Deck result)
-        {
-            DeckViewer deckViewer = (DeckViewer)sender;
-            if ((Guid)deckViewer.associatedListViewItem.Tag != result.Guid)
-            {
-                Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
-                deckViewer.associatedListViewItem.Tag = result.Guid;
-                Deck newDeck = result.Copy();
-                newDeck.Filename = deckViewer.associatedListViewItem.Group.Name;
-                Content.Decks.Add(result.Guid, newDeck);
-            }
-            if (deckViewer.associatedListViewItem.Text != result.ID)
-            {
-                deckViewer.associatedListViewItem.Text = result.ID;
-            }
-            MarkDirty();
         }
 
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
+            if (elementsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)elementsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
+                Guid id = (Guid) elementsListView.SelectedItems[0].Tag;
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), editMode ? (EventHandler<Element>) ElementsList_Assign : null, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
-            else
-            {
-                ElementViewer ev = new ElementViewer(Content.GetElement(id).Copy(), null, elementsListView.SelectedItems[0]);
-                ev.Show();
-            }
-        }
-
-        private void ElementsList_Assign(object sender, Element result)
-        {
-            ElementViewer elementViewer = (ElementViewer)sender;
-            if ((Guid)elementViewer.associatedListViewItem.Tag != result.Guid)
-            {
-                Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
-                elementViewer.associatedListViewItem.Tag = result.Guid;
-                Element newElement = result.Copy();
-                newElement.Filename = elementViewer.associatedListViewItem.Group.Name;
-                Content.Elements.Add(result.Guid, newElement);
-            }
-            if (elementViewer.associatedListViewItem.Text != result.ID)
-            {
-                elementViewer.associatedListViewItem.Text = result.ID;
-            }
-            MarkDirty();
-        }
-
-        private void EndingsListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)endingsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
-                ev.Show();
-            }
-            else
-            {
-                EndingViewer ev = new EndingViewer(Content.GetEnding(id).Copy(), null, endingsListView.SelectedItems[0]);
-                ev.Show();
-            }
-        }
-
-        private void EndingsList_Assign(object sender, Ending result)
-        {
-            EndingViewer endingViewer = (EndingViewer)sender;
-            if ((Guid)endingViewer.associatedListViewItem.Tag != result.Guid)
-            {
-                Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
-                endingViewer.associatedListViewItem.Tag = result.Guid;
-                Ending newEnding = result.Copy();
-                newEnding.Filename = endingViewer.associatedListViewItem.Group.Name;
-                Content.Endings.Add(result.Guid, newEnding);
-            }
-            if (endingViewer.associatedListViewItem.Text != result.ID)
-            {
-                endingViewer.associatedListViewItem.Text = result.ID;
-            }
-            MarkDirty();
-        }
-
-        private void LegaciesListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)legaciesListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), LegaciesList_Assign, legaciesListView.SelectedItems[0]);
-                lv.Show();
-            }
-            else
-            {
-                LegacyViewer lv = new LegacyViewer(Content.GetLegacy(id).Copy(), null, legaciesListView.SelectedItems[0]);
-                lv.Show();
-            }
-        }
-
-        private void LegaciesList_Assign(object sender, Legacy result)
-        {
-            LegacyViewer legacyViewer = (LegacyViewer)sender;
-            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.Guid)
-            {
-                Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
-                legacyViewer.associatedListViewItem.Tag = result.Guid;
-                Legacy newLegacy = result.Copy();
-                newLegacy.Filename = legacyViewer.associatedListViewItem.Group.Name;
-                Content.Legacies.Add(result.Guid, newLegacy);
-            }
-            if (legacyViewer.associatedListViewItem.Text != result.ID)
-            {
-                legacyViewer.associatedListViewItem.Text = result.ID;
-            }
-            MarkDirty();
         }
 
         private void RecipesListView_DoubleClick(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
+            if (recipesListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                rv.Show();
-            }
-            else
-            {
-                RecipeViewer rv = new RecipeViewer(Content.GetRecipe(id).Copy(), null, recipesListView.SelectedItems[0]);
+                Guid id = (Guid) recipesListView.SelectedItems[0].Tag;
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), editMode ? (EventHandler<Recipe>) RecipesList_Assign : null, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
         }
 
-        private void RecipesList_Assign(object sender, Recipe result)
+        private void DecksListView_DoubleClick(object sender, EventArgs e)
         {
-            RecipeViewer recipeViewer = (RecipeViewer)sender;
-            if ((Guid)recipeViewer.associatedListViewItem.Tag != result.Guid)
+            if (decksListView.SelectedItems.Count >= 1)
             {
-                Content.Recipes.Remove((Guid)recipeViewer.associatedListViewItem.Tag);
-                recipeViewer.associatedListViewItem.Tag = result.Guid;
-                Recipe newRecipe = result.Copy();
-                newRecipe.Filename = recipeViewer.associatedListViewItem.Group.Name;
-                Content.Recipes.Add(result.Guid, newRecipe);
+                Guid id = (Guid) decksListView.SelectedItems[0].Tag;
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), editMode ? (EventHandler<Deck>) DecksList_Assign : null, decksListView.SelectedItems[0]);
+                dv.Show();
             }
-            if (recipeViewer.associatedListViewItem.Text != result.ID)
+        }
+
+        private void EndingsListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (endingsListView.SelectedItems.Count >= 1)
             {
-                recipeViewer.associatedListViewItem.Text = result.ID;
+                Guid id = (Guid) endingsListView.SelectedItems[0].Tag;
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), editMode ? (EventHandler<Ending>) EndingsList_Assign : null, endingsListView.SelectedItems[0]);
+                ev.Show();
             }
-            MarkDirty();
+        }
+
+        private void LegaciesListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (legaciesListView.SelectedItems.Count >= 1)
+            {
+                Guid id = (Guid) legaciesListView.SelectedItems[0].Tag;
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), editMode ? (EventHandler<Legacy>) LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
+                lv.Show();
+            }
         }
 
         private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            if (verbsListView.SelectedItems.Count >= 1)
             {
-                return;
+                Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
+                vv.Show();
             }
+        }
 
-            Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                vv.Show();
-            }
-            else
-            {
-                VerbViewer vv = new VerbViewer(Content.GetVerb(id).Copy(), null, verbsListView.SelectedItems[0]);
-                vv.Show();
-            }
+        #endregion
+        #region "Assign to List" events
+
+        private void AspectsList_Assign(object sender, Aspect result)
+        {
+            AssignToList((IGameObjectViewer<Aspect>) sender, Content.Aspects, result);
+        }
+
+        private void ElementsList_Assign(object sender, Element result)
+        {
+            AssignToList((IGameObjectViewer<Element>) sender, Content.Elements, result);
+        }
+
+        private void RecipesList_Assign(object sender, Recipe result)
+        {
+            AssignToList((IGameObjectViewer<Recipe>) sender, Content.Recipes, result);
+        }
+
+        private void DecksList_Assign(object sender, Deck result)
+        {
+            AssignToList((IGameObjectViewer<Deck>) sender, Content.Decks, result);
+        }
+
+        private void EndingsList_Assign(object sender, Ending result)
+        {
+            AssignToList((IGameObjectViewer<Ending>) sender, Content.Endings, result);
+        }
+
+        private void LegaciesList_Assign(object sender, Legacy result)
+        {
+            AssignToList((IGameObjectViewer<Legacy>) sender, Content.Legacies, result);
         }
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            VerbViewer verbViewer = (VerbViewer)sender;
-            if ((Guid)verbViewer.associatedListViewItem.Tag != result.Guid)
+            AssignToList((IGameObjectViewer<Verb>) sender, Content.Verbs, result);
+        }
+
+        private void AssignToList<T>(IGameObjectViewer<T> sender, ContentGroup<T> cg, T result) where T:IGameObject
+        {
+            T resultCopy = result.Copy<T>();
+            if ((Guid)sender.AssociatedListViewItem.Tag != result.Guid)
             {
-                Content.Verbs.Remove((Guid)verbViewer.associatedListViewItem.Tag);
-                verbViewer.associatedListViewItem.Tag = result.Guid;
-                Verb newVerb = result.Copy();
-                newVerb.Filename = verbViewer.associatedListViewItem.Group.Name;
-                Content.Verbs.Add(result.Guid, newVerb);
+                cg.Remove((Guid)sender.AssociatedListViewItem.Tag);
+                sender.AssociatedListViewItem.Tag = result.Guid;
+                resultCopy.Filename = sender.AssociatedListViewItem.Group.Name;
+                cg.Add(result.Guid, resultCopy);
             }
-            if (verbViewer.associatedListViewItem.Text != result.ID)
+            if (sender.AssociatedListViewItem.Text != result.ID)
             {
-                verbViewer.associatedListViewItem.Text = result.ID;
+                sender.AssociatedListViewItem.Text = result.ID;
             }
             MarkDirty();
         }
 
+        #endregion
+        #region "Search Text Box" events
+
         private void AspectsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, "aspects", SearchAspects);
+            SearchTextBox_TextChanged(Content.Aspects, aspectsSearchTextBox.Text, SearchAspects);
         }
 
         private void ElementsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Elements, elementsSearchTextBox.Text, "elements", SearchElements);
+            SearchTextBox_TextChanged(Content.Elements, elementsSearchTextBox.Text, SearchElements);
         }
 
         private void RecipesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Recipes, recipesSearchTextBox.Text, "recipes", SearchRecipes);
+            SearchTextBox_TextChanged(Content.Recipes, recipesSearchTextBox.Text, SearchRecipes);
         }
 
         private void DecksSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Decks, decksSearchTextBox.Text, "decks", SearchDecks);
+            SearchTextBox_TextChanged(Content.Decks, decksSearchTextBox.Text, SearchDecks);
         }
 
         private void LegaciesSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Legacies, legaciesSearchTextBox.Text, "legacies", SearchLegacies);
+            SearchTextBox_TextChanged(Content.Legacies, legaciesSearchTextBox.Text, SearchLegacies);
         }
 
         private void EndingsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Endings, endingsSearchTextBox.Text, "endings", SearchEndings);
+            SearchTextBox_TextChanged(Content.Endings, endingsSearchTextBox.Text, SearchEndings);
         }
 
         private void VerbsSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, "verbs", SearchVerbs);
+            SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, SearchVerbs);
         }
 
-        private void SearchTextBox_TextChanged<T>(Dictionary<Guid, T> dict, string NewText, string entityType, Func<List<T>, string, T[]> func) where T : IGameObject
+        private void SearchTextBox_TextChanged<T>(ContentGroup<T> contentGroup, string NewText, Func<List<T>, string, T[]> func) where T : IGameObject
         {
-            ListView listView = ListViews[entityType];
+            ListView listView = ListViews[contentGroup.Filename];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
-            Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            bool hiddenGroupsHasKey = (hiddenGroups != null && hiddenGroups.ContainsKey(entityType));
-            T[] itemsToAdd = (NewText != "") ? func(dict.Values.ToList(), NewText) : dict.Values.ToArray();
+            string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename); //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            T[] itemsToAdd = (NewText != "") ? func(contentGroup.Values.ToList(), NewText) : contentGroup.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
-                bool isGroupHidden = hiddenGroupsHasKey ? hiddenGroups[entityType].Contains(gameObject.Filename) : false;
+                bool isGroupHidden = hiddenGroups.Contains(gameObject.Filename);
                 if (!isGroupHidden)
                 {
-                    ListViewGroup group = listView.Groups[gameObject.Filename] ?? new ListViewGroup(gameObject.Filename, gameObject.Filename);
+                    ListViewGroup group = listView.Groups[gameObject.Filename] == null
+                        ? new ListViewGroup(gameObject.Filename, gameObject.Filename)
+                        : listView.Groups[gameObject.Filename];
                     ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
                     // group.Items.Add(item);
                     if (!listView.Groups.Contains(group))
@@ -1083,6 +935,9 @@ namespace CarcassSpark.ObjectViewers
                         select verb).ToArray();
             }
         }
+
+        #endregion
+        #region "Search for..." events
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1347,7 +1202,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         foreach (XTrigger xtriggereffect in xtrigger.Value)
                         {
-                            if (xtriggereffect.id == id)
+                            if (xtriggereffect.ID == id)
                             {
                                 tmp[element.Guid] = element;
                             }
@@ -1360,7 +1215,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         foreach (XTrigger xtriggereffect in xtrigger.Value)
                         {
-                            if (xtriggereffect.id == id)
+                            if (xtriggereffect.ID == id)
                             {
                                 tmp[element.Guid] = element;
                             }
@@ -1526,7 +1381,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.linked)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1536,7 +1391,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.linked_prepend)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1546,7 +1401,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.linked_append)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1556,7 +1411,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.alt)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1566,7 +1421,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.alt_prepend)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1576,7 +1431,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     foreach (RecipeLink link in recipe.alt_append)
                     {
-                        if (link.id == id)
+                        if (link.ID == id)
                         {
                             tmp[recipe.Guid] = recipe;
                         }
@@ -1712,176 +1567,62 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
-            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.GetRecipe(id).Copy());
-            rfv.Show();
-        }
-
-        private void SaveToToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveToFolderBrowserDialog.SelectedPath = Content.currentDirectory;
-            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                SaveMod(saveToFolderBrowserDialog.SelectedPath);
-            }
-        }
-
-        private void AutosaveTimer_Tick(object sender, EventArgs e)
-        {
-            SaveMod();
-        }
+        #endregion
+        #region "Delete Selected" events
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedAspectToolStripMenuItem.Enabled)
+            if (deleteSelectedAspectToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = aspectsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                aspectsListView.Items.Remove(listViewItem);
-                Content.Aspects.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Aspects);
             }
         }
 
         private void DeleteSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedElementToolStripMenuItem.Enabled)
+            if (deleteSelectedElementToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = elementsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                elementsListView.Items.Remove(listViewItem);
-                Content.Elements.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Elements);
             }
         }
 
         private void DeleteSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedRecipeToolStripMenuItem.Enabled)
+            if (deleteSelectedRecipeToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = recipesListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                recipesListView.Items.Remove(listViewItem);
-                Content.Recipes.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Recipes);
             }
         }
 
         private void DeleteSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedDeckToolStripMenuItem.Enabled)
+            if (deleteSelectedDeckToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = decksListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                decksListView.Items.Remove(listViewItem);
-                Content.Decks.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Decks);
             }
         }
 
         private void DeleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedLegacyToolStripMenuItem.Enabled)
+            if (deleteSelectedLegacyToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = legaciesListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                legaciesListView.Items.Remove(listViewItem);
-                Content.Legacies.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Legacies);
             }
         }
 
         private void DeleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedEndingToolStripMenuItem.Enabled)
+            if (deleteSelectedEndingToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = endingsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                endingsListView.Items.Remove(listViewItem);
-                Content.Endings.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Endings);
             }
         }
 
         private void DeleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!deleteSelectedVerbToolStripMenuItem.Enabled)
+            if (deleteSelectedVerbToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem listViewItem = verbsListView.SelectedItems[0];
-            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
-            {
-                verbsListView.Items.Remove(listViewItem);
-                Content.Verbs.Remove((Guid)listViewItem.Tag);
-                MarkDirty();
+                DeleteSelected(Content.Verbs);
             }
         }
 
@@ -1900,589 +1641,220 @@ namespace CarcassSpark.ObjectViewers
             MessageBox.Show(id + "has been deleted.");
         }
 
+        private void DeleteSelected<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            if (ListViews[cg.Filename].SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            ListViewItem listViewItem = ListViews[cg.Filename].SelectedItems[0];
+            if (ConfirmDelete(listViewItem.Text) == DialogResult.Yes)
+            {
+                ListViews[cg.Filename].Items.Remove(listViewItem);
+                cg.Remove((Guid)listViewItem.Tag);
+                MarkDirty();
+            }
+        }
+
+        #endregion
+        #region "Mouse Down" events
+
         private void AspectsListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                aspectsListView.SelectedIndices.Clear();
-                aspectsListView.Select();
-                Point point = aspectsListView.PointToClient(Cursor.Position);
-                if (aspectsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(aspectsListView, e.Button);
         }
 
         private void ElementsListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                elementsListView.SelectedIndices.Clear();
-                elementsListView.Select();
-                Point point = elementsListView.PointToClient(Cursor.Position);
-                if (elementsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(elementsListView, e.Button);
         }
 
         private void RecipesListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                recipesListView.SelectedIndices.Clear();
-                recipesListView.Select();
-                Point point = recipesListView.PointToClient(Cursor.Position);
-                if (recipesListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(recipesListView, e.Button);
         }
 
         private void DecksListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                decksListView.SelectedIndices.Clear();
-                decksListView.Select();
-                Point point = decksListView.PointToClient(Cursor.Position);
-                if (decksListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(decksListView, e.Button);
         }
 
         private void LegaciesListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                legaciesListView.SelectedIndices.Clear();
-                legaciesListView.Select();
-                Point point = legaciesListView.PointToClient(Cursor.Position);
-                if (legaciesListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(legaciesListView, e.Button);
         }
 
         private void EndingsListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                endingsListView.SelectedIndices.Clear();
-                endingsListView.Select();
-                Point point = endingsListView.PointToClient(Cursor.Position);
-                if (endingsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
-                {
-                    listViewItem.Selected = true;
-                }
-            }
+            ListView_MouseDown(endingsListView, e.Button);
         }
 
         private void VerbsListView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            ListView_MouseDown(verbsListView, e.Button);
+        }
+
+        private void ListView_MouseDown(ListView listView, MouseButtons button)
+        {
+            if (button == MouseButtons.Right)
             {
-                verbsListView.SelectedIndices.Clear();
-                verbsListView.Select();
-                Point point = verbsListView.PointToClient(Cursor.Position);
-                if (verbsListView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
+                listView.SelectedIndices.Clear();
+                listView.Select();
+                Point point = listView.PointToClient(Cursor.Position);
+                if (listView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
                     listViewItem.Selected = true;
                 }
             }
         }
 
+        #endregion
+        #region "Open Selected JSON" events
+
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-            Aspect aspectToEdit = Content.GetAspect(guid);
-            if (aspectToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(aspectToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
-                if (!deserializedAspect.Equals(aspectToEdit))
-                {
-                    // Content.Aspects.Remove(aspectsListView.SelectedItems[0].Tag.ToString());
-                    deserializedAspect.Filename = aspectsListView.SelectedItems[0].Group.Name;
-                    Content.Aspects[guid] = deserializedAspect;
-                    aspectsListView.SelectedItems[0].Text = deserializedAspect.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Aspects[aspectsListView.SelectedItems[0].Tag.ToString()] = deserializedAspect.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Aspects);
         }
 
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
-            Element elementToEdit = Content.GetElement(guid);
-            if (elementToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(elementToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
-                if (!deserializedElement.Equals(elementToEdit))
-                {
-                    // Content.Elements.Remove(elementsListView.SelectedItems[0].Tag.ToString());
-                    deserializedElement.Filename = elementsListView.SelectedItems[0].Group.Name;
-                    Content.Elements[guid] = deserializedElement;
-                    elementsListView.SelectedItems[0].Text = deserializedElement.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Elements[elementsListView.SelectedItems[0].Tag.ToString()] = deserializedElement.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Elements);
         }
 
         private void OpenSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
-            Recipe recipeToEdit = Content.GetRecipe(guid);
-            if (recipeToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(recipeToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
-                if (!deserializedRecipe.Equals(recipeToEdit))
-                {
-                    // Content.Recipes.Remove(recipesListView.SelectedItems[0].Tag.ToString());
-                    deserializedRecipe.Filename = recipesListView.SelectedItems[0].Group.Name;
-                    Content.Recipes[guid] = deserializedRecipe;
-                    recipesListView.SelectedItems[0].Text = deserializedRecipe.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Recipes[recipesListView.SelectedItems[0].Tag.ToString()] = deserializedRecipe.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Recipes);
         }
 
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
-            Deck deckToEdit = Content.GetDeck(guid);
-            if (deckToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(deckToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
-                if (!deserializedDeck.Equals(deckToEdit))
-                {
-                    // Content.Decks.Remove(decksListView.SelectedItems[0].Tag.ToString());
-                    deserializedDeck.Filename = decksListView.SelectedItems[0].Group.Name;
-                    Content.Decks[guid] = deserializedDeck;
-                    decksListView.SelectedItems[0].Text = deserializedDeck.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Decks[decksListView.SelectedItems[0].Tag.ToString()] = deserializedDeck.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Decks);
         }
 
-        private void OpenSelectedLegacysJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSelectedLegaciesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
-            Legacy legacyToEdit = Content.GetLegacy(guid);
-            if (legacyToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(legacyToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
-                if (!deserializedLegacy.Equals(legacyToEdit))
-                {
-                    // Content.Legacies.Remove(legaciesListView.SelectedItems[0].Tag.ToString());
-                    deserializedLegacy.Filename = legaciesListView.SelectedItems[0].Group.Name;
-                    Content.Legacies[guid] = deserializedLegacy;
-                    legaciesListView.SelectedItems[0].Text = deserializedLegacy.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Legacies[legaciesListView.SelectedItems[0].Tag.ToString()] = deserializedLegacy.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Legacies);
         }
 
         private void OpenSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-            Ending endingToEdit = Content.GetEnding(guid);
-            if (endingToEdit == null)
-            {
-                return;
-            }
-
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(endingToEdit), true, !editMode);
-            if (je.ShowDialog() == DialogResult.OK)
-            {
-                Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
-                if (!deserializedEnding.Equals(endingToEdit))
-                {
-                    // Content.Endings.Remove(endingsListView.SelectedItems[0].Tag.ToString());
-                    deserializedEnding.Filename = endingsListView.SelectedItems[0].Group.Name;
-                    Content.Endings[guid] = deserializedEnding;
-                    endingsListView.SelectedItems[0].Text = deserializedEnding.ID;
-                    MarkDirty();
-                }
-                else
-                {
-                    // Content.Endings[endingsListView.SelectedItems[0].Tag.ToString()] = deserializedEnding.Copy();
-                }
-            }
+            OpenSelectedJSON(Content.Endings);
         }
 
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            OpenSelectedJSON(Content.Verbs);
+        }
+
+        private void OpenSelectedJSON<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-            Verb verbToEdit = Content.GetVerb(guid);
-            if (verbToEdit == null)
+            Guid guid = (Guid)lv.SelectedItems[0].Tag;
+            T gameObjectToEdit = cg.Get(guid);
+            if (gameObjectToEdit == null)
             {
                 return;
             }
 
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(verbToEdit), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(gameObjectToEdit), true, !editMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
-                Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
-                if (!deserializedVerb.Equals(verbToEdit))
+                T deserializedGameObject = JsonConvert.DeserializeObject<T>(je.objectText);
+                if (!deserializedGameObject.Equals(gameObjectToEdit))
                 {
-                    // Content.Verbs.Remove(verbsListView.SelectedItems[0].Tag.ToString());
-                    deserializedVerb.Filename = verbsListView.SelectedItems[0].Group.Name;
-                    Content.Verbs[guid] = deserializedVerb;
-                    verbsListView.SelectedItems[0].Text = deserializedVerb.ID;
+                    // cg.Remove(lv.SelectedItems[0].Tag.ToString());
+                    deserializedGameObject.Filename = lv.SelectedItems[0].Group.Name;
+                    cg[guid] = deserializedGameObject;
+                    lv.SelectedItems[0].Text = deserializedGameObject.ID;
                     MarkDirty();
                 }
                 else
                 {
-                    // Content.Verbs[verbsListView.SelectedItems[0].Tag.ToString()] = deserializedVerb.Copy();
+                    // cg[lv.SelectedItems[0].Tag.ToString()] = deserializedGameObject.Copy();
                 }
             }
         }
 
+        #endregion
+        #region "Duplicate Selected" events
+
         private void DuplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedAspectToolStripMenuItem.Enabled)
+            if (duplicateSelectedAspectToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Aspects);
             }
-
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = aspectsListView.SelectedItems[0].Group;
-            Aspect newAspect = Content.Aspects[(Guid)aspectsListView.SelectedItems[0].Tag].Copy();
-            string id = newAspect.ID;
-            if (aspectsListView.Items.ContainsKey(id))
-            {
-                id += "_";
-                int tmp = 1;
-                while (aspectsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newAspect.ID = id;
-            newAspect.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newAspect.ID) { Tag = newGuid, Group = group, Name = newAspect.ID };
-            aspectsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Aspects.Add(newGuid, newAspect);
-            MarkDirty();
         }
 
         private void DuplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedElementToolStripMenuItem.Enabled)
+            if (duplicateSelectedElementToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Elements);
             }
-
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = elementsListView.SelectedItems[0].Group;
-            Element newElement = Content.Elements[(Guid)elementsListView.SelectedItems[0].Tag].Copy();
-            string id = newElement.ID;
-            if (elementsListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (elementsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newElement.ID = id;
-            newElement.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newElement.ID) { Tag = newGuid, Group = group, Name = newElement.ID };
-            elementsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Elements.Add(newGuid, newElement);
-            MarkDirty();
         }
 
         private void DuplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedRecipeToolStripMenuItem.Enabled)
+            if (duplicateSelectedRecipeToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Recipes);
             }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = recipesListView.SelectedItems[0].Group;
-            Recipe newRecipe = Content.Recipes[(Guid)recipesListView.SelectedItems[0].Tag].Copy();
-            string id = newRecipe.ID;
-            if (recipesListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (recipesListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newRecipe.ID = id;
-            newRecipe.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newRecipe.ID) { Tag = newGuid, Group = group, Name = newRecipe.ID };
-            recipesListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Recipes.Add(newGuid, newRecipe);
-            MarkDirty();
         }
 
         private void DuplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedDeckToolStripMenuItem.Enabled)
+            if (duplicateSelectedDeckToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Decks);
             }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = decksListView.SelectedItems[0].Group;
-            Deck newDeck = Content.Decks[(Guid)decksListView.SelectedItems[0].Tag].Copy();
-            string id = newDeck.ID;
-            if (decksListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (decksListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newDeck.ID = id;
-            newDeck.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newDeck.ID) { Tag = newGuid, Group = group, Name = newDeck.ID };
-            decksListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Decks.Add(newGuid, newDeck);
-            MarkDirty();
         }
 
         private void DuplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedLegacyToolStripMenuItem.Enabled)
+            if (duplicateSelectedLegacyToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Legacies);
             }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = legaciesListView.SelectedItems[0].Group;
-            Legacy newLegacy = Content.Legacies[(Guid)legaciesListView.SelectedItems[0].Tag].Copy();
-            string id = newLegacy.ID;
-            if (legaciesListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (legaciesListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newLegacy.ID = id;
-            newLegacy.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newLegacy.ID) { Tag = newGuid, Group = group, Name = newLegacy.ID };
-            legaciesListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Legacies.Add(newGuid, newLegacy);
-            MarkDirty();
         }
 
         private void DuplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedEndingToolStripMenuItem.Enabled)
+            if (duplicateSelectedEndingToolStripMenuItem.Enabled)
             {
-                return;
+                DuplicateSelectedGameObject(Content.Endings);
             }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = endingsListView.SelectedItems[0].Group;
-            Ending newEnding = Content.Endings[(Guid)endingsListView.SelectedItems[0].Tag].Copy();
-            string id = newEnding.ID;
-            if (endingsListView.Items.ContainsKey(id + "_1"))
-            {
-                id += "_";
-                int tmp = 1;
-                while (endingsListView.Items.ContainsKey(id + tmp.ToString()))
-                {
-                    tmp += 1;
-                }
-                id += tmp.ToString();
-            }
-            else
-            {
-                id += "_1";
-            }
-            newEnding.ID = id;
-            newEnding.Filename = group.Name;
-            Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newEnding.ID) { Tag = newGuid, Group = group, Name = newEnding.ID };
-            endingsListView.Items.Add(newItem);
-            // group.Items.Add(newItem);
-            Content.Endings.Add(newGuid, newEnding);
-            MarkDirty();
         }
 
         private void DuplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!duplicateSelectedVerbToolStripMenuItem.Enabled)
+            if (duplicateSelectedVerbToolStripMenuItem.Enabled)
+            {
+                DuplicateSelectedGameObject(Content.Verbs);
+            }
+        }
+
+        private void DuplicateSelectedGameObject<T>(ContentGroup<T> contentGroup) where T : IGameObject
+        {
+            ListView lv = ListViews[contentGroup.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
-
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewGroup group = verbsListView.SelectedItems[0].Group;
-            Verb newVerb = Content.Verbs[(Guid)verbsListView.SelectedItems[0].Tag].Copy();
-            string id = newVerb.ID;
-            if (verbsListView.Items.ContainsKey(id + "_1"))
+            T newGameObject = contentGroup[(Guid)lv.SelectedItems[0].Tag].Copy<T>();
+            ListViewGroup group = lv.SelectedItems[0].Group;
+            string id = newGameObject.ID;
+            if (lv.Items.ContainsKey(id + "_1"))
             {
                 id += "_";
                 int tmp = 1;
-                while (verbsListView.Items.ContainsKey(id + tmp.ToString()))
+                while (lv.Items.ContainsKey(id + tmp.ToString()))
                 {
                     tmp += 1;
                 }
@@ -2492,127 +1864,70 @@ namespace CarcassSpark.ObjectViewers
             {
                 id += "_1";
             }
-            newVerb.ID = id;
-            newVerb.Filename = group.Name;
+            newGameObject.ID = id;
+            newGameObject.Filename = group.Name;
             Guid newGuid = Guid.NewGuid();
-            ListViewItem newItem = new ListViewItem(newVerb.ID) { Tag = newGuid, Group = group, Name = newVerb.ID };
-            verbsListView.Items.Add(newItem);
+            ListViewItem newItem = new ListViewItem(newGameObject.ID) { Tag = newGuid, Group = group, Name = newGameObject.ID };
+            lv.Items.Add(newItem);
             // group.Items.Add(newItem);
-            Content.Verbs.Add(newGuid, newVerb);
+            contentGroup.Add(newGuid, newGameObject);
             MarkDirty();
         }
 
+        #endregion
+        #region "Export Selected" events
+
         private void ExportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Aspect exportedAspect = Content.GetAspect((Guid)aspectsListView.SelectedItems[0].Tag);
-            if (exportedAspect == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedAspect, exportedAspect.ID);
+            ExportSelectedGameObject(Content.Aspects);
         }
 
         private void ExportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Element exportedElement = Content.GetElement((Guid)elementsListView.SelectedItems[0].Tag);
-            if (exportedElement == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedElement, exportedElement.ID);
+            ExportSelectedGameObject(Content.Elements);
         }
 
         private void ExportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Recipe exportedRecipe = Content.GetRecipe((Guid)recipesListView.SelectedItems[0].Tag);
-            if (exportedRecipe == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedRecipe, exportedRecipe.ID);
+            ExportSelectedGameObject(Content.Recipes);
         }
 
         private void ExportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Deck exportedDeck = Content.GetDeck((Guid)decksListView.SelectedItems[0].Tag);
-            if (exportedDeck == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedDeck, exportedDeck.ID);
+            ExportSelectedGameObject(Content.Decks);
         }
 
         private void ExportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Legacy exportedLegacy = Content.GetLegacy((Guid)legaciesListView.SelectedItems[0].Tag);
-            if (exportedLegacy == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedLegacy, exportedLegacy.ID);
+            ExportSelectedGameObject(Content.Legacies);
         }
 
         private void ExportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Ending exportedEnding = Content.GetEnding((Guid)endingsListView.SelectedItems[0].Tag);
-            if (exportedEnding == null)
-            {
-                return;
-            }
-
-            ExportObject(exportedEnding, exportedEnding.ID);
+            ExportSelectedGameObject(Content.Endings);
         }
 
         private void ExportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            ExportSelectedGameObject(Content.Verbs);
+        }
+
+        private void ExportSelectedGameObject<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            Verb exportedVerb = Content.GetVerb((Guid)verbsListView.SelectedItems[0].Tag);
-            ExportObject(exportedVerb, exportedVerb.ID);
-        }
-
-        private void ExportObject(object objectToExport, string id)
-        {
-            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
-            saveFileDialog.FileName = objectToExport.GetType().Name + "_" + id + ".json";
+            T exportedGameObject = cg.Get((Guid)lv.SelectedItems[0].Tag);
+            if (exportedGameObject == null)
+            {
+                return;
+            }
+            
+            string JSON = JsonConvert.SerializeObject(exportedGameObject, Formatting.Indented);
+            saveFileDialog.FileName = exportedGameObject.GetType().Name + "_" + exportedGameObject.ID + ".json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
@@ -2622,122 +1937,63 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public void CopyObjectJSONToClipboard(object objectToExport)
-        {
-            Clipboard.SetText(Utilities.SerializeObject(objectToExport));
-        }
+        #endregion
+        #region "Copy Selected JSON to Clipboard" events
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Aspect exportedAspect = Content.GetAspect((Guid)aspectsListView.SelectedItems[0].Tag);
-            if (exportedAspect == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedAspect);
+            CopySelectedJSONToClipboard(Content.Aspects);
         }
 
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Element exportedElement = Content.GetElement((Guid)elementsListView.SelectedItems[0].Tag);
-            if (exportedElement == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedElement);
+            CopySelectedJSONToClipboard(Content.Elements);
         }
 
         private void CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Recipe exportedRecipe = Content.GetRecipe((Guid)recipesListView.SelectedItems[0].Tag);
-            if (exportedRecipe == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedRecipe);
+            CopySelectedJSONToClipboard(Content.Recipes);
         }
 
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Deck exportedDeck = Content.GetDeck((Guid)decksListView.SelectedItems[0].Tag);
-            if (exportedDeck == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedDeck);
+            CopySelectedJSONToClipboard(Content.Decks);
         }
 
         private void CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Legacy exportedLegacy = Content.GetLegacy((Guid)legaciesListView.SelectedItems[0].Tag);
-            if (exportedLegacy == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedLegacy);
+            CopySelectedJSONToClipboard(Content.Legacies);
         }
 
         private void CopySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Ending exportedEnding = Content.GetEnding((Guid)endingsListView.SelectedItems[0].Tag);
-            if (exportedEnding == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedEnding);
+            CopySelectedJSONToClipboard(Content.Endings);
         }
 
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Verb exportedVerb = Content.GetVerb((Guid)verbsListView.SelectedItems[0].Tag);
-            if (exportedVerb == null)
-            {
-                return;
-            }
-
-            CopyObjectJSONToClipboard(exportedVerb);
+            CopySelectedJSONToClipboard(Content.Verbs);
         }
+
+        private void CopySelectedJSONToClipboard<T>(ContentGroup<T> contentGroup) where T : IGameObject
+        {
+            ListView lv = ListViews[contentGroup.Filename];
+            if (lv.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            T exportedT = contentGroup.Get((Guid)lv.SelectedItems[0].Tag);
+            if (exportedT == null)
+            {
+                return;
+            }
+
+            Clipboard.SetText(Utilities.SerializeObject(exportedT));
+        }
+
+        #endregion
+        #region "Create New" events
 
         private void NewAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2781,140 +2037,42 @@ namespace CarcassSpark.ObjectViewers
             vv.Show();
         }
 
+        #endregion
+        #region "Add to List" events
+
         public void AspectsList_Add(object sender, Aspect result)
         {
-            Guid guid = Guid.NewGuid();
-            Aspect newAspect = result.Copy();
-            newAspect.Filename = "aspects";
-            Content.Aspects[guid] = newAspect;
-            ListViewGroup defaultAspectsGroup;
-            if (aspectsListView.Groups["aspects"] == null)
-            {
-                defaultAspectsGroup = new ListViewGroup("aspects", "aspects");
-                aspectsListView.Groups.Add(defaultAspectsGroup);
-            }
-            else
-            {
-                defaultAspectsGroup = aspectsListView.Groups["aspects"];
-            }
-            ListViewItem newAspectEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultAspectsGroup, Name = result.ID };
-            // defaultAspectsGroup.Items.Add(newAspectEntry);
-            aspectsListView.Items.Add(newAspectEntry);
-            MarkDirty();
+            AddToList(Content.Aspects, result);
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
-            Guid guid = Guid.NewGuid();
-            Element newElement = result.Copy();
-            newElement.Filename = "elements";
-            Content.Elements[guid] = newElement;
-            ListViewGroup defaultElementsGroup;
-            if (elementsListView.Groups["elements"] == null)
-            {
-                defaultElementsGroup = new ListViewGroup("elements", "elements");
-                elementsListView.Groups.Add(defaultElementsGroup);
-            }
-            else
-            {
-                defaultElementsGroup = elementsListView.Groups["elements"];
-            }
-            ListViewItem newElementEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultElementsGroup, Name = result.ID };
-            // defaultElementsGroup.Items.Add(newElementEntry);
-            elementsListView.Items.Add(newElementEntry);
-            MarkDirty();
+            AddToList(Content.Elements, result);
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
-            Guid guid = Guid.NewGuid();
-            Recipe newRecipe = result.Copy();
-            newRecipe.Filename = "recipes";
-            Content.Recipes[guid] = newRecipe;
-            ListViewGroup defaultRecipesGroup;
-            if (recipesListView.Groups["recipes"] == null)
-            {
-                defaultRecipesGroup = new ListViewGroup("recipes", "recipes");
-                recipesListView.Groups.Add(defaultRecipesGroup);
-            }
-            else
-            {
-                defaultRecipesGroup = recipesListView.Groups["recipes"];
-            }
-            ListViewItem newRecipeEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultRecipesGroup, Name = result.ID };
-            // defaultRecipesGroup.Items.Add(newRecipeEntry);
-            recipesListView.Items.Add(newRecipeEntry);
-            MarkDirty();
+            AddToList(Content.Recipes, result);
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
-            Guid guid = Guid.NewGuid();
-            Deck newDeck = result.Copy();
-            newDeck.Filename = "decks";
-            Content.Decks[guid] = newDeck;
-            ListViewGroup defaultDecksGroup;
-            if (decksListView.Groups["decks"] == null)
-            {
-                defaultDecksGroup = new ListViewGroup("decks", "decks");
-                decksListView.Groups.Add(defaultDecksGroup);
-            }
-            else
-            {
-                defaultDecksGroup = decksListView.Groups["decks"];
-            }
-            ListViewItem newDeckEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultDecksGroup, Name = result.ID };
-            // defaultDecksGroup.Items.Add(newDeckEntry);
-            decksListView.Items.Add(newDeckEntry);
-            MarkDirty();
+            AddToList(Content.Decks, result);
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
-            Guid guid = Guid.NewGuid();
-            Legacy newLegacy = result.Copy();
-            newLegacy.Filename = "legacies";
-            Content.Legacies[guid] = newLegacy;
-            ListViewGroup defaultLegaciesGroup;
-            if (legaciesListView.Groups["legacies"] == null)
-            {
-                defaultLegaciesGroup = new ListViewGroup("legacies", "legacies");
-                legaciesListView.Groups.Add(defaultLegaciesGroup);
-            }
-            else
-            {
-                defaultLegaciesGroup = legaciesListView.Groups["legacies"];
-            }
-            ListViewItem newLegacyEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultLegaciesGroup, Name = result.ID };
-            // defaultLegaciesGroup.Items.Add(newLegacyEntry);
-            legaciesListView.Items.Add(newLegacyEntry);
-            MarkDirty();
+            AddToList(Content.Legacies, result);
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
-            Guid guid = Guid.NewGuid();
-            Ending newEnding = result.Copy();
-            newEnding.Filename = "endings";
-            Content.Endings[guid] = newEnding;
-            ListViewGroup defaultEndingsGroup;
-            if (endingsListView.Groups["endings"] == null)
-            {
-                defaultEndingsGroup = new ListViewGroup("endings", "endings");
-                endingsListView.Groups.Add(defaultEndingsGroup);
-            }
-            else
-            {
-                defaultEndingsGroup = endingsListView.Groups["endings"];
-            }
-            ListViewItem newEndingEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultEndingsGroup, Name = result.ID };
-            // defaultEndingsGroup.Items.Add(newEndingEntry);
-            endingsListView.Items.Add(newEndingEntry);
-            MarkDirty();
+            AddToList(Content.Endings, result);
         }
 
         public void VerbsList_Add(object sender, Verb result)
         {
+            /*
             Guid guid = Guid.NewGuid();
             Verb newVerb = result.Copy();
             newVerb.Filename = "verbs";
@@ -2933,7 +2091,35 @@ namespace CarcassSpark.ObjectViewers
             // defaultVerbsGroup.Items.Add(newVerbEntry);
             verbsListView.Items.Add(newVerbEntry);
             MarkDirty();
+            */
+            AddToList(Content.Verbs, result);
         }
+
+        private void AddToList<T>(ContentGroup<T> contentGroup, T result) where T : IGameObject
+        {
+            ListView listView = ListViews[contentGroup.Filename];
+            Guid guid = Guid.NewGuid();
+            T newGameObject = result.Copy<T>();
+            newGameObject.Filename = contentGroup.Filename;
+            contentGroup[guid] = newGameObject;
+            ListViewGroup defaultGroup;
+            if (listView.Groups[contentGroup.Filename] == null)
+            {
+                defaultGroup = new ListViewGroup(contentGroup.Filename, contentGroup.Filename);
+                listView.Groups.Add(defaultGroup);
+            }
+            else
+            {
+                defaultGroup = listView.Groups[contentGroup.Filename];
+            }
+            ListViewItem newEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultGroup, Name = result.ID };
+            // defaultGroup.Items.Add(newEntry);
+            listView.Items.Add(newEntry);
+            MarkDirty();
+        }
+
+        #endregion
+        #region Splitter widths
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
         {
@@ -2975,542 +2161,166 @@ namespace CarcassSpark.ObjectViewers
             SaveWidths();
         }
 
+        #endregion
+        #region "Key Down" events
+
         private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && aspectsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
-                    av.Show();
-                }
-                else
-                {
-                    AspectViewer av = new AspectViewer(Content.GetAspect(guid).Copy(), null, aspectsListView.SelectedItems[0]);
-                    av.Show();
-                }
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), editMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                av.Show();
             }
         }
 
         private void ElementsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && elementsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-                else
-                {
-                    ElementViewer ev = new ElementViewer(Content.GetElement(guid).Copy(), null, elementsListView.SelectedItems[0]);
-                    ev.Show();
-                }
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), editMode ? (EventHandler<Element>)ElementsList_Assign : null, elementsListView.SelectedItems[0]);
+                ev.Show();
             }
         }
 
         private void RecipesListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && recipesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
-                else
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), editMode ? (EventHandler<Recipe>)RecipesList_Assign : null, recipesListView.SelectedItems[0]);
+                rv.Show();
             }
         }
 
         private void DecksListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && decksListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
-                    dv.Show();
-                }
-                else
-                {
-                    DeckViewer dv = new DeckViewer(Content.GetDeck(guid).Copy(), null, decksListView.SelectedItems[0]);
-                    dv.Show();
-                }
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), editMode ? (EventHandler<Deck>)DecksList_Assign : null, decksListView.SelectedItems[0]);
+                dv.Show();
             }
         }
 
         private void LegaciesListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && legaciesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
-                else
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.GetRecipe(guid).Copy(), null, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(guid).Copy(), editMode ? (EventHandler<Legacy>)LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
+                lv.Show();
             }
         }
 
+        private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && endingsListView.SelectedItems.Count >= 1)
+            {
+                Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), editMode ? (EventHandler<Ending>)EndingsList_Assign : null, endingsListView.SelectedItems[0]);
+                ev.Show();
+            }
+        }
+
+        private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && verbsListView.SelectedItems.Count >= 1)
+            {
+                Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
+                vv.Show();
+            }
+        }
+
+        #endregion
+        #region "Set Group" events
+
         private void SetGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupAspectToolStripMenuItem.Enabled)
+            if (setGroupAspectToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = aspectsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in aspectsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Aspect"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        aspectsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (aspectsListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        aspectsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        aspectsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetAspect((Guid)selectedItem.Tag).Filename = newGroup;
-
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Aspect", newGroup);
+                SetGroup(Content.Aspects);
             }
         }
 
         private void SetGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupElementToolStripMenuItem.Enabled)
+            if (setGroupElementToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = elementsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in elementsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Element"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        elementsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (elementsListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        elementsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        elementsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetElement((Guid)selectedItem.Tag).Filename = newGroup;
-                    
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Element", newGroup);
+                SetGroup(Content.Elements);
             }
         }
 
         private void SetGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupRecipeToolStripMenuItem.Enabled)
+            if (setGroupRecipeToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = recipesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in recipesListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Recipe"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        recipesListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (recipesListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        recipesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        recipesListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetRecipe((Guid)selectedItem.Tag).Filename = newGroup;
-                    
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Recipe", newGroup);
+                SetGroup(Content.Recipes);
             }
         }
 
         private void SetGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupDeckToolStripMenuItem.Enabled)
+            if (setGroupDeckToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = decksListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in decksListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Deck"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        decksListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (decksListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        decksListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        decksListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetDeck((Guid)selectedItem.Tag).Filename = newGroup;
-                    
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Deck", newGroup);
+                SetGroup(Content.Decks);
             }
         }
 
         private void SetGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupLegacyToolStripMenuItem.Enabled)
+            if (setGroupLegacyToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = legaciesListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in legaciesListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Legacy"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        legaciesListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (legaciesListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        legaciesListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        legaciesListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetLegacy((Guid)selectedItem.Tag).Filename = newGroup;
-                    
-                    MarkDirty();
-                }
-                Content.SetRecentGroup("Legacy", newGroup);
+                SetGroup(Content.Legacies);
             }
         }
 
         private void SetGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupEndingToolStripMenuItem.Enabled)
+            if (setGroupEndingToolStripMenuItem.Enabled)
             {
-                return;
-            }
-
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = endingsListView.SelectedItems[0];
-            string currentGroup = selectedItem.Group?.Name ?? "";
-            List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in endingsListView.Groups)
-            {
-                groups.Add(lvg.Name);
-            }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Ending"), groups);
-            if (ge.ShowDialog() == DialogResult.OK)
-            {
-                string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || verbsListView.Groups[newGroup] != null)
-                {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                if (GroupExistsAsHidden(newGroup))
-                {
-                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if (newGroup != currentGroup)
-                {
-                    if (currentGroup != "" && currentGroup != null)
-                    {
-                        endingsListView.Groups[currentGroup].Items.Remove(selectedItem);
-                    }
-
-                    if (endingsListView.Groups[newGroup] == null)
-                    {
-                        ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        endingsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
-                    }
-                    else
-                    {
-                        endingsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetEnding((Guid)selectedItem.Tag).Filename = newGroup;
-                    
-                    MarkDirty();
-                }
+                SetGroup(Content.Endings);
             }
         }
 
         private void SetGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!setGroupVerbToolStripMenuItem.Enabled)
+            if (setGroupVerbToolStripMenuItem.Enabled)
+            {
+                SetGroup(Content.Verbs);
+            }
+        }
+
+        public void SetGroup<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            ListView lv = ListViews[cg.Filename];
+            if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
 
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = verbsListView.SelectedItems[0];
+            ListViewItem selectedItem = lv.SelectedItems[0];
             string currentGroup = selectedItem.Group?.Name ?? "";
             List<string> groups = new List<string>();
-            foreach (ListViewGroup lvg in verbsListView.Groups)
+            foreach (ListViewGroup lvg in lv.Groups)
             {
                 groups.Add(lvg.Name);
             }
-            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup("Verb"), groups);
+            GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup(cg.DisplayName), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
                 string newGroup = ge.group;
-                if (aspectsListView.Groups[newGroup] != null
-                 || elementsListView.Groups[newGroup] != null
-                 || recipesListView.Groups[newGroup] != null
-                 || legaciesListView.Groups[newGroup] != null
-                 || decksListView.Groups[newGroup] != null
-                 || endingsListView.Groups[newGroup] != null)
+                foreach (ListView listView in ListViews.Values)
                 {
-                    MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    // TODO: Make this respect the ContentSource, rather than the ListView.
+                    // We REALLY don't want people making groups that exist for other types.
+                    if (listView != lv && listView.Groups[newGroup] != null)
+                    {
+                        MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                 }
                 
                 if (GroupExistsAsHidden(newGroup))
@@ -3523,26 +2333,24 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (currentGroup != "" && currentGroup != null)
                     {
-                        verbsListView.Groups[currentGroup].Items.Remove(selectedItem);
+                        lv.Groups[currentGroup].Items.Remove(selectedItem);
                     }
 
-                    if (verbsListView.Groups[newGroup] == null)
+                    if (lv.Groups[newGroup] == null)
                     {
                         ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
-                        verbsListView.Groups.Add(listViewGroup);
-                        listViewGroup.Items.Add(selectedItem);
+                        lv.Groups.Add(listViewGroup);
                     }
-                    else
-                    {
-                        verbsListView.Groups[newGroup].Items.Add(selectedItem);
-                    }
-                    Content.GetVerb((Guid)selectedItem.Tag).Filename = newGroup;
-                    
+                    lv.Groups[newGroup].Items.Add(selectedItem);
+                    cg.Get((Guid)selectedItem.Tag).Filename = newGroup;
                     MarkDirty();
                 }
-                Content.SetRecentGroup("Verb", newGroup);
+                Content.SetRecentGroup(cg.DisplayName, newGroup);
             }
         }
+
+        #endregion
+        #region "Use Template" events
 
         private void UseTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3628,113 +2436,50 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-                else
-                {
-                    EndingViewer ev = new EndingViewer(Content.GetEnding(guid).Copy(), null, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-            }
-        }
-
-        private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
-                else
-                {
-                    VerbViewer vv = new VerbViewer(Content.GetVerb(guid).Copy(), null, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
-            }
-        }
+        #endregion
+        #region "Hide Group" events
 
         private void HideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["aspects"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("aspects", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("aspects");
         }
 
         private void HideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["elements"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("elements", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("elements");
         }
 
         private void HideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["recipes"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("recipes", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("recipes");
         }
 
         private void HideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["decks"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("decks", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("decks");
         }
 
         private void HideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["legacies"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("legacies", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("legacies");
         }
 
         private void HideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["endings"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("endings", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("endings");
         }
 
         private void HideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["verbs"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("verbs", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("verbs");
         }
 
-        private ListViewGroup HideCurrentGroupShortTerm(ListView lv)
+        private void HideGroup(string listViewKey)
         {
-            if (lv.SelectedItems.Count < 1)
+            ListView listView = ListViews[listViewKey];
+            if (listView.SelectedItems.Count < 1)
             {
-                return null;
+                return;
             }
 
             if(IsDirty)
@@ -3742,25 +2487,55 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Save or discard your unsaved changes, then try again.",
                 "You have unsaved changes!",
                 MessageBoxButtons.OK);
-                return null;
+                return;
             }
             else if (editMode && MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
-                return null;
+                return;
             }
 
-            ListViewGroup group = lv.SelectedItems[0].Group;
+            ListViewGroup group = listView.SelectedItems[0].Group;
             while (group.Items.Count > 0)
             {
                 ListViewItem item = group.Items[0];
                 group.Items.Remove(item);
-                lv.Items.Remove(item);
+                listView.Items.Remove(item);
             }
-            return group;
+
+            Content.SetHiddenGroup(listViewKey, group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
-        
+
+        #endregion
+
+        private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListView.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.Recipes.Get(id).Copy());
+            rfv.Show();
+        }
+
+        private void SaveToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveToFolderBrowserDialog.SelectedPath = Content.currentDirectory;
+            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveMod(saveToFolderBrowserDialog.SelectedPath);
+            }
+        }
+
+        private void AutosaveTimer_Tick(object sender, EventArgs e)
+        {
+            SaveMod();
+        }
+
         private void ModViewerTabControl_Load(object sender, EventArgs e)
         {
 
@@ -3777,11 +2552,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void MarkDirty()
         {
-            IsDirty = true;
-            if (MarkDirtyEventHandler != null)
-            {
-                MarkDirtyEventHandler.Invoke(this, IsDirty);
-            }
+            MarkDirty(true);
         }
 
         public bool GroupExistsAsHidden(string newGroup)
@@ -3799,14 +2570,14 @@ namespace CarcassSpark.ObjectViewers
         }
 
         // This should only ever get called from the reset hidden groups button!
-        public void ReloadListView<T>(Dictionary<Guid, T> dict, string type) where T : IGameObject
+        public void ReloadListView<T>(ContentGroup<T> contentGroup) where T : IGameObject
         {
-            ListView listView = ListViews[type];
+            ListView listView = ListViews[contentGroup.Filename];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> itemsToAdd = new List<ListViewItem>();
 
-            foreach (T entity in dict.Values)
+            foreach (T entity in contentGroup.Values)
             {
                 ListViewGroup group = listView.Groups[entity.Filename] ?? new ListViewGroup(entity.Filename, entity.Filename);
                 if (!listView.Groups.Contains(group))
