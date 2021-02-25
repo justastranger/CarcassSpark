@@ -569,140 +569,70 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectListView_DoubleClick(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
+            if (aspectsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)aspectsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
-                av.Show();
-            }
-            else
-            {
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), null, aspectsListView.SelectedItems[0]);
+                Guid id = (Guid) aspectsListView.SelectedItems[0].Tag;
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), editMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
         }
 
         private void ElementsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
+            if (elementsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)elementsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
-                ev.Show();
-            }
-            else
-            {
-                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), null, elementsListView.SelectedItems[0]);
+                Guid id = (Guid) elementsListView.SelectedItems[0].Tag;
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), editMode ? (EventHandler<Element>) ElementsList_Assign : null, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
 
         private void RecipesListView_DoubleClick(object sender, EventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
+            if (recipesListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                rv.Show();
-            }
-            else
-            {
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), null, recipesListView.SelectedItems[0]);
+                Guid id = (Guid) recipesListView.SelectedItems[0].Tag;
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), editMode ? (EventHandler<Recipe>) RecipesList_Assign : null, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
         }
 
         private void DecksListView_DoubleClick(object sender, EventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
+            if (decksListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)decksListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
-                dv.Show();
-            }
-            else
-            {
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), null, decksListView.SelectedItems[0]);
+                Guid id = (Guid) decksListView.SelectedItems[0].Tag;
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), editMode ? (EventHandler<Deck>) DecksList_Assign : null, decksListView.SelectedItems[0]);
                 dv.Show();
             }
         }
 
         private void EndingsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
+            if (endingsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)endingsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
-                ev.Show();
-            }
-            else
-            {
-                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), null, endingsListView.SelectedItems[0]);
+                Guid id = (Guid) endingsListView.SelectedItems[0].Tag;
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), editMode ? (EventHandler<Ending>) EndingsList_Assign : null, endingsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
 
         private void LegaciesListView_DoubleClick(object sender, EventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
+            if (legaciesListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)legaciesListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), LegaciesList_Assign, legaciesListView.SelectedItems[0]);
-                lv.Show();
-            }
-            else
-            {
-                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), null, legaciesListView.SelectedItems[0]);
+                Guid id = (Guid) legaciesListView.SelectedItems[0].Tag;
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), editMode ? (EventHandler<Legacy>) LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
                 lv.Show();
             }
         }
 
         private void VerbsListView_DoubleClick(object sender, EventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
+            if (verbsListView.SelectedItems.Count >= 1)
             {
-                return;
-            }
-
-            Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
-            if (editMode)
-            {
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                vv.Show();
-            }
-            else
-            {
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), null, verbsListView.SelectedItems[0]);
+                Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
                 vv.Show();
             }
         }
