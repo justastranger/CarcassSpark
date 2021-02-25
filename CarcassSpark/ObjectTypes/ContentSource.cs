@@ -302,7 +302,7 @@ namespace CarcassSpark.ObjectTypes
         public string DisplayNamePlural { get; private set; }
         public string Filename { get; private set; }
 
-        public T this[Guid key] { get => GameObjects[key]; set=> GameObjects[key] = value; }
+        public T this[Guid key] { get => GameObjects.ContainsKey(key) ? GameObjects[key] : default(T); set=> GameObjects[key] = value; }
 
         public ContentGroup(string d, string p, string f)
         {
