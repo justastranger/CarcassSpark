@@ -97,6 +97,8 @@ namespace CarcassSpark.ObjectViewers
             setGroupVerbToolStripMenuItem.Enabled = editing;
         }
 
+        #region Saving and Loading
+
         public bool LoadContent()
         {
             if (IsDirty && editMode)
@@ -565,6 +567,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #endregion
         #region "Double-Click" events
 
         private void AspectListView_DoubleClick(object sender, EventArgs e)
@@ -1565,33 +1568,6 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-
-        private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
-            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.Recipes.Get(id).Copy());
-            rfv.Show();
-        }
-
-        private void SaveToToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveToFolderBrowserDialog.SelectedPath = Content.currentDirectory;
-            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                SaveMod(saveToFolderBrowserDialog.SelectedPath);
-            }
-        }
-
-        private void AutosaveTimer_Tick(object sender, EventArgs e)
-        {
-            SaveMod();
-        }
-
         #region "Delete Selected" events
 
         private void DeleteSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2143,6 +2119,7 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
+        #region Splitter widths
 
         private void ModViewerTabControl_VisibleChanged(object sender, EventArgs e)
         {
@@ -2184,6 +2161,7 @@ namespace CarcassSpark.ObjectViewers
             SaveWidths();
         }
 
+        #endregion
         #region "Key Down" events
 
         private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
@@ -2531,6 +2509,32 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
+
+        private void ViewAsFlowchartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recipesListView.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            Guid id = (Guid)recipesListView.SelectedItems[0].Tag;
+            RecipeFlowchartViewer rfv = new RecipeFlowchartViewer(Content.Recipes.Get(id).Copy());
+            rfv.Show();
+        }
+
+        private void SaveToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveToFolderBrowserDialog.SelectedPath = Content.currentDirectory;
+            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveMod(saveToFolderBrowserDialog.SelectedPath);
+            }
+        }
+
+        private void AutosaveTimer_Tick(object sender, EventArgs e)
+        {
+            SaveMod();
+        }
 
         private void ModViewerTabControl_Load(object sender, EventArgs e)
         {
