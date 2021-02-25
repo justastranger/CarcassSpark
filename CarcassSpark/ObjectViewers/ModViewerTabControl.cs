@@ -712,41 +712,42 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            AssignToList((IGameObjectViewer<Aspect>) sender, Content.Aspects, result, result.Copy());
+            AssignToList((IGameObjectViewer<Aspect>) sender, Content.Aspects, result);
         }
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            AssignToList((IGameObjectViewer<Element>) sender, Content.Elements, result, result.Copy());
+            AssignToList((IGameObjectViewer<Element>) sender, Content.Elements, result);
         }
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            AssignToList((IGameObjectViewer<Recipe>) sender, Content.Recipes, result, result.Copy());
+            AssignToList((IGameObjectViewer<Recipe>) sender, Content.Recipes, result);
         }
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            AssignToList((IGameObjectViewer<Deck>) sender, Content.Decks, result, result.Copy());
+            AssignToList((IGameObjectViewer<Deck>) sender, Content.Decks, result);
         }
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            AssignToList((IGameObjectViewer<Ending>) sender, Content.Endings, result, result.Copy());
+            AssignToList((IGameObjectViewer<Ending>) sender, Content.Endings, result);
         }
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            AssignToList((IGameObjectViewer<Legacy>) sender, Content.Legacies, result, result.Copy());
+            AssignToList((IGameObjectViewer<Legacy>) sender, Content.Legacies, result);
         }
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            AssignToList((IGameObjectViewer<Verb>) sender, Content.Verbs, result, result.Copy());
+            AssignToList((IGameObjectViewer<Verb>) sender, Content.Verbs, result);
         }
 
-        private void AssignToList<T>(IGameObjectViewer<T> sender, ContentGroup<T> cg, T result, T resultCopy) where T:IGameObject
+        private void AssignToList<T>(IGameObjectViewer<T> sender, ContentGroup<T> cg, T result) where T:IGameObject
         {
+            T resultCopy = result.Copy<T>();
             if ((Guid)sender.AssociatedListViewItem.Tag != result.Guid)
             {
                 cg.Remove((Guid)sender.AssociatedListViewItem.Tag);
