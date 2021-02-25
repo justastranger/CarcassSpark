@@ -321,7 +321,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.ID))
+                    if (SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                     {
                         MessageBox.Show("Aspect already exists, overwriting.");
                     }
@@ -332,7 +332,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.aspectsListView.Groups.Add(group);
                         }
-                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.aspectsListView.Items.Add(new ListViewItem(deserializedAspect.id) { Tag = guid, Group = group });
                     }
                     deserializedAspect.filename = "aspects";
                     SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
@@ -357,7 +357,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.ID))
+                    if (SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                     {
                         MessageBox.Show("Element already exists, overwriting.");
                     }
@@ -368,7 +368,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.elementsListView.Groups.Add(group);
                         }
-                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.elementsListView.Items.Add(new ListViewItem(deserializedElement.id) { Tag = guid, Group = group });
                     }
                     deserializedElement.filename = "elements";
                     SelectedModViewer.Content.Elements[guid] = deserializedElement;
@@ -393,7 +393,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.ID))
+                    if (SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                     {
                         MessageBox.Show("Recipe already exists, overwriting.");
                     }
@@ -404,7 +404,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.recipesListView.Groups.Add(group);
                         }
-                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.recipesListView.Items.Add(new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = group });
                     }
                     deserializedRecipe.filename = "recipes";
                     SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
@@ -429,7 +429,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.ID))
+                    if (SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                     {
                         MessageBox.Show("Deck already exists, overwriting.");
                     }
@@ -440,7 +440,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.decksListView.Groups.Add(group);
                         }
-                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.decksListView.Items.Add(new ListViewItem(deserializedDeck.id) { Tag = guid, Group = group });
                     }
                     deserializedDeck.filename = "decks";
                     SelectedModViewer.Content.Decks[guid] = deserializedDeck;
@@ -465,7 +465,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.ID))
+                    if (SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                     {
                         MessageBox.Show("Legacy already exists, overwriting.");
                     }
@@ -476,7 +476,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.legaciesListView.Groups.Add(group);
                         }
-                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.legaciesListView.Items.Add(new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = group });
                     }
                     deserializedLegacy.filename = "legacies";
                     SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
@@ -501,7 +501,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.ID))
+                    if (SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                     {
                         MessageBox.Show("Ending already exists, overwriting.");
                     }
@@ -512,7 +512,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.endingsListView.Groups.Add(group);
                         }
-                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.endingsListView.Items.Add(new ListViewItem(deserializedEnding.id) { Tag = guid, Group = group });
                     }
                     deserializedEnding.filename = "endings";
                     SelectedModViewer.Content.Endings[guid] = deserializedEnding;
@@ -537,7 +537,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    if (SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.ID))
+                    if (SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                     {
                         MessageBox.Show("Verb already exists, overwriting.");
                     }
@@ -548,7 +548,7 @@ namespace CarcassSpark.ObjectViewers
                         {
                             SelectedModViewer.verbsListView.Groups.Add(group);
                         }
-                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.ID) { Tag = guid, Group = group });
+                        SelectedModViewer.verbsListView.Items.Add(new ListViewItem(deserializedVerb.id) { Tag = guid, Group = group });
                     }
                     deserializedVerb.filename = "verbs";
                     SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
@@ -589,9 +589,9 @@ namespace CarcassSpark.ObjectViewers
                         Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(je.objectText);
                         deserializedAspect.filename = "aspects";
                         SelectedModViewer.Content.Aspects[guid] = deserializedAspect;
-                        if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.ID))
+                        if (!SelectedModViewer.aspectsListView.Items.ContainsKey(deserializedAspect.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedAspect.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedAspect.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.aspectsListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -605,9 +605,9 @@ namespace CarcassSpark.ObjectViewers
                         Element deserializedElement = JsonConvert.DeserializeObject<Element>(je.objectText);
                         deserializedElement.filename = "elements";
                         SelectedModViewer.Content.Elements[guid] = deserializedElement;
-                        if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.ID))
+                        if (!SelectedModViewer.elementsListView.Items.ContainsKey(deserializedElement.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedElement.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedElement.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.elementsListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -621,9 +621,9 @@ namespace CarcassSpark.ObjectViewers
                         Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(je.objectText);
                         deserializedRecipe.filename = "recipes";
                         SelectedModViewer.Content.Recipes[guid] = deserializedRecipe;
-                        if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.ID))
+                        if (!SelectedModViewer.recipesListView.Items.ContainsKey(deserializedRecipe.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedRecipe.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedRecipe.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.recipesListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -637,9 +637,9 @@ namespace CarcassSpark.ObjectViewers
                         Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(je.objectText);
                         deserializedDeck.filename = "decks";
                         SelectedModViewer.Content.Decks[guid] = deserializedDeck;
-                        if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.ID))
+                        if (!SelectedModViewer.decksListView.Items.ContainsKey(deserializedDeck.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedDeck.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedDeck.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.decksListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -653,9 +653,9 @@ namespace CarcassSpark.ObjectViewers
                         Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(je.objectText);
                         deserializedLegacy.filename = "legacies";
                         SelectedModViewer.Content.Legacies[guid] = deserializedLegacy;
-                        if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.ID))
+                        if (!SelectedModViewer.legaciesListView.Items.ContainsKey(deserializedLegacy.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedLegacy.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedLegacy.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.legaciesListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -669,9 +669,9 @@ namespace CarcassSpark.ObjectViewers
                         Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(je.objectText);
                         deserializedEnding.filename = "endings";
                         SelectedModViewer.Content.Endings[guid] = deserializedEnding;
-                        if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.ID))
+                        if (!SelectedModViewer.endingsListView.Items.ContainsKey(deserializedEnding.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedEnding.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedEnding.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.endingsListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -685,9 +685,9 @@ namespace CarcassSpark.ObjectViewers
                         Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(je.objectText);
                         deserializedVerb.filename = "verbs";
                         SelectedModViewer.Content.Verbs[guid] = deserializedVerb;
-                        if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.ID))
+                        if (!SelectedModViewer.verbsListView.Items.ContainsKey(deserializedVerb.id))
                         {
-                            ListViewItem item = new ListViewItem(deserializedVerb.ID) { Tag = guid, Group = listViewGroup };
+                            ListViewItem item = new ListViewItem(deserializedVerb.id) { Tag = guid, Group = listViewGroup };
                             SelectedModViewer.verbsListView.Items.Add(item);
                             // listViewGroup.Items.Add(item);
                         }
@@ -716,13 +716,13 @@ namespace CarcassSpark.ObjectViewers
                 }
 
                 Guid baseGuid = Guid.NewGuid();
-                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.ID) { Tag = baseGuid, Group = defaultElementsGroup };
+                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(baseSummon);
                 sc.baseSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(baseGuid, sc.baseSummon.Copy());
 
                 Guid preGuid = Guid.NewGuid();
-                ListViewItem preSummon = new ListViewItem(sc.preSummon.ID) { Tag = preGuid, Group = defaultElementsGroup };
+                ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
                 SelectedModViewer.elementsListView.Items.Add(preSummon);
                 sc.preSummon.filename = "elements";
                 SelectedModViewer.Content.Elements.Add(preGuid, sc.preSummon.Copy());
@@ -734,13 +734,13 @@ namespace CarcassSpark.ObjectViewers
                 }
 
                 Guid startGuid = Guid.NewGuid();
-                ListViewItem startSummon = new ListViewItem(sc.startSummon.ID) { Tag = startGuid, Group = defaultRecipesGroup };
+                ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(startSummon);
                 sc.startSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(startGuid, sc.startSummon.Copy());
 
                 Guid succeedGuid = Guid.NewGuid();
-                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.ID) { Tag = succeedGuid, Group = defaultRecipesGroup };
+                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
                 SelectedModViewer.recipesListView.Items.Add(succeedSummon);
                 sc.succeedSummon.filename = "recipes";
                 SelectedModViewer.Content.Recipes.Add(succeedGuid, sc.succeedSummon.Copy());

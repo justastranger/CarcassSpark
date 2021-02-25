@@ -68,7 +68,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Element element in Elements.Values)
                 {
-                    if (element.ID == id)
+                    if (element.id == id)
                     {
                         return element;
                     }
@@ -100,7 +100,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Deck deck in Decks.Values)
                 {
-                    if (deck.ID == id)
+                    if (deck.id == id)
                     {
                         return deck;
                     }
@@ -132,7 +132,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Aspect aspect in Aspects.Values)
                 {
-                    if (aspect.ID == id)
+                    if (aspect.id == id)
                     {
                         return aspect;
                     }
@@ -150,7 +150,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Aspect aspect in Aspects.Values)
             {
-                if (aspect.ID == id)
+                if (aspect.id == id)
                 {
                     return true;
                 }
@@ -162,7 +162,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Element element in Elements.Values)
             {
-                if (element.ID == id)
+                if (element.id == id)
                 {
                     return true;
                 }
@@ -174,7 +174,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Recipe recipe in Recipes.Values)
             {
-                if (recipe.ID == id)
+                if (recipe.id == id)
                 {
                     return true;
                 }
@@ -186,7 +186,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Deck deck in Decks.Values)
             {
-                if (deck.ID == id)
+                if (deck.id == id)
                 {
                     return true;
                 }
@@ -198,7 +198,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Legacy legacy in Legacies.Values)
             {
-                if (legacy.ID == id)
+                if (legacy.id == id)
                 {
                     return true;
                 }
@@ -210,7 +210,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Verb verb in Verbs.Values)
             {
-                if (verb.ID == id)
+                if (verb.id == id)
                 {
                     return true;
                 }
@@ -222,7 +222,7 @@ namespace CarcassSpark.ObjectTypes
         {
             foreach (Ending ending in Endings.Values)
             {
-                if (ending.ID == id)
+                if (ending.id == id)
                 {
                     return true;
                 }
@@ -248,7 +248,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Legacy legacy in Legacies.Values)
                 {
-                    if (legacy.ID == id)
+                    if (legacy.id == id)
                     {
                         return legacy;
                     }
@@ -280,7 +280,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Recipe recipe in Recipes.Values)
                 {
-                    if (recipe.ID == id)
+                    if (recipe.id == id)
                     {
                         return recipe;
                     }
@@ -312,7 +312,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Ending ending in Endings.Values)
                 {
-                    if (ending.ID == id)
+                    if (ending.id == id)
                     {
                         return ending;
                     }
@@ -344,7 +344,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 foreach (Verb verb in Verbs.Values)
                 {
-                    if (verb.ID == id)
+                    if (verb.id == id)
                     {
                         return verb;
                     }
