@@ -708,130 +708,55 @@ namespace CarcassSpark.ObjectViewers
         }
 
         #endregion
-        #region "List_Assign" events
+        #region "Assign to List" events
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            AspectViewer aspectViewer = (AspectViewer)sender;
-            if ((Guid)aspectViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Aspects.Remove((Guid)aspectViewer.associatedListViewItem.Tag);
-                aspectViewer.associatedListViewItem.Tag = result.guid;
-                Aspect newAspect = result.Copy();
-                newAspect.filename = aspectViewer.associatedListViewItem.Group.Name;
-                Content.Aspects.Add(result.guid, newAspect);
-            }
-            if (aspectViewer.associatedListViewItem.Text != result.id)
-            {
-                aspectViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Aspect>) sender, Content.Aspects, result, result.Copy());
         }
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            ElementViewer elementViewer = (ElementViewer)sender;
-            if ((Guid)elementViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Elements.Remove((Guid)elementViewer.associatedListViewItem.Tag);
-                elementViewer.associatedListViewItem.Tag = result.guid;
-                Element newElement = result.Copy();
-                newElement.filename = elementViewer.associatedListViewItem.Group.Name;
-                Content.Elements.Add(result.guid, newElement);
-            }
-            if (elementViewer.associatedListViewItem.Text != result.id)
-            {
-                elementViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Element>) sender, Content.Elements, result, result.Copy());
         }
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            RecipeViewer recipeViewer = (RecipeViewer)sender;
-            if ((Guid)recipeViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Recipes.Remove((Guid)recipeViewer.associatedListViewItem.Tag);
-                recipeViewer.associatedListViewItem.Tag = result.guid;
-                Recipe newRecipe = result.Copy();
-                newRecipe.filename = recipeViewer.associatedListViewItem.Group.Name;
-                Content.Recipes.Add(result.guid, newRecipe);
-            }
-            if (recipeViewer.associatedListViewItem.Text != result.id)
-            {
-                recipeViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Recipe>) sender, Content.Recipes, result, result.Copy());
         }
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            DeckViewer deckViewer = (DeckViewer)sender;
-            if ((Guid)deckViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Decks.Remove((Guid)deckViewer.associatedListViewItem.Tag);
-                deckViewer.associatedListViewItem.Tag = result.guid;
-                Deck newDeck = result.Copy();
-                newDeck.filename = deckViewer.associatedListViewItem.Group.Name;
-                Content.Decks.Add(result.guid, newDeck);
-            }
-            if (deckViewer.associatedListViewItem.Text != result.id)
-            {
-                deckViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Deck>) sender, Content.Decks, result, result.Copy());
         }
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            EndingViewer endingViewer = (EndingViewer)sender;
-            if ((Guid)endingViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Endings.Remove((Guid)endingViewer.associatedListViewItem.Tag);
-                endingViewer.associatedListViewItem.Tag = result.guid;
-                Ending newEnding = result.Copy();
-                newEnding.filename = endingViewer.associatedListViewItem.Group.Name;
-                Content.Endings.Add(result.guid, newEnding);
-            }
-            if (endingViewer.associatedListViewItem.Text != result.id)
-            {
-                endingViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Ending>) sender, Content.Endings, result, result.Copy());
         }
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            LegacyViewer legacyViewer = (LegacyViewer)sender;
-            if ((Guid)legacyViewer.associatedListViewItem.Tag != result.guid)
-            {
-                Content.Legacies.Remove((Guid)legacyViewer.associatedListViewItem.Tag);
-                legacyViewer.associatedListViewItem.Tag = result.guid;
-                Legacy newLegacy = result.Copy();
-                newLegacy.filename = legacyViewer.associatedListViewItem.Group.Name;
-                Content.Legacies.Add(result.guid, newLegacy);
-            }
-            if (legacyViewer.associatedListViewItem.Text != result.id)
-            {
-                legacyViewer.associatedListViewItem.Text = result.id;
-            }
-            MarkDirty();
+            AssignToList((IGameObjectViewer<Legacy>) sender, Content.Legacies, result, result.Copy());
         }
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            VerbViewer verbViewer = (VerbViewer)sender;
-            if ((Guid)verbViewer.associatedListViewItem.Tag != result.guid)
+            AssignToList((IGameObjectViewer<Verb>) sender, Content.Verbs, result, result.Copy());
+        }
+
+        private void AssignToList<T>(IGameObjectViewer<T> sender, ContentGroup<T> cg, T result, T resultCopy) where T:IGameObject
+        {
+            if ((Guid)sender.AssociatedListViewItem.Tag != result.Guid)
             {
-                Content.Verbs.Remove((Guid)verbViewer.associatedListViewItem.Tag);
-                verbViewer.associatedListViewItem.Tag = result.guid;
-                Verb newVerb = result.Copy();
-                newVerb.filename = verbViewer.associatedListViewItem.Group.Name;
-                Content.Verbs.Add(result.guid, newVerb);
+                cg.Remove((Guid)sender.AssociatedListViewItem.Tag);
+                sender.AssociatedListViewItem.Tag = result.Guid;
+                resultCopy.Filename = sender.AssociatedListViewItem.Group.Name;
+                cg.Add(result.Guid, resultCopy);
             }
-            if (verbViewer.associatedListViewItem.Text != result.id)
+            if (sender.AssociatedListViewItem.Text != result.ID)
             {
-                verbViewer.associatedListViewItem.Text = result.id;
+                sender.AssociatedListViewItem.Text = result.ID;
             }
             MarkDirty();
         }
