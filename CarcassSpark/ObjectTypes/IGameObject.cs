@@ -7,6 +7,8 @@ namespace CarcassSpark.ObjectTypes
     {
         [JsonIgnore]
         string Filename { get; set; }
+
+        T Copy<T>() where T : IGameObject;
     }
 
     public interface IHasGuidAndID
