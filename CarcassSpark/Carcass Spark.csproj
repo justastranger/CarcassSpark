@@ -147,6 +147,7 @@
       <DependentUpon>CultureViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectTypes\IGameObject.cs" />
+    <Compile Include="ObjectViewers\IGameObjectViewer.cs" />
     <Compile Include="ObjectViewers\TabbedModViewer.cs">
       <SubType>Form</SubType>
     </Compile>
