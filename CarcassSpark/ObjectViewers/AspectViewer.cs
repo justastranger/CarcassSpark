@@ -111,6 +111,17 @@ namespace CarcassSpark.ObjectViewers
                 verbIconTextBox.Text = aspect.verbicon;
             }
 
+            if (aspect.induces_prepend != null)
+            {
+                foreach (Induces induces in aspect.induces_prepend)
+                {
+                    inducesDictionary.Add(induces.id, induces);
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
+                    inducesDataGridView.Rows.Add(newRow);
+                }
+            }
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
@@ -120,17 +131,6 @@ namespace CarcassSpark.ObjectViewers
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
                     inducesDataGridView.Rows.Add(newRow);
-                }
-            }
-            if (aspect.induces_prepend != null)
-            {
-                foreach (Induces induces in aspect.induces_prepend)
-                {
-                    inducesDictionary.Add(induces.id, induces);
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
-                    newRow.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
-                    inducesDataGridView.Rows.Insert(0, newRow);
                 }
             }
             if (aspect.induces_append != null)

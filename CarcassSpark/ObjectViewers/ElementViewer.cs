@@ -177,15 +177,6 @@ namespace CarcassSpark.ObjectViewers
                 verbIconTextBox.Text = element.verbicon;
             }
 
-            if (element.slots != null)
-            {
-                foreach (Slot slot in element.slots)
-                {
-                    slots[slot.id] = slot;
-                    ListViewItem item = new ListViewItem(slot.id);
-                    slotsListView.Items.Add(item);
-                }
-            }
             if (element.slots_prepend != null)
             {
                 foreach (Slot slot in element.slots_prepend)
@@ -195,7 +186,16 @@ namespace CarcassSpark.ObjectViewers
                     {
                         BackColor = Utilities.ListPrependColor
                     };
-                    slotsListView.Items.Insert(0, item);
+                    slotsListView.Items.Add(item);
+                }
+            }
+            if (element.slots != null)
+            {
+                foreach (Slot slot in element.slots)
+                {
+                    slots[slot.id] = slot;
+                    ListViewItem item = new ListViewItem(slot.id);
+                    slotsListView.Items.Add(item);
                 }
             }
             if (element.slots_append != null)
