@@ -2612,65 +2612,45 @@ namespace CarcassSpark.ObjectViewers
 
         private void HideGroupAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["aspects"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("aspects", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("aspects");
         }
 
         private void HideGroupElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["elements"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("elements", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("elements");
         }
 
         private void HideGroupRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["recipes"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("recipes", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("recipes");
         }
 
         private void HideGroupDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["decks"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("decks", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("decks");
         }
 
         private void HideGroupLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["legacies"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("legacies", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("legacies");
         }
 
         private void HideGroupEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["endings"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("endings", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("endings");
         }
 
         private void HideGroupVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListViewGroup group = HideCurrentGroupShortTerm(ListViews["verbs"]);
-            if (group==null) { return; }
-            Content.SetHiddenGroup("verbs", group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            HideGroup("verbs");
         }
 
-        private ListViewGroup HideCurrentGroupShortTerm(ListView lv)
+        private void HideGroup(string listViewKey)
         {
-            if (lv.SelectedItems.Count < 1)
+            ListView listView = ListViews[listViewKey];
+            if (listView.SelectedItems.Count < 1)
             {
-                return null;
+                return;
             }
 
             if(IsDirty)
@@ -2678,23 +2658,25 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("Save or discard your unsaved changes, then try again.",
                 "You have unsaved changes!",
                 MessageBoxButtons.OK);
-                return null;
+                return;
             }
             else if (editMode && MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
-                return null;
+                return;
             }
 
-            ListViewGroup group = lv.SelectedItems[0].Group;
+            ListViewGroup group = listView.SelectedItems[0].Group;
             while (group.Items.Count > 0)
             {
                 ListViewItem item = group.Items[0];
                 group.Items.Remove(item);
-                lv.Items.Remove(item);
+                listView.Items.Remove(item);
             }
-            return group;
+
+            Content.SetHiddenGroup(listViewKey, group.Name);
+            SaveCustomManifest(Content.currentDirectory);
         }
 
         #endregion
