@@ -1812,8 +1812,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedAspectToolStripMenuItem.Enabled)
             {
-                Aspect newGameObject = Content.Aspects[(Guid)aspectsListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Aspects, newGameObject);
+                DuplicateSelectedGameObject(Content.Aspects);
             }
         }
 
@@ -1821,8 +1820,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedElementToolStripMenuItem.Enabled)
             {
-                Element newGameObject = Content.Elements[(Guid) elementsListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Elements, newGameObject);
+                DuplicateSelectedGameObject(Content.Elements);
             }
         }
 
@@ -1830,8 +1828,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedRecipeToolStripMenuItem.Enabled)
             {
-                Recipe newGameObject = Content.Recipes[(Guid) recipesListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Recipes, newGameObject);
+                DuplicateSelectedGameObject(Content.Recipes);
             }
         }
 
@@ -1839,8 +1836,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedDeckToolStripMenuItem.Enabled)
             {
-                Deck newGameObject = Content.Decks[(Guid) decksListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Decks, newGameObject);
+                DuplicateSelectedGameObject(Content.Decks);
             }
         }
 
@@ -1848,8 +1844,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedLegacyToolStripMenuItem.Enabled)
             {
-                Legacy newGameObject = Content.Legacies[(Guid) legaciesListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Legacies, newGameObject);
+                DuplicateSelectedGameObject(Content.Legacies);
             }
         }
 
@@ -1857,8 +1852,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedEndingToolStripMenuItem.Enabled)
             {
-                Ending newGameObject = Content.Endings[(Guid) verbsListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Endings, newGameObject);
+                DuplicateSelectedGameObject(Content.Endings);
             }
         }
 
@@ -1866,18 +1860,18 @@ namespace CarcassSpark.ObjectViewers
         {
             if (duplicateSelectedVerbToolStripMenuItem.Enabled)
             {
-                Verb newGameObject = Content.Verbs[(Guid)verbsListView.SelectedItems[0].Tag].Copy();
-                DuplicateSelectedGameObject(Content.Verbs, newGameObject);
+                DuplicateSelectedGameObject(Content.Verbs);
             }
         }
 
-        private void DuplicateSelectedGameObject<T>(ContentGroup<T> contentGroup, T newGameObject) where T : IGameObject
+        private void DuplicateSelectedGameObject<T>(ContentGroup<T> contentGroup) where T : IGameObject
         {
             ListView lv = ListViews[contentGroup.Filename];
             if (lv.SelectedItems.Count < 1)
             {
                 return;
             }
+            T newGameObject = contentGroup[(Guid)lv.SelectedItems[0].Tag].Copy<T>();
             ListViewGroup group = lv.SelectedItems[0].Group;
             string id = newGameObject.ID;
             if (lv.Items.ContainsKey(id + "_1"))
@@ -2072,32 +2066,32 @@ namespace CarcassSpark.ObjectViewers
 
         public void AspectsList_Add(object sender, Aspect result)
         {
-            AddToList(Content.Aspects, result.Copy());
+            AddToList(Content.Aspects, result);
         }
 
         public void ElementsList_Add(object sender, Element result)
         {
-            AddToList(Content.Elements, result.Copy());
+            AddToList(Content.Elements, result);
         }
 
         public void RecipesList_Add(object sender, Recipe result)
         {
-            AddToList(Content.Recipes, result.Copy());
+            AddToList(Content.Recipes, result);
         }
 
         public void DecksList_Add(object sender, Deck result)
         {
-            AddToList(Content.Decks, result.Copy());
+            AddToList(Content.Decks, result);
         }
 
         public void LegaciesList_Add(object sender, Legacy result)
         {
-            AddToList(Content.Legacies, result.Copy());
+            AddToList(Content.Legacies, result);
         }
 
         public void EndingsList_Add(object sender, Ending result)
         {
-            AddToList(Content.Endings, result.Copy());
+            AddToList(Content.Endings, result);
         }
 
         public void VerbsList_Add(object sender, Verb result)
@@ -2122,13 +2116,14 @@ namespace CarcassSpark.ObjectViewers
             verbsListView.Items.Add(newVerbEntry);
             MarkDirty();
             */
-            AddToList(Content.Verbs, result.Copy());
+            AddToList(Content.Verbs, result);
         }
 
-        private void AddToList<T>(ContentGroup<T> contentGroup, T newGameObject) where T : IGameObject
+        private void AddToList<T>(ContentGroup<T> contentGroup, T result) where T : IGameObject
         {
             ListView listView = ListViews[contentGroup.Filename];
             Guid guid = Guid.NewGuid();
+            T newGameObject = result.Copy<T>();
             newGameObject.Filename = contentGroup.Filename;
             contentGroup[guid] = newGameObject;
             ListViewGroup defaultGroup;
@@ -2141,7 +2136,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 defaultGroup = listView.Groups[contentGroup.Filename];
             }
-            ListViewItem newEntry = new ListViewItem(newGameObject.ID) { Tag = guid, Group = defaultGroup, Name = newGameObject.ID };
+            ListViewItem newEntry = new ListViewItem(result.ID) { Tag = guid, Group = defaultGroup, Name = result.ID };
             // defaultGroup.Items.Add(newEntry);
             listView.Items.Add(newEntry);
             MarkDirty();
