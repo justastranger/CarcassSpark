@@ -447,7 +447,7 @@ namespace CarcassSpark.ObjectViewers
                         BackColor = Utilities.ListPrependColor,
                         Tag = Guid.NewGuid()
                     };
-                    alternativeRecipesListView.Items.Insert(0, item);
+                    alternativeRecipesListView.Items.Add(item);
                     alternativerecipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
@@ -459,8 +459,8 @@ namespace CarcassSpark.ObjectViewers
                     {
                         Tag = Guid.NewGuid()
                     };
-                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
                     alternativeRecipesListView.Items.Add(item);
+                    alternativerecipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
             if (recipe.alt_append != null && recipe.alt_append.Count > 0)
@@ -472,7 +472,7 @@ namespace CarcassSpark.ObjectViewers
                         BackColor = Utilities.ListAppendColor,
                         Tag = Guid.NewGuid()
                     };
-                    alternativeRecipesListView.Items.Insert(0, item);
+                    alternativeRecipesListView.Items.Add(item);
                     alternativerecipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
@@ -486,7 +486,7 @@ namespace CarcassSpark.ObjectViewers
                         Tag = Guid.NewGuid()
                     };
                     alternativerecipeLinks.Add((Guid)item.Tag, new RecipeLink(rl));
-                    alternativeRecipesListView.Items.Insert(0, item);
+                    alternativeRecipesListView.Items.Add(item);
                 }
             }
             if (recipe.linked_prepend != null && recipe.linked_prepend.Count > 0)
@@ -498,7 +498,7 @@ namespace CarcassSpark.ObjectViewers
                         BackColor = Utilities.ListPrependColor,
                         Tag = Guid.NewGuid()
                     };
-                    linkedRecipesListView.Items.Insert(0, item);
+                    linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
@@ -523,7 +523,7 @@ namespace CarcassSpark.ObjectViewers
                         BackColor = Utilities.ListAppendColor,
                         Tag = Guid.NewGuid()
                     };
-                    linkedRecipesListView.Items.Insert(0, item);
+                    linkedRecipesListView.Items.Add(item);
                     recipeLinks.Add((Guid)item.Tag, rl);
                 }
             }
@@ -537,7 +537,7 @@ namespace CarcassSpark.ObjectViewers
                         Tag = Guid.NewGuid()
                     };
                     recipeLinks.Add((Guid)item.Tag, new RecipeLink(rl));
-                    linkedRecipesListView.Items.Insert(0, item);
+                    linkedRecipesListView.Items.Add(item);
                 }
             }
             if (recipe.mutations_prepend != null && recipe.mutations_prepend.Count > 0)
@@ -588,7 +588,7 @@ namespace CarcassSpark.ObjectViewers
                         Tag = Guid.NewGuid()
                     };
                     mutations.Add((Guid)item.Tag, new Mutation(mutation));
-                    linkedRecipesListView.Items.Insert(0, item);
+                    mutationsListView.Items.Add(item);
                 }
             }
             if (recipe.purge != null && recipe.purge.Count > 0)
