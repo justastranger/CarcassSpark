@@ -2337,162 +2337,71 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && aspectsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), AspectsList_Assign, aspectsListView.SelectedItems[0]);
-                    av.Show();
-                }
-                else
-                {
-                    AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), null, aspectsListView.SelectedItems[0]);
-                    av.Show();
-                }
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), editMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                av.Show();
             }
         }
 
         private void ElementsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (elementsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && elementsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), ElementsList_Assign, elementsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-                else
-                {
-                    ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), null, elementsListView.SelectedItems[0]);
-                    ev.Show();
-                }
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), editMode ? (EventHandler<Element>)ElementsList_Assign : null, elementsListView.SelectedItems[0]);
+                ev.Show();
             }
         }
 
         private void RecipesListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (recipesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && recipesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
-                else
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), null, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), editMode ? (EventHandler<Recipe>)RecipesList_Assign : null, recipesListView.SelectedItems[0]);
+                rv.Show();
             }
         }
 
         private void DecksListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (decksListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && decksListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), DecksList_Assign, decksListView.SelectedItems[0]);
-                    dv.Show();
-                }
-                else
-                {
-                    DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), null, decksListView.SelectedItems[0]);
-                    dv.Show();
-                }
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), editMode ? (EventHandler<Deck>)DecksList_Assign : null, decksListView.SelectedItems[0]);
+                dv.Show();
             }
         }
 
         private void LegaciesListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (legaciesListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && legaciesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), RecipesList_Assign, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
-                else
-                {
-                    RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), null, recipesListView.SelectedItems[0]);
-                    rv.Show();
-                }
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(guid).Copy(), editMode ? (EventHandler<Legacy>)LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
+                lv.Show();
             }
         }
 
         private void EndingsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (endingsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && endingsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), EndingsList_Assign, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
-                else
-                {
-                    EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), null, endingsListView.SelectedItems[0]);
-                    ev.Show();
-                }
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), editMode ? (EventHandler<Ending>)EndingsList_Assign : null, endingsListView.SelectedItems[0]);
+                ev.Show();
             }
         }
 
         private void VerbsListView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (verbsListView.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && verbsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-                if (editMode)
-                {
-                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), VerbsList_Assign, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
-                else
-                {
-                    VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), null, verbsListView.SelectedItems[0]);
-                    vv.Show();
-                }
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
+                vv.Show();
             }
         }
 
