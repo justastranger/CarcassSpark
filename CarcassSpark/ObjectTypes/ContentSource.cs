@@ -43,6 +43,8 @@ namespace CarcassSpark.ObjectTypes
             return synopsis != null ? synopsis.name : null;
         }
 
+        #region Custom manifest
+
         public void SetCustomManifest(JObject customManifest)
         {
             CustomManifest = customManifest;
@@ -78,6 +80,9 @@ namespace CarcassSpark.ObjectTypes
             return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<List<int>>() : null;
         }
 
+        #endregion
+        #region Recent Groups
+
         public void SetRecentGroup(string type, string groupName)
         {
             Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
@@ -96,6 +101,7 @@ namespace CarcassSpark.ObjectTypes
             return recentGroups != null && recentGroups.ContainsKey(type) ? recentGroups[type] : null;
         }
 
+        #endregion
         #region Images
 
         public Image GetAspectImage(string id)
@@ -197,6 +203,7 @@ namespace CarcassSpark.ObjectTypes
         }
 
         #endregion
+        #region Hidden Groups
 
         public void SetHiddenGroup(string type, string groupName)
         {
@@ -278,6 +285,8 @@ namespace CarcassSpark.ObjectTypes
                 SetHiddenGroups(hiddenGroups);
             }
         }
+
+        #endregion
 
         public ContentSource Copy()
         {
