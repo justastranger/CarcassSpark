@@ -934,195 +934,64 @@ namespace CarcassSpark
             return null;
         }
 
+        #region Get List of all (Type)
 
         public static List<Aspect> GetAspects()
         {
-            Dictionary<Guid, Aspect> tmp = new Dictionary<Guid, Aspect>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Aspect> AspectEntry in source.Aspects)
-                {
-                    if (!tmp.ContainsKey(AspectEntry.Key))
-                    {
-                        tmp.Add(AspectEntry.Key, AspectEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[AspectEntry.Key] = AspectEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Aspect>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Aspect>();
         }
 
         public static List<Element> GetElements()
         {
-            Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Element> ElementEntry in source.Elements)
-                {
-                    if (!tmp.ContainsKey(ElementEntry.Key))
-                    {
-                        tmp.Add(ElementEntry.Key, ElementEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[ElementEntry.Key] = ElementEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Element>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Element>();
         }
 
         public static List<Recipe> GetRecipes()
         {
-            Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Recipe> RecipeEntry in source.Recipes)
-                {
-                    if (!tmp.ContainsKey(RecipeEntry.Key))
-                    {
-                        tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[RecipeEntry.Key] = RecipeEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Recipe>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Recipe>();
         }
 
         public static List<Deck> GetDecks()
         {
-            Dictionary<Guid, Deck> tmp = new Dictionary<Guid, Deck>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Deck> DeckEntry in source.Decks)
-                {
-                    if (!tmp.ContainsKey(DeckEntry.Key))
-                    {
-                        tmp.Add(DeckEntry.Key, DeckEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[DeckEntry.Key] = DeckEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Deck>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Deck>();
         }
 
         public static List<Legacy> GetLegacies()
         {
-            Dictionary<Guid, Legacy> tmp = new Dictionary<Guid, Legacy>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Legacy> LegacyEntry in source.Legacies)
-                {
-                    if (!tmp.ContainsKey(LegacyEntry.Key))
-                    {
-                        tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[LegacyEntry.Key] = LegacyEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Legacy>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Legacy>();
         }
 
         public static List<Ending> GetEndings()
         {
-            Dictionary<Guid, Ending> tmp = new Dictionary<Guid, Ending>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Ending> EndingEntry in source.Endings)
-                {
-                    if (!tmp.ContainsKey(EndingEntry.Key))
-                    {
-                        tmp.Add(EndingEntry.Key, EndingEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[EndingEntry.Key] = EndingEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Ending>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Ending>();
         }
 
         public static List<Verb> GetVerbs()
         {
-            Dictionary<Guid, Verb> tmp = new Dictionary<Guid, Verb>();
+            return GetGameObjects<Verb>();
+        }
+
+        public static List<T> GetGameObjects<T>() where T : IGameObject
+        {
+            Dictionary<Guid, T> tmp = new Dictionary<Guid, T>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<Guid, Verb> VerbEntry in source.Verbs)
+                foreach (KeyValuePair<Guid, T> entry in source.GetContentGroup<T>())
                 {
-                    if (!tmp.ContainsKey(VerbEntry.Key))
+                    if (!tmp.ContainsKey(entry.Key))
                     {
-                        tmp.Add(VerbEntry.Key, VerbEntry.Value);
+                        tmp.Add(entry.Key, entry.Value);
                     }
                     else
                     {
-                        tmp[VerbEntry.Key] = VerbEntry.Value;
+                        tmp[entry.Key] = entry.Value;
                     }
                 }
             }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Verb>();
-            }
-            else
-            {
-                return null;
-            }
+            return tmp.Count > 0 ? tmp.Values.ToList<T>() : null;
         }
+
+        #endregion
 
         public static ContentSource GetContentSource(string name)
         {
