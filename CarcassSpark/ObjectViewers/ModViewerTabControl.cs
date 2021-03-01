@@ -1089,19 +1089,19 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                if (recipe.aspects != null && recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
+                else if (recipe.aspects_extend != null && recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
+                else if (recipe.effects != null && recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0))
+                else if (recipe.effects_extend != null && recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
