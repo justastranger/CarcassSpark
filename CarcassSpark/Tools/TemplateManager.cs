@@ -14,8 +14,7 @@ namespace CarcassSpark.Tools
         NORMAL,
         SELECTING
     }
-
-
+    
     public partial class TemplateManager : Form
     {
         private readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
@@ -244,19 +243,13 @@ namespace CarcassSpark.Tools
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            if (unsavedChanged)
+            if (unsavedChanged && DialogResult.Yes != MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-                {
-                    DialogResult = DialogResult.Cancel;
-                    Close();
-                }
+                return;
             }
-            else
-            {
-                DialogResult = DialogResult.Cancel;
-                Close();
-            }
+
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void Scintilla1_KeyPress(object sender, KeyPressEventArgs e)
