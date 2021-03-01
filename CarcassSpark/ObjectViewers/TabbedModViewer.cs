@@ -285,7 +285,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if(!SelectedModViewer.isVanilla)
             {
-                IGameObjectViewer<T> gov = Utilities.GetViewer<T>(new T(), (EventHandler<T>)successCallback);
+                IGameObjectViewer<T> gov = Utilities.GetViewer<T>(new T(), successCallback);
                 gov.Show();
             }
         }
@@ -365,8 +365,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        #endregion
-
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (SelectedModViewer.isVanilla)
@@ -430,6 +428,8 @@ namespace CarcassSpark.ObjectViewers
                 // listViewGroup.Items.Add(item);
             }
         }
+
+        #endregion
 
         private void SummonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
