@@ -37,6 +37,7 @@ namespace CarcassSpark.Tools
             {
                 SetSelectionMode();
             }
+
             if (entityType != null)
             {
                 foreach (ListViewItem item in templatesListView.Items)
@@ -95,14 +96,13 @@ namespace CarcassSpark.Tools
 
         private void TemplatesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (templatesListView.SelectedItems.Count != 1)
+            if (templatesListView.SelectedItems.Count == 1)
             {
-                return;
+                selectedItem = templatesListView.SelectedItems[0];
+                scintilla1.Tag = templatesListView.SelectedItems[0].Text;
+                scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
             }
 
-            selectedItem = templatesListView.SelectedItems[0];
-            scintilla1.Tag = templatesListView.SelectedItems[0].Text;
-            scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
         }
 
         public ListViewItem CreateTemplateFile(ListViewItem item, string filename, Type entityType)
@@ -243,20 +243,18 @@ namespace CarcassSpark.Tools
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            if (unsavedChanged && DialogResult.Yes != MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            if (!unsavedChanged || VerifyQuit())
             {
-                return;
+                DialogResult = DialogResult.Cancel;
+                Close();
             }
-
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
 
         private void Scintilla1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                unsavedChanged = scintilla1.Text != templatesListView.Items[scintilla1.Tag as string].Tag as string ? true : false;
+                unsavedChanged = scintilla1.Text != (templatesListView.Items[scintilla1.Tag as string].Tag as string);
             }
             catch (NullReferenceException ex)
             {
@@ -266,24 +264,16 @@ namespace CarcassSpark.Tools
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            if (selectedItem == null)
-            {
-                return;
-            }
-
-            if (unsavedChanged)
-            {
-                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-                {
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
-            }
-            else
+            if (selectedItem != null && (!unsavedChanged || VerifyQuit()))
             {
                 DialogResult = DialogResult.OK;
                 Close();
             }
+        }
+
+        private bool VerifyQuit()
+        {
+            return DialogResult.Yes == MessageBox.Show("Are you sure you want to quit? You will lose all unsaved changes.", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         }
     }
 }
