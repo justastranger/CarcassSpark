@@ -739,7 +739,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Verbs.Get(id) != null)
+                if (source.Verbs[id] != null)
                 {
                     return source.Verbs.Get(id);
                 }

@@ -35,7 +35,6 @@ namespace CarcassSpark.ObjectTypes
 
         public ContentSource()
         {
-
         }
 
         public string GetName()
@@ -362,7 +361,7 @@ namespace CarcassSpark.ObjectTypes
 
         public bool Exists(string id)
         {
-            foreach (T ending in GameObjects.Values.Where((go) => go.ID == id))
+            foreach (T t in GameObjects.Values.Where((go) => go.ID == id))
             {
                 return true;
             }

@@ -656,12 +656,14 @@ namespace CarcassSpark.ObjectViewers
                 TabPage tab = ModViewerTabs.TabPages.Cast<TabPage>().Where((t, i) => ModViewerTabs.GetTabRect(i).Contains(e.Location)).First();
                 // Selecting a tab fires an event handler that'll update SelectedModViewer, so we can just use that variable
                 ModViewerTabs.SelectTab(tab);
+
                 // TODO deduplicate the code below
                 if (SelectedModViewer.isVanilla)
                 {
                     MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
                 {
                     if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
@@ -740,44 +742,35 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
                     Settings.settings["portable"] = false;
-                    Settings.SaveSettings();
-                    InitializeTabs();
                 }
                 else
                 {
                     // Otherwise, make them select the game's installation folder
                     MessageBox.Show("Please select your Cultist Simulator game directory.");
                     folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Check to see if the game's actually installed there
-                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
-                        {
-                            Settings.settings["portable"] = true;
-                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
-                            Settings.SaveSettings();
-                            InitializeTabs();
-                        }
-                        else
-                        {
-                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Application.Exit();
-                            return;
-                        }
-                    }
-                    else
+                    if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
                     {
                         // Didn't open the games folder
                         MessageBox.Show("No directory selected, exiting.");
                         Application.Exit();
                         return;
                     }
+
+                    // Check to see if the game's actually installed there
+                    if (!File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
+                    {
+                        MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                        return;
+                    }
+                    
+                    Settings.settings["portable"] = true;
+                    Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
                 }
+                Settings.SaveSettings();
             }
-            else
-            {
-                InitializeTabs();
-            }
+
+            InitializeTabs();
         }
 
         private void hiddenGroupManagerToolStripMenuItem_Click(object sender, EventArgs e)
