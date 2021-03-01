@@ -328,17 +328,14 @@ namespace CarcassSpark.ObjectTypes
         {
             return Exists(id) ? GameObjects[id] : default(T);
         }
-
-        public T Get(string id)
+        
+        public T GetByName(string id)
         {
             if (Exists(id))
             {
-                foreach (T gameOBJ in GameObjects.Values)
+                foreach (T gameOBJ in GameObjects.Values.Where((T obj)=> obj.ID == id))
                 {
-                    if (gameOBJ.ID == id)
-                    {
-                        return gameOBJ;
-                    }
+                    return gameOBJ;
                 }
             }
             return default(T);
