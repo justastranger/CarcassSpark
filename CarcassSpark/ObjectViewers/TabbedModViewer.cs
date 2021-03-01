@@ -202,7 +202,7 @@ namespace CarcassSpark.ObjectViewers
             SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis.Copy());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                if (SelectedModViewer.Content.synopsis.name != mv.displayedSynopsis.name)
+                if (SelectedModViewer.Content.GetName() != mv.displayedSynopsis.name)
                 {
                     SelectedModViewer.Parent.Name = mv.displayedSynopsis.name;
                 }

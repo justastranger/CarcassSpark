@@ -223,7 +223,7 @@ namespace CarcassSpark.ObjectViewers
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
             Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(new StreamReader(file).ReadToEnd());
-            Text = Content.synopsis.name;
+            Text = Content.GetName();
         }
 
         public void LoadCustomManifest(FileStream file)
