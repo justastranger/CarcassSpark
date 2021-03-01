@@ -263,14 +263,7 @@ namespace CarcassSpark.Tools
         {
             try
             {
-                if (scintilla1.Text != templatesListView.Items[scintilla1.Tag as string].Tag as string)
-                {
-                    unsavedChanged = true;
-                }
-                else
-                {
-                    unsavedChanged = false;
-                }
+                unsavedChanged = scintilla1.Text != templatesListView.Items[scintilla1.Tag as string].Tag as string ? true : false;
             }
             catch (NullReferenceException ex)
             {
