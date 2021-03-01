@@ -55,7 +55,7 @@ namespace CarcassSpark.ObjectViewers
             if (LoadContent())
             {
                 SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
-                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
+                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.ToString(), Content);
             }
             else
             {

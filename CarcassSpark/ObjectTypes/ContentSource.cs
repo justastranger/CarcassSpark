@@ -42,6 +42,11 @@ namespace CarcassSpark.ObjectTypes
             return synopsis != null ? synopsis.name : null;
         }
 
+        public override string ToString()
+        {
+            return currentDirectory;
+        }
+
         public bool IsVanilla()
         {
             //TODO: Find a better way to do this.

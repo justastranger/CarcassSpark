@@ -71,6 +71,28 @@ namespace CarcassSpark.ObjectViewers
             ModViewerTabs.SelectTab(newPage);
         }
 
+        private void CloseMod()
+        {
+            if (SelectedModViewer.isVanilla)
+            {
+                MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            {
+                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
+                    "You have unsaved changes",
+                    MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+            Utilities.ContentSources.Remove(SelectedModViewer.Content.ToString());
+            Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
+            SelectedModViewer.Dispose();
+            ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
+        }
+
         private void OpenModToolStripMenuItem_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
@@ -130,24 +152,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void CloseModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
-            {
-                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
-                    "You have unsaved changes",
-                    MessageBoxButtons.OKCancel) != DialogResult.OK)
-                {
-                    return;
-                }
-            }
-            Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
-            // ((JArray)Settings.settings["previousMods"]).Remove(SelectedModViewer.Content.currentDirectory);
-            Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
-            ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
+            CloseMod();
         }
 
         private void SettingsToolStripButton_Click(object sender, EventArgs e)
@@ -657,26 +662,7 @@ namespace CarcassSpark.ObjectViewers
                 // Selecting a tab fires an event handler that'll update SelectedModViewer, so we can just use that variable
                 ModViewerTabs.SelectTab(tab);
 
-                // TODO deduplicate the code below
-                if (SelectedModViewer.isVanilla)
-                {
-                    MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
-                {
-                    if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
-                        "You have unsaved changes",
-                        MessageBoxButtons.OKCancel) != DialogResult.OK)
-                    {
-                        return;
-                    }
-                }
-                Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
-                Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
-                SelectedModViewer.Dispose();
-                ModViewerTabs.TabPages.Remove(tab);
+                CloseMod();
             }
         }
 
