@@ -535,7 +535,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Aspects.Get(id) != null)
+                if (source.Aspects.Exists(id))
                 {
                     return source.Aspects.Get(id);
                 }
@@ -547,7 +547,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Aspects.GetByName(id) != null)
+                if (source.Aspects.Exists(id))
                 {
                     return source.Aspects.GetByName(id);
                 }
@@ -569,7 +569,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Elements.Get(id) != null)
+                if (source.Elements.Exists(id))
                 {
                     return source.Elements.Get(id);
                 }
@@ -581,7 +581,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Elements.GetByName(id) != null)
+                if (source.Elements.Exists(id))
                 {
                     return source.Elements.GetByName(id);
                 }
@@ -603,7 +603,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Recipes.Get(id) != null)
+                if (source.Recipes.Exists(id))
                 {
                     return source.Recipes.Get(id);
                 }
@@ -615,7 +615,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Recipes.GetByName(id) != null)
+                if (source.Recipes.Exists(id))
                 {
                     return source.Recipes.GetByName(id);
                 }
@@ -637,7 +637,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Decks.Get(id) != null)
+                if (source.Decks.Exists(id))
                 {
                     return source.Decks.Get(id);
                 }
@@ -649,7 +649,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Decks.GetByName(id) != null)
+                if (source.Decks.Exists(id))
                 {
                     return source.Decks.GetByName(id);
                 }
@@ -671,7 +671,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Legacies.Get(id) != null)
+                if (source.Legacies.Exists(id))
                 {
                     return source.Legacies.Get(id);
                 }
@@ -683,7 +683,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Legacies.GetByName(id) != null)
+                if (source.Legacies.Exists(id))
                 {
                     return source.Legacies.GetByName(id);
                 }
@@ -705,7 +705,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Endings.Get(id) != null)
+                if (source.Endings.Exists(id))
                 {
                     return source.Endings.Get(id);
                 }
@@ -717,7 +717,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Endings.GetByName(id) != null)
+                if (source.Endings.Exists(id))
                 {
                     return source.Endings.GetByName(id);
                 }
@@ -751,7 +751,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Verbs.GetByName(id) != null)
+                if (source.Verbs.Exists(id))
                 {
                     return source.Verbs.GetByName(id);
                 }
