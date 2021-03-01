@@ -740,6 +740,10 @@ namespace CarcassSpark.ObjectViewers
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
             string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename); //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            if(hiddenGroups==null)
+            {
+                hiddenGroups = new string[] { };
+            }
             T[] itemsToAdd = (NewText != "") ? func(contentGroup.Values.ToList(), NewText) : contentGroup.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
