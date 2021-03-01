@@ -96,6 +96,8 @@ namespace CarcassSpark.ObjectTypes
             return recentGroups != null && recentGroups.ContainsKey(type) ? recentGroups[type] : null;
         }
 
+        #region Images
+
         public Image GetAspectImage(string id)
         {
             string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
@@ -194,11 +196,7 @@ namespace CarcassSpark.ObjectTypes
             return File.Exists(pathToImage);
         }
 
-        public ContentSource Copy()
-        {
-            string serializedObject = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
-        }
+        #endregion
 
         public void SetHiddenGroup(string type, string groupName)
         {
@@ -279,6 +277,12 @@ namespace CarcassSpark.ObjectTypes
                 hiddenGroups.Remove(type);
                 SetHiddenGroups(hiddenGroups);
             }
+        }
+
+        public ContentSource Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
         }
 
         public bool GetEditMode()
