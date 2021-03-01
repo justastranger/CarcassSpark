@@ -42,6 +42,12 @@ namespace CarcassSpark.ObjectTypes
             return synopsis != null ? synopsis.name : null;
         }
 
+        public bool IsVanilla()
+        {
+            //TODO: Find a better way to do this.
+            return GetName() == "Vanilla";
+        }
+
         #region Custom manifest
 
         public void SetCustomManifest(JObject customManifest)

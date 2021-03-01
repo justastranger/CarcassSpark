@@ -298,7 +298,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id))
+                else if (source.IsVanilla() && VanillaAspectImageExists(id))
                 {
                     return VanillaAspectImageExists(id);
                 }
@@ -314,7 +314,7 @@ namespace CarcassSpark
                 {
                     return source.GetAspectImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id))
+                else if (source.IsVanilla() && VanillaAspectImageExists(id))
                 {
                     return GetVanillaAspect(id);
                 }
@@ -331,7 +331,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id))
+                else if (source.IsVanilla() && VanillaElementImageExists(id))
                 {
                     return VanillaElementImageExists(id);
                 }
@@ -347,7 +347,7 @@ namespace CarcassSpark
                 {
                     return source.GetElementImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id))
+                else if (source.IsVanilla() && VanillaElementImageExists(id))
                 {
                     return GetVanillaElement(id);
                 }
@@ -364,7 +364,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id))
+                else if (source.IsVanilla() && VanillaEndingImageExists(id))
                 {
                     return VanillaEndingImageExists(id);
                 }
@@ -380,7 +380,7 @@ namespace CarcassSpark
                 {
                     return source.GetEndingImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id))
+                else if (source.IsVanilla() && VanillaEndingImageExists(id))
                 {
                     return GetVanillaEnding(id);
                 }
@@ -397,7 +397,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id))
+                else if (source.IsVanilla() && VanillaLegacyImageExists(id))
                 {
                     return VanillaLegacyImageExists(id);
                 }
@@ -413,7 +413,7 @@ namespace CarcassSpark
                 {
                     return source.GetLegacyImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id))
+                else if (source.IsVanilla() && VanillaLegacyImageExists(id))
                 {
                     return GetVanillaLegacy(id);
                 }
@@ -430,7 +430,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id))
+                else if (source.IsVanilla() && VanillaVerbImageExists(id))
                 {
                     return VanillaVerbImageExists(id);
                 }
@@ -446,7 +446,7 @@ namespace CarcassSpark
                 {
                     return source.GetVerbImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id))
+                else if (source.IsVanilla() && VanillaVerbImageExists(id))
                 {
                     return GetVanillaVerb(id);
                 }
@@ -463,7 +463,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id))
+                else if (source.IsVanilla() && VanillaCardBackImageExists(id))
                 {
                     return VanillaCardBackImageExists(id);
                 }
@@ -479,7 +479,7 @@ namespace CarcassSpark
                 {
                     return source.GetCardBackImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id))
+                else if (source.IsVanilla() && VanillaCardBackImageExists(id))
                 {
                     return GetVanillaCardBack(id);
                 }
@@ -496,7 +496,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id))
+                else if (source.IsVanilla() && VanillaBurnImageImageExists(id))
                 {
                     return VanillaBurnImageImageExists(id);
                 }
@@ -513,7 +513,7 @@ namespace CarcassSpark
                     return source.GetBurnImage(id);
                 }
 
-                if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id))
+                if (source.IsVanilla() && VanillaBurnImageImageExists(id))
                 {
                     return GetVanillaBurnImage(id);
                 }
