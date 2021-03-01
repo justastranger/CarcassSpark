@@ -1,5 +1,6 @@
 ﻿using AssetStudio;
 using CarcassSpark.ObjectTypes;
+using CarcassSpark.ObjectViewers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,10 @@ using System.Windows.Forms;
 
 namespace CarcassSpark
 {
-    public class Utilities
+    public static class Utilities
     {
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
-
-
+        
         public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static string DirectoryToVanillaContent
         {
