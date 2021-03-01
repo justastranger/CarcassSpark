@@ -239,76 +239,53 @@ namespace CarcassSpark.ObjectViewers
             SelectedModViewer.Content.SetCustomManifestProperty("AutoSave", toggleAutosaveToolStripMenuItem.Checked);
         }
 
+        #region "Create New" events
+
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add, null);
-            av.Show();
+            CreateNewGameObject<Aspect>(SelectedModViewer.AspectsList_Add);
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add, null);
-            ev.Show();
+            CreateNewGameObject<Element>(SelectedModViewer.ElementsList_Add);
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add, null);
-            rv.Show();
+            CreateNewGameObject<Recipe>(SelectedModViewer.RecipesList_Add);
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add, null);
-            dv.Show();
+            CreateNewGameObject<Deck>(SelectedModViewer.DecksList_Add);
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add, null);
-            lv.Show();
+            CreateNewGameObject<Legacy>(SelectedModViewer.LegaciesList_Add);
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add, null);
-            ev.Show();
+            CreateNewGameObject<Ending>(SelectedModViewer.EndingsList_Add);
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add, null);
-            vv.Show();
+            CreateNewGameObject<Verb>(SelectedModViewer.VerbsList_Add);
         }
 
+        private void CreateNewGameObject<T>(EventHandler<T> successCallback) where T: IGameObject, new()
+        {
+            if(!SelectedModViewer.isVanilla)
+            {
+                IGameObjectViewer<T> gov = Utilities.GetViewer<T>(new T(), (EventHandler<T>)successCallback);
+                gov.Show();
+            }
+        }
+
+        #endregion
         #region "Import" events
 
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
