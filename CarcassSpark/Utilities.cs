@@ -1150,5 +1150,41 @@ namespace CarcassSpark
             }
             return stringBuilder.ToString();
         }
+
+        public static IGameObjectViewer<T> GetViewer<T>(T gameObject, EventHandler<T> successCallback) where T : IGameObject
+        {
+            if (typeof(T) == typeof(Aspect))
+            {
+                return (IGameObjectViewer<T>) new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
+            }
+            else if (typeof(T) == typeof(Element))
+            {
+                return (IGameObjectViewer<T>) new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
+            }
+            else if (typeof(T) == typeof(Recipe))
+            {
+                return (IGameObjectViewer<T>) new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
+            }
+            else if (typeof(T) == typeof(Deck))
+            {
+                return (IGameObjectViewer<T>) new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
+            }
+            else if (typeof(T) == typeof(Legacy))
+            {
+                return (IGameObjectViewer<T>) new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
+            }
+            else if (typeof(T) == typeof(Ending))
+            {
+                return (IGameObjectViewer<T>) new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
+            }
+            else if (typeof(T) == typeof(Verb))
+            {
+                return (IGameObjectViewer<T>) new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("No viewer is defined in GetViewer for Game Object " + gameObject.GetType());
+            }
+        }
     }
 }
