@@ -678,6 +678,8 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #region "Unhide Groups" events
+
         private void AspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Aspects.Filename);
@@ -726,7 +728,9 @@ namespace CarcassSpark.ObjectViewers
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
             SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs);
         }
-		
+
+        #endregion
+
         private void TabbedModViewer_Shown(object sender, EventArgs e)
         {
             if (Settings.settings["GamePath"] == null)
