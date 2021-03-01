@@ -1122,37 +1122,12 @@ namespace CarcassSpark.ObjectViewers
 
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
-            foreach (Element element in Content.Elements.Values)
+            foreach (Element element in Content.Elements.Values.Where((element)=>element.HasSlots()))
             {
-                if (element.slots != null)
+                foreach (Slot slot in element.AllSlotsWhere((slot)=>slot.required != null && slot.required.ContainsKey(id)))
                 {
-                    foreach (Slot slot in element.slots)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
-                }
-                else if (element.slots_prepend != null)
-                {
-                    foreach (Slot slot in element.slots_prepend)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
-                }
-                else if (element.slots_append != null)
-                {
-                    foreach (Slot slot in element.slots_append)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
+                    tmp[element.Guid] = element;
+                    break;
                 }
             }
             if (tmp.Count > 0)
