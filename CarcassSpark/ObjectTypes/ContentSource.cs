@@ -271,6 +271,16 @@ namespace CarcassSpark.ObjectTypes
             }
         }
 
+        public void ResetHiddenGroups(string type)
+        {
+            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
+            {
+                hiddenGroups.Remove(type);
+                SetHiddenGroups(hiddenGroups);
+            }
+        }
+
         public bool GetEditMode()
         {
             return CustomManifest["EditMode"] != null ? CustomManifest["EditMode"].ToObject<bool>() : false;
@@ -281,13 +291,40 @@ namespace CarcassSpark.ObjectTypes
             CustomManifest["EditMode"] = editMode;
         }
 
-        public void ResetHiddenGroups(string type)
+
+        public ContentGroup<T> GetContentGroup<T>() where T : IGameObject
         {
-            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
-            if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
+            if (typeof(T) == typeof(Aspect))
             {
-                hiddenGroups.Remove(type);
-                SetHiddenGroups(hiddenGroups);
+                return Aspects as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Element))
+            {
+                return Elements as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Recipe))
+            {
+                return Recipes as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Deck))
+            {
+                return Decks as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Legacy))
+            {
+                return Legacies as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Ending))
+            {
+                return Endings as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Verb))
+            {
+                return Verbs as ContentGroup<T>;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("No viewer is defined in GetContentGroup for the type " + typeof(T));
             }
         }
     }
