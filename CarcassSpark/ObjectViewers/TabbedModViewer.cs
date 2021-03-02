@@ -71,6 +71,28 @@ namespace CarcassSpark.ObjectViewers
             ModViewerTabs.SelectTab(newPage);
         }
 
+        private void CloseMod()
+        {
+            if (SelectedModViewer.isVanilla)
+            {
+                MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            {
+                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
+                    "You have unsaved changes",
+                    MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+            Utilities.ContentSources.Remove(SelectedModViewer.Content.ToString());
+            Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
+            SelectedModViewer.Dispose();
+            ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
+        }
+
         private void OpenModToolStripMenuItem_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
@@ -130,24 +152,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void CloseModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
-            {
-                if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
-                    "You have unsaved changes",
-                    MessageBoxButtons.OKCancel) != DialogResult.OK)
-                {
-                    return;
-                }
-            }
-            Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
-            // ((JArray)Settings.settings["previousMods"]).Remove(SelectedModViewer.Content.currentDirectory);
-            Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
-            ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
+            CloseMod();
         }
 
         private void SettingsToolStripButton_Click(object sender, EventArgs e)
@@ -202,7 +207,7 @@ namespace CarcassSpark.ObjectViewers
             SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis.Copy());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                if (SelectedModViewer.Content.synopsis.name != mv.displayedSynopsis.name)
+                if (SelectedModViewer.Content.GetName() != mv.displayedSynopsis.name)
                 {
                     SelectedModViewer.Parent.Name = mv.displayedSynopsis.name;
                 }
@@ -239,76 +244,53 @@ namespace CarcassSpark.ObjectViewers
             SelectedModViewer.Content.SetCustomManifestProperty("AutoSave", toggleAutosaveToolStripMenuItem.Checked);
         }
 
+        #region "Create New" events
+
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            AspectViewer av = new AspectViewer(new Aspect(), SelectedModViewer.AspectsList_Add, null);
-            av.Show();
+            CreateNewGameObject<Aspect>(SelectedModViewer.AspectsList_Add);
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            ElementViewer ev = new ElementViewer(new Element(), SelectedModViewer.ElementsList_Add, null);
-            ev.Show();
+            CreateNewGameObject<Element>(SelectedModViewer.ElementsList_Add);
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            RecipeViewer rv = new RecipeViewer(new Recipe(), SelectedModViewer.RecipesList_Add, null);
-            rv.Show();
+            CreateNewGameObject<Recipe>(SelectedModViewer.RecipesList_Add);
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            DeckViewer dv = new DeckViewer(new Deck(), SelectedModViewer.DecksList_Add, null);
-            dv.Show();
+            CreateNewGameObject<Deck>(SelectedModViewer.DecksList_Add);
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            LegacyViewer lv = new LegacyViewer(new Legacy(), SelectedModViewer.LegaciesList_Add, null);
-            lv.Show();
+            CreateNewGameObject<Legacy>(SelectedModViewer.LegaciesList_Add);
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            EndingViewer ev = new EndingViewer(new Ending(), SelectedModViewer.EndingsList_Add, null);
-            ev.Show();
+            CreateNewGameObject<Ending>(SelectedModViewer.EndingsList_Add);
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
-            {
-                return;
-            }
-            VerbViewer vv = new VerbViewer(new Verb(), SelectedModViewer.VerbsList_Add, null);
-            vv.Show();
+            CreateNewGameObject<Verb>(SelectedModViewer.VerbsList_Add);
         }
 
+        private void CreateNewGameObject<T>(EventHandler<T> successCallback) where T: IGameObject, new()
+        {
+            if(!SelectedModViewer.isVanilla)
+            {
+                IGameObjectViewer<T> gov = Utilities.GetViewer<T>(new T(), successCallback);
+                gov.Show();
+            }
+        }
+
+        #endregion
         #region "Import" events
 
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -383,8 +365,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        #endregion
-
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (SelectedModViewer.isVanilla)
@@ -448,6 +428,8 @@ namespace CarcassSpark.ObjectViewers
                 // listViewGroup.Items.Add(item);
             }
         }
+
+        #endregion
 
         private void SummonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -679,27 +661,12 @@ namespace CarcassSpark.ObjectViewers
                 TabPage tab = ModViewerTabs.TabPages.Cast<TabPage>().Where((t, i) => ModViewerTabs.GetTabRect(i).Contains(e.Location)).First();
                 // Selecting a tab fires an event handler that'll update SelectedModViewer, so we can just use that variable
                 ModViewerTabs.SelectTab(tab);
-                // TODO deduplicate the code below
-                if (SelectedModViewer.isVanilla)
-                {
-                    MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
-                {
-                    if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
-                        "You have unsaved changes",
-                        MessageBoxButtons.OKCancel) != DialogResult.OK)
-                    {
-                        return;
-                    }
-                }
-                Utilities.ContentSources.Remove(SelectedModViewer.Content.GetName());
-                Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
-                SelectedModViewer.Dispose();
-                ModViewerTabs.TabPages.Remove(tab);
+
+                CloseMod();
             }
         }
+
+        #region "Unhide Groups" events
 
         private void AspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -749,7 +716,9 @@ namespace CarcassSpark.ObjectViewers
             SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
             SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs);
         }
-		
+
+        #endregion
+
         private void TabbedModViewer_Shown(object sender, EventArgs e)
         {
             if (Settings.settings["GamePath"] == null)
@@ -759,44 +728,35 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Settings.settings["GamePath"] = AppDomain.CurrentDomain.BaseDirectory;
                     Settings.settings["portable"] = false;
-                    Settings.SaveSettings();
-                    InitializeTabs();
                 }
                 else
                 {
                     // Otherwise, make them select the game's installation folder
                     MessageBox.Show("Please select your Cultist Simulator game directory.");
                     folderBrowserDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Check to see if the game's actually installed there
-                        if (File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
-                        {
-                            Settings.settings["portable"] = true;
-                            Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
-                            Settings.SaveSettings();
-                            InitializeTabs();
-                        }
-                        else
-                        {
-                            MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Application.Exit();
-                            return;
-                        }
-                    }
-                    else
+                    if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
                     {
                         // Didn't open the games folder
                         MessageBox.Show("No directory selected, exiting.");
                         Application.Exit();
                         return;
                     }
+
+                    // Check to see if the game's actually installed there
+                    if (!File.Exists(folderBrowserDialog.SelectedPath + "/cultistsimulator.exe"))
+                    {
+                        MessageBox.Show("cultistsimulator.exe not found in that folder, please select your install folder.", "Wrong Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                        return;
+                    }
+                    
+                    Settings.settings["portable"] = true;
+                    Settings.settings["GamePath"] = folderBrowserDialog.SelectedPath;
                 }
+                Settings.SaveSettings();
             }
-            else
-            {
-                InitializeTabs();
-            }
+
+            InitializeTabs();
         }
 
         private void hiddenGroupManagerToolStripMenuItem_Click(object sender, EventArgs e)

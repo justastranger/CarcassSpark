@@ -16,11 +16,6 @@ namespace CarcassSpark.ObjectViewers
 
         public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
-        public IGameObjectViewer<Aspect> CreateNew(Aspect gameObject, EventHandler<Aspect> successCallback, ListViewItem item)
-        {
-            return new AspectViewer(gameObject, successCallback, item);
-        }
-
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();

@@ -45,50 +45,39 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
+        #region "Text Changed" events
+
         private void ModNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.name = modNameTextBox.Text;
-            if (displayedSynopsis.name == "")
-            {
-                displayedSynopsis.name = null;
-            }
+            displayedSynopsis.name = GetTextFromBox(modNameTextBox);
         }
 
         private void ModAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.author = modAuthorTextBox.Text;
-            if (displayedSynopsis.author == "")
-            {
-                displayedSynopsis.author = null;
-            }
+            displayedSynopsis.author = GetTextFromBox(modAuthorTextBox);
         }
 
         private void ModVersionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.version = modVersionTextBox.Text;
-            if (displayedSynopsis.version == "")
-            {
-                displayedSynopsis.version = null;
-            }
+            displayedSynopsis.version = GetTextFromBox(modVersionTextBox);
         }
 
         private void ModDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.description = modDescriptionTextBox.Text;
-            if (displayedSynopsis.description == "")
-            {
-                displayedSynopsis.description = null;
-            }
+            displayedSynopsis.description = GetTextFromBox(modDescriptionTextBox);
         }
 
         private void LongDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.description_long = longDescriptionTextBox.Text;
-            if (displayedSynopsis.description_long == "")
-            {
-                displayedSynopsis.description_long = null;
-            }
+            displayedSynopsis.description_long = GetTextFromBox(longDescriptionTextBox);
         }
+
+        private string GetTextFromBox(TextBox textBox)
+        {
+            return string.IsNullOrEmpty(textBox.Text) ? null : textBox.Text;
+        }
+
+        #endregion
 
         private void OkButton_Click(object sender, EventArgs e)
         {

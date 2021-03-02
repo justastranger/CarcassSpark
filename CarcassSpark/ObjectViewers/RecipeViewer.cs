@@ -60,11 +60,6 @@ namespace CarcassSpark.ObjectViewers
             SetViewerType(recipeViewerType);
         }
 
-        public IGameObjectViewer<Recipe> CreateNew(Recipe gameObject, EventHandler<Recipe> successCallback, ListViewItem item)
-        {
-            return new RecipeViewer(gameObject, successCallback, item);
-        }
-
         private void SetEditingMode(bool editing)
         {
             this.editing = editing;

@@ -55,7 +55,7 @@ namespace CarcassSpark.ObjectViewers
             if (LoadContent())
             {
                 SetEditingMode(Content.GetCustomManifestBool("EditMode") ?? !isVanilla);
-                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.synopsis.name, Content);
+                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.ToString(), Content);
             }
             else
             {
@@ -223,7 +223,7 @@ namespace CarcassSpark.ObjectViewers
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
             Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(new StreamReader(file).ReadToEnd());
-            Text = Content.synopsis.name;
+            Text = Content.GetName();
         }
 
         public void LoadCustomManifest(FileStream file)
@@ -740,6 +740,10 @@ namespace CarcassSpark.ObjectViewers
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
             string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename); //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            if(hiddenGroups==null)
+            {
+                hiddenGroups = new string[] { };
+            }
             T[] itemsToAdd = (NewText != "") ? func(contentGroup.Values.ToList(), NewText) : contentGroup.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
@@ -1089,19 +1093,19 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
-                if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                if (recipe.aspects != null && recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.aspects_extend != null && (recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0))
+                else if (recipe.aspects_extend != null && recipe.aspects_extend.ContainsKey(id) && recipe.aspects_extend[id] > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.effects != null && (recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0))
+                else if (recipe.effects != null && recipe.effects.ContainsKey(id) && Convert.ToInt32(recipe.effects[id]) > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
-                else if (recipe.effects_extend != null && (recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0))
+                else if (recipe.effects_extend != null && recipe.effects_extend.ContainsKey(id) && Convert.ToInt32(recipe.effects_extend[id]) > 0)
                 {
                     tmp[recipe.Guid] = recipe;
                 }
@@ -1122,37 +1126,12 @@ namespace CarcassSpark.ObjectViewers
 
             string id = aspectsListView.SelectedItems[0].Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
-            foreach (Element element in Content.Elements.Values)
+            foreach (Element element in Content.Elements.Values.Where((element)=>element.HasSlots()))
             {
-                if (element.slots != null)
+                foreach (Slot slot in element.AllSlotsWhere((slot)=>slot.required != null && slot.required.ContainsKey(id)))
                 {
-                    foreach (Slot slot in element.slots)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
-                }
-                else if (element.slots_prepend != null)
-                {
-                    foreach (Slot slot in element.slots_prepend)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
-                }
-                else if (element.slots_append != null)
-                {
-                    foreach (Slot slot in element.slots_append)
-                    {
-                        if (slot.required.ContainsKey(id))
-                        {
-                            tmp[element.Guid] = element;
-                        }
-                    }
+                    tmp[element.Guid] = element;
+                    break;
                 }
             }
             if (tmp.Count > 0)

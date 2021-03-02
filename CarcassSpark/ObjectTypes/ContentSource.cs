@@ -35,13 +35,25 @@ namespace CarcassSpark.ObjectTypes
 
         public ContentSource()
         {
-
         }
 
         public string GetName()
         {
             return synopsis != null ? synopsis.name : null;
         }
+
+        public override string ToString()
+        {
+            return currentDirectory;
+        }
+
+        public bool IsVanilla()
+        {
+            //TODO: Find a better way to do this.
+            return GetName() == "Vanilla";
+        }
+
+        #region Custom manifest
 
         public void SetCustomManifest(JObject customManifest)
         {
@@ -78,6 +90,9 @@ namespace CarcassSpark.ObjectTypes
             return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<List<int>>() : null;
         }
 
+        #endregion
+        #region Recent Groups
+
         public void SetRecentGroup(string type, string groupName)
         {
             Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
@@ -95,6 +110,9 @@ namespace CarcassSpark.ObjectTypes
             Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
             return recentGroups != null && recentGroups.ContainsKey(type) ? recentGroups[type] : null;
         }
+
+        #endregion
+        #region Images
 
         public Image GetAspectImage(string id)
         {
@@ -194,11 +212,8 @@ namespace CarcassSpark.ObjectTypes
             return File.Exists(pathToImage);
         }
 
-        public ContentSource Copy()
-        {
-            string serializedObject = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
-        }
+        #endregion
+        #region Hidden Groups
 
         public void SetHiddenGroup(string type, string groupName)
         {
@@ -271,6 +286,24 @@ namespace CarcassSpark.ObjectTypes
             }
         }
 
+        public void ResetHiddenGroups(string type)
+        {
+            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
+            {
+                hiddenGroups.Remove(type);
+                SetHiddenGroups(hiddenGroups);
+            }
+        }
+
+        #endregion
+
+        public ContentSource Copy()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<ContentSource>(serializedObject);
+        }
+
         public bool GetEditMode()
         {
             return CustomManifest["EditMode"] != null ? CustomManifest["EditMode"].ToObject<bool>() : false;
@@ -281,13 +314,40 @@ namespace CarcassSpark.ObjectTypes
             CustomManifest["EditMode"] = editMode;
         }
 
-        public void ResetHiddenGroups(string type)
+
+        public ContentGroup<T> GetContentGroup<T>() where T : IGameObject
         {
-            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
-            if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
+            if (typeof(T) == typeof(Aspect))
             {
-                hiddenGroups.Remove(type);
-                SetHiddenGroups(hiddenGroups);
+                return Aspects as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Element))
+            {
+                return Elements as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Recipe))
+            {
+                return Recipes as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Deck))
+            {
+                return Decks as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Legacy))
+            {
+                return Legacies as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Ending))
+            {
+                return Endings as ContentGroup<T>;
+            }
+            else if (typeof(T) == typeof(Verb))
+            {
+                return Verbs as ContentGroup<T>;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("No viewer is defined in GetContentGroup for the type " + typeof(T));
             }
         }
     }
@@ -312,7 +372,7 @@ namespace CarcassSpark.ObjectTypes
 
         public bool Exists(string id)
         {
-            foreach (T ending in GameObjects.Values.Where((go) => go.ID == id))
+            foreach (T t in GameObjects.Values.Where((go) => go.ID == id))
             {
                 return true;
             }
@@ -328,17 +388,14 @@ namespace CarcassSpark.ObjectTypes
         {
             return Exists(id) ? GameObjects[id] : default(T);
         }
-
-        public T Get(string id)
+        
+        public T GetByName(string id)
         {
             if (Exists(id))
             {
-                foreach (T gameOBJ in GameObjects.Values)
+                foreach (T gameOBJ in GameObjects.Values.Where((T obj)=> obj.ID == id))
                 {
-                    if (gameOBJ.ID == id)
-                    {
-                        return gameOBJ;
-                    }
+                    return gameOBJ;
                 }
             }
             return default(T);

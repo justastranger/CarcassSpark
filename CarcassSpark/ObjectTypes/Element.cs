@@ -146,6 +146,32 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Element>(serializedObject);
         }
+
+        public bool HasSlots()
+        {
+            return slots_prepend != null || slots != null || slots_append != null;
+        }
+
+        public List<Slot> AllSlotsWhere(Predicate<Slot> predicate)
+        {
+            List<Slot> OutputSlots = new List<Slot>();
+            if (slots_prepend != null)
+            {
+                OutputSlots.AddRange(slots_prepend.FindAll(predicate));
+            }
+
+            if (slots != null)
+            {
+                OutputSlots.AddRange(slots.FindAll(predicate));
+            }
+
+            if (slots_append != null)
+            {
+                OutputSlots.AddRange(slots_append.FindAll(predicate));
+            }
+
+            return OutputSlots;
+        }
     }
 
 }

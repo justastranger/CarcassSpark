@@ -19,11 +19,6 @@ namespace CarcassSpark.ObjectViewers
 
         public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
-        public IGameObjectViewer<Deck> CreateNew(Deck gameObject, EventHandler<Deck> successCallback, ListViewItem item)
-        {
-            return new DeckViewer(gameObject, successCallback, item);
-        }
-
         public DeckViewer(Deck deck)
         {
             InitializeComponent();

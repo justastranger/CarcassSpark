@@ -34,11 +34,6 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public IGameObjectViewer<Verb> CreateNew(Verb gameObject, EventHandler<Verb> successCallback, ListViewItem item)
-        {
-            return new VerbViewer(gameObject, successCallback, item);
-        }
-
         private void FillValues(Verb verb)
         {
             if (verb.ID != null)

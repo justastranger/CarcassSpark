@@ -1,5 +1,6 @@
 ﻿using AssetStudio;
 using CarcassSpark.ObjectTypes;
+using CarcassSpark.ObjectViewers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,24 +12,18 @@ using System.Windows.Forms;
 
 namespace CarcassSpark
 {
-    public class Utilities
+    public static class Utilities
     {
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
-
-
+        
         public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static string DirectoryToVanillaContent
         {
             get
             {
-                if (Settings.settings["GamePath"]?.ToString() != null)
-                {
-                    return Path.Combine(Settings.settings["GamePath"].ToString(), "cultistsimulator_Data\\StreamingAssets\\content\\core\\");
-                }
-                else
-                {
-                    return "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
-                }
+                return Settings.settings["GamePath"]?.ToString() != null
+                    ? Path.Combine(Settings.settings["GamePath"].ToString(), "cultistsimulator_Data\\StreamingAssets\\content\\core\\")
+                    : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
             }
         }
         // This is the root asset bundle that contains references to all the game's assets
@@ -76,82 +71,40 @@ namespace CarcassSpark
 
         public static string GetIdType(Guid id)
         {
-            if (AspectExists(id))
-            {
-                return "aspect";
-            }
-
-            if (ElementExists(id))
-            {
-                return "element";
-            }
-
-            if (RecipeExists(id))
-            {
-                return "recipe";
-            }
-
-            if (DeckExists(id))
-            {
-                return "deck";
-            }
-
-            if (LegacyExists(id))
-            {
-                return "legacy";
-            }
-
-            if (EndingExists(id))
-            {
-                return "ending";
-            }
-
-            if (VerbExists(id))
-            {
-                return "verb";
-            }
-
-            return "unknown";
+            return AspectExists(id)
+                ? "aspect"
+                : ElementExists(id)
+                ? "element"
+                : RecipeExists(id)
+                ? "recipe"
+                : DeckExists(id)
+                ? "deck"
+                : LegacyExists(id)
+                ? "legacy" 
+                : EndingExists(id) 
+                ? "ending" 
+                : VerbExists(id) 
+                ? "verb" 
+                : "unknown";
         }
 
         public static string GetIdType(string id)
         {
-            if (AspectExists(id))
-            {
-                return "aspect";
-            }
-
-            if (ElementExists(id))
-            {
-                return "element";
-            }
-
-            if (RecipeExists(id))
-            {
-                return "recipe";
-            }
-
-            if (DeckExists(id))
-            {
-                return "deck";
-            }
-
-            if (LegacyExists(id))
-            {
-                return "legacy";
-            }
-
-            if (EndingExists(id))
-            {
-                return "ending";
-            }
-
-            if (VerbExists(id))
-            {
-                return "verb";
-            }
-
-            return "unknown";
+            return AspectExists(id)
+                ? "aspect"
+                : ElementExists(id)
+                ? "element"
+                : RecipeExists(id)
+                ? "recipe"
+                : DeckExists(id)
+                ? "deck"
+                : LegacyExists(id)
+                ? "legacy" 
+                : EndingExists(id) 
+                ? "ending" 
+                : VerbExists(id) 
+                ? "verb" 
+                : "unknown";
         }
 
         public static Bitmap GetVanillaAspect(string id)
@@ -345,7 +298,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id))
+                else if (source.IsVanilla() && VanillaAspectImageExists(id))
                 {
                     return VanillaAspectImageExists(id);
                 }
@@ -361,18 +314,13 @@ namespace CarcassSpark
                 {
                     return source.GetAspectImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaAspectImageExists(id))
+                else if (source.IsVanilla() && VanillaAspectImageExists(id))
                 {
                     return GetVanillaAspect(id);
                 }
             }
             string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool ElementImageExists(string id)
@@ -383,7 +331,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id))
+                else if (source.IsVanilla() && VanillaElementImageExists(id))
                 {
                     return VanillaElementImageExists(id);
                 }
@@ -399,18 +347,13 @@ namespace CarcassSpark
                 {
                     return source.GetElementImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaElementImageExists(id))
+                else if (source.IsVanilla() && VanillaElementImageExists(id))
                 {
                     return GetVanillaElement(id);
                 }
             }
             string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool EndingImageExists(string id)
@@ -421,7 +364,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id))
+                else if (source.IsVanilla() && VanillaEndingImageExists(id))
                 {
                     return VanillaEndingImageExists(id);
                 }
@@ -437,18 +380,13 @@ namespace CarcassSpark
                 {
                     return source.GetEndingImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaEndingImageExists(id))
+                else if (source.IsVanilla() && VanillaEndingImageExists(id))
                 {
                     return GetVanillaEnding(id);
                 }
             }
             string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool LegacyImageExists(string id)
@@ -459,7 +397,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id))
+                else if (source.IsVanilla() && VanillaLegacyImageExists(id))
                 {
                     return VanillaLegacyImageExists(id);
                 }
@@ -475,18 +413,13 @@ namespace CarcassSpark
                 {
                     return source.GetLegacyImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaLegacyImageExists(id))
+                else if (source.IsVanilla() && VanillaLegacyImageExists(id))
                 {
                     return GetVanillaLegacy(id);
                 }
             }
             string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool VerbImageExists(string id)
@@ -497,7 +430,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id))
+                else if (source.IsVanilla() && VanillaVerbImageExists(id))
                 {
                     return VanillaVerbImageExists(id);
                 }
@@ -513,18 +446,13 @@ namespace CarcassSpark
                 {
                     return source.GetVerbImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaVerbImageExists(id))
+                else if (source.IsVanilla() && VanillaVerbImageExists(id))
                 {
                     return GetVanillaVerb(id);
                 }
             }
             string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool CardBackImageExists(string id)
@@ -535,7 +463,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id))
+                else if (source.IsVanilla() && VanillaCardBackImageExists(id))
                 {
                     return VanillaCardBackImageExists(id);
                 }
@@ -551,18 +479,13 @@ namespace CarcassSpark
                 {
                     return source.GetCardBackImage(id);
                 }
-                else if (source.GetName() == "Vanilla" && VanillaCardBackImageExists(id))
+                else if (source.IsVanilla() && VanillaCardBackImageExists(id))
                 {
                     return GetVanillaCardBack(id);
                 }
             }
             string defaultImage = Utilities.DirectoryToVanillaContent + "/images/cardbacks/_x.png";
-            if (File.Exists(defaultImage))
-            {
-                return Image.FromFile(defaultImage);
-            }
-
-            return null;
+            return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
         public static bool BurnImageExists(string id)
@@ -573,7 +496,7 @@ namespace CarcassSpark
                 {
                     return true;
                 }
-                else if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id))
+                else if (source.IsVanilla() && VanillaBurnImageImageExists(id))
                 {
                     return VanillaBurnImageImageExists(id);
                 }
@@ -590,7 +513,7 @@ namespace CarcassSpark
                     return source.GetBurnImage(id);
                 }
 
-                if (source.GetName() == "Vanilla" && VanillaBurnImageImageExists(id))
+                if (source.IsVanilla() && VanillaBurnImageImageExists(id))
                 {
                     return GetVanillaBurnImage(id);
                 }
@@ -600,33 +523,19 @@ namespace CarcassSpark
 
         public static bool AspectExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Aspects.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Aspects.Exists(id)).Any();
         }
 
         public static bool AspectExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Aspects.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Aspects.Exists(id)).Any();
         }
 
         public static Aspect GetAspect(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Aspects.Get(id) != null)
+                if (source.Aspects.Exists(id))
                 {
                     return source.Aspects.Get(id);
                 }
@@ -638,9 +547,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Aspects.Get(id) != null)
+                if (source.Aspects.Exists(id))
                 {
-                    return source.Aspects.Get(id);
+                    return source.Aspects.GetByName(id);
                 }
             }
             return null;
@@ -648,33 +557,19 @@ namespace CarcassSpark
 
         public static bool ElementExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Elements.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Elements.Exists(id)).Any();
         }
 
         public static bool ElementExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Elements.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Elements.Exists(id)).Any();
         }
 
         public static Element GetElement(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Elements.Get(id) != null)
+                if (source.Elements.Exists(id))
                 {
                     return source.Elements.Get(id);
                 }
@@ -686,9 +581,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Elements.Get(id) != null)
+                if (source.Elements.Exists(id))
                 {
-                    return source.Elements.Get(id);
+                    return source.Elements.GetByName(id);
                 }
             }
             return null;
@@ -696,33 +591,19 @@ namespace CarcassSpark
 
         public static bool RecipeExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Recipes.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Recipes.Exists(id)).Any();
         }
 
         public static bool RecipeExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Recipes.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Recipes.Exists(id)).Any();
         }
 
         public static Recipe GetRecipe(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Recipes.Get(id) != null)
+                if (source.Recipes.Exists(id))
                 {
                     return source.Recipes.Get(id);
                 }
@@ -734,9 +615,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Recipes.Get(id) != null)
+                if (source.Recipes.Exists(id))
                 {
-                    return source.Recipes.Get(id);
+                    return source.Recipes.GetByName(id);
                 }
             }
             return null;
@@ -744,33 +625,19 @@ namespace CarcassSpark
 
         public static bool DeckExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Recipes.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Decks.Exists(id)).Any();
         }
 
         public static bool DeckExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Recipes.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Decks.Exists(id)).Any();
         }
 
         public static Deck GetDeck(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Decks.Get(id) != null)
+                if (source.Decks.Exists(id))
                 {
                     return source.Decks.Get(id);
                 }
@@ -782,9 +649,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Decks.Get(id) != null)
+                if (source.Decks.Exists(id))
                 {
-                    return source.Decks.Get(id);
+                    return source.Decks.GetByName(id);
                 }
             }
             return null;
@@ -792,33 +659,19 @@ namespace CarcassSpark
 
         public static bool LegacyExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Legacies.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Legacies.Exists(id)).Any();
         }
 
         public static bool LegacyExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Legacies.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Legacies.Exists(id)).Any();
         }
 
         public static Legacy GetLegacy(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Legacies.Get(id) != null)
+                if (source.Legacies.Exists(id))
                 {
                     return source.Legacies.Get(id);
                 }
@@ -830,9 +683,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Legacies.Get(id) != null)
+                if (source.Legacies.Exists(id))
                 {
-                    return source.Legacies.Get(id);
+                    return source.Legacies.GetByName(id);
                 }
             }
             return null;
@@ -840,33 +693,19 @@ namespace CarcassSpark
 
         public static bool EndingExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Endings.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Endings.Exists(id)).Any();
         }
 
         public static bool EndingExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Endings.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Endings.Exists(id)).Any();
         }
 
         public static Ending GetEnding(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Endings.Get(id) != null)
+                if (source.Endings.Exists(id))
                 {
                     return source.Endings.Get(id);
                 }
@@ -878,9 +717,9 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Endings.Get(id) != null)
+                if (source.Endings.Exists(id))
                 {
-                    return source.Endings.Get(id);
+                    return source.Endings.GetByName(id);
                 }
             }
             return null;
@@ -888,33 +727,19 @@ namespace CarcassSpark
 
         public static bool VerbExists(Guid id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Verbs.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Verbs.Exists(id)).Any();
         }
 
         public static bool VerbExists(string id)
         {
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                if (source.Verbs.Exists(id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ContentSources.Values.Where((source)=>source.Verbs.Exists(id)).Any();
         }
 
         public static Verb GetVerb(Guid id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Verbs.Get(id) != null)
+                if (source.Verbs[id] != null)
                 {
                     return source.Verbs.Get(id);
                 }
@@ -926,214 +751,76 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (source.Verbs.Get(id) != null)
+                if (source.Verbs.Exists(id))
                 {
-                    return source.Verbs.Get(id);
+                    return source.Verbs.GetByName(id);
                 }
             }
             return null;
         }
 
+        #region Get List of all (Type)
 
         public static List<Aspect> GetAspects()
         {
-            Dictionary<Guid, Aspect> tmp = new Dictionary<Guid, Aspect>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Aspect> AspectEntry in source.Aspects)
-                {
-                    if (!tmp.ContainsKey(AspectEntry.Key))
-                    {
-                        tmp.Add(AspectEntry.Key, AspectEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[AspectEntry.Key] = AspectEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Aspect>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Aspect>();
         }
 
         public static List<Element> GetElements()
         {
-            Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Element> ElementEntry in source.Elements)
-                {
-                    if (!tmp.ContainsKey(ElementEntry.Key))
-                    {
-                        tmp.Add(ElementEntry.Key, ElementEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[ElementEntry.Key] = ElementEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Element>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Element>();
         }
 
         public static List<Recipe> GetRecipes()
         {
-            Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Recipe> RecipeEntry in source.Recipes)
-                {
-                    if (!tmp.ContainsKey(RecipeEntry.Key))
-                    {
-                        tmp.Add(RecipeEntry.Key, RecipeEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[RecipeEntry.Key] = RecipeEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Recipe>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Recipe>();
         }
 
         public static List<Deck> GetDecks()
         {
-            Dictionary<Guid, Deck> tmp = new Dictionary<Guid, Deck>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Deck> DeckEntry in source.Decks)
-                {
-                    if (!tmp.ContainsKey(DeckEntry.Key))
-                    {
-                        tmp.Add(DeckEntry.Key, DeckEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[DeckEntry.Key] = DeckEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Deck>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Deck>();
         }
 
         public static List<Legacy> GetLegacies()
         {
-            Dictionary<Guid, Legacy> tmp = new Dictionary<Guid, Legacy>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Legacy> LegacyEntry in source.Legacies)
-                {
-                    if (!tmp.ContainsKey(LegacyEntry.Key))
-                    {
-                        tmp.Add(LegacyEntry.Key, LegacyEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[LegacyEntry.Key] = LegacyEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Legacy>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Legacy>();
         }
 
         public static List<Ending> GetEndings()
         {
-            Dictionary<Guid, Ending> tmp = new Dictionary<Guid, Ending>();
-            foreach (ContentSource source in ContentSources.Values)
-            {
-                foreach (KeyValuePair<Guid, Ending> EndingEntry in source.Endings)
-                {
-                    if (!tmp.ContainsKey(EndingEntry.Key))
-                    {
-                        tmp.Add(EndingEntry.Key, EndingEntry.Value);
-                    }
-                    else
-                    {
-                        tmp[EndingEntry.Key] = EndingEntry.Value;
-                    }
-                }
-            }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Ending>();
-            }
-            else
-            {
-                return null;
-            }
+            return GetGameObjects<Ending>();
         }
 
         public static List<Verb> GetVerbs()
         {
-            Dictionary<Guid, Verb> tmp = new Dictionary<Guid, Verb>();
+            return GetGameObjects<Verb>();
+        }
+
+        public static List<T> GetGameObjects<T>() where T : IGameObject
+        {
+            Dictionary<Guid, T> tmp = new Dictionary<Guid, T>();
             foreach (ContentSource source in ContentSources.Values)
             {
-                foreach (KeyValuePair<Guid, Verb> VerbEntry in source.Verbs)
+                foreach (KeyValuePair<Guid, T> entry in source.GetContentGroup<T>())
                 {
-                    if (!tmp.ContainsKey(VerbEntry.Key))
+                    if (!tmp.ContainsKey(entry.Key))
                     {
-                        tmp.Add(VerbEntry.Key, VerbEntry.Value);
+                        tmp.Add(entry.Key, entry.Value);
                     }
                     else
                     {
-                        tmp[VerbEntry.Key] = VerbEntry.Value;
+                        tmp[entry.Key] = entry.Value;
                     }
                 }
             }
-            if (tmp.Count > 0)
-            {
-                return tmp.Values.ToList<Verb>();
-            }
-            else
-            {
-                return null;
-            }
+            return tmp.Count > 0 ? tmp.Values.ToList<T>() : null;
         }
+
+        #endregion
 
         public static ContentSource GetContentSource(string name)
         {
-            if (ContentSources.ContainsKey(name))
-            {
-                return ContentSources[name];
-            }
-            else
-            {
-                return null;
-            }
+            return ContentSources.ContainsKey(name) ? ContentSources[name] : null;
         }
 
         public static string SerializeObject(object objectToSerialize)
@@ -1149,6 +836,42 @@ namespace CarcassSpark
                 jsonSerializer.Serialize(writer, objectToSerialize);
             }
             return stringBuilder.ToString();
+        }
+
+        public static IGameObjectViewer<T> GetViewer<T>(T gameObject, EventHandler<T> successCallback) where T : IGameObject
+        {
+            if (typeof(T) == typeof(Aspect))
+            {
+                return (IGameObjectViewer<T>) new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
+            }
+            else if (typeof(T) == typeof(Element))
+            {
+                return (IGameObjectViewer<T>) new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
+            }
+            else if (typeof(T) == typeof(Recipe))
+            {
+                return (IGameObjectViewer<T>) new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
+            }
+            else if (typeof(T) == typeof(Deck))
+            {
+                return (IGameObjectViewer<T>) new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
+            }
+            else if (typeof(T) == typeof(Legacy))
+            {
+                return (IGameObjectViewer<T>) new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
+            }
+            else if (typeof(T) == typeof(Ending))
+            {
+                return (IGameObjectViewer<T>) new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
+            }
+            else if (typeof(T) == typeof(Verb))
+            {
+                return (IGameObjectViewer<T>) new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("No viewer is defined in GetViewer for Game Object " + gameObject.GetType());
+            }
         }
     }
 }
