@@ -232,7 +232,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void NewCardButton_Click(object sender, EventArgs e)
         {
-            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 specListView.Items.Add(newCardTextBox.Text);
                 if (displayedDeck.spec == null)
@@ -259,7 +259,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (!internalDeck && (idTextBox.Text == null || idTextBox.Text == ""))
+            if (!internalDeck && string.IsNullOrEmpty(idTextBox.Text))
             {
                 MessageBox.Show("All Standalone Decks must have an ID");
                 return;
@@ -335,7 +335,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+                if (!string.IsNullOrEmpty(newCardTextBox.Text))
                 {
                     specListView.Items.Add(newCardTextBox.Text);
                     if (displayedDeck.spec == null)
@@ -439,7 +439,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SpecPrependButton_Click(object sender, EventArgs e)
         {
-            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 ListViewItem item = new ListViewItem(newCardTextBox.Text)
                 {
@@ -471,7 +471,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SpecAppendButton_Click(object sender, EventArgs e)
         {
-            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 ListViewItem item = new ListViewItem(newCardTextBox.Text)
                 {
@@ -503,7 +503,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SpecRemoveButton_Click(object sender, EventArgs e)
         {
-            if (newCardTextBox.Text != "" && newCardTextBox.Text != null)
+            if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 ListViewItem item = new ListViewItem(newCardTextBox.Text)
                 {

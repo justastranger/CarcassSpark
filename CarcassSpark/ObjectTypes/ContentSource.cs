@@ -245,7 +245,7 @@ namespace CarcassSpark.ObjectTypes
             {
                 allGroups.Concat(hiddenGroups[type]);
             }
-            return allGroups.Count() > 0 ? allGroups : null;
+            return allGroups.Any() ? allGroups : null;
         }
 
         public Dictionary<string, List<string>> GetHiddenGroupsDictionary()
@@ -356,9 +356,9 @@ namespace CarcassSpark.ObjectTypes
     {
         public int Count { get => GameObjects.Count; }
         public Dictionary<Guid, T>.ValueCollection Values { get => GameObjects.Values; }
-        public string DisplayName { get; private set; }
-        public string DisplayNamePlural { get; private set; }
-        public string Filename { get; private set; }
+        public string DisplayName { get; }
+        public string DisplayNamePlural { get; }
+        public string Filename { get; }
         public Dictionary<Guid, T> GameObjects { get; set; } = new Dictionary<Guid, T>();
 
         public T this[Guid key] { get => GameObjects.ContainsKey(key) ? GameObjects[key] : default(T); set=> GameObjects[key] = value; }

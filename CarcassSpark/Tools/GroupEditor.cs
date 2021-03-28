@@ -45,7 +45,7 @@ namespace CarcassSpark.Tools
 
         private void OkBbutton_Click(object sender, EventArgs e)
         {
-            if (group == "" || group == null)
+            if (string.IsNullOrEmpty(group))
             {
                 MessageBox.Show("Group Name can not be blank.");
                 return;

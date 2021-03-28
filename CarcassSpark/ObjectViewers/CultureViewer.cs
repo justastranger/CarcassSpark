@@ -8,7 +8,7 @@ namespace CarcassSpark.ObjectViewers
     public partial class CultureViewer : Form
     {
         public Culture displayedCulture;
-        private List<string> uilabelkeyslist = new List<string>() {
+        private readonly List<string> uilabelkeyslist = new List<string>() {
             "UI_PAUSE",
             "UI_UNPAUSE",
             "UI_NORMALSPEED",
@@ -251,7 +251,7 @@ namespace CarcassSpark.ObjectViewers
                     string key = row.Cells[0].Value as string;
                     string value = row.Cells[1].Value as string;
                     // only save the keys with a value. Also prevents the saving of the final, blank row that always exists in a DataGridView for some reason.
-                    if (value != "" && value != null)
+                    if (!string.IsNullOrEmpty(value))
                     {
                         displayedCulture.uilabels.Add(key, value);
                     }

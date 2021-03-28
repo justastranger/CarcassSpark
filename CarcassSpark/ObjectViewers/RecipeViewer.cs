@@ -931,12 +931,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (string.IsNullOrEmpty(idTextBox.Text))
             {
                 MessageBox.Show("All Recipes must have an ID.");
                 return;
             }
-            if (actionIdTextBox.Text == null || actionIdTextBox.Text == "")
+            if (string.IsNullOrEmpty(actionIdTextBox.Text))
             {
                 MessageBox.Show("All Recipes must have an Action/Verb ID unless they're extending a recipe with one.");
                 // return;

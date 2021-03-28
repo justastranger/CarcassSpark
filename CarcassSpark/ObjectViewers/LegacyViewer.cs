@@ -222,7 +222,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (string.IsNullOrEmpty(idTextBox.Text))
             {
                 MessageBox.Show("All Legacies must have an ID");
                 return;
@@ -303,7 +303,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void AddExcludesButton_Click(object sender, EventArgs e)
         {
-            if (addExcludesTextBox.Text != "" && addExcludesTextBox.Text != null)
+            if (!string.IsNullOrEmpty(addExcludesTextBox.Text))
             {
                 excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
                 displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
@@ -316,7 +316,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (addExcludesTextBox.Text != "" && addExcludesTextBox.Text != null)
+                if (!string.IsNullOrEmpty(addExcludesTextBox.Text))
                 {
                     excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
                     displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
@@ -413,7 +413,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBox.Show("There is currently a limit of 4 statusbarelements");
                 return;
             }
-            if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
+            if (!string.IsNullOrEmpty(statusBarElementTextBox.Text))
             {
                 if (displayedLegacy.statusbarelements == null)
                 {
@@ -449,7 +449,7 @@ namespace CarcassSpark.ObjectViewers
                     MessageBox.Show("There is currently a limit of 4 statusbarelements");
                     return;
                 }
-                if (statusBarElementTextBox.Text != "" && statusBarElementTextBox.Text != null)
+                if (!string.IsNullOrEmpty(statusBarElementTextBox.Text))
                 {
                     if (displayedLegacy.statusbarelements == null)
                     {

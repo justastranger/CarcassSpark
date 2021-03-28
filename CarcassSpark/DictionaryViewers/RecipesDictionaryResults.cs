@@ -8,8 +8,8 @@ namespace CarcassSpark.DictionaryViewers
 {
     public partial class RecipesDictionaryResults : Form
     {
-        private Dictionary<Recipe, Guid> results = new Dictionary<Recipe, Guid>();
-        private Dictionary<string, Recipe> resultsWithId = new Dictionary<string, Recipe>();
+        private readonly Dictionary<Recipe, Guid> results = new Dictionary<Recipe, Guid>();
+        private readonly Dictionary<string, Recipe> resultsWithId = new Dictionary<string, Recipe>();
 
         public RecipesDictionaryResults(Dictionary<Guid, Recipe> results)
         {

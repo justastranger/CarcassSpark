@@ -98,7 +98,7 @@ namespace CarcassSpark
 
         public static bool HasPreviousMods()
         {
-            return settings["previousMods"] != null && settings["previousMods"] is JArray && settings["previousMods"].Count() > 0;
+            return settings["previousMods"] != null && settings["previousMods"] is JArray && settings["previousMods"].Any();
         }
 
         public static List<string> GetPreviousMods()

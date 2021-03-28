@@ -179,7 +179,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (string.IsNullOrEmpty(idTextBox.Text))
             {
                 MessageBox.Show("All Aspects must have an ID.");
                 return;
@@ -494,7 +494,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbIconTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (verbIconTextBox.Text != "" && verbIconTextBox.Text != null)
+            if (!string.IsNullOrEmpty(verbIconTextBox.Text))
             {
                 displayedAspect.verbicon = verbIconTextBox.Text;
             }

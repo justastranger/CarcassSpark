@@ -28,7 +28,7 @@ namespace CarcassSpark.ObjectViewers
                 foreach (string dep in displayedSynopsis.dependencies)
                 {
                     string[] depPieces = dep.Split(' ');
-                    if (depPieces.Count() > 0)
+                    if (depPieces.Any())
                     {
                         if (depPieces.Count() == 1)
                         {
@@ -122,7 +122,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SynopsisViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (displayedSynopsis.name == null || displayedSynopsis.name == "")
+            if (string.IsNullOrEmpty(displayedSynopsis.name))
             {
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;

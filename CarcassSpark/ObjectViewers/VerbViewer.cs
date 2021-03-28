@@ -99,7 +99,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (idTextBox.Text == null || idTextBox.Text == "")
+            if (string.IsNullOrEmpty(idTextBox.Text))
             {
                 MessageBox.Show("All Verbs must have an ID");
                 return;
@@ -183,7 +183,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (commentsTextBox.Text != "" && commentsTextBox.Text != null)
+            if (!string.IsNullOrEmpty(commentsTextBox.Text))
             {
                 displayedVerb.comments = commentsTextBox.Text;
             }

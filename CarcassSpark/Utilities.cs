@@ -29,7 +29,7 @@ namespace CarcassSpark
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
         private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
-        private static AssetsManager AssetsManager = new AssetsManager();
+        private static readonly AssetsManager AssetsManager = new AssetsManager();
         public static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
         public static ImageList ImageList = new ImageList
         {
@@ -523,12 +523,12 @@ namespace CarcassSpark
 
         public static bool AspectExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Aspects.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Aspects.Exists(id));
         }
 
         public static bool AspectExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Aspects.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Aspects.Exists(id));
         }
 
         public static Aspect GetAspect(Guid id)
@@ -557,12 +557,12 @@ namespace CarcassSpark
 
         public static bool ElementExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Elements.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Elements.Exists(id));
         }
 
         public static bool ElementExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Elements.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Elements.Exists(id));
         }
 
         public static Element GetElement(Guid id)
@@ -591,12 +591,12 @@ namespace CarcassSpark
 
         public static bool RecipeExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Recipes.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Recipes.Exists(id));
         }
 
         public static bool RecipeExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Recipes.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Recipes.Exists(id));
         }
 
         public static Recipe GetRecipe(Guid id)
@@ -625,12 +625,12 @@ namespace CarcassSpark
 
         public static bool DeckExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Decks.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Decks.Exists(id));
         }
 
         public static bool DeckExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Decks.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Decks.Exists(id));
         }
 
         public static Deck GetDeck(Guid id)
@@ -659,12 +659,12 @@ namespace CarcassSpark
 
         public static bool LegacyExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Legacies.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Legacies.Exists(id));
         }
 
         public static bool LegacyExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Legacies.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Legacies.Exists(id));
         }
 
         public static Legacy GetLegacy(Guid id)
@@ -693,12 +693,12 @@ namespace CarcassSpark
 
         public static bool EndingExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Endings.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Endings.Exists(id));
         }
 
         public static bool EndingExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Endings.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Endings.Exists(id));
         }
 
         public static Ending GetEnding(Guid id)
@@ -727,12 +727,12 @@ namespace CarcassSpark
 
         public static bool VerbExists(Guid id)
         {
-            return ContentSources.Values.Where((source)=>source.Verbs.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Verbs.Exists(id));
         }
 
         public static bool VerbExists(string id)
         {
-            return ContentSources.Values.Where((source)=>source.Verbs.Exists(id)).Any();
+            return ContentSources.Values.Any(source => source.Verbs.Exists(id));
         }
 
         public static Verb GetVerb(Guid id)

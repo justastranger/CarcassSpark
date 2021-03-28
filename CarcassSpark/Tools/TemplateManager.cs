@@ -76,7 +76,7 @@ namespace CarcassSpark.Tools
                 Directory.CreateDirectory(templatesPath);
             }
 
-            if (Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories).Count() > 0)
+            if (Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories).Any())
             {
                 foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories))
                 {
