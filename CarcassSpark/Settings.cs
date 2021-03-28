@@ -108,8 +108,8 @@ namespace CarcassSpark
 
         public static bool RemovePreviousMod(string path)
         {
-            List<string> tmp = settings["previousMods"].ToObject<List<string>>();
-            if (tmp.Contains(path))
+            List<string> tmp = settings["previousMods"]?.ToObject<List<string>>();
+            if (tmp != null && tmp.Contains(path))
             {
                 tmp.RemoveAll(str => str == path);
                 settings["previousMods"] = JArray.FromObject(tmp);
@@ -121,7 +121,7 @@ namespace CarcassSpark
 
         public static void AddPreviousMod(string path)
         {
-            (settings["previousMods"] as JArray).Add(path);
+            (settings["previousMods"] as JArray)?.Add(path);
             SaveSettings();
         }
 

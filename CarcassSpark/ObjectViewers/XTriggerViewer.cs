@@ -74,7 +74,7 @@ namespace CarcassSpark.ObjectViewers
                 DisplayedXTriggers = new List<XTrigger>();
                 foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value as string == null || row.Cells[0].Value as string == "")
+                    if (string.IsNullOrEmpty(row.Cells[0].Value as string))
                     {
                         continue;
                     }

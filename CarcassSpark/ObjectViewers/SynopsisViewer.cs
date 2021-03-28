@@ -30,12 +30,12 @@ namespace CarcassSpark.ObjectViewers
                     string[] depPieces = dep.Split(' ');
                     if (depPieces.Any())
                     {
-                        if (depPieces.Count() == 1)
+                        if (depPieces.Length == 1)
                         {
                             dependeniesDataGridView.Rows.Add(dep);
                         }
 
-                        if (depPieces.Count() == 3)
+                        if (depPieces.Length == 3)
                         {
                             dependeniesDataGridView.Rows.Add(depPieces[0], depPieces[1], depPieces[2]);
                         }

@@ -45,7 +45,7 @@ namespace CarcassSpark.ObjectTypes
             isAspect = true;
         }
 
-        new public Aspect Copy()
+        public new Aspect Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Aspect>(serializedObject);

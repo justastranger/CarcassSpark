@@ -68,22 +68,22 @@ namespace CarcassSpark.ObjectTypes
 
         public string GetCustomManifestString(string key)
         {
-            return customManifest.ContainsKey(key) ? customManifest[key].ToString() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key]?.ToString() : null;
         }
 
         public bool? GetCustomManifestBool(string key)
         {
-            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<bool?>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key]?.ToObject<bool?>() : null;
         }
 
         public int? GetCustomManifestInt(string key)
         {
-            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<int?>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key]?.ToObject<int?>() : null;
         }
 
         public List<int> GetCustomManifestListInt(string key)
         {
-            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<List<int>>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key]?.ToObject<List<int>>() : null;
         }
 
         #endregion
@@ -231,9 +231,12 @@ namespace CarcassSpark.ObjectTypes
         {
             Dictionary<string, string[]> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             string[] allGroups = { };
-            foreach (string type in hiddenGroups.Keys)
+            if (hiddenGroups != null)
             {
-                allGroups.Concat(hiddenGroups[type]);
+                foreach (string type in hiddenGroups.Keys)
+                {
+                    allGroups.Concat(hiddenGroups[type]);
+                }
             }
             return allGroups.Any() ? allGroups : null;
         }

@@ -316,8 +316,9 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (token["xtriggers"] != null)
                         {
-                            foreach (JProperty xtrigger in token["xtriggers"])
+                            foreach (var jToken in token["xtriggers"])
                             {
+                                var xtrigger = (JProperty) jToken;
                                 if (xtrigger.Value as JArray != null)
                                 {
                                     xtrigger.Value = xtrigger.Value as JArray;

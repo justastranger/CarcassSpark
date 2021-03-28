@@ -238,7 +238,7 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (key != null)
                     {
-                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                         {
                             if (DisplayedLegacy.effects_extend == null)
                             {
@@ -250,7 +250,7 @@ namespace CarcassSpark.ObjectViewers
                                 DisplayedLegacy.effects_extend[key] = value.Value;
                             }
                         }
-                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                         {
                             if (DisplayedLegacy.effects_remove == null)
                             {
@@ -497,7 +497,7 @@ namespace CarcassSpark.ObjectViewers
         private void EffectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[0].Value?.ToString();
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
                 if (DisplayedLegacy.effects_extend.ContainsKey(key))
                 {
@@ -509,7 +509,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedLegacy.effects_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
                 if (DisplayedLegacy.effects_remove.Contains(key))
                 {

@@ -410,7 +410,7 @@ namespace CarcassSpark.ObjectViewers
                     {
                         string key = row.Cells[0].Value.ToString();
                         int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                         {
                             if (DisplayedElement.aspects_extend == null)
                             {
@@ -422,7 +422,7 @@ namespace CarcassSpark.ObjectViewers
                                 DisplayedElement.aspects_extend.Add(key, value.Value);
                             }
                         }
-                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                         {
                             if (DisplayedElement.aspects_remove == null)
                             {
@@ -546,7 +546,7 @@ namespace CarcassSpark.ObjectViewers
         private void AspectsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedElement.aspects_extend == null)
@@ -564,7 +564,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedElement.aspects_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedElement.aspects_remove == null)
@@ -770,15 +770,15 @@ namespace CarcassSpark.ObjectViewers
             if (slotsListView.SelectedItems.Count == 1)
             {
                 ListViewItem selectedItem = slotsListView.SelectedItems[0];
-                if (selectedItem.BackColor == Utilities.ListAppendColor)
+                if (Equals(selectedItem.BackColor, Utilities.ListAppendColor))
                 {
                     DisplayedElement.slots_append.Remove(slots[selectedItem.Text]);
                 }
-                else if (selectedItem.BackColor == Utilities.ListPrependColor)
+                else if (Equals(selectedItem.BackColor, Utilities.ListPrependColor))
                 {
                     DisplayedElement.slots_prepend.Remove(slots[selectedItem.Text]);
                 }
-                else if (selectedItem.BackColor == Utilities.ListRemoveColor)
+                else if (Equals(selectedItem.BackColor, Utilities.ListRemoveColor))
                 {
                     DisplayedElement.slots_remove.Remove(selectedItem.Text);
                 }
@@ -824,14 +824,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbIconTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(verbIconTextBox.Text))
-            {
-                DisplayedElement.verbicon = verbIconTextBox.Text;
-            }
-            else
-            {
-                DisplayedElement.verbicon = null;
-            }
+            DisplayedElement.verbicon = !string.IsNullOrEmpty(verbIconTextBox.Text) ? verbIconTextBox.Text : null;
         }
 
         private void ElementViewer_Shown(object sender, EventArgs e)

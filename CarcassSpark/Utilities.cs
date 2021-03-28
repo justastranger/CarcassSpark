@@ -838,31 +838,31 @@ namespace CarcassSpark
         {
             if (typeof(T) == typeof(Aspect))
             {
-                return (IGameObjectViewer) new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
+                return new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
             }
             else if (typeof(T) == typeof(Element))
             {
-                return (IGameObjectViewer) new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
+                return new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
             }
             else if (typeof(T) == typeof(Recipe))
             {
-                return (IGameObjectViewer) new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
+                return new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
             }
             else if (typeof(T) == typeof(Deck))
             {
-                return (IGameObjectViewer) new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
+                return new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
             }
             else if (typeof(T) == typeof(Legacy))
             {
-                return (IGameObjectViewer) new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
+                return new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
             }
             else if (typeof(T) == typeof(Ending))
             {
-                return (IGameObjectViewer) new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
+                return new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
             }
             else if (typeof(T) == typeof(Verb))
             {
-                return (IGameObjectViewer) new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
+                return new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
             }
             else
             {

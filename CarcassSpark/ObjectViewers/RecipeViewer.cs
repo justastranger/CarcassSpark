@@ -699,7 +699,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void InternalDeck_Assign(object sender, Deck result)
         {
-            if (result is Deck)
+            if (result != null)
             {
                 DisplayedRecipe.internaldeck = result.Copy();
                 showInternalDeckButton.Text = "Show Deck";
@@ -941,7 +941,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     string value;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         value = row.Cells[1].Value.ToString();
                         if (DisplayedRecipe.requirements_extend == null)
@@ -951,7 +951,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.requirements_extend[key] = value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.requirements_remove == null)
                         {
@@ -989,7 +989,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     string value;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         value = row.Cells[1].Value.ToString();
                         if (DisplayedRecipe.extantreqs_extend == null)
@@ -999,7 +999,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.extantreqs_extend[key] = value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.extantreqs_remove == null)
                         {
@@ -1037,7 +1037,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     string value;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         value = row.Cells[1].Value.ToString();
                         if (DisplayedRecipe.tablereqs_extend == null)
@@ -1047,7 +1047,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.tablereqs_extend[key] = value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.tablereqs_remove == null)
                         {
@@ -1085,7 +1085,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     string value;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         value = row.Cells[1].Value.ToString();
                         if (DisplayedRecipe.effects_extend == null)
@@ -1095,7 +1095,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.effects_extend[key] = value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.effects_remove == null)
                         {
@@ -1133,7 +1133,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         if (DisplayedRecipe.aspects_extend == null)
                         {
@@ -1142,7 +1142,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.aspects_extend[key] = value.Value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.aspects_remove == null)
                         {
@@ -1179,7 +1179,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         if (DisplayedRecipe.deckeffects_extend == null)
                         {
@@ -1188,7 +1188,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.deckeffects_extend[key] = value.Value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.deckeffects_remove == null)
                         {
@@ -1225,7 +1225,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         if (DisplayedRecipe.purge_extend == null)
                         {
@@ -1234,7 +1234,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.purge_extend[key] = value.Value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.purge_remove == null)
                         {
@@ -1271,7 +1271,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         if (DisplayedRecipe.haltverb_extend == null)
                         {
@@ -1280,7 +1280,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.haltverb_extend[key] = value.Value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.haltverb_remove == null)
                         {
@@ -1317,7 +1317,7 @@ namespace CarcassSpark.ObjectViewers
 
                     string key = row.Cells[0].Value.ToString();
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
-                    if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                    if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                     {
                         if (DisplayedRecipe.deleteverb_extend == null)
                         {
@@ -1326,7 +1326,7 @@ namespace CarcassSpark.ObjectViewers
 
                         DisplayedRecipe.deleteverb_extend[key] = value.Value;
                     }
-                    else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                    else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                     {
                         if (DisplayedRecipe.deleteverb_remove == null)
                         {
@@ -1618,7 +1618,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.requirements_extend == null)
@@ -1636,7 +1636,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.requirements_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.requirements_remove == null)
@@ -1677,7 +1677,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.extantreqs_extend == null)
@@ -1695,7 +1695,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.extantreqs_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.extantreqs_remove == null)
@@ -1736,7 +1736,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.tablereqs_extend == null)
@@ -1754,7 +1754,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.tablereqs_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.tablereqs_remove == null)
@@ -1795,7 +1795,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.effects_extend == null)
@@ -1813,7 +1813,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.effects_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.effects_remove == null)
@@ -1854,7 +1854,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.aspects_extend == null)
@@ -1872,7 +1872,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.aspects_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.aspects_remove == null)
@@ -1913,7 +1913,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.deckeffects_extend == null)
@@ -1931,7 +1931,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.deckeffects_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.deckeffects_remove == null)
@@ -2313,7 +2313,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.deleteverb_extend == null)
@@ -2331,7 +2331,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.deleteverb_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.deleteverb_remove == null)
@@ -2372,7 +2372,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.haltverb_extend == null)
@@ -2390,7 +2390,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.haltverb_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.haltverb_remove == null)
@@ -2431,7 +2431,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.Row.Cells[0].Value == null) return;
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedRecipe.purge_extend == null)
@@ -2449,7 +2449,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedRecipe.purge_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedRecipe.purge_remove == null)

@@ -264,11 +264,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+                        if (Equals(row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
                         {
                             DisplayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
                         }
-                        else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+                        else if (Equals(row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
                         {
                             DisplayedDeck.drawmessages.Remove(row.Cells[0].Value.ToString());
                         }
@@ -375,7 +375,7 @@ namespace CarcassSpark.ObjectViewers
         private void DrawmessagesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
-            if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
+            if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryExtendStyle))
             {
 
                 if (DisplayedDeck.drawmessages_extend == null)
@@ -393,7 +393,7 @@ namespace CarcassSpark.ObjectViewers
                     DisplayedDeck.drawmessages_extend = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
+            else if (Equals(e.Row.DefaultCellStyle, Utilities.DictionaryRemoveStyle))
             {
 
                 if (DisplayedDeck.drawmessages_remove == null)

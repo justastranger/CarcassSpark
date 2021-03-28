@@ -487,14 +487,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void VerbIconTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(verbIconTextBox.Text))
-            {
-                DisplayedAspect.verbicon = verbIconTextBox.Text;
-            }
-            else
-            {
-                DisplayedAspect.verbicon = null;
-            }
+            DisplayedAspect.verbicon = !string.IsNullOrEmpty(verbIconTextBox.Text) ? verbIconTextBox.Text : null;
         }
 
         private void AspectViewer_Shown(object sender, EventArgs e)

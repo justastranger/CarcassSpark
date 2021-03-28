@@ -183,14 +183,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(commentsTextBox.Text))
-            {
-                DisplayedVerb.comments = commentsTextBox.Text;
-            }
-            else
-            {
-                DisplayedVerb.comments = null;
-            }
+            DisplayedVerb.comments = !string.IsNullOrEmpty(commentsTextBox.Text) ? commentsTextBox.Text : null;
         }
 
         private void DeletedCheckBox_CheckStateChanged(object sender, EventArgs e)

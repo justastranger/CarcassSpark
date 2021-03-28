@@ -95,7 +95,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Any()) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
+            folderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Any()) ? Settings.settings["previousMods"].Last?.ToString() : AppDomain.CurrentDomain.BaseDirectory;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;

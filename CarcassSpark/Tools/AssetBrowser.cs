@@ -26,7 +26,7 @@ namespace CarcassSpark.Tools
             {
                 foreach (string path in Utilities.Assets.Keys)
                 {
-                    string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
+                    string folder = path.Split('/').Length > 1 ? path.Split('/')[1] : path;
                     ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
 
                     if (!assetsListView.Groups.Contains(folderGroup))
@@ -55,7 +55,7 @@ namespace CarcassSpark.Tools
 
                 foreach (string path in Utilities.Assets.Keys)
                 {
-                    string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
+                    string folder = path.Split('/').Length > 1 ? path.Split('/')[1] : path;
 
                     if (folder == objectType.ToLower())
                     {
