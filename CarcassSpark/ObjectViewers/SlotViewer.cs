@@ -7,49 +7,35 @@ namespace CarcassSpark.ObjectViewers
 {
     public enum SlotType
     {
-        ELEMENT,
-        VERB,
-        RECIPE
+        Element,
+        Verb,
+        Recipe
     }
 
     public partial class SlotViewer : Form
     {
-        public Slot displayedSlot;
-        public bool editing;
+        public Slot DisplayedSlot;
+        public bool Editing;
         private readonly SlotType? slotType;
 
 
         public SlotViewer(Slot slot, bool? editing, SlotType? slotType)
         {
             InitializeComponent();
-            displayedSlot = slot;
+            DisplayedSlot = slot;
             if (slotType.HasValue)
             {
                 this.slotType = slotType.Value;
             }
 
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            SetEditingMode(editing.HasValue && editing.Value);
         }
 
         public SlotViewer(Slot slot, bool? editing)
         {
             InitializeComponent();
-            displayedSlot = slot;
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            DisplayedSlot = slot;
+            SetEditingMode(editing.HasValue && editing.Value);
         }
 
         private void FillValues(Slot slot)
@@ -86,22 +72,22 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetEditingMode(bool editing)
         {
-            this.editing = editing;
+            this.Editing = editing;
 
             if (slotType.HasValue)
             {
                 switch (slotType)
                 {
-                    case SlotType.ELEMENT:
+                    case SlotType.Element:
                         consumesCheckBox.Visible = true;
                         actionIdTextBox.Visible = true;
                         actionIdLabel.Visible = true;
                         break;
-                    case SlotType.RECIPE:
+                    case SlotType.Recipe:
                         greedyCheckBox.Visible = true;
                         consumesCheckBox.Visible = true;
                         break;
-                    case SlotType.VERB:
+                    case SlotType.Verb:
                         greedyCheckBox.Visible = true;
                         consumesCheckBox.Visible = true;
                         break;
@@ -124,57 +110,27 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
         }
 
-        private void RequiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string id = requiredDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.ElementExists(id))
-            {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
-                ev.Show();
-            }
-            else if (Utilities.AspectExists(id))
-            {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
-                av.Show();
-            }
-        }
-
-        private void ForbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string id = forbiddenDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (Utilities.ElementExists(id))
-            {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
-                ev.Show();
-            }
-            else if (Utilities.AspectExists(id))
-            {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
-                av.Show();
-            }
-        }
-
         private void OkButton_Click(object sender, EventArgs e)
         {
             if (requiredDataGridView.RowCount > 1)
             {
-                displayedSlot.required = new Dictionary<string, int>();
+                DisplayedSlot.required = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in requiredDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        displayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                        DisplayedSlot.required.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                     }
                 }
             }
             if (forbiddenDataGridView.RowCount > 1)
             {
-                displayedSlot.forbidden = new Dictionary<string, int>();
+                DisplayedSlot.forbidden = new Dictionary<string, int>();
                 foreach (DataGridViewRow row in forbiddenDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        displayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                        DisplayedSlot.forbidden.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                     }
                 }
             }
@@ -188,78 +144,78 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSlot.id = idTextBox.Text;
-            if (displayedSlot.id == "")
+            DisplayedSlot.id = idTextBox.Text;
+            if (DisplayedSlot.id == "")
             {
-                displayedSlot.id = null;
+                DisplayedSlot.id = null;
             }
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSlot.label = labelTextBox.Text;
-            if (displayedSlot.label == "")
+            DisplayedSlot.label = labelTextBox.Text;
+            if (DisplayedSlot.label == "")
             {
-                displayedSlot.label = null;
+                DisplayedSlot.label = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSlot.description = descriptionTextBox.Text;
-            if (displayedSlot.description == "")
+            DisplayedSlot.description = descriptionTextBox.Text;
+            if (DisplayedSlot.description == "")
             {
-                displayedSlot.description = null;
+                DisplayedSlot.description = null;
             }
         }
 
         private void ActionIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSlot.actionId = actionIdTextBox.Text;
-            if (displayedSlot.actionId == "")
+            DisplayedSlot.actionId = actionIdTextBox.Text;
+            if (DisplayedSlot.actionId == "")
             {
-                displayedSlot.actionId = null;
+                DisplayedSlot.actionId = null;
             }
         }
 
         private void GreedyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedSlot.greedy = greedyCheckBox.Checked;
-            if (!displayedSlot.greedy.Value)
+            DisplayedSlot.greedy = greedyCheckBox.Checked;
+            if (!DisplayedSlot.greedy.Value)
             {
-                displayedSlot.greedy = null;
+                DisplayedSlot.greedy = null;
             }
         }
 
         private void RequiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
-            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.required == null)
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || DisplayedSlot.required == null)
             {
                 return;
             }
 
-            if (displayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            if (DisplayedSlot.required.ContainsKey(e.Row.Cells[0].Value.ToString()))
             {
-                displayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
+                DisplayedSlot.required.Remove(e.Row.Cells[0].Value.ToString());
             }
 
-            if (displayedSlot.required.Count == 0)
+            if (DisplayedSlot.required.Count == 0)
             {
-                displayedSlot.required = null;
+                DisplayedSlot.required = null;
             }
         }
 
         private void ConsumesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedSlot.consumes = consumesCheckBox.Checked;
-            if (!displayedSlot.consumes.Value)
+            DisplayedSlot.consumes = consumesCheckBox.Checked;
+            if (!DisplayedSlot.consumes.Value)
             {
-                displayedSlot.consumes = null;
+                DisplayedSlot.consumes = null;
             }
         }
 
-        private void ForbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void ForbiddenDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!(forbiddenDataGridView.SelectedCells[0].Value is string id))
             {
@@ -277,7 +233,7 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void RequiredDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void RequiredDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!(requiredDataGridView.SelectedCells[0].Value is string id))
             {
@@ -299,25 +255,25 @@ namespace CarcassSpark.ObjectViewers
         private void ForbiddenDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             // if anything's null, then nothing was committed and we can just let it get deleted without doing any more work
-            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || displayedSlot.forbidden == null)
+            if (e.Row.Cells[0] == null || e.Row.Cells[1] == null || DisplayedSlot.forbidden == null)
             {
                 return;
             }
 
-            if (displayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            if (DisplayedSlot.forbidden.ContainsKey(e.Row.Cells[0].Value.ToString()))
             {
-                displayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
+                DisplayedSlot.forbidden.Remove(e.Row.Cells[0].Value.ToString());
             }
 
-            if (displayedSlot.forbidden.Count == 0)
+            if (DisplayedSlot.forbidden.Count == 0)
             {
-                displayedSlot.forbidden = null;
+                DisplayedSlot.forbidden = null;
             }
         }
 
         private void SlotViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedSlot);
+            FillValues(DisplayedSlot);
         }
     }
 }

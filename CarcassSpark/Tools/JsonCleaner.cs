@@ -52,7 +52,7 @@ namespace CarcassSpark.Tools
                     {
                         if (failCount <= 3)
                         {
-                            MessageBox.Show("Failed to load and clean the following file:\r\n" + file.ToString() + "\r\n" + ex.Message);
+                            MessageBox.Show("Failed to load and clean the following file:\r\n" + file + "\r\n" + ex.Message);
                         }
                         failCount++;
                     }

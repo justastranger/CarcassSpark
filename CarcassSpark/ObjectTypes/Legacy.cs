@@ -51,9 +51,9 @@ namespace CarcassSpark.ObjectTypes
         public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
                       Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
                       string startingVerbId, List<string> excludesOnEnding,
-                      List<string> excludesOnEnding_prepend, List<string> excludesOnEnding_append, List<string> excludesOnEnding_remove,
-                      Dictionary<string, int> effects_extend, List<string> effects_remove, List<string> statusbarelements,
-                      List<string> statusbarelements_prepend, List<string> statusbarelements_append, List<string> statusbarelements_remove,
+                      List<string> excludesOnEnding_prepend, List<string> excludesOnEndingAppend, List<string> excludesOnEndingRemove,
+                      Dictionary<string, int> effectsExtend, List<string> effectsRemove, List<string> statusbarelements,
+                      List<string> statusbarelementsPrepend, List<string> statusbarelementsAppend, List<string> statusbarelementsRemove,
                       bool? deleted, List<string> extends)
         {
             this.id = id;
@@ -61,8 +61,8 @@ namespace CarcassSpark.ObjectTypes
             this.description = description;
             this.startdescription = startdescription;
             this.effects = effects;
-            this.effects_extend = effects_extend;
-            this.effects_remove = effects_remove;
+            this.effects_extend = effectsExtend;
+            this.effects_remove = effectsRemove;
             this.comments = comments;
             this.tablecoverimage = tablecoverimage;
             this.tableedgeimage = tableedgeimage;
@@ -73,12 +73,12 @@ namespace CarcassSpark.ObjectTypes
             this.startingVerbId = startingVerbId;
             this.excludesOnEnding = excludesOnEnding;
             this.excludesOnEnding_prepend = excludesOnEnding_prepend;
-            this.excludesOnEnding_append = excludesOnEnding_append;
-            this.excludesOnEnding_remove = excludesOnEnding_remove;
+            this.excludesOnEnding_append = excludesOnEndingAppend;
+            this.excludesOnEnding_remove = excludesOnEndingRemove;
             this.statusbarelements = statusbarelements;
-            this.statusbarelements_prepend = statusbarelements_prepend;
-            this.statusbarelements_append = statusbarelements_append;
-            this.statusbarelements_remove = statusbarelements_remove;
+            this.statusbarelements_prepend = statusbarelementsPrepend;
+            this.statusbarelements_append = statusbarelementsAppend;
+            this.statusbarelements_remove = statusbarelementsRemove;
             this.deleted = deleted;
             this.newstart = newstart;
             this.extends = extends;

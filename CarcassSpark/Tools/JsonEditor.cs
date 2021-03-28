@@ -7,8 +7,8 @@ namespace CarcassSpark.Tools
 {
     public partial class JsonEditor : Form
     {
-        public string objectType;
-        public string objectText;
+        public string ObjectType;
+        public string ObjectText;
 
         public JsonEditor(string json)
         {
@@ -106,8 +106,8 @@ namespace CarcassSpark.Tools
 
         private void ContentTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            objectType = contentTypeComboBox.Text;
-            Settings.settings["jsonEditorLastContentType"] = objectType;
+            ObjectType = contentTypeComboBox.Text;
+            Settings.settings["jsonEditorLastContentType"] = ObjectType;
             Settings.SaveSettings();
         }
 
@@ -124,16 +124,15 @@ namespace CarcassSpark.Tools
 
         private void ScintillaEditor_TextChanged(object sender, EventArgs e)
         {
-            objectText = scintillaEditor.Text;
+            ObjectText = scintillaEditor.Text;
         }
 
         private void JsonEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.Cancel && contentTypeComboBox.Visible && objectType == null)
+            if (DialogResult != DialogResult.Cancel && contentTypeComboBox.Visible && ObjectType == null)
             {
                 MessageBox.Show("Please select an object type from the combo box next to the OK button.");
                 e.Cancel = true;
-                return;
             }
         }
     }

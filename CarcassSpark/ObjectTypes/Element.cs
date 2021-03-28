@@ -58,9 +58,9 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonConstructor]
         public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,
-                       string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
-                       List<Slot> slots, List<Slot> slots_prepend, List<Slot> slots_append, List<string> slots_remove,
-                       Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggers_extend, List<string> xtriggers_remove,
+                       string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspectsRemove,
+                       List<Slot> slots, List<Slot> slotsPrepend, List<Slot> slotsAppend, List<string> slotsRemove,
+                       Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggersExtend, List<string> xtriggersRemove,
                        int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate, List<string> extends)
         {
             // necessary
@@ -77,16 +77,16 @@ namespace CarcassSpark.ObjectTypes
             // not necessary (stay of execution)
             this.aspects = aspects;
             this.aspects_extend = aspects_extend;
-            this.aspects_remove = aspects_remove;
+            this.aspects_remove = aspectsRemove;
             // not necessary
             this.slots = slots;
-            this.slots_prepend = slots_prepend;
-            this.slots_append = slots_append;
-            this.slots_remove = slots_remove;
+            this.slots_prepend = slotsPrepend;
+            this.slots_append = slotsAppend;
+            this.slots_remove = slotsRemove;
             // not necessary
             this.xtriggers = xtriggers;
-            this.xtriggers_extend = xtriggers_extend;
-            this.xtriggers_remove = xtriggers_remove;
+            this.xtriggers_extend = xtriggersExtend;
+            this.xtriggers_remove = xtriggersRemove;
             // not necessary
             this.unique = unique;
             this.deleted = deleted;

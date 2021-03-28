@@ -17,7 +17,7 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class ModViewerTabControl : UserControl
     {
-        public bool isVanilla, editMode, isValid = false;
+        public bool IsVanilla, EditMode, IsValid = false;
 
         public EventHandler<bool> MarkDirtyEventHandler;
 
@@ -39,10 +39,10 @@ namespace CarcassSpark.ObjectViewers
             ListViews["verbs"] = verbsListView;
 
             Dock = DockStyle.Fill;
-            Content.currentDirectory = location;
+            Content.CurrentDirectory = location;
             saveFileDialog.InitialDirectory = location;
             openFileDialog.InitialDirectory = location;
-            this.isVanilla = isVanilla;
+            this.IsVanilla = isVanilla;
             if (!isVanilla && newMod)
             {
                 // if the user cancels the synopsis creation for a new mod, invalidate the control and abort loading.
@@ -66,7 +66,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void SetEditingMode(bool editing)
         {
-            editMode = editing;
+            EditMode = editing;
             deleteSelectedAspectToolStripMenuItem.Enabled = editing;
             deleteSelectedElementToolStripMenuItem.Enabled = editing;
             deleteSelectedRecipeToolStripMenuItem.Enabled = editing;
@@ -101,7 +101,7 @@ namespace CarcassSpark.ObjectViewers
 
         public bool LoadContent()
         {
-            if (IsDirty && editMode)
+            if (IsDirty && EditMode)
             {
                 if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and reload content.",
                     "You have unsaved changes",
@@ -128,16 +128,16 @@ namespace CarcassSpark.ObjectViewers
             try
             {
                 // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
-                if(isVanilla)
+                if(IsVanilla)
                 {
-                    Content.synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
+                    Content.Synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
                 }
-                else if(!CheckForSynopsis() || !Directory.Exists(Content.currentDirectory + "\\content\\"))
+                else if(!CheckForSynopsis() || !Directory.Exists(Content.CurrentDirectory + "\\content\\"))
                 {
                     return false;
                 }
 
-                IEnumerable<string> files = Directory.EnumerateFiles(Content.currentDirectory + (isVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
+                IEnumerable<string> files = Directory.EnumerateFiles(Content.CurrentDirectory + (IsVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
 
                 foreach (string file in files)
                 {
@@ -147,7 +147,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
 
-                if (!isVanilla)
+                if (!IsVanilla)
                 {
                     // mod loaded successfully
                     MarkDirty(false);
@@ -168,7 +168,7 @@ namespace CarcassSpark.ObjectViewers
             SynopsisViewer mv = new SynopsisViewer(new Synopsis());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                Content.synopsis = mv.displayedSynopsis;
+                Content.Synopsis = mv.DisplayedSynopsis;
                 SaveMod();
                 return true;
             }
@@ -177,15 +177,15 @@ namespace CarcassSpark.ObjectViewers
 
         public bool CheckForSynopsis()
         {
-            if (File.Exists(Content.currentDirectory + "/CarcassSpark.Manifest.json"))
+            if (File.Exists(Content.CurrentDirectory + "/CarcassSpark.Manifest.json"))
             {
-                using (FileStream fs = new FileStream(Content.currentDirectory + "/CarcassSpark.Manifest.json", FileMode.Open))
+                using (FileStream fs = new FileStream(Content.CurrentDirectory + "/CarcassSpark.Manifest.json", FileMode.Open))
                 {
                     LoadCustomManifest(fs);
                 }
             }
-            string manifestPath = Content.currentDirectory + "/manifest.json";
-            string synopsisPath = Content.currentDirectory + "/synopsis.json";
+            string manifestPath = Content.CurrentDirectory + "/manifest.json";
+            string synopsisPath = Content.CurrentDirectory + "/synopsis.json";
             // if manifest.json still exists, load it, save it as synopsis.json, then delete manifest.json
             if (File.Exists(manifestPath))
             {
@@ -193,7 +193,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     LoadSynopsis(fs);
                 }
-                SaveManifests(Content.currentDirectory);
+                SaveManifests(Content.CurrentDirectory);
                 File.Delete(manifestPath);
                 return true;
             }
@@ -210,7 +210,7 @@ namespace CarcassSpark.ObjectViewers
             else if (MessageBox.Show("synopsis.json not found in selected directory, are you creating a new mod?", "No Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 // return true if everything's going good; otherwise, return false so I can abort the creation of the tab
-                return CreateSynopsis() ? true : false;
+                return CreateSynopsis();
             }
             else
             {
@@ -222,7 +222,7 @@ namespace CarcassSpark.ObjectViewers
         {
             // string fileText = new StreamReader(file).ReadToEnd();
             // Hashtable ht = CultistSimulator::SimpleJsonImporter.Import(fileText);
-            Content.synopsis = JsonConvert.DeserializeObject<Synopsis>(new StreamReader(file).ReadToEnd());
+            Content.Synopsis = JsonConvert.DeserializeObject<Synopsis>(new StreamReader(file).ReadToEnd());
             Text = Content.GetName();
         }
 
@@ -235,14 +235,14 @@ namespace CarcassSpark.ObjectViewers
 
         public void LoadWidths()
         {
-            List<int> widths = null;
-            if (!isVanilla)
+            List<int> widths;
+            if (!IsVanilla)
             {
                 widths = Content.GetCustomManifestListInt("widths");
             }
             else
             {   // This part looks way uglier than the part above because I didn't make getter functions for the Settings, only Custom Manifests :(
-                widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"].ToObject<List<int>>() : null;
+                widths = Settings.settings.ContainsKey("widths") ? Settings.settings["widths"]?.ToObject<List<int>>() : null;
             }
 
             if (widths != null)
@@ -259,7 +259,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void SaveWidths()
         {
-            if (!isVanilla)
+            if (!IsVanilla)
             {
                 Content.SetCustomManifestProperty("widths", new List<int>() {
                         tableLayoutPanel2.Size.Width,
@@ -270,7 +270,7 @@ namespace CarcassSpark.ObjectViewers
                         tableLayoutPanel7.Size.Width,
                         tableLayoutPanel8.Size.Width,
                     });
-                SaveCustomManifest(Content.currentDirectory);
+                SaveCustomManifest(Content.CurrentDirectory);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace CarcassSpark.ObjectViewers
         {
             string fileText = new StreamReader(file).ReadToEnd();
             string fileName = Path.GetFileNameWithoutExtension(filePath);
-            if (fileText != "" && fileText != null)
+            if (!string.IsNullOrEmpty(fileText))
             {
                 JToken parsedJToken = JsonConvert.DeserializeObject<JObject>(fileText).First;
                 string fileType = parsedJToken.Path;
@@ -465,7 +465,7 @@ namespace CarcassSpark.ObjectViewers
 
         public void SaveMod()
         {
-            SaveMod(Content.currentDirectory);
+            SaveMod(Content.CurrentDirectory);
         }
 
         public void SaveMod(string location)
@@ -528,12 +528,12 @@ namespace CarcassSpark.ObjectViewers
 
         public void SaveManifests(string location)
         {
-            if (isVanilla)
+            if (IsVanilla)
             {
                 return;
             }
 
-            string synopsisJson = JsonConvert.SerializeObject(Content.synopsis, Formatting.Indented);
+            string synopsisJson = JsonConvert.SerializeObject(Content.Synopsis, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/synopsis.json", FileMode.Create))))
             {
                 jtw.WriteRaw(synopsisJson);
@@ -543,22 +543,22 @@ namespace CarcassSpark.ObjectViewers
 
         public void SaveCustomManifest()
         {
-            SaveCustomManifest(Content.currentDirectory);
+            SaveCustomManifest(Content.CurrentDirectory);
         }
 
         public void SaveCustomManifest(string location)
         {
-            if (isVanilla)
+            if (IsVanilla)
             {
                 return;
             }
 
             if (Content.GetCustomManifest().Count > 0)
             {
-                string CustomManifestJson = JsonConvert.SerializeObject(Content.GetCustomManifest(), Formatting.Indented);
+                string customManifestJson = JsonConvert.SerializeObject(Content.GetCustomManifest(), Formatting.Indented);
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/CarcassSpark.Manifest.json", FileMode.Create))))
                 {
-                    jtw.WriteRaw(CustomManifestJson);
+                    jtw.WriteRaw(customManifestJson);
                 }
             }
             else if (File.Exists(location + "/CarcassSpark.Manifest.json"))
@@ -575,7 +575,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspectsListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) aspectsListView.SelectedItems[0].Tag;
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), editMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), EditMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
         }
@@ -585,7 +585,7 @@ namespace CarcassSpark.ObjectViewers
             if (elementsListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) elementsListView.SelectedItems[0].Tag;
-                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), editMode ? (EventHandler<Element>) ElementsList_Assign : null, elementsListView.SelectedItems[0]);
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(id).Copy(), EditMode ? (EventHandler<Element>) ElementsList_Assign : null, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
@@ -595,7 +595,7 @@ namespace CarcassSpark.ObjectViewers
             if (recipesListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) recipesListView.SelectedItems[0].Tag;
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), editMode ? (EventHandler<Recipe>) RecipesList_Assign : null, recipesListView.SelectedItems[0]);
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(id).Copy(), EditMode ? (EventHandler<Recipe>) RecipesList_Assign : null, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
         }
@@ -605,7 +605,7 @@ namespace CarcassSpark.ObjectViewers
             if (decksListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) decksListView.SelectedItems[0].Tag;
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), editMode ? (EventHandler<Deck>) DecksList_Assign : null, decksListView.SelectedItems[0]);
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(id).Copy(), EditMode ? (EventHandler<Deck>) DecksList_Assign : null, decksListView.SelectedItems[0]);
                 dv.Show();
             }
         }
@@ -615,7 +615,7 @@ namespace CarcassSpark.ObjectViewers
             if (endingsListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) endingsListView.SelectedItems[0].Tag;
-                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), editMode ? (EventHandler<Ending>) EndingsList_Assign : null, endingsListView.SelectedItems[0]);
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(id).Copy(), EditMode ? (EventHandler<Ending>) EndingsList_Assign : null, endingsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
@@ -625,7 +625,7 @@ namespace CarcassSpark.ObjectViewers
             if (legaciesListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid) legaciesListView.SelectedItems[0].Tag;
-                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), editMode ? (EventHandler<Legacy>) LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(id).Copy(), EditMode ? (EventHandler<Legacy>) LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
                 lv.Show();
             }
         }
@@ -635,7 +635,7 @@ namespace CarcassSpark.ObjectViewers
             if (verbsListView.SelectedItems.Count >= 1)
             {
                 Guid id = (Guid)verbsListView.SelectedItems[0].Tag;
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(id).Copy(), EditMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
                 vv.Show();
             }
         }
@@ -645,40 +645,40 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsList_Assign(object sender, Aspect result)
         {
-            AssignToList((IGameObjectViewer<Aspect>) sender, Content.Aspects, result);
+            AssignToList((IGameObjectViewer) sender, Content.Aspects, result);
         }
 
         private void ElementsList_Assign(object sender, Element result)
         {
-            AssignToList((IGameObjectViewer<Element>) sender, Content.Elements, result);
+            AssignToList((IGameObjectViewer) sender, Content.Elements, result);
         }
 
         private void RecipesList_Assign(object sender, Recipe result)
         {
-            AssignToList((IGameObjectViewer<Recipe>) sender, Content.Recipes, result);
+            AssignToList((IGameObjectViewer) sender, Content.Recipes, result);
         }
 
         private void DecksList_Assign(object sender, Deck result)
         {
-            AssignToList((IGameObjectViewer<Deck>) sender, Content.Decks, result);
+            AssignToList((IGameObjectViewer) sender, Content.Decks, result);
         }
 
         private void EndingsList_Assign(object sender, Ending result)
         {
-            AssignToList((IGameObjectViewer<Ending>) sender, Content.Endings, result);
+            AssignToList((IGameObjectViewer) sender, Content.Endings, result);
         }
 
         private void LegaciesList_Assign(object sender, Legacy result)
         {
-            AssignToList((IGameObjectViewer<Legacy>) sender, Content.Legacies, result);
+            AssignToList((IGameObjectViewer) sender, Content.Legacies, result);
         }
 
         private void VerbsList_Assign(object sender, Verb result)
         {
-            AssignToList((IGameObjectViewer<Verb>) sender, Content.Verbs, result);
+            AssignToList((IGameObjectViewer) sender, Content.Verbs, result);
         }
 
-        private void AssignToList<T>(IGameObjectViewer<T> sender, ContentGroup<T> cg, T result) where T:IGameObject
+        private void AssignToList<T>(IGameObjectViewer sender, ContentGroup<T> cg, T result) where T:IGameObject
         {
             T resultCopy = result.Copy<T>();
             if ((Guid)sender.AssociatedListViewItem.Tag != result.Guid)
@@ -733,18 +733,14 @@ namespace CarcassSpark.ObjectViewers
             SearchTextBox_TextChanged(Content.Verbs, verbsSearchTextBox.Text, SearchVerbs);
         }
 
-        private void SearchTextBox_TextChanged<T>(ContentGroup<T> contentGroup, string NewText, Func<List<T>, string, T[]> func) where T : IGameObject
+        private void SearchTextBox_TextChanged<T>(ContentGroup<T> contentGroup, string newText, Func<List<T>, string, T[]> func) where T : IGameObject
         {
             ListView listView = ListViews[contentGroup.Filename];
             listView.BeginUpdate();
             listView.Items.Clear();
             List<ListViewItem> items = new List<ListViewItem>();
-            string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename); //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            if(hiddenGroups==null)
-            {
-                hiddenGroups = new string[] { };
-            }
-            T[] itemsToAdd = (NewText != "") ? func(contentGroup.Values.ToList(), NewText) : contentGroup.Values.ToArray();
+            string[] hiddenGroups = Content.GetHiddenGroups(contentGroup.Filename) ?? new string[] { }; //.GetCustomManifest()["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            T[] itemsToAdd = (newText != "") ? func(contentGroup.Values.ToList(), newText) : contentGroup.Values.ToArray();
             foreach (T gameObject in itemsToAdd)
             {
                 bool isGroupHidden = hiddenGroups.Contains(gameObject.Filename);
@@ -1128,10 +1124,9 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values.Where((element)=>element.HasSlots()))
             {
-                foreach (Slot slot in element.AllSlotsWhere((slot)=>slot.required != null && slot.required.ContainsKey(id)))
+                if (element.AllSlotsWhere((slot) => slot.required != null && slot.required.ContainsKey(id)).Any())
                 {
                     tmp[element.Guid] = element;
-                    break;
                 }
             }
             if (tmp.Count > 0)
@@ -1693,40 +1688,40 @@ namespace CarcassSpark.ObjectViewers
 
         private void OpenSelectedAspectsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Aspects);
+            OpenSelectedJson(Content.Aspects);
         }
 
         private void OpenSelectedElementsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Elements);
+            OpenSelectedJson(Content.Elements);
         }
 
         private void OpenSelectedRecipesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Recipes);
+            OpenSelectedJson(Content.Recipes);
         }
 
         private void OpenSelectedDecksJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Decks);
+            OpenSelectedJson(Content.Decks);
         }
 
         private void OpenSelectedLegaciesJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Legacies);
+            OpenSelectedJson(Content.Legacies);
         }
 
         private void OpenSelectedEndingsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Endings);
+            OpenSelectedJson(Content.Endings);
         }
 
         private void OpenSelectedVerbsJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenSelectedJSON(Content.Verbs);
+            OpenSelectedJson(Content.Verbs);
         }
 
-        private void OpenSelectedJSON<T>(ContentGroup<T> cg) where T : IGameObject
+        private void OpenSelectedJson<T>(ContentGroup<T> cg) where T : IGameObject
         {
             ListView lv = ListViews[cg.Filename];
             if (lv.SelectedItems.Count < 1)
@@ -1741,10 +1736,10 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
 
-            JsonEditor je = new JsonEditor(Utilities.SerializeObject(gameObjectToEdit), true, !editMode);
+            JsonEditor je = new JsonEditor(Utilities.SerializeObject(gameObjectToEdit), true, !EditMode);
             if (je.ShowDialog() == DialogResult.OK)
             {
-                T deserializedGameObject = JsonConvert.DeserializeObject<T>(je.objectText);
+                T deserializedGameObject = JsonConvert.DeserializeObject<T>(je.ObjectText);
                 if (!deserializedGameObject.Equals(gameObjectToEdit))
                 {
                     // cg.Remove(lv.SelectedItems[0].Tag.ToString());
@@ -1905,13 +1900,13 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             
-            string JSON = JsonConvert.SerializeObject(exportedGameObject, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(exportedGameObject, Formatting.Indented);
             saveFileDialog.FileName = exportedGameObject.GetType().Name + "_" + exportedGameObject.ID + ".json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
                 {
-                    jtw.WriteRaw(JSON);
+                    jtw.WriteRaw(json);
                 }
             }
         }
@@ -1921,40 +1916,40 @@ namespace CarcassSpark.ObjectViewers
 
         private void CopySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Aspects);
+            CopySelectedJsonToClipboard(Content.Aspects);
         }
 
         private void CopySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Elements);
+            CopySelectedJsonToClipboard(Content.Elements);
         }
 
         private void CopySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Recipes);
+            CopySelectedJsonToClipboard(Content.Recipes);
         }
 
         private void CopySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Decks);
+            CopySelectedJsonToClipboard(Content.Decks);
         }
 
         private void CopySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Legacies);
+            CopySelectedJsonToClipboard(Content.Legacies);
         }
 
         private void CopySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Endings);
+            CopySelectedJsonToClipboard(Content.Endings);
         }
 
         private void CopySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedJSONToClipboard(Content.Verbs);
+            CopySelectedJsonToClipboard(Content.Verbs);
         }
 
-        private void CopySelectedJSONToClipboard<T>(ContentGroup<T> contentGroup) where T : IGameObject
+        private void CopySelectedJsonToClipboard<T>(ContentGroup<T> contentGroup) where T : IGameObject
         {
             ListView lv = ListViews[contentGroup.Filename];
             if (lv.SelectedItems.Count < 1)
@@ -2148,7 +2143,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && aspectsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), editMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), EditMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
                 av.Show();
             }
         }
@@ -2158,7 +2153,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && elementsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)elementsListView.SelectedItems[0].Tag;
-                ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), editMode ? (EventHandler<Element>)ElementsList_Assign : null, elementsListView.SelectedItems[0]);
+                ElementViewer ev = new ElementViewer(Content.Elements.Get(guid).Copy(), EditMode ? (EventHandler<Element>)ElementsList_Assign : null, elementsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
@@ -2168,7 +2163,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && recipesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)recipesListView.SelectedItems[0].Tag;
-                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), editMode ? (EventHandler<Recipe>)RecipesList_Assign : null, recipesListView.SelectedItems[0]);
+                RecipeViewer rv = new RecipeViewer(Content.Recipes.Get(guid).Copy(), EditMode ? (EventHandler<Recipe>)RecipesList_Assign : null, recipesListView.SelectedItems[0]);
                 rv.Show();
             }
         }
@@ -2178,7 +2173,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && decksListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)decksListView.SelectedItems[0].Tag;
-                DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), editMode ? (EventHandler<Deck>)DecksList_Assign : null, decksListView.SelectedItems[0]);
+                DeckViewer dv = new DeckViewer(Content.Decks.Get(guid).Copy(), EditMode ? (EventHandler<Deck>)DecksList_Assign : null, decksListView.SelectedItems[0]);
                 dv.Show();
             }
         }
@@ -2188,7 +2183,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && legaciesListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)legaciesListView.SelectedItems[0].Tag;
-                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(guid).Copy(), editMode ? (EventHandler<Legacy>)LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
+                LegacyViewer lv = new LegacyViewer(Content.Legacies.Get(guid).Copy(), EditMode ? (EventHandler<Legacy>)LegaciesList_Assign : null, legaciesListView.SelectedItems[0]);
                 lv.Show();
             }
         }
@@ -2198,7 +2193,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && endingsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)endingsListView.SelectedItems[0].Tag;
-                EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), editMode ? (EventHandler<Ending>)EndingsList_Assign : null, endingsListView.SelectedItems[0]);
+                EndingViewer ev = new EndingViewer(Content.Endings.Get(guid).Copy(), EditMode ? (EventHandler<Ending>)EndingsList_Assign : null, endingsListView.SelectedItems[0]);
                 ev.Show();
             }
         }
@@ -2208,7 +2203,7 @@ namespace CarcassSpark.ObjectViewers
             if (e.KeyCode == Keys.Enter && verbsListView.SelectedItems.Count >= 1)
             {
                 Guid guid = (Guid)verbsListView.SelectedItems[0].Tag;
-                VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), editMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
+                VerbViewer vv = new VerbViewer(Content.Verbs.Get(guid).Copy(), EditMode ? (EventHandler<Verb>)VerbsList_Assign : null, verbsListView.SelectedItems[0]);
                 vv.Show();
             }
         }
@@ -2290,7 +2285,7 @@ namespace CarcassSpark.ObjectViewers
             GroupEditor ge = new GroupEditor(currentGroup, Content.GetRecentGroup(cg.DisplayName), groups);
             if (ge.ShowDialog() == DialogResult.OK)
             {
-                string newGroup = ge.group;
+                string newGroup = ge.Group;
                 foreach (ListView listView in ListViews.Values)
                 {
                     // TODO: Make this respect the ContentSource, rather than the ListView.
@@ -2310,7 +2305,7 @@ namespace CarcassSpark.ObjectViewers
 
                 if (newGroup != currentGroup)
                 {
-                    if (currentGroup != "" && currentGroup != null)
+                    if (!string.IsNullOrEmpty(currentGroup))
                     {
                         lv.Groups[currentGroup].Items.Remove(selectedItem);
                     }
@@ -2333,10 +2328,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Aspect));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Aspect));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Aspect templateAspect = JsonConvert.DeserializeObject<Aspect>(templateJson);
                 AspectViewer av = new AspectViewer(templateAspect, AspectsList_Add, null);
                 av.Show();
@@ -2345,10 +2340,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Element));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Element));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Element templateElement = JsonConvert.DeserializeObject<Element>(templateJson);
                 ElementViewer av = new ElementViewer(templateElement, ElementsList_Add, null);
                 av.Show();
@@ -2357,10 +2352,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Recipe));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Recipe));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Recipe templateRecipe = JsonConvert.DeserializeObject<Recipe>(templateJson);
                 RecipeViewer av = new RecipeViewer(templateRecipe, RecipesList_Add, null);
                 av.Show();
@@ -2369,10 +2364,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Deck));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Deck));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Deck templateDeck = JsonConvert.DeserializeObject<Deck>(templateJson);
                 DeckViewer av = new DeckViewer(templateDeck, DecksList_Add, null);
                 av.Show();
@@ -2381,10 +2376,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Legacy));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Legacy));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Legacy templateLegacy = JsonConvert.DeserializeObject<Legacy>(templateJson);
                 LegacyViewer av = new LegacyViewer(templateLegacy, LegaciesList_Add, null);
                 av.Show();
@@ -2393,10 +2388,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Ending));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Ending));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Ending templateEnding = JsonConvert.DeserializeObject<Ending>(templateJson);
                 EndingViewer av = new EndingViewer(templateEnding, EndingsList_Add, null);
                 av.Show();
@@ -2405,10 +2400,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void UseTemplateVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.SELECTING, typeof(Verb));
+            TemplateManager templateManager = new TemplateManager(TemplateManagerMode.Selecting, typeof(Verb));
             if (templateManager.ShowDialog() == DialogResult.OK)
             {
-                string templateJson = templateManager.selectedItem.Tag.ToString();
+                string templateJson = templateManager.SelectedItem.Tag.ToString();
                 Verb templateVerb = JsonConvert.DeserializeObject<Verb>(templateJson);
                 VerbViewer av = new VerbViewer(templateVerb, VerbsList_Add, null);
                 av.Show();
@@ -2468,7 +2463,7 @@ namespace CarcassSpark.ObjectViewers
                 MessageBoxButtons.OK);
                 return;
             }
-            else if (editMode && MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
+            else if (EditMode && MessageBox.Show("You WILL lose any unsaved changes you've made to this group. Are you sure you want to hide it?",
                 "Last chance to save!",
                 MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
@@ -2484,7 +2479,7 @@ namespace CarcassSpark.ObjectViewers
             }
 
             Content.SetHiddenGroup(listViewKey, group.Name);
-            SaveCustomManifest(Content.currentDirectory);
+            SaveCustomManifest(Content.CurrentDirectory);
         }
 
         #endregion
@@ -2501,15 +2496,6 @@ namespace CarcassSpark.ObjectViewers
             rfv.Show();
         }
 
-        private void SaveToToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveToFolderBrowserDialog.SelectedPath = Content.currentDirectory;
-            if (saveToFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                SaveMod(saveToFolderBrowserDialog.SelectedPath);
-            }
-        }
-
         private void AutosaveTimer_Tick(object sender, EventArgs e)
         {
             SaveMod();
@@ -2523,10 +2509,7 @@ namespace CarcassSpark.ObjectViewers
         private void MarkDirty(bool v)
         {
             IsDirty = v;
-            if (MarkDirtyEventHandler != null)
-            {
-                MarkDirtyEventHandler.Invoke(this, IsDirty);
-            }
+            MarkDirtyEventHandler?.Invoke(this, IsDirty);
         }
 
         public void MarkDirty()

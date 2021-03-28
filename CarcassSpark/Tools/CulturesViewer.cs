@@ -9,8 +9,8 @@ namespace CarcassSpark.Tools
 {
     public partial class CulturesViewer : Form
     {
-        public Dictionary<string, Culture> displayedCultures;
-        public bool editing;
+        public Dictionary<string, Culture> DisplayedCultures;
+        public bool Editing;
 
         public CulturesViewer(Dictionary<Guid, Culture> cultures)
         {
@@ -23,19 +23,12 @@ namespace CarcassSpark.Tools
         {
             InitializeComponent();
             FillValues(cultures);
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            SetEditingMode(editing.HasValue && editing.Value);
         }
 
         private void SetEditingMode(bool editing)
         {
-            this.editing = editing;
+            this.Editing = editing;
             okButton.Visible = editing;
             newCultureButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
@@ -43,9 +36,9 @@ namespace CarcassSpark.Tools
 
         private void FillValues(Dictionary<Guid, Culture> cultures)
         {
-            displayedCultures = cultures.ToDictionary(entry => entry.Value.id,
+            DisplayedCultures = cultures.ToDictionary(entry => entry.Value.id,
                                                       entry => entry.Value.Copy());
-            foreach (string key in displayedCultures.Keys)
+            foreach (string key in DisplayedCultures.Keys)
             {
                 culturesListBox.Items.Add(key);
             }
@@ -59,17 +52,17 @@ namespace CarcassSpark.Tools
             }
 
             string id = culturesListBox.SelectedItem as string;
-            CultureViewer cv = new CultureViewer(displayedCultures[id].Copy(), editing);
+            CultureViewer cv = new CultureViewer(DisplayedCultures[id].Copy(), Editing);
             if (cv.ShowDialog() == DialogResult.OK)
             {
-                if (cv.displayedCulture.id != id)
+                if (cv.DisplayedCulture.id != id)
                 {
-                    displayedCultures.Remove(id);
-                    displayedCultures[cv.displayedCulture.id] = cv.displayedCulture.Copy();
+                    DisplayedCultures.Remove(id);
+                    DisplayedCultures[cv.DisplayedCulture.id] = cv.DisplayedCulture.Copy();
                 }
                 else
                 {
-                    displayedCultures[id] = cv.displayedCulture.Copy();
+                    DisplayedCultures[id] = cv.DisplayedCulture.Copy();
                 }
             }
         }
@@ -90,10 +83,10 @@ namespace CarcassSpark.Tools
             CultureViewer cultureViewer = new CultureViewer(new Culture(), true);
             if (cultureViewer.ShowDialog() == DialogResult.OK)
             {
-                displayedCultures[cultureViewer.displayedCulture.id] = cultureViewer.displayedCulture.Copy();
-                if (!culturesListBox.Items.Contains(cultureViewer.displayedCulture.id))
+                DisplayedCultures[cultureViewer.DisplayedCulture.id] = cultureViewer.DisplayedCulture.Copy();
+                if (!culturesListBox.Items.Contains(cultureViewer.DisplayedCulture.id))
                 {
-                    culturesListBox.Items.Add(cultureViewer.displayedCulture.id);
+                    culturesListBox.Items.Add(cultureViewer.DisplayedCulture.id);
                 }
             }
         }
@@ -106,9 +99,9 @@ namespace CarcassSpark.Tools
             }
 
             string id = culturesListBox.SelectedItem as string;
-            if (displayedCultures.ContainsKey(id))
+            if (DisplayedCultures.ContainsKey(id))
             {
-                displayedCultures.Remove(id);
+                DisplayedCultures.Remove(id);
             }
 
             if (culturesListBox.Items.Contains(id))

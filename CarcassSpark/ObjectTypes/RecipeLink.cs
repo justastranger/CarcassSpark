@@ -38,9 +38,9 @@ namespace CarcassSpark.ObjectTypes
                 {
                     this.challenges = dict;
                 }
-                else if (challenges is string)
+                else if (!string.IsNullOrEmpty(((JObject)challenges)?.ToObject<string>()))
                 {
-                    this.challenges = new Dictionary<string, string>() { [challenges as string] = "base" };
+                    this.challenges = new Dictionary<string, string>() { [((JObject)challenges).ToObject<string>()] = "base" };
                 }
             }
             this.expulsion = expulsion;

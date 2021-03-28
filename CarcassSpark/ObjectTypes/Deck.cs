@@ -48,16 +48,16 @@ namespace CarcassSpark.ObjectTypes
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
                     string defaultcard, Dictionary<string, string> drawmessages,
-                    Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
-                    Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove, List<string> extends)
+                    Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> specPrepend, List<string> specRemove,
+                    Dictionary<string, string> drawmessagesExtend, List<String> drawmessagesRemove, Dictionary<string, string> defaultdrawmessagesExtend, List<String> defaultdrawmessagesRemove, List<string> extends)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.spec = spec;
             this.spec_append = spec_append;
-            this.spec_prepend = spec_prepend;
-            this.spec_remove = spec_remove;
+            this.spec_prepend = specPrepend;
+            this.spec_remove = specRemove;
             this.comments = comments;
             this.defaultcard = defaultcard;
             this.resetonexhaustion = resetonexhaustion;
@@ -65,11 +65,11 @@ namespace CarcassSpark.ObjectTypes
             this.defaultdraws = defaultdraws;
             this.draws = draws;
             this.drawmessages = drawmessages;
-            this.drawmessages_extend = drawmessages_extend;
-            this.drawmessages_remove = drawmessages_remove;
+            this.drawmessages_extend = drawmessagesExtend;
+            this.drawmessages_remove = drawmessagesRemove;
             this.defaultdrawmessages = defaultdrawmessages;
-            this.defaultdrawmessages_extend = defaultdrawmessages_extend;
-            this.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            this.defaultdrawmessages_extend = defaultdrawmessagesExtend;
+            this.defaultdrawmessages_remove = defaultdrawmessagesRemove;
             this.extends = extends;
         }
 

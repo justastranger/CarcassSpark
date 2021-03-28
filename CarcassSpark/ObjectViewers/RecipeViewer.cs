@@ -9,14 +9,14 @@ namespace CarcassSpark.ObjectViewers
 {
     public enum RecipeType
     {
-        DEFAULT,
-        NESTED,
-        GENERATOR
+        Default,
+        Nested,
+        Generator
     }
 
-    public partial class RecipeViewer : Form, IGameObjectViewer<Recipe>
+    public partial class RecipeViewer : Form, IGameObjectViewer
     {
-        public Recipe displayedRecipe;
+        public Recipe DisplayedRecipe;
         private bool editing;
 
         private event EventHandler<Recipe> SuccessCallback;
@@ -27,15 +27,15 @@ namespace CarcassSpark.ObjectViewers
 
         public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
-        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, ListViewItem item)
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> successCallback, ListViewItem item)
         {
             InitializeComponent();
-            displayedRecipe = recipe;
+            DisplayedRecipe = recipe;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
@@ -43,15 +43,15 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, RecipeType recipeViewerType, ListViewItem item)
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> successCallback, RecipeType recipeViewerType, ListViewItem item)
         {
             InitializeComponent();
-            displayedRecipe = recipe;
+            DisplayedRecipe = recipe;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
@@ -142,16 +142,16 @@ namespace CarcassSpark.ObjectViewers
         {
             switch (recipeViewerType)
             {
-                case RecipeType.GENERATOR:
+                case RecipeType.Generator:
                     idLabel.ForeColor = Color.Red;
                     labelLabel.ForeColor = Color.Red;
                     startDescriptionLabel.ForeColor = Color.Red;
                     descriptionLabel.ForeColor = Color.Red;
                     requirementsLabel.ForeColor = Color.Red;
                     break;
-                case RecipeType.NESTED:
+                case RecipeType.Nested:
                     break;
-                case RecipeType.DEFAULT:
+                case RecipeType.Default:
                     break;
             }
         }
@@ -233,22 +233,8 @@ namespace CarcassSpark.ObjectViewers
                 warmupNumericUpDown.Value = recipe.warmup.Value;
             }
 
-            if (recipe.internaldeck != null)
-            {
-                showInternalDeckButton.Text = "Show Deck";
-            }
-            else
-            {
-                showInternalDeckButton.Text = "New Deck";
-            }
-            if (recipe.slots?.Count > 0)
-            {
-                showSlotButton.Text = "Show Slot";
-            }
-            else
-            {
-                showSlotButton.Text = "New Slot";
-            }
+            showInternalDeckButton.Text = recipe.internaldeck != null ? "Show Deck" : "New Deck";
+            showSlotButton.Text = recipe.slots?.Count > 0 ? "Show Slot" : "New Slot";
             if (recipe.deleted.HasValue)
             {
                 deletedCheckBox.Checked = recipe.deleted.Value;
@@ -699,12 +685,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void ShowInternalDeckButton_Click(object sender, EventArgs e)
         {
-            if (displayedRecipe.internaldeck == null && editing)
+            if (DisplayedRecipe.internaldeck == null && editing)
             {
                 DeckViewer dv = new DeckViewer(new Deck(), InternalDeck_Assign, true, null);
                 dv.Show();
             }
-            else if (displayedRecipe.internaldeck is Deck deck)
+            else if (DisplayedRecipe.internaldeck is Deck deck)
             {
                 DeckViewer dv = new DeckViewer(deck.Copy(), editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true, null);
                 dv.Show();
@@ -715,33 +701,33 @@ namespace CarcassSpark.ObjectViewers
         {
             if (result is Deck)
             {
-                displayedRecipe.internaldeck = result.Copy();
+                DisplayedRecipe.internaldeck = result.Copy();
                 showInternalDeckButton.Text = "Show Deck";
             }
             else
             {
-                displayedRecipe.internaldeck = null;
+                DisplayedRecipe.internaldeck = null;
                 showInternalDeckButton.Text = "New Deck";
             }
         }
 
         private void ShowSlotButton_Click(object sender, EventArgs e)
         {
-            if ((displayedRecipe.slots == null || displayedRecipe.slots.Count == 0) && editing)
+            if ((DisplayedRecipe.slots == null || DisplayedRecipe.slots.Count == 0) && editing)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.Recipe);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };
+                    DisplayedRecipe.slots = new List<Slot> { sv.DisplayedSlot.Copy() };
                     showSlotButton.Text = "Show Slot";
                 }
             }
-            else if (displayedRecipe.slots?.Count == 1)
+            else if (DisplayedRecipe.slots?.Count == 1)
             {
-                SlotViewer sv = new SlotViewer(displayedRecipe.slots[0].Copy(), editing, SlotType.RECIPE);
+                SlotViewer sv = new SlotViewer(DisplayedRecipe.slots[0].Copy(), editing, SlotType.Recipe);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedRecipe.slots = new List<Slot> { sv.displayedSlot.Copy() };
+                    DisplayedRecipe.slots = new List<Slot> { sv.DisplayedSlot.Copy() };
                 }
             }
         }
@@ -760,10 +746,10 @@ namespace CarcassSpark.ObjectViewers
             if (rlv.DialogResult == DialogResult.OK)
             {
                 alternativerecipeLinks.Remove(guid);
-                alternativerecipeLinks.Add(guid, rlv.displayedRecipeLink.Copy());
-                if (alternativeRecipesListView.SelectedItems[0].Text != rlv.displayedRecipeLink.id)
+                alternativerecipeLinks.Add(guid, rlv.DisplayedRecipeLink.Copy());
+                if (alternativeRecipesListView.SelectedItems[0].Text != rlv.DisplayedRecipeLink.id)
                 {
-                    alternativeRecipesListView.SelectedItems[0].Text = rlv.displayedRecipeLink.id;
+                    alternativeRecipesListView.SelectedItems[0].Text = rlv.DisplayedRecipeLink.id;
                 }
                 SaveAlternativeRecipes();
             }
@@ -783,10 +769,10 @@ namespace CarcassSpark.ObjectViewers
             if (rlv.DialogResult == DialogResult.OK)
             {
                 recipeLinks.Remove(guid);
-                recipeLinks.Add(guid, rlv.displayedRecipeLink.Copy());
-                if (linkedRecipesListView.SelectedItems[0].Text != rlv.displayedRecipeLink.id)
+                recipeLinks.Add(guid, rlv.DisplayedRecipeLink.Copy());
+                if (linkedRecipesListView.SelectedItems[0].Text != rlv.DisplayedRecipeLink.id)
                 {
-                    linkedRecipesListView.SelectedItems[0].Text = rlv.displayedRecipeLink.id;
+                    linkedRecipesListView.SelectedItems[0].Text = rlv.DisplayedRecipeLink.id;
                 }
                 SaveLinkedRecipes();
             }
@@ -806,10 +792,10 @@ namespace CarcassSpark.ObjectViewers
             if (mv.DialogResult == DialogResult.OK)
             {
                 mutations.Remove(guid);
-                mutations.Add(guid, mv.displayedMutation.Copy());
-                if (oldId != mv.displayedMutation.mutate)
+                mutations.Add(guid, mv.DisplayedMutation.Copy());
+                if (oldId != mv.DisplayedMutation.mutate)
                 {
-                    mutationsListView.SelectedItems[0].Text = mv.displayedMutation.mutate;
+                    mutationsListView.SelectedItems[0].Text = mv.DisplayedMutation.mutate;
                 }
                 SaveMutations();
             }
@@ -943,9 +929,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (requirementsDataGridView.RowCount > 1)
             {
-                displayedRecipe.requirements = null;
-                displayedRecipe.requirements_extend = null;
-                displayedRecipe.requirements_remove = null;
+                DisplayedRecipe.requirements = null;
+                DisplayedRecipe.requirements_extend = null;
+                DisplayedRecipe.requirements_remove = null;
                 foreach (DataGridViewRow row in requirementsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -958,42 +944,42 @@ namespace CarcassSpark.ObjectViewers
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.requirements_extend == null)
+                        if (DisplayedRecipe.requirements_extend == null)
                         {
-                            displayedRecipe.requirements_extend = new Dictionary<string, string>();
+                            DisplayedRecipe.requirements_extend = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.requirements_extend[key] = value;
+                        DisplayedRecipe.requirements_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.requirements_remove == null)
+                        if (DisplayedRecipe.requirements_remove == null)
                         {
-                            displayedRecipe.requirements_remove = new List<string>();
+                            DisplayedRecipe.requirements_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.requirements_remove.Contains(key))
+                        if (!DisplayedRecipe.requirements_remove.Contains(key))
                         {
-                            displayedRecipe.requirements_remove.Add(key);
+                            DisplayedRecipe.requirements_remove.Add(key);
                         }
                     }
                     else
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.requirements == null)
+                        if (DisplayedRecipe.requirements == null)
                         {
-                            displayedRecipe.requirements = new Dictionary<string, string>();
+                            DisplayedRecipe.requirements = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.requirements[key] = value;
+                        DisplayedRecipe.requirements[key] = value;
                     }
                 }
             }
             if (extantreqsDataGridView.RowCount > 1)
             {
-                displayedRecipe.extantreqs = null;
-                displayedRecipe.extantreqs_extend = null;
-                displayedRecipe.extantreqs_remove = null;
+                DisplayedRecipe.extantreqs = null;
+                DisplayedRecipe.extantreqs_extend = null;
+                DisplayedRecipe.extantreqs_remove = null;
                 foreach (DataGridViewRow row in extantreqsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1006,42 +992,42 @@ namespace CarcassSpark.ObjectViewers
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.extantreqs_extend == null)
+                        if (DisplayedRecipe.extantreqs_extend == null)
                         {
-                            displayedRecipe.extantreqs_extend = new Dictionary<string, string>();
+                            DisplayedRecipe.extantreqs_extend = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.extantreqs_extend[key] = value;
+                        DisplayedRecipe.extantreqs_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.extantreqs_remove == null)
+                        if (DisplayedRecipe.extantreqs_remove == null)
                         {
-                            displayedRecipe.extantreqs_remove = new List<string>();
+                            DisplayedRecipe.extantreqs_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.extantreqs_remove.Contains(key))
+                        if (!DisplayedRecipe.extantreqs_remove.Contains(key))
                         {
-                            displayedRecipe.extantreqs_remove.Add(key);
+                            DisplayedRecipe.extantreqs_remove.Add(key);
                         }
                     }
                     else
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.extantreqs == null)
+                        if (DisplayedRecipe.extantreqs == null)
                         {
-                            displayedRecipe.extantreqs = new Dictionary<string, string>();
+                            DisplayedRecipe.extantreqs = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.extantreqs[key] = value;
+                        DisplayedRecipe.extantreqs[key] = value;
                     }
                 }
             }
             if (tablereqsDataGridView.RowCount > 1)
             {
-                displayedRecipe.tablereqs = null;
-                displayedRecipe.tablereqs_extend = null;
-                displayedRecipe.tablereqs_remove = null;
+                DisplayedRecipe.tablereqs = null;
+                DisplayedRecipe.tablereqs_extend = null;
+                DisplayedRecipe.tablereqs_remove = null;
                 foreach (DataGridViewRow row in tablereqsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1054,42 +1040,42 @@ namespace CarcassSpark.ObjectViewers
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.tablereqs_extend == null)
+                        if (DisplayedRecipe.tablereqs_extend == null)
                         {
-                            displayedRecipe.tablereqs_extend = new Dictionary<string, string>();
+                            DisplayedRecipe.tablereqs_extend = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.tablereqs_extend[key] = value;
+                        DisplayedRecipe.tablereqs_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.tablereqs_remove == null)
+                        if (DisplayedRecipe.tablereqs_remove == null)
                         {
-                            displayedRecipe.tablereqs_remove = new List<string>();
+                            DisplayedRecipe.tablereqs_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.tablereqs_remove.Contains(key))
+                        if (!DisplayedRecipe.tablereqs_remove.Contains(key))
                         {
-                            displayedRecipe.tablereqs_remove.Add(key);
+                            DisplayedRecipe.tablereqs_remove.Add(key);
                         }
                     }
                     else
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.tablereqs == null)
+                        if (DisplayedRecipe.tablereqs == null)
                         {
-                            displayedRecipe.tablereqs = new Dictionary<string, string>();
+                            DisplayedRecipe.tablereqs = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.tablereqs[key] = value;
+                        DisplayedRecipe.tablereqs[key] = value;
                     }
                 }
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                displayedRecipe.effects = null;
-                displayedRecipe.effects_extend = null;
-                displayedRecipe.effects_remove = null;
+                DisplayedRecipe.effects = null;
+                DisplayedRecipe.effects_extend = null;
+                DisplayedRecipe.effects_remove = null;
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1102,42 +1088,42 @@ namespace CarcassSpark.ObjectViewers
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.effects_extend == null)
+                        if (DisplayedRecipe.effects_extend == null)
                         {
-                            displayedRecipe.effects_extend = new Dictionary<string, string>();
+                            DisplayedRecipe.effects_extend = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.effects_extend[key] = value;
+                        DisplayedRecipe.effects_extend[key] = value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.effects_remove == null)
+                        if (DisplayedRecipe.effects_remove == null)
                         {
-                            displayedRecipe.effects_remove = new List<string>();
+                            DisplayedRecipe.effects_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.effects_remove.Contains(key))
+                        if (!DisplayedRecipe.effects_remove.Contains(key))
                         {
-                            displayedRecipe.effects_remove.Add(key);
+                            DisplayedRecipe.effects_remove.Add(key);
                         }
                     }
                     else
                     {
                         value = row.Cells[1].Value.ToString();
-                        if (displayedRecipe.effects == null)
+                        if (DisplayedRecipe.effects == null)
                         {
-                            displayedRecipe.effects = new Dictionary<string, string>();
+                            DisplayedRecipe.effects = new Dictionary<string, string>();
                         }
 
-                        displayedRecipe.effects[key] = value;
+                        DisplayedRecipe.effects[key] = value;
                     }
                 }
             }
             if (aspectsDataGridView.RowCount > 1)
             {
-                displayedRecipe.aspects = null;
-                displayedRecipe.aspects_extend = null;
-                displayedRecipe.aspects_remove = null;
+                DisplayedRecipe.aspects = null;
+                DisplayedRecipe.aspects_extend = null;
+                DisplayedRecipe.aspects_remove = null;
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1149,41 +1135,41 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.aspects_extend == null)
+                        if (DisplayedRecipe.aspects_extend == null)
                         {
-                            displayedRecipe.aspects_extend = new Dictionary<string, int>();
+                            DisplayedRecipe.aspects_extend = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.aspects_extend[key] = value.Value;
+                        DisplayedRecipe.aspects_extend[key] = value.Value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.aspects_remove == null)
+                        if (DisplayedRecipe.aspects_remove == null)
                         {
-                            displayedRecipe.aspects_remove = new List<string>();
+                            DisplayedRecipe.aspects_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.aspects_remove.Contains(key))
+                        if (!DisplayedRecipe.aspects_remove.Contains(key))
                         {
-                            displayedRecipe.aspects_remove.Add(key);
+                            DisplayedRecipe.aspects_remove.Add(key);
                         }
                     }
                     else
                     {
-                        if (displayedRecipe.aspects == null)
+                        if (DisplayedRecipe.aspects == null)
                         {
-                            displayedRecipe.aspects = new Dictionary<string, int>();
+                            DisplayedRecipe.aspects = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.aspects[key] = value.Value;
+                        DisplayedRecipe.aspects[key] = value.Value;
                     }
                 }
             }
             if (deckeffectDataGridView.RowCount > 1)
             {
-                displayedRecipe.deckeffects = null;
-                displayedRecipe.deckeffects_extend = null;
-                displayedRecipe.deckeffects_remove = null;
+                DisplayedRecipe.deckeffects = null;
+                DisplayedRecipe.deckeffects_extend = null;
+                DisplayedRecipe.deckeffects_remove = null;
                 foreach (DataGridViewRow row in deckeffectDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1195,41 +1181,41 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.deckeffects_extend == null)
+                        if (DisplayedRecipe.deckeffects_extend == null)
                         {
-                            displayedRecipe.deckeffects_extend = new Dictionary<string, int>();
+                            DisplayedRecipe.deckeffects_extend = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.deckeffects_extend[key] = value.Value;
+                        DisplayedRecipe.deckeffects_extend[key] = value.Value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.deckeffects_remove == null)
+                        if (DisplayedRecipe.deckeffects_remove == null)
                         {
-                            displayedRecipe.deckeffects_remove = new List<string>();
+                            DisplayedRecipe.deckeffects_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.deckeffects_remove.Contains(key))
+                        if (!DisplayedRecipe.deckeffects_remove.Contains(key))
                         {
-                            displayedRecipe.deckeffects_remove.Add(key);
+                            DisplayedRecipe.deckeffects_remove.Add(key);
                         }
                     }
                     else
                     {
-                        if (displayedRecipe.deckeffects == null)
+                        if (DisplayedRecipe.deckeffects == null)
                         {
-                            displayedRecipe.deckeffects = new Dictionary<string, int>();
+                            DisplayedRecipe.deckeffects = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.deckeffects[key] = value.Value;
+                        DisplayedRecipe.deckeffects[key] = value.Value;
                     }
                 }
             }
             if (purgeDataGridView.RowCount > 1)
             {
-                displayedRecipe.purge = null;
-                displayedRecipe.purge_extend = null;
-                displayedRecipe.purge_remove = null;
+                DisplayedRecipe.purge = null;
+                DisplayedRecipe.purge_extend = null;
+                DisplayedRecipe.purge_remove = null;
                 foreach (DataGridViewRow row in purgeDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1241,41 +1227,41 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.purge_extend == null)
+                        if (DisplayedRecipe.purge_extend == null)
                         {
-                            displayedRecipe.purge_extend = new Dictionary<string, int>();
+                            DisplayedRecipe.purge_extend = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.purge_extend[key] = value.Value;
+                        DisplayedRecipe.purge_extend[key] = value.Value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.purge_remove == null)
+                        if (DisplayedRecipe.purge_remove == null)
                         {
-                            displayedRecipe.purge_remove = new List<string>();
+                            DisplayedRecipe.purge_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.purge_remove.Contains(key))
+                        if (!DisplayedRecipe.purge_remove.Contains(key))
                         {
-                            displayedRecipe.purge_remove.Add(key);
+                            DisplayedRecipe.purge_remove.Add(key);
                         }
                     }
                     else
                     {
-                        if (displayedRecipe.purge == null)
+                        if (DisplayedRecipe.purge == null)
                         {
-                            displayedRecipe.purge = new Dictionary<string, int>();
+                            DisplayedRecipe.purge = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.purge[key] = value.Value;
+                        DisplayedRecipe.purge[key] = value.Value;
                     }
                 }
             }
             if (haltVerbDataGridView.RowCount > 1)
             {
-                displayedRecipe.haltverb = null;
-                displayedRecipe.haltverb_extend = null;
-                displayedRecipe.haltverb_remove = null;
+                DisplayedRecipe.haltverb = null;
+                DisplayedRecipe.haltverb_extend = null;
+                DisplayedRecipe.haltverb_remove = null;
                 foreach (DataGridViewRow row in haltVerbDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1287,41 +1273,41 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.haltverb_extend == null)
+                        if (DisplayedRecipe.haltverb_extend == null)
                         {
-                            displayedRecipe.haltverb_extend = new Dictionary<string, int>();
+                            DisplayedRecipe.haltverb_extend = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.haltverb_extend[key] = value.Value;
+                        DisplayedRecipe.haltverb_extend[key] = value.Value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.haltverb_remove == null)
+                        if (DisplayedRecipe.haltverb_remove == null)
                         {
-                            displayedRecipe.haltverb_remove = new List<string>();
+                            DisplayedRecipe.haltverb_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.haltverb_remove.Contains(key))
+                        if (!DisplayedRecipe.haltverb_remove.Contains(key))
                         {
-                            displayedRecipe.haltverb_remove.Add(key);
+                            DisplayedRecipe.haltverb_remove.Add(key);
                         }
                     }
                     else
                     {
-                        if (displayedRecipe.haltverb == null)
+                        if (DisplayedRecipe.haltverb == null)
                         {
-                            displayedRecipe.haltverb = new Dictionary<string, int>();
+                            DisplayedRecipe.haltverb = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.haltverb[key] = value.Value;
+                        DisplayedRecipe.haltverb[key] = value.Value;
                     }
                 }
             }
             if (deleteVerbDataGridView.RowCount > 1)
             {
-                displayedRecipe.deleteverb = null;
-                displayedRecipe.deleteverb_extend = null;
-                displayedRecipe.deleteverb_remove = null;
+                DisplayedRecipe.deleteverb = null;
+                DisplayedRecipe.deleteverb_extend = null;
+                DisplayedRecipe.deleteverb_remove = null;
                 foreach (DataGridViewRow row in deleteVerbDataGridView.Rows)
                 {
                     if (row.Cells[0].Value == null)
@@ -1333,33 +1319,33 @@ namespace CarcassSpark.ObjectViewers
                     int? value = row.Cells[1].Value != null ? Convert.ToInt32(row.Cells[1].Value) : (int?)null;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
-                        if (displayedRecipe.deleteverb_extend == null)
+                        if (DisplayedRecipe.deleteverb_extend == null)
                         {
-                            displayedRecipe.deleteverb_extend = new Dictionary<string, int>();
+                            DisplayedRecipe.deleteverb_extend = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.deleteverb_extend[key] = value.Value;
+                        DisplayedRecipe.deleteverb_extend[key] = value.Value;
                     }
                     else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                     {
-                        if (displayedRecipe.deleteverb_remove == null)
+                        if (DisplayedRecipe.deleteverb_remove == null)
                         {
-                            displayedRecipe.deleteverb_remove = new List<string>();
+                            DisplayedRecipe.deleteverb_remove = new List<string>();
                         }
 
-                        if (!displayedRecipe.deleteverb_remove.Contains(key))
+                        if (!DisplayedRecipe.deleteverb_remove.Contains(key))
                         {
-                            displayedRecipe.deleteverb_remove.Add(key);
+                            DisplayedRecipe.deleteverb_remove.Add(key);
                         }
                     }
                     else
                     {
-                        if (displayedRecipe.deleteverb == null)
+                        if (DisplayedRecipe.deleteverb == null)
                         {
-                            displayedRecipe.deleteverb = new Dictionary<string, int>();
+                            DisplayedRecipe.deleteverb = new Dictionary<string, int>();
                         }
 
-                        displayedRecipe.deleteverb[key] = value.Value;
+                        DisplayedRecipe.deleteverb[key] = value.Value;
                     }
                 }
             }
@@ -1367,7 +1353,7 @@ namespace CarcassSpark.ObjectViewers
             SaveLinkedRecipes();
             SaveMutations();
             Close();
-            SuccessCallback?.Invoke(this, displayedRecipe);
+            SuccessCallback?.Invoke(this, DisplayedRecipe);
         }
 
         private void AddAlternativeRecipeButton_Click(object sender, EventArgs e)
@@ -1378,8 +1364,8 @@ namespace CarcassSpark.ObjectViewers
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    alternativeRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = newGuid });
-                    alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    alternativeRecipesListView.Items.Add(new ListViewItem(rlv.DisplayedRecipeLink.id) { Tag = newGuid });
+                    alternativerecipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveAlternativeRecipes();
                 }
             }
@@ -1393,13 +1379,13 @@ namespace CarcassSpark.ObjectViewers
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    ListViewItem item = new ListViewItem(rlv.DisplayedRecipeLink.id)
                     {
                         BackColor = Utilities.ListPrependColor,
                         Tag = newGuid
                     };
                     alternativeRecipesListView.Items.Insert(0, item);
-                    alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    alternativerecipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveAlternativeRecipes();
                 }
             }
@@ -1413,13 +1399,13 @@ namespace CarcassSpark.ObjectViewers
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    ListViewItem item = new ListViewItem(rlv.DisplayedRecipeLink.id)
                     {
                         BackColor = Utilities.ListAppendColor,
                         Tag = newGuid
                     };
                     alternativeRecipesListView.Items.Add(item);
-                    alternativerecipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    alternativerecipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveAlternativeRecipes();
                 }
             }
@@ -1427,14 +1413,14 @@ namespace CarcassSpark.ObjectViewers
 
         private void AddLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.Linked))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    linkedRecipesListView.Items.Add(new ListViewItem(rlv.displayedRecipeLink.id) { Tag = newGuid });
-                    recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    linkedRecipesListView.Items.Add(new ListViewItem(rlv.DisplayedRecipeLink.id) { Tag = newGuid });
+                    recipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveLinkedRecipes();
                 }
             }
@@ -1442,19 +1428,19 @@ namespace CarcassSpark.ObjectViewers
 
         private void PrependLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.Linked))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    ListViewItem item = new ListViewItem(rlv.DisplayedRecipeLink.id)
                     {
                         BackColor = Utilities.ListPrependColor,
                         Tag = newGuid
                     };
                     linkedRecipesListView.Items.Insert(0, item);
-                    recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    recipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveLinkedRecipes();
                 }
             }
@@ -1462,19 +1448,19 @@ namespace CarcassSpark.ObjectViewers
 
         private void AppendLinkedRecipeButton_Click(object sender, EventArgs e)
         {
-            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.LINKED))
+            using (RecipeLinkViewer rlv = new RecipeLinkViewer(new RecipeLink(), true, RecipeLinkType.Linked))
             {
                 rlv.ShowDialog();
                 if (rlv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(rlv.displayedRecipeLink.id)
+                    ListViewItem item = new ListViewItem(rlv.DisplayedRecipeLink.id)
                     {
                         BackColor = Utilities.ListPrependColor,
                         Tag = newGuid
                     };
                     linkedRecipesListView.Items.Add(item);
-                    recipeLinks.Add(newGuid, rlv.displayedRecipeLink);
+                    recipeLinks.Add(newGuid, rlv.DisplayedRecipeLink);
                     SaveLinkedRecipes();
                 }
             }
@@ -1488,12 +1474,12 @@ namespace CarcassSpark.ObjectViewers
                 if (mv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    ListViewItem item = new ListViewItem(mv.DisplayedMutation.mutate)
                     {
                         Tag = newGuid
                     };
                     mutationsListView.Items.Add(item);
-                    mutations.Add(newGuid, mv.displayedMutation);
+                    mutations.Add(newGuid, mv.DisplayedMutation);
                     SaveMutations();
                 }
             }
@@ -1507,13 +1493,13 @@ namespace CarcassSpark.ObjectViewers
                 if (mv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    ListViewItem item = new ListViewItem(mv.DisplayedMutation.mutate)
                     {
                         BackColor = Utilities.ListPrependColor,
                         Tag = newGuid
                     };
                     mutationsListView.Items.Add(item);
-                    mutations.Add(newGuid, mv.displayedMutation);
+                    mutations.Add(newGuid, mv.DisplayedMutation);
                     SaveMutations();
                 }
             }
@@ -1527,13 +1513,13 @@ namespace CarcassSpark.ObjectViewers
                 if (mv.DialogResult == DialogResult.OK)
                 {
                     Guid newGuid = Guid.NewGuid();
-                    ListViewItem item = new ListViewItem(mv.displayedMutation.mutate)
+                    ListViewItem item = new ListViewItem(mv.DisplayedMutation.mutate)
                     {
                         BackColor = Utilities.ListAppendColor,
                         Tag = newGuid
                     };
                     mutationsListView.Items.Add(item);
-                    mutations.Add(newGuid, mv.displayedMutation);
+                    mutations.Add(newGuid, mv.DisplayedMutation);
                     // if (displayedRecipe.mutations_append != null) displayedRecipe.mutations_append.Add(mv.displayedMutation);
                     // else displayedRecipe.mutations_append = new List<Mutation> { mv.displayedMutation };
                     SaveMutations();
@@ -1543,46 +1529,32 @@ namespace CarcassSpark.ObjectViewers
 
         private void MaxExecutionsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedRecipe.maxexecutions = Convert.ToInt32(maxExecutionsNumericUpDown.Value);
+            DisplayedRecipe.maxexecutions = Convert.ToInt32(maxExecutionsNumericUpDown.Value);
             if (maxExecutionsNumericUpDown.Value == 0)
             {
-                displayedRecipe.maxexecutions = null;
+                DisplayedRecipe.maxexecutions = null;
             }
         }
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (idTextBox.Text == "")
-            {
-                displayedRecipe.ID = null;
-            }
-            else
-            {
-                displayedRecipe.ID = idTextBox.Text;
-            }
+            DisplayedRecipe.ID = idTextBox.Text == "" ? null : idTextBox.Text;
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (labelTextBox.Text == "")
-            {
-                displayedRecipe.label = null;
-            }
-            else
-            {
-                displayedRecipe.label = labelTextBox.Text;
-            }
+            DisplayedRecipe.label = labelTextBox.Text == "" ? null : labelTextBox.Text;
         }
 
         private void ActionIdTextBox_TextChanged(object sender, EventArgs e)
         {
             if (actionIdTextBox.Text == "")
             {
-                displayedRecipe.label = null;
+                DisplayedRecipe.label = null;
             }
             else
             {
-                displayedRecipe.actionId = actionIdTextBox.Text;
+                DisplayedRecipe.actionId = actionIdTextBox.Text;
             }
         }
 
@@ -1590,11 +1562,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (endingTextBox.Text == "")
             {
-                displayedRecipe.label = null;
+                DisplayedRecipe.label = null;
             }
             else
             {
-                displayedRecipe.ending = endingTextBox.Text;
+                DisplayedRecipe.ending = endingTextBox.Text;
             }
         }
 
@@ -1602,11 +1574,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (burnimageTextBox.Text == "")
             {
-                displayedRecipe.label = null;
+                DisplayedRecipe.label = null;
             }
             else
             {
-                displayedRecipe.burnimage = burnimageTextBox.Text;
+                DisplayedRecipe.burnimage = burnimageTextBox.Text;
             }
         }
 
@@ -1617,28 +1589,28 @@ namespace CarcassSpark.ObjectViewers
 
         private void WarmupNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
-            if (displayedRecipe.warmup == 0)
+            DisplayedRecipe.warmup = Convert.ToInt32(warmupNumericUpDown.Value);
+            if (DisplayedRecipe.warmup == 0)
             {
-                displayedRecipe.warmup = null;
+                DisplayedRecipe.warmup = null;
             }
         }
 
         private void StartdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedRecipe.startdescription = startdescriptionTextBox.Text;
-            if (displayedRecipe.startdescription == "")
+            DisplayedRecipe.startdescription = startdescriptionTextBox.Text;
+            if (DisplayedRecipe.startdescription == "")
             {
-                displayedRecipe.startdescription = null;
+                DisplayedRecipe.startdescription = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedRecipe.description = descriptionTextBox.Text;
-            if (displayedRecipe.description == "")
+            DisplayedRecipe.description = descriptionTextBox.Text;
+            if (DisplayedRecipe.description == "")
             {
-                displayedRecipe.description = null;
+                DisplayedRecipe.description = null;
             }
         }
 
@@ -1649,54 +1621,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.requirements_extend == null)
+                if (DisplayedRecipe.requirements_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.requirements_extend.ContainsKey(key))
+                if (DisplayedRecipe.requirements_extend.ContainsKey(key))
                 {
-                    displayedRecipe.requirements_extend.Remove(key);
+                    DisplayedRecipe.requirements_extend.Remove(key);
                 }
 
-                if (displayedRecipe.requirements_extend.Count == 0)
+                if (DisplayedRecipe.requirements_extend.Count == 0)
                 {
-                    displayedRecipe.requirements_extend = null;
+                    DisplayedRecipe.requirements_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.requirements_remove == null)
+                if (DisplayedRecipe.requirements_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.requirements_remove.Contains(key))
+                if (DisplayedRecipe.requirements_remove.Contains(key))
                 {
-                    displayedRecipe.requirements_remove.Remove(key);
+                    DisplayedRecipe.requirements_remove.Remove(key);
                 }
 
-                if (displayedRecipe.requirements_remove.Count == 0)
+                if (DisplayedRecipe.requirements_remove.Count == 0)
                 {
-                    displayedRecipe.requirements_remove = null;
+                    DisplayedRecipe.requirements_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.requirements == null)
+                if (DisplayedRecipe.requirements == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.requirements.ContainsKey(key))
+                if (DisplayedRecipe.requirements.ContainsKey(key))
                 {
-                    displayedRecipe.requirements.Remove(key);
+                    DisplayedRecipe.requirements.Remove(key);
                 }
 
-                if (displayedRecipe.requirements.Count == 0)
+                if (DisplayedRecipe.requirements.Count == 0)
                 {
-                    displayedRecipe.requirements = null;
+                    DisplayedRecipe.requirements = null;
                 }
             }
         }
@@ -1708,54 +1680,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.extantreqs_extend == null)
+                if (DisplayedRecipe.extantreqs_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.extantreqs_extend.ContainsKey(key))
+                if (DisplayedRecipe.extantreqs_extend.ContainsKey(key))
                 {
-                    displayedRecipe.extantreqs_extend.Remove(key);
+                    DisplayedRecipe.extantreqs_extend.Remove(key);
                 }
 
-                if (displayedRecipe.extantreqs_extend.Count == 0)
+                if (DisplayedRecipe.extantreqs_extend.Count == 0)
                 {
-                    displayedRecipe.extantreqs_extend = null;
+                    DisplayedRecipe.extantreqs_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.extantreqs_remove == null)
+                if (DisplayedRecipe.extantreqs_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.extantreqs_remove.Contains(key))
+                if (DisplayedRecipe.extantreqs_remove.Contains(key))
                 {
-                    displayedRecipe.extantreqs_remove.Remove(key);
+                    DisplayedRecipe.extantreqs_remove.Remove(key);
                 }
 
-                if (displayedRecipe.extantreqs_remove.Count == 0)
+                if (DisplayedRecipe.extantreqs_remove.Count == 0)
                 {
-                    displayedRecipe.extantreqs_remove = null;
+                    DisplayedRecipe.extantreqs_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.extantreqs == null)
+                if (DisplayedRecipe.extantreqs == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.extantreqs.ContainsKey(key))
+                if (DisplayedRecipe.extantreqs.ContainsKey(key))
                 {
-                    displayedRecipe.extantreqs.Remove(key);
+                    DisplayedRecipe.extantreqs.Remove(key);
                 }
 
-                if (displayedRecipe.extantreqs.Count == 0)
+                if (DisplayedRecipe.extantreqs.Count == 0)
                 {
-                    displayedRecipe.extantreqs = null;
+                    DisplayedRecipe.extantreqs = null;
                 }
             }
         }
@@ -1767,54 +1739,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.tablereqs_extend == null)
+                if (DisplayedRecipe.tablereqs_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.tablereqs_extend.ContainsKey(key))
+                if (DisplayedRecipe.tablereqs_extend.ContainsKey(key))
                 {
-                    displayedRecipe.tablereqs_extend.Remove(key);
+                    DisplayedRecipe.tablereqs_extend.Remove(key);
                 }
 
-                if (displayedRecipe.tablereqs_extend.Count == 0)
+                if (DisplayedRecipe.tablereqs_extend.Count == 0)
                 {
-                    displayedRecipe.tablereqs_extend = null;
+                    DisplayedRecipe.tablereqs_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.tablereqs_remove == null)
+                if (DisplayedRecipe.tablereqs_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.tablereqs_remove.Contains(key))
+                if (DisplayedRecipe.tablereqs_remove.Contains(key))
                 {
-                    displayedRecipe.tablereqs_remove.Remove(key);
+                    DisplayedRecipe.tablereqs_remove.Remove(key);
                 }
 
-                if (displayedRecipe.tablereqs_remove.Count == 0)
+                if (DisplayedRecipe.tablereqs_remove.Count == 0)
                 {
-                    displayedRecipe.tablereqs_remove = null;
+                    DisplayedRecipe.tablereqs_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.tablereqs == null)
+                if (DisplayedRecipe.tablereqs == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.tablereqs.ContainsKey(key))
+                if (DisplayedRecipe.tablereqs.ContainsKey(key))
                 {
-                    displayedRecipe.tablereqs.Remove(key);
+                    DisplayedRecipe.tablereqs.Remove(key);
                 }
 
-                if (displayedRecipe.tablereqs.Count == 0)
+                if (DisplayedRecipe.tablereqs.Count == 0)
                 {
-                    displayedRecipe.tablereqs = null;
+                    DisplayedRecipe.tablereqs = null;
                 }
             }
         }
@@ -1826,54 +1798,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.effects_extend == null)
+                if (DisplayedRecipe.effects_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.effects_extend.ContainsKey(key))
+                if (DisplayedRecipe.effects_extend.ContainsKey(key))
                 {
-                    displayedRecipe.effects_extend.Remove(key);
+                    DisplayedRecipe.effects_extend.Remove(key);
                 }
 
-                if (displayedRecipe.effects_extend.Count == 0)
+                if (DisplayedRecipe.effects_extend.Count == 0)
                 {
-                    displayedRecipe.effects_extend = null;
+                    DisplayedRecipe.effects_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.effects_remove == null)
+                if (DisplayedRecipe.effects_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.effects_remove.Contains(key))
+                if (DisplayedRecipe.effects_remove.Contains(key))
                 {
-                    displayedRecipe.effects_remove.Remove(key);
+                    DisplayedRecipe.effects_remove.Remove(key);
                 }
 
-                if (displayedRecipe.effects_remove.Count == 0)
+                if (DisplayedRecipe.effects_remove.Count == 0)
                 {
-                    displayedRecipe.effects_remove = null;
+                    DisplayedRecipe.effects_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.effects == null)
+                if (DisplayedRecipe.effects == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.effects.ContainsKey(key))
+                if (DisplayedRecipe.effects.ContainsKey(key))
                 {
-                    displayedRecipe.effects.Remove(key);
+                    DisplayedRecipe.effects.Remove(key);
                 }
 
-                if (displayedRecipe.effects.Count == 0)
+                if (DisplayedRecipe.effects.Count == 0)
                 {
-                    displayedRecipe.effects = null;
+                    DisplayedRecipe.effects = null;
                 }
             }
         }
@@ -1885,54 +1857,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.aspects_extend == null)
+                if (DisplayedRecipe.aspects_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.aspects_extend.ContainsKey(key))
+                if (DisplayedRecipe.aspects_extend.ContainsKey(key))
                 {
-                    displayedRecipe.aspects_extend.Remove(key);
+                    DisplayedRecipe.aspects_extend.Remove(key);
                 }
 
-                if (displayedRecipe.aspects_extend.Count == 0)
+                if (DisplayedRecipe.aspects_extend.Count == 0)
                 {
-                    displayedRecipe.aspects_extend = null;
+                    DisplayedRecipe.aspects_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.aspects_remove == null)
+                if (DisplayedRecipe.aspects_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.aspects_remove.Contains(key))
+                if (DisplayedRecipe.aspects_remove.Contains(key))
                 {
-                    displayedRecipe.aspects_remove.Remove(key);
+                    DisplayedRecipe.aspects_remove.Remove(key);
                 }
 
-                if (displayedRecipe.aspects_remove.Count == 0)
+                if (DisplayedRecipe.aspects_remove.Count == 0)
                 {
-                    displayedRecipe.aspects_remove = null;
+                    DisplayedRecipe.aspects_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.aspects == null)
+                if (DisplayedRecipe.aspects == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.aspects.ContainsKey(key))
+                if (DisplayedRecipe.aspects.ContainsKey(key))
                 {
-                    displayedRecipe.aspects.Remove(key);
+                    DisplayedRecipe.aspects.Remove(key);
                 }
 
-                if (displayedRecipe.aspects.Count == 0)
+                if (DisplayedRecipe.aspects.Count == 0)
                 {
-                    displayedRecipe.aspects = null;
+                    DisplayedRecipe.aspects = null;
                 }
             }
         }
@@ -1944,54 +1916,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.deckeffects_extend == null)
+                if (DisplayedRecipe.deckeffects_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deckeffects_extend.ContainsKey(key))
+                if (DisplayedRecipe.deckeffects_extend.ContainsKey(key))
                 {
-                    displayedRecipe.deckeffects_extend.Remove(key);
+                    DisplayedRecipe.deckeffects_extend.Remove(key);
                 }
 
-                if (displayedRecipe.deckeffects_extend.Count == 0)
+                if (DisplayedRecipe.deckeffects_extend.Count == 0)
                 {
-                    displayedRecipe.deckeffects_extend = null;
+                    DisplayedRecipe.deckeffects_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.deckeffects_remove == null)
+                if (DisplayedRecipe.deckeffects_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deckeffects_remove.Contains(key))
+                if (DisplayedRecipe.deckeffects_remove.Contains(key))
                 {
-                    displayedRecipe.deckeffects_remove.Remove(key);
+                    DisplayedRecipe.deckeffects_remove.Remove(key);
                 }
 
-                if (displayedRecipe.deckeffects_remove.Count == 0)
+                if (DisplayedRecipe.deckeffects_remove.Count == 0)
                 {
-                    displayedRecipe.deckeffects_remove = null;
+                    DisplayedRecipe.deckeffects_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.deckeffects == null)
+                if (DisplayedRecipe.deckeffects == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deckeffects.ContainsKey(key))
+                if (DisplayedRecipe.deckeffects.ContainsKey(key))
                 {
-                    displayedRecipe.deckeffects.Remove(key);
+                    DisplayedRecipe.deckeffects.Remove(key);
                 }
 
-                if (displayedRecipe.deckeffects.Count == 0)
+                if (DisplayedRecipe.deckeffects.Count == 0)
                 {
-                    displayedRecipe.deckeffects = null;
+                    DisplayedRecipe.deckeffects = null;
                 }
             }
         }
@@ -2198,94 +2170,94 @@ namespace CarcassSpark.ObjectViewers
 
         private void SaveAlternativeRecipes()
         {
-            displayedRecipe.alt = null;
-            displayedRecipe.alt_prepend = null;
-            displayedRecipe.alt_append = null;
-            displayedRecipe.alt_remove = null;
+            DisplayedRecipe.alt = null;
+            DisplayedRecipe.alt_prepend = null;
+            DisplayedRecipe.alt_append = null;
+            DisplayedRecipe.alt_remove = null;
             foreach (ListViewItem item in alternativeRecipesListView.Items)
             {
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    if (displayedRecipe.alt_append == null)
+                    if (DisplayedRecipe.alt_append == null)
                     {
-                        displayedRecipe.alt_append = new List<RecipeLink>();
+                        DisplayedRecipe.alt_append = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.alt_append.Add(alternativerecipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.alt_append.Add(alternativerecipeLinks[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    if (displayedRecipe.alt_prepend == null)
+                    if (DisplayedRecipe.alt_prepend == null)
                     {
-                        displayedRecipe.alt_prepend = new List<RecipeLink>();
+                        DisplayedRecipe.alt_prepend = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.alt_prepend.Add(alternativerecipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.alt_prepend.Add(alternativerecipeLinks[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    if (displayedRecipe.alt_remove == null)
+                    if (DisplayedRecipe.alt_remove == null)
                     {
-                        displayedRecipe.alt_remove = new List<string>();
+                        DisplayedRecipe.alt_remove = new List<string>();
                     }
 
-                    displayedRecipe.alt_remove.Add(item.Tag.ToString());
+                    DisplayedRecipe.alt_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
-                    if (displayedRecipe.alt == null)
+                    if (DisplayedRecipe.alt == null)
                     {
-                        displayedRecipe.alt = new List<RecipeLink>();
+                        DisplayedRecipe.alt = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.alt.Add(alternativerecipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.alt.Add(alternativerecipeLinks[(Guid)item.Tag]);
                 }
             }
         }
 
         private void SaveLinkedRecipes()
         {
-            displayedRecipe.linked = null;
-            displayedRecipe.linked_prepend = null;
-            displayedRecipe.linked_append = null;
-            displayedRecipe.linked_remove = null;
+            DisplayedRecipe.linked = null;
+            DisplayedRecipe.linked_prepend = null;
+            DisplayedRecipe.linked_append = null;
+            DisplayedRecipe.linked_remove = null;
             foreach (ListViewItem item in linkedRecipesListView.Items)
             {
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    if (displayedRecipe.linked_append == null)
+                    if (DisplayedRecipe.linked_append == null)
                     {
-                        displayedRecipe.linked_append = new List<RecipeLink>();
+                        DisplayedRecipe.linked_append = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.linked_append.Add(recipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.linked_append.Add(recipeLinks[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    if (displayedRecipe.linked_prepend == null)
+                    if (DisplayedRecipe.linked_prepend == null)
                     {
-                        displayedRecipe.linked_prepend = new List<RecipeLink>();
+                        DisplayedRecipe.linked_prepend = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.linked_prepend.Add(recipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.linked_prepend.Add(recipeLinks[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    if (displayedRecipe.linked_remove == null)
+                    if (DisplayedRecipe.linked_remove == null)
                     {
-                        displayedRecipe.linked_remove = new List<string>();
+                        DisplayedRecipe.linked_remove = new List<string>();
                     }
 
-                    displayedRecipe.linked_remove.Add(item.Tag.ToString());
+                    DisplayedRecipe.linked_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
-                    if (displayedRecipe.linked == null)
+                    if (DisplayedRecipe.linked == null)
                     {
-                        displayedRecipe.linked = new List<RecipeLink>();
+                        DisplayedRecipe.linked = new List<RecipeLink>();
                     }
 
-                    displayedRecipe.linked.Add(recipeLinks[(Guid)item.Tag]);
+                    DisplayedRecipe.linked.Add(recipeLinks[(Guid)item.Tag]);
                 }
             }
         }
@@ -2344,54 +2316,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.deleteverb_extend == null)
+                if (DisplayedRecipe.deleteverb_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deleteverb_extend.ContainsKey(key))
+                if (DisplayedRecipe.deleteverb_extend.ContainsKey(key))
                 {
-                    displayedRecipe.deleteverb_extend.Remove(key);
+                    DisplayedRecipe.deleteverb_extend.Remove(key);
                 }
 
-                if (displayedRecipe.deleteverb_extend.Count == 0)
+                if (DisplayedRecipe.deleteverb_extend.Count == 0)
                 {
-                    displayedRecipe.deleteverb_extend = null;
+                    DisplayedRecipe.deleteverb_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.deleteverb_remove == null)
+                if (DisplayedRecipe.deleteverb_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deleteverb_remove.Contains(key))
+                if (DisplayedRecipe.deleteverb_remove.Contains(key))
                 {
-                    displayedRecipe.deleteverb_remove.Remove(key);
+                    DisplayedRecipe.deleteverb_remove.Remove(key);
                 }
 
-                if (displayedRecipe.deleteverb_remove.Count == 0)
+                if (DisplayedRecipe.deleteverb_remove.Count == 0)
                 {
-                    displayedRecipe.deleteverb_remove = null;
+                    DisplayedRecipe.deleteverb_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.deleteverb == null)
+                if (DisplayedRecipe.deleteverb == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.deleteverb.ContainsKey(key))
+                if (DisplayedRecipe.deleteverb.ContainsKey(key))
                 {
-                    displayedRecipe.deleteverb.Remove(key);
+                    DisplayedRecipe.deleteverb.Remove(key);
                 }
 
-                if (displayedRecipe.deleteverb.Count == 0)
+                if (DisplayedRecipe.deleteverb.Count == 0)
                 {
-                    displayedRecipe.deleteverb = null;
+                    DisplayedRecipe.deleteverb = null;
                 }
             }
         }
@@ -2403,54 +2375,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.haltverb_extend == null)
+                if (DisplayedRecipe.haltverb_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.haltverb_extend.ContainsKey(key))
+                if (DisplayedRecipe.haltverb_extend.ContainsKey(key))
                 {
-                    displayedRecipe.haltverb_extend.Remove(key);
+                    DisplayedRecipe.haltverb_extend.Remove(key);
                 }
 
-                if (displayedRecipe.haltverb_extend.Count == 0)
+                if (DisplayedRecipe.haltverb_extend.Count == 0)
                 {
-                    displayedRecipe.haltverb_extend = null;
+                    DisplayedRecipe.haltverb_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.haltverb_remove == null)
+                if (DisplayedRecipe.haltverb_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.haltverb_remove.Contains(key))
+                if (DisplayedRecipe.haltverb_remove.Contains(key))
                 {
-                    displayedRecipe.haltverb_remove.Remove(key);
+                    DisplayedRecipe.haltverb_remove.Remove(key);
                 }
 
-                if (displayedRecipe.haltverb_remove.Count == 0)
+                if (DisplayedRecipe.haltverb_remove.Count == 0)
                 {
-                    displayedRecipe.haltverb_remove = null;
+                    DisplayedRecipe.haltverb_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.haltverb == null)
+                if (DisplayedRecipe.haltverb == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.haltverb.ContainsKey(key))
+                if (DisplayedRecipe.haltverb.ContainsKey(key))
                 {
-                    displayedRecipe.haltverb.Remove(key);
+                    DisplayedRecipe.haltverb.Remove(key);
                 }
 
-                if (displayedRecipe.haltverb.Count == 0)
+                if (DisplayedRecipe.haltverb.Count == 0)
                 {
-                    displayedRecipe.haltverb = null;
+                    DisplayedRecipe.haltverb = null;
                 }
             }
         }
@@ -2462,54 +2434,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedRecipe.purge_extend == null)
+                if (DisplayedRecipe.purge_extend == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.purge_extend.ContainsKey(key))
+                if (DisplayedRecipe.purge_extend.ContainsKey(key))
                 {
-                    displayedRecipe.purge_extend.Remove(key);
+                    DisplayedRecipe.purge_extend.Remove(key);
                 }
 
-                if (displayedRecipe.purge_extend.Count == 0)
+                if (DisplayedRecipe.purge_extend.Count == 0)
                 {
-                    displayedRecipe.purge_extend = null;
+                    DisplayedRecipe.purge_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedRecipe.purge_remove == null)
+                if (DisplayedRecipe.purge_remove == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.purge_remove.Contains(key))
+                if (DisplayedRecipe.purge_remove.Contains(key))
                 {
-                    displayedRecipe.purge_remove.Remove(key);
+                    DisplayedRecipe.purge_remove.Remove(key);
                 }
 
-                if (displayedRecipe.purge_remove.Count == 0)
+                if (DisplayedRecipe.purge_remove.Count == 0)
                 {
-                    displayedRecipe.purge_remove = null;
+                    DisplayedRecipe.purge_remove = null;
                 }
             }
             else
             {
-                if (displayedRecipe.purge == null)
+                if (DisplayedRecipe.purge == null)
                 {
                     return;
                 }
 
-                if (displayedRecipe.purge.ContainsKey(key))
+                if (DisplayedRecipe.purge.ContainsKey(key))
                 {
-                    displayedRecipe.purge.Remove(key);
+                    DisplayedRecipe.purge.Remove(key);
                 }
 
-                if (displayedRecipe.purge.Count == 0)
+                if (DisplayedRecipe.purge.Count == 0)
                 {
-                    displayedRecipe.purge = null;
+                    DisplayedRecipe.purge = null;
                 }
             }
         }
@@ -2557,66 +2529,66 @@ namespace CarcassSpark.ObjectViewers
 
         private void SaveMutations()
         {
-            displayedRecipe.mutations = null;
-            displayedRecipe.mutations_prepend = null;
-            displayedRecipe.mutations_append = null;
-            displayedRecipe.mutations_remove = null;
+            DisplayedRecipe.mutations = null;
+            DisplayedRecipe.mutations_prepend = null;
+            DisplayedRecipe.mutations_append = null;
+            DisplayedRecipe.mutations_remove = null;
             foreach (ListViewItem item in mutationsListView.Items)
             {
                 if (item.BackColor == Utilities.ListAppendColor)
                 {
-                    if (displayedRecipe.mutations_append == null)
+                    if (DisplayedRecipe.mutations_append == null)
                     {
-                        displayedRecipe.mutations_append = new List<Mutation>();
+                        DisplayedRecipe.mutations_append = new List<Mutation>();
                     }
 
-                    displayedRecipe.mutations_append.Add(mutations[(Guid)item.Tag]);
+                    DisplayedRecipe.mutations_append.Add(mutations[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListPrependColor)
                 {
-                    if (displayedRecipe.mutations_prepend == null)
+                    if (DisplayedRecipe.mutations_prepend == null)
                     {
-                        displayedRecipe.mutations_prepend = new List<Mutation>();
+                        DisplayedRecipe.mutations_prepend = new List<Mutation>();
                     }
 
-                    displayedRecipe.mutations_prepend.Add(mutations[(Guid)item.Tag]);
+                    DisplayedRecipe.mutations_prepend.Add(mutations[(Guid)item.Tag]);
                 }
                 else if (item.BackColor == Utilities.ListRemoveColor)
                 {
-                    if (displayedRecipe.mutations_remove == null)
+                    if (DisplayedRecipe.mutations_remove == null)
                     {
-                        displayedRecipe.mutations_remove = new List<string>();
+                        DisplayedRecipe.mutations_remove = new List<string>();
                     }
 
-                    displayedRecipe.mutations_remove.Add(item.Tag.ToString());
+                    DisplayedRecipe.mutations_remove.Add(item.Tag.ToString());
                 }
                 else
                 {
-                    if (displayedRecipe.mutations == null)
+                    if (DisplayedRecipe.mutations == null)
                     {
-                        displayedRecipe.mutations = new List<Mutation>();
+                        DisplayedRecipe.mutations = new List<Mutation>();
                     }
 
-                    displayedRecipe.mutations.Add(mutations[(Guid)item.Tag]);
+                    DisplayedRecipe.mutations.Add(mutations[(Guid)item.Tag]);
                 }
             }
         }
 
         private void SignalEndingFlavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
-            displayedRecipe.signalendingflavour = signalEndingFlavourDomainUpDown.Text;
-            if (displayedRecipe.signalendingflavour == "")
+            DisplayedRecipe.signalendingflavour = signalEndingFlavourDomainUpDown.Text;
+            if (DisplayedRecipe.signalendingflavour == "")
             {
-                displayedRecipe.signalendingflavour = null;
+                DisplayedRecipe.signalendingflavour = null;
             }
         }
 
         private void PortalEffectDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
-            displayedRecipe.portaleffect = portalEffectDomainUpDown.Text;
-            if (displayedRecipe.portaleffect == "")
+            DisplayedRecipe.portaleffect = portalEffectDomainUpDown.Text;
+            if (DisplayedRecipe.portaleffect == "")
             {
-                displayedRecipe.portaleffect = null;
+                DisplayedRecipe.portaleffect = null;
             }
         }
 
@@ -2624,17 +2596,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (craftableCheckBox.CheckState == CheckState.Checked)
             {
-                displayedRecipe.craftable = true;
+                DisplayedRecipe.craftable = true;
             }
 
             if (craftableCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedRecipe.craftable = false;
+                DisplayedRecipe.craftable = false;
             }
 
             if (craftableCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedRecipe.craftable = null;
+                DisplayedRecipe.craftable = null;
             }
         }
 
@@ -2642,17 +2614,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (hintonlyCheckBox.CheckState == CheckState.Checked)
             {
-                displayedRecipe.hintonly = true;
+                DisplayedRecipe.hintonly = true;
             }
 
             if (hintonlyCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedRecipe.hintonly = false;
+                DisplayedRecipe.hintonly = false;
             }
 
             if (hintonlyCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedRecipe.hintonly = null;
+                DisplayedRecipe.hintonly = null;
             }
         }
 
@@ -2660,26 +2632,26 @@ namespace CarcassSpark.ObjectViewers
         {
             if (signalImportantLoopCheckBox.CheckState == CheckState.Checked)
             {
-                displayedRecipe.signalimportantloop = true;
+                DisplayedRecipe.signalimportantloop = true;
             }
 
             if (signalImportantLoopCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedRecipe.signalimportantloop = false;
+                DisplayedRecipe.signalimportantloop = false;
             }
 
             if (signalImportantLoopCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedRecipe.signalimportantloop = null;
+                DisplayedRecipe.signalimportantloop = null;
             }
         }
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedRecipe.comments = commentsTextBox.Text;
-            if (displayedRecipe.comments == "")
+            DisplayedRecipe.comments = commentsTextBox.Text;
+            if (DisplayedRecipe.comments == "")
             {
-                displayedRecipe.comments = null;
+                DisplayedRecipe.comments = null;
             }
         }
 
@@ -2687,17 +2659,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (deletedCheckBox.CheckState == CheckState.Checked)
             {
-                displayedRecipe.deleted = true;
+                DisplayedRecipe.deleted = true;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedRecipe.deleted = false;
+                DisplayedRecipe.deleted = false;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedRecipe.deleted = null;
+                DisplayedRecipe.deleted = null;
             }
         }
 
@@ -2705,24 +2677,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (extendsTextBox.Text.Contains(","))
             {
-                displayedRecipe.extends = extendsTextBox.Text.Split(',').ToList();
+                DisplayedRecipe.extends = extendsTextBox.Text.Split(',').ToList();
             }
             else
             {
-                if (extendsTextBox.Text != "")
-                {
-                    displayedRecipe.extends = new List<string> { extendsTextBox.Text };
-                }
-                else
-                {
-                    displayedRecipe.extends = null;
-                }
+                DisplayedRecipe.extends = extendsTextBox.Text != "" ? new List<string> { extendsTextBox.Text } : null;
             }
         }
 
         private void RecipeViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedRecipe);
+            FillValues(DisplayedRecipe);
         }
     }
 }

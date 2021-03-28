@@ -7,7 +7,7 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class CultureViewer : Form
     {
-        public Culture displayedCulture;
+        public Culture DisplayedCulture;
         private readonly List<string> uilabelkeyslist = new List<string>() {
             "UI_PAUSE",
             "UI_UNPAUSE",
@@ -165,7 +165,7 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture, bool? editing)
         {
             InitializeComponent();
-            displayedCulture = culture;
+            DisplayedCulture = culture;
             if (editing.HasValue)
             {
                 SetEditingMode(editing.Value);
@@ -175,7 +175,7 @@ namespace CarcassSpark.ObjectViewers
         public CultureViewer(Culture culture)
         {
             InitializeComponent();
-            displayedCulture = culture;
+            DisplayedCulture = culture;
             SetEditingMode(false);
         }
 
@@ -245,7 +245,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (UiLabelDataGridView.Rows.Count > 0)
             {
-                displayedCulture.uilabels = new Dictionary<string, string>();
+                DisplayedCulture.uilabels = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in UiLabelDataGridView.Rows)
                 {
                     string key = row.Cells[0].Value as string;
@@ -253,7 +253,7 @@ namespace CarcassSpark.ObjectViewers
                     // only save the keys with a value. Also prevents the saving of the final, blank row that always exists in a DataGridView for some reason.
                     if (!string.IsNullOrEmpty(value))
                     {
-                        displayedCulture.uilabels.Add(key, value);
+                        DisplayedCulture.uilabels.Add(key, value);
                     }
                 }
             }
@@ -263,65 +263,37 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (idTextBox.Text != "")
-            {
-                displayedCulture.id = idTextBox.Text;
-            }
-            else
-            {
-                displayedCulture.id = null;
-            }
+            DisplayedCulture.id = idTextBox.Text != "" ? idTextBox.Text : null;
         }
 
         private void EndonymTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (endonymTextBox.Text != "")
-            {
-                displayedCulture.endonym = endonymTextBox.Text;
-            }
-            else
-            {
-                displayedCulture.endonym = null;
-            }
+            DisplayedCulture.endonym = endonymTextBox.Text != "" ? endonymTextBox.Text : null;
         }
 
         private void ExonymTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (exonymTextBox.Text != "")
-            {
-                displayedCulture.exonym = exonymTextBox.Text;
-            }
-            else
-            {
-                displayedCulture.exonym = null;
-            }
+            DisplayedCulture.exonym = exonymTextBox.Text != "" ? exonymTextBox.Text : null;
         }
 
         private void FontScriptTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (fontScriptTextBox.Text != "")
-            {
-                displayedCulture.fontscript = fontScriptTextBox.Text;
-            }
-            else
-            {
-                displayedCulture.fontscript = null;
-            }
+            DisplayedCulture.fontscript = fontScriptTextBox.Text != "" ? fontScriptTextBox.Text : null;
         }
 
         private void BoldAllowedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedCulture.boldallowed = boldAllowedCheckBox.Checked;
+            DisplayedCulture.boldallowed = boldAllowedCheckBox.Checked;
         }
 
         private void ReleasedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedCulture.released = releasedCheckBox.Checked;
+            DisplayedCulture.released = releasedCheckBox.Checked;
         }
 
         private void CultureViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedCulture);
+            FillValues(DisplayedCulture);
         }
     }
 }

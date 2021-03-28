@@ -9,8 +9,8 @@ namespace CarcassSpark.Tools
     public partial class SummonCreator : Form
     {
 
-        public Element baseSummon, preSummon;
-        public Recipe startSummon, succeedSummon;
+        public Element BaseSummon, PreSummon;
+        public Recipe StartSummon, SucceedSummon;
 
         public SummonCreator()
         {
@@ -19,29 +19,29 @@ namespace CarcassSpark.Tools
 
         private void InspectBaseButton_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(baseSummon, null, null);
+            ElementViewer ev = new ElementViewer(BaseSummon, null, null);
             ev.Show();
         }
 
         private void InspectPreButton_Click(object sender, EventArgs e)
         {
-            ElementViewer ev = new ElementViewer(preSummon, null, null);
+            ElementViewer ev = new ElementViewer(PreSummon, null, null);
             ev.Show();
         }
 
         private void BaseRecipe_Assign(object sender, Recipe result)
         {
-            startSummon = result.Copy();
-            succeedSummon = new Recipe
+            StartSummon = result.Copy();
+            SucceedSummon = new Recipe
             {
-                ID = startSummon.ID + ".success",
-                label = startSummon.label,
-                actionId = startSummon.actionId,
-                description = startSummon.description
+                ID = StartSummon.ID + ".success",
+                label = StartSummon.label,
+                actionId = StartSummon.actionId,
+                description = StartSummon.description
             };
-            startSummon.linked.Add(new RecipeLink(succeedSummon.ID));
-            baseSummonIdTextBox.Text = baseSummon.ID;
-            successSummonTextBox.Text = succeedSummon.ID;
+            StartSummon.linked.Add(new RecipeLink(SucceedSummon.ID));
+            baseSummonIdTextBox.Text = BaseSummon.ID;
+            successSummonTextBox.Text = SucceedSummon.ID;
             inspectBaseButton.Enabled = true;
             inspectSuccessRecipeButton.Enabled = true;
         }
@@ -58,29 +58,29 @@ namespace CarcassSpark.Tools
                 warmup = 60,
                 effects = new Dictionary<string, string>
                 {
-                    { baseSummon.ID, "1" }
+                    { BaseSummon.ID, "1" }
                 },
                 linked = new List<RecipeLink>
                 {
-                    new RecipeLink("summoninglosingcontrol", 30, false, (Dictionary<string, string>)null, null)
+                    new RecipeLink("summoninglosingcontrol", 30, false, null, null)
                 },
                 craftable = true
             };
 
-            RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.GENERATOR, null);
+            RecipeViewer rv = new RecipeViewer(startSummonRecipe, BaseRecipe_Assign, RecipeType.Generator, null);
             MessageBox.Show("The fields with red labels are required.", "Required Values");
             rv.Show();
         }
 
         private void InspectBaseRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(startSummon, null, null);
+            RecipeViewer rv = new RecipeViewer(StartSummon, null, null);
             rv.Show();
         }
 
         private void InspectSuccessRecipeButton_Click(object sender, EventArgs e)
         {
-            RecipeViewer rv = new RecipeViewer(succeedSummon, null, null);
+            RecipeViewer rv = new RecipeViewer(SucceedSummon, null, null);
             rv.Show();
         }
 
@@ -98,18 +98,18 @@ namespace CarcassSpark.Tools
 
         private void BaseElement_Assign(object sender, Element result)
         {
-            baseSummon = result.Copy();
-            baseIdTextBox.Text = baseSummon.ID;
-            baseSummon.xtriggers = new Dictionary<string, List<XTrigger>>()
+            BaseSummon = result.Copy();
+            baseIdTextBox.Text = BaseSummon.ID;
+            BaseSummon.xtriggers = new Dictionary<string, List<XTrigger>>()
             {
                 { "killsummoned", new List<XTrigger>()
                     {
-                        new XTrigger(baseSummon.decayTo)
+                        new XTrigger(BaseSummon.decayTo)
                     }
                 }
             };
             Dictionary<string, int> preAspects = new Dictionary<string, int>();
-            foreach (KeyValuePair<string, int> kvp in baseSummon.aspects)
+            foreach (KeyValuePair<string, int> kvp in BaseSummon.aspects)
             {
                 switch (kvp.Key)
                 {
@@ -125,32 +125,32 @@ namespace CarcassSpark.Tools
                         break;
                 }
             }
-            preSummon = new Element
+            PreSummon = new Element
             {
-                id = "pre." + baseSummon.ID,
-                label = baseSummon.label,
-                description = baseSummon.description,
-                unique = baseSummon.unique,
-                icon = baseSummon.icon,
-                comments = baseSummon.comments,
+                id = "pre." + BaseSummon.ID,
+                label = BaseSummon.label,
+                description = BaseSummon.description,
+                unique = BaseSummon.unique,
+                icon = BaseSummon.icon,
+                comments = BaseSummon.comments,
                 aspects = preAspects,
                 xtriggers = new Dictionary<string, List<XTrigger>>
                 {
                     { "killmanifesting", new List<XTrigger>
                         {
-                            new XTrigger(baseSummon.decayTo)
+                            new XTrigger(BaseSummon.decayTo)
                         }
                     },
                     { "killsummoned", new List<XTrigger>
                         {
-                            new XTrigger(baseSummon.decayTo)
+                            new XTrigger(BaseSummon.decayTo)
                         }
                     }
                 },
-                decayTo = baseSummon.ID,
+                decayTo = BaseSummon.ID,
                 lifetime = 1
             };
-            preSummonIdTextBox.Text = preSummon.ID;
+            preSummonIdTextBox.Text = PreSummon.ID;
 
             createRecipeButton.Enabled = true;
             inspectBaseButton.Enabled = true;
@@ -169,7 +169,7 @@ namespace CarcassSpark.Tools
                 lifetime = 60
             };
             MessageBox.Show("The fields with red labels are required.", "Required Values");
-            ElementViewer ev = new ElementViewer(baseElement, BaseElement_Assign, ElementType.GENERATOR, null);
+            ElementViewer ev = new ElementViewer(baseElement, BaseElement_Assign, ElementType.Generator, null);
             ev.Show();
         }
     }

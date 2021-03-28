@@ -11,15 +11,15 @@ namespace CarcassSpark.Tools
 {
     public enum TemplateManagerMode
     {
-        NORMAL,
-        SELECTING
+        Normal,
+        Selecting
     }
     
     public partial class TemplateManager : Form
     {
         private readonly string templatesPath = Path.Combine(Path.GetFullPath(Application.StartupPath), "templates");
         private bool unsavedChanged = false;
-        public ListViewItem selectedItem;
+        public ListViewItem SelectedItem;
 
         public TemplateManager()
         {
@@ -33,7 +33,7 @@ namespace CarcassSpark.Tools
             InitializeComponent();
             SetScintillaStyle();
             EnumerateTemplates();
-            if (mode == TemplateManagerMode.SELECTING)
+            if (mode == TemplateManagerMode.Selecting)
             {
                 SetSelectionMode();
             }
@@ -80,14 +80,14 @@ namespace CarcassSpark.Tools
             {
                 foreach (string templateFile in Directory.EnumerateFiles(templatesPath, "*.json", SearchOption.AllDirectories))
                 {
-                    string folderName = Path.GetDirectoryName(templateFile).Split(Path.DirectorySeparatorChar).Last();
+                    string folderName = Path.GetDirectoryName(templateFile)?.Split(Path.DirectorySeparatorChar).Last();
                     ListViewGroup group = templatesListView.Groups[folderName] ?? new ListViewGroup(folderName, folderName);
                     if (!templatesListView.Groups.Contains(group))
                     {
                         templatesListView.Groups.Add(group);
                     }
-                    string templateJSON = File.ReadAllText(templateFile);
-                    ListViewItem templateListViewItem = new ListViewItem(Path.GetFileName(templateFile)) { Tag = templateJSON, Name = Path.GetFileName(templateFile), Group = group };
+                    string templateJson = File.ReadAllText(templateFile);
+                    ListViewItem templateListViewItem = new ListViewItem(Path.GetFileName(templateFile)) { Tag = templateJson, Name = Path.GetFileName(templateFile), Group = group };
                     templatesListView.Items.Add(templateListViewItem);
                 }
             }
@@ -98,7 +98,7 @@ namespace CarcassSpark.Tools
         {
             if (templatesListView.SelectedItems.Count == 1)
             {
-                selectedItem = templatesListView.SelectedItems[0];
+                SelectedItem = templatesListView.SelectedItems[0];
                 scintilla1.Tag = templatesListView.SelectedItems[0].Text;
                 scintilla1.Text = templatesListView.SelectedItems[0].Tag as string;
             }
@@ -164,9 +164,6 @@ namespace CarcassSpark.Tools
                         break;
                     case "Culture":
                         newListViewItem = CreateTemplateFile(newListViewItem, filename, typeof(Culture));
-                        break;
-
-                    default:
                         break;
                 }
                 if (newListViewItem.Tag != null)
@@ -256,7 +253,7 @@ namespace CarcassSpark.Tools
             {
                 unsavedChanged = scintilla1.Text != (templatesListView.Items[scintilla1.Tag as string].Tag as string);
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 // We just deleted the file being referenced, most likely.
             }
@@ -264,7 +261,7 @@ namespace CarcassSpark.Tools
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            if (selectedItem != null && (!unsavedChanged || VerifyQuit()))
+            if (SelectedItem != null && (!unsavedChanged || VerifyQuit()))
             {
                 DialogResult = DialogResult.OK;
                 Close();

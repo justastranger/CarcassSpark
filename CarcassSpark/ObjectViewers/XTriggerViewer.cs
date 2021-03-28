@@ -7,14 +7,14 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class XTriggerViewer : Form
     {
-        public List<XTrigger> displayedXTriggers;
-        public string catalyst;
+        public List<XTrigger> DisplayedXTriggers;
+        public string Catalyst;
 
         public XTriggerViewer(string catalyst, List<XTrigger> xTriggers, bool editing)
         {
             InitializeComponent();
-            displayedXTriggers = xTriggers;
-            this.catalyst = catalyst;
+            DisplayedXTriggers = xTriggers;
+            this.Catalyst = catalyst;
             FillValues();
             SetEditingMode(editing);
         }
@@ -22,8 +22,8 @@ namespace CarcassSpark.ObjectViewers
         public XTriggerViewer(string catalyst, List<XTrigger> xTriggers, bool editing, bool remove)
         {
             InitializeComponent();
-            displayedXTriggers = xTriggers;
-            this.catalyst = catalyst;
+            DisplayedXTriggers = xTriggers;
+            this.Catalyst = catalyst;
             SetEditingMode(editing);
             xtriggersDataGridView.ReadOnly = remove;
         }
@@ -31,8 +31,8 @@ namespace CarcassSpark.ObjectViewers
         public XTriggerViewer(string catalyst, List<XTrigger> xTriggers)
         {
             InitializeComponent();
-            displayedXTriggers = xTriggers;
-            this.catalyst = catalyst;
+            DisplayedXTriggers = xTriggers;
+            this.Catalyst = catalyst;
             FillValues();
             SetEditingMode(false);
         }
@@ -45,13 +45,13 @@ namespace CarcassSpark.ObjectViewers
 
         public void FillValues()
         {
-            catalystTextBox.Text = catalyst;
-            if (displayedXTriggers != null && displayedXTriggers.Count > 0)
+            catalystTextBox.Text = Catalyst;
+            if (DisplayedXTriggers != null && DisplayedXTriggers.Count > 0)
             {
-                foreach (XTrigger xTrigger in displayedXTriggers)
+                foreach (XTrigger xTrigger in DisplayedXTriggers)
                 {
                     DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance.HasValue ? xTrigger.chance.Value.ToString() : null, xTrigger.level.HasValue ? xTrigger.level.Value.ToString() : null, xTrigger.morpheffect?.ToLower());
+                    row.CreateCells(xtriggersDataGridView, xTrigger.id, xTrigger.chance?.ToString(), xTrigger.level?.ToString(), xTrigger.morpheffect?.ToLower());
                     xtriggersDataGridView.Rows.Add(row);
                 }
             }
@@ -71,7 +71,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (xtriggersDataGridView.Rows.Count > 1)
             {
-                displayedXTriggers = new List<XTrigger>();
+                DisplayedXTriggers = new List<XTrigger>();
                 foreach (DataGridViewRow row in xtriggersDataGridView.Rows)
                 {
                     if (row.Cells[0].Value as string == null || row.Cells[0].Value as string == "")
@@ -90,7 +90,7 @@ namespace CarcassSpark.ObjectViewers
                     // row.Cells[1] -> chance
                     // row.Cells[2] -> level
                     // row.Cells[3] -> morphEffect
-                    displayedXTriggers.Add(xtrigger);
+                    DisplayedXTriggers.Add(xtrigger);
                 }
             }
             Close();
@@ -103,10 +103,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void CatalystTextBox_TextChanged(object sender, EventArgs e)
         {
-            catalyst = catalystTextBox.Text;
-            if (catalyst == "")
+            Catalyst = catalystTextBox.Text;
+            if (Catalyst == "")
             {
-                catalyst = null;
+                Catalyst = null;
             }
         }
 
@@ -114,7 +114,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (DialogResult.Yes == MessageBox.Show("This will delete this entire entry, are you sure you want to do this?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
-                displayedXTriggers = null;
+                DisplayedXTriggers = null;
                 Close();
             }
         }

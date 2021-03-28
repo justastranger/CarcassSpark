@@ -13,18 +13,18 @@ namespace CarcassSpark.ObjectTypes
         public Aspect(string id, string label, string description, string inherits,
                       bool? unique, bool? deleted, string icon, string comments,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend,
-                      List<string> aspects_remove, List<Slot> slots, List<Slot> slots_prepend,
-                      List<Slot> slots_append, List<string> slots_remove,
+                      List<string> aspectsRemove, List<Slot> slots, List<Slot> slotsPrepend,
+                      List<Slot> slotsAppend, List<string> slotsRemove,
                       Dictionary<string, List<XTrigger>> xtriggers,
-                      Dictionary<string, List<XTrigger>> xtriggers_extend,
-                      List<string> xtriggers_remove, int? lifetime,
+                      Dictionary<string, List<XTrigger>> xtriggersExtend,
+                      List<string> xtriggersRemove, int? lifetime,
                       string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
-                      List<Induces> induces_prepend, List<Induces> induces_append,
-                      List<string> induces_remove, bool? isAspect, List<string> extends) : base(id, label, description,
+                      List<Induces> inducesPrepend, List<Induces> inducesAppend,
+                      List<string> inducesRemove, bool? isAspect, List<string> extends) : base(id, label, description,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
-                          aspects_remove, slots, slots_prepend, slots_append, slots_remove,
-                          xtriggers, xtriggers_extend, xtriggers_remove, lifetime,
+                          aspectsRemove, slots, slotsPrepend, slotsAppend, slotsRemove,
+                          xtriggers, xtriggersExtend, xtriggersRemove, lifetime,
                           decayTo, uniquenessgroup, resaturate, extends)
         {
             // optional
@@ -33,9 +33,9 @@ namespace CarcassSpark.ObjectTypes
             this.isHidden = isHidden;
             // optional
             this.induces = induces;
-            this.induces_prepend = induces_prepend;
-            this.induces_append = induces_append;
-            this.induces_remove = induces_remove;
+            this.induces_prepend = inducesPrepend;
+            this.induces_append = inducesAppend;
+            this.induces_remove = inducesRemove;
             // optional
             this.noartneeded = noartneeded;
         }

@@ -1,21 +1,21 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CarcassSpark.ObjectTypes
 {
     public class ContentSource
     {
-        public Guid guid = Guid.NewGuid();
+        public Guid Guid = Guid.NewGuid();
 
-        public string currentDirectory;
-        public Synopsis synopsis;
+        public string CurrentDirectory;
+        public Synopsis Synopsis;
 
-        private JObject CustomManifest = new JObject();
+        private JObject customManifest = new JObject();
         // CustomManifest["EditMode"]
         // CustomManifest["AutoSave"]
         // CustomManifest["hiddenGroups"]
@@ -33,18 +33,14 @@ namespace CarcassSpark.ObjectTypes
         public ContentGroup<Verb> Verbs = new ContentGroup<Verb>("Verb", "Verbs", "verbs");
         public ContentGroup<Culture> Cultures = new ContentGroup<Culture>("Culture", "Cultures", null);
 
-        public ContentSource()
-        {
-        }
-
         public string GetName()
         {
-            return synopsis != null ? synopsis.name : null;
+            return Synopsis?.name;
         }
 
         public override string ToString()
         {
-            return currentDirectory;
+            return CurrentDirectory;
         }
 
         public bool IsVanilla()
@@ -57,37 +53,37 @@ namespace CarcassSpark.ObjectTypes
 
         public void SetCustomManifest(JObject customManifest)
         {
-            CustomManifest = customManifest;
+            this.customManifest = customManifest;
         }
 
         public JObject GetCustomManifest()
         {
-            return CustomManifest;
+            return customManifest;
         }
 
         public void SetCustomManifestProperty(string key, object value)
         {
-            CustomManifest[key] = JToken.FromObject(value);
+            customManifest[key] = JToken.FromObject(value);
         }
 
         public string GetCustomManifestString(string key)
         {
-            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToString() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key].ToString() : null;
         }
 
         public bool? GetCustomManifestBool(string key)
         {
-            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<bool?>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<bool?>() : null;
         }
 
         public int? GetCustomManifestInt(string key)
         {
-            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<int?>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<int?>() : null;
         }
 
         public List<int> GetCustomManifestListInt(string key)
         {
-            return CustomManifest.ContainsKey(key) ? CustomManifest[key].ToObject<List<int>>() : null;
+            return customManifest.ContainsKey(key) ? customManifest[key].ToObject<List<int>>() : null;
         }
 
         #endregion
@@ -95,19 +91,16 @@ namespace CarcassSpark.ObjectTypes
 
         public void SetRecentGroup(string type, string groupName)
         {
-            Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
-            if (recentGroups == null)
-            {
-                recentGroups = new Dictionary<string, string>();
-            }
-            
+            Dictionary<string, string> recentGroups = customManifest["recentGroups"]?.ToObject<Dictionary<string, string>>() ??
+                                                      new Dictionary<string, string>();
+
             recentGroups[type] = groupName;
-            CustomManifest["recentGroups"] = JObject.FromObject(recentGroups);
+            customManifest["recentGroups"] = JObject.FromObject(recentGroups);
         }
 
         public string GetRecentGroup(string type)
         {
-            Dictionary<string, string> recentGroups = CustomManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
+            Dictionary<string, string> recentGroups = customManifest["recentGroups"]?.ToObject<Dictionary<string, string>>();
             return recentGroups != null && recentGroups.ContainsKey(type) ? recentGroups[type] : null;
         }
 
@@ -116,7 +109,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetAspectImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/aspects/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaAspectImageExists(id) ? Utilities.GetVanillaAspect(id) : null;
@@ -124,7 +117,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetElementImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/elements/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/elements/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaElementImageExists(id) ? Utilities.GetVanillaElement(id) : null;
@@ -132,7 +125,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetEndingImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/endings/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/endings/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaEndingImageExists(id) ? Utilities.GetVanillaEnding(id) : null;
@@ -140,7 +133,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetLegacyImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/legacies/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/legacies/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaLegacyImageExists(id) ? Utilities.GetVanillaLegacy(id) : null;
@@ -148,7 +141,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetVerbImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/verbs/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/verbs/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaVerbImageExists(id) ? Utilities.GetVanillaVerb(id) : null;
@@ -156,7 +149,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetCardBackImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/cardbacks/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/cardbacks/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaCardBackImageExists(id) ? Utilities.GetVanillaCardBack(id) : null;
@@ -164,7 +157,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Image GetBurnImage(string id)
         {
-            string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/burns/" + id + ".png";
             return File.Exists(pathToImage)
                 ? Image.FromFile(pathToImage)
                 : Utilities.VanillaBurnImageImageExists(id) ? Utilities.GetVanillaBurnImage(id) : null;
@@ -172,43 +165,43 @@ namespace CarcassSpark.ObjectTypes
 
         public bool AspectImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/aspects/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/aspects/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool ElementImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/elements/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/elements/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool EndingImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/endings/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/endings/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool LegacyImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/legacies/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/legacies/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool VerbImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/verbs/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/verbs/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool CardBackImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/cardbacks/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/cardbacks/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
         public bool BurnImageExists(string id)
         {
-            string pathToImage = currentDirectory + "/images/burns/" + id + ".png";
+            string pathToImage = CurrentDirectory + "/images/burns/" + id + ".png";
             return File.Exists(pathToImage);
         }
 
@@ -217,30 +210,27 @@ namespace CarcassSpark.ObjectTypes
 
         public void SetHiddenGroup(string type, string groupName)
         {
-            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
-            if (hiddenGroups == null)
-            {
-                hiddenGroups = new Dictionary<string, List<string>>();
-            }
+            Dictionary<string, List<string>> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>() ??
+                                                            new Dictionary<string, List<string>>();
 
             if (!hiddenGroups.ContainsKey(type))
             {
                 hiddenGroups[type] = new List<string>();
             }
             hiddenGroups[type].Add(groupName);
-            CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+            customManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
         }
 
         public string[] GetHiddenGroups(string type)
         {
-            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            Dictionary<string, string[]> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
             return hiddenGroups != null && hiddenGroups.ContainsKey(type) ? hiddenGroups[type] : null;
         }
 
         public string[] GetHiddenGroupsFlattened()
         {
-            Dictionary<string, string[]> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            string[] allGroups = new string[] { };
+            Dictionary<string, string[]> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            string[] allGroups = { };
             foreach (string type in hiddenGroups.Keys)
             {
                 allGroups.Concat(hiddenGroups[type]);
@@ -250,7 +240,7 @@ namespace CarcassSpark.ObjectTypes
 
         public Dictionary<string, List<string>> GetHiddenGroupsDictionary()
         {
-            return CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            return customManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
         }
 
         public List<string> GetHiddenGroupsForType(string type)
@@ -261,13 +251,13 @@ namespace CarcassSpark.ObjectTypes
 
         public void SetHiddenGroupsForType(string type, List<string> groups)
         {
-            if (CustomManifest["hiddenGroups"] != null)
+            if (customManifest["hiddenGroups"] != null)
             {
-                CustomManifest["hiddenGroups"][type] = JArray.FromObject(groups);
+                customManifest["hiddenGroups"][type] = JArray.FromObject(groups);
             }
             else
             {
-                CustomManifest["hiddenGroups"] = JObject.FromObject(new Dictionary<string, List<string>>()
+                customManifest["hiddenGroups"] = JObject.FromObject(new Dictionary<string, List<string>>
                 {
                     { type, groups }
                 });
@@ -278,17 +268,17 @@ namespace CarcassSpark.ObjectTypes
         {
             if (hiddenGroups != null && hiddenGroups.Count > 0)
             {
-                CustomManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
+                customManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
             }
-            else if (CustomManifest["hiddenGroups"] != null)
+            else if (customManifest["hiddenGroups"] != null)
             {
-                CustomManifest.Remove("hiddenGroups");
+                customManifest.Remove("hiddenGroups");
             }
         }
 
         public void ResetHiddenGroups(string type)
         {
-            Dictionary<string, List<string>> hiddenGroups = CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            Dictionary<string, List<string>> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
             if (hiddenGroups != null && hiddenGroups.ContainsKey(type))
             {
                 hiddenGroups.Remove(type);
@@ -306,12 +296,12 @@ namespace CarcassSpark.ObjectTypes
 
         public bool GetEditMode()
         {
-            return CustomManifest["EditMode"] != null ? CustomManifest["EditMode"].ToObject<bool>() : false;
+            return customManifest["EditMode"]?.ToObject<bool>() ?? false;
         }
 
         public void SetEditMode(bool editMode)
         {
-            CustomManifest["EditMode"] = editMode;
+            customManifest["EditMode"] = editMode;
         }
 
 
@@ -321,41 +311,45 @@ namespace CarcassSpark.ObjectTypes
             {
                 return Aspects as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Element))
+
+            if (typeof(T) == typeof(Element))
             {
                 return Elements as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Recipe))
+
+            if (typeof(T) == typeof(Recipe))
             {
                 return Recipes as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Deck))
+
+            if (typeof(T) == typeof(Deck))
             {
                 return Decks as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Legacy))
+
+            if (typeof(T) == typeof(Legacy))
             {
                 return Legacies as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Ending))
+
+            if (typeof(T) == typeof(Ending))
             {
                 return Endings as ContentGroup<T>;
             }
-            else if (typeof(T) == typeof(Verb))
+
+            if (typeof(T) == typeof(Verb))
             {
                 return Verbs as ContentGroup<T>;
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException("No viewer is defined in GetContentGroup for the type " + typeof(T));
-            }
+
+            throw new ArgumentOutOfRangeException("No viewer is defined in GetContentGroup for the type " + typeof(T));
         }
     }
 
     public class ContentGroup<T> where T : IHasGuidAndID
     {
-        public int Count { get => GameObjects.Count; }
-        public Dictionary<Guid, T>.ValueCollection Values { get => GameObjects.Values; }
+        public int Count => GameObjects.Count;
+        public Dictionary<Guid, T>.ValueCollection Values => GameObjects.Values;
         public string DisplayName { get; }
         public string DisplayNamePlural { get; }
         public string Filename { get; }
@@ -372,11 +366,7 @@ namespace CarcassSpark.ObjectTypes
 
         public bool Exists(string id)
         {
-            foreach (T t in GameObjects.Values.Where((go) => go.ID == id))
-            {
-                return true;
-            }
-            return false;
+            return GameObjects.Values.Any(go => go.ID == id);
         }
 
         public bool Exists(Guid id)
@@ -393,9 +383,9 @@ namespace CarcassSpark.ObjectTypes
         {
             if (Exists(id))
             {
-                foreach (T gameOBJ in GameObjects.Values.Where((T obj)=> obj.ID == id))
+                foreach (T gameObj in GameObjects.Values.Where(obj=> obj.ID == id))
                 {
-                    return gameOBJ;
+                    return gameObj;
                 }
             }
             return default(T);

@@ -5,9 +5,9 @@ namespace CarcassSpark.Tools
 {
     public partial class ImageImporter : Form
     {
-        public string displayedImagePath;
-        public string displayedImageType;
-        public string displayedFileName;
+        public string DisplayedImagePath;
+        public string DisplayedImageType;
+        public string DisplayedFileName;
 
         public ImageImporter()
         {
@@ -16,7 +16,7 @@ namespace CarcassSpark.Tools
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (displayedImagePath == null || displayedImageType == null)
+            if (DisplayedImagePath == null || DisplayedImageType == null)
             {
                 MessageBox.Show("Please select an image and image type.");
                 return;
@@ -34,14 +34,14 @@ namespace CarcassSpark.Tools
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
                 displayPictureBox.ImageLocation = openImageFileDialog.FileName;
-                displayedImagePath = openImageFileDialog.FileName;
-                displayedFileName = openImageFileDialog.SafeFileName;
+                DisplayedImagePath = openImageFileDialog.FileName;
+                DisplayedFileName = openImageFileDialog.SafeFileName;
             }
         }
 
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            displayedImageType = typeComboBox.Text;
+            DisplayedImageType = typeComboBox.Text;
         }
     }
 }

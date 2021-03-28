@@ -13,7 +13,7 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class TabbedModViewer : Form
     {
-        private ModViewerTabControl SelectedModViewer;
+        private ModViewerTabControl selectedModViewer;
 
         public TabbedModViewer()
         {
@@ -36,22 +36,22 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            if (!SelectedModViewer.isVanilla)
+            if (!selectedModViewer.IsVanilla)
             {
 
             }
-            toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
-            saveSplitterLocationsToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
+            toggleEditModeToolStripMenuItem.Checked = !selectedModViewer.IsVanilla && selectedModViewer.EditMode;
+            saveSplitterLocationsToolStripMenuItem.Checked = !selectedModViewer.IsVanilla && (selectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
         }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
             try
             {
-                SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-                SelectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
-                TabPage newPage = new TabPage(SelectedModViewer.Content.GetName());
-                newPage.Controls.Add(SelectedModViewer);
-                newPage.Name = SelectedModViewer.Content.GetName();
+                selectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
+                selectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
+                TabPage newPage = new TabPage(selectedModViewer.Content.GetName());
+                newPage.Controls.Add(selectedModViewer);
+                newPage.Name = selectedModViewer.Content.GetName();
                 ModViewerTabs.TabPages.Add(newPage);
                 ModViewerTabs.SelectTab(newPage);
             }
@@ -63,7 +63,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void CreateNewModViewerTab(ModViewerTabControl mvtc)
         {
-            SelectedModViewer = mvtc;
+            selectedModViewer = mvtc;
             TabPage newPage = new TabPage(mvtc.Content.GetName());
             newPage.Controls.Add(mvtc);
             newPage.Name = mvtc.Content.GetName();
@@ -73,12 +73,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void CloseMod()
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 MessageBox.Show("Carcass Spark will not close Vanilla content.", "Close Mod", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (SelectedModViewer.IsDirty && SelectedModViewer.editMode)
+            if (selectedModViewer.IsDirty && selectedModViewer.EditMode)
             {
                 if (MessageBox.Show("You WILL lose any unsaved changes you've made. Click OK to discard changes and close the mod.",
                     "You have unsaved changes",
@@ -87,9 +87,9 @@ namespace CarcassSpark.ObjectViewers
                     return;
                 }
             }
-            Utilities.ContentSources.Remove(SelectedModViewer.Content.ToString());
-            Settings.RemovePreviousMod(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.Dispose();
+            Utilities.ContentSources.Remove(selectedModViewer.Content.ToString());
+            Settings.RemovePreviousMod(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.Dispose();
             ModViewerTabs.TabPages.Remove(ModViewerTabs.SelectedTab);
         }
 
@@ -117,7 +117,6 @@ namespace CarcassSpark.ObjectViewers
                 catch (Exception)
                 {
                     MessageBox.Show("Error Opening Mod");
-                    return;
                 }
             }
         }
@@ -162,130 +161,130 @@ namespace CarcassSpark.ObjectViewers
 
         private void SaveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 MessageBox.Show("Can't save vanilla content.");
                 return;
             }
-            SelectedModViewer.SaveMod();
+            selectedModViewer.SaveMod();
         }
 
         private void ModViewerTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ModViewerTabs.SelectedTab == null)
             {
-                SelectedModViewer = null;
+                selectedModViewer = null;
                 return;
             }
-            SelectedModViewer = (ModViewerTabControl)ModViewerTabs.SelectedTab.Controls[0];
+            selectedModViewer = (ModViewerTabControl)ModViewerTabs.SelectedTab.Controls[0];
 
-            toggleEditModeToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && SelectedModViewer.editMode;
-            toggleAutosaveToolStripMenuItem.Checked = !SelectedModViewer.isVanilla && (SelectedModViewer.Content.GetCustomManifestBool("AutoSave") ?? false);
-            saveSplitterLocationsToolStripMenuItem.Checked = SelectedModViewer.isVanilla ? (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>()) : (SelectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
+            toggleEditModeToolStripMenuItem.Checked = !selectedModViewer.IsVanilla && selectedModViewer.EditMode;
+            toggleAutosaveToolStripMenuItem.Checked = !selectedModViewer.IsVanilla && (selectedModViewer.Content.GetCustomManifestBool("AutoSave") ?? false);
+            saveSplitterLocationsToolStripMenuItem.Checked = selectedModViewer.IsVanilla ? (Settings.settings.ContainsKey("saveWidths") && Settings.settings["saveWidths"].ToObject<bool>()) : (selectedModViewer.Content.GetCustomManifestBool("saveWidths") ?? false);
 
-            toggleEditModeToolStripMenuItem.Enabled = !SelectedModViewer.isVanilla;
-            toggleAutosaveToolStripMenuItem.Enabled = !SelectedModViewer.isVanilla;
+            toggleEditModeToolStripMenuItem.Enabled = !selectedModViewer.IsVanilla;
+            toggleAutosaveToolStripMenuItem.Enabled = !selectedModViewer.IsVanilla;
         }
 
         private void SaveModToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog.SelectedPath = SelectedModViewer.Content.currentDirectory;
+            folderBrowserDialog.SelectedPath = selectedModViewer.Content.CurrentDirectory;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.SaveMod(folderBrowserDialog.SelectedPath);
+                selectedModViewer.SaveMod(folderBrowserDialog.SelectedPath);
             }
         }
 
         private void OpenSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 MessageBox.Show("There is no synopsis for vanilla content.");
                 return;
             }
 
-            SynopsisViewer mv = new SynopsisViewer(SelectedModViewer.Content.synopsis.Copy());
+            SynopsisViewer mv = new SynopsisViewer(selectedModViewer.Content.Synopsis.Copy());
             if (mv.ShowDialog() == DialogResult.OK)
             {
-                if (SelectedModViewer.Content.GetName() != mv.displayedSynopsis.name)
+                if (selectedModViewer.Content.GetName() != mv.DisplayedSynopsis.name)
                 {
-                    SelectedModViewer.Parent.Name = mv.displayedSynopsis.name;
+                    selectedModViewer.Parent.Name = mv.DisplayedSynopsis.name;
                 }
-                SelectedModViewer.Content.synopsis = mv.displayedSynopsis.Copy();
-                SelectedModViewer.SaveMod();
+                selectedModViewer.Content.Synopsis = mv.DisplayedSynopsis.Copy();
+                selectedModViewer.SaveMod();
             }
         }
 
         private void ReloadContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.LoadContent();
+            selectedModViewer.LoadContent();
         }
 
         private void ToggleEditModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 MessageBox.Show("Can't enable Edit Mode for vanilla content.");
                 return;
             }
             toggleEditModeToolStripMenuItem.Checked = !toggleEditModeToolStripMenuItem.Checked;
-            SelectedModViewer.Content.SetEditMode(toggleEditModeToolStripMenuItem.Checked);
-            SelectedModViewer.SetEditingMode(toggleEditModeToolStripMenuItem.Checked);
+            selectedModViewer.Content.SetEditMode(toggleEditModeToolStripMenuItem.Checked);
+            selectedModViewer.SetEditingMode(toggleEditModeToolStripMenuItem.Checked);
         }
 
         private void ToggleAutosaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 MessageBox.Show("Can't enable Autosave for vanilla content.");
                 return;
             }
             toggleAutosaveToolStripMenuItem.Checked = !toggleAutosaveToolStripMenuItem.Checked;
-            SelectedModViewer.Content.SetCustomManifestProperty("AutoSave", toggleAutosaveToolStripMenuItem.Checked);
+            selectedModViewer.Content.SetCustomManifestProperty("AutoSave", toggleAutosaveToolStripMenuItem.Checked);
         }
 
         #region "Create New" events
 
         private void AspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Aspect>(SelectedModViewer.AspectsList_Add);
+            CreateNewGameObject<Aspect>(selectedModViewer.AspectsList_Add);
         }
 
         private void ElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Element>(SelectedModViewer.ElementsList_Add);
+            CreateNewGameObject<Element>(selectedModViewer.ElementsList_Add);
         }
 
         private void RecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Recipe>(SelectedModViewer.RecipesList_Add);
+            CreateNewGameObject<Recipe>(selectedModViewer.RecipesList_Add);
         }
 
         private void DeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Deck>(SelectedModViewer.DecksList_Add);
+            CreateNewGameObject<Deck>(selectedModViewer.DecksList_Add);
         }
 
         private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Legacy>(SelectedModViewer.LegaciesList_Add);
+            CreateNewGameObject<Legacy>(selectedModViewer.LegaciesList_Add);
         }
 
         private void EndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Ending>(SelectedModViewer.EndingsList_Add);
+            CreateNewGameObject<Ending>(selectedModViewer.EndingsList_Add);
         }
 
         private void VerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewGameObject<Verb>(SelectedModViewer.VerbsList_Add);
+            CreateNewGameObject<Verb>(selectedModViewer.VerbsList_Add);
         }
 
         private void CreateNewGameObject<T>(EventHandler<T> successCallback) where T: IGameObject, new()
         {
-            if(!SelectedModViewer.isVanilla)
+            if(!selectedModViewer.IsVanilla)
             {
-                IGameObjectViewer<T> gov = Utilities.GetViewer<T>(new T(), successCallback);
+                IGameObjectViewer gov = Utilities.GetViewer(new T(), successCallback);
                 gov.Show();
             }
         }
@@ -295,42 +294,42 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Aspects);
+            ImportGameObject(selectedModViewer.Content.Aspects);
         }
 
         private void ElementToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Elements);
+            ImportGameObject(selectedModViewer.Content.Elements);
         }
 
         private void RecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Recipes);
+            ImportGameObject(selectedModViewer.Content.Recipes);
         }
 
         private void DeckToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Decks);
+            ImportGameObject(selectedModViewer.Content.Decks);
         }
 
         private void LegacyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Legacies);
+            ImportGameObject(selectedModViewer.Content.Legacies);
         }
 
         private void EndingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Endings);
+            ImportGameObject(selectedModViewer.Content.Endings);
         }
 
         private void VerbToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ImportGameObject(SelectedModViewer.Content.Verbs);
+            ImportGameObject(selectedModViewer.Content.Verbs);
         }
 
         private void ImportGameObject<T>(ContentGroup<T> cg) where T : IGameObject
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 return;
             }
@@ -340,7 +339,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     Guid guid = Guid.NewGuid();
                     T deserializedT = JsonConvert.DeserializeObject<T>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
-                    ListView listView = SelectedModViewer.ListViews[cg.DisplayName];
+                    ListView listView = selectedModViewer.ListViews[cg.DisplayName];
                     if (listView.Items.ContainsKey(deserializedT.ID))
                     {
                         MessageBox.Show(cg.DisplayName + " already exists, overwriting.");
@@ -356,7 +355,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     deserializedT.Filename = cg.Filename;
                     cg[guid] = deserializedT;
-                    SelectedModViewer.MarkDirty();
+                    selectedModViewer.MarkDirty();
                 }
                 catch (Exception)
                 {
@@ -367,7 +366,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void FromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 return;
             }
@@ -379,52 +378,52 @@ namespace CarcassSpark.ObjectViewers
             JsonEditor je = new JsonEditor(Clipboard.GetText());
             if (je.ShowDialog() == DialogResult.OK)
             {
-                switch (je.objectType)
+                switch (je.ObjectType)
                 {
                     case "Aspect":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Aspects, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Aspects, je.ObjectText);
                         break;
                     case "Element":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Elements, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Elements, je.ObjectText);
                         break;
                     case "Recipe":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Recipes, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Recipes, je.ObjectText);
                         break;
                     case "Deck":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Decks, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Decks, je.ObjectText);
                         break;
                     case "Legacy":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Legacies, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Legacies, je.ObjectText);
                         break;
                     case "Ending":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Endings, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Endings, je.ObjectText);
                         break;
                     case "Verb":
-                        FromClipboardOnOkay(SelectedModViewer.Content.Verbs, je.objectText);
+                        FromClipboardOnOkay(selectedModViewer.Content.Verbs, je.ObjectText);
                         break;
                     default:
                         MessageBox.Show("I'm not sure what you selected or how, but that was an invalid choice.", "Unknown Object Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                 }
-                SelectedModViewer.MarkDirty();
+                selectedModViewer.MarkDirty();
             }
         }
 
         private void FromClipboardOnOkay<T>(ContentGroup<T> cg, string objectText) where T : IGameObject
         {
             Guid guid = Guid.NewGuid();
-            ListViewGroup listViewGroup = SelectedModViewer.ListViews[cg.Filename].Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
-            if (SelectedModViewer.ListViews[cg.Filename].Groups.Contains(listViewGroup))
+            ListViewGroup listViewGroup = selectedModViewer.ListViews[cg.Filename].Groups[cg.Filename] ?? new ListViewGroup(cg.Filename, cg.Filename);
+            if (selectedModViewer.ListViews[cg.Filename].Groups.Contains(listViewGroup))
             {
-                SelectedModViewer.ListViews[cg.Filename].Groups.Add(listViewGroup);
+                selectedModViewer.ListViews[cg.Filename].Groups.Add(listViewGroup);
             }
             T deserializedGameObject = JsonConvert.DeserializeObject<T>(objectText);
             deserializedGameObject.Filename = cg.Filename;
             cg[guid] = deserializedGameObject;
-            if (!SelectedModViewer.ListViews[cg.Filename].Items.ContainsKey(deserializedGameObject.ID))
+            if (!selectedModViewer.ListViews[cg.Filename].Items.ContainsKey(deserializedGameObject.ID))
             {
                 ListViewItem item = new ListViewItem(deserializedGameObject.ID) { Tag = guid, Group = listViewGroup };
-                SelectedModViewer.ListViews[cg.Filename].Items.Add(item);
+                selectedModViewer.ListViews[cg.Filename].Items.Add(item);
                 // listViewGroup.Items.Add(item);
             }
         }
@@ -433,79 +432,79 @@ namespace CarcassSpark.ObjectViewers
 
         private void SummonGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 return;
             }
             SummonCreator sc = new SummonCreator();
             if (sc.ShowDialog() == DialogResult.OK)
             {
-                ListViewGroup defaultElementsGroup = SelectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
-                if (!SelectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
+                ListViewGroup defaultElementsGroup = selectedModViewer.elementsListView.Groups["elements"] ?? new ListViewGroup("elements", "elements");
+                if (!selectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
                 {
-                    SelectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
+                    selectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
                 }
 
                 Guid baseGuid = Guid.NewGuid();
-                ListViewItem baseSummon = new ListViewItem(sc.baseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
-                SelectedModViewer.elementsListView.Items.Add(baseSummon);
-                sc.baseSummon.filename = "elements";
-                SelectedModViewer.Content.Elements.Add(baseGuid, sc.baseSummon.Copy());
+                ListViewItem baseSummon = new ListViewItem(sc.BaseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
+                selectedModViewer.elementsListView.Items.Add(baseSummon);
+                sc.BaseSummon.filename = "elements";
+                selectedModViewer.Content.Elements.Add(baseGuid, sc.BaseSummon.Copy());
 
                 Guid preGuid = Guid.NewGuid();
-                ListViewItem preSummon = new ListViewItem(sc.preSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
-                SelectedModViewer.elementsListView.Items.Add(preSummon);
-                sc.preSummon.filename = "elements";
-                SelectedModViewer.Content.Elements.Add(preGuid, sc.preSummon.Copy());
+                ListViewItem preSummon = new ListViewItem(sc.PreSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
+                selectedModViewer.elementsListView.Items.Add(preSummon);
+                sc.PreSummon.filename = "elements";
+                selectedModViewer.Content.Elements.Add(preGuid, sc.PreSummon.Copy());
 
-                ListViewGroup defaultRecipesGroup = SelectedModViewer.elementsListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
-                if (!SelectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
+                ListViewGroup defaultRecipesGroup = selectedModViewer.elementsListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
+                if (!selectedModViewer.elementsListView.Groups.Contains(defaultElementsGroup))
                 {
-                    SelectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
+                    selectedModViewer.elementsListView.Groups.Add(defaultElementsGroup);
                 }
 
                 Guid startGuid = Guid.NewGuid();
-                ListViewItem startSummon = new ListViewItem(sc.startSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
-                SelectedModViewer.recipesListView.Items.Add(startSummon);
-                sc.startSummon.filename = "recipes";
-                SelectedModViewer.Content.Recipes.Add(startGuid, sc.startSummon.Copy());
+                ListViewItem startSummon = new ListViewItem(sc.StartSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
+                selectedModViewer.recipesListView.Items.Add(startSummon);
+                sc.StartSummon.filename = "recipes";
+                selectedModViewer.Content.Recipes.Add(startGuid, sc.StartSummon.Copy());
 
                 Guid succeedGuid = Guid.NewGuid();
-                ListViewItem succeedSummon = new ListViewItem(sc.succeedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
-                SelectedModViewer.recipesListView.Items.Add(succeedSummon);
-                sc.succeedSummon.filename = "recipes";
-                SelectedModViewer.Content.Recipes.Add(succeedGuid, sc.succeedSummon.Copy());
+                ListViewItem succeedSummon = new ListViewItem(sc.SucceedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
+                selectedModViewer.recipesListView.Items.Add(succeedSummon);
+                sc.SucceedSummon.filename = "recipes";
+                selectedModViewer.Content.Recipes.Add(succeedGuid, sc.SucceedSummon.Copy());
             }
         }
 
         private void ImageImporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla)
+            if (selectedModViewer.IsVanilla)
             {
                 return;
             }
             ImageImporter ii = new ImageImporter();
             if (ii.ShowDialog() == DialogResult.OK)
             {
-                switch (ii.displayedImageType.ToLower())
+                switch (ii.DisplayedImageType.ToLower())
                 {
                     case "aspect":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\aspects\\" + ii.displayedFileName, true);
+                        File.Copy(ii.DisplayedImagePath, selectedModViewer.Content.CurrentDirectory + "\\images\\aspects\\" + ii.DisplayedFileName, true);
                         break;
                     case "element":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\elements\\" + ii.displayedFileName, true);
+                        File.Copy(ii.DisplayedImagePath, selectedModViewer.Content.CurrentDirectory + "\\images\\elements\\" + ii.DisplayedFileName, true);
                         break;
                     case "ending":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\endings\\" + ii.displayedFileName, true);
+                        File.Copy(ii.DisplayedImagePath, selectedModViewer.Content.CurrentDirectory + "\\images\\endings\\" + ii.DisplayedFileName, true);
                         break;
                     case "legacy":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\legacies\\" + ii.displayedFileName, true);
+                        File.Copy(ii.DisplayedImagePath, selectedModViewer.Content.CurrentDirectory + "\\images\\legacies\\" + ii.DisplayedFileName, true);
                         break;
                     case "verb":
-                        File.Copy(ii.displayedImagePath, SelectedModViewer.Content.currentDirectory + "\\images\\verbs\\" + ii.displayedFileName, true);
+                        File.Copy(ii.DisplayedImagePath, selectedModViewer.Content.CurrentDirectory + "\\images\\verbs\\" + ii.DisplayedFileName, true);
                         break;
                 }
-                MessageBox.Show("Imported " + ii.displayedImageType + " image.");
+                MessageBox.Show("Imported " + ii.DisplayedImageType + " image.");
             }
         }
 
@@ -521,30 +520,30 @@ namespace CarcassSpark.ObjectViewers
             saveSplitterLocationsToolStripMenuItem.Checked = !@checked;
             if (!@checked)
             {
-                if (!SelectedModViewer.isVanilla)
+                if (!selectedModViewer.IsVanilla)
                 {
-                    SelectedModViewer.Content.SetCustomManifestProperty("saveWidths", !@checked);
-                    SelectedModViewer.Content.SetCustomManifestProperty("widths", new List<int>() {
-                        SelectedModViewer.tableLayoutPanel2.Size.Width,
-                        SelectedModViewer.tableLayoutPanel3.Size.Width,
-                        SelectedModViewer.tableLayoutPanel4.Size.Width,
-                        SelectedModViewer.tableLayoutPanel5.Size.Width,
-                        SelectedModViewer.tableLayoutPanel6.Size.Width,
-                        SelectedModViewer.tableLayoutPanel7.Size.Width,
-                        SelectedModViewer.tableLayoutPanel8.Size.Width,
+                    selectedModViewer.Content.SetCustomManifestProperty("saveWidths", !@checked);
+                    selectedModViewer.Content.SetCustomManifestProperty("widths", new List<int>() {
+                        selectedModViewer.tableLayoutPanel2.Size.Width,
+                        selectedModViewer.tableLayoutPanel3.Size.Width,
+                        selectedModViewer.tableLayoutPanel4.Size.Width,
+                        selectedModViewer.tableLayoutPanel5.Size.Width,
+                        selectedModViewer.tableLayoutPanel6.Size.Width,
+                        selectedModViewer.tableLayoutPanel7.Size.Width,
+                        selectedModViewer.tableLayoutPanel8.Size.Width,
                     });
                 }
                 else
                 {
                     Settings.settings["saveWidths"] = !@checked;
                     Settings.settings["widths"] = JToken.FromObject(new List<int>() {
-                        SelectedModViewer.tableLayoutPanel2.Size.Width,
-                        SelectedModViewer.tableLayoutPanel3.Size.Width,
-                        SelectedModViewer.tableLayoutPanel4.Size.Width,
-                        SelectedModViewer.tableLayoutPanel5.Size.Width,
-                        SelectedModViewer.tableLayoutPanel6.Size.Width,
-                        SelectedModViewer.tableLayoutPanel7.Size.Width,
-                        SelectedModViewer.tableLayoutPanel8.Size.Width,
+                        selectedModViewer.tableLayoutPanel2.Size.Width,
+                        selectedModViewer.tableLayoutPanel3.Size.Width,
+                        selectedModViewer.tableLayoutPanel4.Size.Width,
+                        selectedModViewer.tableLayoutPanel5.Size.Width,
+                        selectedModViewer.tableLayoutPanel6.Size.Width,
+                        selectedModViewer.tableLayoutPanel7.Size.Width,
+                        selectedModViewer.tableLayoutPanel8.Size.Width,
                     });
                     Settings.SaveSettings();
                 }
@@ -552,9 +551,9 @@ namespace CarcassSpark.ObjectViewers
             }
             else
             {
-                if (!SelectedModViewer.isVanilla)
+                if (!selectedModViewer.IsVanilla)
                 {
-                    SelectedModViewer.Content.GetCustomManifest().Remove("saveWidths");
+                    selectedModViewer.Content.GetCustomManifest().Remove("saveWidths");
                 }
                 else
                 {
@@ -562,15 +561,15 @@ namespace CarcassSpark.ObjectViewers
                     Settings.SaveSettings();
                 }
             }
-            SelectedModViewer.SaveManifests(SelectedModViewer.Content.currentDirectory);
+            selectedModViewer.SaveManifests(selectedModViewer.Content.CurrentDirectory);
         }
 
         private void CulturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CulturesViewer cv = new CulturesViewer(SelectedModViewer.Content.Cultures.GameObjects, SelectedModViewer.editMode);
+            CulturesViewer cv = new CulturesViewer(selectedModViewer.Content.Cultures.GameObjects, selectedModViewer.EditMode);
             if (cv.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.Cultures.GameObjects = cv.displayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
+                selectedModViewer.Content.Cultures.GameObjects = cv.DisplayedCultures.ToDictionary(entry => Guid.NewGuid(), entry => entry.Value.Copy());
             }
         }
 
@@ -593,14 +592,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ModViewerTabs_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
         }
 
         private void ModViewerTabs_DragDrop(object sender, DragEventArgs e)
@@ -642,7 +634,7 @@ namespace CarcassSpark.ObjectViewers
             ProcessStartInfo startInfo = new ProcessStartInfo()
             {
                 FileName = "Explorer.exe",
-                Arguments = SelectedModViewer.Content.currentDirectory
+                Arguments = selectedModViewer.Content.CurrentDirectory
             };
             Process.Start(startInfo);
         }
@@ -670,51 +662,51 @@ namespace CarcassSpark.ObjectViewers
 
         private void AspectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Aspects.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Aspects);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Aspects.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Aspects);
         }
 
         private void ElementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Elements.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Elements);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Elements.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Elements);
         }
 
         private void RecipesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Recipes.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Recipes);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Recipes.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Recipes);
         }
 
         private void DecksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Decks.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Decks);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Decks.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Decks);
         }
 
         private void LegaciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Legacies.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Legacies);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Legacies.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Legacies);
         }
 
         private void EndingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Endings.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Endings);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Endings.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Endings);
         }
 
         private void VerbsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectedModViewer.Content.ResetHiddenGroups(SelectedModViewer.Content.Verbs.Filename);
-            SelectedModViewer.SaveCustomManifest(SelectedModViewer.Content.currentDirectory);
-            SelectedModViewer.ReloadListView(SelectedModViewer.Content.Verbs);
+            selectedModViewer.Content.ResetHiddenGroups(selectedModViewer.Content.Verbs.Filename);
+            selectedModViewer.SaveCustomManifest(selectedModViewer.Content.CurrentDirectory);
+            selectedModViewer.ReloadListView(selectedModViewer.Content.Verbs);
         }
 
         #endregion
@@ -761,12 +753,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void hiddenGroupManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HiddenGroupManager hiddenGroupManager = new HiddenGroupManager(SelectedModViewer.Content.GetHiddenGroupsDictionary());
+            HiddenGroupManager hiddenGroupManager = new HiddenGroupManager(selectedModViewer.Content.GetHiddenGroupsDictionary());
             if (hiddenGroupManager.ShowDialog() == DialogResult.OK)
             {
-                SelectedModViewer.Content.SetHiddenGroups(hiddenGroupManager.HiddenGroups);
-                SelectedModViewer.SaveCustomManifest();
-                SelectedModViewer.LoadContent();
+                selectedModViewer.Content.SetHiddenGroups(hiddenGroupManager.HiddenGroups);
+                selectedModViewer.SaveCustomManifest();
+                selectedModViewer.LoadContent();
             }
         }
     }

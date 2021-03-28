@@ -6,24 +6,24 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class LegacyViewer : Form, IGameObjectViewer<Legacy>
+    public partial class LegacyViewer : Form, IGameObjectViewer
     {
-        public Legacy displayedLegacy;
+        public Legacy DisplayedLegacy;
 
         private event EventHandler<Legacy> SuccessCallback;
         public ListViewItem associatedListViewItem;
 
         public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
-        public LegacyViewer(Legacy legacy, EventHandler<Legacy> SuccessCallback, ListViewItem item)
+        public LegacyViewer(Legacy legacy, EventHandler<Legacy> successCallback, ListViewItem item)
         {
             InitializeComponent();
-            displayedLegacy = legacy;
+            DisplayedLegacy = legacy;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
@@ -229,9 +229,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (effectsDataGridView.RowCount > 1)
             {
-                displayedLegacy.effects = null;
-                displayedLegacy.effects_extend = null;
-                displayedLegacy.effects_remove = null;
+                DisplayedLegacy.effects = null;
+                DisplayedLegacy.effects_extend = null;
+                DisplayedLegacy.effects_remove = null;
                 foreach (DataGridViewRow row in effectsDataGridView.Rows)
                 {
                     string key = row.Cells[0].Value?.ToString();
@@ -240,60 +240,60 @@ namespace CarcassSpark.ObjectViewers
                     {
                         if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                         {
-                            if (displayedLegacy.effects_extend == null)
+                            if (DisplayedLegacy.effects_extend == null)
                             {
-                                displayedLegacy.effects_extend = new Dictionary<string, int>();
+                                DisplayedLegacy.effects_extend = new Dictionary<string, int>();
                             }
                             // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
                             if (value.HasValue)
                             {
-                                displayedLegacy.effects_extend[key] = value.Value;
+                                DisplayedLegacy.effects_extend[key] = value.Value;
                             }
                         }
                         else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                         {
-                            if (displayedLegacy.effects_remove == null)
+                            if (DisplayedLegacy.effects_remove == null)
                             {
-                                displayedLegacy.effects_remove = new List<string>();
+                                DisplayedLegacy.effects_remove = new List<string>();
                             }
 
-                            if (!displayedLegacy.effects_remove.Contains(key))
+                            if (!DisplayedLegacy.effects_remove.Contains(key))
                             {
-                                displayedLegacy.effects_remove.Add(key);
+                                DisplayedLegacy.effects_remove.Add(key);
                             }
                         }
                         else
                         {
-                            if (displayedLegacy.effects == null)
+                            if (DisplayedLegacy.effects == null)
                             {
-                                displayedLegacy.effects = new Dictionary<string, int>();
+                                DisplayedLegacy.effects = new Dictionary<string, int>();
                             }
                             // this will cause carcass spark to simply discard the row if there's no value, since that's needed.
                             if (value.HasValue)
                             {
-                                displayedLegacy.effects[key] = value.Value;
+                                DisplayedLegacy.effects[key] = value.Value;
                             }
                         }
                     }
-                    if (displayedLegacy.effects?.Count == 0)
+                    if (DisplayedLegacy.effects?.Count == 0)
                     {
-                        displayedLegacy.effects = null;
+                        DisplayedLegacy.effects = null;
                     }
 
-                    if (displayedLegacy.effects_extend?.Count == 0)
+                    if (DisplayedLegacy.effects_extend?.Count == 0)
                     {
-                        displayedLegacy.effects_extend = null;
+                        DisplayedLegacy.effects_extend = null;
                     }
 
-                    if (displayedLegacy.effects_remove?.Count == 0)
+                    if (DisplayedLegacy.effects_remove?.Count == 0)
                     {
-                        displayedLegacy.effects_remove = null;
+                        DisplayedLegacy.effects_remove = null;
                     }
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
             Close();
-            SuccessCallback?.Invoke(this, displayedLegacy);
+            SuccessCallback?.Invoke(this, DisplayedLegacy);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -306,7 +306,7 @@ namespace CarcassSpark.ObjectViewers
             if (!string.IsNullOrEmpty(addExcludesTextBox.Text))
             {
                 excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
-                displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
+                DisplayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
                 addExcludesTextBox.Text = "";
                 addExcludesTextBox.Focus();
             }
@@ -319,7 +319,7 @@ namespace CarcassSpark.ObjectViewers
                 if (!string.IsNullOrEmpty(addExcludesTextBox.Text))
                 {
                     excludesOnEndingListView.Items.Add(addExcludesTextBox.Text);
-                    displayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
+                    DisplayedLegacy.excludesOnEnding.Add(addExcludesTextBox.Text);
                     addExcludesTextBox.Text = "";
                     addExcludesTextBox.Focus();
                 }
@@ -328,100 +328,100 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.ID = idTextBox.Text;
-            if (displayedLegacy.ID == "")
+            DisplayedLegacy.ID = idTextBox.Text;
+            if (DisplayedLegacy.ID == "")
             {
-                displayedLegacy.ID = null;
+                DisplayedLegacy.ID = null;
             }
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.label = labelTextBox.Text;
-            if (displayedLegacy.label == "")
+            DisplayedLegacy.label = labelTextBox.Text;
+            if (DisplayedLegacy.label == "")
             {
-                displayedLegacy.label = null;
+                DisplayedLegacy.label = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.description = descriptionTextBox.Text;
-            if (displayedLegacy.description == "")
+            DisplayedLegacy.description = descriptionTextBox.Text;
+            if (DisplayedLegacy.description == "")
             {
-                displayedLegacy.description = null;
+                DisplayedLegacy.description = null;
             }
         }
 
         private void StartdescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.startdescription = startdescriptionTextBox.Text;
-            if (displayedLegacy.startdescription == "")
+            DisplayedLegacy.startdescription = startdescriptionTextBox.Text;
+            if (DisplayedLegacy.startdescription == "")
             {
-                displayedLegacy.startdescription = null;
+                DisplayedLegacy.startdescription = null;
             }
         }
 
         private void ImageTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.image = imageTextBox.Text;
+            DisplayedLegacy.image = imageTextBox.Text;
             if (Utilities.GetLegacyImage(imageTextBox.Text) != null)
             {
                 pictureBox1.Image = Utilities.GetLegacyImage(imageTextBox.Text);
             }
-            if (displayedLegacy.image == "")
+            if (DisplayedLegacy.image == "")
             {
-                displayedLegacy.image = null;
+                DisplayedLegacy.image = null;
             }
         }
 
         private void FromEndingTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.fromEnding = fromEndingTextBox.Text;
-            if (displayedLegacy.fromEnding == "")
+            DisplayedLegacy.fromEnding = fromEndingTextBox.Text;
+            if (DisplayedLegacy.fromEnding == "")
             {
-                displayedLegacy.fromEnding = null;
+                DisplayedLegacy.fromEnding = null;
             }
         }
 
         private void StartingVerbIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.startingVerbId = startingVerbIdTextBox.Text;
-            if (displayedLegacy.startingVerbId == "")
+            DisplayedLegacy.startingVerbId = startingVerbIdTextBox.Text;
+            if (DisplayedLegacy.startingVerbId == "")
             {
-                displayedLegacy.startingVerbId = null;
+                DisplayedLegacy.startingVerbId = null;
             }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (displayedLegacy.excludesOnEnding.Contains(excludesOnEndingListView.SelectedItems[0].Text))
+            if (DisplayedLegacy.excludesOnEnding.Contains(excludesOnEndingListView.SelectedItems[0].Text))
             {
-                displayedLegacy.excludesOnEnding.Remove(excludesOnEndingListView.SelectedItems[0].Text);
+                DisplayedLegacy.excludesOnEnding.Remove(excludesOnEndingListView.SelectedItems[0].Text);
                 excludesOnEndingListView.Items.Remove(excludesOnEndingListView.SelectedItems[0]);
-                if (displayedLegacy.excludesOnEnding.Count == 0)
+                if (DisplayedLegacy.excludesOnEnding.Count == 0)
                 {
-                    displayedLegacy.excludesOnEnding = null;
+                    DisplayedLegacy.excludesOnEnding = null;
                 }
             }
         }
 
         private void AddStatusBarElementButton_Click(object sender, EventArgs e)
         {
-            if (displayedLegacy.statusbarelements != null && displayedLegacy.statusbarelements.Count == 4)
+            if (DisplayedLegacy.statusbarelements != null && DisplayedLegacy.statusbarelements.Count == 4)
             {
                 MessageBox.Show("There is currently a limit of 4 statusbarelements");
                 return;
             }
             if (!string.IsNullOrEmpty(statusBarElementTextBox.Text))
             {
-                if (displayedLegacy.statusbarelements == null)
+                if (DisplayedLegacy.statusbarelements == null)
                 {
-                    displayedLegacy.statusbarelements = new List<string>();
+                    DisplayedLegacy.statusbarelements = new List<string>();
                 }
 
                 statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
-                displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
+                DisplayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
                 statusBarElementTextBox.Text = "";
                 statusBarElementTextBox.Focus();
             }
@@ -429,13 +429,13 @@ namespace CarcassSpark.ObjectViewers
 
         private void RemoveStatusBarElementButton_Click(object sender, EventArgs e)
         {
-            if (displayedLegacy.statusbarelements.Contains(statusBarElementsListView.SelectedItems[0].Text))
+            if (DisplayedLegacy.statusbarelements.Contains(statusBarElementsListView.SelectedItems[0].Text))
             {
-                displayedLegacy.statusbarelements.Remove(statusBarElementsListView.SelectedItems[0].Text);
+                DisplayedLegacy.statusbarelements.Remove(statusBarElementsListView.SelectedItems[0].Text);
                 statusBarElementsListView.Items.Remove(statusBarElementsListView.SelectedItems[0]);
-                if (displayedLegacy.statusbarelements.Count == 0)
+                if (DisplayedLegacy.statusbarelements.Count == 0)
                 {
-                    displayedLegacy.statusbarelements = null;
+                    DisplayedLegacy.statusbarelements = null;
                 }
             }
         }
@@ -444,20 +444,20 @@ namespace CarcassSpark.ObjectViewers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (displayedLegacy.statusbarelements != null && displayedLegacy.statusbarelements.Count == 4)
+                if (DisplayedLegacy.statusbarelements != null && DisplayedLegacy.statusbarelements.Count == 4)
                 {
                     MessageBox.Show("There is currently a limit of 4 statusbarelements");
                     return;
                 }
                 if (!string.IsNullOrEmpty(statusBarElementTextBox.Text))
                 {
-                    if (displayedLegacy.statusbarelements == null)
+                    if (DisplayedLegacy.statusbarelements == null)
                     {
-                        displayedLegacy.statusbarelements = new List<string>();
+                        DisplayedLegacy.statusbarelements = new List<string>();
                     }
 
                     statusBarElementsListView.Items.Add(statusBarElementTextBox.Text);
-                    displayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
+                    DisplayedLegacy.statusbarelements.Add(statusBarElementTextBox.Text);
                     statusBarElementTextBox.Text = "";
                     statusBarElementTextBox.Focus();
                 }
@@ -499,38 +499,38 @@ namespace CarcassSpark.ObjectViewers
             string key = e.Row.Cells[0].Value?.ToString();
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
-                if (displayedLegacy.effects_extend.ContainsKey(key))
+                if (DisplayedLegacy.effects_extend.ContainsKey(key))
                 {
-                    displayedLegacy.effects_extend.Remove(key);
+                    DisplayedLegacy.effects_extend.Remove(key);
                 }
 
-                if (displayedLegacy.effects_extend.Count == 0)
+                if (DisplayedLegacy.effects_extend.Count == 0)
                 {
-                    displayedLegacy.effects_extend = null;
+                    DisplayedLegacy.effects_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
-                if (displayedLegacy.effects_remove.Contains(key))
+                if (DisplayedLegacy.effects_remove.Contains(key))
                 {
-                    displayedLegacy.effects_remove.Remove(key);
+                    DisplayedLegacy.effects_remove.Remove(key);
                 }
 
-                if (displayedLegacy.effects_remove.Count == 0)
+                if (DisplayedLegacy.effects_remove.Count == 0)
                 {
-                    displayedLegacy.effects_remove = null;
+                    DisplayedLegacy.effects_remove = null;
                 }
             }
             else
             {
-                if (displayedLegacy.effects.ContainsKey(key))
+                if (DisplayedLegacy.effects.ContainsKey(key))
                 {
-                    displayedLegacy.effects.Remove(key);
+                    DisplayedLegacy.effects.Remove(key);
                 }
 
-                if (displayedLegacy.effects.Count == 0)
+                if (DisplayedLegacy.effects.Count == 0)
                 {
-                    displayedLegacy.effects = null;
+                    DisplayedLegacy.effects = null;
                 }
             }
         }
@@ -539,26 +539,26 @@ namespace CarcassSpark.ObjectViewers
         {
             if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Checked)
             {
-                displayedLegacy.availableWithoutEndingMatch = true;
+                DisplayedLegacy.availableWithoutEndingMatch = true;
             }
 
             if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedLegacy.availableWithoutEndingMatch = false;
+                DisplayedLegacy.availableWithoutEndingMatch = false;
             }
 
             if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedLegacy.availableWithoutEndingMatch = null;
+                DisplayedLegacy.availableWithoutEndingMatch = null;
             }
         }
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedLegacy.comments = commentsTextBox.Text;
-            if (displayedLegacy.comments == "")
+            DisplayedLegacy.comments = commentsTextBox.Text;
+            if (DisplayedLegacy.comments == "")
             {
-                displayedLegacy.comments = null;
+                DisplayedLegacy.comments = null;
             }
         }
 
@@ -566,17 +566,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (deletedCheckBox.CheckState == CheckState.Checked)
             {
-                displayedLegacy.deleted = true;
+                DisplayedLegacy.deleted = true;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedLegacy.deleted = false;
+                DisplayedLegacy.deleted = false;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedLegacy.deleted = null;
+                DisplayedLegacy.deleted = null;
             }
         }
 
@@ -584,78 +584,50 @@ namespace CarcassSpark.ObjectViewers
         {
             if (newStartCheckBox.CheckState == CheckState.Checked)
             {
-                displayedLegacy.newstart = true;
+                DisplayedLegacy.newstart = true;
             }
 
             if (newStartCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedLegacy.newstart = false;
+                DisplayedLegacy.newstart = false;
             }
 
             if (newStartCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedLegacy.newstart = null;
+                DisplayedLegacy.newstart = null;
             }
         }
 
         private void TableCoverImageTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (tableCoverImageTextBox.Text != "")
-            {
-                displayedLegacy.tablecoverimage = tableCoverImageTextBox.Text;
-            }
-            else
-            {
-                displayedLegacy.tablecoverimage = null;
-            }
+            DisplayedLegacy.tablecoverimage = tableCoverImageTextBox.Text != "" ? tableCoverImageTextBox.Text : null;
         }
 
         private void TableSurfaceImageTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (tableSurfaceImageTextBox.Text != "")
-            {
-                displayedLegacy.tablesurfaceimage = tableSurfaceImageTextBox.Text;
-            }
-            else
-            {
-                displayedLegacy.tablesurfaceimage = null;
-            }
+            DisplayedLegacy.tablesurfaceimage = tableSurfaceImageTextBox.Text != "" ? tableSurfaceImageTextBox.Text : null;
         }
 
         private void TableEdgeImageTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (tableEdgeImageTextBox.Text != "")
-            {
-                displayedLegacy.tableedgeimage = tableEdgeImageTextBox.Text;
-            }
-            else
-            {
-                displayedLegacy.tableedgeimage = null;
-            }
+            DisplayedLegacy.tableedgeimage = tableEdgeImageTextBox.Text != "" ? tableEdgeImageTextBox.Text : null;
         }
 
         private void ExtendsTextBox_TextChanged(object sender, EventArgs e)
         {
             if (extendsTextBox.Text.Contains(","))
             {
-                displayedLegacy.extends = extendsTextBox.Text.Split(',').ToList();
+                DisplayedLegacy.extends = extendsTextBox.Text.Split(',').ToList();
             }
             else
             {
-                if (extendsTextBox.Text != "")
-                {
-                    displayedLegacy.extends = new List<string> { extendsTextBox.Text };
-                }
-                else
-                {
-                    displayedLegacy.extends = null;
-                }
+                DisplayedLegacy.extends = extendsTextBox.Text != "" ? new List<string> { extendsTextBox.Text } : null;
             }
         }
 
         private void LegacyViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedLegacy);
+            FillValues(DisplayedLegacy);
         }
     }
 }

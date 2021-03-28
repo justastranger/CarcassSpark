@@ -24,7 +24,7 @@ namespace CarcassSpark.Tools
             HashSet<ListViewItem> listViewItems = new HashSet<ListViewItem>();
             if (objectType == "all")
             {
-                foreach (string path in Utilities.assets.Keys)
+                foreach (string path in Utilities.Assets.Keys)
                 {
                     string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
                     ListViewGroup folderGroup = assetsListView.Groups[folder] ?? new ListViewGroup(folder, folder);
@@ -53,7 +53,7 @@ namespace CarcassSpark.Tools
                     assetsListView.Groups.Add(folderGroup);
                 }
 
-                foreach (string path in Utilities.assets.Keys)
+                foreach (string path in Utilities.Assets.Keys)
                 {
                     string folder = path.Split('/').Count() > 1 ? path.Split('/')[1] : path;
 
@@ -92,7 +92,7 @@ namespace CarcassSpark.Tools
             {
                 ListViewItem selectedItem = assetsListView.SelectedItems[0];
                 // Image selectedImage = assetsListView.LargeImageList.Images[selectedItem.Text];
-                ImageViewer iv = new ImageViewer(Utilities.assets[selectedItem.Text].GetImage());
+                ImageViewer iv = new ImageViewer(Utilities.Assets[selectedItem.Text].GetImage());
                 iv.Show();
             }
         }
@@ -102,8 +102,8 @@ namespace CarcassSpark.Tools
             if (assetsListView.SelectedItems.Count == 1)
             {
                 ListViewItem selectedItem = assetsListView.SelectedItems[0];
-                string selectedID = selectedItem.Text.Split('/').Last();
-                Clipboard.SetText(selectedID);
+                string selectedId = selectedItem.Text.Split('/').Last();
+                Clipboard.SetText(selectedId);
             }
         }
 

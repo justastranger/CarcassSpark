@@ -8,43 +8,29 @@ namespace CarcassSpark.ObjectViewers
 
     public enum RecipeLinkType
     {
-        ALT,
-        LINKED
+        Alt,
+        Linked
     }
 
     public partial class RecipeLinkViewer : Form
     {
-        public RecipeLink displayedRecipeLink;
+        public RecipeLink DisplayedRecipeLink;
         private bool editing;
 
         public RecipeLinkViewer(RecipeLink recipeLink, bool? editing)
         {
             InitializeComponent();
-            displayedRecipeLink = recipeLink;
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            DisplayedRecipeLink = recipeLink;
+            SetEditingMode(editing.HasValue && editing.Value);
         }
 
         public RecipeLinkViewer(RecipeLink recipeLink, bool? editing, RecipeLinkType type)
         {
             InitializeComponent();
-            displayedRecipeLink = recipeLink;
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            DisplayedRecipeLink = recipeLink;
+            SetEditingMode(editing.HasValue && editing.Value);
 
-            if (type == RecipeLinkType.LINKED)
+            if (type == RecipeLinkType.Linked)
             {
                 SetLinked();
             }
@@ -130,23 +116,23 @@ namespace CarcassSpark.ObjectViewers
         {
             if (challengesDataGridView.RowCount > 1)
             {
-                displayedRecipeLink.challenges = new Dictionary<string, string>();
+                DisplayedRecipeLink.challenges = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in challengesDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        displayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        DisplayedRecipeLink.challenges.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
                     }
                 }
             }
             if (expulsionDataGridView.RowCount > 1)
             {
-                displayedRecipeLink.expulsion = new Expulsion(Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) > 0 ? Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) : 1);
+                DisplayedRecipeLink.expulsion = new Expulsion(Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) > 0 ? Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value) : 1);
                 foreach (DataGridViewRow row in expulsionDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        displayedRecipeLink.expulsion.filter.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
+                        DisplayedRecipeLink.expulsion.filter.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                     }
                 }
             }
@@ -160,56 +146,48 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedRecipeLink.id = idTextBox.Text;
-            if (displayedRecipeLink.id == "")
+            DisplayedRecipeLink.id = idTextBox.Text;
+            if (DisplayedRecipeLink.id == "")
             {
-                displayedRecipeLink.id = null;
+                DisplayedRecipeLink.id = null;
                 // idTextBox.BackColor = Color.White;
                 RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
             }
             else
             {
-                if (Utilities.RecipeExists(displayedRecipeLink.id))
-                {
-                    // idTextBox.BackColor = Color.Green;
-                    RecipeIDErrorProvider.SetError(idTextBox, string.Empty);
-                }
-                else
-                {
-                    // idTextBox.BackColor = Color.Red;
-                    RecipeIDErrorProvider.SetError(idTextBox, "Recipe ID Not Found");
-                }
+                RecipeIDErrorProvider.SetError(idTextBox,
+                    Utilities.RecipeExists(DisplayedRecipeLink.id) ? string.Empty : "Recipe ID Not Found");
             }
         }
 
         private void ChanceNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedRecipeLink.chance = Convert.ToInt32(chanceNumericUpDown.Value);
-            if (displayedRecipeLink.chance == 0)
+            DisplayedRecipeLink.chance = Convert.ToInt32(chanceNumericUpDown.Value);
+            if (DisplayedRecipeLink.chance == 0)
             {
-                displayedRecipeLink.chance = null;
+                DisplayedRecipeLink.chance = null;
             }
         }
 
         private void AdditionalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedRecipeLink.additional = additionalCheckBox.Checked;
-            if (!displayedRecipeLink.additional.Value)
+            DisplayedRecipeLink.additional = additionalCheckBox.Checked;
+            if (!DisplayedRecipeLink.additional.Value)
             {
-                displayedRecipeLink.additional = null;
+                DisplayedRecipeLink.additional = null;
             }
         }
 
         private void ChallengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            if (DisplayedRecipeLink.challenges.ContainsKey(e.Row.Cells[0].Value.ToString()))
             {
-                displayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
+                DisplayedRecipeLink.challenges.Remove(e.Row.Cells[0].Value.ToString());
             }
 
-            if (displayedRecipeLink.challenges.Count == 0)
+            if (DisplayedRecipeLink.challenges.Count == 0)
             {
-                displayedRecipeLink.challenges = null;
+                DisplayedRecipeLink.challenges = null;
             }
         }
 
@@ -227,21 +205,19 @@ namespace CarcassSpark.ObjectViewers
                     ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                     ev.Show();
                     break;
-                default:
-                    break;
             }
         }
 
         private void ExpulsionDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            if (displayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString()))
+            if (DisplayedRecipeLink.expulsion.filter.ContainsKey(e.Row.Cells[0].Value.ToString()))
             {
-                displayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
+                DisplayedRecipeLink.expulsion.filter.Remove(e.Row.Cells[0].Value.ToString());
             }
 
-            if (displayedRecipeLink.expulsion.filter.Count == 0)
+            if (DisplayedRecipeLink.expulsion.filter.Count == 0)
             {
-                displayedRecipeLink.expulsion = null;
+                DisplayedRecipeLink.expulsion = null;
             }
         }
 
@@ -253,15 +229,15 @@ namespace CarcassSpark.ObjectViewers
 
         private void TotalExpulsionLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (displayedRecipeLink.expulsion != null)
+            if (DisplayedRecipeLink.expulsion != null)
             {
-                displayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
+                DisplayedRecipeLink.expulsion.limit = Convert.ToInt32(totalExpulsionLimitNumericUpDown.Value);
             }
         }
 
         private void RecipeLinkViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedRecipeLink);
+            FillValues(DisplayedRecipeLink);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CarcassSpark
         // settings["loadAllFlowchartNodes"] bool
         // settings["portable"] bool
         // settings["GamePath"] string
-        private static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
         {
@@ -39,7 +39,7 @@ namespace CarcassSpark
                 settings.Remove("previousMods");
             }
 
-            using (FileStream settingsFile = File.Open(currentDirectory + "csmt.settings.json", FileMode.Create))
+            using (FileStream settingsFile = File.Open(CurrentDirectory + "csmt.settings.json", FileMode.Create))
             {
                 string settingsJson = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(settingsFile)))
@@ -98,19 +98,12 @@ namespace CarcassSpark
 
         public static bool HasPreviousMods()
         {
-            return settings["previousMods"] != null && settings["previousMods"] is JArray && settings["previousMods"].Any();
+            return settings["previousMods"] is JArray && settings["previousMods"].Any();
         }
 
         public static List<string> GetPreviousMods()
         {
-            if (settings["previousMods"] != null)
-            {
-                return settings["previousMods"].ToObject<List<string>>();
-            }
-            else
-            {
-                return null;
-            }
+            return settings["previousMods"]?.ToObject<List<string>>();
         }
 
         public static bool RemovePreviousMod(string path)
@@ -173,7 +166,7 @@ namespace CarcassSpark
 
         private void GamePathTextBox_DoubleClick(object sender, EventArgs e)
         {
-            folderBrowserDialog.SelectedPath = currentDirectory;
+            folderBrowserDialog.SelectedPath = CurrentDirectory;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(folderBrowserDialog.SelectedPath + "\\cultistsimulator.exe"))

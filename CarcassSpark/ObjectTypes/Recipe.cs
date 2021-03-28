@@ -129,18 +129,18 @@ namespace CarcassSpark.ObjectTypes
         public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? maxexecutions,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
                       Deck internaldeck, string ending, string burnimage, string comments,
-                      Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirements_remove,
-                      Dictionary<string, string> effects, Dictionary<string, string> effects_extend, List<string> effects_remove,
-                      List<RecipeLink> linked, List<RecipeLink> linked_prepend, List<RecipeLink> linked_append, List<string> linked_remove, List<Slot> slots,
-                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> alt_prepend, List<RecipeLink> alt_append, List<string> alt_remove,
-                      Dictionary<string, int> deckeffects, Dictionary<string, int> deckeffects_extend, List<string> deckeffects_remove,
-                      List<Mutation> mutations, List<Mutation> mutations_prepend, List<Mutation> mutations_append, List<string> mutations_remove,
-                      Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
-                      Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqs_extend, List<string> tablereqs_remove,
-                      Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqs_extend, List<string> extantreqs_remove,
-                      Dictionary<string, int> purge, Dictionary<string, int> purge_extend, List<string> purge_remove,
-                      Dictionary<string, int> haltverb, Dictionary<string, int> haltverb_extend, List<string> haltverb_remove,
-                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverb_extend, List<string> deleteverb_remove, List<string> extends)
+                      Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirementsRemove,
+                      Dictionary<string, string> effects, Dictionary<string, string> effectsExtend, List<string> effectsRemove,
+                      List<RecipeLink> linked, List<RecipeLink> linkedPrepend, List<RecipeLink> linkedAppend, List<string> linkedRemove, List<Slot> slots,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> altPrepend, List<RecipeLink> altAppend, List<string> altRemove,
+                      Dictionary<string, int> deckeffects, Dictionary<string, int> deckeffectsExtend, List<string> deckeffectsRemove,
+                      List<Mutation> mutations, List<Mutation> mutationsPrepend, List<Mutation> mutationsAppend, List<string> mutationsRemove,
+                      Dictionary<string, int> aspects, Dictionary<string, int> aspectsExtend, List<string> aspectsRemove,
+                      Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqsExtend, List<string> tablereqsRemove,
+                      Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqsExtend, List<string> extantreqsRemove,
+                      Dictionary<string, int> purge, Dictionary<string, int> purgeExtend, List<string> purgeRemove,
+                      Dictionary<string, int> haltverb, Dictionary<string, int> haltverbExtend, List<string> haltverbRemove,
+                      Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverbExtend, List<string> deleteverbRemove, List<string> extends)
         {
             this.id = id;
             this.label = label;
@@ -156,47 +156,47 @@ namespace CarcassSpark.ObjectTypes
             this.warmup = warmup;
             this.requirements = requirements;
             this.requirements_extend = requirements_extend;
-            this.requirements_remove = requirements_remove;
+            this.requirements_remove = requirementsRemove;
             this.extantreqs = extantreqs;
-            this.extantreqs_extend = extantreqs_extend;
-            this.extantreqs_remove = extantreqs_remove;
+            this.extantreqs_extend = extantreqsExtend;
+            this.extantreqs_remove = extantreqsRemove;
             this.tablereqs = tablereqs;
-            this.tablereqs_extend = tablereqs_extend;
-            this.tablereqs_remove = tablereqs_remove;
+            this.tablereqs_extend = tablereqsExtend;
+            this.tablereqs_remove = tablereqsRemove;
             this.maxexecutions = maxexecutions;
             this.effects = effects;
-            this.effects_extend = effects_extend;
-            this.effects_remove = effects_remove;
+            this.effects_extend = effectsExtend;
+            this.effects_remove = effectsRemove;
             this.linked = linked;
-            this.linked_prepend = linked_prepend;
-            this.linked_append = linked_append;
-            this.linked_remove = linked_remove;
+            this.linked_prepend = linkedPrepend;
+            this.linked_append = linkedAppend;
+            this.linked_remove = linkedRemove;
             this.slots = slots;
             this.alt = alt ?? alternativerecipes;
-            this.alt_prepend = alt_prepend;
-            this.alt_append = alt_append;
-            this.alt_remove = alt_remove;
+            this.alt_prepend = altPrepend;
+            this.alt_append = altAppend;
+            this.alt_remove = altRemove;
             this.mutations = mutations;
-            this.mutations_prepend = mutations_prepend;
-            this.mutations_append = mutations_append;
-            this.mutations_remove = mutations_remove;
+            this.mutations_prepend = mutationsPrepend;
+            this.mutations_append = mutationsAppend;
+            this.mutations_remove = mutationsRemove;
             this.aspects = aspects;
-            this.aspects_extend = aspects_extend;
-            this.aspects_remove = aspects_remove;
+            this.aspects_extend = aspectsExtend;
+            this.aspects_remove = aspectsRemove;
             this.deckeffects = deckeffects;
-            this.deckeffects_extend = deckeffects_extend;
-            this.deckeffects_remove = deckeffects_remove;
+            this.deckeffects_extend = deckeffectsExtend;
+            this.deckeffects_remove = deckeffectsRemove;
             this.hintonly = hintonly;
             this.internaldeck = internaldeck;
             this.purge = purge;
-            this.purge_extend = purge_extend;
-            this.purge_remove = purge_remove;
+            this.purge_extend = purgeExtend;
+            this.purge_remove = purgeRemove;
             this.haltverb = haltverb;
-            this.haltverb_extend = haltverb_extend;
-            this.haltverb_remove = haltverb_remove;
+            this.haltverb_extend = haltverbExtend;
+            this.haltverb_remove = haltverbRemove;
             this.deleteverb = deleteverb;
-            this.deleteverb_extend = deleteverb_extend;
-            this.deleteverb_remove = deleteverb_remove;
+            this.deleteverb_extend = deleteverbExtend;
+            this.deleteverb_remove = deleteverbRemove;
             this.portaleffect = portaleffect;
             this.signalendingflavour = signalendingflavour;
             this.signalimportantloop = signalimportantloop;

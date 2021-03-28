@@ -1,11 +1,10 @@
-﻿using CarcassSpark.ObjectTypes;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public interface IGameObjectViewer<T> where T : IGameObject
+    public interface IGameObjectViewer
     {
         ListViewItem AssociatedListViewItem{ get; set; }
         void Show();

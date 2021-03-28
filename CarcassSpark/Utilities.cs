@@ -17,20 +17,16 @@ namespace CarcassSpark
         public static Dictionary<string, ContentSource> ContentSources = new Dictionary<string, ContentSource>();
         
         public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        public static string DirectoryToVanillaContent
-        {
-            get
-            {
-                return Settings.settings["GamePath"]?.ToString() != null
-                    ? Path.Combine(Settings.settings["GamePath"].ToString(), "cultistsimulator_Data\\StreamingAssets\\content\\core\\")
-                    : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
-            }
-        }
+        public static string DirectoryToVanillaContent =>
+            Settings.settings["GamePath"]?.ToString() != null
+                ? Path.Combine(Settings.settings["GamePath"].ToString(), "cultistsimulator_Data\\StreamingAssets\\content\\core\\")
+                : "\\cultistsimulator_Data\\StreamingAssets\\content\\core\\";
+
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
-        private static string DirectoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
+        private static string _directoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
         private static readonly AssetsManager AssetsManager = new AssetsManager();
-        public static Dictionary<string, Sprite> assets = new Dictionary<string, Sprite>();
+        public static Dictionary<string, Sprite> Assets = new Dictionary<string, Sprite>();
         public static ImageList ImageList = new ImageList
         {
             ImageSize = new Size(128, 128)
@@ -46,7 +42,7 @@ namespace CarcassSpark
         {
             DictionaryExtendStyle.BackColor = System.Drawing.Color.LimeGreen;
             DictionaryRemoveStyle.BackColor = System.Drawing.Color.Maroon;
-            AssetsManager.LoadFiles(Settings.settings["GamePath"].ToString() + DirectoryToVanillaAssets);
+            AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
             CollectSprites();
         }
 
@@ -62,7 +58,7 @@ namespace CarcassSpark
                 {
                     if (value is Sprite sprite)
                     {
-                        assets[key] = sprite;
+                        Assets[key] = sprite;
                         ImageList.Images.Add(key, sprite.GetImage());
                     }
                 }
@@ -112,13 +108,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/aspects/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/elements/_x"].GetImage();
+                    return Assets["images/elements/_x"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -131,7 +127,7 @@ namespace CarcassSpark
 
         public static bool VanillaAspectImageExists(string id)
         {
-            return assets.ContainsKey("images/aspects/" + id);
+            return Assets.ContainsKey("images/aspects/" + id);
         }
 
         public static Bitmap GetVanillaElement(string id)
@@ -139,13 +135,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/elements/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/elements/_x"].GetImage();
+                    return Assets["images/elements/_x"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -157,7 +153,7 @@ namespace CarcassSpark
 
         public static bool VanillaElementImageExists(string id)
         {
-            return assets.ContainsKey("images/elements/" + id);
+            return Assets.ContainsKey("images/elements/" + id);
         }
 
         public static Bitmap GetVanillaEnding(string id)
@@ -165,13 +161,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/endings/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/endings/despair"].GetImage();
+                    return Assets["images/endings/despair"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -183,7 +179,7 @@ namespace CarcassSpark
 
         public static bool VanillaEndingImageExists(string id)
         {
-            return assets.ContainsKey("images/endings/" + id);
+            return Assets.ContainsKey("images/endings/" + id);
         }
 
         public static Bitmap GetVanillaLegacy(string id)
@@ -191,13 +187,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/legacies/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/legacies/aspirant"].GetImage();
+                    return Assets["images/legacies/aspirant"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -209,7 +205,7 @@ namespace CarcassSpark
 
         public static bool VanillaLegacyImageExists(string id)
         {
-            return assets.ContainsKey("images/legacies/" + id);
+            return Assets.ContainsKey("images/legacies/" + id);
         }
 
         public static Bitmap GetVanillaVerb(string id)
@@ -217,13 +213,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/verbs/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/verbs/_x"].GetImage();
+                    return Assets["images/verbs/_x"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -235,7 +231,7 @@ namespace CarcassSpark
 
         public static bool VanillaVerbImageExists(string id)
         {
-            return assets.ContainsKey("images/verbs/" + id);
+            return Assets.ContainsKey("images/verbs/" + id);
         }
 
         public static Bitmap GetVanillaCardBack(string id)
@@ -243,13 +239,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/cardbacks/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/cardbacks/_x"].GetImage();
+                    return Assets["images/cardbacks/_x"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -261,7 +257,7 @@ namespace CarcassSpark
 
         public static bool VanillaCardBackImageExists(string id)
         {
-            return assets.ContainsKey("images/cardbacks/" + id);
+            return Assets.ContainsKey("images/cardbacks/" + id);
         }
 
         public static Bitmap GetVanillaBurnImage(string id)
@@ -269,13 +265,13 @@ namespace CarcassSpark
             try
             {
                 string path = "images/burns/" + id;
-                if (assets.ContainsKey(path))
+                if (Assets.ContainsKey(path))
                 {
-                    return assets[path].GetImage();
+                    return Assets[path].GetImage();
                 }
                 else
                 {
-                    return assets["images/burns/moon"].GetImage();
+                    return Assets["images/burns/moon"].GetImage();
                 }
             }
             catch (TypeInitializationException)
@@ -287,14 +283,14 @@ namespace CarcassSpark
 
         public static bool VanillaBurnImageImageExists(string id)
         {
-            return assets.ContainsKey("images/burns/" + id);
+            return Assets.ContainsKey("images/burns/" + id);
         }
 
         public static bool AspectImageExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/aspects/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/aspects/" + id + ".png"))
                 {
                     return true;
                 }
@@ -327,7 +323,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/elements/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/elements/" + id + ".png"))
                 {
                     return true;
                 }
@@ -360,7 +356,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/endings/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/endings/" + id + ".png"))
                 {
                     return true;
                 }
@@ -393,7 +389,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/legacies/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/legacies/" + id + ".png"))
                 {
                     return true;
                 }
@@ -426,7 +422,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/verbs/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/verbs/" + id + ".png"))
                 {
                     return true;
                 }
@@ -459,7 +455,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/cardbacks/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/cardbacks/" + id + ".png"))
                 {
                     return true;
                 }
@@ -492,7 +488,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.currentDirectory + "/images/burns/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "/images/burns/" + id + ".png"))
                 {
                     return true;
                 }
@@ -813,7 +809,7 @@ namespace CarcassSpark
                     }
                 }
             }
-            return tmp.Count > 0 ? tmp.Values.ToList<T>() : null;
+            return tmp.Count > 0 ? tmp.Values.ToList() : null;
         }
 
         #endregion
@@ -838,35 +834,35 @@ namespace CarcassSpark
             return stringBuilder.ToString();
         }
 
-        public static IGameObjectViewer<T> GetViewer<T>(T gameObject, EventHandler<T> successCallback) where T : IGameObject
+        public static IGameObjectViewer GetViewer<T>(T gameObject, EventHandler<T> successCallback) where T : IGameObject
         {
             if (typeof(T) == typeof(Aspect))
             {
-                return (IGameObjectViewer<T>) new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
+                return (IGameObjectViewer) new AspectViewer(gameObject as Aspect, successCallback as EventHandler<Aspect>, null);
             }
             else if (typeof(T) == typeof(Element))
             {
-                return (IGameObjectViewer<T>) new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
+                return (IGameObjectViewer) new ElementViewer(gameObject as Element, successCallback as EventHandler<Element>, null);
             }
             else if (typeof(T) == typeof(Recipe))
             {
-                return (IGameObjectViewer<T>) new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
+                return (IGameObjectViewer) new RecipeViewer(gameObject as Recipe, successCallback as EventHandler<Recipe>, null);
             }
             else if (typeof(T) == typeof(Deck))
             {
-                return (IGameObjectViewer<T>) new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
+                return (IGameObjectViewer) new DeckViewer(gameObject as Deck, successCallback as EventHandler<Deck>, null);
             }
             else if (typeof(T) == typeof(Legacy))
             {
-                return (IGameObjectViewer<T>) new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
+                return (IGameObjectViewer) new LegacyViewer(gameObject as Legacy, successCallback as EventHandler<Legacy>, null);
             }
             else if (typeof(T) == typeof(Ending))
             {
-                return (IGameObjectViewer<T>) new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
+                return (IGameObjectViewer) new EndingViewer(gameObject as Ending, successCallback as EventHandler<Ending>, null);
             }
             else if (typeof(T) == typeof(Verb))
             {
-                return (IGameObjectViewer<T>) new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
+                return (IGameObjectViewer) new VerbViewer(gameObject as Verb, successCallback as EventHandler<Verb>, null);
             }
             else
             {

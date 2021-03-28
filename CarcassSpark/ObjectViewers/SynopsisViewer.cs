@@ -8,24 +8,24 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class SynopsisViewer : Form
     {
-        public Synopsis displayedSynopsis;
+        public Synopsis DisplayedSynopsis;
 
         public SynopsisViewer(Synopsis synopsis)
         {
             InitializeComponent();
-            displayedSynopsis = synopsis;
+            DisplayedSynopsis = synopsis;
         }
 
         private void FillValues()
         {
-            modNameTextBox.Text = displayedSynopsis.name;
-            modAuthorTextBox.Text = displayedSynopsis.author;
-            modVersionTextBox.Text = displayedSynopsis.version;
-            modDescriptionTextBox.Text = displayedSynopsis.description;
-            longDescriptionTextBox.Text = displayedSynopsis.description_long;
-            if (displayedSynopsis.dependencies != null)
+            modNameTextBox.Text = DisplayedSynopsis.name;
+            modAuthorTextBox.Text = DisplayedSynopsis.author;
+            modVersionTextBox.Text = DisplayedSynopsis.version;
+            modDescriptionTextBox.Text = DisplayedSynopsis.description;
+            longDescriptionTextBox.Text = DisplayedSynopsis.description_long;
+            if (DisplayedSynopsis.dependencies != null)
             {
-                foreach (string dep in displayedSynopsis.dependencies)
+                foreach (string dep in DisplayedSynopsis.dependencies)
                 {
                     string[] depPieces = dep.Split(' ');
                     if (depPieces.Any())
@@ -49,27 +49,27 @@ namespace CarcassSpark.ObjectViewers
 
         private void ModNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.name = GetTextFromBox(modNameTextBox);
+            DisplayedSynopsis.name = GetTextFromBox(modNameTextBox);
         }
 
         private void ModAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.author = GetTextFromBox(modAuthorTextBox);
+            DisplayedSynopsis.author = GetTextFromBox(modAuthorTextBox);
         }
 
         private void ModVersionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.version = GetTextFromBox(modVersionTextBox);
+            DisplayedSynopsis.version = GetTextFromBox(modVersionTextBox);
         }
 
         private void ModDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.description = GetTextFromBox(modDescriptionTextBox);
+            DisplayedSynopsis.description = GetTextFromBox(modDescriptionTextBox);
         }
 
         private void LongDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedSynopsis.description_long = GetTextFromBox(longDescriptionTextBox);
+            DisplayedSynopsis.description_long = GetTextFromBox(longDescriptionTextBox);
         }
 
         private string GetTextFromBox(TextBox textBox)
@@ -87,7 +87,7 @@ namespace CarcassSpark.ObjectViewers
             // }
             if (dependeniesDataGridView.RowCount > 1)
             {
-                displayedSynopsis.dependencies = new List<string>();
+                DisplayedSynopsis.dependencies = new List<string>();
                 foreach (DataGridViewRow row in dependeniesDataGridView.Rows)
                 {
                     Synopsis.Dependency dep = new Synopsis.Dependency();
@@ -108,7 +108,7 @@ namespace CarcassSpark.ObjectViewers
 
                     if (dep.modId != null)
                     {
-                        displayedSynopsis.dependencies.Add(dep.ToString());
+                        DisplayedSynopsis.dependencies.Add(dep.ToString());
                     }
                 }
             }
@@ -122,7 +122,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void SynopsisViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (string.IsNullOrEmpty(displayedSynopsis.name))
+            if (string.IsNullOrEmpty(DisplayedSynopsis.name))
             {
                 MessageBox.Show("You must specify a name for your mod.", "Name Not Specified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;

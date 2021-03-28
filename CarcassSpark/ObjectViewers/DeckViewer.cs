@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class DeckViewer : Form, IGameObjectViewer<Deck>
+    public partial class DeckViewer : Form, IGameObjectViewer
     {
-        public Deck displayedDeck;
+        public Deck DisplayedDeck;
         private bool editing;
 
         private event EventHandler<Deck> SuccessCallback;
@@ -22,20 +22,20 @@ namespace CarcassSpark.ObjectViewers
         public DeckViewer(Deck deck)
         {
             InitializeComponent();
-            displayedDeck = deck;
+            DisplayedDeck = deck;
             SetEditingMode(false);
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, ListViewItem item)
+        public DeckViewer(Deck deck, EventHandler<Deck> successCallback, ListViewItem item)
         {
             InitializeComponent();
-            displayedDeck = deck;
+            DisplayedDeck = deck;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
@@ -45,29 +45,22 @@ namespace CarcassSpark.ObjectViewers
             SetInternal(false);
         }
 
-        public DeckViewer(Deck deck, EventHandler<Deck> SuccessCallback, bool? internalDeck, ListViewItem item)
+        public DeckViewer(Deck deck, EventHandler<Deck> successCallback, bool? internalDeck, ListViewItem item)
         {
             InitializeComponent();
-            displayedDeck = deck;
+            DisplayedDeck = deck;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
                 SetEditingMode(false);
             }
 
-            if (internalDeck.HasValue)
-            {
-                SetInternal(internalDeck.Value);
-            }
-            else
-            {
-                SetInternal(false);
-            }
+            SetInternal(internalDeck.HasValue && internalDeck.Value);
         }
 
         private void SetInternal(bool internalDeck)
@@ -235,24 +228,24 @@ namespace CarcassSpark.ObjectViewers
             if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 specListView.Items.Add(newCardTextBox.Text);
-                if (displayedDeck.spec == null)
+                if (DisplayedDeck.spec == null)
                 {
-                    displayedDeck.spec = new List<string>();
+                    DisplayedDeck.spec = new List<string>();
                 }
-                displayedDeck.spec.Add(newCardTextBox.Text);
+                DisplayedDeck.spec.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (displayedDeck.spec == null)
+                if (DisplayedDeck.spec == null)
                 {
-                    displayedDeck.spec = new List<string>();
+                    DisplayedDeck.spec = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
                 item.BackColor = new Color();
-                displayedDeck.spec.Add(item.Text);
+                DisplayedDeck.spec.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
@@ -266,28 +259,28 @@ namespace CarcassSpark.ObjectViewers
             }
             if (drawmessagesDataGridView.Rows.Count > 1)
             {
-                displayedDeck.drawmessages = new Dictionary<string, string>();
+                DisplayedDeck.drawmessages = new Dictionary<string, string>();
                 foreach (DataGridViewRow row in drawmessagesDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
                         if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                         {
-                            displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                            DisplayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
                         }
                         else if (row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
                         {
-                            displayedDeck.drawmessages.Remove(row.Cells[0].Value.ToString());
+                            DisplayedDeck.drawmessages.Remove(row.Cells[0].Value.ToString());
                         }
                         else
                         {
-                            displayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                            DisplayedDeck.drawmessages.Add(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
                         }
                     }
                 }
             }
             Close();
-            SuccessCallback?.Invoke(this, displayedDeck);
+            SuccessCallback?.Invoke(this, DisplayedDeck);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -297,37 +290,37 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.ID = idTextBox.Text;
-            if (displayedDeck.ID == "")
+            DisplayedDeck.ID = idTextBox.Text;
+            if (DisplayedDeck.ID == "")
             {
-                displayedDeck.ID = null;
+                DisplayedDeck.ID = null;
             }
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.label = labelTextBox.Text;
-            if (displayedDeck.label == "")
+            DisplayedDeck.label = labelTextBox.Text;
+            if (DisplayedDeck.label == "")
             {
-                displayedDeck.label = null;
+                DisplayedDeck.label = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.description = descriptionTextBox.Text;
-            if (displayedDeck.description == "")
+            DisplayedDeck.description = descriptionTextBox.Text;
+            if (DisplayedDeck.description == "")
             {
-                displayedDeck.description = null;
+                DisplayedDeck.description = null;
             }
         }
 
         private void CommentsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.comments = commentsTextBox.Text;
-            if (displayedDeck.comments == "")
+            DisplayedDeck.comments = commentsTextBox.Text;
+            if (DisplayedDeck.comments == "")
             {
-                displayedDeck.comments = null;
+                DisplayedDeck.comments = null;
             }
         }
 
@@ -338,12 +331,12 @@ namespace CarcassSpark.ObjectViewers
                 if (!string.IsNullOrEmpty(newCardTextBox.Text))
                 {
                     specListView.Items.Add(newCardTextBox.Text);
-                    if (displayedDeck.spec == null)
+                    if (DisplayedDeck.spec == null)
                     {
-                        displayedDeck.spec = new List<string>();
+                        DisplayedDeck.spec = new List<string>();
                     }
 
-                    displayedDeck.spec.Add(newCardTextBox.Text);
+                    DisplayedDeck.spec.Add(newCardTextBox.Text);
                     newCardTextBox.Text = "";
                     newCardTextBox.Focus();
                 }
@@ -352,21 +345,21 @@ namespace CarcassSpark.ObjectViewers
 
         private void DefaultCardTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedDeck.defaultcard = defaultCardTextBox.Text;
-            if (displayedDeck.defaultcard == "")
+            DisplayedDeck.defaultcard = defaultCardTextBox.Text;
+            if (DisplayedDeck.defaultcard == "")
             {
-                displayedDeck.defaultcard = null;
+                DisplayedDeck.defaultcard = null;
             }
         }
 
         private void SpecListView_DoubleClick(object sender, EventArgs e)
         {
-            if (specListView.SelectedItems == null)
+            if (specListView.SelectedItems.Count == 0)
             {
                 return;
             }
 
-            string id = specListView.SelectedItems[0].Text.ToString();
+            string id = specListView.SelectedItems[0].Text;
             if (id.Contains("deck:") && Utilities.DeckExists(id.Substring(id.IndexOf(":"))))
             {
                 DeckViewer dv = new DeckViewer(Utilities.GetDeck(id.Substring(id.IndexOf(":"))), null, null);
@@ -385,54 +378,54 @@ namespace CarcassSpark.ObjectViewers
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
-                if (displayedDeck.drawmessages_extend == null)
+                if (DisplayedDeck.drawmessages_extend == null)
                 {
                     return;
                 }
 
-                if (displayedDeck.drawmessages_extend.ContainsKey(key))
+                if (DisplayedDeck.drawmessages_extend.ContainsKey(key))
                 {
-                    displayedDeck.drawmessages_extend.Remove(key);
+                    DisplayedDeck.drawmessages_extend.Remove(key);
                 }
 
-                if (displayedDeck.drawmessages_extend.Count == 0)
+                if (DisplayedDeck.drawmessages_extend.Count == 0)
                 {
-                    displayedDeck.drawmessages_extend = null;
+                    DisplayedDeck.drawmessages_extend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle == Utilities.DictionaryRemoveStyle)
             {
 
-                if (displayedDeck.drawmessages_remove == null)
+                if (DisplayedDeck.drawmessages_remove == null)
                 {
                     return;
                 }
 
-                if (displayedDeck.drawmessages_remove.Contains(key))
+                if (DisplayedDeck.drawmessages_remove.Contains(key))
                 {
-                    displayedDeck.drawmessages_remove.Remove(key);
+                    DisplayedDeck.drawmessages_remove.Remove(key);
                 }
 
-                if (displayedDeck.drawmessages_remove.Count == 0)
+                if (DisplayedDeck.drawmessages_remove.Count == 0)
                 {
-                    displayedDeck.drawmessages_remove = null;
+                    DisplayedDeck.drawmessages_remove = null;
                 }
             }
             else
             {
-                if (displayedDeck.drawmessages == null)
+                if (DisplayedDeck.drawmessages == null)
                 {
                     return;
                 }
 
-                if (displayedDeck.drawmessages.ContainsKey(key))
+                if (DisplayedDeck.drawmessages.ContainsKey(key))
                 {
-                    displayedDeck.drawmessages.Remove(key);
+                    DisplayedDeck.drawmessages.Remove(key);
                 }
 
-                if (displayedDeck.drawmessages.Count == 0)
+                if (DisplayedDeck.drawmessages.Count == 0)
                 {
-                    displayedDeck.drawmessages = null;
+                    DisplayedDeck.drawmessages = null;
                 }
             }
         }
@@ -446,25 +439,25 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListPrependColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_prepend == null)
+                if (DisplayedDeck.spec_prepend == null)
                 {
-                    displayedDeck.spec_prepend = new List<string>();
+                    DisplayedDeck.spec_prepend = new List<string>();
                 }
 
-                displayedDeck.spec_prepend.Add(newCardTextBox.Text);
+                DisplayedDeck.spec_prepend.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (displayedDeck.spec_prepend == null)
+                if (DisplayedDeck.spec_prepend == null)
                 {
-                    displayedDeck.spec_prepend = new List<string>();
+                    DisplayedDeck.spec_prepend = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
                 item.BackColor = Utilities.ListPrependColor;
-                displayedDeck.spec_prepend.Add(item.Text);
+                DisplayedDeck.spec_prepend.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
@@ -478,25 +471,25 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListAppendColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_append == null)
+                if (DisplayedDeck.spec_append == null)
                 {
-                    displayedDeck.spec_append = new List<string>();
+                    DisplayedDeck.spec_append = new List<string>();
                 }
 
-                displayedDeck.spec_append.Add(newCardTextBox.Text);
+                DisplayedDeck.spec_append.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (displayedDeck.spec_append == null)
+                if (DisplayedDeck.spec_append == null)
                 {
-                    displayedDeck.spec_append = new List<string>();
+                    DisplayedDeck.spec_append = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
                 item.BackColor = Utilities.ListAppendColor;
-                displayedDeck.spec_append.Add(item.Text);
+                DisplayedDeck.spec_append.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
@@ -510,25 +503,25 @@ namespace CarcassSpark.ObjectViewers
                     BackColor = Utilities.ListRemoveColor
                 };
                 specListView.Items.Add(item);
-                if (displayedDeck.spec_remove == null)
+                if (DisplayedDeck.spec_remove == null)
                 {
-                    displayedDeck.spec_remove = new List<string>();
+                    DisplayedDeck.spec_remove = new List<string>();
                 }
 
-                displayedDeck.spec_remove.Add(newCardTextBox.Text);
+                DisplayedDeck.spec_remove.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (displayedDeck.spec_remove == null)
+                if (DisplayedDeck.spec_remove == null)
                 {
-                    displayedDeck.spec_remove = new List<string>();
+                    DisplayedDeck.spec_remove = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
                 item.BackColor = Utilities.ListRemoveColor;
-                displayedDeck.spec_remove.Add(item.Text);
+                DisplayedDeck.spec_remove.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
@@ -556,17 +549,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked)
             {
-                displayedDeck.resetonexhaustion = true;
+                DisplayedDeck.resetonexhaustion = true;
             }
 
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedDeck.resetonexhaustion = false;
+                DisplayedDeck.resetonexhaustion = false;
             }
 
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedDeck.resetonexhaustion = null;
+                DisplayedDeck.resetonexhaustion = null;
             }
         }
 
@@ -574,17 +567,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (deletedCheckBox.CheckState == CheckState.Checked)
             {
-                displayedDeck.resetonexhaustion = true;
+                DisplayedDeck.resetonexhaustion = true;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedDeck.resetonexhaustion = false;
+                DisplayedDeck.resetonexhaustion = false;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedDeck.resetonexhaustion = null;
+                DisplayedDeck.resetonexhaustion = null;
             }
         }
 
@@ -592,18 +585,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (extendsTextBox.Text.Contains(","))
             {
-                displayedDeck.extends = extendsTextBox.Text.Split(',').ToList();
+                DisplayedDeck.extends = extendsTextBox.Text.Split(',').ToList();
             }
             else
             {
-                if (extendsTextBox.Text != "")
-                {
-                    displayedDeck.extends = new List<string> { extendsTextBox.Text };
-                }
-                else
-                {
-                    displayedDeck.extends = null;
-                }
+                DisplayedDeck.extends = extendsTextBox.Text != "" ? new List<string> { extendsTextBox.Text } : null;
             }
         }
 
@@ -611,10 +597,10 @@ namespace CarcassSpark.ObjectViewers
         {
             if (drawsNumericUpDown.Value == 0)
             {
-                displayedDeck.draws = null;
+                DisplayedDeck.draws = null;
                 return;
             }
-            displayedDeck.draws = Convert.ToInt32(drawsNumericUpDown.Value);
+            DisplayedDeck.draws = Convert.ToInt32(drawsNumericUpDown.Value);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -631,43 +617,43 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteItemFromCurrentGroup(ListViewItem item)
         {
-            if (item.BackColor == Utilities.ListAppendColor && displayedDeck.spec_append != null)
+            if (item.BackColor == Utilities.ListAppendColor && DisplayedDeck.spec_append != null)
             {
-                displayedDeck.spec_append.Remove(item.Text);
-                if (displayedDeck.spec_append.Count == 0)
+                DisplayedDeck.spec_append.Remove(item.Text);
+                if (DisplayedDeck.spec_append.Count == 0)
                 {
-                    displayedDeck.spec_append = null;
+                    DisplayedDeck.spec_append = null;
                 }
             }
-            else if (item.BackColor == Utilities.ListPrependColor && displayedDeck.spec_append != null)
+            else if (item.BackColor == Utilities.ListPrependColor && DisplayedDeck.spec_append != null)
             {
-                displayedDeck.spec_prepend.Remove(item.Text);
-                if (displayedDeck.spec_prepend.Count == 0)
+                DisplayedDeck.spec_prepend.Remove(item.Text);
+                if (DisplayedDeck.spec_prepend.Count == 0)
                 {
-                    displayedDeck.spec_prepend = null;
+                    DisplayedDeck.spec_prepend = null;
                 }
             }
-            else if (item.BackColor == Utilities.ListRemoveColor && displayedDeck.spec_append != null)
+            else if (item.BackColor == Utilities.ListRemoveColor && DisplayedDeck.spec_append != null)
             {
-                displayedDeck.spec_remove.Remove(item.Text);
-                if (displayedDeck.spec_remove.Count == 0)
+                DisplayedDeck.spec_remove.Remove(item.Text);
+                if (DisplayedDeck.spec_remove.Count == 0)
                 {
-                    displayedDeck.spec_remove = null;
+                    DisplayedDeck.spec_remove = null;
                 }
             }
-            else if (displayedDeck.spec != null)
+            else if (DisplayedDeck.spec != null)
             {
-                displayedDeck.spec.Remove(item.Text);
-                if (displayedDeck.spec.Count == 0)
+                DisplayedDeck.spec.Remove(item.Text);
+                if (DisplayedDeck.spec.Count == 0)
                 {
-                    displayedDeck.spec = null;
+                    DisplayedDeck.spec = null;
                 }
             }
         }
 
         private void DeckViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedDeck);
+            FillValues(DisplayedDeck);
         }
     }
 }

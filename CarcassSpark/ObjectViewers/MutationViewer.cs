@@ -6,21 +6,14 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class MutationViewer : Form
     {
-        public Mutation displayedMutation;
+        public Mutation DisplayedMutation;
         private bool editing;
 
         public MutationViewer(Mutation mutation, bool? editing)
         {
             InitializeComponent();
-            displayedMutation = mutation;
-            if (editing.HasValue)
-            {
-                SetEditingMode(editing.Value);
-            }
-            else
-            {
-                SetEditingMode(false);
-            }
+            DisplayedMutation = mutation;
+            SetEditingMode(editing.HasValue && editing.Value);
         }
 
         private void FillValues(Mutation mutation)
@@ -69,43 +62,43 @@ namespace CarcassSpark.ObjectViewers
 
         private void FilterTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedMutation.filter = filterTextBox.Text;
-            if (displayedMutation.filter == "")
+            DisplayedMutation.filter = filterTextBox.Text;
+            if (DisplayedMutation.filter == "")
             {
-                displayedMutation.filter = null;
+                DisplayedMutation.filter = null;
             }
         }
 
         private void MutateAspectIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedMutation.mutate = mutateAspectIdTextBox.Text;
-            if (displayedMutation.mutate == "")
+            DisplayedMutation.mutate = mutateAspectIdTextBox.Text;
+            if (DisplayedMutation.mutate == "")
             {
-                displayedMutation.mutate = null;
+                DisplayedMutation.mutate = null;
             }
         }
 
         private void LevelNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            displayedMutation.level = Convert.ToInt32(levelNumericUpDown.Value);
-            if (displayedMutation.level == 0)
+            DisplayedMutation.level = Convert.ToInt32(levelNumericUpDown.Value);
+            if (DisplayedMutation.level == 0)
             {
-                displayedMutation.level = null;
+                DisplayedMutation.level = null;
             }
         }
 
         private void AdditiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            displayedMutation.additive = additiveCheckBox.Checked;
-            if (!displayedMutation.additive.Value)
+            DisplayedMutation.additive = additiveCheckBox.Checked;
+            if (!DisplayedMutation.additive.Value)
             {
-                displayedMutation.additive = null;
+                DisplayedMutation.additive = null;
             }
         }
 
         private void MutationViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedMutation);
+            FillValues(DisplayedMutation);
         }
     }
 }

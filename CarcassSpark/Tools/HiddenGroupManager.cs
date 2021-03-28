@@ -26,15 +26,15 @@ namespace CarcassSpark.Tools
             {
                 foreach (KeyValuePair<string, List<string>> type in HiddenGroups)
                 {
-                    ListViewGroup HiddenGroupsTypeGroup = new ListViewGroup(type.Key, type.Key);
-                    hiddenGroupsListView.Groups.Add(HiddenGroupsTypeGroup);
-                    List<ListViewItem> HiddenGroupsItems = new List<ListViewItem>();
+                    ListViewGroup hiddenGroupsTypeGroup = new ListViewGroup(type.Key, type.Key);
+                    hiddenGroupsListView.Groups.Add(hiddenGroupsTypeGroup);
+                    List<ListViewItem> hiddenGroupsItems = new List<ListViewItem>();
                     foreach (string hiddenGroup in type.Value)
                     {
-                        HiddenGroupsItems.Add(new ListViewItem(hiddenGroup));
+                        hiddenGroupsItems.Add(new ListViewItem(hiddenGroup));
                     }
-                    HiddenGroupsTypeGroup.Items.AddRange(HiddenGroupsItems.ToArray());
-                    hiddenGroupsListView.Items.AddRange(HiddenGroupsItems.ToArray());
+                    hiddenGroupsTypeGroup.Items.AddRange(hiddenGroupsItems.ToArray());
+                    hiddenGroupsListView.Items.AddRange(hiddenGroupsItems.ToArray());
                 }
             }
         }

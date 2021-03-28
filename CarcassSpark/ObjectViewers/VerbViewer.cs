@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class VerbViewer : Form, IGameObjectViewer<Verb>
+    public partial class VerbViewer : Form, IGameObjectViewer
     {
-        public Verb displayedVerb;
+        public Verb DisplayedVerb;
         private bool editing;
 
         private event EventHandler<Verb> SuccessCallback;
@@ -18,15 +18,15 @@ namespace CarcassSpark.ObjectViewers
 
         // private readonly Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
 
-        public VerbViewer(Verb verb, EventHandler<Verb> SuccessCallback, ListViewItem item)
+        public VerbViewer(Verb verb, EventHandler<Verb> successCallback, ListViewItem item)
         {
             InitializeComponent();
-            displayedVerb = verb;
+            DisplayedVerb = verb;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
                 SetEditingMode(true);
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
             }
             else
             {
@@ -105,27 +105,27 @@ namespace CarcassSpark.ObjectViewers
                 return;
             }
             Close();
-            SuccessCallback?.Invoke(this, displayedVerb);
+            SuccessCallback?.Invoke(this, DisplayedVerb);
         }
 
         private void AddSlotButton_Click(object sender, EventArgs e)
         {
-            if (displayedVerb.slot == null)
+            if (DisplayedVerb.slot == null)
             {
-                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.VERB);
+                SlotViewer sv = new SlotViewer(new Slot(), true, SlotType.Verb);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedVerb.slot = sv.displayedSlot;
+                    DisplayedVerb.slot = sv.DisplayedSlot;
                     addSlotButton.Text = "Open Slot";
                     removeButton.Enabled = true;
                 }
             }
             else
             {
-                SlotViewer sv = new SlotViewer(displayedVerb.slot.Copy(), editing, SlotType.VERB);
+                SlotViewer sv = new SlotViewer(DisplayedVerb.slot.Copy(), editing, SlotType.Verb);
                 if (sv.ShowDialog() == DialogResult.OK)
                 {
-                    displayedVerb.slot = sv.displayedSlot;
+                    DisplayedVerb.slot = sv.DisplayedSlot;
                     removeButton.Enabled = true;
                 }
             }
@@ -138,40 +138,40 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.ID = idTextBox.Text;
+            DisplayedVerb.ID = idTextBox.Text;
             if (Utilities.VerbImageExists(idTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetVerbImage(idTextBox.Text);
             }
-            if (displayedVerb.ID == "")
+            if (DisplayedVerb.ID == "")
             {
-                displayedVerb.ID = null;
+                DisplayedVerb.ID = null;
             }
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.label = labelTextBox.Text;
-            if (displayedVerb.label == "")
+            DisplayedVerb.label = labelTextBox.Text;
+            if (DisplayedVerb.label == "")
             {
-                displayedVerb.label = null;
+                DisplayedVerb.label = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedVerb.description = descriptionTextBox.Text;
-            if (displayedVerb.description == "")
+            DisplayedVerb.description = descriptionTextBox.Text;
+            if (DisplayedVerb.description == "")
             {
-                displayedVerb.description = null;
+                DisplayedVerb.description = null;
             }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (displayedVerb.slot != null)
+            if (DisplayedVerb.slot != null)
             {
-                displayedVerb.slot = null;
+                DisplayedVerb.slot = null;
                 addSlotButton.Text = "Add Slot";
                 removeButton.Enabled = false;
             }
@@ -185,11 +185,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!string.IsNullOrEmpty(commentsTextBox.Text))
             {
-                displayedVerb.comments = commentsTextBox.Text;
+                DisplayedVerb.comments = commentsTextBox.Text;
             }
             else
             {
-                displayedVerb.comments = null;
+                DisplayedVerb.comments = null;
             }
         }
 
@@ -197,17 +197,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (deletedCheckBox.CheckState == CheckState.Checked)
             {
-                displayedVerb.deleted = true;
+                DisplayedVerb.deleted = true;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedVerb.deleted = false;
+                DisplayedVerb.deleted = false;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedVerb.deleted = null;
+                DisplayedVerb.deleted = null;
             }
         }
 
@@ -215,24 +215,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (extendsTextBox.Text.Contains(","))
             {
-                displayedVerb.extends = extendsTextBox.Text.Split(',').ToList();
+                DisplayedVerb.extends = extendsTextBox.Text.Split(',').ToList();
             }
             else
             {
-                if (extendsTextBox.Text != "")
-                {
-                    displayedVerb.extends = new List<string> { extendsTextBox.Text };
-                }
-                else
-                {
-                    displayedVerb.extends = null;
-                }
+                DisplayedVerb.extends = extendsTextBox.Text != "" ? new List<string> { extendsTextBox.Text } : null;
             }
         }
 
         private void VerbViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedVerb);
+            FillValues(DisplayedVerb);
         }
     }
 }

@@ -221,7 +221,7 @@
             this.requiredDataGridView.Size = new System.Drawing.Size(260, 100);
             this.requiredDataGridView.TabIndex = 15;
             this.ToolTip.SetToolTip(this.requiredDataGridView, resources.GetString("requiredDataGridView.ToolTip"));
-            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequiredDataGridView_CellDoubleClick_1);
+            this.requiredDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RequiredDataGridView_CellDoubleClick);
             this.requiredDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.RequiredDataGridView_UserDeletedRow);
             // 
             // requiredId
@@ -251,7 +251,7 @@
             this.forbiddenDataGridView.TabIndex = 16;
             this.ToolTip.SetToolTip(this.forbiddenDataGridView, "Cards can not satisfy any of the conditions below.\r\nNegative values indicate a \"l" +
         "ess than\" operator, allowing only cards with at least that much of an aspect.");
-            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForbiddenDataGridView_CellDoubleClick_1);
+            this.forbiddenDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForbiddenDataGridView_CellDoubleClick);
             this.forbiddenDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ForbiddenDataGridView_UserDeletedRow);
             // 
             // forbiddenId

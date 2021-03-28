@@ -7,14 +7,14 @@ namespace CarcassSpark.Tools
 {
     public partial class GroupEditor : Form
     {
-        public string group;
+        public string Group;
 
         public GroupEditor(string currentGroup, List<string> groups)
         {
             InitializeComponent();
             groupComboBox.Items.AddRange(groups.ToArray());
             groupComboBox.Text = currentGroup;
-            group = currentGroup;
+            Group = currentGroup;
         }
 
         public GroupEditor(string currentGroup, string recentGroup, List<string> groups)
@@ -24,33 +24,33 @@ namespace CarcassSpark.Tools
             if (recentGroup != null)
             {
                 groupComboBox.Text = recentGroup;
-                group = recentGroup;
+                Group = recentGroup;
             }
             else
             {
                 groupComboBox.Text = currentGroup;
-                group = currentGroup;
+                Group = currentGroup;
             }
         }
 
         private void GroupComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            group = groupComboBox.Text;
+            Group = groupComboBox.Text;
         }
 
         private void GroupComboBox_TextUpdate(object sender, EventArgs e)
         {
-            group = groupComboBox.Text;
+            Group = groupComboBox.Text;
         }
 
         private void OkBbutton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(group))
+            if (string.IsNullOrEmpty(Group))
             {
                 MessageBox.Show("Group Name can not be blank.");
                 return;
             }
-            if (group.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            if (Group.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             {
                 MessageBox.Show("Invalid characters in group name.");
                 return;
@@ -66,7 +66,7 @@ namespace CarcassSpark.Tools
 
         private void GroupComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            group = groupComboBox.Text;
+            Group = groupComboBox.Text;
         }
     }
 }

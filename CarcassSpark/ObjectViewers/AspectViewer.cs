@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace CarcassSpark.ObjectViewers
 {
-    public partial class AspectViewer : Form, IGameObjectViewer<Aspect>
+    public partial class AspectViewer : Form, IGameObjectViewer
     {
-        public Aspect displayedAspect;
+        public Aspect DisplayedAspect;
         private Dictionary<string, Induces> inducesDictionary;
 
         private event EventHandler<Aspect> SuccessCallback;
@@ -16,14 +16,14 @@ namespace CarcassSpark.ObjectViewers
 
         public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
 
-        public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback, ListViewItem item)
+        public AspectViewer(Aspect aspect, EventHandler<Aspect> successCallback, ListViewItem item)
         {
             InitializeComponent();
-            displayedAspect = aspect;
+            DisplayedAspect = aspect;
             associatedListViewItem = item;
-            if (SuccessCallback != null)
+            if (successCallback != null)
             {
-                this.SuccessCallback += SuccessCallback;
+                this.SuccessCallback += successCallback;
                 SetEditingMode(true);
             }
             else
@@ -186,55 +186,55 @@ namespace CarcassSpark.ObjectViewers
             }
             if (inducesDataGridView.Rows.Count > 1)
             {
-                displayedAspect.induces = null;
-                displayedAspect.induces_append = null;
-                displayedAspect.induces_prepend = null;
-                displayedAspect.induces_remove = null;
+                DisplayedAspect.induces = null;
+                DisplayedAspect.induces_append = null;
+                DisplayedAspect.induces_prepend = null;
+                DisplayedAspect.induces_remove = null;
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
                         if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
                         {
-                            if (displayedAspect.induces_append == null)
+                            if (DisplayedAspect.induces_append == null)
                             {
-                                displayedAspect.induces_append = new List<Induces>();
+                                DisplayedAspect.induces_append = new List<Induces>();
                             }
 
-                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
+                            DisplayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
                         {
-                            if (displayedAspect.induces_prepend == null)
+                            if (DisplayedAspect.induces_prepend == null)
                             {
-                                displayedAspect.induces_prepend = new List<Induces>();
+                                DisplayedAspect.induces_prepend = new List<Induces>();
                             }
 
-                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
+                            DisplayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
                         {
-                            if (displayedAspect.induces_remove == null)
+                            if (DisplayedAspect.induces_remove == null)
                             {
-                                displayedAspect.induces_remove = new List<String>();
+                                DisplayedAspect.induces_remove = new List<String>();
                             }
 
-                            displayedAspect.induces_remove.Add(row.Cells[0].Value as string);
+                            DisplayedAspect.induces_remove.Add(row.Cells[0].Value as string);
                         }
                         else
                         {
-                            if (displayedAspect.induces == null)
+                            if (DisplayedAspect.induces == null)
                             {
-                                displayedAspect.induces = new List<Induces>();
+                                DisplayedAspect.induces = new List<Induces>();
                             }
 
-                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
+                            DisplayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                     }
                 }
             }
             Close();
-            SuccessCallback?.Invoke(this, displayedAspect);
+            SuccessCallback?.Invoke(this, DisplayedAspect);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -244,41 +244,41 @@ namespace CarcassSpark.ObjectViewers
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.ID = idTextBox.Text;
-            if (displayedAspect.ID == "")
+            DisplayedAspect.ID = idTextBox.Text;
+            if (DisplayedAspect.ID == "")
             {
-                displayedAspect.ID = null;
+                DisplayedAspect.ID = null;
             }
         }
 
         private void LabelTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.label = labelTextBox.Text;
-            if (displayedAspect.label == "")
+            DisplayedAspect.label = labelTextBox.Text;
+            if (DisplayedAspect.label == "")
             {
-                displayedAspect.label = null;
+                DisplayedAspect.label = null;
             }
         }
 
         private void IconTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.icon = iconTextBox.Text;
+            DisplayedAspect.icon = iconTextBox.Text;
             if (Utilities.AspectImageExists(iconTextBox.Text))
             {
                 pictureBox1.Image = Utilities.GetAspectImage(iconTextBox.Text);
             }
-            if (displayedAspect.icon == "")
+            if (DisplayedAspect.icon == "")
             {
-                displayedAspect.icon = null;
+                DisplayedAspect.icon = null;
             }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.description = descriptionTextBox.Text;
-            if (displayedAspect.description == "")
+            DisplayedAspect.description = descriptionTextBox.Text;
+            if (DisplayedAspect.description == "")
             {
-                displayedAspect.description = null;
+                DisplayedAspect.description = null;
             }
         }
 
@@ -288,70 +288,70 @@ namespace CarcassSpark.ObjectViewers
             Induces induces = key != null ? inducesDictionary[key] : null;
             if (e.Row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
             {
-                if (displayedAspect.induces_append == null)
+                if (DisplayedAspect.induces_append == null)
                 {
                     return;
                 }
 
-                if (displayedAspect.induces_append.Contains(induces))
+                if (DisplayedAspect.induces_append.Contains(induces))
                 {
-                    displayedAspect.induces_append.Remove(induces);
+                    DisplayedAspect.induces_append.Remove(induces);
                 }
 
-                if (displayedAspect.induces_append.Count == 0)
+                if (DisplayedAspect.induces_append.Count == 0)
                 {
-                    displayedAspect.induces_append = null;
+                    DisplayedAspect.induces_append = null;
                 }
             }
             else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
             {
-                if (displayedAspect.induces_prepend == null)
+                if (DisplayedAspect.induces_prepend == null)
                 {
                     return;
                 }
 
-                if (displayedAspect.induces_prepend.Contains(induces))
+                if (DisplayedAspect.induces_prepend.Contains(induces))
                 {
-                    displayedAspect.induces_prepend.Remove(induces);
+                    DisplayedAspect.induces_prepend.Remove(induces);
                 }
 
-                if (displayedAspect.induces_prepend.Count == 0)
+                if (DisplayedAspect.induces_prepend.Count == 0)
                 {
-                    displayedAspect.induces_prepend = null;
+                    DisplayedAspect.induces_prepend = null;
                 }
             }
             else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
             {
-                if (displayedAspect.induces_remove == null)
+                if (DisplayedAspect.induces_remove == null)
                 {
                     return;
                 }
 
-                if (displayedAspect.induces_remove.Contains(key))
+                if (DisplayedAspect.induces_remove.Contains(key))
                 {
-                    displayedAspect.induces_remove.Remove(key);
+                    DisplayedAspect.induces_remove.Remove(key);
                 }
 
-                if (displayedAspect.induces_remove.Count == 0)
+                if (DisplayedAspect.induces_remove.Count == 0)
                 {
-                    displayedAspect.induces_remove = null;
+                    DisplayedAspect.induces_remove = null;
                 }
             }
             else
             {
-                if (displayedAspect.induces == null)
+                if (DisplayedAspect.induces == null)
                 {
                     return;
                 }
 
-                if (displayedAspect.induces.Contains(induces))
+                if (DisplayedAspect.induces.Contains(induces))
                 {
-                    displayedAspect.induces.Remove(induces);
+                    DisplayedAspect.induces.Remove(induces);
                 }
 
-                if (displayedAspect.induces.Count == 0)
+                if (DisplayedAspect.induces.Count == 0)
                 {
-                    displayedAspect.induces = null;
+                    DisplayedAspect.induces = null;
                 }
             }
         }
@@ -405,17 +405,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (isHiddenCheckBox.CheckState == CheckState.Checked)
             {
-                displayedAspect.isHidden = true;
+                DisplayedAspect.isHidden = true;
             }
 
             if (isHiddenCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedAspect.isHidden = false;
+                DisplayedAspect.isHidden = false;
             }
 
             if (isHiddenCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedAspect.isHidden = null;
+                DisplayedAspect.isHidden = null;
             }
         }
 
@@ -423,35 +423,35 @@ namespace CarcassSpark.ObjectViewers
         {
             if (noartworkneededCheckBox.CheckState == CheckState.Checked)
             {
-                displayedAspect.noartneeded = true;
+                DisplayedAspect.noartneeded = true;
             }
 
             if (noartworkneededCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedAspect.noartneeded = false;
+                DisplayedAspect.noartneeded = false;
             }
 
             if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedAspect.noartneeded = null;
+                DisplayedAspect.noartneeded = null;
             }
         }
 
         private void CommentTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.comments = commentTextBox.Text;
-            if (displayedAspect.comments == "")
+            DisplayedAspect.comments = commentTextBox.Text;
+            if (DisplayedAspect.comments == "")
             {
-                displayedAspect.comments = null;
+                DisplayedAspect.comments = null;
             }
         }
 
         private void InheritsTextBox_TextChanged(object sender, EventArgs e)
         {
-            displayedAspect.inherits = inheritsTextBox.Text;
-            if (displayedAspect.inherits == "")
+            DisplayedAspect.inherits = inheritsTextBox.Text;
+            if (DisplayedAspect.inherits == "")
             {
-                displayedAspect.inherits = null;
+                DisplayedAspect.inherits = null;
             }
         }
 
@@ -459,17 +459,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (deletedCheckBox.CheckState == CheckState.Checked)
             {
-                displayedAspect.deleted = true;
+                DisplayedAspect.deleted = true;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Unchecked)
             {
-                displayedAspect.deleted = false;
+                DisplayedAspect.deleted = false;
             }
 
             if (deletedCheckBox.CheckState == CheckState.Indeterminate)
             {
-                displayedAspect.deleted = null;
+                DisplayedAspect.deleted = null;
             }
         }
 
@@ -477,18 +477,11 @@ namespace CarcassSpark.ObjectViewers
         {
             if (extendsTextBox.Text.Contains(","))
             {
-                displayedAspect.extends = extendsTextBox.Text.Split(',').ToList();
+                DisplayedAspect.extends = extendsTextBox.Text.Split(',').ToList();
             }
             else
             {
-                if (extendsTextBox.Text != "")
-                {
-                    displayedAspect.extends = new List<string> { extendsTextBox.Text };
-                }
-                else
-                {
-                    displayedAspect.extends = null;
-                }
+                DisplayedAspect.extends = extendsTextBox.Text != "" ? new List<string> { extendsTextBox.Text } : null;
             }
         }
 
@@ -496,17 +489,17 @@ namespace CarcassSpark.ObjectViewers
         {
             if (!string.IsNullOrEmpty(verbIconTextBox.Text))
             {
-                displayedAspect.verbicon = verbIconTextBox.Text;
+                DisplayedAspect.verbicon = verbIconTextBox.Text;
             }
             else
             {
-                displayedAspect.verbicon = null;
+                DisplayedAspect.verbicon = null;
             }
         }
 
         private void AspectViewer_Shown(object sender, EventArgs e)
         {
-            FillValues(displayedAspect);
+            FillValues(DisplayedAspect);
         }
     }
 }
