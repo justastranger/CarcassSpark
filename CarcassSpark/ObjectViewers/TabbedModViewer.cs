@@ -45,20 +45,13 @@ namespace CarcassSpark.ObjectViewers
         }
         private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
         {
-            try
-            {
-                selectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
-                selectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
-                TabPage newPage = new TabPage(selectedModViewer.Content.GetName());
-                newPage.Controls.Add(selectedModViewer);
-                newPage.Name = selectedModViewer.Content.GetName();
-                ModViewerTabs.TabPages.Add(newPage);
-                ModViewerTabs.SelectTab(newPage);
-            }
-            catch
-            {
-
-            }
+            selectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
+            selectedModViewer.MarkDirtyEventHandler += MarkTabDirty;
+            TabPage newPage = new TabPage(selectedModViewer.Content.GetName());
+            newPage.Controls.Add(selectedModViewer);
+            newPage.Name = selectedModViewer.Content.GetName();
+            ModViewerTabs.TabPages.Add(newPage);
+            ModViewerTabs.SelectTab(newPage);
         }
 
         private void CreateNewModViewerTab(ModViewerTabControl mvtc)
