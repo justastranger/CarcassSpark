@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace CarcassSpark
 {
@@ -868,6 +869,43 @@ namespace CarcassSpark
             {
                 throw new ArgumentOutOfRangeException("No viewer is defined in GetViewer for Game Object " + gameObject.GetType());
             }
+        }
+    }
+
+    public static class JsonNetExtensions
+    {
+        public static void Rename(this JToken token, string newName)
+        {
+            if (token == null)
+            {
+                throw new ArgumentException(paramName: nameof(token), message: "Cannot rename a null token.");
+            }
+
+            JProperty property;
+
+            if (token.Type == JTokenType.Property)
+            {
+                if (token.Parent == null)
+                {
+                    throw new InvalidOperationException("Cannot rename a property with no parent.");
+                }
+
+                property = (JProperty)token;
+            }
+            else
+            {
+                if (token.Parent == null || token.Parent.Type != JTokenType.Property)
+                {
+                    throw new InvalidOperationException("This token's parent is not a JProperty; cannot rename.");
+                }
+
+                property = (JProperty)token.Parent;
+            }
+
+            var existingValue = property.Value;
+            property.Value = null;
+            var newProperty = new JProperty(newName, existingValue);
+            property.Replace(newProperty);
         }
     }
 }
