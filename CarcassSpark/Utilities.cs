@@ -10,6 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using SixLabors.ImageSharp.Advanced;
+using SixLabors.ImageSharp.Formats.Bmp;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.Formats.Tga;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace CarcassSpark
 {
@@ -59,8 +64,9 @@ namespace CarcassSpark
                 {
                     if (value is Sprite sprite)
                     {
+                        Bitmap image = sprite.GetImage().ToBitmap();
                         Assets[key] = sprite;
-                        ImageList.Images.Add(key, sprite.GetImage());
+                        ImageList.Images.Add(key, image);
                     }
                 }
             }
@@ -111,11 +117,11 @@ namespace CarcassSpark
                 string path = "images/aspects/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/elements/_x"].GetImage();
+                    return Assets["images/elements/_x"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -138,11 +144,11 @@ namespace CarcassSpark
                 string path = "images/elements/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/elements/_x"].GetImage();
+                    return Assets["images/elements/_x"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -164,11 +170,11 @@ namespace CarcassSpark
                 string path = "images/endings/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/endings/despair"].GetImage();
+                    return Assets["images/endings/despair"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -190,11 +196,11 @@ namespace CarcassSpark
                 string path = "images/legacies/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/legacies/aspirant"].GetImage();
+                    return Assets["images/legacies/aspirant"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -216,11 +222,11 @@ namespace CarcassSpark
                 string path = "images/verbs/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/verbs/_x"].GetImage();
+                    return Assets["images/verbs/_x"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -242,11 +248,11 @@ namespace CarcassSpark
                 string path = "images/cardbacks/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/cardbacks/_x"].GetImage();
+                    return Assets["images/cardbacks/_x"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -268,11 +274,11 @@ namespace CarcassSpark
                 string path = "images/burns/" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage();
+                    return Assets[path].GetImage().ToBitmap();
                 }
                 else
                 {
-                    return Assets["images/burns/moon"].GetImage();
+                    return Assets["images/burns/moon"].GetImage().ToBitmap();
                 }
             }
             catch (TypeInitializationException)
@@ -906,6 +912,19 @@ namespace CarcassSpark
             property.Value = null;
             var newProperty = new JProperty(newName, existingValue);
             property.Replace(newProperty);
+        }
+    }
+
+    public static class ImageSharpExtensions
+    {
+        public static Bitmap ToBitmap(this SixLabors.ImageSharp.Image image)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, new BmpEncoder());
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return new Bitmap(memoryStream);
+            }
         }
     }
 }

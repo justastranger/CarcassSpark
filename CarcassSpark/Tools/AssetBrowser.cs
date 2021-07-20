@@ -92,7 +92,7 @@ namespace CarcassSpark.Tools
             {
                 ListViewItem selectedItem = assetsListView.SelectedItems[0];
                 // Image selectedImage = assetsListView.LargeImageList.Images[selectedItem.Text];
-                ImageViewer iv = new ImageViewer(Utilities.Assets[selectedItem.Text].GetImage());
+                ImageViewer iv = new ImageViewer(Utilities.Assets[selectedItem.Text].GetImage().ToBitmap());
                 iv.Show();
             }
         }
