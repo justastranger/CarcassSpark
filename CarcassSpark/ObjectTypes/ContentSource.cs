@@ -221,10 +221,10 @@ namespace CarcassSpark.ObjectTypes
             customManifest["hiddenGroups"] = JObject.FromObject(hiddenGroups);
         }
 
-        public string[] GetHiddenGroups(string type)
+        public string[] GetHiddenGroups(string subfolder)
         {
             Dictionary<string, string[]> hiddenGroups = customManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
-            return hiddenGroups != null && hiddenGroups.ContainsKey(type) ? hiddenGroups[type] : null;
+            return hiddenGroups != null && hiddenGroups.ContainsKey(subfolder) ? hiddenGroups[subfolder] : null;
         }
 
         public string[] GetHiddenGroupsFlattened()
@@ -241,14 +241,19 @@ namespace CarcassSpark.ObjectTypes
             return allGroups.Any() ? allGroups : null;
         }
 
-        public Dictionary<string, List<string>> GetHiddenGroupsDictionary()
+        public Dictionary<string, Dictionary<string, List<string>>> GetHiddenGroupsDictionary()
         {
-            return customManifest["hiddenGroups"]?.ToObject<Dictionary<string, List<string>>>();
+            return customManifest["hiddenGroups"]?.ToObject<Dictionary<string, Dictionary<string, List<string>>>>();
         }
 
-        public List<string> GetHiddenGroupsForType(string type)
+        public Dictionary<string, List<string>> GetHiddenGroupsDictionary(string subfolder)
         {
-            Dictionary<string, List<string>> dict = GetHiddenGroupsDictionary();
+            return customManifest["hiddenGroups"]?[subfolder]?.ToObject<Dictionary<string, List<string>>>();
+        }
+
+        public Dictionary<string, List<string>> GetHiddenGroupsForSubfolder(string type)
+        {
+            Dictionary<string, Dictionary<string, List<string>>> dict = GetHiddenGroupsDictionary();
             return dict.ContainsKey(type) ? dict[type] : null;
         }
 

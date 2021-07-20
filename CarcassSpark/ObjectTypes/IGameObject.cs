@@ -7,6 +7,8 @@ namespace CarcassSpark.ObjectTypes
     {
         [JsonIgnore]
         string Filename { get; set; }
+        [JsonIgnore]
+        string Filepath { get; set; }
 
         T Copy<T>() where T : IGameObject;
     }

@@ -142,8 +142,6 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.aspectsListView = new System.Windows.Forms.ListView();
-            this.aspectIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.elementsListView = new System.Windows.Forms.ListView();
@@ -169,6 +167,7 @@
             this.verbsListView = new System.Windows.Forms.ListView();
             this.verbIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter7 = new System.Windows.Forms.Splitter();
+            this.aspectsTreeView = new System.Windows.Forms.TreeView();
             this.aspectContextMenuStrip.SuspendLayout();
             this.elementContextMenuStrip.SuspendLayout();
             this.recipeContextMenuStrip.SuspendLayout();
@@ -314,7 +313,7 @@
             this.setGroupAspectToolStripMenuItem.Name = "setGroupAspectToolStripMenuItem";
             this.setGroupAspectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.setGroupAspectToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
-            this.setGroupAspectToolStripMenuItem.Text = "Set Group";
+            this.setGroupAspectToolStripMenuItem.Text = "Set Filename";
             this.setGroupAspectToolStripMenuItem.Click += new System.EventHandler(this.SetGroupAspectToolStripMenuItem_Click);
             // 
             // hideGroupAspectToolStripMenuItem
@@ -1127,7 +1126,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.aspectsLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.aspectsSearchTextBox, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.aspectsListView, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.aspectsTreeView, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -1137,31 +1136,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(100, 422);
             this.tableLayoutPanel2.TabIndex = 28;
-            // 
-            // aspectsListView
-            // 
-            this.aspectsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.aspectIDColumnHeader});
-            this.aspectsListView.ContextMenuStrip = this.aspectContextMenuStrip;
-            this.aspectsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aspectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.aspectsListView.HideSelection = false;
-            this.aspectsListView.Location = new System.Drawing.Point(3, 23);
-            this.aspectsListView.MultiSelect = false;
-            this.aspectsListView.Name = "aspectsListView";
-            this.aspectsListView.Size = new System.Drawing.Size(94, 370);
-            this.aspectsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.aspectsListView.TabIndex = 18;
-            this.aspectsListView.UseCompatibleStateImageBehavior = false;
-            this.aspectsListView.View = System.Windows.Forms.View.Details;
-            this.aspectsListView.DoubleClick += new System.EventHandler(this.AspectListView_DoubleClick);
-            this.aspectsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsListView_KeyDown);
-            this.aspectsListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsListView_MouseDown);
-            // 
-            // aspectIDColumnHeader
-            // 
-            this.aspectIDColumnHeader.Text = "Aspect ID";
-            this.aspectIDColumnHeader.Width = 300;
             // 
             // splitter1
             // 
@@ -1485,6 +1459,18 @@
             this.splitter7.TabStop = false;
             this.splitter7.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.Splitter7_SplitterMoved);
             // 
+            // aspectsTreeView
+            // 
+            this.aspectsTreeView.ContextMenuStrip = this.aspectContextMenuStrip;
+            this.aspectsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aspectsTreeView.Location = new System.Drawing.Point(3, 23);
+            this.aspectsTreeView.Name = "aspectsTreeView";
+            this.aspectsTreeView.Size = new System.Drawing.Size(94, 370);
+            this.aspectsTreeView.TabIndex = 18;
+            this.aspectsTreeView.DoubleClick += new System.EventHandler(this.AspectsTreeView_DoubleClick);
+            this.aspectsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AspectsTreeView_KeyDown);
+            this.aspectsTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AspectsTreeView_MouseDown);
+            // 
             // ModViewerTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1639,9 +1625,7 @@
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        public System.Windows.Forms.ListView aspectsListView;
         public System.Windows.Forms.ListView elementsListView;
-        private System.Windows.Forms.ColumnHeader aspectIDColumnHeader;
         private System.Windows.Forms.ColumnHeader elementIDColumnHeader;
         private System.Windows.Forms.ColumnHeader recipeIDColumnHeader;
         public System.Windows.Forms.ListView recipesListView;
@@ -1674,5 +1658,6 @@
         private System.Windows.Forms.ToolStripMenuItem hideGroupLegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideGroupEndingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideGroupVerbToolStripMenuItem;
+        private System.Windows.Forms.TreeView aspectsTreeView;
     }
 }

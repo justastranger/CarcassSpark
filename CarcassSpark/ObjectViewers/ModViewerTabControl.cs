@@ -23,6 +23,7 @@ namespace CarcassSpark.ObjectViewers
 
         public bool IsDirty { get; private set; } = false;
         public Dictionary<string, ListView> ListViews { get; set; } = new Dictionary<string, ListView>();
+        public Dictionary<string, TreeView> TreeViews { get; set; } = new Dictionary<string, TreeView>();
 
         public ContentSource Content = new ContentSource();
 
@@ -30,7 +31,8 @@ namespace CarcassSpark.ObjectViewers
         {
             InitializeComponent();
 
-            ListViews["aspects"] = aspectsListView;
+            //ListViews["aspects"] = aspectsListView;
+            TreeViews["aspects"] = aspectsTreeView;
             ListViews["elements"] = elementsListView;
             ListViews["recipes"] = recipesListView;
             ListViews["decks"] = decksListView;
@@ -111,7 +113,8 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
 
-            aspectsListView.Items.Clear();
+            // aspectsListView.Items.Clear();
+            aspectsTreeView.Nodes.Clear();
             Content.Aspects.Clear();
             elementsListView.Items.Clear();
             Content.Elements.Clear();
@@ -125,42 +128,42 @@ namespace CarcassSpark.ObjectViewers
             Content.Endings.Clear();
             verbsListView.Items.Clear();
             Content.Verbs.Clear();
-            try
+            //try
+            //{
+            // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
+            if(IsVanilla)
             {
-                // If there is no synopsis, try to create one. If no synopsis ends up loaded or created, return false so the tab can be canceled
-                if(IsVanilla)
-                {
-                    Content.Synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
-                }
-                else if(!CheckForSynopsis() || !Directory.Exists(Content.CurrentDirectory + "\\content\\"))
-                {
-                    return false;
-                }
-
-                IEnumerable<string> files = Directory.EnumerateFiles(Content.CurrentDirectory + (IsVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
-
-                foreach (string file in files)
-                {
-                    using (FileStream fs = new FileStream(file, FileMode.Open))
-                    {
-                        LoadFile(fs, file);
-                    }
-                }
-
-                if (!IsVanilla)
-                {
-                    // mod loaded successfully
-                    MarkDirty(false);
-                }
-
-                return true;
+                Content.Synopsis = new Synopsis("Vanilla", "Weather Factory", null, "Content from Cultist Simulator", null);
             }
+            else if(!CheckForSynopsis() || !Directory.Exists(Content.CurrentDirectory + "\\content\\"))
+            {
+                return false;
+            }
+
+            IEnumerable<string> files = Directory.EnumerateFiles(Content.CurrentDirectory + (IsVanilla ? "" : "\\content\\"), "*.json", SearchOption.AllDirectories);
+
+            foreach (string file in files)
+            {
+                using (FileStream fs = new FileStream(file, FileMode.Open))
+                {
+                    LoadFile(fs, file);
+                }
+            }
+
+            if (!IsVanilla)
+            {
+                // mod loaded successfully
+                MarkDirty(false);
+            }
+
+            return true;
+            //}
             // mod failed to load catastrophically
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message + "\r\n" + e.StackTrace, "Content Source Loading Failed");
-            }
-            return false;
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.Message + "\r\n" + e.StackTrace, "Content Source Loading Failed");
+            //}
+            // return false;
         }
 
         public bool CreateSynopsis()
@@ -336,7 +339,8 @@ namespace CarcassSpark.ObjectViewers
                         
                         if (token["isAspect"] != null || (token["extends"] != null && Utilities.AspectExists(token["id"].ToString())))
                         {
-                            AddItemToContentAndListView(token, Content.Aspects, aspectsListView, fileName, isAspectHidden);
+                            // AddItemToContentAndListView(token, Content.Aspects, aspectsListView, fileName, isAspectHidden);
+                            AddItemToContentAndTreeView(token, Content.Aspects, aspectsTreeView, filePath, fileName, isAspectHidden);
                         }
                         else
                         {
@@ -410,6 +414,48 @@ namespace CarcassSpark.ObjectViewers
                 }
             }
             deserializedObject.Filename = fileName;
+        }
+        
+        private void AddItemToContentAndTreeView<T>(JToken token, ContentGroup<T> contentGroup, TreeView listView, string filePath, string fileName, bool isGroupHidden) where T : IGameObject
+        {
+            T deserializedObject = token.ToObject<T>();
+            contentGroup.Add(deserializedObject.Guid, deserializedObject);
+            string subfolder = filePath.Remove(0, (Content.CurrentDirectory + (Content.IsVanilla() ? "" : "content\\")).Length);
+            if (subfolder.Contains("\\"))
+            {
+                subfolder = subfolder.Remove(subfolder.LastIndexOf("\\"));
+            }
+            if (!isGroupHidden)
+            {
+                TreeNode nodeObject = new TreeNode(deserializedObject.ID)
+                {
+                    Tag = deserializedObject.Guid,
+                    Name = deserializedObject.ID
+                };
+                // listView.Nodes.Add(lviCurr);
+                
+                
+                if (listView.Nodes.Find(subfolder, false).Length != 1)
+                {
+                    TreeNode nodeFileName = new TreeNode(fileName, new[] {nodeObject}){ Name = fileName };
+                    TreeNode nodeSubfolder = new TreeNode(subfolder, new []{nodeFileName}){ Name = subfolder };
+                    listView.Nodes.Add(nodeSubfolder);
+                }
+                else
+                {
+                    if (listView.Nodes.Find(subfolder, false)[0].Nodes.Find(fileName, false).Length != 1)
+                    {
+                        TreeNode nodeFileName = new TreeNode(fileName, new[] {nodeObject}) { Name = fileName };
+                        listView.Nodes.Find(subfolder, false)[0].Nodes.Add(nodeFileName);
+                    }
+                    else
+                    {
+                        listView.Nodes.Find(subfolder, false)[0].Nodes.Find(fileName, false)[0].Nodes.Add(nodeObject);
+                    }
+                }
+            }
+            deserializedObject.Filename = fileName;
+            deserializedObject.Filepath = subfolder;
         }
 
         private void CreateDirectories(string modLocation)
@@ -571,12 +617,12 @@ namespace CarcassSpark.ObjectViewers
         #endregion
         #region "Double-Click" events
 
-        private void AspectListView_DoubleClick(object sender, EventArgs e)
+        private void AspectsTreeView_DoubleClick(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count >= 1)
+            if (aspectsTreeView.SelectedNode != null && aspectsTreeView.SelectedNode?.Tag != null)
             {
-                Guid id = (Guid) aspectsListView.SelectedItems[0].Tag;
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), EditMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                Guid id = (Guid) aspectsTreeView.SelectedNode.Tag;
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(id).Copy(), EditMode ? (EventHandler<Aspect>) AspectsList_Assign : null, aspectsTreeView.SelectedNode);
                 av.Show();
             }
         }
@@ -942,12 +988,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0)
+            if (aspectsTreeView.SelectedNode?.Tag == null|| Content.Elements.Count == 0)
             {
                 return;
             }
 
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsTreeView.SelectedNode.Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -969,12 +1015,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void ElementsThatReactWithThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0)
+            if (aspectsTreeView.SelectedNode?.Tag == null || Content.Elements.Count == 0)
             {
                 return;
             }
 
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsTreeView.SelectedNode.Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values)
             {
@@ -996,12 +1042,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0)
+            if (aspectsTreeView.SelectedNode?.Tag == null || Content.Recipes.Count == 0)
             {
                 return;
             }
 
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsTreeView.SelectedNode.Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1081,12 +1127,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void RecipesThatProduceThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count != 1 || Content.Recipes.Count == 0)
+            if (aspectsTreeView.SelectedNode?.Tag == null || Content.Recipes.Count == 0)
             {
                 return;
             }
 
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsTreeView.SelectedNode.Text;
             Dictionary<Guid, Recipe> tmp = new Dictionary<Guid, Recipe>();
             foreach (Recipe recipe in Content.Recipes.Values)
             {
@@ -1116,12 +1162,12 @@ namespace CarcassSpark.ObjectViewers
 
         private void SlotsRequiringThisAspectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (aspectsListView.SelectedItems.Count != 1 || Content.Elements.Count == 0)
+            if (aspectsTreeView.SelectedNode?.Tag == null || Content.Elements.Count == 0)
             {
                 return;
             }
 
-            string id = aspectsListView.SelectedItems[0].Text;
+            string id = aspectsTreeView.SelectedNode.Text;
             Dictionary<Guid, Element> tmp = new Dictionary<Guid, Element>();
             foreach (Element element in Content.Elements.Values.Where((element)=>element.HasSlots()))
             {
@@ -1635,9 +1681,9 @@ namespace CarcassSpark.ObjectViewers
         #endregion
         #region "Mouse Down" events
 
-        private void AspectsListView_MouseDown(object sender, MouseEventArgs e)
+        private void AspectsTreeView_MouseDown(object sender, MouseEventArgs e)
         {
-            ListView_MouseDown(aspectsListView, e.Button);
+            TreeView_MouseDown(aspectsTreeView, e.Button);
         }
 
         private void ElementsListView_MouseDown(object sender, MouseEventArgs e)
@@ -1680,6 +1726,21 @@ namespace CarcassSpark.ObjectViewers
                 if (listView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
                 {
                     listViewItem.Selected = true;
+                }
+            }
+        }
+        
+        private void TreeView_MouseDown(TreeView treeView, MouseButtons button)
+        {
+            if (button == MouseButtons.Right)
+            {
+                treeView.SelectedNode = null;
+                treeView.Select();
+                Point point = treeView.PointToClient(Cursor.Position);
+                //if (treeView.GetItemAt(point.X, point.Y) is ListViewItem listViewItem)
+                if (treeView.HitTest(point).Node is TreeNode selectedNode)
+                {
+                    treeView.SelectedNode = selectedNode;
                 }
             }
         }
@@ -2139,12 +2200,12 @@ namespace CarcassSpark.ObjectViewers
         #endregion
         #region "Key Down" events
 
-        private void AspectsListView_KeyDown(object sender, KeyEventArgs e)
+        private void AspectsTreeView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && aspectsListView.SelectedItems.Count >= 1)
+            if (e.KeyCode == Keys.Enter && aspectsTreeView.SelectedNode?.Tag != null)
             {
-                Guid guid = (Guid)aspectsListView.SelectedItems[0].Tag;
-                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), EditMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsListView.SelectedItems[0]);
+                Guid guid = (Guid)aspectsTreeView.SelectedNode.Tag;
+                AspectViewer av = new AspectViewer(Content.Aspects.Get(guid).Copy(), EditMode ? (EventHandler<Aspect>)AspectsList_Assign : null, aspectsTreeView.SelectedNode);
                 av.Show();
             }
         }
@@ -2216,7 +2277,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (setGroupAspectToolStripMenuItem.Enabled)
             {
-                SetGroup(Content.Aspects);
+                SetNodeFileName(Content.Aspects);
             }
         }
 
@@ -2322,6 +2383,111 @@ namespace CarcassSpark.ObjectViewers
                 }
                 Content.SetRecentGroup(cg.DisplayName, newGroup);
             }
+        }
+        
+        public void SetNodeFileName<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            TreeView tv = TreeViews[cg.Filename];
+            if (tv.SelectedNode.Tag == null)
+            {
+                return;
+            }
+
+            TreeNode selectedItem = tv.SelectedNode;
+            string currentFileName = selectedItem.Parent.Name ?? "";
+            string currentFilepath = selectedItem.Parent.Parent?.Name ?? "";
+            List<string> groups = new List<string>();
+            foreach (TreeNode rootNodes in tv.Nodes)
+            {
+                groups.Add(rootNodes.Name);
+            }
+            GroupEditor ge = new GroupEditor(currentFileName, Content.GetRecentGroup(cg.DisplayName), groups);
+            if (ge.ShowDialog() == DialogResult.OK)
+            {
+                string newFileName = ge.Group;
+                foreach (TreeView treeView in TreeViews.Values)
+                {
+                    // TODO: Make this respect the ContentSource, rather than the ListView.
+                    // We REALLY don't want people making groups that exist for other types.
+                    if (treeView != tv && treeView.Nodes.Find(newFileName, false).Length > 0)
+                    {
+                        MessageBox.Show("That group already exists for another Entity Type.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                }
+                
+                if (GroupExistsAsHidden(newFileName))
+                {
+                    MessageBox.Show("That group already exists, but is hidden.", "Invalid Group", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (newFileName != currentFileName)
+                {
+                    if (!string.IsNullOrEmpty(currentFilepath))
+                    {
+                        if (!string.IsNullOrEmpty(currentFileName))
+                        {
+                            // selectedItem.Parent.Nodes.Remove(selectedItem);
+                            tv.Nodes[currentFilepath].Nodes[currentFileName].Nodes.Remove(selectedItem);
+                            if (tv.Nodes[currentFilepath].Nodes[currentFileName].Nodes.Count == 0)
+                            {
+                                tv.Nodes[currentFilepath].Nodes.RemoveByKey(currentFileName);
+                            }
+
+                            if (tv.Nodes[currentFilepath].Nodes.Find(newFileName, false).Length == 0)
+                            {
+                                TreeNode nodeFilename = new TreeNode(newFileName, new[] {selectedItem}) { Name = newFileName };
+                                // ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                                tv.Nodes[currentFilepath].Nodes.Add(nodeFilename);
+                            }
+                            else
+                            {
+                                tv.Nodes[currentFilepath].Nodes[newFileName].Nodes.Add(selectedItem);
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(currentFileName))
+                        {
+                            // selectedItem.Parent.Nodes.Remove(selectedItem);
+                            tv.Nodes[currentFileName].Nodes.Remove(selectedItem);
+                            if (tv.Nodes[currentFileName].Nodes.Count == 0)
+                            {
+                                tv.Nodes.RemoveByKey(currentFileName);
+                            }
+
+                            if (tv.Nodes[newFileName] == null)
+                            {
+                                TreeNode nodeNewFileName = new TreeNode(newFileName, new[] {selectedItem}) { Name = newFileName };
+                                // ListViewGroup listViewGroup = new ListViewGroup(newGroup, newGroup);
+                                tv.Nodes.Add(nodeNewFileName);
+                            }
+                            else
+                            {
+                                tv.Nodes[newFileName].Nodes.Add(selectedItem);
+
+                            }
+                        }
+                    }
+                    
+                    // tv.Groups[newGroup].Items.Add(selectedItem);
+                    cg.Get((Guid)selectedItem.Tag).Filename = newFileName;
+                    MarkDirty();
+                }
+                Content.SetRecentGroup(cg.DisplayName, newFileName);
+            }
+        }
+
+        public void SetNodeFilePath<T>(ContentGroup<T> cg) where T : IGameObject
+        {
+            // filepath can be "", meaning root folder
+            // filepath can have slashes to denote further subfolders
+            // combine content source location with filepath and filename (in that order) to figure out final save location
+            //
+
         }
 
         #endregion
@@ -2527,6 +2693,20 @@ namespace CarcassSpark.ObjectViewers
                 foreach (string key in hiddenGroups.Keys)
                 {
                     isGroupHidden |= hiddenGroups[key].Contains(newGroup) | hiddenGroups[key].Contains(newGroup + ".json");
+                }
+            }
+            return isGroupHidden;
+        }
+
+        public bool FileExistsAsHidden(string filepath, string filename)
+        {
+            bool isGroupHidden = false;
+            Dictionary<string, List<string>> hiddenGroups = Content.GetHiddenGroupsDictionary();//CustomManifest["hiddenGroups"]?.ToObject<Dictionary<string, string[]>>();
+            if (hiddenGroups != null)
+            {
+                foreach (string key in hiddenGroups.Keys)
+                {
+                    isGroupHidden |= hiddenGroups[key].Contains(filename) | hiddenGroups[key].Contains(filename + ".json");
                 }
             }
             return isGroupHidden;

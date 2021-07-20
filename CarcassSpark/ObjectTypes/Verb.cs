@@ -7,8 +7,6 @@ namespace CarcassSpark.ObjectTypes
     public class Verb : IGameObject
     {
         [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
         public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, comments;
@@ -21,7 +19,10 @@ namespace CarcassSpark.ObjectTypes
         public List<string> extends;
 
         [JsonIgnore]
-        public string Filename { get => this.filename; set => this.filename = value; }
+        public string Filename { get; set; }
+        [JsonIgnore]
+        public string Filepath { get; set; }
+
         [JsonIgnore]
         public Guid Guid { get => this.guid; set => this.guid = value; }
         [JsonIgnore]

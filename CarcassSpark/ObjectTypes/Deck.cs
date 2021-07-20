@@ -7,7 +7,9 @@ namespace CarcassSpark.ObjectTypes
     public class Deck : IGameObject
     {
         [JsonIgnore]
-        public string filename;
+        private string filename;
+        [JsonIgnore]
+        private string filepath;
         [JsonIgnore]
         public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -39,7 +41,9 @@ namespace CarcassSpark.ObjectTypes
         public List<string> extends;
 
         [JsonIgnore]
-        public string Filename { get => this.filename; set => this.filename = value; }
+        public string Filename { get => filename; set => filename = value; }
+        [JsonIgnore]
+        public string Filepath{ get => filepath; set => filepath = value; }
         [JsonIgnore]
         public Guid Guid { get => this.guid; set => this.guid = value; }
         [JsonIgnore]

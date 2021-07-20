@@ -12,18 +12,34 @@ namespace CarcassSpark.ObjectViewers
         private Dictionary<string, Induces> inducesDictionary;
 
         private event EventHandler<Aspect> SuccessCallback;
-        public ListViewItem associatedListViewItem;
 
-        public ListViewItem AssociatedListViewItem { get => associatedListViewItem; set => associatedListViewItem=value; }
+        public ListViewItem AssociatedListViewItem { get; set; }
+        public TreeNode AssociatedTreeViewNode { get; set; }
 
-        public AspectViewer(Aspect aspect, EventHandler<Aspect> successCallback, ListViewItem item)
+        //public AspectViewer(Aspect aspect, EventHandler<Aspect> successCallback, ListViewItem item)
+        //{
+        //    InitializeComponent();
+        //    DisplayedAspect = aspect;
+        //    AssociatedListViewItem = item;
+        //    if (successCallback != null)
+        //    {
+        //        SuccessCallback += successCallback;
+        //        SetEditingMode(true);
+        //    }
+        //    else
+        //    {
+        //        SetEditingMode(false);
+        //    }
+        //}
+
+        public AspectViewer(Aspect aspect, EventHandler<Aspect> successCallback, TreeNode item)
         {
             InitializeComponent();
             DisplayedAspect = aspect;
-            associatedListViewItem = item;
+            AssociatedTreeViewNode = item;
             if (successCallback != null)
             {
-                this.SuccessCallback += successCallback;
+                SuccessCallback += successCallback;
                 SetEditingMode(true);
             }
             else

@@ -441,13 +441,13 @@ namespace CarcassSpark.ObjectViewers
                 Guid baseGuid = Guid.NewGuid();
                 ListViewItem baseSummon = new ListViewItem(sc.BaseSummon.id) { Tag = baseGuid, Group = defaultElementsGroup };
                 selectedModViewer.elementsListView.Items.Add(baseSummon);
-                sc.BaseSummon.filename = "elements";
+                sc.BaseSummon.Filename = "elements";
                 selectedModViewer.Content.Elements.Add(baseGuid, sc.BaseSummon.Copy());
 
                 Guid preGuid = Guid.NewGuid();
                 ListViewItem preSummon = new ListViewItem(sc.PreSummon.id) { Tag = preGuid, Group = defaultElementsGroup };
                 selectedModViewer.elementsListView.Items.Add(preSummon);
-                sc.PreSummon.filename = "elements";
+                sc.PreSummon.Filename = "elements";
                 selectedModViewer.Content.Elements.Add(preGuid, sc.PreSummon.Copy());
 
                 ListViewGroup defaultRecipesGroup = selectedModViewer.elementsListView.Groups["recipes"] ?? new ListViewGroup("recipes", "recipes");
@@ -459,13 +459,13 @@ namespace CarcassSpark.ObjectViewers
                 Guid startGuid = Guid.NewGuid();
                 ListViewItem startSummon = new ListViewItem(sc.StartSummon.id) { Tag = startGuid, Group = defaultRecipesGroup };
                 selectedModViewer.recipesListView.Items.Add(startSummon);
-                sc.StartSummon.filename = "recipes";
+                sc.StartSummon.Filename = "recipes";
                 selectedModViewer.Content.Recipes.Add(startGuid, sc.StartSummon.Copy());
 
                 Guid succeedGuid = Guid.NewGuid();
                 ListViewItem succeedSummon = new ListViewItem(sc.SucceedSummon.id) { Tag = succeedGuid, Group = defaultRecipesGroup };
                 selectedModViewer.recipesListView.Items.Add(succeedSummon);
-                sc.SucceedSummon.filename = "recipes";
+                sc.SucceedSummon.Filename = "recipes";
                 selectedModViewer.Content.Recipes.Add(succeedGuid, sc.SucceedSummon.Copy());
             }
         }
