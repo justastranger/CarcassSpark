@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using CarcassSpark.Tools;
 
 namespace CarcassSpark.ObjectViewers
 {
@@ -238,6 +239,16 @@ namespace CarcassSpark.ObjectViewers
         private void RecipeLinkViewer_Shown(object sender, EventArgs e)
         {
             FillValues(DisplayedRecipeLink);
+        }
+
+        private void SelectRecipeButton_Click(object sender, EventArgs e)
+        {
+            RecipeSelector rs = new RecipeSelector();
+            if (rs.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(rs.SelectedRecipeID))
+            {
+                idTextBox.Text = rs.SelectedRecipeID;
+            }
+            rs.Dispose();
         }
     }
 }

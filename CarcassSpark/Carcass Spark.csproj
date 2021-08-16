@@ -338,6 +338,12 @@
     <Compile Include="Tools\ImageImporter.Designer.cs">
       <DependentUpon>ImageImporter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\RecipeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\RecipeSelector.Designer.cs">
+      <DependentUpon>RecipeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\SummonCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -463,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ImageImporter.resx">
       <DependentUpon>ImageImporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\RecipeSelector.resx">
+      <DependentUpon>RecipeSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\SummonCreator.resx">
       <DependentUpon>SummonCreator.cs</DependentUpon>

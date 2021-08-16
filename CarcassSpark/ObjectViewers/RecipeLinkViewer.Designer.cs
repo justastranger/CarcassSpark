@@ -50,6 +50,7 @@
             this.totalExpulsionLimitNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.RecipeIDErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.selectRecipeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.challengesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expulsionDataGridView)).BeginInit();
@@ -107,9 +108,9 @@
             this.challengesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aspectId,
             this.challengeType});
-            this.challengesDataGridView.Location = new System.Drawing.Point(12, 75);
+            this.challengesDataGridView.Location = new System.Drawing.Point(12, 98);
             this.challengesDataGridView.Name = "challengesDataGridView";
-            this.challengesDataGridView.Size = new System.Drawing.Size(356, 122);
+            this.challengesDataGridView.Size = new System.Drawing.Size(356, 104);
             this.challengesDataGridView.TabIndex = 3;
             this.ToolTip.SetToolTip(this.challengesDataGridView, resources.GetString("challengesDataGridView.ToolTip"));
             this.challengesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChallengesDataGridView_CellDoubleClick);
@@ -134,7 +135,7 @@
             // 
             this.openRecipeButton.Location = new System.Drawing.Point(12, 48);
             this.openRecipeButton.Name = "openRecipeButton";
-            this.openRecipeButton.Size = new System.Drawing.Size(117, 23);
+            this.openRecipeButton.Size = new System.Drawing.Size(119, 23);
             this.openRecipeButton.TabIndex = 4;
             this.openRecipeButton.Text = "Open Linked Recipe";
             this.ToolTip.SetToolTip(this.openRecipeButton, "Opens a Recipe Viewer for the above recipe ID.");
@@ -144,7 +145,7 @@
             // challengesLabel
             // 
             this.challengesLabel.AutoSize = true;
-            this.challengesLabel.Location = new System.Drawing.Point(154, 56);
+            this.challengesLabel.Location = new System.Drawing.Point(161, 82);
             this.challengesLabel.Name = "challengesLabel";
             this.challengesLabel.Size = new System.Drawing.Size(59, 13);
             this.challengesLabel.TabIndex = 5;
@@ -264,6 +265,16 @@
             this.RecipeIDErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.RecipeIDErrorProvider.ContainerControl = this;
             // 
+            // selectRecipeButton
+            // 
+            this.selectRecipeButton.Location = new System.Drawing.Point(137, 48);
+            this.selectRecipeButton.Name = "selectRecipeButton";
+            this.selectRecipeButton.Size = new System.Drawing.Size(119, 23);
+            this.selectRecipeButton.TabIndex = 14;
+            this.selectRecipeButton.Text = "Select Recipe";
+            this.selectRecipeButton.UseVisualStyleBackColor = true;
+            this.selectRecipeButton.Click += new System.EventHandler(this.SelectRecipeButton_Click);
+            // 
             // RecipeLinkViewer
             // 
             this.AcceptButton = this.okButton;
@@ -271,6 +282,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(380, 374);
+            this.Controls.Add(this.selectRecipeButton);
             this.Controls.Add(this.totalExpulsionLimitNumericUpDown);
             this.Controls.Add(this.expulsionTotalLimitLabel);
             this.Controls.Add(this.expulsionDataGridView);
@@ -323,5 +335,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn aspectId;
         private System.Windows.Forms.DataGridViewComboBoxColumn challengeType;
         private System.Windows.Forms.ErrorProvider RecipeIDErrorProvider;
+        private System.Windows.Forms.Button selectRecipeButton;
     }
 }
