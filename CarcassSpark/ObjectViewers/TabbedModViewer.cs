@@ -120,25 +120,18 @@ namespace CarcassSpark.ObjectViewers
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = folderBrowserDialog.SelectedPath;
-                try
+                ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
+                mvtc.MarkDirtyEventHandler += MarkTabDirty;
+                CreateNewModViewerTab(mvtc);
+                if (Settings.HasPreviousMods())
                 {
-                    ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
-                    mvtc.MarkDirtyEventHandler += MarkTabDirty;
-                    CreateNewModViewerTab(mvtc);
-                    if (Settings.HasPreviousMods())
-                    {
-                        Settings.AddPreviousMod(location);
-                    }
-                    else
-                    {
-                        Settings.InitPreviousMods(location);
-                    }
-                    Settings.SaveSettings();
+                    Settings.AddPreviousMod(location);
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("Error Creating Mod");
+                    Settings.InitPreviousMods(location);
                 }
+                Settings.SaveSettings();
             }
         }
 
