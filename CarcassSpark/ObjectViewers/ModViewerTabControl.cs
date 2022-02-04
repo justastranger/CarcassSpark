@@ -319,11 +319,11 @@ namespace CarcassSpark.ObjectViewers
                             foreach (var jToken in token["xtriggers"])
                             {
                                 var xtrigger = (JProperty) jToken;
-                                if (xtrigger.Value as JArray != null)
+                                if (xtrigger.Value is JArray)
                                 {
                                     xtrigger.Value = xtrigger.Value as JArray;
                                 }
-                                else if (xtrigger.Value as JObject != null)
+                                else if (xtrigger.Value is JObject)
                                 {
                                     xtrigger.Value = new JArray(xtrigger.Value);
                                 }
@@ -1603,12 +1603,7 @@ namespace CarcassSpark.ObjectViewers
 
         public DialogResult ConfirmDelete(string id)
         {
-            if (id == null)
-            {
-                return MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo);
-            }
-
-            return MessageBox.Show("Are you sure you'd like to delete " + id + "?", "Delete Item", MessageBoxButtons.YesNo);
+            return id == null ? MessageBox.Show("Are you sure you'd like to delete this item?", "Delete Item", MessageBoxButtons.YesNo) : MessageBox.Show("Are you sure you'd like to delete " + id + "?", "Delete Item", MessageBoxButtons.YesNo);
         }
 
         public void Deleted(string id)
