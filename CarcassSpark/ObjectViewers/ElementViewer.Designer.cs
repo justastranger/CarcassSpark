@@ -49,6 +49,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.aspectsLabel = new System.Windows.Forms.Label();
+            this.lifetimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.lifetimeLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.labelLabel = new System.Windows.Forms.Label();
@@ -74,11 +75,10 @@
             this.verbIconTextBox = new System.Windows.Forms.TextBox();
             this.extendXTriggerButton = new System.Windows.Forms.Button();
             this.verbIconLabel = new System.Windows.Forms.Label();
-            this.lifetimeIntegerTextBox = new Syncfusion.Windows.Forms.Tools.IntegerTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lifetimeIntegerTextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -277,6 +277,20 @@
             this.aspectsLabel.Size = new System.Drawing.Size(45, 13);
             this.aspectsLabel.TabIndex = 18;
             this.aspectsLabel.Text = "Aspects";
+            // 
+            // lifetimeNumericUpDown
+            // 
+            this.lifetimeNumericUpDown.Location = new System.Drawing.Point(15, 170);
+            this.lifetimeNumericUpDown.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.lifetimeNumericUpDown.Name = "lifetimeNumericUpDown";
+            this.lifetimeNumericUpDown.Size = new System.Drawing.Size(125, 20);
+            this.lifetimeNumericUpDown.TabIndex = 19;
+            this.ToolTip.SetToolTip(this.lifetimeNumericUpDown, "How long, in seconds, until the card containing this element should decay.");
+            this.lifetimeNumericUpDown.ValueChanged += new System.EventHandler(this.LifetimeNumericUpDown_ValueChanged);
             // 
             // lifetimeLabel
             // 
@@ -526,17 +540,6 @@
             this.verbIconLabel.TabIndex = 46;
             this.verbIconLabel.Text = "Verb Icon";
             // 
-            // lifetimeIntegerTextBox
-            // 
-            this.lifetimeIntegerTextBox.BeforeTouchSize = new System.Drawing.Size(122, 20);
-            this.lifetimeIntegerTextBox.IntegerValue = ((long)(0));
-            this.lifetimeIntegerTextBox.Location = new System.Drawing.Point(15, 170);
-            this.lifetimeIntegerTextBox.Name = "lifetimeIntegerTextBox";
-            this.lifetimeIntegerTextBox.Size = new System.Drawing.Size(122, 20);
-            this.lifetimeIntegerTextBox.TabIndex = 47;
-            this.lifetimeIntegerTextBox.Text = "0";
-            this.lifetimeIntegerTextBox.TextChanged += new System.EventHandler(this.LifetimeIntegerTextBox_TextChanged);
-            // 
             // ElementViewer
             // 
             this.AcceptButton = this.okButton;
@@ -544,7 +547,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(769, 412);
-            this.Controls.Add(this.lifetimeIntegerTextBox);
             this.Controls.Add(this.verbIconLabel);
             this.Controls.Add(this.verbIconTextBox);
             this.Controls.Add(this.extendXTriggerButton);
@@ -569,6 +571,7 @@
             this.Controls.Add(this.labelLabel);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.lifetimeLabel);
+            this.Controls.Add(this.lifetimeNumericUpDown);
             this.Controls.Add(this.aspectsLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -592,7 +595,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspectsDataGridView)).EndInit();
             this.propertyOperationContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lifetimeIntegerTextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifetimeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -616,6 +619,7 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label aspectsLabel;
+        private System.Windows.Forms.NumericUpDown lifetimeNumericUpDown;
         private System.Windows.Forms.Label lifetimeLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label labelLabel;
@@ -644,6 +648,5 @@
         private System.Windows.Forms.Button extendXTriggerButton;
         private System.Windows.Forms.TextBox verbIconTextBox;
         private System.Windows.Forms.Label verbIconLabel;
-        private Syncfusion.Windows.Forms.Tools.IntegerTextBox lifetimeIntegerTextBox;
     }
 }

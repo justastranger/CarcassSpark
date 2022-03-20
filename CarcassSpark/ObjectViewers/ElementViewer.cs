@@ -63,7 +63,7 @@ namespace CarcassSpark.ObjectViewers
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             iconTextBox.ReadOnly = !editing;
-            lifetimeIntegerTextBox.Enabled = editing;
+            lifetimeNumericUpDown.Enabled = editing;
             decayToTextBox.ReadOnly = !editing;
             uniqueCheckBox.Enabled = editing;
             resaturateCheckBox.Enabled = editing;
@@ -131,7 +131,7 @@ namespace CarcassSpark.ObjectViewers
             }
             if (element.lifetime.HasValue)
             {
-                lifetimeIntegerTextBox.Text = element.lifetime.Value.ToString();
+                lifetimeNumericUpDown.Value = element.lifetime.Value;
             }
 
             if (element.decayTo != null)
@@ -508,20 +508,14 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        
-        private void LifetimeIntegerTextBox_TextChanged(object sender, EventArgs e)
+        private void LifetimeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            int lifetime = Convert.ToInt32(lifetimeIntegerTextBox.Text);
-            if (lifetime == 0)
+            DisplayedElement.lifetime = Convert.ToInt32(lifetimeNumericUpDown.Value);
+            if (DisplayedElement.lifetime == 0)
             {
                 DisplayedElement.lifetime = null;
             }
-            else
-            {
-                DisplayedElement.lifetime = lifetime;
-            }
         }
-
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -837,6 +831,5 @@ namespace CarcassSpark.ObjectViewers
         {
             FillValues(DisplayedElement);
         }
-
     }
 }
