@@ -110,6 +110,7 @@ namespace CarcassSpark.ObjectViewers
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
+            extendsTextBox.ReadOnly = !editing;
         }
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)

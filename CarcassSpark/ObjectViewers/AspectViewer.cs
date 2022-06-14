@@ -49,6 +49,7 @@ namespace CarcassSpark.ObjectViewers
             okButton.Visible = editing;
             deletedCheckBox.Enabled = editing;
             verbIconTextBox.ReadOnly = !editing;
+            extendsTextBox.ReadOnly = !editing;
         }
 
         public void FillValues(Aspect aspect)

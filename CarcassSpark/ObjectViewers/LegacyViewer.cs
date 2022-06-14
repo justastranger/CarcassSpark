@@ -200,6 +200,12 @@ namespace CarcassSpark.ObjectViewers
             removeButton.Visible = editing;
             excludeAddLabel.Visible = editing;
             deletedCheckBox.Enabled = editing;
+            extendsTextBox.ReadOnly = !editing;
+            tableCoverImageTextBox.ReadOnly = !editing;
+            tableEdgeImageTextBox.ReadOnly = !editing;
+            tableSurfaceImageTextBox.ReadOnly = !editing;
+            newStartCheckBox.Enabled = editing;
+            statusBarElementTextBox.ReadOnly = !editing;
         }
 
         private void EffectsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -215,7 +221,7 @@ namespace CarcassSpark.ObjectViewers
 
         private void ExcludesOnEndingListView_DoubleClick(object sender, EventArgs e)
         {
-            string id = excludesOnEndingListView.SelectedItems[0].ToString();
+            string id = excludesOnEndingListView.SelectedItems[0].Text;
             LegacyViewer lv = new LegacyViewer(Utilities.GetLegacy(id), null, null);
             lv.Show();
         }

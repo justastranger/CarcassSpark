@@ -88,6 +88,7 @@ namespace CarcassSpark.ObjectViewers
             cancelButton.Text = editing ? "Cancel" : "Close";
             deletedCheckBox.Enabled = editing;
             verbIconTextBox.ReadOnly = !editing;
+            extendsTextBox.ReadOnly = !editing;
         }
 
         private void SetType(ElementType elementType)

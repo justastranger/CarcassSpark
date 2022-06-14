@@ -136,6 +136,7 @@ namespace CarcassSpark.ObjectViewers
             {
                 showInternalDeckButton.Enabled = editing;
             }
+            extendsTextBox.ReadOnly = !editing;
         }
 
         private void SetViewerType(RecipeType recipeViewerType)
