@@ -30,7 +30,7 @@ namespace CarcassSpark
 
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
-        private static string _directoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
+        private static readonly string _directoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
         public static readonly AssetsManager AssetsManager = new AssetsManager();
         public static Dictionary<string, Bitmap> Assets = new Dictionary<string, Bitmap>();
         public static ImageList ImageList = new ImageList
