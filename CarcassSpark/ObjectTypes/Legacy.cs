@@ -16,10 +16,10 @@ namespace CarcassSpark.ObjectTypes
         public bool? availableWithoutEndingMatch, deleted, newstart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> excludesOnEnding;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$postfix")]
-        public List<string> excludesOnEnding_postfix;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$prefix")]
-        public List<string> excludesOnEnding_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$append")]
+        public List<string> excludesOnEnding_append;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$prepend")]
+        public List<string> excludesOnEnding_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$remove")]
         public List<string> excludesOnEnding_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -30,10 +30,10 @@ namespace CarcassSpark.ObjectTypes
         public List<string> effects_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> statusbarelements;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&prefix")]
-        public List<string> statusbarelements_prefix;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&postfix")]
-        public List<string> statusbarelements_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&prepend")]
+        public List<string> statusbarelements_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&append")]
+        public List<string> statusbarelements_append;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&remove")]
         public List<string> statusbarelements_remove;
 
@@ -51,9 +51,9 @@ namespace CarcassSpark.ObjectTypes
         public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
                       Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
                       string startingVerbId, List<string> excludesOnEnding,
-                      List<string> excludesOnEnding_prefix, List<string> excludesOnEndingpostfix, List<string> excludesOnEndingRemove,
+                      List<string> excludesOnEnding_prepend, List<string> excludesOnEndingAppend, List<string> excludesOnEndingRemove,
                       Dictionary<string, int> effectsExtend, List<string> effectsRemove, List<string> statusbarelements,
-                      List<string> statusbarelementsprefix, List<string> statusbarelementspostfix, List<string> statusbarelementsRemove,
+                      List<string> statusbarelementsPrepend, List<string> statusbarelementsAppend, List<string> statusbarelementsRemove,
                       bool? deleted, List<string> extends)
         {
             this.id = id;
@@ -72,12 +72,12 @@ namespace CarcassSpark.ObjectTypes
             this.availableWithoutEndingMatch = availableWithoutEndingMatch;
             this.startingVerbId = startingVerbId;
             this.excludesOnEnding = excludesOnEnding;
-            this.excludesOnEnding_prefix = excludesOnEnding_prefix;
-            this.excludesOnEnding_postfix = excludesOnEndingpostfix;
+            this.excludesOnEnding_prepend = excludesOnEnding_prepend;
+            this.excludesOnEnding_append = excludesOnEndingAppend;
             this.excludesOnEnding_remove = excludesOnEndingRemove;
             this.statusbarelements = statusbarelements;
-            this.statusbarelements_prefix = statusbarelementsprefix;
-            this.statusbarelements_postfix = statusbarelementspostfix;
+            this.statusbarelements_prepend = statusbarelementsPrepend;
+            this.statusbarelements_append = statusbarelementsAppend;
             this.statusbarelements_remove = statusbarelementsRemove;
             this.deleted = deleted;
             this.newstart = newstart;

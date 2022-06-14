@@ -179,14 +179,14 @@ namespace CarcassSpark.ObjectViewers
                 verbIconTextBox.Text = element.verbicon;
             }
 
-            if (element.slots_prefix != null)
+            if (element.slots_prepend != null)
             {
-                foreach (Slot slot in element.slots_prefix)
+                foreach (Slot slot in element.slots_prepend)
                 {
                     slots[slot.id] = slot;
                     ListViewItem item = new ListViewItem(slot.id)
                     {
-                        BackColor = Utilities.ListprefixColor
+                        BackColor = Utilities.ListPrependColor
                     };
                     slotsListView.Items.Add(item);
                 }
@@ -200,14 +200,14 @@ namespace CarcassSpark.ObjectViewers
                     slotsListView.Items.Add(item);
                 }
             }
-            if (element.slots_postfix != null)
+            if (element.slots_append != null)
             {
-                foreach (Slot slot in element.slots_postfix)
+                foreach (Slot slot in element.slots_append)
                 {
                     slots[slot.id] = slot;
                     ListViewItem item = new ListViewItem(slot.id)
                     {
-                        BackColor = Utilities.ListpostfixColor
+                        BackColor = Utilities.ListAppendColor
                     };
                     slotsListView.Items.Add(item);
                 }
@@ -770,13 +770,13 @@ namespace CarcassSpark.ObjectViewers
             if (slotsListView.SelectedItems.Count == 1)
             {
                 ListViewItem selectedItem = slotsListView.SelectedItems[0];
-                if (Equals(selectedItem.BackColor, Utilities.ListpostfixColor))
+                if (Equals(selectedItem.BackColor, Utilities.ListAppendColor))
                 {
-                    DisplayedElement.slots_postfix.Remove(slots[selectedItem.Text]);
+                    DisplayedElement.slots_append.Remove(slots[selectedItem.Text]);
                 }
-                else if (Equals(selectedItem.BackColor, Utilities.ListprefixColor))
+                else if (Equals(selectedItem.BackColor, Utilities.ListPrependColor))
                 {
-                    DisplayedElement.slots_prefix.Remove(slots[selectedItem.Text]);
+                    DisplayedElement.slots_prepend.Remove(slots[selectedItem.Text]);
                 }
                 else if (Equals(selectedItem.BackColor, Utilities.ListRemoveColor))
                 {

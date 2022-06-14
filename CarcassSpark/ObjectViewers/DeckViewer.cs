@@ -116,13 +116,13 @@ namespace CarcassSpark.ObjectViewers
                 deletedCheckBox.Checked = deck.deleted.Value;
             }
 
-            if (deck.spec_prefix != null)
+            if (deck.spec_prepend != null)
             {
-                foreach (string id in deck.spec_prefix)
+                foreach (string id in deck.spec_prepend)
                 {
                     ListViewItem lvi = new ListViewItem(id)
                     {
-                        BackColor = Utilities.ListprefixColor
+                        BackColor = Utilities.ListPrependColor
                     };
                     specListView.Items.Add(lvi);
                 }
@@ -135,13 +135,13 @@ namespace CarcassSpark.ObjectViewers
                     specListView.Items.Add(lvi);
                 }
             }
-            if (deck.spec_postfix != null)
+            if (deck.spec_append != null)
             {
-                foreach (string id in deck.spec_postfix)
+                foreach (string id in deck.spec_append)
                 {
                     ListViewItem lvi = new ListViewItem(id)
                     {
-                        BackColor = Utilities.ListpostfixColor
+                        BackColor = Utilities.ListAppendColor
                     };
                     specListView.Items.Add(lvi);
                 }
@@ -214,8 +214,8 @@ namespace CarcassSpark.ObjectViewers
             drawmessagesDataGridView.AllowUserToDeleteRows = editing;
             newCardTextBox.Visible = editing;
             newCardButton.Visible = editing;
-            specpostfixButton.Visible = editing;
-            specprefixButton.Visible = editing;
+            specAppendButton.Visible = editing;
+            specPrependButton.Visible = editing;
             specRemoveButton.Visible = editing;
             deleteButton.Visible = editing;
             okButton.Visible = editing;
@@ -430,66 +430,66 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void SpecprefixButton_Click(object sender, EventArgs e)
+        private void SpecPrependButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 ListViewItem item = new ListViewItem(newCardTextBox.Text)
                 {
-                    BackColor = Utilities.ListprefixColor
+                    BackColor = Utilities.ListPrependColor
                 };
                 specListView.Items.Add(item);
-                if (DisplayedDeck.spec_prefix == null)
+                if (DisplayedDeck.spec_prepend == null)
                 {
-                    DisplayedDeck.spec_prefix = new List<string>();
+                    DisplayedDeck.spec_prepend = new List<string>();
                 }
 
-                DisplayedDeck.spec_prefix.Add(newCardTextBox.Text);
+                DisplayedDeck.spec_prepend.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (DisplayedDeck.spec_prefix == null)
+                if (DisplayedDeck.spec_prepend == null)
                 {
-                    DisplayedDeck.spec_prefix = new List<string>();
+                    DisplayedDeck.spec_prepend = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
-                item.BackColor = Utilities.ListprefixColor;
-                DisplayedDeck.spec_prefix.Add(item.Text);
+                item.BackColor = Utilities.ListPrependColor;
+                DisplayedDeck.spec_prepend.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
 
-        private void SpecpostfixButton_Click(object sender, EventArgs e)
+        private void SpecAppendButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(newCardTextBox.Text))
             {
                 ListViewItem item = new ListViewItem(newCardTextBox.Text)
                 {
-                    BackColor = Utilities.ListpostfixColor
+                    BackColor = Utilities.ListAppendColor
                 };
                 specListView.Items.Add(item);
-                if (DisplayedDeck.spec_postfix == null)
+                if (DisplayedDeck.spec_append == null)
                 {
-                    DisplayedDeck.spec_postfix = new List<string>();
+                    DisplayedDeck.spec_append = new List<string>();
                 }
 
-                DisplayedDeck.spec_postfix.Add(newCardTextBox.Text);
+                DisplayedDeck.spec_append.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
             else if (specListView.SelectedItems.Count > 0)
             {
                 ListViewItem item = specListView.SelectedItems[0];
-                if (DisplayedDeck.spec_postfix == null)
+                if (DisplayedDeck.spec_append == null)
                 {
-                    DisplayedDeck.spec_postfix = new List<string>();
+                    DisplayedDeck.spec_append = new List<string>();
                 }
                 DeleteItemFromCurrentGroup(item);
-                item.BackColor = Utilities.ListpostfixColor;
-                DisplayedDeck.spec_postfix.Add(item.Text);
+                item.BackColor = Utilities.ListAppendColor;
+                DisplayedDeck.spec_append.Add(item.Text);
                 newCardTextBox.Text = "";
             }
         }
@@ -617,23 +617,23 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteItemFromCurrentGroup(ListViewItem item)
         {
-            if (item.BackColor == Utilities.ListpostfixColor && DisplayedDeck.spec_postfix != null)
+            if (item.BackColor == Utilities.ListAppendColor && DisplayedDeck.spec_append != null)
             {
-                DisplayedDeck.spec_postfix.Remove(item.Text);
-                if (DisplayedDeck.spec_postfix.Count == 0)
+                DisplayedDeck.spec_append.Remove(item.Text);
+                if (DisplayedDeck.spec_append.Count == 0)
                 {
-                    DisplayedDeck.spec_postfix = null;
+                    DisplayedDeck.spec_append = null;
                 }
             }
-            else if (item.BackColor == Utilities.ListprefixColor && DisplayedDeck.spec_postfix != null)
+            else if (item.BackColor == Utilities.ListPrependColor && DisplayedDeck.spec_append != null)
             {
-                DisplayedDeck.spec_prefix.Remove(item.Text);
-                if (DisplayedDeck.spec_prefix.Count == 0)
+                DisplayedDeck.spec_prepend.Remove(item.Text);
+                if (DisplayedDeck.spec_prepend.Count == 0)
                 {
-                    DisplayedDeck.spec_prefix = null;
+                    DisplayedDeck.spec_prepend = null;
                 }
             }
-            else if (item.BackColor == Utilities.ListRemoveColor && DisplayedDeck.spec_postfix != null)
+            else if (item.BackColor == Utilities.ListRemoveColor && DisplayedDeck.spec_append != null)
             {
                 DisplayedDeck.spec_remove.Remove(item.Text);
                 if (DisplayedDeck.spec_remove.Count == 0)

@@ -41,8 +41,8 @@
             this.chance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inducesAdditional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setAsprefixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAspostfixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsPrependToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsAppendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -178,26 +178,26 @@
             // propertyOperationContextMenuStrip
             // 
             this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setAsprefixToolStripMenuItem,
-            this.setAspostfixToolStripMenuItem,
+            this.setAsPrependToolStripMenuItem,
+            this.setAsAppendToolStripMenuItem,
             this.setAsRemoveToolStripMenuItem});
             this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
             this.propertyOperationContextMenuStrip.ShowImageMargin = false;
             this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(127, 70);
             // 
-            // setAsprefixToolStripMenuItem
+            // setAsPrependToolStripMenuItem
             // 
-            this.setAsprefixToolStripMenuItem.Name = "setAsprefixToolStripMenuItem";
-            this.setAsprefixToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.setAsprefixToolStripMenuItem.Text = "Set as prefix";
-            this.setAsprefixToolStripMenuItem.Click += new System.EventHandler(this.SetAsprefixToolStripMenuItem_Click);
+            this.setAsPrependToolStripMenuItem.Name = "setAsPrependToolStripMenuItem";
+            this.setAsPrependToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.setAsPrependToolStripMenuItem.Text = "Set as Prepend";
+            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.SetAsPrependToolStripMenuItem_Click);
             // 
-            // setAspostfixToolStripMenuItem
+            // setAsAppendToolStripMenuItem
             // 
-            this.setAspostfixToolStripMenuItem.Name = "setAspostfixToolStripMenuItem";
-            this.setAspostfixToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.setAspostfixToolStripMenuItem.Text = "Set as postfix";
-            this.setAspostfixToolStripMenuItem.Click += new System.EventHandler(this.SetAspostfixToolStripMenuItem_Click);
+            this.setAsAppendToolStripMenuItem.Name = "setAsAppendToolStripMenuItem";
+            this.setAsAppendToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.setAsAppendToolStripMenuItem.Text = "Set as Append";
+            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.SetAsAppendToolStripMenuItem_Click);
             // 
             // setAsRemoveToolStripMenuItem
             // 
@@ -458,8 +458,8 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inducesAdditional;
         private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem setAsprefixToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setAspostfixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsPrependToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAsAppendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentTextBox;

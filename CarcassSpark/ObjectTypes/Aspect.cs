@@ -13,19 +13,18 @@ namespace CarcassSpark.ObjectTypes
         public Aspect(string id, string label, string description, string inherits,
                       bool? unique, bool? deleted, string icon, string comments,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend,
-                      List<string> aspectsRemove, List<Slot> slots, List<Slot> slotsprefix,
-                      List<Slot> slotspostfix, List<string> slotsRemove,
+                      List<string> aspectsRemove, List<Slot> slots, List<Slot> slotsPrepend,
+                      List<Slot> slotsAppend, List<string> slotsRemove,
                       Dictionary<string, List<XTrigger>> xtriggers,
                       Dictionary<string, List<XTrigger>> xtriggersExtend,
                       List<string> xtriggersRemove, int? lifetime,
-                      int? lifetimePlus, int? lifetimeMinus,
                       string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
-                      List<Induces> inducesprefix, List<Induces> inducespostfix,
+                      List<Induces> inducesPrepend, List<Induces> inducesAppend,
                       List<string> inducesRemove, bool? isAspect, List<string> extends) : base(id, label, description,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
-                          aspectsRemove, slots, slotsprefix, slotspostfix, slotsRemove,
-                          xtriggers, xtriggersExtend, xtriggersRemove, lifetime, lifetimePlus, lifetimeMinus,
+                          aspectsRemove, slots, slotsPrepend, slotsAppend, slotsRemove,
+                          xtriggers, xtriggersExtend, xtriggersRemove, lifetime,
                           decayTo, uniquenessgroup, resaturate, extends)
         {
             // optional
@@ -34,8 +33,8 @@ namespace CarcassSpark.ObjectTypes
             this.isHidden = isHidden;
             // optional
             this.induces = induces;
-            this.induces_prefix = inducesprefix;
-            this.induces_postfix = inducespostfix;
+            this.induces_prepend = inducesPrepend;
+            this.induces_append = inducesAppend;
             this.induces_remove = inducesRemove;
             // optional
             this.noartneeded = noartneeded;

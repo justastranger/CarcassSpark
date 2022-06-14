@@ -527,7 +527,7 @@
             this.extendXTriggerButton.Name = "extendXTriggerButton";
             this.extendXTriggerButton.Size = new System.Drawing.Size(95, 23);
             this.extendXTriggerButton.TabIndex = 44;
-            this.extendXTriggerButton.Text = "postfix XTrigger";
+            this.extendXTriggerButton.Text = "Append XTrigger";
             this.extendXTriggerButton.UseVisualStyleBackColor = true;
             this.extendXTriggerButton.Click += new System.EventHandler(this.ExtendXTriggerButton_Click);
             // 
