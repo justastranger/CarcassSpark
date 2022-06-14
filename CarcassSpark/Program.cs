@@ -9,7 +9,7 @@ namespace CarcassSpark
     internal static class Program
     {
         private static readonly string CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string CsDllDirectory = "\\cultistsimulator_Data\\Managed\\";
+        // private static readonly string CsDllDirectory = "\\cultistsimulator_Data\\Managed\\";
 
         /// <summary>
         /// The main entry point for the application.
