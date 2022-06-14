@@ -10,7 +10,6 @@ namespace CarcassSpark.ObjectViewers
     public partial class DeckViewer : Form, IGameObjectViewer
     {
         public Deck DisplayedDeck;
-        private bool editing;
 
         private event EventHandler<Deck> SuccessCallback;
 
@@ -200,7 +199,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void SetEditingMode(bool editing)
         {
-            this.editing = editing;
             idTextBox.ReadOnly = !editing;
             labelTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
