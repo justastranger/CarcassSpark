@@ -23,7 +23,7 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
         public string description_prefix;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$postfix")]
         public string description_postfix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replace")]
         public string description_replace;
