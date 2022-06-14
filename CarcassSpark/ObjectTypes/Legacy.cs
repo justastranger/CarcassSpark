@@ -30,7 +30,7 @@ namespace CarcassSpark.ObjectTypes
         public string description_replace_last;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
         public string startdescription_prefix;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$postfix")]
         public string startdescription_postfix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$replace")]
         public string startdescription_replace;
