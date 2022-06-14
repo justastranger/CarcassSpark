@@ -15,7 +15,6 @@ namespace CarcassSpark.Tools
         {
             InitializeComponent();
             assetsListView.LargeImageList = Utilities.ImageList;
-            // LoadAssets();
         }
 
         private void LoadAssets()
@@ -119,6 +118,11 @@ namespace CarcassSpark.Tools
 
         private void AssetBrowser_Shown(object sender, EventArgs e)
         {
+            // this guarantees that the sprites are ready and organized
+            // if assets were already loaded, it'll just index them pretty quickly
+            // if assets weren't loaded, it'll load them (which takes a while)
+            // if assets are already loaded and indexed, it returns immediately
+            Utilities.CollectSprites();
 
             LoadAssets();
         }

@@ -747,5 +747,10 @@ namespace CarcassSpark.ObjectViewers
                 selectedModViewer.LoadContent();
             }
         }
+
+        private void extractAssetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utilities.ExtractSprites();
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace CarcassSpark
         // This is the root asset bundle that contains references to all the game's assets
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
         private static string _directoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
-        private static readonly AssetsManager AssetsManager = new AssetsManager();
+        public static readonly AssetsManager AssetsManager = new AssetsManager();
         public static Dictionary<string, Sprite> Assets = new Dictionary<string, Sprite>();
         public static ImageList ImageList = new ImageList
         {
@@ -57,8 +57,49 @@ namespace CarcassSpark
             // CollectSprites();
         }
 
-        private static void CollectSprites()
+        public static void ExtractSprites()
         {
+            MessageBox.Show("This can take a long time. Please be patient.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (AssetsManager.assetsFileList.Count == 0)
+            {
+                AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
+            }
+            ResourceManager resourceManager = (ResourceManager)AssetsManager.assetsFileList[0].Objects.Find(@object => @object is ResourceManager);
+            List<KeyValuePair<string, PPtr<AssetStudio.Object>>> containers = resourceManager.m_Container.ToList();
+
+            foreach (KeyValuePair<string, PPtr<AssetStudio.Object>> keyValuePair in containers)
+            {
+                string key = keyValuePair.Key;
+                PPtr<AssetStudio.Object> valuePointer = keyValuePair.Value;
+                if (valuePointer.TryGet(out AssetStudio.Object value))
+                {
+                    if (value is Sprite sprite)
+                    {
+                        // Assets[key] = sprite;
+                        // ImageList.Images.Add(key, image);
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(Settings.settings["GamePath"] + "\\extracted\\" + key));
+                        using (MemoryStream image = sprite.GetImage().ConvertToStream(ImageFormat.Png))
+                        using (FileStream imageFile = File.Create(Settings.settings["GamePath"] + "\\extracted\\" + key + ".png"))
+                        {
+                            image.Seek(0, SeekOrigin.Begin);
+                            image.CopyTo(imageFile);
+                            imageFile.Flush();
+                        }
+                        // image.Save(Settings.settings["GamePath"] + "\\extracted\\" + key + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+            }
+            MessageBox.Show("Extraction complete.", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public static void CollectSprites()
+        {
+            if (Assets.Count > 0) return;
+            if (AssetsManager.assetsFileList.Count == 0)
+            {
+                MessageBox.Show("Assets not yet loaded. This can take up to 5GB of memory.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
+            }
             ResourceManager resourceManager = (ResourceManager)AssetsManager.assetsFileList[0].Objects.Find(@object => @object is ResourceManager);
             List<KeyValuePair<string, PPtr<AssetStudio.Object>>> containers = resourceManager.m_Container.ToList();
             foreach (KeyValuePair<string, PPtr<AssetStudio.Object>> keyValuePair in containers)
