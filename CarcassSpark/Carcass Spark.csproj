@@ -486,6 +486,9 @@
     <EmbeddedResource Include="Tools\TemplateManager.TemplateSetup.resx">
       <DependentUpon>TemplateManager.TemplateSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
