@@ -38,18 +38,23 @@ namespace CarcassSpark
             ImageSize = new Size(128, 128)
         };
 
-        public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
-        public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
+        public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle()
+        {
+            BackColor = System.Drawing.Color.LimeGreen
+        };
+        public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle()
+        {
+            BackColor = System.Drawing.Color.Maroon
+        };
         public static System.Drawing.Color ListAppendColor = System.Drawing.Color.LimeGreen;
         public static System.Drawing.Color ListPrependColor = System.Drawing.Color.Aquamarine;
         public static System.Drawing.Color ListRemoveColor = System.Drawing.Color.Maroon;
 
         static Utilities()
         {
-            DictionaryExtendStyle.BackColor = System.Drawing.Color.LimeGreen;
-            DictionaryRemoveStyle.BackColor = System.Drawing.Color.Maroon;
-            AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
-            CollectSprites();
+            // MessageBox.Show("Loading can take around 5 minutes and use up to 5GB of RAM. Carcass Spark is not broken.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            // AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
+            // CollectSprites();
         }
 
         private static void CollectSprites()
