@@ -32,7 +32,7 @@ namespace CarcassSpark
         // We'll figure out how to access it eventually to let us view vanilla images without ripping them first
         private static string _directoryToVanillaAssets = "\\cultistsimulator_Data\\globalgamemanagers";
         public static readonly AssetsManager AssetsManager = new AssetsManager();
-        public static Dictionary<string, Sprite> Assets = new Dictionary<string, Sprite>();
+        public static Dictionary<string, Bitmap> Assets = new Dictionary<string, Bitmap>();
         public static ImageList ImageList = new ImageList
         {
             ImageSize = new Size(128, 128)
@@ -55,6 +55,22 @@ namespace CarcassSpark
             // MessageBox.Show("Loading can take around 5 minutes and use up to 5GB of RAM. Carcass Spark is not broken.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             // AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
             // CollectSprites();
+            string extractedpath = Settings.settings["GamePath"] + "\\extracted\\";
+            string[] images = Directory.GetFiles(extractedpath, "*.png", SearchOption.AllDirectories);
+            if (images.Length > 0)
+            {
+                foreach (string filename in images)
+                {
+                    if (filename.IndexOf(".png") > 0)
+                    {
+                        Bitmap image = new Bitmap(filename);
+                        string key = filename.Remove(0, extractedpath.Length);
+                        key = key.Remove(key.IndexOf(".png"));
+                        Assets[key] = image;
+                        ImageList.Images.Add(key, image);
+                    }
+                }
+            }
         }
 
         public static void ExtractSprites()
@@ -111,7 +127,7 @@ namespace CarcassSpark
                     if (value is Sprite sprite)
                     {
                         Bitmap image = sprite.GetImage().ToBitmap();
-                        Assets[key] = sprite;
+                        Assets[key] = image;
                         ImageList.Images.Add(key, image);
                     }
                 }
@@ -160,14 +176,14 @@ namespace CarcassSpark
         {
             try
             {
-                string path = "images/aspects/" + id;
+                string path = "images\\aspects\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/elements/_x"].GetImage().ToBitmap();
+                    return Assets["images\\elements\\_x"];
                 }
             }
             catch (TypeInitializationException)
@@ -180,21 +196,21 @@ namespace CarcassSpark
 
         public static bool VanillaAspectImageExists(string id)
         {
-            return Assets.ContainsKey("images/aspects/" + id);
+            return Assets.ContainsKey("images\\aspects\\" + id);
         }
 
         public static Bitmap GetVanillaElement(string id)
         {
             try
             {
-                string path = "images/elements/" + id;
+                string path = "images\\elements\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/elements/_x"].GetImage().ToBitmap();
+                    return Assets["images\\elements\\_x"];
                 }
             }
             catch (TypeInitializationException)
@@ -206,21 +222,21 @@ namespace CarcassSpark
 
         public static bool VanillaElementImageExists(string id)
         {
-            return Assets.ContainsKey("images/elements/" + id);
+            return Assets.ContainsKey("images\\elements\\" + id);
         }
 
         public static Bitmap GetVanillaEnding(string id)
         {
             try
             {
-                string path = "images/endings/" + id;
+                string path = "images\\endings\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/endings/despair"].GetImage().ToBitmap();
+                    return Assets["images\\endings\\despair"];
                 }
             }
             catch (TypeInitializationException)
@@ -232,21 +248,21 @@ namespace CarcassSpark
 
         public static bool VanillaEndingImageExists(string id)
         {
-            return Assets.ContainsKey("images/endings/" + id);
+            return Assets.ContainsKey("images\\endings\\" + id);
         }
 
         public static Bitmap GetVanillaLegacy(string id)
         {
             try
             {
-                string path = "images/legacies/" + id;
+                string path = "images\\legacies\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/legacies/aspirant"].GetImage().ToBitmap();
+                    return Assets["images\\legacies\\aspirant"];
                 }
             }
             catch (TypeInitializationException)
@@ -258,21 +274,21 @@ namespace CarcassSpark
 
         public static bool VanillaLegacyImageExists(string id)
         {
-            return Assets.ContainsKey("images/legacies/" + id);
+            return Assets.ContainsKey("images\\legacies\\" + id);
         }
 
         public static Bitmap GetVanillaVerb(string id)
         {
             try
             {
-                string path = "images/verbs/" + id;
+                string path = "images\\verbs\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/verbs/_x"].GetImage().ToBitmap();
+                    return Assets["images\\verbs\\_x"];
                 }
             }
             catch (TypeInitializationException)
@@ -284,21 +300,21 @@ namespace CarcassSpark
 
         public static bool VanillaVerbImageExists(string id)
         {
-            return Assets.ContainsKey("images/verbs/" + id);
+            return Assets.ContainsKey("images\\verbs\\" + id);
         }
 
         public static Bitmap GetVanillaCardBack(string id)
         {
             try
             {
-                string path = "images/cardbacks/" + id;
+                string path = "images\\cardbacks\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/cardbacks/_x"].GetImage().ToBitmap();
+                    return Assets["images\\cardbacks\\_x"];
                 }
             }
             catch (TypeInitializationException)
@@ -310,21 +326,21 @@ namespace CarcassSpark
 
         public static bool VanillaCardBackImageExists(string id)
         {
-            return Assets.ContainsKey("images/cardbacks/" + id);
+            return Assets.ContainsKey("images\\cardbacks\\" + id);
         }
 
         public static Bitmap GetVanillaBurnImage(string id)
         {
             try
             {
-                string path = "images/burns/" + id;
+                string path = "images\\burns\\" + id;
                 if (Assets.ContainsKey(path))
                 {
-                    return Assets[path].GetImage().ToBitmap();
+                    return Assets[path];
                 }
                 else
                 {
-                    return Assets["images/burns/moon"].GetImage().ToBitmap();
+                    return Assets["images\\burns\\moon"];
                 }
             }
             catch (TypeInitializationException)
@@ -336,14 +352,14 @@ namespace CarcassSpark
 
         public static bool VanillaBurnImageImageExists(string id)
         {
-            return Assets.ContainsKey("images/burns/" + id);
+            return Assets.ContainsKey("images\\burns\\" + id);
         }
 
         public static bool AspectImageExists(string id)
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/aspects/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\aspects\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -368,7 +384,7 @@ namespace CarcassSpark
                     return GetVanillaAspect(id);
                 }
             }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            string defaultImage = DirectoryToVanillaContent + "\\images\\elements\\_x.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -376,7 +392,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/elements/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\elements\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -401,7 +417,7 @@ namespace CarcassSpark
                     return GetVanillaElement(id);
                 }
             }
-            string defaultImage = DirectoryToVanillaContent + "/images/elements/_x.png";
+            string defaultImage = DirectoryToVanillaContent + "\\images\\elements\\_x.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -409,7 +425,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/endings/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\endings\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -434,7 +450,7 @@ namespace CarcassSpark
                     return GetVanillaEnding(id);
                 }
             }
-            string defaultImage = DirectoryToVanillaContent + "/images/endings/despair.png";
+            string defaultImage = DirectoryToVanillaContent + "\\images\\endings\\despair.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -442,7 +458,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/legacies/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\legacies\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -467,7 +483,7 @@ namespace CarcassSpark
                     return GetVanillaLegacy(id);
                 }
             }
-            string defaultImage = DirectoryToVanillaContent + "/images/legacies/ritual.png";
+            string defaultImage = DirectoryToVanillaContent + "\\images\\legacies\\ritual.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -475,7 +491,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/verbs/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\verbs\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -500,7 +516,7 @@ namespace CarcassSpark
                     return GetVanillaVerb(id);
                 }
             }
-            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/verbs/_x.png";
+            string defaultImage = Utilities.DirectoryToVanillaContent + "\\images\\verbs\\_x.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -508,7 +524,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/cardbacks/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\cardbacks\\" + id + ".png"))
                 {
                     return true;
                 }
@@ -533,7 +549,7 @@ namespace CarcassSpark
                     return GetVanillaCardBack(id);
                 }
             }
-            string defaultImage = Utilities.DirectoryToVanillaContent + "/images/cardbacks/_x.png";
+            string defaultImage = Utilities.DirectoryToVanillaContent + "\\images\\cardbacks\\_x.png";
             return File.Exists(defaultImage) ? Image.FromFile(defaultImage) : null;
         }
 
@@ -541,7 +557,7 @@ namespace CarcassSpark
         {
             foreach (ContentSource source in ContentSources.Values)
             {
-                if (File.Exists(source.CurrentDirectory + "/images/burns/" + id + ".png"))
+                if (File.Exists(source.CurrentDirectory + "\\images\\burns\\" + id + ".png"))
                 {
                     return true;
                 }

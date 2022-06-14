@@ -54,7 +54,7 @@ namespace CarcassSpark.Tools
 
                 foreach (string path in Utilities.Assets.Keys)
                 {
-                    string folder = path.Split('/').Length > 1 ? path.Split('/')[1] : path;
+                    string folder = path.Split('\\').Length > 1 ? path.Split('\\')[1] : path;
 
                     if (folder == objectType.ToLower())
                     {
@@ -91,7 +91,7 @@ namespace CarcassSpark.Tools
             {
                 ListViewItem selectedItem = assetsListView.SelectedItems[0];
                 // Image selectedImage = assetsListView.LargeImageList.Images[selectedItem.Text];
-                ImageViewer iv = new ImageViewer(Utilities.Assets[selectedItem.Text].GetImage().ToBitmap());
+                ImageViewer iv = new ImageViewer(Utilities.Assets[selectedItem.Text]);
                 iv.Show();
             }
         }
