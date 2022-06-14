@@ -12,6 +12,22 @@ namespace CarcassSpark.ObjectTypes
         public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits, verbicon;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$prefix")]
+        public string label_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$postfix")]
+        public string label_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replace")]
+        public string label_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replacelast")]
+        public string label_replace_last;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replace")]
+        public string description_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replacelast")]
+        public string description_replace_last;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$add")]
@@ -57,8 +73,9 @@ namespace CarcassSpark.ObjectTypes
         public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
-        public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,
-                       string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspectsRemove,
+        public Element(string id, string label, string label_prefix, string label_postfix, string label_replace, string label_replace_last,
+                       string description, string description_prefix, string description_postfix, string description_replace, string description_replace_last, string inherits, bool? unique, bool? deleted,
+                       string icon, string comments, Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend, List<string> aspects_remove,
                        List<Slot> slots, List<Slot> slotsPrepend, List<Slot> slotsAppend, List<string> slotsRemove,
                        Dictionary<string, List<XTrigger>> xtriggers, Dictionary<string, List<XTrigger>> xtriggersExtend, List<string> xtriggersRemove,
                        int? lifetime, string decayTo, string uniquenessgroup, bool? resaturate, List<string> extends)
@@ -67,8 +84,16 @@ namespace CarcassSpark.ObjectTypes
             this.id = id;
             // necessary
             this.label = label;
+            this.label_prefix = label_prefix;
+            this.label_postfix = label_postfix;
+            this.label_replace = label_replace;
+            this.label_replace_last = label_replace_last;
             // necessary
             this.description = description;
+            this.description_prefix = description_prefix;
+            this.description_postfix = description_postfix;
+            this.description_replace = description_replace;
+            this.description_replace_last = description_replace_last;
             // not necessary
             this.icon = icon;
             // else this.icon = id;
@@ -77,7 +102,7 @@ namespace CarcassSpark.ObjectTypes
             // not necessary (stay of execution)
             this.aspects = aspects;
             this.aspects_extend = aspects_extend;
-            this.aspects_remove = aspectsRemove;
+            this.aspects_remove = aspects_remove;
             // not necessary
             this.slots = slots;
             this.slots_prepend = slotsPrepend;

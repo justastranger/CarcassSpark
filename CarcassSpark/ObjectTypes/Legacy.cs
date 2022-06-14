@@ -12,6 +12,30 @@ namespace CarcassSpark.ObjectTypes
         public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments, tablecoverimage, tablesurfaceimage, tableedgeimage;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$prefix")]
+        public string label_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$postfix")]
+        public string label_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replace")]
+        public string label_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replacelast")]
+        public string label_replace_last;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replace")]
+        public string description_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replacelast")]
+        public string description_replace_last;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
+        public string startdescription_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
+        public string startdescription_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$replace")]
+        public string startdescription_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$replacelast")]
+        public string startdescription_replace_last;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? availableWithoutEndingMatch, deleted, newstart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -48,7 +72,10 @@ namespace CarcassSpark.ObjectTypes
         public string ID { get => this.id; set => this.id = value; }
 
         [JsonConstructor]
-        public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
+        public Legacy(string id, string label, string label_prefix, string label_postfix, string label_replace, string label_replace_last,
+                      string description, string description_prefix, string description_postfix, string description_replace, string description_replace_last,
+                      string startdescription, string startdescription_prefix, string startdescription_postfix, string startdescription_replace, string startdescription_replace_last,
+                      string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
                       Dictionary<string, int> effects, string image, string fromEnding, bool? availableWithoutEndingMatch, bool? newstart,
                       string startingVerbId, List<string> excludesOnEnding,
                       List<string> excludesOnEnding_prepend, List<string> excludesOnEndingAppend, List<string> excludesOnEndingRemove,
@@ -57,30 +84,59 @@ namespace CarcassSpark.ObjectTypes
                       bool? deleted, List<string> extends)
         {
             this.id = id;
+
             this.label = label;
+            this.label_prefix = label_prefix;
+            this.label_postfix = label_postfix;
+            this.label_replace = label_replace;
+            this.label_replace_last = label_replace_last;
+
             this.description = description;
+            this.description_prefix = description_prefix;
+            this.description_postfix = description_postfix;
+            this.description_replace = description_replace;
+            this.description_replace_last = description_replace_last;
+
             this.startdescription = startdescription;
+            this.startdescription_prefix = startdescription_prefix;
+            this.startdescription_postfix = startdescription_postfix;
+            this.startdescription_replace = startdescription_replace;
+            this.startdescription_replace_last = startdescription_replace_last;
+            
             this.effects = effects;
             this.effects_extend = effectsExtend;
             this.effects_remove = effectsRemove;
+           
             this.comments = comments;
+            
             this.tablecoverimage = tablecoverimage;
+            
             this.tableedgeimage = tableedgeimage;
+            
             this.tablesurfaceimage = tablesurfaceimage;
+            
             this.image = image;
+            
             this.fromEnding = fromEnding;
+            
             this.availableWithoutEndingMatch = availableWithoutEndingMatch;
+            
             this.startingVerbId = startingVerbId;
+            
             this.excludesOnEnding = excludesOnEnding;
             this.excludesOnEnding_prepend = excludesOnEnding_prepend;
             this.excludesOnEnding_append = excludesOnEndingAppend;
             this.excludesOnEnding_remove = excludesOnEndingRemove;
+            
             this.statusbarelements = statusbarelements;
             this.statusbarelements_prepend = statusbarelementsPrepend;
             this.statusbarelements_append = statusbarelementsAppend;
             this.statusbarelements_remove = statusbarelementsRemove;
+            
             this.deleted = deleted;
+            
             this.newstart = newstart;
+            
             this.extends = extends;
         }
 

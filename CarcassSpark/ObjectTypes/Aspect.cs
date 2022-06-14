@@ -10,7 +10,8 @@ namespace CarcassSpark.ObjectTypes
         // public bool? isAspect, isHidden, noartneeded;
 
         [JsonConstructor]
-        public Aspect(string id, string label, string description, string inherits,
+        public Aspect(string id, string label, string label_prefix, string label_postfix, string label_replace, string label_replace_last,
+                      string description, string description_prefix, string description_postfix, string description_replace, string description_replace_last, string inherits,
                       bool? unique, bool? deleted, string icon, string comments,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend,
                       List<string> aspectsRemove, List<Slot> slots, List<Slot> slotsPrepend,
@@ -21,7 +22,8 @@ namespace CarcassSpark.ObjectTypes
                       string decayTo, string uniquenessgroup, bool? resaturate,
                       bool? isHidden, bool? noartneeded, List<Induces> induces,
                       List<Induces> inducesPrepend, List<Induces> inducesAppend,
-                      List<string> inducesRemove, bool? isAspect, List<string> extends) : base(id, label, description,
+                      List<string> inducesRemove, bool? isAspect, List<string> extends) : base(id, label, label_prefix, label_postfix, label_replace, label_replace_last,
+                          description, description_prefix, description_postfix, description_replace, description_replace_last,
                           inherits, unique, deleted, icon, comments, aspects, aspects_extend,
                           aspectsRemove, slots, slotsPrepend, slotsAppend, slotsRemove,
                           xtriggers, xtriggersExtend, xtriggersRemove, lifetime,

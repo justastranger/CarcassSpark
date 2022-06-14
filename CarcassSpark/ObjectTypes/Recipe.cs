@@ -12,6 +12,30 @@ namespace CarcassSpark.ObjectTypes
         public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour, comments;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$prefix")]
+        public string label_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$postfix")]
+        public string label_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replace")]
+        public string label_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "label$replacelast")]
+        public string label_replace_last;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$prefix")]
+        public string description_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replace")]
+        public string description_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "description$replacelast")]
+        public string description_replace_last;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
+        public string startdescription_prefix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$prefix")]
+        public string startdescription_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$replace")]
+        public string startdescription_replace;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "startdescription$replacelast")]
+        public string startdescription_replace_last;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -127,7 +151,10 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? maxexecutions,
-                      string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
+                      string actionId,
+                      string startdescription, string startdescription_prefix, string startdescription_postfix, string startdescription_replace, string startdescription_replace_last,
+                      string description, string description_prefix, string description_postfix, string description_replace, string description_replace_last,
+                      string id, string label, string label_prefix, string label_postfix, string label_replace, string label_replace_last, string signalendingflavour, string portaleffect, bool? signalimportantloop,
                       Deck internaldeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirementsRemove,
                       Dictionary<string, string> effects, Dictionary<string, string> effectsExtend, List<string> effectsRemove,
@@ -143,10 +170,27 @@ namespace CarcassSpark.ObjectTypes
                       Dictionary<string, int> deleteverb, Dictionary<string, int> deleteverbExtend, List<string> deleteverbRemove, List<string> extends)
         {
             this.id = id;
+
             this.label = label;
+            this.label_prefix = label_prefix;
+            this.label_postfix = label_postfix;
+            this.label_replace = label_replace;
+            this.label_replace_last = label_replace_last;
+
             this.actionId = actionId;
+
             this.startdescription = startdescription;
+            this.startdescription_prefix = startdescription_prefix;
+            this.startdescription_postfix = startdescription_postfix;
+            this.startdescription_replace = startdescription_replace;
+            this.startdescription_replace_last = startdescription_replace_last;
+
             this.description = description;
+            this.description_prefix = description_prefix;
+            this.description_postfix = description_postfix;
+            this.description_replace = description_replace;
+            this.description_replace_last = description_replace_last;
+
             this.comments = comments;
             this.craftable = craftable;
             this.hintonly = hintonly;
