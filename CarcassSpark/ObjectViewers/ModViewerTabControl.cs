@@ -1298,11 +1298,11 @@ namespace CarcassSpark.ObjectViewers
                 {
                     tmp[deck.Guid] = deck;
                 }
-                else if (deck.spec_prepend != null && deck.spec_prepend.Contains(id))
+                else if (deck.spec_prefix != null && deck.spec_prefix.Contains(id))
                 {
                     tmp[deck.Guid] = deck;
                 }
-                else if (deck.spec_append != null && deck.spec_append.Contains(id))
+                else if (deck.spec_postfix != null && deck.spec_postfix.Contains(id))
                 {
                     tmp[deck.Guid] = deck;
                 }
@@ -1362,9 +1362,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (recipe.linked_prepend != null)
+                else if (recipe.linked_prefix != null)
                 {
-                    foreach (RecipeLink link in recipe.linked_prepend)
+                    foreach (RecipeLink link in recipe.linked_prefix)
                     {
                         if (link.ID == id)
                         {
@@ -1372,9 +1372,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (recipe.linked_append != null)
+                else if (recipe.linked_postfix != null)
                 {
-                    foreach (RecipeLink link in recipe.linked_append)
+                    foreach (RecipeLink link in recipe.linked_postfix)
                     {
                         if (link.ID == id)
                         {
@@ -1392,9 +1392,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (recipe.alt_prepend != null)
+                else if (recipe.alt_prefix != null)
                 {
-                    foreach (RecipeLink link in recipe.alt_prepend)
+                    foreach (RecipeLink link in recipe.alt_prefix)
                     {
                         if (link.ID == id)
                         {
@@ -1402,9 +1402,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (recipe.alt_append != null)
+                else if (recipe.alt_postfix != null)
                 {
-                    foreach (RecipeLink link in recipe.alt_append)
+                    foreach (RecipeLink link in recipe.alt_postfix)
                     {
                         if (link.ID == id)
                         {
@@ -1514,9 +1514,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (element.slots_prepend != null)
+                else if (element.slots_prefix != null)
                 {
-                    foreach (Slot slot in element.slots_prepend)
+                    foreach (Slot slot in element.slots_prefix)
                     {
                         if (slot.actionId == id)
                         {
@@ -1524,9 +1524,9 @@ namespace CarcassSpark.ObjectViewers
                         }
                     }
                 }
-                else if (element.slots_append != null)
+                else if (element.slots_postfix != null)
                 {
-                    foreach (Slot slot in element.slots_append)
+                    foreach (Slot slot in element.slots_postfix)
                     {
                         if (slot.actionId == id)
                         {

@@ -113,14 +113,14 @@ namespace CarcassSpark.ObjectViewers
                 verbIconTextBox.Text = aspect.verbicon;
             }
 
-            if (aspect.induces_prepend != null)
+            if (aspect.induces_prefix != null)
             {
-                foreach (Induces induces in aspect.induces_prepend)
+                foreach (Induces induces in aspect.induces_prefix)
                 {
                     inducesDictionary.Add(induces.id, induces);
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
-                    newRow.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListprefixColor;
                     inducesDataGridView.Rows.Add(newRow);
                 }
             }
@@ -135,14 +135,14 @@ namespace CarcassSpark.ObjectViewers
                     inducesDataGridView.Rows.Add(newRow);
                 }
             }
-            if (aspect.induces_append != null)
+            if (aspect.induces_postfix != null)
             {
-                foreach (Induces induces in aspect.induces_append)
+                foreach (Induces induces in aspect.induces_postfix)
                 {
                     inducesDictionary.Add(induces.id, induces);
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(inducesDataGridView, induces.id, induces.chance, induces.additional ?? false);
-                    newRow.DefaultCellStyle.BackColor = Utilities.ListAppendColor;
+                    newRow.DefaultCellStyle.BackColor = Utilities.ListpostfixColor;
                     inducesDataGridView.Rows.Add(newRow);
                 }
             }
@@ -187,30 +187,30 @@ namespace CarcassSpark.ObjectViewers
             if (inducesDataGridView.Rows.Count > 1)
             {
                 DisplayedAspect.induces = null;
-                DisplayedAspect.induces_append = null;
-                DisplayedAspect.induces_prepend = null;
+                DisplayedAspect.induces_postfix = null;
+                DisplayedAspect.induces_prefix = null;
                 DisplayedAspect.induces_remove = null;
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                     {
-                        if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
+                        if (row.DefaultCellStyle.BackColor == Utilities.ListpostfixColor)
                         {
-                            if (DisplayedAspect.induces_append == null)
+                            if (DisplayedAspect.induces_postfix == null)
                             {
-                                DisplayedAspect.induces_append = new List<Induces>();
+                                DisplayedAspect.induces_postfix = new List<Induces>();
                             }
 
-                            DisplayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
+                            DisplayedAspect.induces_postfix.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
-                        else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
+                        else if (row.DefaultCellStyle.BackColor == Utilities.ListprefixColor)
                         {
-                            if (DisplayedAspect.induces_prepend == null)
+                            if (DisplayedAspect.induces_prefix == null)
                             {
-                                DisplayedAspect.induces_prepend = new List<Induces>();
+                                DisplayedAspect.induces_prefix = new List<Induces>();
                             }
 
-                            DisplayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
+                            DisplayedAspect.induces_prefix.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
                         {
@@ -286,38 +286,38 @@ namespace CarcassSpark.ObjectViewers
         {
             string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value as string : null;
             Induces induces = key != null ? inducesDictionary[key] : null;
-            if (e.Row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
+            if (e.Row.DefaultCellStyle.BackColor == Utilities.ListpostfixColor)
             {
-                if (DisplayedAspect.induces_append == null)
+                if (DisplayedAspect.induces_postfix == null)
                 {
                     return;
                 }
 
-                if (DisplayedAspect.induces_append.Contains(induces))
+                if (DisplayedAspect.induces_postfix.Contains(induces))
                 {
-                    DisplayedAspect.induces_append.Remove(induces);
+                    DisplayedAspect.induces_postfix.Remove(induces);
                 }
 
-                if (DisplayedAspect.induces_append.Count == 0)
+                if (DisplayedAspect.induces_postfix.Count == 0)
                 {
-                    DisplayedAspect.induces_append = null;
+                    DisplayedAspect.induces_postfix = null;
                 }
             }
-            else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
+            else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListprefixColor)
             {
-                if (DisplayedAspect.induces_prepend == null)
+                if (DisplayedAspect.induces_prefix == null)
                 {
                     return;
                 }
 
-                if (DisplayedAspect.induces_prepend.Contains(induces))
+                if (DisplayedAspect.induces_prefix.Contains(induces))
                 {
-                    DisplayedAspect.induces_prepend.Remove(induces);
+                    DisplayedAspect.induces_prefix.Remove(induces);
                 }
 
-                if (DisplayedAspect.induces_prepend.Count == 0)
+                if (DisplayedAspect.induces_prefix.Count == 0)
                 {
-                    DisplayedAspect.induces_prepend = null;
+                    DisplayedAspect.induces_prefix = null;
                 }
             }
             else if (e.Row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
@@ -356,33 +356,33 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void SetAsPrependToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAsprefixToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = affectedDataGridView.SelectedRows[0];
-                row.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
+                row.DefaultCellStyle.BackColor = Utilities.ListprefixColor;
             }
             else if (affectedDataGridView.SelectedCells.Count > 0)
             {
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
-                row.DefaultCellStyle.BackColor = Utilities.ListPrependColor;
+                row.DefaultCellStyle.BackColor = Utilities.ListprefixColor;
             }
         }
 
-        private void SetAsAppendToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetAspostfixToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView affectedDataGridView = (DataGridView)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             if (affectedDataGridView.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = affectedDataGridView.SelectedRows[0];
-                row.DefaultCellStyle.BackColor = Utilities.ListAppendColor;
+                row.DefaultCellStyle.BackColor = Utilities.ListpostfixColor;
             }
             else if (affectedDataGridView.SelectedCells.Count > 0)
             {
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
-                row.DefaultCellStyle.BackColor = Utilities.ListAppendColor;
+                row.DefaultCellStyle.BackColor = Utilities.ListpostfixColor;
             }
         }
 

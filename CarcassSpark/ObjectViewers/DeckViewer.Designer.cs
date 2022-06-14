@@ -54,8 +54,8 @@
             this.specListView = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specPrependButton = new System.Windows.Forms.Button();
-            this.specAppendButton = new System.Windows.Forms.Button();
+            this.specprefixButton = new System.Windows.Forms.Button();
+            this.specpostfixButton = new System.Windows.Forms.Button();
             this.specRemoveButton = new System.Windows.Forms.Button();
             this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             this.extendsLabel = new System.Windows.Forms.Label();
@@ -314,27 +314,27 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
-            // specPrependButton
+            // specprefixButton
             // 
-            this.specPrependButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.specPrependButton.Location = new System.Drawing.Point(345, 348);
-            this.specPrependButton.Name = "specPrependButton";
-            this.specPrependButton.Size = new System.Drawing.Size(57, 23);
-            this.specPrependButton.TabIndex = 22;
-            this.specPrependButton.Text = "Prepend";
-            this.specPrependButton.UseVisualStyleBackColor = true;
-            this.specPrependButton.Click += new System.EventHandler(this.SpecPrependButton_Click);
+            this.specprefixButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.specprefixButton.Location = new System.Drawing.Point(345, 348);
+            this.specprefixButton.Name = "specprefixButton";
+            this.specprefixButton.Size = new System.Drawing.Size(57, 23);
+            this.specprefixButton.TabIndex = 22;
+            this.specprefixButton.Text = "prefix";
+            this.specprefixButton.UseVisualStyleBackColor = true;
+            this.specprefixButton.Click += new System.EventHandler(this.SpecprefixButton_Click);
             // 
-            // specAppendButton
+            // specpostfixButton
             // 
-            this.specAppendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.specAppendButton.Location = new System.Drawing.Point(408, 348);
-            this.specAppendButton.Name = "specAppendButton";
-            this.specAppendButton.Size = new System.Drawing.Size(66, 23);
-            this.specAppendButton.TabIndex = 23;
-            this.specAppendButton.Text = "Append";
-            this.specAppendButton.UseVisualStyleBackColor = true;
-            this.specAppendButton.Click += new System.EventHandler(this.SpecAppendButton_Click);
+            this.specpostfixButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.specpostfixButton.Location = new System.Drawing.Point(408, 348);
+            this.specpostfixButton.Name = "specpostfixButton";
+            this.specpostfixButton.Size = new System.Drawing.Size(66, 23);
+            this.specpostfixButton.TabIndex = 23;
+            this.specpostfixButton.Text = "postfix";
+            this.specpostfixButton.UseVisualStyleBackColor = true;
+            this.specpostfixButton.Click += new System.EventHandler(this.SpecpostfixButton_Click);
             // 
             // specRemoveButton
             // 
@@ -403,8 +403,8 @@
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.specRemoveButton);
-            this.Controls.Add(this.specAppendButton);
-            this.Controls.Add(this.specPrependButton);
+            this.Controls.Add(this.specpostfixButton);
+            this.Controls.Add(this.specprefixButton);
             this.Controls.Add(this.specListView);
             this.Controls.Add(this.drawmessagesLlabel);
             this.Controls.Add(this.defaultCardLabel);
@@ -463,8 +463,8 @@
         private System.Windows.Forms.Label defaultCardLabel;
         private System.Windows.Forms.Label drawmessagesLlabel;
         private System.Windows.Forms.ListView specListView;
-        private System.Windows.Forms.Button specPrependButton;
-        private System.Windows.Forms.Button specAppendButton;
+        private System.Windows.Forms.Button specprefixButton;
+        private System.Windows.Forms.Button specpostfixButton;
         private System.Windows.Forms.Button specRemoveButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;

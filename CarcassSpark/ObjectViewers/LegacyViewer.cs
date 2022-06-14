@@ -122,13 +122,13 @@ namespace CarcassSpark.ObjectViewers
                     effectsDataGridView.Rows.Add(row);
                 }
             }
-            if (legacy.excludesOnEnding_prepend != null)
+            if (legacy.excludesOnEnding_prefix != null)
             {
-                foreach (string ending in legacy.excludesOnEnding_prepend)
+                foreach (string ending in legacy.excludesOnEnding_prefix)
                 {
                     ListViewItem item = new ListViewItem(ending)
                     {
-                        BackColor = Utilities.ListPrependColor
+                        BackColor = Utilities.ListprefixColor
                     };
                     excludesOnEndingListView.Items.Add(item);
                 }
@@ -140,13 +140,13 @@ namespace CarcassSpark.ObjectViewers
                     excludesOnEndingListView.Items.Add(ending);
                 }
             }
-            if (legacy.excludesOnEnding_append != null)
+            if (legacy.excludesOnEnding_postfix != null)
             {
-                foreach (string ending in legacy.excludesOnEnding_append)
+                foreach (string ending in legacy.excludesOnEnding_postfix)
                 {
                     ListViewItem item = new ListViewItem(ending)
                     {
-                        BackColor = Utilities.ListAppendColor
+                        BackColor = Utilities.ListpostfixColor
                     };
                     excludesOnEndingListView.Items.Add(item);
                 }

@@ -66,19 +66,19 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<RecipeLink> linked;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$append")]
-        public List<RecipeLink> linked_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$prepend")]
-        public List<RecipeLink> linked_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$postfix")]
+        public List<RecipeLink> linked_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$prefix")]
+        public List<RecipeLink> linked_prefix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "linked$remove")]
         public List<string> linked_remove;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<RecipeLink> alt;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$append")]
-        public List<RecipeLink> alt_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$prepend")]
-        public List<RecipeLink> alt_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$postfix")]
+        public List<RecipeLink> alt_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$prefix")]
+        public List<RecipeLink> alt_prefix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "alt$remove")]
         public List<string> alt_remove;
 
@@ -87,10 +87,10 @@ namespace CarcassSpark.ObjectTypes
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Mutation> mutations;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$append")]
-        public List<Mutation> mutations_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$prepend")]
-        public List<Mutation> mutations_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$postfix")]
+        public List<Mutation> mutations_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$prefix")]
+        public List<Mutation> mutations_prefix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "mutations$remove")]
         public List<string> mutations_remove;
 
@@ -131,10 +131,10 @@ namespace CarcassSpark.ObjectTypes
                       Deck internaldeck, string ending, string burnimage, string comments,
                       Dictionary<string, string> requirements, Dictionary<string, string> requirements_extend, List<string> requirementsRemove,
                       Dictionary<string, string> effects, Dictionary<string, string> effectsExtend, List<string> effectsRemove,
-                      List<RecipeLink> linked, List<RecipeLink> linkedPrepend, List<RecipeLink> linkedAppend, List<string> linkedRemove, List<Slot> slots,
-                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> altPrepend, List<RecipeLink> altAppend, List<string> altRemove,
+                      List<RecipeLink> linked, List<RecipeLink> linkedprefix, List<RecipeLink> linkedpostfix, List<string> linkedRemove, List<Slot> slots,
+                      List<RecipeLink> alternativerecipes, List<RecipeLink> alt, List<RecipeLink> altprefix, List<RecipeLink> altpostfix, List<string> altRemove,
                       Dictionary<string, int> deckeffects, Dictionary<string, int> deckeffectsExtend, List<string> deckeffectsRemove,
-                      List<Mutation> mutations, List<Mutation> mutationsPrepend, List<Mutation> mutationsAppend, List<string> mutationsRemove,
+                      List<Mutation> mutations, List<Mutation> mutationsprefix, List<Mutation> mutationspostfix, List<string> mutationsRemove,
                       Dictionary<string, int> aspects, Dictionary<string, int> aspectsExtend, List<string> aspectsRemove,
                       Dictionary<string, string> tablereqs, Dictionary<string, string> tablereqsExtend, List<string> tablereqsRemove,
                       Dictionary<string, string> extantreqs, Dictionary<string, string> extantreqsExtend, List<string> extantreqsRemove,
@@ -168,17 +168,17 @@ namespace CarcassSpark.ObjectTypes
             this.effects_extend = effectsExtend;
             this.effects_remove = effectsRemove;
             this.linked = linked;
-            this.linked_prepend = linkedPrepend;
-            this.linked_append = linkedAppend;
+            this.linked_prefix = linkedprefix;
+            this.linked_postfix = linkedpostfix;
             this.linked_remove = linkedRemove;
             this.slots = slots;
             this.alt = alt ?? alternativerecipes;
-            this.alt_prepend = altPrepend;
-            this.alt_append = altAppend;
+            this.alt_prefix = altprefix;
+            this.alt_postfix = altpostfix;
             this.alt_remove = altRemove;
             this.mutations = mutations;
-            this.mutations_prepend = mutationsPrepend;
-            this.mutations_append = mutationsAppend;
+            this.mutations_prefix = mutationsprefix;
+            this.mutations_postfix = mutationspostfix;
             this.mutations_remove = mutationsRemove;
             this.aspects = aspects;
             this.aspects_extend = aspectsExtend;

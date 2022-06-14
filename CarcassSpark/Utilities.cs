@@ -40,8 +40,8 @@ namespace CarcassSpark
 
         public static DataGridViewCellStyle DictionaryExtendStyle = new DataGridViewCellStyle();
         public static DataGridViewCellStyle DictionaryRemoveStyle = new DataGridViewCellStyle();
-        public static System.Drawing.Color ListAppendColor = System.Drawing.Color.LimeGreen;
-        public static System.Drawing.Color ListPrependColor = System.Drawing.Color.Aquamarine;
+        public static System.Drawing.Color ListpostfixColor = System.Drawing.Color.LimeGreen;
+        public static System.Drawing.Color ListprefixColor = System.Drawing.Color.Aquamarine;
         public static System.Drawing.Color ListRemoveColor = System.Drawing.Color.Maroon;
 
         static Utilities()

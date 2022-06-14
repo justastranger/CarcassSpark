@@ -14,10 +14,10 @@ namespace CarcassSpark.ObjectTypes
         public string id, label, description, comments, defaultcard;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> spec; // the actual internal deck
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$append")]
-        public List<string> spec_append;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$prepend")]
-        public List<string> spec_prepend;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$postfix")]
+        public List<string> spec_postfix;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$prefix")]
+        public List<string> spec_prefix;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$remove")]
         public List<string> spec_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -48,15 +48,15 @@ namespace CarcassSpark.ObjectTypes
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
                     string defaultcard, Dictionary<string, string> drawmessages,
-                    Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> specPrepend, List<string> specRemove,
+                    Dictionary<string, string> defaultdrawmessages, List<string> spec_postfix, List<string> specprefix, List<string> specRemove,
                     Dictionary<string, string> drawmessagesExtend, List<String> drawmessagesRemove, Dictionary<string, string> defaultdrawmessagesExtend, List<String> defaultdrawmessagesRemove, List<string> extends)
         {
             this.id = id;
             this.label = label;
             this.description = description;
             this.spec = spec;
-            this.spec_append = spec_append;
-            this.spec_prepend = specPrepend;
+            this.spec_postfix = spec_postfix;
+            this.spec_prefix = specprefix;
             this.spec_remove = specRemove;
             this.comments = comments;
             this.defaultcard = defaultcard;

@@ -92,12 +92,12 @@
             this.removeAlternativeRecipeButton = new System.Windows.Forms.Button();
             this.removeLinkedRecipeButton = new System.Windows.Forms.Button();
             this.removeMutationButton = new System.Windows.Forms.Button();
-            this.prependAlternativeRecipeButton = new System.Windows.Forms.Button();
-            this.appendAlternativeReipeButton = new System.Windows.Forms.Button();
-            this.prependLinkedRecipeButton = new System.Windows.Forms.Button();
-            this.appendLinkedRecipeButton = new System.Windows.Forms.Button();
-            this.prependMutationButton = new System.Windows.Forms.Button();
-            this.appendMutationButton = new System.Windows.Forms.Button();
+            this.prefixAlternativeRecipeButton = new System.Windows.Forms.Button();
+            this.postfixAlternativeReipeButton = new System.Windows.Forms.Button();
+            this.prefixLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.postfixLinkedRecipeButton = new System.Windows.Forms.Button();
+            this.prefixMutationButton = new System.Windows.Forms.Button();
+            this.postfixMutationButton = new System.Windows.Forms.Button();
             this.alternativeRecipesListView = new System.Windows.Forms.ListView();
             this.linkedRecipesListView = new System.Windows.Forms.ListView();
             this.mutationsListView = new System.Windows.Forms.ListView();
@@ -912,71 +912,71 @@
             this.removeMutationButton.UseVisualStyleBackColor = true;
             this.removeMutationButton.Click += new System.EventHandler(this.RemoveMutationButton_Click);
             // 
-            // prependAlternativeRecipeButton
+            // prefixAlternativeRecipeButton
             // 
-            this.prependAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prependAlternativeRecipeButton.Location = new System.Drawing.Point(66, 3);
-            this.prependAlternativeRecipeButton.Name = "prependAlternativeRecipeButton";
-            this.prependAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.prependAlternativeRecipeButton.TabIndex = 1;
-            this.prependAlternativeRecipeButton.Text = "Prepend";
-            this.prependAlternativeRecipeButton.UseVisualStyleBackColor = true;
-            this.prependAlternativeRecipeButton.Click += new System.EventHandler(this.PrependAlternativeRecipeButton_Click);
+            this.prefixAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prefixAlternativeRecipeButton.Location = new System.Drawing.Point(66, 3);
+            this.prefixAlternativeRecipeButton.Name = "prefixAlternativeRecipeButton";
+            this.prefixAlternativeRecipeButton.Size = new System.Drawing.Size(57, 24);
+            this.prefixAlternativeRecipeButton.TabIndex = 1;
+            this.prefixAlternativeRecipeButton.Text = "prefix";
+            this.prefixAlternativeRecipeButton.UseVisualStyleBackColor = true;
+            this.prefixAlternativeRecipeButton.Click += new System.EventHandler(this.prefixAlternativeRecipeButton_Click);
             // 
-            // appendAlternativeReipeButton
+            // postfixAlternativeReipeButton
             // 
-            this.appendAlternativeReipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appendAlternativeReipeButton.Location = new System.Drawing.Point(129, 3);
-            this.appendAlternativeReipeButton.Name = "appendAlternativeReipeButton";
-            this.appendAlternativeReipeButton.Size = new System.Drawing.Size(57, 24);
-            this.appendAlternativeReipeButton.TabIndex = 2;
-            this.appendAlternativeReipeButton.Text = "Append";
-            this.appendAlternativeReipeButton.UseVisualStyleBackColor = true;
-            this.appendAlternativeReipeButton.Click += new System.EventHandler(this.AppendAlternativeReipeButton_Click);
+            this.postfixAlternativeReipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postfixAlternativeReipeButton.Location = new System.Drawing.Point(129, 3);
+            this.postfixAlternativeReipeButton.Name = "postfixAlternativeReipeButton";
+            this.postfixAlternativeReipeButton.Size = new System.Drawing.Size(57, 24);
+            this.postfixAlternativeReipeButton.TabIndex = 2;
+            this.postfixAlternativeReipeButton.Text = "postfix";
+            this.postfixAlternativeReipeButton.UseVisualStyleBackColor = true;
+            this.postfixAlternativeReipeButton.Click += new System.EventHandler(this.postfixAlternativeReipeButton_Click);
             // 
-            // prependLinkedRecipeButton
+            // prefixLinkedRecipeButton
             // 
-            this.prependLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prependLinkedRecipeButton.Location = new System.Drawing.Point(66, 3);
-            this.prependLinkedRecipeButton.Name = "prependLinkedRecipeButton";
-            this.prependLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.prependLinkedRecipeButton.TabIndex = 1;
-            this.prependLinkedRecipeButton.Text = "Prepend";
-            this.prependLinkedRecipeButton.UseVisualStyleBackColor = true;
-            this.prependLinkedRecipeButton.Click += new System.EventHandler(this.PrependLinkedRecipeButton_Click);
+            this.prefixLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prefixLinkedRecipeButton.Location = new System.Drawing.Point(66, 3);
+            this.prefixLinkedRecipeButton.Name = "prefixLinkedRecipeButton";
+            this.prefixLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
+            this.prefixLinkedRecipeButton.TabIndex = 1;
+            this.prefixLinkedRecipeButton.Text = "prefix";
+            this.prefixLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.prefixLinkedRecipeButton.Click += new System.EventHandler(this.prefixLinkedRecipeButton_Click);
             // 
-            // appendLinkedRecipeButton
+            // postfixLinkedRecipeButton
             // 
-            this.appendLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appendLinkedRecipeButton.Location = new System.Drawing.Point(129, 3);
-            this.appendLinkedRecipeButton.Name = "appendLinkedRecipeButton";
-            this.appendLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
-            this.appendLinkedRecipeButton.TabIndex = 2;
-            this.appendLinkedRecipeButton.Text = "Append";
-            this.appendLinkedRecipeButton.UseVisualStyleBackColor = true;
-            this.appendLinkedRecipeButton.Click += new System.EventHandler(this.AppendLinkedRecipeButton_Click);
+            this.postfixLinkedRecipeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postfixLinkedRecipeButton.Location = new System.Drawing.Point(129, 3);
+            this.postfixLinkedRecipeButton.Name = "postfixLinkedRecipeButton";
+            this.postfixLinkedRecipeButton.Size = new System.Drawing.Size(57, 24);
+            this.postfixLinkedRecipeButton.TabIndex = 2;
+            this.postfixLinkedRecipeButton.Text = "postfix";
+            this.postfixLinkedRecipeButton.UseVisualStyleBackColor = true;
+            this.postfixLinkedRecipeButton.Click += new System.EventHandler(this.postfixLinkedRecipeButton_Click);
             // 
-            // prependMutationButton
+            // prefixMutationButton
             // 
-            this.prependMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prependMutationButton.Location = new System.Drawing.Point(66, 3);
-            this.prependMutationButton.Name = "prependMutationButton";
-            this.prependMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.prependMutationButton.TabIndex = 1;
-            this.prependMutationButton.Text = "Prepend";
-            this.prependMutationButton.UseVisualStyleBackColor = true;
-            this.prependMutationButton.Click += new System.EventHandler(this.PrependMutationButton_Click);
+            this.prefixMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prefixMutationButton.Location = new System.Drawing.Point(66, 3);
+            this.prefixMutationButton.Name = "prefixMutationButton";
+            this.prefixMutationButton.Size = new System.Drawing.Size(57, 24);
+            this.prefixMutationButton.TabIndex = 1;
+            this.prefixMutationButton.Text = "prefix";
+            this.prefixMutationButton.UseVisualStyleBackColor = true;
+            this.prefixMutationButton.Click += new System.EventHandler(this.prefixMutationButton_Click);
             // 
-            // appendMutationButton
+            // postfixMutationButton
             // 
-            this.appendMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appendMutationButton.Location = new System.Drawing.Point(129, 3);
-            this.appendMutationButton.Name = "appendMutationButton";
-            this.appendMutationButton.Size = new System.Drawing.Size(57, 24);
-            this.appendMutationButton.TabIndex = 2;
-            this.appendMutationButton.Text = "Append";
-            this.appendMutationButton.UseVisualStyleBackColor = true;
-            this.appendMutationButton.Click += new System.EventHandler(this.AppendMutationButton_Click);
+            this.postfixMutationButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postfixMutationButton.Location = new System.Drawing.Point(129, 3);
+            this.postfixMutationButton.Name = "postfixMutationButton";
+            this.postfixMutationButton.Size = new System.Drawing.Size(57, 24);
+            this.postfixMutationButton.TabIndex = 2;
+            this.postfixMutationButton.Text = "postfix";
+            this.postfixMutationButton.UseVisualStyleBackColor = true;
+            this.postfixMutationButton.Click += new System.EventHandler(this.postfixMutationButton_Click);
             // 
             // alternativeRecipesListView
             // 
@@ -1416,9 +1416,9 @@
             this.tableLayoutPanel2.Controls.Add(this.moveMutationDownButton, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.moveMutationUpButton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.addMutationButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.prependMutationButton, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.prefixMutationButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.removeMutationButton, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.appendMutationButton, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.postfixMutationButton, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(519, 544);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
@@ -1440,8 +1440,8 @@
             this.tableLayoutPanel3.Controls.Add(this.addLinkedRecipeButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.removeLinkedRecipeButton, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.moveLinkedRecipeDownButton, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.appendLinkedRecipeButton, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.prependLinkedRecipeButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.postfixLinkedRecipeButton, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.prefixLinkedRecipeButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.moveLinkedRecipeUpButton, 1, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(261, 544);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1463,11 +1463,11 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.Controls.Add(this.okButton, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.addAlternativeRecipeButton, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.prependAlternativeRecipeButton, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.prefixAlternativeRecipeButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeDownButton, 2, 1);
             this.tableLayoutPanel4.Controls.Add(this.moveAltRecipeUpButton, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.removeAlternativeRecipeButton, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.appendAlternativeReipeButton, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.postfixAlternativeReipeButton, 2, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 544);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
@@ -1784,12 +1784,12 @@
         private System.Windows.Forms.ContextMenuStrip propertyOperationContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem setAsExtendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
-        private System.Windows.Forms.Button prependAlternativeRecipeButton;
-        private System.Windows.Forms.Button appendAlternativeReipeButton;
-        private System.Windows.Forms.Button prependLinkedRecipeButton;
-        private System.Windows.Forms.Button appendLinkedRecipeButton;
-        private System.Windows.Forms.Button prependMutationButton;
-        private System.Windows.Forms.Button appendMutationButton;
+        private System.Windows.Forms.Button prefixAlternativeRecipeButton;
+        private System.Windows.Forms.Button postfixAlternativeReipeButton;
+        private System.Windows.Forms.Button prefixLinkedRecipeButton;
+        private System.Windows.Forms.Button postfixLinkedRecipeButton;
+        private System.Windows.Forms.Button prefixMutationButton;
+        private System.Windows.Forms.Button postfixMutationButton;
         private System.Windows.Forms.ListView alternativeRecipesListView;
         private System.Windows.Forms.ListView linkedRecipesListView;
         private System.Windows.Forms.ListView mutationsListView;
