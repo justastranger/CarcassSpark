@@ -747,9 +747,7 @@ namespace CarcassSpark.ObjectViewers
                 bool isGroupHidden = hiddenGroups.Contains(gameObject.Filename);
                 if (!isGroupHidden)
                 {
-                    ListViewGroup group = listView.Groups[gameObject.Filename] == null
-                        ? new ListViewGroup(gameObject.Filename, gameObject.Filename)
-                        : listView.Groups[gameObject.Filename];
+                    ListViewGroup group = listView.Groups[gameObject.Filename] ?? new ListViewGroup(gameObject.Filename, gameObject.Filename);
                     ListViewItem item = new ListViewItem(gameObject.ID) { Tag = gameObject.Guid, Group = group, Name = gameObject.ID };
                     // group.Items.Add(item);
                     if (!listView.Groups.Contains(group))
