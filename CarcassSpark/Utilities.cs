@@ -56,18 +56,21 @@ namespace CarcassSpark
             // AssetsManager.LoadFiles(Settings.settings["GamePath"] + _directoryToVanillaAssets);
             // CollectSprites();
             string extractedpath = Settings.settings["GamePath"] + "\\extracted\\";
-            string[] images = Directory.GetFiles(extractedpath, "*.png", SearchOption.AllDirectories);
-            if (images.Length > 0)
+            if (Directory.Exists(extractedpath))
             {
-                foreach (string filename in images)
+                string[] images = Directory.GetFiles(extractedpath, "*.png", SearchOption.AllDirectories);
+                if (images.Length > 0)
                 {
-                    if (filename.IndexOf(".png") > 0)
+                    foreach (string filename in images)
                     {
-                        Bitmap image = new Bitmap(filename);
-                        string key = filename.Remove(0, extractedpath.Length);
-                        key = key.Remove(key.IndexOf(".png"));
-                        Assets[key] = image;
-                        ImageList.Images.Add(key, image);
+                        if (filename.IndexOf(".png") > 0)
+                        {
+                            Bitmap image = new Bitmap(filename);
+                            string key = filename.Remove(0, extractedpath.Length);
+                            key = key.Remove(key.IndexOf(".png"));
+                            Assets[key] = image;
+                            ImageList.Images.Add(key, image);
+                        }
                     }
                 }
             }
